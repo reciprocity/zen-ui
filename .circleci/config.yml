@@ -58,7 +58,7 @@ jobs:
           at: .
       - run:
           name: Upload build except index.html with cache headers
-          command: aws s3 sync --cache-control 'max-age=604800' --exclude index.html --exclude remoteEntry.js build s3://zen-ui.zengrc.com --delete
+          command: aws s3 sync www s3://zen-ui.zengrc.com --delete
       - run:
           name: Upload index with no cache
           command: aws s3 sync --cache-control 'no-cache' build s3://zen-ui.zengrc.com
@@ -71,6 +71,9 @@ workflows:
       - build:
           requires:
             - prepare
+      - test:
+          requires:
+            - prepare
       - deploy:
           requires:
             - build
@@ -78,6 +81,3 @@ workflows:
             branches:
               only:
                 - stencil
-      - test:
-          requires:
-            - prepare
