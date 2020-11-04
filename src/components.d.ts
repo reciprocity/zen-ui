@@ -5,57 +5,41 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { OptionItem } from "./components/zen-dropdown/zen-dropdown";
 export namespace Components {
-    interface MyComponent {
-        /**
-          * The first name
-         */
-        "first": string;
-        /**
-          * The last name
-         */
-        "last": string;
-        /**
-          * The middle name
-         */
-        "middle": string;
+    interface ZenDropdown {
+        "options": Array<OptionItem>;
+        "trackBy": string;
+        "val": OptionItem;
     }
 }
 declare global {
-    interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
+    interface HTMLZenDropdownElement extends Components.ZenDropdown, HTMLStencilElement {
     }
-    var HTMLMyComponentElement: {
-        prototype: HTMLMyComponentElement;
-        new (): HTMLMyComponentElement;
+    var HTMLZenDropdownElement: {
+        prototype: HTMLZenDropdownElement;
+        new (): HTMLZenDropdownElement;
     };
     interface HTMLElementTagNameMap {
-        "my-component": HTMLMyComponentElement;
+        "zen-dropdown": HTMLZenDropdownElement;
     }
 }
 declare namespace LocalJSX {
-    interface MyComponent {
-        /**
-          * The first name
-         */
-        "first"?: string;
-        /**
-          * The last name
-         */
-        "last"?: string;
-        /**
-          * The middle name
-         */
-        "middle"?: string;
+    interface ZenDropdown {
+        "onInput2"?: (event: CustomEvent<OptionItem>) => void;
+        "options"?: Array<OptionItem>;
+        "trackBy"?: string;
+        "val"?: OptionItem;
     }
     interface IntrinsicElements {
-        "my-component": MyComponent;
+        "zen-dropdown": ZenDropdown;
     }
 }
 export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
-            "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
+            "zen-dropdown": LocalJSX.ZenDropdown & JSXBase.HTMLAttributes<HTMLZenDropdownElement>;
         }
     }
 }
