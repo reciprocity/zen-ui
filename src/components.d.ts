@@ -26,7 +26,7 @@ declare global {
 }
 declare namespace LocalJSX {
     interface ZenDropdown {
-        "onInput2"?: (event: CustomEvent<OptionItem>) => void;
+        "onValueChanged"?: (event: CustomEvent<OptionItem>) => void;
         "options"?: Array<OptionItem>;
         "trackBy"?: string;
         "val"?: OptionItem;

@@ -27,9 +27,9 @@ export class ZenDropdownSimple {
     this.emitValueChanged(val);
   }
 
-  @Event() input2: EventEmitter<OptionItem>;
+  @Event() valueChanged: EventEmitter<OptionItem>;
   emitValueChanged(value: OptionItem) {
-    this.input2.emit(value);
+    this.valueChanged.emit(value);
   }
 
   componentWillLoad() {
@@ -88,10 +88,8 @@ export class ZenDropdownSimple {
                 >{option.label}</li>
               )}
             </ul>
-            : <ul></ul>
-            // : <slot></slot>
+            : ''
           }
-          {/* <slot></slot> */}
         </div>
       </Host>
     );
