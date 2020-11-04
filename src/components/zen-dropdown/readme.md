@@ -16,9 +16,9 @@
 
 ## Events
 
-| Event    | Description | Type                      |
-| -------- | ----------- | ------------------------- |
-| `input2` |             | `CustomEvent<OptionItem>` |
+| Event          | Description | Type                      |
+| -------------- | ----------- | ------------------------- |
+| `valueChanged` |             | `CustomEvent<OptionItem>` |
 
 
 ----------------------------------------------

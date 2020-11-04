@@ -1,4 +1,5 @@
 import { Config } from '@stencil/core';
+import analyze from 'rollup-plugin-analyzer';
 
 export const config: Config = {
   namespace: 'zen-ui',
@@ -18,4 +19,9 @@ export const config: Config = {
       serviceWorker: null, // disable service workers
     },
   ],
+  rollupPlugins: {
+    after: [
+      analyze({ summaryOnly: true })
+    ]
+  }
 };
