@@ -31,7 +31,7 @@ jobs:
       - persist_to_workspace:
           root: .
           paths:
-            - build
+            - www
   test:
     <<: *defaults
     steps:
@@ -58,10 +58,7 @@ jobs:
           at: .
       - run:
           name: Upload build except index.html with cache headers
-          command: aws s3 sync www s3://zen-ui.zengrc.com --delete
-      - run:
-          name: Upload index with no cache
-          command: aws s3 sync --cache-control 'no-cache' build s3://zen-ui.zengrc.com
+          command: cd www && aws s3 sync . s3://zen-ui.zengrc.com --delete
 
 workflows:
   version: 2
