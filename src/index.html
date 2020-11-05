@@ -7,9 +7,31 @@
 
     <script type="module" src="/build/zen-ui.esm.js"></script>
     <script nomodule src="/build/zen-ui.js"></script>
+    <style>
+      html {
+        font-size: 18px;
+        font-family: Tahoma,Verdana,Segoe,sans-serif;
+      }
+      .content {
+        margin: auto;
+        max-width: 700px;
+      }
+    </style>
   </head>
   <body>
-    <p>Zen UI components</p>
-    <zen-dropdown first="Stencil" last="'Don't call me a framework' JS"></zen-dropdown>
+    <div class="content">
+      <h1>Zen UI components</h1>
+      <zen-dropdown id="zen-dropdown-1" options='[{"label": "Canadax"}, {"label": "Bum"}, {"label": "Luxembourg"} ]'></zen-dropdown>
+    </div>
+    <script>
+      var zenDropdown = document.querySelector("#zen-dropdown-1");
+
+        var options = [
+          {label: 'Canadax'},
+          {label: 'Bum'},
+          {label: 'Luxembourg'}
+        ];
+        zenDropdown.options = options;
+    </script>
   </body>
 </html>

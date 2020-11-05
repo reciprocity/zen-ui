@@ -70,7 +70,6 @@ export class ZenDropdownSimple {
     return (
       <Host>
         <div class="zen-multiselect" ref={el => this.div = el}>
-          <p>val '{ JSON.stringify(this.val) }'</p>
           <div tabindex="0" class={{
               field: true,
               opened: this.opened
@@ -88,7 +87,7 @@ export class ZenDropdownSimple {
                 >{option.label}</li>
               )}
             </ul>
-            : ''
+            : <ul></ul>
           }
         </div>
       </Host>
