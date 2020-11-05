@@ -9,9 +9,13 @@ describe('zen-dropdown', () => {
     });
     expect(page.root).toEqualHtml(`
       <zen-dropdown>
-        <mock:shadow-root>
-          <slot></slot>
-        </mock:shadow-root>
+      <div class="zen-multiselect">
+        <div class="field" tabindex="0">
+            Select something
+          <div class="arrow"></div>
+        </div>
+        <ul></ul>
+      </div>
       </zen-dropdown>
     `);
   });
