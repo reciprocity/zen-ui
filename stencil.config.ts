@@ -1,5 +1,6 @@
 import { Config } from '@stencil/core';
 import analyze from 'rollup-plugin-analyzer';
+import { sass } from '@stencil/sass';
 
 export const config: Config = {
   namespace: 'zen-ui',
@@ -23,5 +24,6 @@ export const config: Config = {
     after: [
       analyze({ summaryOnly: true })
     ]
-  }
+  },
+  plugins: [sass()],
 };
