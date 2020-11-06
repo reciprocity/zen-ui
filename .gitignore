@@ -3,6 +3,7 @@ dist-stencil/
 dist-storybook/
 www/
 loader/
+storybook-static
 
 *~
 *.sw[mnpcod]
