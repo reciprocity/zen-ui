@@ -23,6 +23,7 @@ export namespace Components {
     }
     interface ZenDropdown {
         "options": Array<OptionItem>;
+        "selectedColor": string;
         "trackBy": string;
         "val": OptionItem;
     }
@@ -63,6 +64,7 @@ declare namespace LocalJSX {
     interface ZenDropdown {
         "onInput2"?: (event: CustomEvent<OptionItem>) => void;
         "options"?: Array<OptionItem>;
+        "selectedColor"?: string;
         "trackBy"?: string;
         "val"?: OptionItem;
     }

@@ -5,18 +5,25 @@ export default {
   component: 'zen-dropdown',
 };
 
-const Template = () => {
-  return html`
-  <zen-dropdown
-    options="${[{ label: '1' }, { label: '2' }]}"
-  </zen-dropdown>`;
+// https://storybook.js.org/docs/react/essentials/controls#annotation
+const argTypes = {
+  selectedColor: {
+    control: 'color',
+  },
+};
+
+const Template = (
+  {
+    selectedColor,
+  }) => {
+    const opts = [{ label: 'item 1' }, { label: 'item 2' }];
+    return html`
+    <zen-dropdown
+      style="max-width: 300px"
+      .options=${opts}
+      selected-color=${selectedColor}
+    </zen-dropdown>`;
 };
 
 export const Default = Template.bind({});
-
-
-export const TextWithAction = () => {
-  const dropdown = document.createElement('zen-dropdown');
-  dropdown.options = [{ label: 'item 1' }, { label: 'item 2' }];
-  return dropdown;
-};
+Default.argTypes = {...argTypes};

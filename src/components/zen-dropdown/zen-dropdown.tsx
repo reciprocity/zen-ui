@@ -21,6 +21,7 @@ export class ZenDropdownSimple {
   @Prop() val: OptionItem = { label: '' };
   @Prop() options: Array<OptionItem> = [];
   @Prop() trackBy: string = 'label';
+  @Prop() selectedColor: string;
 
   @Watch('val')
   dataDidChangeHandler(val) {
@@ -68,31 +69,29 @@ export class ZenDropdownSimple {
 
   render() {
     return (
-      <Host>
-        <div class="zen-multiselect" ref={el => this.div = el}>
-          <p>val '{ JSON.stringify(this.val) }'</p>
-          <div tabindex="0" class={{
-              field: true,
-              opened: this.opened
-            }}
-            onClick={() => {this.toggleDropdown(true)}}>
-            {this.val.label || 'Select something'}
-            <div class="arrow"></div>
-          </div>
-          {this.opened
-            ? <ul class="list">
-              { this.options.map((option) =>
-                <li
-                  class={{ selected: this.isSelected(option) }}
-                  onClick={() => this.selectValue(option)}
-                >{option.label}</li>
-              )}
-            </ul>
-            : <ul></ul>
-            // : <slot></slot>
-          }
-          {/* <slot></slot> */}
+      <Host class="zen-multiselect" ref={el => this.div = el}>
+        <div tabindex="0" class={{
+            field: true,
+            opened: this.opened
+          }}
+          onClick={() => {this.toggleDropdown(true)}}>
+          {this.val.label || 'Select something'}
+          <div class="arrow"></div>
         </div>
+        {this.opened
+          ? <ul class="list">
+            { this.options.map((option) =>
+              <li
+                class={{ selected: this.isSelected(option) }}
+                style={{'background-color': this.isSelected(option) ? this.selectedColor : ''}}
+                onClick={() => this.selectValue(option)}
+              >{option.label}</li>
+            )}
+          </ul>
+          : <ul></ul>
+          // : <slot></slot>
+        }
+        {/* <slot></slot> */}
       </Host>
     );
   }
