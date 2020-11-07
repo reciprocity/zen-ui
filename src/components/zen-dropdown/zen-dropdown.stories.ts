@@ -1,4 +1,5 @@
 import { html } from 'lit-html';
+import markdown from './readme.md';
 import { eventHandles, action } from '../../../.storybook/helpers/custom-action';
 
 const customEvents = ['input2'];
@@ -8,6 +9,7 @@ export default {
   title: 'Components/Zen Dropdown',
   component: 'zen-dropdown',
   parameters: {
+    notes: {markdown},
     actions: {
       handles: events,
     },
