@@ -1,0 +1,65 @@
+// :host {
+.zen-multiselect {
+  display: block;
+  text-align-last: left;
+  color: #000;
+  font-size: 16px;
+
+  $background: #fff;
+  $border: rgba(#000, 0.1);
+
+  .field {
+    z-index: 1;
+    position: relative;
+    border: 1px solid $border;
+    padding: 0.5em 2em;
+    border-radius: 3px;
+    background-color: $background;
+
+    &:active,
+    &:focus {
+      border: 1px solid #f00;
+    }
+
+    .arrow {
+      position: absolute;
+      right: 10px;
+      top: calc(50% - 3px);
+      border-top: 6px solid #000;
+      border-left: 6px solid transparent;
+      border-right: 6px solid transparent;
+      border-bottom-width: 0;
+      transition: transform 0.3s;
+    }
+
+    &.opened {
+      .arrow {
+        transform: rotate(180deg);
+      }
+    }
+  }
+
+  .list {
+    border: 1px solid $border;
+    border-top: none;
+    background-color: $background;
+    padding: 0;
+    margin: 0;
+    box-shadow: 1px 2px 20px rgba(#000, 0.2);
+
+    li {
+      list-style-type: none;
+      transition: background-color 0.1s linear;
+      padding: 1rem 2rem;
+
+      &:hover {
+        background-color: rgba(#000, 0.05);
+      }
+
+      &.selected {
+        background-color: rgb(64, 114, 252);
+        color: #fff;
+      }
+    }
+  }
+}
