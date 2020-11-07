@@ -1,4 +1,5 @@
 import { Config } from '@stencil/core';
+import { sass } from '@stencil/sass';
 
 const { name, distDirs } = require('./package.json');
 
@@ -10,6 +11,9 @@ export const config: Config = {
     reloadStrategy: 'hmr',
     openBrowser: false,
   },
+  plugins: [
+    sass()
+  ],
   outputTargets: [
     {
       type: 'dist',
