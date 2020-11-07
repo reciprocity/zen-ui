@@ -1,8 +1,17 @@
 import { html } from 'lit-html';
+import { eventHandles, action } from '../../../.storybook/helpers/custom-action';
+
+const customEvents = ['input2'];
+const events = [...eventHandles(customEvents)];
 
 export default {
   title: 'Components/Zen Dropdown',
   component: 'zen-dropdown',
+  parameters: {
+    actions: {
+      handles: events,
+    },
+  },
 };
 
 // https://storybook.js.org/docs/react/essentials/controls#annotation
@@ -22,7 +31,9 @@ const Template = (
       style="max-width: 300px"
       .options=${opts}
       selected-color=${selectedColor}
-    </zen-dropdown>`;
+    </zen-dropdown>
+    ${action('zen-dropdown', customEvents)}
+    `;
 };
 
 export const Default = Template.bind({});
