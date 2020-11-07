@@ -4,6 +4,12 @@ const { name, distDirs } = require('./package.json');
 
 export const config: Config = {
   namespace: name,
+  buildEs5: false,
+  taskQueue: 'async',
+  devServer: {
+    reloadStrategy: 'hmr',
+    openBrowser: false,
+  },
   outputTargets: [
     {
       type: 'dist',
