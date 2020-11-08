@@ -26,7 +26,6 @@ export const config: Config = {
     },
     {
       type: 'docs-readme',
-      dir: distDirs.stencil,
     },
     {
       type: 'www',
