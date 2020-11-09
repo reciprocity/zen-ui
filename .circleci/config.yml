@@ -1,0 +1,80 @@
+defaults: &defaults
+  docker:
+    - image: circleci/node:latest
+
+version: 2
+jobs:
+  prepare:
+    <<: *defaults
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+          - v1-npm-{{ checksum "yarn.lock" }}
+          - v1-npm-
+      - run: npm install
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-npm-{{ checksum "yarn.lock" }}
+      - persist_to_workspace:
+          root: .
+          paths:
+            - node_modules
+  build:
+    <<: *defaults
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - run: npm run build
+      - persist_to_workspace:
+          root: .
+          paths:
+            - www
+  test:
+    <<: *defaults
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - run: npm run test
+  flow:
+    <<: *defaults
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - run: npm run flow
+  deploy:
+    resource_class: small
+    docker:
+      - image: quay.io/reciprocity/build-base:v0.6.7
+        auth:
+          username: $QUAY_USERNAME
+          password: $QUAY_PASSWORD
+    steps:
+      - attach_workspace:
+          at: .
+      - run:
+          name: Upload build except index.html with cache headers
+          command: cd storybook-static && aws s3 sync . s3://zen-ui.zengrc.com --delete
+
+workflows:
+  version: 2
+  test-build-deploy:
+    jobs:
+      - prepare
+      - build:
+          requires:
+            - prepare
+      - test:
+          requires:
+            - prepare
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only:
+                - stencil

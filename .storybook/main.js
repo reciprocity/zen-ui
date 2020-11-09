@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const chalk = require('chalk');
 
 module.exports = {
   "stories": [
@@ -33,7 +34,7 @@ const doProd = (config) => {
     template: path.resolve(__dirname, 'index.override.ejs'),
   };
   // no stencil build exists
-  if (!fs.existasSync(mainJs)) {
+  if (!fs.existsSync(mainJs)) {
     console.error(chalk.black.bgRed(`---------------------------------`));
     console.error(chalk.black.bgRed(`Run 'npm run build:stencil' first`));
     console.error(chalk.black.bgRed(`---------------------------------`));

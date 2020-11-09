@@ -33,7 +33,6 @@ app.use(/\/iframe\.html\?*/, async (req, res, next) => {
     .replace(
       '<head>',
       `<head>
-        <script>console.log('jan')</script>
         <script type="module" src="/${distDirs.stencil}/${name}/${name}.esm.js"></script>
         <link rel="stylesheet" href="/${distDirs.stencil}/${name}/${name}.css" />
         `,
