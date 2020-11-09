@@ -2,7 +2,7 @@ import { action } from '@storybook/addon-actions';
 import { linkTo } from '@storybook/addon-links';
 
 export default {
-  title: 'Button',
+  title: 'General',
   argTypes: {
     children: { control: 'text' },
   },
@@ -16,18 +16,18 @@ const Template = ({ onClick, children }) => {
   return btn;
 };
 
-export const Text = Template.bind({});
-Text.args = {
+export const Colors = Template.bind({});
+Colors.args = {
   children: 'Button',
   onClick: action('onClick'),
 };
 
-export const Emoji = Template.bind({});
-Emoji.args = {
+export const Spacing = Template.bind({});
+Spacing.args = {
   children: '😀 😎 👍 💯',
 };
 
-export const TextWithAction = () => {
+export const Grid = () => {
   const btn = document.createElement('button');
   btn.type = 'button';
   btn.innerText = 'Trigger Action';
@@ -35,10 +35,10 @@ export const TextWithAction = () => {
   return btn;
 };
 
-TextWithAction.storyName = 'With an action';
-TextWithAction.parameters = { notes: 'My notes on a button with emojis' };
+Grid.storyName = 'With an action';
+Grid.parameters = { notes: 'My notes on a button with emojis' };
 
-export const ButtonWithLinkToAnotherStory = () => {
+export const Misc = () => {
   const btn = document.createElement('button');
   btn.type = 'button';
   btn.innerText = 'Go to Welcome Story';
@@ -46,4 +46,4 @@ export const ButtonWithLinkToAnotherStory = () => {
   return btn;
 };
 
-ButtonWithLinkToAnotherStory.storyName = 'button with link to another story';
+Misc.storyName = 'button with link to another story';
