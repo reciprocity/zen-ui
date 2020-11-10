@@ -15,10 +15,10 @@
     "loader/"
   ],
   "scripts": {
-    "start": "concurrently \"npm run stencil:watch\" \"npm run storybook:start\"",
+    "start": "concurrently --raw -n storybook,stencil -c \"bgMagenta.bold,bgBlue.bold\" \"npm run stencil:watch\" \"npm run storybook:start\"",
     "build": "concurrently \"npm run stencil:build\" \"npm run storybook:build\"",
     "stencil:start": "stencil build --dev --watch --serve",
-    "stencil:watch": "stencil build --watch --quiet",
+    "stencil:watch": "stencil build --watch",
     "stencil:build": "stencil build --docs",
     "stencil:test": "stencil test --spec",
     "stencil:test:watch": "stencil test --spec --watchAll",
