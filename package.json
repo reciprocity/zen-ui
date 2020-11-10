@@ -17,10 +17,10 @@
   "scripts": {
     "start": "concurrently --raw -n storybook,stencil -c \"bgMagenta.bold,bgBlue.bold\" \"npm run stencil:watch\" \"npm run storybook:start\"",
     "build": "concurrently \"npm run stencil:build\" \"npm run storybook:build\"",
+    "test": "stencil test --spec",
     "stencil:start": "stencil build --dev --watch --serve",
     "stencil:watch": "stencil build --watch",
     "stencil:build": "stencil build --docs",
-    "stencil:test": "stencil test --spec",
     "stencil:test:watch": "stencil test --spec --watchAll",
     "stencil:create-component": "stencil generate",
     "storybook:start": "start-storybook -p 6006",
@@ -29,6 +29,7 @@
   "devDependencies": {
     "@babel/core": "^7.12.3",
     "@stencil/core": "^1.17.4",
+    "@stencil/sass": "^1.3.2",
     "@storybook/addon-actions": "^6.0.28",
     "@storybook/addon-console": "^1.2.2",
     "@storybook/addon-essentials": "^6.0.28",
@@ -36,14 +37,14 @@
     "@storybook/addon-notes": "^5.3.21",
     "@storybook/html": "^6.0.28",
     "@storybook/theming": "^6.0.28",
+    "@storybook/web-components": "^6.0.28",
     "@types/jest": "^26.0.15",
     "babel-loader": "^8.1.0",
-    "concurrently": "^5.3.0"
+    "concurrently": "^5.3.0",
+    "jest": "^26.6.3",
+    "jest-cli": "^26.6.3",
+    "lit-html": "^1.3.0"
   },
   "license": "MIT",
-  "dependencies": {
-    "@stencil/sass": "^1.3.2",
-    "@storybook/web-components": "^6.0.28",
-    "lit-html": "^1.3.0"
-  }
+  "dependencies": {}
 }
