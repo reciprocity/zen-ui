@@ -1,4 +1,5 @@
 import { Config } from '@stencil/core';
+import { sass } from '@stencil/sass';
 
 export const config: Config = {
   namespace: 'stencil-storybook-starter',
@@ -10,5 +11,8 @@ export const config: Config = {
     {
       type: 'docs-readme'
     }
-  ]
+  ],
+  plugins: [
+    sass()
+  ],
 };
