@@ -29,6 +29,9 @@
   "devDependencies": {
     "@babel/core": "^7.12.3",
     "@stencil/core": "^1.17.4",
+    "@storybook/addon-actions": "^6.0.28",
+    "@storybook/addon-console": "^1.2.2",
+    "@storybook/addon-essentials": "^6.0.28",
     "@storybook/html": "^6.0.28",
     "@types/jest": "^26.0.15",
     "babel-loader": "^8.1.0",
