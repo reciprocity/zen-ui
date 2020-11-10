@@ -1,7 +1,7 @@
 {
-  "name": "stencil-storybook-ui",
+  "name": "zen-ui",
   "version": "0.0.1",
-  "description": "Stencil Component with Storybook",
+  "description": "Zen UI components library",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "es2015": "dist/esm/index.mjs",
@@ -9,7 +9,7 @@
   "types": "dist/types/index.d.ts",
   "collection": "dist/collection/collection-manifest.json",
   "collection:main": "dist/collection/index.js",
-  "unpkg": "dist/stencil-storybook-starter/stencil-storybook-starter.js",
+  "unpkg": "dist/zen-ui/zen-ui.js",
   "files": [
     "dist/",
     "loader/"
