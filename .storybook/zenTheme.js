@@ -9,7 +9,7 @@ export default create({
   colorSecondary: '#1b2940',
 
   // UI
-  appBg: '#fff',
+  appBg: '#3a537b',
   appContentBg: '#fff',
   appBorderColor: '#ebeef3',
   appBorderRadius: 2,
@@ -19,13 +19,13 @@ export default create({
   fontCode: 'monospace',
 
   // Text colors
-  textColor: 'rgba(255,255,255,0.8)',
-  textInverseColor: 'rgba(255,255,255,1)',
+  textColor: '#fff',
+  textInverseColor: '#f00',
 
   // Toolbar default and active colors
-  // barTextColor: 'white',
-  // barSelectedColor: 'white',
-  // barBg: 'hotpink',
+  barTextColor: 'rgba(0,0,0,0.5)',
+  barSelectedColor: '#3a537b',
+  barBg: '#fff',
 
   // Form colors
   inputBg: 'white',

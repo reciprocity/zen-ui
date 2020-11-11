@@ -9,7 +9,8 @@ export const config: Config = {
       esmLoaderPath: '../loader'
     },
     {
-      type: 'docs-readme'
+      type: 'docs-readme',
+      footer: '',
     }
   ],
   plugins: [
