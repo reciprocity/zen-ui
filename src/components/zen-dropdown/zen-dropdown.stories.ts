@@ -5,21 +5,29 @@ import { eventHandles, action } from '../../../.storybook/helpers/custom-action'
 const customEvents = ['input2'];
 const events = [...eventHandles(customEvents)];
 
+const argTypes = {
+  selectedColor: {
+    type: { name: 'string', required: false },
+    description: 'color of selected item',
+    table: {
+      type: { summary: 'string' },
+      defaultValue: { summary: '#f00' },
+    },
+    control: {
+      type: 'color'
+    }
+  },
+};
+
 export default {
   title: 'Components/Zen Dropdown',
   component: 'zen-dropdown',
+  argTypes,
   parameters: {
     notes: {markdown},
     actions: {
       handles: events,
     },
-  },
-};
-
-// https://storybook.js.org/docs/react/essentials/controls#annotation
-const argTypes = {
-  selectedColor: {
-    control: 'color',
   },
 };
 
@@ -39,4 +47,3 @@ const Template = (
 };
 
 export const Default = Template.bind({});
-Default.argTypes = {...argTypes};
