@@ -18,16 +18,22 @@ export class ZenDropdownSimple {
 
   @State() opened: boolean = false;
 
+  /** Selected option */
   @Prop() val: OptionItem = { label: '' };
+  /** Array of available options */
   @Prop() options: Array<OptionItem> = [];
+  /** Option key that is unique for each option */
   @Prop() trackBy: string = 'label';
   @Prop() selectedColor: string;
+  /** If true, multiple options can be selected */
+  @Prop() multiselect: boolean = false;
 
   @Watch('val')
   dataDidChangeHandler(val) {
     this.emitValueChanged(val);
   }
 
+  /** Emitted on any selection change */
   @Event() input2: EventEmitter<OptionItem>;
   emitValueChanged(value: OptionItem) {
     this.input2.emit(value);
