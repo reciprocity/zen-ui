@@ -7,4 +7,9 @@ module.exports = {
     "@storybook/addon-essentials",
     '@storybook/addon-docs'
   ],
+  babel: async (options) => ({
+    ...options,
+    "presets": ["@babel/preset-react"]
+    // any extra options you want to set
+  }),
 };

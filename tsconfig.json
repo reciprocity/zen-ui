@@ -17,8 +17,7 @@
     "jsxFactory": "h"
   },
   "include": [
-    "src",
-    "./typings.d.ts"
+    "src", "types/jsx.d.ts", "./typings.d.ts", "./stencil.config.ts"
   ],
   "exclude": [
     "node_modules"
