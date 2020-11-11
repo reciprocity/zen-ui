@@ -1,27 +1,26 @@
-# zen-dropdown
-
-
+A simple dropdown component.
 
 <!-- Auto Generated Below -->
 
 
 ## Properties
 
-| Property        | Attribute        | Description | Type           | Default         |
-| --------------- | ---------------- | ----------- | -------------- | --------------- |
-| `options`       | --               |             | `OptionItem[]` | `[]`            |
-| `selectedColor` | `selected-color` |             | `string`       | `undefined`     |
-| `trackBy`       | `track-by`       |             | `string`       | `'label'`       |
-| `val`           | --               |             | `OptionItem`   | `{ label: '' }` |
+| Property        | Attribute        | Description                               | Type           | Default         |
+| --------------- | ---------------- | ----------------------------------------- | -------------- | --------------- |
+| `multiselect`   | `multiselect`    | If true, multiple options can be selected | `boolean`      | `false`         |
+| `options`       | --               | Array of available options                | `OptionItem[]` | `[]`            |
+| `selectedColor` | `selected-color` |                                           | `string`       | `undefined`     |
+| `trackBy`       | `track-by`       | Option key that is unique for each option | `string`       | `'label'`       |
+| `val`           | --               | Selected option                           | `OptionItem`   | `{ label: '' }` |
 
 
 ## Events
 
-| Event    | Description | Type                      |
-| -------- | ----------- | ------------------------- |
-| `input2` |             | `CustomEvent<OptionItem>` |
+| Event    | Description                     | Type                      |
+| -------- | ------------------------------- | ------------------------- |
+| `input2` | Emitted on any selection change | `CustomEvent<OptionItem>` |
 
 
 ----------------------------------------------
 
-*Built with [StencilJS](https://stenciljs.com/)*
+

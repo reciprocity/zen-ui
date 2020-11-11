@@ -8,9 +8,22 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { OptionItem } from "./components/zen-dropdown/zen-dropdown";
 export namespace Components {
     interface ZenDropdown {
+        /**
+          * If true, multiple options can be selected
+         */
+        "multiselect": boolean;
+        /**
+          * Array of available options
+         */
         "options": Array<OptionItem>;
         "selectedColor": string;
+        /**
+          * Option key that is unique for each option
+         */
         "trackBy": string;
+        /**
+          * Selected option
+         */
         "val": OptionItem;
     }
 }
@@ -27,10 +40,26 @@ declare global {
 }
 declare namespace LocalJSX {
     interface ZenDropdown {
+        /**
+          * If true, multiple options can be selected
+         */
+        "multiselect"?: boolean;
+        /**
+          * Emitted on any selection change
+         */
         "onInput2"?: (event: CustomEvent<OptionItem>) => void;
+        /**
+          * Array of available options
+         */
         "options"?: Array<OptionItem>;
         "selectedColor"?: string;
+        /**
+          * Option key that is unique for each option
+         */
         "trackBy"?: string;
+        /**
+          * Selected option
+         */
         "val"?: OptionItem;
     }
     interface IntrinsicElements {
