@@ -38,7 +38,7 @@ const Template = (
     const opts = [{ label: 'item 12' }, { label: 'item 2' }];
     return html`
     <zen-dropdown
-      style="max-width: 300px"
+      style="max-width: 300px; min-height: 300px;"
       .options=${opts}
       selected-color=${selectedColor}
     </zen-dropdown>
@@ -47,3 +47,6 @@ const Template = (
 };
 
 export const Default = Template.bind({});
+
+export const DrugiStory = Template.bind({});
+export const TretjiStory = Template.bind({});
