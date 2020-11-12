@@ -23,8 +23,8 @@
     "stencil:build": "stencil build --docs",
     "stencil:test:watch": "stencil test --spec --watchAll",
     "stencil:create-component": "stencil generate",
-    "storybook:start": "start-storybook -p 6006",
-    "storybook:build": "build-storybook -c .storybook -o public --quiet"
+    "storybook:start": "start-storybook --docs -p 6006",
+    "storybook:build": "build-storybook --docs -o public --quiet"
   },
   "devDependencies": {
     "@babel/core": "^7.12.3",

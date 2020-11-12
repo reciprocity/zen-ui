@@ -21,10 +21,10 @@ export const parameters = {
         <>
           <Title />
           <Subtitle />
-          <Description />
-          <h2>Playground</h2>
           <Primary />
+          <h2>Playground</h2>
           <ArgsTable story={PRIMARY_STORY} />
+          <Description />
           <Stories />
         </>
       ),
