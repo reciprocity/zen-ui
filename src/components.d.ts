@@ -7,6 +7,14 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { OptionItem } from "./components/zen-dropdown/zen-dropdown";
 export namespace Components {
+    interface ColorSwatch {
+        "color": string;
+        /**
+          * True if color is considered bright
+         */
+        "isBrightColor": boolean;
+        "varName": string;
+    }
     interface ZenDropdown {
         /**
           * If true, multiple options can be selected
@@ -28,6 +36,12 @@ export namespace Components {
     }
 }
 declare global {
+    interface HTMLColorSwatchElement extends Components.ColorSwatch, HTMLStencilElement {
+    }
+    var HTMLColorSwatchElement: {
+        prototype: HTMLColorSwatchElement;
+        new (): HTMLColorSwatchElement;
+    };
     interface HTMLZenDropdownElement extends Components.ZenDropdown, HTMLStencilElement {
     }
     var HTMLZenDropdownElement: {
@@ -35,10 +49,19 @@ declare global {
         new (): HTMLZenDropdownElement;
     };
     interface HTMLElementTagNameMap {
+        "color-swatch": HTMLColorSwatchElement;
         "zen-dropdown": HTMLZenDropdownElement;
     }
 }
 declare namespace LocalJSX {
+    interface ColorSwatch {
+        "color"?: string;
+        /**
+          * True if color is considered bright
+         */
+        "isBrightColor"?: boolean;
+        "varName"?: string;
+    }
     interface ZenDropdown {
         /**
           * If true, multiple options can be selected
@@ -63,6 +86,7 @@ declare namespace LocalJSX {
         "val"?: OptionItem;
     }
     interface IntrinsicElements {
+        "color-swatch": ColorSwatch;
         "zen-dropdown": ZenDropdown;
     }
 }
@@ -70,6 +94,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "color-swatch": LocalJSX.ColorSwatch & JSXBase.HTMLAttributes<HTMLColorSwatchElement>;
             "zen-dropdown": LocalJSX.ZenDropdown & JSXBase.HTMLAttributes<HTMLZenDropdownElement>;
         }
     }
