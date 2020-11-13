@@ -12,7 +12,7 @@ jobs:
           keys:
           - v1-yarn-{{ checksum "yarn.lock" }}
           - v1-yarn-
-      - run: npm install
+      - run: yarn
       - save_cache:
           paths:
             - node_modules
