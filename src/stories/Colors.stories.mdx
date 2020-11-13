@@ -1,0 +1,16 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
+const colors = require('sass-extract-loader!../zen-styles/colors.scss');
+
+<Meta title="Colors" />
+
+# Colors
+
+Here you can see all color variables defined in file `zen-style/colors.scss`
+
+export const Template = (args) => <div {...args} />
+
+<div>
+  {Object.entries(colors.global).map(el=>(
+      <div key={el[0]} style={{'background-color': el[1].value.hex}}>{el[0]}</div>
+    ))}
+</div>
