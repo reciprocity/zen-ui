@@ -10,13 +10,13 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-          - v1-npm-{{ checksum "yarn.lock" }}
-          - v1-npm-
+          - v1-yarn-{{ checksum "yarn.lock" }}
+          - v1-yarn-
       - run: npm install
       - save_cache:
           paths:
             - node_modules
-          key: v1-npm-{{ checksum "yarn.lock" }}
+          key: v1-yarn-{{ checksum "yarn.lock" }}
       - persist_to_workspace:
           root: .
           paths:
@@ -27,7 +27,7 @@ jobs:
       - checkout
       - attach_workspace:
           at: .
-      - run: npm run build
+      - run: yarn build
       - persist_to_workspace:
           root: .
           paths:
@@ -38,14 +38,14 @@ jobs:
       - checkout
       - attach_workspace:
           at: .
-      - run: npm run test
+      - run: yarn test
   flow:
     <<: *defaults
     steps:
       - checkout
       - attach_workspace:
           at: .
-      - run: npm run flow
+      - run: yarn flow
   deploy:
     resource_class: small
     docker:
