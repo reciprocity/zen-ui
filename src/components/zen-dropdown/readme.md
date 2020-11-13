@@ -1,4 +1,4 @@
-A simple dropdown component.
+
 
 <!-- Auto Generated Below -->
 
