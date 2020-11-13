@@ -25,8 +25,8 @@
     "stencil:create-component": "stencil generate",
     "storybook:start": "start-storybook --docs -p 6006",
     "storybook:build": "build-storybook --docs -o public --quiet",
-    "styles:build": "webpack",
-    "styles:start": "webpack --watch"
+    "styles:build": "webpack --mode=production",
+    "styles:start": "webpack --watch --mode=development"
   },
   "devDependencies": {
     "@babel/core": "^7.12.3",

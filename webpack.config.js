@@ -4,12 +4,7 @@ const cssnano = require('cssnano');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CopyPlugin = require('copy-webpack-plugin');
 
-// Hard code this to production but can be adapted to accept args to change env.
-const mode = 'production';
-
 module.exports = {
-  mode,
-
   output: {
     // Webpack will create js files even though they are not used
     filename: '[name].bundle.js',
@@ -28,7 +23,6 @@ module.exports = {
   },
 
   entry: {
-    // Will create "styles.css" in "css" dir.
     "zen-ui": './src/zen-styles/main.scss',
   },
 
