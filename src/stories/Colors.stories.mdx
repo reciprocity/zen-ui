@@ -1,5 +1,6 @@
 import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
 const colors = require('sass-extract-loader!../zen-styles/colors.scss');
+const isBrightColor = (el) => (el.value.r + el.value.g + el.value.b) / 3 > 128;
 
 <Meta title="Colors" />
 
@@ -11,6 +12,6 @@ export const Template = (args) => <div {...args} />
 
 <div>
   {Object.entries(colors.global).map(el=>(
-      <div key={el[0]} style={{'background-color': el[1].value.hex}}>{el[0]}</div>
+      <color-swatch key={el[0]} var-name={el[0]} color={el[1].value.hex} is-bright-color={isBrightColor(el[1])}></color-swatch>
     ))}
 </div>
