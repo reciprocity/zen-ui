@@ -38,13 +38,6 @@ jobs:
       - attach_workspace:
           at: .
       - run: yarn test
-  flow:
-    <<: *defaults
-    steps:
-      - checkout
-      - attach_workspace:
-          at: .
-      - run: yarn flow
   deploy:
     resource_class: small
     docker:
