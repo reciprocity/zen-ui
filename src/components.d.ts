@@ -5,6 +5,7 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { StringifiedJson } from "./stories/components/color-swatch-group/color-swatch-group";
 import { OptionItem } from "./components/zen-dropdown/zen-dropdown";
 export namespace Components {
     interface ColorSwatch {
@@ -14,6 +15,9 @@ export namespace Components {
          */
         "isBrightColor": boolean;
         "varName": string;
+    }
+    interface ColorSwatchGroup {
+        "colors": StringifiedJson;
     }
     interface ZenDropdown {
         /**
@@ -42,6 +46,12 @@ declare global {
         prototype: HTMLColorSwatchElement;
         new (): HTMLColorSwatchElement;
     };
+    interface HTMLColorSwatchGroupElement extends Components.ColorSwatchGroup, HTMLStencilElement {
+    }
+    var HTMLColorSwatchGroupElement: {
+        prototype: HTMLColorSwatchGroupElement;
+        new (): HTMLColorSwatchGroupElement;
+    };
     interface HTMLZenDropdownElement extends Components.ZenDropdown, HTMLStencilElement {
     }
     var HTMLZenDropdownElement: {
@@ -50,6 +60,7 @@ declare global {
     };
     interface HTMLElementTagNameMap {
         "color-swatch": HTMLColorSwatchElement;
+        "color-swatch-group": HTMLColorSwatchGroupElement;
         "zen-dropdown": HTMLZenDropdownElement;
     }
 }
@@ -61,6 +72,9 @@ declare namespace LocalJSX {
          */
         "isBrightColor"?: boolean;
         "varName"?: string;
+    }
+    interface ColorSwatchGroup {
+        "colors"?: StringifiedJson;
     }
     interface ZenDropdown {
         /**
@@ -87,6 +101,7 @@ declare namespace LocalJSX {
     }
     interface IntrinsicElements {
         "color-swatch": ColorSwatch;
+        "color-swatch-group": ColorSwatchGroup;
         "zen-dropdown": ZenDropdown;
     }
 }
@@ -95,6 +110,7 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "color-swatch": LocalJSX.ColorSwatch & JSXBase.HTMLAttributes<HTMLColorSwatchElement>;
+            "color-swatch-group": LocalJSX.ColorSwatchGroup & JSXBase.HTMLAttributes<HTMLColorSwatchGroupElement>;
             "zen-dropdown": LocalJSX.ZenDropdown & JSXBase.HTMLAttributes<HTMLZenDropdownElement>;
         }
     }
