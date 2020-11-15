@@ -1,6 +1,28 @@
 import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
-const colors = require('sass-extract-loader!../zen-styles/colors.scss');
-const isBrightColor = (el) => (el.value.r + el.value.g + el.value.b) / 3 > 128;
+import { groupBy } from 'lodash';
+const sassVars = require('sass-extract-loader!../zen-styles/colors.scss');
+const isBrightColor = rgb => (rgb.r + rgb.g + rgb.b) / 3 > 128;
+
+export const groupColors = function(sassVars) {
+  // If color's base name isn't same as previous one, start a new line
+  // Below regex matches '$color-red' from '$color-red-900'
+  const baseName = varName => (varName.match(/^\$[a-z]*-[a-z]*/) || [])[0];
+  return groupBy(Object.entries(sassVars), ([varName, _]) => baseName(varName));
+}
+
+export const groupsToSwatchGroups = groups => Object.entries(groups)
+  .map(([name, colors]) => ({
+    name,
+    colors: colors.map(([varName, color]) => ({
+      varName,
+      hex: color.value.hex,
+      isBrightColor: isBrightColor(color.value),
+    }))
+  })
+);
+
+export const groups = groupColors(sassVars.global);
+export const groupSwatches = groupsToSwatchGroups(groups);
 
 <Meta title="Colors" />
 
@@ -10,8 +32,12 @@ Here you can see all color variables defined in file `zen-style/colors.scss`
 
 export const Template = (args) => <div {...args} />
 
-<div>
-  {Object.entries(colors.global).map(el=>(
-      <color-swatch key={el[0]} var-name={el[0]} color={el[1].value.hex} is-bright-color={isBrightColor(el[1])}></color-swatch>
-    ))}
+<div style={{
+  display: 'flex',
+  flexFlow: 'column',
+  alignItems: 'start'
+  }}>
+  {groupSwatches.map(group => (
+    <color-swatch-group key={group.name} colors={JSON.stringify(group.colors)}></color-swatch-group>
+  ))}
 </div>
