@@ -5,8 +5,20 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { StringifiedJson } from "./stories/components/color-swatch-group/color-swatch-group";
 import { OptionItem } from "./components/zen-dropdown/zen-dropdown";
 export namespace Components {
+    interface ColorSwatch {
+        "color": string;
+        /**
+          * True if color is considered bright
+         */
+        "isBrightColor": boolean;
+        "varName": string;
+    }
+    interface ColorSwatchGroup {
+        "colors": StringifiedJson;
+    }
     interface ZenDropdown {
         /**
           * If true, multiple options can be selected
@@ -28,6 +40,18 @@ export namespace Components {
     }
 }
 declare global {
+    interface HTMLColorSwatchElement extends Components.ColorSwatch, HTMLStencilElement {
+    }
+    var HTMLColorSwatchElement: {
+        prototype: HTMLColorSwatchElement;
+        new (): HTMLColorSwatchElement;
+    };
+    interface HTMLColorSwatchGroupElement extends Components.ColorSwatchGroup, HTMLStencilElement {
+    }
+    var HTMLColorSwatchGroupElement: {
+        prototype: HTMLColorSwatchGroupElement;
+        new (): HTMLColorSwatchGroupElement;
+    };
     interface HTMLZenDropdownElement extends Components.ZenDropdown, HTMLStencilElement {
     }
     var HTMLZenDropdownElement: {
@@ -35,10 +59,23 @@ declare global {
         new (): HTMLZenDropdownElement;
     };
     interface HTMLElementTagNameMap {
+        "color-swatch": HTMLColorSwatchElement;
+        "color-swatch-group": HTMLColorSwatchGroupElement;
         "zen-dropdown": HTMLZenDropdownElement;
     }
 }
 declare namespace LocalJSX {
+    interface ColorSwatch {
+        "color"?: string;
+        /**
+          * True if color is considered bright
+         */
+        "isBrightColor"?: boolean;
+        "varName"?: string;
+    }
+    interface ColorSwatchGroup {
+        "colors"?: StringifiedJson;
+    }
     interface ZenDropdown {
         /**
           * If true, multiple options can be selected
@@ -63,6 +100,8 @@ declare namespace LocalJSX {
         "val"?: OptionItem;
     }
     interface IntrinsicElements {
+        "color-swatch": ColorSwatch;
+        "color-swatch-group": ColorSwatchGroup;
         "zen-dropdown": ZenDropdown;
     }
 }
@@ -70,6 +109,8 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "color-swatch": LocalJSX.ColorSwatch & JSXBase.HTMLAttributes<HTMLColorSwatchElement>;
+            "color-swatch-group": LocalJSX.ColorSwatchGroup & JSXBase.HTMLAttributes<HTMLColorSwatchGroupElement>;
             "zen-dropdown": LocalJSX.ZenDropdown & JSXBase.HTMLAttributes<HTMLZenDropdownElement>;
         }
     }
