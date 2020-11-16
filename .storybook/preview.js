@@ -1,6 +1,7 @@
 import {defineCustomElements} from '../dist/esm/loader';
 import '@storybook/addon-console';
 import { setConsoleOptions } from '@storybook/addon-console';
+import styles from './preview.scss';
 
 import React from 'react';
 
