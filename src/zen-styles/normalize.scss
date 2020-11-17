@@ -1,0 +1,18 @@
+html {
+  /*
+  Simplification of using rem units:
+
+  1rem = 10px
+
+  (default browser font-size = 16px)
+  This way we're not overrinding user's settings.
+  He can still have 20px by default
+  and all UI elements will follow
+  */
+  font-size: 62.5%;
+}
+
+body {
+  /* Default font-size in zen = 14px */
+  font-size: 1.4rem;
+}
