@@ -1,5 +1,5 @@
 {
-  "name": "zen-ui",
+  "name": "@reciprocity/zen-ui",
   "version": "0.0.1",
   "description": "Zen UI components library",
   "main": "dist/index.cjs.js",
@@ -71,5 +71,17 @@
   "license": "MIT",
   "dependencies": {
     "lodash": "~4.17.20"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/reciprocity/zen-ui.git"
+  },
+  "keywords": [
+    "zen-ui"
+  ],
+  "author": "Reciprocity Inc.",
+  "bugs": {
+    "url": "https://github.com/reciprocity/zen-ui/issues"
+  },
+  "homepage": "https://github.com/reciprocity/zen-ui#readme"
 }
