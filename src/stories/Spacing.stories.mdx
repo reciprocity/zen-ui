@@ -1,0 +1,54 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
+
+<Meta title="Spacing" />
+
+# Spacing
+
+Utility classes for setting predefined `marings` and `paddings`.<br/>
+Spacing is based on [8 point grid system](https://builttoadapt.io/intro-to-the-8-point-grid-system-d2573cde8632)!<br/>
+Never set margins manually, like `margin: 13px`!
+
+*This system is modeled on [Bootstrap spacing utilities](https://getbootstrap.com/docs/4.5/utilities/spacing/)*
+
+### Utility class formatting<br />
+`{property}{sides}-{size}`
+
+*eg. `class="mb-12"` will set bottom margin 12 px.*
+
+- `property` is one of:
+  - `m` - margins
+  - `p` - paddings
+<br/>
+<br/>
+- `sides` is one of:
+  - `t` - top
+  - `r` - right
+  - `b` - bottom
+  - `l` - left
+  - `x` - both left & right
+  - `y` - both top & bottom
+  - `blank` - affect all sides
+<br/>
+<br/>
+- `size` is one of:
+  todo
+
+### Responsive-friendly version
+There's also responsive-friendly version for each class<br/>
+`{property}{sides}-{breakpoint}-{size}`
+
+- `breakpoint` is one of:
+  todo
+
+<p>
+  <i>
+    eg.
+    <code>class="mb-12 mb-md-64"</code>:
+    Bottom margin 12px by default. If screen is wider than 768px, make bottom margin 64px.
+  </i>
+</p>
+
+### Negative margins
+For negative margins, prefix size with n:<br/>
+`{property}{sides}-n{size}`
+eg. `mx-md-n5`
