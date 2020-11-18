@@ -19,6 +19,8 @@ export namespace Components {
     interface ColorSwatchGroup {
         "colors": StringifiedJson;
     }
+    interface TextWithDetails {
+    }
     interface ZenDropdown {
         /**
           * If true, multiple options can be selected
@@ -52,6 +54,12 @@ declare global {
         prototype: HTMLColorSwatchGroupElement;
         new (): HTMLColorSwatchGroupElement;
     };
+    interface HTMLTextWithDetailsElement extends Components.TextWithDetails, HTMLStencilElement {
+    }
+    var HTMLTextWithDetailsElement: {
+        prototype: HTMLTextWithDetailsElement;
+        new (): HTMLTextWithDetailsElement;
+    };
     interface HTMLZenDropdownElement extends Components.ZenDropdown, HTMLStencilElement {
     }
     var HTMLZenDropdownElement: {
@@ -61,6 +69,7 @@ declare global {
     interface HTMLElementTagNameMap {
         "color-swatch": HTMLColorSwatchElement;
         "color-swatch-group": HTMLColorSwatchGroupElement;
+        "text-with-details": HTMLTextWithDetailsElement;
         "zen-dropdown": HTMLZenDropdownElement;
     }
 }
@@ -75,6 +84,8 @@ declare namespace LocalJSX {
     }
     interface ColorSwatchGroup {
         "colors"?: StringifiedJson;
+    }
+    interface TextWithDetails {
     }
     interface ZenDropdown {
         /**
@@ -102,6 +113,7 @@ declare namespace LocalJSX {
     interface IntrinsicElements {
         "color-swatch": ColorSwatch;
         "color-swatch-group": ColorSwatchGroup;
+        "text-with-details": TextWithDetails;
         "zen-dropdown": ZenDropdown;
     }
 }
@@ -111,6 +123,7 @@ declare module "@stencil/core" {
         interface IntrinsicElements {
             "color-swatch": LocalJSX.ColorSwatch & JSXBase.HTMLAttributes<HTMLColorSwatchElement>;
             "color-swatch-group": LocalJSX.ColorSwatchGroup & JSXBase.HTMLAttributes<HTMLColorSwatchGroupElement>;
+            "text-with-details": LocalJSX.TextWithDetails & JSXBase.HTMLAttributes<HTMLTextWithDetailsElement>;
             "zen-dropdown": LocalJSX.ZenDropdown & JSXBase.HTMLAttributes<HTMLZenDropdownElement>;
         }
     }

@@ -40,6 +40,7 @@
     "@storybook/addon-links": "~6.0.28",
     "@storybook/addon-notes": "~5.3.21",
     "@storybook/html": "~6.0.28",
+    "@storybook/preset-scss": "~1.0.3",
     "@storybook/theming": "~6.0.28",
     "@storybook/web-components": "~6.0.28",
     "@types/jest": "~26.0.15",
@@ -66,6 +67,6 @@
   },
   "license": "MIT",
   "dependencies": {
-    "lodash": "^4.17.20"
+    "lodash": "~4.17.20"
   }
 }
