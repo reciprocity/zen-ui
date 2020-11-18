@@ -1,6 +1,37 @@
-$spacer: 1rem !default;
-
 // Font sizes (14px default)
-$text-lg: 1.6rem;
-$text-sm: 1.2rem;
-$text-xs: 1.0rem;
+$text-lg: 1.6rem !default;
+$text-sm: 1.2rem !default;
+$text-xs: 1.0rem !default;
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px
+) !default;
+
+$spacer: 1rem !default;
+$spacers: () !default;
+// stylelint-disable-next-line scss/dollar-variable-default
+$spacers: map-merge(
+  (
+    0: 0,
+    4:  ($spacer * .4),
+    8:  ($spacer * .8),
+    12: ($spacer * 1.2),
+    16: ($spacer * 1.6),
+    24: ($spacer * 2.4),
+    32: ($spacer * 3.2),
+    40: ($spacer * 4.0),
+    48: ($spacer * 4.8),
+    56: ($spacer * 5.6),
+    64: ($spacer * 6.4),
+    72: ($spacer * 7.2),
+    80: ($spacer * 8.0),
+    96: ($spacer * 9.6),
+    128: ($spacer * 12.8),
+    256: ($spacer * 25.6),
+  ),
+  $spacers
+);
