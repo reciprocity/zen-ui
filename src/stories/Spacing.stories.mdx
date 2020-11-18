@@ -1,4 +1,9 @@
 import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
+import { scssNonNullBreakpoints, scssBreakpoint, scssArrayVar } from './utils/utils';
+const sassVars = require('sass-extract-loader!../zen-styles/variables.scss');
+const spacers = scssArrayVar('$spacers');
+const breakpoints = scssNonNullBreakpoints();
+console.log(breakpoints);
 
 <Meta title="Spacing" />
 
@@ -31,20 +36,43 @@ Never set margins manually, like `margin: 13px`!
 <br/>
 <br/>
 - `size` is one of:
-  todo
+<div style={{display: 'flex'}}>
+  {spacers.map(spacer => (
+  <div key={spacer.name} style={{'marginLeft': '12px'}}>
+    <div>
+      <code>
+        {spacer.name}
+      </code>
+    </div>
+    <div>
+      <small>{spacer.value * 10}px</small>
+    </div>
+  </div>
+  ))}
+</div>
 
 ### Responsive-friendly version
 There's also responsive-friendly version for each class<br/>
 `{property}{sides}-{breakpoint}-{size}`
 
 - `breakpoint` is one of:
-  todo
+  <ul>
+  {breakpoints.map(breakpoint => (
+  <li key={breakpoint.name} style={{'marginLeft': '12px'}}>
+    <code>
+      {breakpoint.name}
+    </code> - on screens wider than {breakpoint.value}px
+  </li>
+  ))}
+  </ul>
 
 <p>
   <i>
     eg.
     <code>class="mb-12 mb-md-64"</code>:
-    Bottom margin 12px by default. If screen is wider than 768px, make bottom margin 64px.
+    Bottom margin 12px by default. If screen is wider than
+    <span> { scssBreakpoint('md').value }</span>
+    px, make bottom margin 64px.
   </i>
 </p>
 
