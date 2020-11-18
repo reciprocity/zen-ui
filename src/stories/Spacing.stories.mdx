@@ -37,16 +37,16 @@ Never set margins manually, like `margin: 13px`!
 <br/>
 - `size` is one of:
 <div style={{display: 'flex'}}>
+  <div>
+    <code>auto</code><br/>
+    <small>auto</small>
+  </div>
   {spacers.map(spacer => (
   <div key={spacer.name} style={{'marginLeft': '12px'}}>
-    <div>
-      <code>
-        {spacer.name}
-      </code>
-    </div>
-    <div>
-      <small>{spacer.value * 10}px</small>
-    </div>
+    <code>
+      {spacer.name}
+    </code><br/>
+    <small>{spacer.value * 10}px</small>
   </div>
   ))}
 </div>
