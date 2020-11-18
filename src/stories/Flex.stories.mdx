@@ -1,5 +1,6 @@
 import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
-import { scssArrayVar } from './utils/utils';
+import { scssNonNullBreakpoints, scssArrayVar } from './utils/utils';
+const breakpoints = scssNonNullBreakpoints();
 const flexUtils = scssArrayVar('$flex-utils').map(util => ({
   prop: util.value[0].value,
   propSuffix: util.value[1].value,
@@ -30,3 +31,14 @@ Utility classes for standard flex properties.
 ### Responsive-friendly version
 There's also responsive-friendly version for each class<br/>
 `{property}-{breakpoint}-{value}`
+
+- `breakpoint` is one of:
+  <ul>
+  {breakpoints.map(breakpoint => (
+  <li key={breakpoint.name} style={{'marginLeft': '12px'}}>
+    <code>
+      {breakpoint.name}
+    </code> - on screens wider than {breakpoint.value}px
+  </li>
+  ))}
+  </ul>
