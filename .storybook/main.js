@@ -4,9 +4,9 @@ module.exports = {
     "../src/**/*.stories.@(js|jsx|ts|tsx)"
   ],
   "addons": [
+    "@storybook/addon-docs",
     "@storybook/addon-essentials",
-    '@storybook/addon-docs',
-    '@storybook/preset-scss'
+    "@storybook/preset-scss"
   ],
   babel: async (options) => ({
     ...options,
