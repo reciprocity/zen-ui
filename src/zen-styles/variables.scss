@@ -1,7 +1,7 @@
 // Font sizes (14px default)
-$text-lg: 1.6rem;
-$text-sm: 1.2rem;
-$text-xs: 1.0rem;
+$text-lg: 1.6rem !default;
+$text-sm: 1.2rem !default;
+$text-xs: 1.0rem !default;
 
 $grid-breakpoints: (
   xs: 0,
