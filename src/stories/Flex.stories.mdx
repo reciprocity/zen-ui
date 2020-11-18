@@ -1,5 +1,5 @@
 import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
-import { scssNonNullBreakpoints, scssArrayVar } from './utils/utils';
+import { scssNonNullBreakpoints, scssArrayVar, scssBreakpoint } from './utils/utils';
 const breakpoints = scssNonNullBreakpoints();
 const flexUtils = scssArrayVar('$flex-utils').map(util => ({
   prop: util.value[0].value,
@@ -42,3 +42,14 @@ There's also responsive-friendly version for each class<br/>
   </li>
   ))}
   </ul>
+
+<p>
+  <i>
+    eg.
+    <code>class="flex-direction-row flex-direction-md-column"</code>:
+    Disply items in row, but if screen is wider than
+    <span> { scssBreakpoint('md').value }</span>
+    px, display them in column.
+  </i>
+</p>
+
