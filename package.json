@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "Zen UI components library",
   "main": "dist/index.cjs.js",
-  "module": "dist/index.js",
+  "module": "dist/custom-elements/index.js",
   "es2015": "dist/esm/index.mjs",
   "es2017": "dist/esm/index.mjs",
   "types": "dist/types/index.d.ts",
@@ -29,7 +29,6 @@
   "devDependencies": {
     "@babel/core": "~7.12.3",
     "@babel/preset-react": "~7.12.5",
-    "@stencil/core": "~2.3.0",
     "@stencil/sass": "~1.4.0",
     "@storybook/addon-actions": "~6.0.28",
     "@storybook/addon-console": "~1.2.2",
@@ -64,7 +63,8 @@
   },
   "license": "MIT",
   "dependencies": {
-    "lodash": "~4.17.20"
+    "lodash": "~4.17.20",
+    "@stencil/core": "~2.3.0"
   },
   "repository": {
     "type": "git",
