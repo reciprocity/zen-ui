@@ -1,4 +1,4 @@
-const sassVars = require('sass-extract-loader!../../zen-styles/variables.scss');
+const sassVars = require('sass-extract-loader!../../zen-styles/main.scss');
 
 export function scssArrayVar(varName) {
   return Object.entries(sassVars.global[varName].value).map(([key, value]) => ({
