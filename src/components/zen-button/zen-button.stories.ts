@@ -21,16 +21,34 @@ const Template = () => {
 
 const TemplatePrimary = () => {
     return html`
-    <zen-button text="I'm a primary button"></zen-button>
+    <zen-button text="Primary button"></zen-button>
+    <zen-button text="Primary button" is-disabled></zen-button>
     `;
 };
 
-const TemplateDanger = () => {
+const TemplateSecondary = () => {
+  return html`
+  <zen-button text="Secondary button" variant="secondary"></zen-button>
+  <zen-button text="Secondary button" variant="secondary" is-disabled></zen-button>
+  `;
+};
+
+const TemplateTertiary = () => {
+  return html`
+  <zen-button text="Tertiary button" variant="tertiary"></zen-button>
+  <zen-button text="Tertiary button" variant="tertiary" is-disabled></zen-button>
+  `;
+};
+
+const TemplateDestructive = () => {
     return html`
-    <zen-button text="I'm a danger button" variant="danger"></zen-button>
+    <zen-button text="Destructive button" variant="destructive"></zen-button>
+    <zen-button text="Destructive button" variant="destructive" is-disabled></zen-button>
     `;
 };
 
 export const Default = Template.bind({});
 export const PrimaryButtonStory = TemplatePrimary.bind({});
-export const DangerButtonStory = TemplateDanger.bind({});
+export const SecondaryButtonStory = TemplateSecondary.bind({});
+export const TertiaryButtonStory = TemplateTertiary.bind({});
+export const DestructiveButtonStory = TemplateDestructive.bind({});

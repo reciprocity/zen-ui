@@ -25,7 +25,6 @@ export namespace Components {
     interface ZenButton {
         "isDisabled"?: boolean;
         "isLoading"?: boolean;
-        "outline": boolean;
         "text": string;
         "variant": string;
     }
@@ -126,7 +125,6 @@ declare namespace LocalJSX {
     interface ZenButton {
         "isDisabled"?: boolean;
         "isLoading"?: boolean;
-        "outline"?: boolean;
         "text"?: string;
         "variant"?: string;
     }

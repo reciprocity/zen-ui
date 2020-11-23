@@ -7,8 +7,7 @@ import { Component, Host, h, Prop } from '@stencil/core';
 })
 export class ZenButton {
   @Prop() variant: string = "primary";
-  @Prop() text: string = "Example text";
-  @Prop() outline: boolean = false;
+  @Prop() text: string = "Button";
   @Prop() isLoading?: boolean;
   @Prop() isDisabled?: boolean;
 
@@ -17,11 +16,11 @@ export class ZenButton {
     const classes = {
       btn: true,
     };
+    
+    classes[`btn-${this.variant}`] = true;
 
-    if (this.outline) {
-      classes[`btn-outline-${this.variant}`] = true;
-    } else {
-      classes[`btn-${this.variant}`] = true;
+    if (this.isDisabled) {
+      classes['disabled'] = true;
     }
 
     return (

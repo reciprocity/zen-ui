@@ -1,7 +1,9 @@
+@import "../../zen-styles/colors.scss";
+
 .btn {
   display: inline-block;
   font-weight: 400;
-  color: #212529;
+  color: $color-gray-700;
   text-align: center;
   vertical-align: middle;
   -webkit-user-select: none;
@@ -18,39 +20,113 @@
 }
 
 .btn-primary {
-  color: #fff;
-  background-color: #007bff;
-  border-color: #007bff;
+  color: $color-white;
+  background-color: $color-blue-700;
+  border-color: $color-blue-700;
 
   &:hover {
-    background-color: #0069d9;
-    border-color: #0062cc;
+    background-color: $color-blue-800;
+    border-color: $color-blue-800;
     cursor: pointer;
   }
 
   &:focus {
-    background-color: #0069d9;
-    border-color: #0062cc;
     box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, .5);
     outline: none;
   }
+
+  &:active {
+    background-color: $color-blue-900;
+    border-color: $color-blue-900;
+    box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, .5);
+    outline: none;
+  }
+
+  &.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
 }
 
-.btn-danger {
-  color: #fff;
-  background-color: #dc3545;
-  border-color: #dc3545;
+.btn-secondary {
+  color: $color-gray-700;
+  background-color: $color-white;
+  border-color: $color-gray-600;
 
   &:hover {
-    background-color: #c82333;
-    border-color: #bd2130;
+    color: $color-white;
+    background-color: $color-gray-600;
+    border-color: $color-gray-600;
     cursor: pointer;
   }
 
   &:focus {
-    background-color: #c82333;
-    border-color: #bd2130;
+    box-shadow: 0px 0px 0px 2px #ADB5BD;
+    outline: none;
+  }
+
+  &:active {
+    background-color: $color-gray-700;
+    border-color: $color-gray-700;
+    box-shadow: 0px 0px 0px 2px #ADB5BD;
+    outline: none;
+  }
+
+  &.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+}
+
+.btn-tertiary {
+  color: $color-blue-700;
+  background-color: $color-white;
+  border-color: $color-white;
+
+  &:hover {
+    background-color: $color-gray-100;
+    border-color: $color-gray-100;
+    cursor: pointer;
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, .5);
+    outline: none;
+  }
+
+  &:active {
+    background-color: $color-gray-200;
+    border-color: $color-gray-200;
+    box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, .5);
+    outline: none;
+  }
+
+  &.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+}
+
+.btn-destructive {
+  color: $color-white;
+  background-color: $color-red-700;
+  border-color: $color-red-700;
+
+  &:hover {
+    background-color: $color-red-900;
+    border-color: $color-red-800;
+    cursor: pointer;
+  }
+
+  &:focus {
+    background-color: $color-red-900;
+    border-color: $color-red-800;
     box-shadow: 0 0 0 0.2rem rgba(225, 83, 97, .5);
     outline: none;
+  }
+
+  &.disabled {
+    opacity: 0.5;
+    pointer-events: none;
   }
 }
