@@ -23,6 +23,11 @@ export namespace Components {
     interface TextWithDetails {
     }
     interface ZenButton {
+        "isDisabled"?: boolean;
+        "isLoading"?: boolean;
+        "outline": boolean;
+        "text": string;
+        "variant": string;
     }
     interface ZenDropdown {
         /**
@@ -119,6 +124,11 @@ declare namespace LocalJSX {
     interface TextWithDetails {
     }
     interface ZenButton {
+        "isDisabled"?: boolean;
+        "isLoading"?: boolean;
+        "outline"?: boolean;
+        "text"?: string;
+        "variant"?: string;
     }
     interface ZenDropdown {
         /**

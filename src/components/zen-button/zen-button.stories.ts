@@ -19,6 +19,18 @@ const Template = () => {
     `;
 };
 
+const TemplatePrimary = () => {
+    return html`
+    <zen-button text="I'm a primary button"></zen-button>
+    `;
+};
+
+const TemplateDanger = () => {
+    return html`
+    <zen-button text="I'm a danger button" variant="danger"></zen-button>
+    `;
+};
+
 export const Default = Template.bind({});
-export const PrimaryButtonStory = Template.bind({});
-export const DangerButtonStory = Template.bind({});
+export const PrimaryButtonStory = TemplatePrimary.bind({});
+export const DangerButtonStory = TemplateDanger.bind({});
