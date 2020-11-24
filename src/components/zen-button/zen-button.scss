@@ -126,6 +126,13 @@
     outline: none;
   }
 
+  &:active {
+    background-color: $color-red-900;
+    border-color: $color-red-900;
+    box-shadow: 0 0 0 2px rgba(225, 83, 97, .5);
+    outline: none;
+  }
+
   &.disabled {
     opacity: 0.5;
     pointer-events: none;
