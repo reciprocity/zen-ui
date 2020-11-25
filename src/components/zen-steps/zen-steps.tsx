@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop } from '@stencil/core';
+import { Component, Host, h, Prop, Event, EventEmitter } from '@stencil/core';
 
 export interface StepItem {
   label: string
@@ -21,6 +21,16 @@ export class ZenSteps {
   @Prop({ reflect: true }) steps: Array<StepItem> = [];
   /** Index of currently active step */
   @Prop({ reflect: true }) activeIndex: number = 0;
+  /** User can click step to go to step */
+  @Prop({ reflect: true }) selectable: boolean = true;
+
+  /** User clicked a step */
+  @Event() selected: EventEmitter<Object>;
+
+  selectStep(index, step) {
+    this.activeIndex = index;
+    this.selected.emit({index, step});
+  }
 
   getItemState(index):StepState {
     if (index < this.activeIndex) return StepState.Completed;
@@ -42,6 +52,7 @@ export class ZenSteps {
           { this.steps.map((step, index) =>
             <li
               class={ `step ${this.getItemState(index)}` }
+              onClick={() => { if (this.selectable) this.selectStep(index, step) }}
             >
               <div class="roundle">
                 { this.getItemState(index) === StepState.Active && <div>{index + 1}</div> }

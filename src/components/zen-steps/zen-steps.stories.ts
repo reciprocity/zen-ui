@@ -16,7 +16,7 @@ export default {
   },
 };
 
-const Template = ({ steps, activeIndex }) => {
+const Template = ({ steps, activeIndex, selectable }) => {
     let stepsArr = [];
     try {
       stepsArr = JSON.parse(steps);
@@ -27,6 +27,7 @@ const Template = ({ steps, activeIndex }) => {
     <zen-steps
       .steps=${stepsArr}
       active-index=${activeIndex}
+      selectable=${selectable}
     />
     `;
 };
@@ -34,6 +35,7 @@ const Template = ({ steps, activeIndex }) => {
 export const Default = Template.bind({});
 Default.args = {
   activeIndex: 1,
+  selectable: true,
   steps: JSON.stringify([
     { label: 'Choose framework' },
     { label: 'Select objectives' },
