@@ -28,9 +28,16 @@ export class ZenSteps {
     return StepState.Waiting;
   }
 
+  progressWidth():Number {
+    return Math.max(0, Math.min(1, this.activeIndex / (this.steps.length - 1)));
+  }
+
   render() {
     return (
       <Host class="zen-steps">
+        <div class="progressbar">
+          <div class="progress" style={{transform: `scaleX(${this.progressWidth()})`}}></div>
+        </div>
         <ul class={{ steps: true }}>
           { this.steps.map((step, index) =>
             <li

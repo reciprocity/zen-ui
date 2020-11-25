@@ -68,4 +68,24 @@
         transition-delay: 0.2s;
       }
     }
+
+    .progressbar {
+      position: absolute;
+      top: 1.2rem;
+      left: #{$side-padding + 1.2rem};
+      right: #{$side-padding + 1.2rem};
+      height: 2px;
+      background-color: $color-gray-200;
+    }
+
+    .progress {
+      position: absolute;
+      transform-origin: 0;
+      left: 0;
+      right: 0;
+      transform: scaleX(0);
+      height: 2px;
+      background-color: $color-blue-700;
+      transition: transform 0.3s;
+    }
 }
