@@ -7,6 +7,7 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { StringifiedJson } from "./stories/components/color-swatch-group/color-swatch-group";
 import { OptionItem } from "./components/zen-dropdown/zen-dropdown";
+import { StepItem } from "./components/zen-steps/zen-steps";
 export namespace Components {
     interface ColorSwatch {
         "color": string;
@@ -40,6 +41,20 @@ export namespace Components {
          */
         "val": OptionItem;
     }
+    interface ZenSteps {
+        /**
+          * Index of currently active step
+         */
+        "activeIndex": number;
+        /**
+          * User can click step to go to step
+         */
+        "selectable": boolean;
+        /**
+          * Ordered array of possible steps
+         */
+        "steps": Array<StepItem>;
+    }
 }
 declare global {
     interface HTMLColorSwatchElement extends Components.ColorSwatch, HTMLStencilElement {
@@ -66,11 +81,18 @@ declare global {
         prototype: HTMLZenDropdownElement;
         new (): HTMLZenDropdownElement;
     };
+    interface HTMLZenStepsElement extends Components.ZenSteps, HTMLStencilElement {
+    }
+    var HTMLZenStepsElement: {
+        prototype: HTMLZenStepsElement;
+        new (): HTMLZenStepsElement;
+    };
     interface HTMLElementTagNameMap {
         "color-swatch": HTMLColorSwatchElement;
         "color-swatch-group": HTMLColorSwatchGroupElement;
         "text-with-details": HTMLTextWithDetailsElement;
         "zen-dropdown": HTMLZenDropdownElement;
+        "zen-steps": HTMLZenStepsElement;
     }
 }
 declare namespace LocalJSX {
@@ -110,11 +132,30 @@ declare namespace LocalJSX {
          */
         "val"?: OptionItem;
     }
+    interface ZenSteps {
+        /**
+          * Index of currently active step
+         */
+        "activeIndex"?: number;
+        /**
+          * User clicked a step
+         */
+        "onSelected"?: (event: CustomEvent<Object>) => void;
+        /**
+          * User can click step to go to step
+         */
+        "selectable"?: boolean;
+        /**
+          * Ordered array of possible steps
+         */
+        "steps"?: Array<StepItem>;
+    }
     interface IntrinsicElements {
         "color-swatch": ColorSwatch;
         "color-swatch-group": ColorSwatchGroup;
         "text-with-details": TextWithDetails;
         "zen-dropdown": ZenDropdown;
+        "zen-steps": ZenSteps;
     }
 }
 export { LocalJSX as JSX };
@@ -125,6 +166,7 @@ declare module "@stencil/core" {
             "color-swatch-group": LocalJSX.ColorSwatchGroup & JSXBase.HTMLAttributes<HTMLColorSwatchGroupElement>;
             "text-with-details": LocalJSX.TextWithDetails & JSXBase.HTMLAttributes<HTMLTextWithDetailsElement>;
             "zen-dropdown": LocalJSX.ZenDropdown & JSXBase.HTMLAttributes<HTMLZenDropdownElement>;
+            "zen-steps": LocalJSX.ZenSteps & JSXBase.HTMLAttributes<HTMLZenStepsElement>;
         }
     }
 }
