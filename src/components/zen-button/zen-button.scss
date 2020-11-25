@@ -1,5 +1,7 @@
 @import "../../zen-styles/colors.scss";
 @import "../../zen-styles/variables.scss";
+@import "../../zen-styles/mixins/buttons.scss";
+
 
 .btn {
   display: inline-block;
@@ -15,7 +17,7 @@
   border: 1px solid transparent;
   padding: .6rem .8rem;
   font-size: $text-md;
-  line-height: 2rem;
+  line-height: 1.2em;
   border-radius: .2rem;
   transition: color .2s ease-in-out, background-color .2s ease-in-out, border-color .2s ease-in-out, box-shadow .2s ease-in-out;
   outline: none;
@@ -26,24 +28,7 @@
 }
 
 .btn-primary {
-  color: $color-white;
-  background-color: $color-blue-700;
-  border-color: $color-blue-700;
-
-  &:hover {
-    background-color: $color-blue-800;
-    border-color: $color-blue-800;
-    cursor: pointer;
-  }
-
-  &:focus, &:active {
-    box-shadow: 0 0 0 2px $color-blue-300;
-  }
-
-  &:active {
-    background-color: $color-blue-900;
-    border-color: $color-blue-900;
-  }
+  @include button-variant($color-white, $color-blue-700, $color-blue-700, $color-blue-800, $color-blue-300, $color-blue-900);
 }
 
 .btn-secondary {
@@ -57,7 +42,8 @@
     cursor: pointer;
   }
 
-  &:focus, &:active {
+  &:focus,
+  &:active {
     box-shadow: 0px 0px 0px 2px $color-gray-300;
   }
 
@@ -78,7 +64,8 @@
     cursor: pointer;
   }
 
-  &:focus, &:active {
+  &:focus,
+  &:active {
     box-shadow: 0 0 0 2px $color-blue-300;
   }
 
@@ -89,22 +76,6 @@
 }
 
 .btn-destructive {
-  color: $color-white;
-  background-color: $color-red-700;
-  border-color: $color-red-700;
+  @include button-variant($color-white, $color-red-700, $color-red-700, $color-red-800, $color-red-300, $color-red-900);
 
-  &:hover {
-    background-color: $color-red-800;
-    border-color: $color-red-800;
-    cursor: pointer;
-  }
-
-  &:focus, &:active {
-    box-shadow: 0 0 0 2px $color-red-300;
-  }
-
-  &:active {
-    background-color: $color-red-900;
-    border-color: $color-red-900;
-  }
 }
