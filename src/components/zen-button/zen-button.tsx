@@ -16,7 +16,6 @@ export class ZenButton {
     const classes = {
       btn: true,
       [`btn-${this.variant}`]: true,
-      disabled: this.disabled,
     };
 
     return (
