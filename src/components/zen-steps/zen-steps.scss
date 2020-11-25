@@ -47,4 +47,25 @@
       color: $color-gray-200;
       transition: color $transition-color;
     }
+
+    li.completed {
+      .roundle {
+        background-color: $color-blue-700;
+      }
+      .label {
+        color: $color-gray-500;
+      }
+    }
+
+    li.active {
+      .roundle {
+        background-color: $color-blue-700;
+        box-shadow: 1px 1px 5px rgba(0,0,0,0.3);
+        transition-delay: 0.2s;
+      }
+      .label {
+        color: $color-blue-700;
+        transition-delay: 0.2s;
+      }
+    }
 }
