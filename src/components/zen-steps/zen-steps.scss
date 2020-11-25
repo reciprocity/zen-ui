@@ -1,0 +1,50 @@
+@import "../../zen-styles/variables.scss";
+
+:host {
+    $side-padding: 4.8rem;
+
+    display: block;
+    position: relative;
+
+    .steps {
+      padding: 0 $side-padding 2.4em;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .step {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .roundle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: auto;
+      width: 2.4rem;
+      height: 2.4rem;
+      border-radius: 10.0rem;
+
+      background-color: $color-gray-200;
+      color: $color-white;
+      transition: background-color $transition-color;
+    }
+
+    .label {
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translate(-50%, 0);
+      padding-top: 1.2em;
+      width: 12.8rem;
+      text-align: center;
+
+      font-size: $text-sm;
+      color: $color-gray-200;
+      transition: color $transition-color;
+    }
+}
