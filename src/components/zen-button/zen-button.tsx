@@ -7,25 +7,21 @@ import { Component, Host, h, Prop } from '@stencil/core';
 })
 export class ZenButton {
   @Prop() variant: string = "primary";
-  @Prop() text: string = "Button";
-  @Prop() isLoading?: boolean;
-  @Prop() isDisabled?: boolean;
+  @Prop() label: string = "Button";
+  @Prop() loading?: boolean;
+  @Prop() disabled?: boolean;
 
   render() {
 
     const classes = {
       btn: true,
+      [`btn-${this.variant}`]: true,
+      disabled: this.disabled,
     };
-    
-    classes[`btn-${this.variant}`] = true;
-
-    if (this.isDisabled) {
-      classes['disabled'] = true;
-    }
 
     return (
       <Host>
-        <button type="button" class={ classes }>{ this.text }</button>
+        <button type="button" class={ classes } disabled={this.disabled}>{ this.label }</button>
       </Host>
     );
   }
