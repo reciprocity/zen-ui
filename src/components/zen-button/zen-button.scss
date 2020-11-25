@@ -13,11 +13,12 @@
   user-select: none;
   background-color: transparent;
   border: 1px solid transparent;
-  padding: 6px 8px;
+  padding: .6rem .8rem;
   font-size: $text-md;
-  line-height: 20px;
-  border-radius: 2px;
+  line-height: 2rem;
+  border-radius: .2rem;
   transition: color .2s ease-in-out, background-color .2s ease-in-out, border-color .2s ease-in-out, box-shadow .2s ease-in-out;
+  outline: none;
 }
 
 .btn-primary {
@@ -32,15 +33,13 @@
   }
 
   &:focus {
-    box-shadow: 0 0 0 2px rgba(38, 143, 255, .5); // box_shadow($size, $color)
-    outline: none;
+    box-shadow: 0 0 0 2px $color-blue-300;
   }
 
   &:active {
     background-color: $color-blue-900;
     border-color: $color-blue-900;
-    box-shadow: 0 0 0 2px rgba(38, 143, 255, .5);
-    outline: none;
+    box-shadow: 0 0 0 2px $color-blue-300;
   }
 
   &.disabled {
@@ -63,14 +62,12 @@
 
   &:focus {
     box-shadow: 0px 0px 0px 2px #ADB5BD;
-    outline: none;
   }
 
   &:active {
     background-color: $color-gray-700;
     border-color: $color-gray-700;
     box-shadow: 0px 0px 0px 2px #ADB5BD;
-    outline: none;
   }
 
   &.disabled {
@@ -91,15 +88,13 @@
   }
 
   &:focus {
-    box-shadow: 0 0 0 2px rgba(38, 143, 255, .5);
-    outline: none;
+    box-shadow: 0 0 0 2px $color-blue-300;
   }
 
   &:active {
     background-color: $color-gray-200;
     border-color: $color-gray-200;
-    box-shadow: 0 0 0 2px rgba(38, 143, 255, .5);
-    outline: none;
+    box-shadow: 0 0 0 2px $color-blue-300;
   }
 
   &.disabled {
@@ -122,15 +117,13 @@
   &:focus {
     background-color: $color-red-700;
     border-color: $color-red-700;
-    box-shadow: 0 0 0 2px rgba(225, 83, 97, .5);
-    outline: none;
+    box-shadow: 0 0 0 2px $color-red-300;
   }
 
   &:active {
     background-color: $color-red-900;
     border-color: $color-red-900;
-    box-shadow: 0 0 0 2px rgba(225, 83, 97, .5);
-    outline: none;
+    box-shadow: 0 0 0 2px $color-red-300;
   }
 
   &.disabled {

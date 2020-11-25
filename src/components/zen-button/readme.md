@@ -7,12 +7,12 @@
 
 ## Properties
 
-| Property     | Attribute     | Description | Type      | Default     |
-| ------------ | ------------- | ----------- | --------- | ----------- |
-| `isDisabled` | `is-disabled` |             | `boolean` | `undefined` |
-| `isLoading`  | `is-loading`  |             | `boolean` | `undefined` |
-| `text`       | `text`        |             | `string`  | `"Button"`  |
-| `variant`    | `variant`     |             | `string`  | `"primary"` |
+| Property   | Attribute  | Description | Type      | Default     |
+| ---------- | ---------- | ----------- | --------- | ----------- |
+| `disabled` | `disabled` |             | `boolean` | `undefined` |
+| `label`    | `label`    |             | `string`  | `"Button"`  |
+| `loading`  | `loading`  |             | `boolean` | `undefined` |
+| `variant`  | `variant`  |             | `string`  | `"primary"` |
 
 
 ----------------------------------------------

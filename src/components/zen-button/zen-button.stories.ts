@@ -21,29 +21,33 @@ const Template = () => {
 
 const TemplatePrimary = () => {
     return html`
-    <zen-button text="Primary button"></zen-button>
-    <zen-button text="Primary button" is-disabled></zen-button>
+    <zen-button label="Primary button"></zen-button>
+    <zen-button label="Primary button" disabled></zen-button>
+    <zen-button label="Primary button" loading></zen-button>
     `;
 };
 
 const TemplateSecondary = () => {
   return html`
-  <zen-button text="Secondary button" variant="secondary"></zen-button>
-  <zen-button text="Secondary button" variant="secondary" is-disabled></zen-button>
+  <zen-button label="Secondary button" variant="secondary"></zen-button>
+  <zen-button label="Secondary button" variant="secondary" disabled></zen-button>
+  <zen-button label="Secondary button" variant="secondary" loading></zen-button>
   `;
 };
 
 const TemplateTertiary = () => {
   return html`
-  <zen-button text="Tertiary button" variant="tertiary"></zen-button>
-  <zen-button text="Tertiary button" variant="tertiary" is-disabled></zen-button>
+  <zen-button label="Tertiary button" variant="tertiary"></zen-button>
+  <zen-button label="Tertiary button" variant="tertiary" disabled></zen-button>
+  <zen-button label="Tertiary button" variant="tertiary" loading></zen-button>
   `;
 };
 
 const TemplateDestructive = () => {
     return html`
-    <zen-button text="Destructive button" variant="destructive"></zen-button>
-    <zen-button text="Destructive button" variant="destructive" is-disabled></zen-button>
+    <zen-button label="Destructive button" variant="destructive"></zen-button>
+    <zen-button label="Destructive button" variant="destructive" disabled></zen-button>
+    <zen-button label="Destructive button" variant="destructive" loading></zen-button>
     `;
 };
 

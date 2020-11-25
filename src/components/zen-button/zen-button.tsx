@@ -21,7 +21,7 @@ export class ZenButton {
 
     return (
       <Host>
-        <button type="button" class={ classes } disabled={this.disabled}>{ this.label }</button>
+        <button type="button" class={ classes } disabled={this.disabled}>{ this.loading ? 'Loading...' : this.label }</button>
       </Host>
     );
   }
