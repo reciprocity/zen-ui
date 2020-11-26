@@ -1,5 +1,4 @@
 import { create } from '@storybook/theming/create';
-import ReciLogo from '../src/img/reciprocity.png';
 const { version } = require('../package.json');
 
 export default create({
@@ -32,8 +31,4 @@ export default create({
   inputBorder: 'silver',
   inputTextColor: 'black',
   inputBorderRadius: 4,
-
-  brandUrl: 'https://example.com',
-  brandImage: ReciLogo,
-  brandTitle: `<h2 style="font-weight: bold">Zen-UI</h2> <small style="font-size: 9px;">version ${version}</small>`,
 });
