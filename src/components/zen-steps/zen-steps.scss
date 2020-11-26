@@ -32,6 +32,7 @@
       background-color: $color-gray-200;
       color: $color-white;
       transition: background-color $transition-color;
+      @include noselect;
     }
 
     .label {
@@ -46,6 +47,7 @@
       font-size: $text-sm;
       color: $color-gray-200;
       transition: color $transition-color;
+      @include noselect;
     }
 
     li.completed {
