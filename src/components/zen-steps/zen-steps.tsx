@@ -1,4 +1,6 @@
 import { Component, Host, h, Prop, Event, EventEmitter } from '@stencil/core';
+import { faCheck } from "@fortawesome/pro-light-svg-icons";
+import { renderIcon } from "../helpers/fa-icons";
 
 export interface StepItem {
   label: string
@@ -56,7 +58,7 @@ export class ZenSteps {
             >
               <div class="roundle">
                 { this.getItemState(index) === StepState.Active && <div>{index + 1}</div> }
-                { this.getItemState(index) === StepState.Completed && <div>x</div> }
+                { this.getItemState(index) === StepState.Completed && renderIcon(faCheck) }
               </div>
               <div class="label">{ step.label }</div>
             </li>
