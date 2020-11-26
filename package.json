@@ -58,7 +58,7 @@
     "react": "~16.14.0",
     "react-dom": "~16.14.0",
     "react-is": "~16.13.0",
-    "regenerator-runtime": "^0.13.7",
+    "regenerator-runtime": "~0.13.7",
     "sass-extract": "~2.1.0",
     "sass-extract-loader": "~1.1.0",
     "sass-loader": "~10.1.0",
@@ -69,7 +69,7 @@
   "license": "MIT",
   "dependencies": {
     "@stencil/core": "~2.3.0",
-    "copy-webpack-plugin": "^6.3.2",
+    "copy-webpack-plugin": "~6.3.2",
     "lodash": "~4.17.20"
   },
   "repository": {
