@@ -45,13 +45,24 @@ button[title="Shortcuts"] {
 }
 
 /* search bar */
-.sidebar-header + form {
-  border-bottom-color: rgb(255 255 255 / 0.19);
+.search-field > input {
+  border: none;
+  border-bottom: 1px solid rgb(255 255 255 / 0.19) !important;
+  border-radius: 0;
   margin-bottom: 3rem;
 }
 
-.sidebar-header + form path {
-  fill: #fff !important;
+.search-field > svg {
+  color:rgba(255, 255, 255, 0.5);
+}
+
+.search-field > input::placeholder {
+  color:rgba(255, 255, 255, 0.5);
+}
+
+.search-field > input:active,
+.search-field > input:focus {
+  background: transparent;
 }
 
 .sidebar-item span {
