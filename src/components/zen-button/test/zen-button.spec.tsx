@@ -10,7 +10,9 @@ describe('zen-button', () => {
     expect(page.root).toEqualHtml(`
       <zen-button>
         <mock:shadow-root>
-          <slot></slot>
+          <button class="btn btn-primary" type="button">
+            Button
+          </button>
         </mock:shadow-root>
       </zen-button>
     `);
