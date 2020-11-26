@@ -8,8 +8,8 @@ import { Component, Host, h, Prop } from '@stencil/core';
 export class ZenButton {
   @Prop() variant: string = "primary";
   @Prop() label: string = "Button";
-  @Prop() loading?: boolean;
-  @Prop() disabled?: boolean;
+  @Prop() loading?: boolean = false;
+  @Prop() disabled?: boolean = false;
 
   render() {
 

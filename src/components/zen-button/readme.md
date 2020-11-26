@@ -9,9 +9,9 @@
 
 | Property   | Attribute  | Description | Type      | Default     |
 | ---------- | ---------- | ----------- | --------- | ----------- |
-| `disabled` | `disabled` |             | `boolean` | `undefined` |
+| `disabled` | `disabled` |             | `boolean` | `false`     |
 | `label`    | `label`    |             | `string`  | `"Button"`  |
-| `loading`  | `loading`  |             | `boolean` | `undefined` |
+| `loading`  | `loading`  |             | `boolean` | `false`     |
 | `variant`  | `variant`  |             | `string`  | `"primary"` |
 
 

@@ -2,9 +2,9 @@
 
 // Font sizes (14px default)
 $text-lg: 1.6rem !default;
+$text-md: 1.4rem !default;
 $text-sm: 1.2rem !default;
 $text-xs: 1.0rem !default;
-$text-md: 1.4rem !default;
 
 $grid-breakpoints: (
   xs: 0,
@@ -41,3 +41,6 @@ $spacers: map-merge(
 
 // Transitions
 $transition-color: 0.2s linear;
+
+// Buttons
+$button-radius: .2rem;

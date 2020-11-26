@@ -1,11 +1,10 @@
 @import "../../zen-styles/colors.scss";
 @import "../../zen-styles/variables.scss";
-@import "../../zen-styles/mixins/buttons.scss";
+@import "./mixins.scss";
 
 
 .btn {
   display: inline-block;
-  font-weight: 400;
   color: $color-gray-700;
   text-align: center;
   vertical-align: middle;
@@ -18,12 +17,14 @@
   padding: .6rem .8rem;
   font-size: $text-md;
   line-height: 1.2em;
-  border-radius: .2rem;
-  transition: color .2s ease-in-out, background-color .2s ease-in-out, border-color .2s ease-in-out, box-shadow .2s ease-in-out;
+  border-radius: $button-radius;
+  transition: color $transition-color, background-color $transition-color, border-color $transition-color, box-shadow $transition-color;
   outline: none;
+  cursor: pointer;
 
   &:disabled {
     opacity: 0.5;
+    cursor: default;
   }
 }
 
@@ -31,15 +32,18 @@
   @include button-variant($color-white, $color-blue-700, $color-blue-700, $color-blue-800, $color-blue-300, $color-blue-900);
 }
 
+.btn-destructive {
+  @include button-variant($color-white, $color-red-700, $color-red-700, $color-red-800, $color-red-300, $color-red-900);
+}
+
 .btn-secondary {
   color: $color-gray-700;
   background-color: $color-white;
   border-color: $color-gray-600;
 
-  &:hover {
+  &:hover:not([disabled]) {
     color: $color-white;
     background-color: $color-gray-600;
-    cursor: pointer;
   }
 
   &:focus,
@@ -55,13 +59,10 @@
 
 .btn-tertiary {
   color: $color-blue-700;
-  background-color: $color-white;
-  border-color: $color-white;
 
-  &:hover {
+  &:hover:not([disabled]) {
     background-color: $color-gray-100;
     border-color: $color-gray-100;
-    cursor: pointer;
   }
 
   &:focus,
@@ -73,9 +74,4 @@
     background-color: $color-gray-200;
     border-color: $color-gray-200;
   }
-}
-
-.btn-destructive {
-  @include button-variant($color-white, $color-red-700, $color-red-700, $color-red-800, $color-red-300, $color-red-900);
-
 }
