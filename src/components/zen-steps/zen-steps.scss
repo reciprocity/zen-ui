@@ -31,7 +31,10 @@
 
       background-color: $color-gray-200;
       color: $color-white;
-      transition: background-color $transition-color;
+      transition: background-color $transition-color,
+        transform $transition-element-bump,
+
+      transform: scale(0.7);
       @include noselect;
     }
 
@@ -52,6 +55,7 @@
 
     li.completed {
       .roundle {
+        transform: scale(1);
         background-color: $color-blue-700;
       }
       .label {
@@ -61,6 +65,7 @@
 
     li.active {
       .roundle {
+        transform: scale(1);
         background-color: $color-blue-700;
         box-shadow: 1px 1px 5px rgba(0,0,0,0.3);
         transition-delay: 0.2s;
