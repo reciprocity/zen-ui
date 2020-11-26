@@ -1,0 +1,77 @@
+@import "../../zen-styles/colors.scss";
+@import "../../zen-styles/variables.scss";
+@import "./mixins.scss";
+
+
+.btn {
+  display: inline-block;
+  color: $color-gray-700;
+  text-align: center;
+  vertical-align: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-color: transparent;
+  border: 1px solid transparent;
+  padding: .6rem .8rem;
+  font-size: $text-md;
+  line-height: 1.2em;
+  border-radius: $button-radius;
+  transition: color $transition-color, background-color $transition-color, border-color $transition-color, box-shadow $transition-color;
+  outline: none;
+  cursor: pointer;
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: default;
+  }
+}
+
+.btn-primary {
+  @include button-variant($color-white, $color-blue-700, $color-blue-700, $color-blue-800, $color-blue-300, $color-blue-900);
+}
+
+.btn-destructive {
+  @include button-variant($color-white, $color-red-700, $color-red-700, $color-red-800, $color-red-300, $color-red-900);
+}
+
+.btn-secondary {
+  color: $color-gray-700;
+  background-color: $color-white;
+  border-color: $color-gray-600;
+
+  &:hover:not([disabled]) {
+    color: $color-white;
+    background-color: $color-gray-600;
+  }
+
+  &:focus,
+  &:active {
+    box-shadow: 0px 0px 0px 2px $color-gray-300;
+  }
+
+  &:active {
+    background-color: $color-gray-700;
+    border-color: $color-gray-700;
+  }
+}
+
+.btn-tertiary {
+  color: $color-blue-700;
+
+  &:hover:not([disabled]) {
+    background-color: $color-gray-100;
+    border-color: $color-gray-100;
+  }
+
+  &:focus,
+  &:active {
+    box-shadow: 0 0 0 2px $color-blue-300;
+  }
+
+  &:active {
+    background-color: $color-gray-200;
+    border-color: $color-gray-200;
+  }
+}

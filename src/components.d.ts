@@ -22,6 +22,12 @@ export namespace Components {
     }
     interface TextWithDetails {
     }
+    interface ZenButton {
+        "disabled"?: boolean;
+        "label": string;
+        "loading"?: boolean;
+        "variant": string;
+    }
     interface ZenDropdown {
         /**
           * If true, multiple options can be selected
@@ -75,6 +81,12 @@ declare global {
         prototype: HTMLTextWithDetailsElement;
         new (): HTMLTextWithDetailsElement;
     };
+    interface HTMLZenButtonElement extends Components.ZenButton, HTMLStencilElement {
+    }
+    var HTMLZenButtonElement: {
+        prototype: HTMLZenButtonElement;
+        new (): HTMLZenButtonElement;
+    };
     interface HTMLZenDropdownElement extends Components.ZenDropdown, HTMLStencilElement {
     }
     var HTMLZenDropdownElement: {
@@ -91,6 +103,7 @@ declare global {
         "color-swatch": HTMLColorSwatchElement;
         "color-swatch-group": HTMLColorSwatchGroupElement;
         "text-with-details": HTMLTextWithDetailsElement;
+        "zen-button": HTMLZenButtonElement;
         "zen-dropdown": HTMLZenDropdownElement;
         "zen-steps": HTMLZenStepsElement;
     }
@@ -108,6 +121,12 @@ declare namespace LocalJSX {
         "colors"?: StringifiedJson;
     }
     interface TextWithDetails {
+    }
+    interface ZenButton {
+        "disabled"?: boolean;
+        "label"?: string;
+        "loading"?: boolean;
+        "variant"?: string;
     }
     interface ZenDropdown {
         /**
@@ -154,6 +173,7 @@ declare namespace LocalJSX {
         "color-swatch": ColorSwatch;
         "color-swatch-group": ColorSwatchGroup;
         "text-with-details": TextWithDetails;
+        "zen-button": ZenButton;
         "zen-dropdown": ZenDropdown;
         "zen-steps": ZenSteps;
     }
@@ -165,6 +185,7 @@ declare module "@stencil/core" {
             "color-swatch": LocalJSX.ColorSwatch & JSXBase.HTMLAttributes<HTMLColorSwatchElement>;
             "color-swatch-group": LocalJSX.ColorSwatchGroup & JSXBase.HTMLAttributes<HTMLColorSwatchGroupElement>;
             "text-with-details": LocalJSX.TextWithDetails & JSXBase.HTMLAttributes<HTMLTextWithDetailsElement>;
+            "zen-button": LocalJSX.ZenButton & JSXBase.HTMLAttributes<HTMLZenButtonElement>;
             "zen-dropdown": LocalJSX.ZenDropdown & JSXBase.HTMLAttributes<HTMLZenDropdownElement>;
             "zen-steps": LocalJSX.ZenSteps & JSXBase.HTMLAttributes<HTMLZenStepsElement>;
         }
