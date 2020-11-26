@@ -1,6 +1,6 @@
 import { Component, Host, h, Prop, Event, EventEmitter } from '@stencil/core';
 import { faCheck } from "@fortawesome/pro-light-svg-icons";
-import { renderIcon } from "../helpers/fa-icons";
+import { renderIcon, styles } from "../helpers/fa-icons";
 
 export interface StepItem {
   label: string
@@ -47,6 +47,7 @@ export class ZenSteps {
   render() {
     return (
       <Host class="zen-steps">
+        <style>{styles}</style>
         <div class="progressbar">
           <div class="progress" style={{transform: `scaleX(${this.progressWidth()})`}}></div>
         </div>
