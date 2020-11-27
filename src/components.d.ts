@@ -23,9 +23,21 @@ export namespace Components {
     interface TextWithDetails {
     }
     interface ZenButton {
+        /**
+          * If present, button will be disabled.
+         */
         "disabled"?: boolean;
+        /**
+          * Label of the button.
+         */
         "label": string;
+        /**
+          * If present, will show zen-spinner component inside
+         */
         "loading"?: boolean;
+        /**
+          * Color variant of the button.
+         */
         "variant": string;
     }
     interface ZenDropdown {
@@ -48,6 +60,10 @@ export namespace Components {
         "val": OptionItem;
     }
     interface ZenSpinner {
+        /**
+          * Color of the spinner. Accepts any CSS Legal Color Value.
+         */
+        "color": string;
     }
     interface ZenSteps {
         /**
@@ -132,9 +148,21 @@ declare namespace LocalJSX {
     interface TextWithDetails {
     }
     interface ZenButton {
+        /**
+          * If present, button will be disabled.
+         */
         "disabled"?: boolean;
+        /**
+          * Label of the button.
+         */
         "label"?: string;
+        /**
+          * If present, will show zen-spinner component inside
+         */
         "loading"?: boolean;
+        /**
+          * Color variant of the button.
+         */
         "variant"?: string;
     }
     interface ZenDropdown {
@@ -161,6 +189,10 @@ declare namespace LocalJSX {
         "val"?: OptionItem;
     }
     interface ZenSpinner {
+        /**
+          * Color of the spinner. Accepts any CSS Legal Color Value.
+         */
+        "color"?: string;
     }
     interface ZenSteps {
         /**

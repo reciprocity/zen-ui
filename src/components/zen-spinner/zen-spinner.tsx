@@ -1,4 +1,4 @@
-import { Component, Host, h } from '@stencil/core';
+import { Component, Host, h, Prop } from '@stencil/core';
 
 @Component({
   tag: 'zen-spinner',
@@ -7,10 +7,14 @@ import { Component, Host, h } from '@stencil/core';
 })
 export class ZenSpinner {
 
+  /** Color of the spinner. Accepts any CSS Legal Color Value. */
+  @Prop() color: string = null;
+
   render() {
+    
     return (
       <Host>
-        <span class="spinner"></span>
+        <span class="spinner" style={{ color: this.color }}></span>
       </Host>
     );
   }

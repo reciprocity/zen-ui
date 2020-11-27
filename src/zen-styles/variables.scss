@@ -41,6 +41,7 @@ $spacers: map-merge(
 );
 
 // Transitions
+$transition-visibility: 0.2s linear;
 $transition-color: 0.2s linear;
 $transition-element-bump: 0.1s ease-out;
 
