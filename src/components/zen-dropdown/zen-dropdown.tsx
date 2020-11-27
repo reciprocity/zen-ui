@@ -11,7 +11,7 @@ export interface OptionItem {
   shadow: false,
 })
 
-export class ZenDropdownSimple {
+export class ZenDropdown {
 
   div: HTMLElement = undefined;
   clickHandler = undefined;
