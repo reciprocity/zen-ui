@@ -1,4 +1,5 @@
 import { Component, Host, h, Prop, State, Watch, Event, EventEmitter, Listen } from '@stencil/core';
+import { key } from '../helpers/keyCodes';
 
 export interface OptionItem {
   label: string
@@ -41,6 +42,45 @@ export class ZenDropdown {
 
   @Listen('keydown')
   handleKeyDown(ev: KeyboardEvent){
+    let toggleKeys = [
+      key.SPACE,
+      key.ENTER,
+      key.UP,
+      key.DOWN,
+    ];
+
+    if (!this.opened && toggleKeys.includes(ev.keyCode)) {
+      this.toggleDropdown();
+      ev.preventDefault();
+      return;
+    }
+
+    switch (ev.keyCode) {
+      case key.DOWN:
+        this.focusedIndex++;
+        if (this.focusedIndex > this.options.length - 1) {
+          this.focusedIndex = 0;
+        }
+        ev.preventDefault();
+        break;
+
+      case key.UP:
+        this.focusedIndex--;
+        if (this.focusedIndex < 0) {
+          this.focusedIndex = this.options.length - 1;
+        }
+        ev.preventDefault();
+        break;
+
+      case key.ENTER:
+      case key.SPACE:
+        const focused = this.options[this.focusedIndex];
+        if (focused) {
+          this.selectValue(focused);
+        }
+        ev.preventDefault();
+        break;
+    }
   }
 
   componentWillLoad() {
