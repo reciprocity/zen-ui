@@ -1,65 +1,94 @@
-// :host {
-.zen-multiselect {
+@import "../../zen-styles/variables.scss";
+
+@mixin zenInputBase() {
+  font-size: $text-md;
+  color: $color-gray-700;
+  background: $color-white;
+  box-sizing: border-box;
+  border: 1px solid $color-gray-200;
+  border-radius: $input-radius;
+
+  transition: color $transition-color,
+    background-color $transition-color,
+    border-color $transition-color,
+    box-shadow $transition-color;
+}
+
+@mixin zenInputFocus() {
+  box-shadow: 0 0 0 2px $color-blue-300;
+  outline: none;
+
+  &:invalid,
+  &.invalid {
+    box-shadow: 0 0 0 2px $color-red-300;
+  }
+}
+
+@mixin zenInput() {
+  @include zenInputBase();
+  &:focus,
+  &:active {
+    @include zenInputFocus;
+  }
+}
+
+$border: rgba(#000, 0.1);
+$background: #fff;
+
+:host {
   display: block;
   text-align-last: left;
-  color: #000;
-  font-size: 16px;
+  outline: none;
+}
 
-  $background: #fff;
-  $border: rgba(#000, 0.1);
+:host(:focus) .field {
+  @include zenInputFocus;
+}
 
-  .field {
-    z-index: 1;
-    position: relative;
-    border: 1px solid $border;
-    padding: 0.5em 2em;
-    border-radius: 3px;
-    background-color: $background;
+.field {
+  @include zenInput();
+  z-index: 1;
+  position: relative;
+  padding: 0.5em 2em;
+  border-radius: 3px;
 
-    &:active,
-    &:focus {
-      border: 1px solid #f00;
-    }
-
-    .arrow {
-      position: absolute;
-      right: 10px;
-      top: calc(50% - 3px);
-      border-top: 6px solid #000;
-      border-left: 6px solid transparent;
-      border-right: 6px solid transparent;
-      border-bottom-width: 0;
-      transition: transform 0.3s;
-    }
-
-    &.opened {
-      .arrow {
-        transform: rotate(180deg);
-      }
-    }
+  .arrow {
+    position: absolute;
+    right: 10px;
+    top: calc(50% - 3px);
+    border-top: 5px solid $color-gray-500;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-bottom-width: 0;
+    transition: transform 0.3s;
   }
 
-  .list {
-    border: 1px solid $border;
-    border-top: none;
-    background-color: $background;
-    padding: 0;
-    margin: 0;
-    box-shadow: 1px 2px 20px rgba(#000, 0.2);
+  &.opened {
+    .arrow {
+      transform: rotate(180deg);
+    }
+  }
+}
 
-    li {
-      list-style-type: none;
-      transition: background-color 0.1s linear;
-      padding: 1rem 2rem;
+.list {
+  border: 1px solid $border;
+  border-top: none;
+  background-color: $background;
+  padding: 0;
+  margin: 0;
+  box-shadow: 1px 2px 20px rgba(#000, 0.2);
 
-      &:hover {
-        background-color: rgba(#000, 0.05);
-      }
+  li {
+    list-style-type: none;
+    transition: background-color 0.1s linear;
+    padding: 1rem 2rem;
 
-      &.selected {
-        background-color: rgb(64, 114, 252);
-        color: #fff;
-      }
+    &:hover {
+      background-color: rgba(#000, 0.05);
+    }
+
+    &.selected {
+      background-color: $color-gray-100;
     }
   }
 }

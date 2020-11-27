@@ -8,7 +8,7 @@ export interface OptionItem {
 @Component({
   tag: 'zen-dropdown',
   styleUrl: 'zen-dropdown.scss',
-  shadow: false,
+  shadow: true,
 })
 
 export class ZenDropdown {
