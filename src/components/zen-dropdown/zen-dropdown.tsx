@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, State, Watch, Event, EventEmitter } from '@stencil/core';
+import { Component, Host, h, Prop, State, Watch, Event, EventEmitter, Listen } from '@stencil/core';
 
 export interface OptionItem {
   label: string
@@ -37,6 +37,10 @@ export class ZenDropdown {
   @Event() input2: EventEmitter<OptionItem>;
   emitValueChanged(value: OptionItem) {
     this.input2.emit(value);
+  }
+
+  @Listen('keydown')
+  handleKeyDown(ev: KeyboardEvent){
   }
 
   componentWillLoad() {
