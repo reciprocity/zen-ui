@@ -11,7 +11,10 @@ describe('zen-button', () => {
       <zen-button>
         <mock:shadow-root>
           <button class="btn btn-primary" type="button">
-            Button
+            <span class="animate-visibility">
+              Button
+            </span>
+            <zen-spinner class="animate-visibility invisible"></zen-spinner>
           </button>
         </mock:shadow-root>
       </zen-button>
