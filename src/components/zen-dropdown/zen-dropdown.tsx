@@ -65,18 +65,17 @@ export class ZenDropdown {
   }
 
   // Events
-  closeOnClickOut(event: MouseEvent) {
-    // This doesn't work if we're in a shadow dom,
-    //    because event.target is always Host and we can't check if click was inside
-    if (!isChildOf(event.target as HTMLElement, this.div)) {
+  closeOnClickOut(event: any) {
+    const clickedInside = this.div.shadowRoot.contains(event.path[0]);
+    if (!clickedInside) {
       this.opened = false;
     }
   }
 
   render() {
     return (
-      <Host class="zen-multiselect" ref={el => this.div = el}>
-        <div tabindex="0" class={{
+      <Host tabindex="0" class="zen-multiselect" ref={el => this.div = el}>
+        <div class={{
             field: true,
             opened: this.opened
           }}
