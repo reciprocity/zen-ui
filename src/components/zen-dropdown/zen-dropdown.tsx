@@ -1,5 +1,4 @@
 import { Component, Host, h, Prop, State, Watch, Event, EventEmitter } from '@stencil/core';
-import { isChildOf } from './functions';
 
 export interface OptionItem {
   label: string
