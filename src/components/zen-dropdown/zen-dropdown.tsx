@@ -17,6 +17,7 @@ export class ZenDropdown {
   clickHandler = undefined;
 
   @State() opened: boolean = false;
+  @State() focusedIndex: number = -1;
 
   /** Selected option */
   @Prop() val: OptionItem = { label: '' };
@@ -48,10 +49,11 @@ export class ZenDropdown {
     this.opened = false;
   }
 
-  toggleDropdown(open) {
+  toggleDropdown(open?) {
     if (open === undefined) open = !this.opened;
 
     if (open) {
+      this.focusedIndex = this.selectedIndex();
       this.clickHandler = event => this.closeOnClickOut(event);
       document.addEventListener('mousedown', this.clickHandler);
     } else {
@@ -62,6 +64,10 @@ export class ZenDropdown {
 
   isSelected(option) {
     return option[this.trackBy] === this.val[this.trackBy];
+  }
+
+  selectedIndex() {
+    return this.options.findIndex(n => n[this.trackBy] === this.val[this.trackBy]);
   }
 
   // Events
@@ -85,9 +91,9 @@ export class ZenDropdown {
         </div>
         {this.opened
           ? <ul class="list">
-            { this.options.map((option) =>
+            { this.options.map((option, index) =>
               <li
-                class={{ selected: this.isSelected(option) }}
+                class={{ selected: this.focusedIndex === index }}
                 style={{'background-color': this.isSelected(option) ? this.selectedColor : ''}}
                 onClick={() => this.selectValue(option)}
               >{option.label}</li>
