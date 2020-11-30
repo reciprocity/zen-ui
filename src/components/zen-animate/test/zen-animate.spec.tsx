@@ -10,7 +10,7 @@ describe('zen-animate', () => {
     expect(page.root).toEqualHtml(`
       <zen-animate>
         <mock:shadow-root>
-          <slot></slot>
+          <div></div>
         </mock:shadow-root>
       </zen-animate>
     `);
