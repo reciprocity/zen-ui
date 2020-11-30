@@ -24,19 +24,19 @@ export namespace Components {
     }
     interface ZenButton {
         /**
-          * If present, button will be disabled.
+          * If present, button will be disabled
          */
         "disabled"?: boolean;
         /**
-          * Label of the button.
+          * Label of the button
          */
         "label": string;
         /**
-          * If present, will show zen-spinner component inside
+          * If present, will show a spinner
          */
         "loading"?: boolean;
         /**
-          * Color variant of the button.
+          * Color variant of the button
          */
         "variant": string;
     }
@@ -149,19 +149,19 @@ declare namespace LocalJSX {
     }
     interface ZenButton {
         /**
-          * If present, button will be disabled.
+          * If present, button will be disabled
          */
         "disabled"?: boolean;
         /**
-          * Label of the button.
+          * Label of the button
          */
         "label"?: string;
         /**
-          * If present, will show zen-spinner component inside
+          * If present, will show a spinner
          */
         "loading"?: boolean;
         /**
-          * Color variant of the button.
+          * Color variant of the button
          */
         "variant"?: string;
     }

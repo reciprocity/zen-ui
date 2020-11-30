@@ -6,13 +6,13 @@ import { Component, Host, h, Prop } from '@stencil/core';
   shadow: true,
 })
 export class ZenButton {
-  /** Color variant of the button. */
+  /** Color variant of the button */
   @Prop() variant: string = "primary";
-  /** Label of the button. */
+  /** Label of the button */
   @Prop() label: string = "Button";
-  /** If present, will show zen-spinner component inside */
+  /** If present, will show a spinner */
   @Prop() loading?: boolean = false;
-  /** If present, button will be disabled. */
+  /** If present, button will be disabled */
   @Prop() disabled?: boolean = false;
 
   render() {
@@ -43,5 +43,4 @@ export class ZenButton {
       </Host>
     );
   }
-
 }
