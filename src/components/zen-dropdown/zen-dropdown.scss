@@ -36,6 +36,7 @@ $border: rgba(#000, 0.1);
 $background: #fff;
 
 :host {
+  position: relative;
   display: block;
   text-align-last: left;
   outline: none;
@@ -46,11 +47,12 @@ $background: #fff;
 }
 
 .field {
-  @include zenInput();
+  @include zenInput;
+  @include noselect;
   z-index: 1;
   position: relative;
   padding: 0.5em 2em;
-  border-radius: 3px;
+  border-radius: $input-radius;
 
   .arrow {
     position: absolute;
@@ -76,7 +78,14 @@ $background: #fff;
   background-color: $background;
   padding: 0;
   margin: 0;
-  box-shadow: 1px 2px 20px rgba(#000, 0.2);
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 4px 5px,
+    rgba(0, 0, 0, 0.1) 1px 4px 24px;
+  max-height: 20.0rem;
+  overflow: auto;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  border-bottom-left-radius: $input-radius;
+  border-bottom-right-radius: $input-radius;
 
   li {
     list-style-type: none;
