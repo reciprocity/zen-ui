@@ -83,10 +83,6 @@ export class ZenDropdown {
     }
   }
 
-  componentWillLoad() {
-    // this.dataDidChangeHandler(this.value);
-  }
-
   selectValue(option) {
     this.val = option;
     this.opened = false;
@@ -132,20 +128,19 @@ export class ZenDropdown {
           {this.val.label || 'Select something'}
           <div class="arrow"></div>
         </div>
-        {this.opened
-          ? <ul class="list">
-            { this.options.map((option, index) =>
-              <li
-                class={{ selected: this.focusedIndex === index }}
-                style={{'background-color': this.isSelected(option) ? this.selectedColor : ''}}
-                onClick={() => this.selectValue(option)}
-              >{option.label}</li>
-            )}
-          </ul>
-          : <ul></ul>
-          // : <slot></slot>
-        }
-        {/* <slot></slot> */}
+        <div class="list-wrap">
+          <zen-animate show={this.opened}>
+            <ul class="list">
+              { this.options.map((option, index) =>
+                <li
+                  class={{ selected: this.focusedIndex === index }}
+                  style={{'background-color': this.isSelected(option) ? this.selectedColor : ''}}
+                  onClick={() => this.selectValue(option)}
+                >{option.label}</li>
+              )}
+            </ul>
+          </zen-animate>
+        </div>
       </Host>
     );
   }

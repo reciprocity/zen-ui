@@ -72,6 +72,17 @@ $background: #fff;
   }
 }
 
+.list-wrap {
+  position: absolute;
+  left: -24px;
+  right: -24px;
+  padding-right: 24px;
+  padding-left: 24px;
+  padding-bottom: 24px;
+  overflow: hidden;
+  z-index: 100;
+}
+
 .list {
   border: 1px solid $border;
   border-top: none;
@@ -81,6 +92,7 @@ $background: #fff;
   box-shadow: rgba(0, 0, 0, 0.05) 0px 4px 5px,
     rgba(0, 0, 0, 0.1) 1px 4px 24px;
   max-height: 20.0rem;
+  transition: transform 0.3s, opacity 0.3s linear;
   overflow: auto;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
@@ -100,4 +112,10 @@ $background: #fff;
       background-color: $color-gray-100;
     }
   }
+}
+
+.list[animate=out-end],
+.list[animate=in-start] {
+  opacity: 0;
+  transform: translate(0, -100px);
 }
