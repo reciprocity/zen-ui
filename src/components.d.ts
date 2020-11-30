@@ -23,9 +23,21 @@ export namespace Components {
     interface TextWithDetails {
     }
     interface ZenButton {
+        /**
+          * If present, button will be disabled
+         */
         "disabled"?: boolean;
+        /**
+          * Label of the button
+         */
         "label": string;
+        /**
+          * If present, will show a spinner
+         */
         "loading"?: boolean;
+        /**
+          * Color variant of the button
+         */
         "variant": string;
     }
     interface ZenDropdown {
@@ -46,6 +58,12 @@ export namespace Components {
           * Selected option
          */
         "val": OptionItem;
+    }
+    interface ZenSpinner {
+        /**
+          * Color of the spinner. Accepts any CSS Legal Color Value.
+         */
+        "color": string;
     }
     interface ZenSteps {
         /**
@@ -93,6 +111,12 @@ declare global {
         prototype: HTMLZenDropdownElement;
         new (): HTMLZenDropdownElement;
     };
+    interface HTMLZenSpinnerElement extends Components.ZenSpinner, HTMLStencilElement {
+    }
+    var HTMLZenSpinnerElement: {
+        prototype: HTMLZenSpinnerElement;
+        new (): HTMLZenSpinnerElement;
+    };
     interface HTMLZenStepsElement extends Components.ZenSteps, HTMLStencilElement {
     }
     var HTMLZenStepsElement: {
@@ -105,6 +129,7 @@ declare global {
         "text-with-details": HTMLTextWithDetailsElement;
         "zen-button": HTMLZenButtonElement;
         "zen-dropdown": HTMLZenDropdownElement;
+        "zen-spinner": HTMLZenSpinnerElement;
         "zen-steps": HTMLZenStepsElement;
     }
 }
@@ -123,9 +148,21 @@ declare namespace LocalJSX {
     interface TextWithDetails {
     }
     interface ZenButton {
+        /**
+          * If present, button will be disabled
+         */
         "disabled"?: boolean;
+        /**
+          * Label of the button
+         */
         "label"?: string;
+        /**
+          * If present, will show a spinner
+         */
         "loading"?: boolean;
+        /**
+          * Color variant of the button
+         */
         "variant"?: string;
     }
     interface ZenDropdown {
@@ -151,6 +188,12 @@ declare namespace LocalJSX {
          */
         "val"?: OptionItem;
     }
+    interface ZenSpinner {
+        /**
+          * Color of the spinner. Accepts any CSS Legal Color Value.
+         */
+        "color"?: string;
+    }
     interface ZenSteps {
         /**
           * Index of currently active step
@@ -175,6 +218,7 @@ declare namespace LocalJSX {
         "text-with-details": TextWithDetails;
         "zen-button": ZenButton;
         "zen-dropdown": ZenDropdown;
+        "zen-spinner": ZenSpinner;
         "zen-steps": ZenSteps;
     }
 }
@@ -187,6 +231,7 @@ declare module "@stencil/core" {
             "text-with-details": LocalJSX.TextWithDetails & JSXBase.HTMLAttributes<HTMLTextWithDetailsElement>;
             "zen-button": LocalJSX.ZenButton & JSXBase.HTMLAttributes<HTMLZenButtonElement>;
             "zen-dropdown": LocalJSX.ZenDropdown & JSXBase.HTMLAttributes<HTMLZenDropdownElement>;
+            "zen-spinner": LocalJSX.ZenSpinner & JSXBase.HTMLAttributes<HTMLZenSpinnerElement>;
             "zen-steps": LocalJSX.ZenSteps & JSXBase.HTMLAttributes<HTMLZenStepsElement>;
         }
     }
