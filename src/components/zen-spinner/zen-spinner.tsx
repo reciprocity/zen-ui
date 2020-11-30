@@ -11,7 +11,7 @@ export class ZenSpinner {
   @Prop() color: string = null;
 
   render() {
-    
+
     return (
       <Host>
         <span class="spinner" style={{ color: this.color }}></span>
