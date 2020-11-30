@@ -21,6 +21,19 @@
 | `input2` | Emitted on any selection change | `CustomEvent<OptionItem>` |
 
 
+## Dependencies
+
+### Depends on
+
+- [zen-animate](../zen-animate)
+
+### Graph
+```mermaid
+graph TD;
+  zen-dropdown --> zen-animate
+  style zen-dropdown fill:#f9f,stroke:#333,stroke-width:4px
+```
+
 ----------------------------------------------
 
 

@@ -35,13 +35,19 @@ const Template = (
   {
     selectedColor,
   }) => {
-    const opts = [{ label: 'item 12' }, { label: 'item 2' }];
+    const opts = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16].map(n => ({
+      label: `item ${n}`
+    }));
     return html`
+    <input class="mt-96" />
     <zen-dropdown
-      style="max-width: 300px; min-height: 300px;"
+      class="my-24"
+      style="max-width: 300px;"
       .options=${opts}
       selected-color=${selectedColor}
+    >
     </zen-dropdown>
+    <input type="email" class="mb-128" />
     ${action('zen-dropdown', customEvents)}
     `;
 };

@@ -22,6 +22,9 @@ export namespace Components {
     }
     interface TextWithDetails {
     }
+    interface ZenAnimate {
+        "show": boolean;
+    }
     interface ZenButton {
         /**
           * If present, button will be disabled
@@ -99,6 +102,12 @@ declare global {
         prototype: HTMLTextWithDetailsElement;
         new (): HTMLTextWithDetailsElement;
     };
+    interface HTMLZenAnimateElement extends Components.ZenAnimate, HTMLStencilElement {
+    }
+    var HTMLZenAnimateElement: {
+        prototype: HTMLZenAnimateElement;
+        new (): HTMLZenAnimateElement;
+    };
     interface HTMLZenButtonElement extends Components.ZenButton, HTMLStencilElement {
     }
     var HTMLZenButtonElement: {
@@ -127,6 +136,7 @@ declare global {
         "color-swatch": HTMLColorSwatchElement;
         "color-swatch-group": HTMLColorSwatchGroupElement;
         "text-with-details": HTMLTextWithDetailsElement;
+        "zen-animate": HTMLZenAnimateElement;
         "zen-button": HTMLZenButtonElement;
         "zen-dropdown": HTMLZenDropdownElement;
         "zen-spinner": HTMLZenSpinnerElement;
@@ -146,6 +156,9 @@ declare namespace LocalJSX {
         "colors"?: StringifiedJson;
     }
     interface TextWithDetails {
+    }
+    interface ZenAnimate {
+        "show"?: boolean;
     }
     interface ZenButton {
         /**
@@ -216,6 +229,7 @@ declare namespace LocalJSX {
         "color-swatch": ColorSwatch;
         "color-swatch-group": ColorSwatchGroup;
         "text-with-details": TextWithDetails;
+        "zen-animate": ZenAnimate;
         "zen-button": ZenButton;
         "zen-dropdown": ZenDropdown;
         "zen-spinner": ZenSpinner;
@@ -229,6 +243,7 @@ declare module "@stencil/core" {
             "color-swatch": LocalJSX.ColorSwatch & JSXBase.HTMLAttributes<HTMLColorSwatchElement>;
             "color-swatch-group": LocalJSX.ColorSwatchGroup & JSXBase.HTMLAttributes<HTMLColorSwatchGroupElement>;
             "text-with-details": LocalJSX.TextWithDetails & JSXBase.HTMLAttributes<HTMLTextWithDetailsElement>;
+            "zen-animate": LocalJSX.ZenAnimate & JSXBase.HTMLAttributes<HTMLZenAnimateElement>;
             "zen-button": LocalJSX.ZenButton & JSXBase.HTMLAttributes<HTMLZenButtonElement>;
             "zen-dropdown": LocalJSX.ZenDropdown & JSXBase.HTMLAttributes<HTMLZenDropdownElement>;
             "zen-spinner": LocalJSX.ZenSpinner & JSXBase.HTMLAttributes<HTMLZenSpinnerElement>;

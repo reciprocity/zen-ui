@@ -1,5 +1,5 @@
-import { Component, Host, h, Prop, State, Watch, Event, EventEmitter } from '@stencil/core';
-import { isChildOf } from './functions';
+import { Component, Host, h, Prop, State, Watch, Event, EventEmitter, Listen } from '@stencil/core';
+import { key } from '../helpers/keyCodes';
 
 export interface OptionItem {
   label: string
@@ -8,15 +8,16 @@ export interface OptionItem {
 @Component({
   tag: 'zen-dropdown',
   styleUrl: 'zen-dropdown.scss',
-  shadow: false,
+  shadow: true,
 })
 
-export class ZenDropdownSimple {
+export class ZenDropdown {
 
   div: HTMLElement = undefined;
   clickHandler = undefined;
 
   @State() opened: boolean = false;
+  @State() focusedIndex: number = -1;
 
   /** Selected option */
   @Prop() val: OptionItem = { label: '' };
@@ -39,8 +40,47 @@ export class ZenDropdownSimple {
     this.input2.emit(value);
   }
 
-  componentWillLoad() {
-    // this.dataDidChangeHandler(this.value);
+  @Listen('keydown')
+  handleKeyDown(ev: KeyboardEvent){
+    let toggleKeys = [
+      key.SPACE,
+      key.ENTER,
+      key.UP,
+      key.DOWN,
+    ];
+
+    if (!this.opened && toggleKeys.includes(ev.keyCode)) {
+      this.toggleDropdown();
+      ev.preventDefault();
+      return;
+    }
+
+    switch (ev.keyCode) {
+      case key.DOWN:
+        this.focusedIndex++;
+        if (this.focusedIndex > this.options.length - 1) {
+          this.focusedIndex = 0;
+        }
+        ev.preventDefault();
+        break;
+
+      case key.UP:
+        this.focusedIndex--;
+        if (this.focusedIndex < 0) {
+          this.focusedIndex = this.options.length - 1;
+        }
+        ev.preventDefault();
+        break;
+
+      case key.ENTER:
+      case key.SPACE:
+        const focused = this.options[this.focusedIndex];
+        if (focused) {
+          this.selectValue(focused);
+        }
+        ev.preventDefault();
+        break;
+    }
   }
 
   selectValue(option) {
@@ -48,10 +88,11 @@ export class ZenDropdownSimple {
     this.opened = false;
   }
 
-  toggleDropdown(open) {
+  toggleDropdown(open?) {
     if (open === undefined) open = !this.opened;
 
     if (open) {
+      this.focusedIndex = this.selectedIndex();
       this.clickHandler = event => this.closeOnClickOut(event);
       document.addEventListener('mousedown', this.clickHandler);
     } else {
@@ -64,19 +105,22 @@ export class ZenDropdownSimple {
     return option[this.trackBy] === this.val[this.trackBy];
   }
 
+  selectedIndex() {
+    return this.options.findIndex(n => n[this.trackBy] === this.val[this.trackBy]);
+  }
+
   // Events
-  closeOnClickOut(event: MouseEvent) {
-    // This doesn't work if we're in a shadow dom,
-    //    because event.target is always Host and we can't check if click was inside
-    if (!isChildOf(event.target as HTMLElement, this.div)) {
+  closeOnClickOut(event: any) {
+    const clickedInside = this.div.shadowRoot.contains(event.path[0]);
+    if (!clickedInside) {
       this.opened = false;
     }
   }
 
   render() {
     return (
-      <Host class="zen-multiselect" ref={el => this.div = el}>
-        <div tabindex="0" class={{
+      <Host tabindex="0" class="zen-multiselect" ref={el => this.div = el}>
+        <div class={{
             field: true,
             opened: this.opened
           }}
@@ -84,20 +128,19 @@ export class ZenDropdownSimple {
           {this.val.label || 'Select something'}
           <div class="arrow"></div>
         </div>
-        {this.opened
-          ? <ul class="list">
-            { this.options.map((option) =>
-              <li
-                class={{ selected: this.isSelected(option) }}
-                style={{'background-color': this.isSelected(option) ? this.selectedColor : ''}}
-                onClick={() => this.selectValue(option)}
-              >{option.label}</li>
-            )}
-          </ul>
-          : <ul></ul>
-          // : <slot></slot>
-        }
-        {/* <slot></slot> */}
+        <div class="list-wrap">
+          <zen-animate show={this.opened}>
+            <ul class="list">
+              { this.options.map((option, index) =>
+                <li
+                  class={{ selected: this.focusedIndex === index }}
+                  style={{'background-color': this.isSelected(option) ? this.selectedColor : ''}}
+                  onClick={() => this.selectValue(option)}
+                >{option.label}</li>
+              )}
+            </ul>
+          </zen-animate>
+        </div>
       </Host>
     );
   }
