@@ -1,11 +1,10 @@
 @import "./colors";
 @import "./mixins/index";
 
-// Font sizes (14px default)
-$text-lg: 1.6rem !default;
-$text-md: 1.4rem !default;
-$text-sm: 1.2rem !default;
-$text-xs: 1.0rem !default;
+$text-lg: 1.2rem !default;
+$text-md: 1rem !default;
+$text-sm: 0.8rem !default;
+$text-xs: 0.6rem !default;
 
 $grid-breakpoints: (
   xs: 0,
