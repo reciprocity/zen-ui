@@ -34,5 +34,7 @@ module.exports = {
     // Guard hasOwnProperty in for-in should be there, but we prefere return:
     // if (!x.hasOwnProperty(key)) return;
     'guard-for-in': 0,
+    // Allow lexical declarations in case statement:
+    'no-case-declarations': 0,
   }
 }
