@@ -4,7 +4,10 @@ module.exports = {
   },
   parser: '@typescript-eslint/parser',
   plugins: ['@typescript-eslint'],
-  extends: ['airbnb-typescript/base'], // this is optional
+  extends: [
+    'eslint:recommended',
+    'plugin:@typescript-eslint/recommended',
+  ],
   rules: {
     // when single export, prefer using default over named export
     'import/prefer-default-export': 0,
