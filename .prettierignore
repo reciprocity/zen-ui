@@ -1,0 +1,7 @@
+# dependencies
+node_modules
+# test coverage
+coverage
+# build
+dist
+loader
