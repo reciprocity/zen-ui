@@ -10,7 +10,10 @@ module.exports = {
   ],
   babel: async (options) => ({
     ...options,
-    "presets": ["@babel/preset-react"]
+    "presets": [
+      "@babel/preset-react",
+      "@babel/preset-typescript"
+    ]
     // any extra options you want to set
   }),
 };
