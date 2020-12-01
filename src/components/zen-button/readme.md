@@ -1,9 +1,6 @@
 # zen-button
 
-
-
 <!-- Auto Generated Below -->
-
 
 ## Properties
 
@@ -14,7 +11,6 @@
 | `loading`  | `loading`  | If present, will show a spinner     | `boolean` | `false`     |
 | `variant`  | `variant`  | Color variant of the button         | `string`  | `'primary'` |
 
-
 ## Dependencies
 
 ### Depends on
@@ -22,12 +18,11 @@
 - [zen-spinner](../zen-spinner)
 
 ### Graph
+
 ```mermaid
 graph TD;
   zen-button --> zen-spinner
   style zen-button fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
-----------------------------------------------
-
-
+---

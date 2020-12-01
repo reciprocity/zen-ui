@@ -1,21 +1,21 @@
 @mixin button-variant($color, $background, $border, $hover, $focus, $active) {
-    color: $color;
-    background-color: $background;
-    border-color: $border;
+  color: $color;
+  background-color: $background;
+  border-color: $border;
 
-    &:hover:not([disabled]) {
-      background-color: $hover;
-      border-color: $hover;
-      cursor: pointer;
-    }
-
-    &:focus,
-    &:active {
-      box-shadow: 0 0 0 2px $focus;
-    }
-
-    &:active {
-      background-color: $active;
-      border-color: $active;
-    }
+  &:hover:not([disabled]) {
+    background-color: $hover;
+    border-color: $hover;
+    cursor: pointer;
   }
+
+  &:focus,
+  &:active {
+    box-shadow: 0 0 0 2px $focus;
+  }
+
+  &:active {
+    background-color: $active;
+    border-color: $active;
+  }
+}

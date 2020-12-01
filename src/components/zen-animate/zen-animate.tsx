@@ -24,7 +24,6 @@ export class ZenAnimate {
   async componentDidRender(): Promise<void> {
     const parent = this.div.querySelector('slot');
     const slot = parent && (parent.assignedNodes()[0] as HTMLElement);
-    if (!slot) return;
 
     slot.setAttribute('animate', this.show ? 'in-start' : 'out-start');
 

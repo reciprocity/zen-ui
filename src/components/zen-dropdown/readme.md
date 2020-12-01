@@ -1,7 +1,4 @@
-
-
 <!-- Auto Generated Below -->
-
 
 ## Properties
 
@@ -13,13 +10,11 @@
 | `trackBy`       | `track-by`       | Option key that is unique for each option | `string`       | `'label'`       |
 | `val`           | --               | Selected option                           | `OptionItem`   | `{ label: '' }` |
 
-
 ## Events
 
 | Event    | Description                     | Type                      |
 | -------- | ------------------------------- | ------------------------- |
 | `input2` | Emitted on any selection change | `CustomEvent<OptionItem>` |
-
 
 ## Dependencies
 
@@ -28,12 +23,11 @@
 - [zen-animate](../zen-animate)
 
 ### Graph
+
 ```mermaid
 graph TD;
   zen-dropdown --> zen-animate
   style zen-dropdown fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
-----------------------------------------------
-
-
+---

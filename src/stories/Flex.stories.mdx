@@ -5,7 +5,7 @@ const flexUtils = scssArrayVar('$flex-utils').map(util => ({
   prop: util.value[0].value,
   propSuffix: util.value[1].value,
   prop: util.value[2].value,
-  value: util.value[3].value
+  value: util.value[3].value,
 }));
 
 <Meta title="Flex" />
@@ -14,42 +14,43 @@ const flexUtils = scssArrayVar('$flex-utils').map(util => ({
 
 Utility classes for standard flex properties.
 
-*This system is modeled on [Bootstrap flex utilities](https://getbootstrap.com/docs/4.3/utilities/flex/)*<br/>
-*For more info on flexbox layout check [A Complete Guide to Flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)*
+_This system is modeled on [Bootstrap flex utilities](https://getbootstrap.com/docs/4.3/utilities/flex/)_<br/>
+_For more info on flexbox layout check [A Complete Guide to Flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)_
 
 ### Classes
+
 <ul>
   {flexUtils.map(item => (
-  <li key={item.prop + item.propSuffix}>
-    <code>
-      {item.prop}{item.propSuffix}
-    </code> {item.prop}: {item.value} !important
-  </li>
+    <li key={item.prop + item.propSuffix}>
+      <code>
+        {item.prop}
+        {item.propSuffix}
+      </code>{' '}
+      {item.prop}: {item.value} !important
+    </li>
   ))}
 </ul>
 
 ### Responsive-friendly version
+
 There's also responsive-friendly version for each class<br/>
 `{property}-{breakpoint}-{value}`
 
 - `breakpoint` is one of:
   <ul>
-  {breakpoints.map(breakpoint => (
-  <li key={breakpoint.name} style={{'marginLeft': '12px'}}>
-    <code>
-      {breakpoint.name}
-    </code> - on screens wider than {breakpoint.value}px
-  </li>
-  ))}
+    {breakpoints.map(breakpoint => (
+      <li key={breakpoint.name} style={{ marginLeft: '12px' }}>
+        <code>{breakpoint.name}</code> - on screens wider than {breakpoint.value}px
+      </li>
+    ))}
   </ul>
 
 <p>
   <i>
     eg.
-    <code>class="flex-direction-row flex-direction-md-column"</code>:
-    Display items in a row, but if the screen is wider than
-    <span> { scssBreakpoint('md').value }</span>
+    <code>class="flex-direction-row flex-direction-md-column"</code>: Display items in a row, but if the screen is wider
+    than
+    <span> {scssBreakpoint('md').value}</span>
     px, display them in the column.
   </i>
 </p>
-

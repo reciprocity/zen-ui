@@ -12,18 +12,19 @@ Utility classes for setting predefined `marings` and `paddings`.<br/>
 Spacing is based on [8 point grid system](https://builttoadapt.io/intro-to-the-8-point-grid-system-d2573cde8632)!<br/>
 Never set margins manually, like `margin: 13px`!
 
-*This system is modeled on [Bootstrap spacing utilities](https://getbootstrap.com/docs/4.5/utilities/spacing/)*
+_This system is modeled on [Bootstrap spacing utilities](https://getbootstrap.com/docs/4.5/utilities/spacing/)_
 
 ### Utility class formatting<br />
+
 `{property}{sides}-{size}`
 
-*eg. `class="mb-12"` will set bottom margin 12 px.*
+_eg. `class="mb-12"` will set bottom margin 12 px._
 
 - `property` is one of:
   - `m` - margins
   - `p` - paddings
-<br/>
-<br/>
+    <br />
+    <br />
 - `sides` is one of:
   - `t` - top
   - `r` - right
@@ -32,50 +33,49 @@ Never set margins manually, like `margin: 13px`!
   - `x` - both left & right
   - `y` - both top & bottom
   - `blank` - affect all sides
-<br/>
-<br/>
+    <br />
+    <br />
 - `size` is one of:
-<div style={{display: 'flex'}}>
-  <div>
-    <code>auto</code><br/>
-    <small>auto</small>
+  <div style={{ display: 'flex' }}>
+    <div>
+      <code>auto</code>
+      <br />
+      <small>auto</small>
+    </div>
+    {spacers.map(spacer => (
+      <div key={spacer.name} style={{ marginLeft: '12px' }}>
+        <code>{spacer.name}</code>
+        <br />
+        <small>{spacer.value * 10}px</small>
+      </div>
+    ))}
   </div>
-  {spacers.map(spacer => (
-  <div key={spacer.name} style={{'marginLeft': '12px'}}>
-    <code>
-      {spacer.name}
-    </code><br/>
-    <small>{spacer.value * 10}px</small>
-  </div>
-  ))}
-</div>
 
 ### Responsive-friendly version
+
 There's also responsive-friendly version for each class<br/>
 `{property}{sides}-{breakpoint}-{size}`
 
 - `breakpoint` is one of:
   <ul>
-  {breakpoints.map(breakpoint => (
-  <li key={breakpoint.name} style={{'marginLeft': '12px'}}>
-    <code>
-      {breakpoint.name}
-    </code> - on screens wider than {breakpoint.value}px
-  </li>
-  ))}
+    {breakpoints.map(breakpoint => (
+      <li key={breakpoint.name} style={{ marginLeft: '12px' }}>
+        <code>{breakpoint.name}</code> - on screens wider than {breakpoint.value}px
+      </li>
+    ))}
   </ul>
 
 <p>
   <i>
     eg.
-    <code>class="mb-12 mb-md-64"</code>:
-    Bottom margin 12px by default. If screen is wider than
-    <span> { scssBreakpoint('md').value }</span>
+    <code>class="mb-12 mb-md-64"</code>: Bottom margin 12px by default. If screen is wider than
+    <span> {scssBreakpoint('md').value}</span>
     px, make bottom margin 64px.
   </i>
 </p>
 
 ### Negative margins
+
 For negative margins, prefix size with n:<br/>
 `{property}{sides}-n{size}`
 eg. `mx-md-n5`

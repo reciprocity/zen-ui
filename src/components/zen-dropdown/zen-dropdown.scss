@@ -1,5 +1,5 @@
-@import "../../zen-styles/variables.scss";
-@import "../../zen-styles/mixins/forms.scss";
+@import '../../zen-styles/variables.scss';
+@import '../../zen-styles/mixins/forms.scss';
 
 $border: rgba(#000, 0.1);
 $background: #fff;
@@ -58,9 +58,8 @@ $background: #fff;
   background-color: $background;
   padding: 0;
   margin: 0;
-  box-shadow: rgba(0, 0, 0, 0.05) 0px 4px 5px,
-    rgba(0, 0, 0, 0.1) 1px 4px 24px;
-  max-height: 20.0rem;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 4px 5px, rgba(0, 0, 0, 0.1) 1px 4px 24px;
+  max-height: 20rem;
   transition: transform 0.3s, opacity 0.3s linear;
   overflow: auto;
   scroll-behavior: smooth;
@@ -83,8 +82,8 @@ $background: #fff;
   }
 }
 
-.list[animate=out-end],
-.list[animate=in-start] {
+.list[animate='out-end'],
+.list[animate='in-start'] {
   opacity: 0;
   transform: translate(0, -100px);
 }

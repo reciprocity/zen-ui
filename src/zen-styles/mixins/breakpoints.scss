@@ -6,10 +6,6 @@
 //
 // The map defined in the `$grid-breakpoints` global variable is used as the `$breakpoints` argument by default.
 
-
-
-
-
 // Minimum breakpoint width. Null for the smallest (first) breakpoint.
 //
 //    >> breakpoint-min(sm, (xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px))
@@ -27,7 +23,7 @@
 //    >> breakpoint-infix(sm, (xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px))
 //    "-sm"
 @function breakpoint-infix($name, $breakpoints: $grid-breakpoints) {
-  @return if(breakpoint-min($name, $breakpoints) == null, "", "-#{$name}");
+  @return if(breakpoint-min($name, $breakpoints) == null, '', '-#{$name}');
 }
 
 // Media of at least the minimum breakpoint width. No query for the smallest breakpoint.
