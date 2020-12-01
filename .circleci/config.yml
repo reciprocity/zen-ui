@@ -20,6 +20,20 @@ jobs:
           root: .
           paths:
             - node_modules
+  lint:
+    <<: *defaults
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - run: yarn lint:ci
+  format:
+    <<: *defaults
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - run: yarn format:ci
   build:
     <<: *defaults
     steps:
@@ -57,6 +71,12 @@ workflows:
   test-build-deploy:
     jobs:
       - prepare
+      - lint:
+          requires:
+            - prepare
+      - format:
+          requires:
+            - lint
       - build:
           requires:
             - prepare
