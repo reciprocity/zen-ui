@@ -1,0 +1,57 @@
+@import "../../zen-styles/variables.scss";
+@import "../../zen-styles/mixins/forms.scss";
+
+:host {
+  position: relative;
+  display: block;
+  outline: none;
+  font-family: inherit;
+}
+
+label {
+  font-size: 0.875rem;
+  font-weight: 700;
+  line-height: 1rem;
+  color: $color-gray-700;
+}
+
+div.input-group {
+  position: relative;
+  padding: 0;
+  margin: 0;
+
+  input.input-control {
+    @include zenInput;
+    @include noselect;
+    display: block;
+    font-family: inherit;
+    padding: .375rem .5rem;
+    margin-top: .5rem;
+    border-radius: $input-radius;
+
+    &:disabled {
+      opacity: 0.5;
+      pointer-events: none;
+      cursor: default;
+    }
+
+    &:hover(:not([disabled])) {
+      border-color: $color-blue-700;
+    }
+
+    &:focus {
+      @include zenInputFocus;
+      border-color: $color-blue-700;
+    }
+  }
+}
+
+
+span.supporting-text {
+  font-size: 0.75rem;
+  color: $color-gray-600;
+}
+
+span.required {
+  color: $color-red-700;
+}

@@ -73,6 +73,28 @@ export namespace Components {
          */
         "val": OptionItem;
     }
+    interface ZenInput {
+        /**
+          * Disables input
+         */
+        "disabled": boolean;
+        /**
+          * Label above the input
+         */
+        "label": string;
+        /**
+          * Placeholder of the input
+         */
+        "placeholder": string;
+        /**
+          * Makes input required
+         */
+        "required": boolean;
+        /**
+          * Supporting text below the input
+         */
+        "supportingText": string;
+    }
     interface ZenSpinner {
         /**
           * Color of the spinner. Accepts any CSS Legal Color Value.
@@ -131,6 +153,12 @@ declare global {
         prototype: HTMLZenDropdownElement;
         new (): HTMLZenDropdownElement;
     };
+    interface HTMLZenInputElement extends Components.ZenInput, HTMLStencilElement {
+    }
+    var HTMLZenInputElement: {
+        prototype: HTMLZenInputElement;
+        new (): HTMLZenInputElement;
+    };
     interface HTMLZenSpinnerElement extends Components.ZenSpinner, HTMLStencilElement {
     }
     var HTMLZenSpinnerElement: {
@@ -150,6 +178,7 @@ declare global {
         "zen-animate": HTMLZenAnimateElement;
         "zen-button": HTMLZenButtonElement;
         "zen-dropdown": HTMLZenDropdownElement;
+        "zen-input": HTMLZenInputElement;
         "zen-spinner": HTMLZenSpinnerElement;
         "zen-steps": HTMLZenStepsElement;
     }
@@ -223,6 +252,28 @@ declare namespace LocalJSX {
          */
         "val"?: OptionItem;
     }
+    interface ZenInput {
+        /**
+          * Disables input
+         */
+        "disabled"?: boolean;
+        /**
+          * Label above the input
+         */
+        "label"?: string;
+        /**
+          * Placeholder of the input
+         */
+        "placeholder"?: string;
+        /**
+          * Makes input required
+         */
+        "required"?: boolean;
+        /**
+          * Supporting text below the input
+         */
+        "supportingText"?: string;
+    }
     interface ZenSpinner {
         /**
           * Color of the spinner. Accepts any CSS Legal Color Value.
@@ -254,6 +305,7 @@ declare namespace LocalJSX {
         "zen-animate": ZenAnimate;
         "zen-button": ZenButton;
         "zen-dropdown": ZenDropdown;
+        "zen-input": ZenInput;
         "zen-spinner": ZenSpinner;
         "zen-steps": ZenSteps;
     }
@@ -268,6 +320,7 @@ declare module "@stencil/core" {
             "zen-animate": LocalJSX.ZenAnimate & JSXBase.HTMLAttributes<HTMLZenAnimateElement>;
             "zen-button": LocalJSX.ZenButton & JSXBase.HTMLAttributes<HTMLZenButtonElement>;
             "zen-dropdown": LocalJSX.ZenDropdown & JSXBase.HTMLAttributes<HTMLZenDropdownElement>;
+            "zen-input": LocalJSX.ZenInput & JSXBase.HTMLAttributes<HTMLZenInputElement>;
             "zen-spinner": LocalJSX.ZenSpinner & JSXBase.HTMLAttributes<HTMLZenSpinnerElement>;
             "zen-steps": LocalJSX.ZenSteps & JSXBase.HTMLAttributes<HTMLZenStepsElement>;
         }
