@@ -6,12 +6,10 @@ import { Component, Host, h, Prop } from '@stencil/core';
   shadow: true,
 })
 export class ZenSpinner {
-
   /** Color of the spinner. Accepts any CSS Legal Color Value. */
   @Prop() color: string = null;
 
-  render() {
-
+  render(): HTMLElement {
     return (
       <Host>
         <span class="spinner" style={{ color: this.color }}></span>

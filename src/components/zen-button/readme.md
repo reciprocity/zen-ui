@@ -10,9 +10,9 @@
 | Property   | Attribute  | Description                         | Type      | Default     |
 | ---------- | ---------- | ----------------------------------- | --------- | ----------- |
 | `disabled` | `disabled` | If present, button will be disabled | `boolean` | `false`     |
-| `label`    | `label`    | Label of the button                 | `string`  | `"Button"`  |
+| `label`    | `label`    | Label of the button                 | `string`  | `'Button'`  |
 | `loading`  | `loading`  | If present, will show a spinner     | `boolean` | `false`     |
-| `variant`  | `variant`  | Color variant of the button         | `string`  | `"primary"` |
+| `variant`  | `variant`  | Color variant of the button         | `string`  | `'primary'` |
 
 
 ## Dependencies

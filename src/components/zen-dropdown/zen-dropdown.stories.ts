@@ -14,8 +14,8 @@ const argTypes = {
       defaultValue: { summary: '#f00' },
     },
     control: {
-      type: 'color'
-    }
+      type: 'color',
+    },
   },
 };
 
@@ -24,32 +24,24 @@ export default {
   component: 'zen-dropdown',
   argTypes,
   parameters: {
-    notes: {markdown},
+    notes: { markdown },
     actions: {
       handles: events,
     },
   },
 };
 
-const Template = (
-  {
-    selectedColor,
-  }) => {
-    const opts = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16].map(n => ({
-      label: `item ${n}`
-    }));
-    return html`
+const Template = ({ selectedColor }) => {
+  const opts = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16].map(n => ({
+    label: `item ${n}`,
+  }));
+  return html`
     <input class="mt-96" />
-    <zen-dropdown
-      class="my-24"
-      style="max-width: 300px;"
-      .options=${opts}
-      selected-color=${selectedColor}
-    >
+    <zen-dropdown class="my-24" style="max-width: 300px;" .options=${opts} selected-color=${selectedColor}>
     </zen-dropdown>
     <input type="email" class="mb-128" />
     ${action('zen-dropdown', customEvents)}
-    `;
+  `;
 };
 
 export const Default = Template.bind({});

@@ -5,26 +5,23 @@ import { Component, Host, h, State } from '@stencil/core';
   styleUrl: 'text-with-details.scss',
   shadow: false,
 })
-
 export class TextWithDetails {
-
   private slot: HTMLInputElement;
   @State() details: string;
 
-  componentDidRender() {
+  componentDidRender(): void {
     const style = getComputedStyle(this.slot.children[0]);
     this.details = `Font size: ${style.fontSize}, Line height: ${style.lineHeight}, Weight: ${style.fontWeight}`;
   }
 
-  render() {
+  render(): HTMLElement {
     return (
       <Host class="text-with-details">
-        <div ref={el => this.slot = el as HTMLInputElement}>
+        <div ref={el => (this.slot = el as HTMLInputElement)}>
           <slot />
         </div>
         <p class="element-details">{this.details}</p>
       </Host>
     );
   }
-
 }

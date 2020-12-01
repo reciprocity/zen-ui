@@ -14,9 +14,9 @@
 
 ## Events
 
-| Event      | Description         | Type                  |
-| ---------- | ------------------- | --------------------- |
-| `selected` | User clicked a step | `CustomEvent<Object>` |
+| Event      | Description         | Type                     |
+| ---------- | ------------------- | ------------------------ |
+| `selected` | User clicked a step | `CustomEvent<StepEvent>` |
 
 
 ----------------------------------------------

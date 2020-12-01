@@ -1,5 +1,9 @@
-export function waitNextFrame() {
-  return new Promise((resolve) => {
+export interface MouseEvent extends Event {
+  path: Node[];
+}
+
+export function waitNextFrame(): Promise<boolean> {
+  return new Promise(resolve => {
     window.requestAnimationFrame(() => resolve());
-  })
+  });
 }

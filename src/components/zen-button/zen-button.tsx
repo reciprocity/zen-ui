@@ -7,16 +7,15 @@ import { Component, Host, h, Prop } from '@stencil/core';
 })
 export class ZenButton {
   /** Color variant of the button */
-  @Prop() variant: string = "primary";
+  @Prop() variant = 'primary';
   /** Label of the button */
-  @Prop() label: string = "Button";
+  @Prop() label = 'Button';
   /** If present, will show a spinner */
   @Prop() loading?: boolean = false;
   /** If present, button will be disabled */
   @Prop() disabled?: boolean = false;
 
-  render() {
-
+  render(): HTMLElement {
     const classes = {
       btn: true,
       [`btn-${this.variant}`]: true,
@@ -24,11 +23,11 @@ export class ZenButton {
 
     return (
       <Host>
-        <button type="button" class={ classes } disabled={ this.disabled }>
+        <button type="button" class={classes} disabled={this.disabled}>
           <span
             class={{
               'animate-visibility': true,
-              invisible: this.loading
+              invisible: this.loading,
             }}
           >
             {this.label}
@@ -36,7 +35,7 @@ export class ZenButton {
           <zen-spinner
             class={{
               'animate-visibility': true,
-              invisible: !this.loading
+              invisible: !this.loading,
             }}
           />
         </button>

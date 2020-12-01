@@ -7,7 +7,7 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { StringifiedJson } from "./stories/components/color-swatch-group/color-swatch-group";
 import { OptionItem } from "./components/zen-dropdown/zen-dropdown";
-import { StepItem } from "./components/zen-steps/zen-steps";
+import { StepEvent, StepItem } from "./components/zen-steps/zen-steps";
 export namespace Components {
     interface ColorSwatch {
         "color": string;
@@ -215,7 +215,7 @@ declare namespace LocalJSX {
         /**
           * User clicked a step
          */
-        "onSelected"?: (event: CustomEvent<Object>) => void;
+        "onSelected"?: (event: CustomEvent<StepEvent>) => void;
         /**
           * User can click step to go to step
          */
