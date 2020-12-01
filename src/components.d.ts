@@ -73,15 +73,13 @@ export namespace Components {
          */
         "val": OptionItem;
     }
+    interface ZenFormGroup {
+    }
     interface ZenInput {
         /**
           * Disables input
          */
         "disabled": boolean;
-        /**
-          * Label above the input
-         */
-        "label": string;
         /**
           * Placeholder of the input
          */
@@ -90,10 +88,18 @@ export namespace Components {
           * Makes input required
          */
         "required": boolean;
+    }
+    interface ZenInputLabel {
         /**
-          * Supporting text below the input
+          * Text of the label
          */
-        "supportingText": string;
+        "text": string;
+    }
+    interface ZenInputSupportText {
+        /**
+          * Supporting text
+         */
+        "text": string;
     }
     interface ZenSpinner {
         /**
@@ -153,11 +159,29 @@ declare global {
         prototype: HTMLZenDropdownElement;
         new (): HTMLZenDropdownElement;
     };
+    interface HTMLZenFormGroupElement extends Components.ZenFormGroup, HTMLStencilElement {
+    }
+    var HTMLZenFormGroupElement: {
+        prototype: HTMLZenFormGroupElement;
+        new (): HTMLZenFormGroupElement;
+    };
     interface HTMLZenInputElement extends Components.ZenInput, HTMLStencilElement {
     }
     var HTMLZenInputElement: {
         prototype: HTMLZenInputElement;
         new (): HTMLZenInputElement;
+    };
+    interface HTMLZenInputLabelElement extends Components.ZenInputLabel, HTMLStencilElement {
+    }
+    var HTMLZenInputLabelElement: {
+        prototype: HTMLZenInputLabelElement;
+        new (): HTMLZenInputLabelElement;
+    };
+    interface HTMLZenInputSupportTextElement extends Components.ZenInputSupportText, HTMLStencilElement {
+    }
+    var HTMLZenInputSupportTextElement: {
+        prototype: HTMLZenInputSupportTextElement;
+        new (): HTMLZenInputSupportTextElement;
     };
     interface HTMLZenSpinnerElement extends Components.ZenSpinner, HTMLStencilElement {
     }
@@ -178,7 +202,10 @@ declare global {
         "zen-animate": HTMLZenAnimateElement;
         "zen-button": HTMLZenButtonElement;
         "zen-dropdown": HTMLZenDropdownElement;
+        "zen-form-group": HTMLZenFormGroupElement;
         "zen-input": HTMLZenInputElement;
+        "zen-input-label": HTMLZenInputLabelElement;
+        "zen-input-support-text": HTMLZenInputSupportTextElement;
         "zen-spinner": HTMLZenSpinnerElement;
         "zen-steps": HTMLZenStepsElement;
     }
@@ -252,15 +279,13 @@ declare namespace LocalJSX {
          */
         "val"?: OptionItem;
     }
+    interface ZenFormGroup {
+    }
     interface ZenInput {
         /**
           * Disables input
          */
         "disabled"?: boolean;
-        /**
-          * Label above the input
-         */
-        "label"?: string;
         /**
           * Placeholder of the input
          */
@@ -269,10 +294,18 @@ declare namespace LocalJSX {
           * Makes input required
          */
         "required"?: boolean;
+    }
+    interface ZenInputLabel {
         /**
-          * Supporting text below the input
+          * Text of the label
          */
-        "supportingText"?: string;
+        "text"?: string;
+    }
+    interface ZenInputSupportText {
+        /**
+          * Supporting text
+         */
+        "text"?: string;
     }
     interface ZenSpinner {
         /**
@@ -305,7 +338,10 @@ declare namespace LocalJSX {
         "zen-animate": ZenAnimate;
         "zen-button": ZenButton;
         "zen-dropdown": ZenDropdown;
+        "zen-form-group": ZenFormGroup;
         "zen-input": ZenInput;
+        "zen-input-label": ZenInputLabel;
+        "zen-input-support-text": ZenInputSupportText;
         "zen-spinner": ZenSpinner;
         "zen-steps": ZenSteps;
     }
@@ -320,7 +356,10 @@ declare module "@stencil/core" {
             "zen-animate": LocalJSX.ZenAnimate & JSXBase.HTMLAttributes<HTMLZenAnimateElement>;
             "zen-button": LocalJSX.ZenButton & JSXBase.HTMLAttributes<HTMLZenButtonElement>;
             "zen-dropdown": LocalJSX.ZenDropdown & JSXBase.HTMLAttributes<HTMLZenDropdownElement>;
+            "zen-form-group": LocalJSX.ZenFormGroup & JSXBase.HTMLAttributes<HTMLZenFormGroupElement>;
             "zen-input": LocalJSX.ZenInput & JSXBase.HTMLAttributes<HTMLZenInputElement>;
+            "zen-input-label": LocalJSX.ZenInputLabel & JSXBase.HTMLAttributes<HTMLZenInputLabelElement>;
+            "zen-input-support-text": LocalJSX.ZenInputSupportText & JSXBase.HTMLAttributes<HTMLZenInputSupportTextElement>;
             "zen-spinner": LocalJSX.ZenSpinner & JSXBase.HTMLAttributes<HTMLZenSpinnerElement>;
             "zen-steps": LocalJSX.ZenSteps & JSXBase.HTMLAttributes<HTMLZenStepsElement>;
         }

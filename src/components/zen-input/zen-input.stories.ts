@@ -9,13 +9,13 @@ export default {
   component: 'zen-input',
   argTypes,
   parameters: {
-    notes: {markdown},
+    notes: { markdown },
   },
 };
 
 const Template = () => {
     return html`
-    <zen-input label="Username" supporting-text="This field should be unique" placeholder="Insert text here..." required />
+    <zen-input placeholder="Insert text here..." />
     `;
 };
 
@@ -37,21 +37,9 @@ const TemplateDisabled = () => {
     `;
 };
 
-const TemplateDisabledWithSupportingText = () => {
-    return html`
-    <zen-input supporting-text="This field should be unique" placeholder="Disabled text here..." disabled />
-    `;
-};
-
-const TemplateDisabledWithLabel = () => {
-    return html`
-    <zen-input label="Username" placeholder="Disabled text here..." disabled />
-    `;
-};
-
 const TemplateRequired = () => {
   return html`
-  <zen-input label="Username" supporting-text="This field should be unique" placeholder="Insert text here..." required />
+  <zen-input placeholder="Insert text here..." required />
   `;
 };
 
@@ -60,6 +48,4 @@ export const Default = Template.bind({});
 export const SimpleInput = TemplateAlone.bind({});
 export const SimpleInputWithPlaceholder = TemplateAloneWithPlaceholder.bind({});
 export const DisabledInput = TemplateDisabled.bind({});
-export const DisabledInputWithLabel = TemplateDisabledWithLabel.bind({});
-export const DisabledInputWithSupportingText = TemplateDisabledWithSupportingText.bind({});
 export const RequiredInput = TemplateRequired.bind({});

@@ -1,0 +1,13 @@
+@import "../../zen-styles/variables.scss";
+/* @import "../../zen-styles/mixins/forms.scss"; */
+
+:host {
+  display: block;
+}
+
+label {
+  font-size: 0.875rem;
+  font-weight: 700;
+  line-height: 1rem;
+  color: $color-gray-700;
+}
