@@ -7,10 +7,10 @@
 
 .spinner {
   display: flex;
-  width: 2rem;
-  height: 2rem;
+  width: 1.25rem;
+  height: 1.25rem;
   vertical-align: text-bottom;
-  border: .2rem solid currentColor;
+  border: 2px solid currentColor;
   border-right-color: transparent;
   border-radius: 50%;
   animation: spin .75s linear infinite;
