@@ -28,10 +28,11 @@
     "storybook:build": "build-storybook --docs -o public --quiet",
     "styles:start": "webpack --watch --mode=development",
     "styles:build": "webpack --mode=production",
-    "lint": "eslint --ext .js,.ts,.tsx src/",
-    "lint:fix": "eslint --fix --ext .js,.ts,.tsx src/",
+    "lint:check": "eslint --ext .js,.ts,.tsx src/",
+    "lint": "eslint --fix --ext .js,.ts,.tsx src/",
     "lint:ci": "eslint --ext .js,.ts src/",
-    "format": "prettier --check src/",
+    "format": "prettier --write src/",
+    "format:check": "prettier --check src/",
     "format:ci": "prettier --check src/"
   },
   "devDependencies": {
