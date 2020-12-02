@@ -2,38 +2,10 @@
 @import "../../zen-styles/mixins/forms.scss";
 
 :host {
-  position: relative;
   display: block;
-  outline: none;
-  font-family: inherit;
 }
 
 input.input-control {
   @include zenInput;
   @include noselect;
-  display: block;
-  font-family: inherit;
-  font-size: .875rem;
-  padding: .375rem .5rem;
-  margin: .5rem 0;
-  border-radius: $input-radius;
-
-  &::placeholder {
-    color: $color-gray-400;
-  }
-
-  &:disabled {
-    opacity: 0.5;
-    pointer-events: none;
-    cursor: default;
-  }
-
-  &:hover {
-    border-color: $color-blue-700;
-  }
-
-  &:focus {
-    @include zenInputFocus;
-    border-color: $color-blue-700;
-  }
 }
