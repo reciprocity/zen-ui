@@ -19,6 +19,7 @@
   transition: color $transition-color, background-color $transition-color, border-color $transition-color,
     box-shadow $transition-color;
   outline: none;
+
   cursor: pointer;
 
   &:disabled {

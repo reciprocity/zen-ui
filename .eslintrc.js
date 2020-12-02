@@ -15,7 +15,7 @@ module.exports = {
     // when single export, prefer using default over named export
     'import/prefer-default-export': 0,
     // if one param in arrow func, remove parentheses:
-    "arrow-parens": [ 'error', "as-needed" ],
+    'arrow-parens': ['error', 'as-needed'],
     // x++ is allowed, but should be careful with whitespaces:
     'no-plusplus': 0,
     // function input params can be reassigned:
