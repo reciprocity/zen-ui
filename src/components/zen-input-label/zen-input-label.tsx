@@ -8,13 +8,16 @@ import { Component, h, Host, Prop } from '@stencil/core';
 export class ZenInputLabel {
   /** Text of the label */
   @Prop() text: string = null;
+
+  /** Shows a red asterisk after label */
   @Prop() required = false;
 
   render(): HTMLElement {
     return (
       <Host>
         <label>
-          {this.text} {this.required ? <span class="required">*</span> : null}
+          {this.text}
+          {this.required ? <span class="required">*</span> : null}
         </label>
       </Host>
     );

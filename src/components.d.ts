@@ -90,6 +90,9 @@ export namespace Components {
         "required": boolean;
     }
     interface ZenInputLabel {
+        /**
+          * Shows a red asterisk after label
+         */
         "required": boolean;
         /**
           * Text of the label
@@ -297,6 +300,9 @@ declare namespace LocalJSX {
         "required"?: boolean;
     }
     interface ZenInputLabel {
+        /**
+          * Shows a red asterisk after label
+         */
         "required"?: boolean;
         /**
           * Text of the label
