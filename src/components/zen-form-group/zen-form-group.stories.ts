@@ -14,49 +14,49 @@ export default {
 
 const Template = () => {
   return html`
-    <zen-form-group />
-        <zen-input-label text="Username" required></zen-input-label>
-        <zen-input></zen-input>
-        <zen-input-support-text text="This field should be unique"></zen-input-support-text>
+    <zen-form-group>
+      <zen-input-label text="Username" required></zen-input-label>
+      <zen-input></zen-input>
+      <zen-input-support-text text="This field should be unique"></zen-input-support-text>
     </zen-form-group>
-    `;
+  `;
 };
 
 const TemplateSimple = () => {
   return html`
-    <zen-form-group />
-        <zen-input-label text="Username"></zen-input-label>
-        <zen-input></zen-input>
-        <zen-input-support-text text="This field should be unique"></zen-input-support-text>
+    <zen-form-group>
+      <zen-input-label text="Username"></zen-input-label>
+      <zen-input></zen-input>
+      <zen-input-support-text text="This field should be unique"></zen-input-support-text>
     </zen-form-group>
-    `;
+  `;
 };
 
 const TemplateWithLabel = () => {
   return html`
-    <zen-form-group />
-        <zen-input-label text="Username"></zen-input-label>
-        <zen-input></zen-input>
+    <zen-form-group>
+      <zen-input-label text="Username"></zen-input-label>
+      <zen-input></zen-input>
     </zen-form-group>
-    `;
+  `;
 };
 
 const TemplateWithLabelRequired = () => {
   return html`
-    <zen-form-group />
-        <zen-input-label text="Username" required></zen-input-label>
-        <zen-input required></zen-input>
+    <zen-form-group>
+      <zen-input-label text="Username" required></zen-input-label>
+      <zen-input required></zen-input>
     </zen-form-group>
-    `;
+  `;
 };
 
 const TemplateWithSupportText = () => {
   return html`
-    <zen-form-group />
-        <zen-input></zen-input>
-        <zen-input-support-text text="This field should be unique"></zen-input-support-text>
+    <zen-form-group>
+      <zen-input></zen-input>
+      <zen-input-support-text text="This field should be unique"></zen-input-support-text>
     </zen-form-group>
-    `;
+  `;
 };
 
 export const Default = Template.bind({});
