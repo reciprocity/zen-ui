@@ -1,6 +1,6 @@
 module.exports = {
-  "parserOptions": {
-    "project": "./tsconfig.json"
+  parserOptions: {
+    project: './tsconfig.json',
   },
   parser: '@typescript-eslint/parser',
   plugins: ['@typescript-eslint'],
@@ -8,7 +8,8 @@ module.exports = {
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
     'prettier/@typescript-eslint',
-    'plugin:prettier/recommended'
+    'plugin:prettier/recommended',
+    'plugin:@stencil/recommended',
   ],
   rules: {
     // when single export, prefer using default over named export
@@ -36,5 +37,38 @@ module.exports = {
     'guard-for-in': 0,
     // Allow lexical declarations in case statement:
     'no-case-declarations': 0,
-  }
-}
+
+    // Stencil rules:
+    "@stencil/async-methods": "error",
+    "@stencil/ban-prefix": ["error", ["stencil", "stnl", "st"]],
+    "@stencil/decorators-context": "error",
+    "@stencil/decorators-style": [
+      "error", {
+      "prop": "inline",
+      "state": "inline",
+      "element": "inline",
+      "event": "inline",
+      "method": "multiline",
+      "watch": "multiline",
+      "listen": "multiline"
+    }],
+    "@stencil/element-type": "error",
+    "@stencil/host-data-deprecated": "error",
+    "@stencil/methods-must-be-public": "error",
+    "@stencil/no-unused-watch": "error",
+    "@stencil/own-methods-must-be-private": 0,
+    "@stencil/own-props-must-be-private": 0,
+    "@stencil/prefer-vdom-listener": 0,
+    "@stencil/props-must-be-public": "error",
+    "@stencil/props-must-be-readonly": "error",
+    "@stencil/render-returns-host": "error",
+    "@stencil/required-jsdoc": "error",
+    "@stencil/reserved-member-names": "error",
+    "@stencil/single-export": "error",
+    "@stencil/strict-mutable": "error",
+    // This type is not allowed in the 'if' condition because it is always truthy. Allowed types are boolean, null-union, undefined-union, or boolean-or-undefined:
+    "@stencil/strict-boolean-conditions": 0,
+    // JSX props should not use arrow functions:
+    "react/jsx-no-bind": 0,
+  },
+};
