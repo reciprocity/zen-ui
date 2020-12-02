@@ -11,6 +11,7 @@ export class ZenAnimate {
 
   @State() doShow = false;
 
+  /** Prop that will show the slot */
   @Prop() readonly show: boolean = false;
 
   @Watch('show')
