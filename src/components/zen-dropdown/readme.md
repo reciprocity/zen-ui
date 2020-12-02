@@ -15,6 +15,7 @@
 | `val`         | --            | Selected option                           | `OptionItem`   | `{ label: '' }` |
 
 
+
 ## Events
 
 | Event    | Description                     | Type                      |
