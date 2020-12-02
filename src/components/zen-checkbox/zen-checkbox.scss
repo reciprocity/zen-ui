@@ -1,0 +1,15 @@
+@import "../../zen-styles/variables.scss";
+@import "../../zen-styles/mixins/forms.scss";
+
+:host {
+  display: block;
+}
+
+input.input-control {
+  @include zenInput;
+  @include noselect;
+  width: auto;
+  &:focus {
+    box-shadow: 0 0 0 1px $color-blue-300;
+  }
+}
