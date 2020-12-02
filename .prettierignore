@@ -5,3 +5,7 @@ coverage
 # build
 dist
 loader
+# Stencil auto generated:
+src/components/**/*.md
+src/stories/components/**/*.md
+components.d.ts
