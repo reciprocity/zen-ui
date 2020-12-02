@@ -10,7 +10,7 @@ describe('zen-input-support-text', () => {
     expect(page.root).toEqualHtml(`
       <zen-input-support-text>
         <mock:shadow-root>
-          <slot></slot>
+          <span class="supporting-text"></span>
         </mock:shadow-root>
       </zen-input-support-text>
     `);

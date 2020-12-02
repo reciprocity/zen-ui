@@ -6,16 +6,10 @@ import { Component, h, Prop } from '@stencil/core';
   shadow: true,
 })
 export class ZenInputSupportText {
-
   /** Supporting text */
   @Prop() text: string = null;
 
   render() {
-    return (
-      <span class="supporting-text">
-        { this.text }
-      </span>
-    );
+    return <span class="supporting-text">{this.text}</span>;
   }
-
 }

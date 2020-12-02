@@ -3,6 +3,7 @@ import { Component, Host, h, Prop } from '@stencil/core';
 @Component({
   tag: 'zen-input',
   styleUrl: 'zen-input.scss',
+  shadow: true,
 })
 export class ZenInput {
   /** Placeholder of the input */
