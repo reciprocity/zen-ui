@@ -11,7 +11,7 @@ export class ZenAnimate {
 
   @State() doShow = false;
 
-  @Prop() show = false;
+  @Prop() readonly show: boolean = false;
 
   @Watch('show')
   async showChanged(show: boolean): Promise<void> {

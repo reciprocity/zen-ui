@@ -7,7 +7,7 @@ import { Component, Host, h, Prop } from '@stencil/core';
 })
 export class ZenSpinner {
   /** Color of the spinner. Accepts any CSS Legal Color Value. */
-  @Prop() color: string = null;
+  @Prop() readonly color: string = null;
 
   render(): HTMLElement {
     return (

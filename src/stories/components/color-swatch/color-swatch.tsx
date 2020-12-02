@@ -10,10 +10,10 @@ export interface OptionItem {
   shadow: false,
 })
 export class ColorSwatch {
-  @Prop() color = '#ffffff';
-  @Prop() varName = '$color-white';
+  @Prop() readonly color: string = '#ffffff';
+  @Prop() readonly varName: string = '$color-white';
   /** True if color is considered bright */
-  @Prop() isBrightColor = false;
+  @Prop() readonly isBrightColor: boolean = false;
 
   render(): HTMLElement {
     return (

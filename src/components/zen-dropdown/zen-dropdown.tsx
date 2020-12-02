@@ -17,19 +17,20 @@ export class ZenDropdown {
 
   @State() opened = false;
   @State() focusedIndex = -1;
+  @State() internalValue: OptionItem = null;
 
   /** Selected option */
-  @Prop() val: OptionItem = { label: '' };
+  @Prop() readonly val: OptionItem = { label: '' };
   /** Array of available options */
-  @Prop() options: Array<OptionItem> = [];
+  @Prop() readonly options: Array<OptionItem> = [];
   /** Option key that is unique for each option */
-  @Prop() trackBy = 'label';
-  @Prop() selectedColor: string;
+  @Prop() readonly trackBy: string = 'label';
   /** If true, multiple options can be selected */
-  @Prop() multiselect = false;
+  @Prop() readonly multiselect: boolean = false;
 
   @Watch('val')
-  dataDidChangeHandler(val: OptionItem): void {
+  valueDidChangeHandler(val: OptionItem): void {
+    this.internalValue = val;
     this.emitValueChanged(val);
   }
 
@@ -78,7 +79,7 @@ export class ZenDropdown {
   }
 
   selectValue(option: OptionItem): void {
-    this.val = option;
+    this.internalValue = option;
     this.opened = false;
   }
 
@@ -96,11 +97,11 @@ export class ZenDropdown {
   }
 
   isSelected(option: OptionItem): boolean {
-    return option[this.trackBy] === this.val[this.trackBy];
+    return option[this.trackBy] === this.internalValue[this.trackBy];
   }
 
   selectedIndex(): number {
-    return this.options.findIndex(n => n[this.trackBy] === this.val[this.trackBy]);
+    return this.options.findIndex(n => n[this.trackBy] === this.internalValue[this.trackBy]);
   }
 
   // Events
@@ -109,6 +110,10 @@ export class ZenDropdown {
     if (!clickedInside) {
       this.opened = false;
     }
+  }
+
+  connectedCallback(): void {
+    this.valueDidChangeHandler(this.val);
   }
 
   render(): HTMLElement {
@@ -123,18 +128,14 @@ export class ZenDropdown {
             this.toggleDropdown(true);
           }}
         >
-          {this.val.label || 'Select something'}
+          {this.internalValue.label || 'Select something'}
           <div class="arrow"></div>
         </div>
         <div class="list-wrap">
           <zen-animate show={this.opened}>
             <ul class="list">
               {this.options.map((option, index) => (
-                <li
-                  class={{ selected: this.focusedIndex === index }}
-                  style={{ 'background-color': this.isSelected(option) ? this.selectedColor : '' }}
-                  onClick={() => this.selectValue(option)}
-                >
+                <li class={{ selected: this.focusedIndex === index }} onClick={() => this.selectValue(option)}>
                   {option.label}
                 </li>
               ))}

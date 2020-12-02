@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, Event, EventEmitter } from '@stencil/core';
+import { Component, Host, h, Prop, State, Event, EventEmitter, Watch } from '@stencil/core';
 import { faCheck } from '@fortawesome/pro-light-svg-icons';
 import { renderIcon, styles } from '../helpers/fa-icons';
 
@@ -23,29 +23,39 @@ export interface StepEvent {
   shadow: true,
 })
 export class ZenSteps {
+  @State() internalActiveIndex: number;
   /** Ordered array of possible steps */
-  @Prop({ reflect: true }) steps: Array<StepItem> = [];
+  @Prop({ reflect: true }) readonly steps: Array<StepItem> = [];
   /** Index of currently active step */
-  @Prop({ reflect: true }) activeIndex = 0;
+  @Prop({ reflect: true }) readonly activeIndex = 0;
   /** User can click step to go to step */
-  @Prop({ reflect: true }) selectable = true;
+  @Prop({ reflect: true }) readonly selectable = true;
+
+  @Watch('activeIndex')
+  activeIndexChanged(activeIndex: number): void {
+    this.internalActiveIndex = activeIndex;
+  }
 
   /** User clicked a step */
   @Event() selected: EventEmitter<StepEvent>;
 
   selectStep(index: number, step: StepItem): void {
-    this.activeIndex = index;
+    this.internalActiveIndex = index;
     this.selected.emit({ index, step });
   }
 
   getItemState(index: number): StepState {
-    if (index < this.activeIndex) return StepState.Completed;
-    if (index === this.activeIndex) return StepState.Active;
+    if (index < this.internalActiveIndex) return StepState.Completed;
+    if (index === this.internalActiveIndex) return StepState.Active;
     return StepState.Waiting;
   }
 
   progressWidth(): number {
-    return Math.max(0, Math.min(1, this.activeIndex / (this.steps.length - 1)));
+    return Math.max(0, Math.min(1, this.internalActiveIndex / (this.steps.length - 1)));
+  }
+
+  connectedCallback(): void {
+    this.activeIndexChanged(this.activeIndex);
   }
 
   render(): HTMLElement {
