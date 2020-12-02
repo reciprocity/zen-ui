@@ -10,7 +10,7 @@ export class ZenInputLabel {
   @Prop() text: string = null;
   @Prop() required = false;
 
-  render() {
+  render(): ZenInputLabel {
     return (
       <label>
         {this.text} {this.required ? <span class="required">*</span> : null}

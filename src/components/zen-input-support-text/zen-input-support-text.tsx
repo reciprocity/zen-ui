@@ -9,7 +9,7 @@ export class ZenInputSupportText {
   /** Supporting text */
   @Prop() text: string = null;
 
-  render() {
+  render(): ZenInputSupportText {
     return <span class="supporting-text">{this.text}</span>;
   }
 }
