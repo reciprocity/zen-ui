@@ -155,6 +155,13 @@ export namespace Components {
          */
         "steps": Array<StepItem>;
     }
+    interface ZenTextarea {
+        "cols": number;
+        "disabled": boolean;
+        "placeholder": string;
+        "required": boolean;
+        "rows": number;
+    }
 }
 declare global {
     interface HTMLColorSwatchElement extends Components.ColorSwatch, HTMLStencilElement {
@@ -241,6 +248,12 @@ declare global {
         prototype: HTMLZenStepsElement;
         new (): HTMLZenStepsElement;
     };
+    interface HTMLZenTextareaElement extends Components.ZenTextarea, HTMLStencilElement {
+    }
+    var HTMLZenTextareaElement: {
+        prototype: HTMLZenTextareaElement;
+        new (): HTMLZenTextareaElement;
+    };
     interface HTMLElementTagNameMap {
         "color-swatch": HTMLColorSwatchElement;
         "color-swatch-group": HTMLColorSwatchGroupElement;
@@ -256,6 +269,7 @@ declare global {
         "zen-label": HTMLZenLabelElement;
         "zen-spinner": HTMLZenSpinnerElement;
         "zen-steps": HTMLZenStepsElement;
+        "zen-textarea": HTMLZenTextareaElement;
     }
 }
 declare namespace LocalJSX {
@@ -419,6 +433,13 @@ declare namespace LocalJSX {
          */
         "steps"?: Array<StepItem>;
     }
+    interface ZenTextarea {
+        "cols"?: number;
+        "disabled"?: boolean;
+        "placeholder"?: string;
+        "required"?: boolean;
+        "rows"?: number;
+    }
     interface IntrinsicElements {
         "color-swatch": ColorSwatch;
         "color-swatch-group": ColorSwatchGroup;
@@ -434,6 +455,7 @@ declare namespace LocalJSX {
         "zen-label": ZenLabel;
         "zen-spinner": ZenSpinner;
         "zen-steps": ZenSteps;
+        "zen-textarea": ZenTextarea;
     }
 }
 export { LocalJSX as JSX };
@@ -454,6 +476,7 @@ declare module "@stencil/core" {
             "zen-label": LocalJSX.ZenLabel & JSXBase.HTMLAttributes<HTMLZenLabelElement>;
             "zen-spinner": LocalJSX.ZenSpinner & JSXBase.HTMLAttributes<HTMLZenSpinnerElement>;
             "zen-steps": LocalJSX.ZenSteps & JSXBase.HTMLAttributes<HTMLZenStepsElement>;
+            "zen-textarea": LocalJSX.ZenTextarea & JSXBase.HTMLAttributes<HTMLZenTextareaElement>;
         }
     }
 }
