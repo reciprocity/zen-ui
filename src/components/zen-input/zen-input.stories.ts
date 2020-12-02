@@ -50,27 +50,7 @@ const Template = ({ disabled, placeholder, required }) => {
   disabled = disabled ? disabled : false;
   required = required ? required : false;
   placeholder = placeholder ? placeholder : 'Default placeholder';
-  return html` <zen-input placeholder=${placeholder} disabled=${disabled} required=${required} /> `;
+  return html`<zen-input placeholder=${placeholder} disabled=${disabled} required=${required} />`;
 };
 
-// const TemplateAlone = () => {
-//   return html` <zen-input /> `;
-// };
-
-// const TemplateAloneWithPlaceholder = () => {
-//   return html` <zen-input placeholder="Insert text here..." /> `;
-// };
-
-// const TemplateDisabled = () => {
-//   return html` <zen-input placeholder="Disabled text here..." disabled /> `;
-// };
-
-// const TemplateRequired = () => {
-//   return html` <zen-input placeholder="Insert text here..." required /> `;
-// };
-
 export const Default = Template.bind({});
-// export const SimpleInput = TemplateAlone.bind({});
-// export const SimpleInputWithPlaceholder = TemplateAloneWithPlaceholder.bind({});
-// export const DisabledInput = TemplateDisabled.bind({});
-// export const RequiredInput = TemplateRequired.bind({});
