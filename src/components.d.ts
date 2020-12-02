@@ -113,6 +113,12 @@ export namespace Components {
          */
         "value"?: string | number | null;
     }
+    interface ZenInputLabel {
+        /**
+          * Text of the label
+         */
+        "text": string;
+    }
     interface ZenInputSupportText {
         /**
           * Supporting text
@@ -205,6 +211,12 @@ declare global {
         prototype: HTMLZenInputElement;
         new (): HTMLZenInputElement;
     };
+    interface HTMLZenInputLabelElement extends Components.ZenInputLabel, HTMLStencilElement {
+    }
+    var HTMLZenInputLabelElement: {
+        prototype: HTMLZenInputLabelElement;
+        new (): HTMLZenInputLabelElement;
+    };
     interface HTMLZenInputSupportTextElement extends Components.ZenInputSupportText, HTMLStencilElement {
     }
     var HTMLZenInputSupportTextElement: {
@@ -239,6 +251,7 @@ declare global {
         "zen-dropdown": HTMLZenDropdownElement;
         "zen-form-group": HTMLZenFormGroupElement;
         "zen-input": HTMLZenInputElement;
+        "zen-input-label": HTMLZenInputLabelElement;
         "zen-input-support-text": HTMLZenInputSupportTextElement;
         "zen-label": HTMLZenLabelElement;
         "zen-spinner": HTMLZenSpinnerElement;
@@ -360,6 +373,12 @@ declare namespace LocalJSX {
          */
         "value"?: string | number | null;
     }
+    interface ZenInputLabel {
+        /**
+          * Text of the label
+         */
+        "text"?: string;
+    }
     interface ZenInputSupportText {
         /**
           * Supporting text
@@ -410,6 +429,7 @@ declare namespace LocalJSX {
         "zen-dropdown": ZenDropdown;
         "zen-form-group": ZenFormGroup;
         "zen-input": ZenInput;
+        "zen-input-label": ZenInputLabel;
         "zen-input-support-text": ZenInputSupportText;
         "zen-label": ZenLabel;
         "zen-spinner": ZenSpinner;
@@ -429,6 +449,7 @@ declare module "@stencil/core" {
             "zen-dropdown": LocalJSX.ZenDropdown & JSXBase.HTMLAttributes<HTMLZenDropdownElement>;
             "zen-form-group": LocalJSX.ZenFormGroup & JSXBase.HTMLAttributes<HTMLZenFormGroupElement>;
             "zen-input": LocalJSX.ZenInput & JSXBase.HTMLAttributes<HTMLZenInputElement>;
+            "zen-input-label": LocalJSX.ZenInputLabel & JSXBase.HTMLAttributes<HTMLZenInputLabelElement>;
             "zen-input-support-text": LocalJSX.ZenInputSupportText & JSXBase.HTMLAttributes<HTMLZenInputSupportTextElement>;
             "zen-label": LocalJSX.ZenLabel & JSXBase.HTMLAttributes<HTMLZenLabelElement>;
             "zen-spinner": LocalJSX.ZenSpinner & JSXBase.HTMLAttributes<HTMLZenSpinnerElement>;
