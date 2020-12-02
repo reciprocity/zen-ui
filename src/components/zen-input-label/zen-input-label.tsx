@@ -5,14 +5,15 @@ import { Component, h, Prop } from '@stencil/core';
   styleUrl: 'zen-input-label.scss',
 })
 export class ZenInputLabel {
-
   /** Text of the label */
   @Prop() text: string = null;
+  @Prop() required = false;
 
   render() {
     return (
-        <label> { this.text } </label>
+      <label>
+        {this.text} {this.required ? <span class="required">*</span> : null}
+      </label>
     );
   }
-
 }

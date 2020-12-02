@@ -13,9 +13,14 @@ input.input-control {
   @include noselect;
   display: block;
   font-family: inherit;
+  font-size: .875rem;
   padding: .375rem .5rem;
-  margin-top: .5rem;
+  margin: .5rem 0;
   border-radius: $input-radius;
+
+  &::placeholder {
+    color: $color-gray-400;
+  }
 
   &:disabled {
     opacity: 0.5;
@@ -23,7 +28,7 @@ input.input-control {
     cursor: default;
   }
 
-  &:hover(:not([disabled])) {
+  &:hover {
     border-color: $color-blue-700;
   }
 

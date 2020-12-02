@@ -5,7 +5,6 @@ import { Component, Host, h } from '@stencil/core';
   styleUrl: 'zen-form-group.scss',
 })
 export class ZenFormGroup {
-
   render() {
     return (
       <Host>
@@ -15,5 +14,4 @@ export class ZenFormGroup {
       </Host>
     );
   }
-
 }

@@ -1,5 +1,4 @@
 @import "../../zen-styles/variables.scss";
-/* @import "../../zen-styles/mixins/forms.scss"; */
 
 :host {
   display: block;
@@ -10,4 +9,8 @@ label {
   font-weight: 700;
   line-height: 1rem;
   color: $color-gray-700;
+
+  span.required {
+    color: $color-red-700;
+  }
 }
