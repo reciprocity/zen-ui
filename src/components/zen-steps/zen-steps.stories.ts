@@ -12,24 +12,18 @@ export default {
   component: 'ZenSteps',
   argTypes,
   parameters: {
-    notes: {markdown},
+    notes: { markdown },
   },
 };
 
 const Template = ({ steps, activeIndex, selectable }) => {
-    let stepsArr = [];
-    try {
-      stepsArr = JSON.parse(steps);
-    } catch (error) {
-      stepsArr = [];
-    }
-    return html`
-    <zen-steps
-      .steps=${stepsArr}
-      active-index=${activeIndex}
-      selectable=${selectable}
-    />
-    `;
+  let stepsArr = [];
+  try {
+    stepsArr = JSON.parse(steps);
+  } catch (error) {
+    stepsArr = [];
+  }
+  return html` <zen-steps .steps=${stepsArr} active-index=${activeIndex} selectable=${selectable} /> `;
 };
 
 export const Default = Template.bind({});
@@ -40,6 +34,6 @@ Default.args = {
     { label: 'Choose framework' },
     { label: 'Select objectives' },
     { label: 'Invite teammates' },
-    { label: 'Launch' }
-  ])
+    { label: 'Launch' },
+  ]),
 };

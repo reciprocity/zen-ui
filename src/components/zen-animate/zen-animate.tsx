@@ -1,54 +1,46 @@
 import { Component, h, Prop, Watch, State } from '@stencil/core';
-import { waitNextFrame } from '../helpers/helpers'
+import { waitNextFrame } from '../helpers/helpers';
 
 @Component({
   tag: 'zen-animate',
   shadow: true,
 })
 export class ZenAnimate {
-
   div: HTMLElement = undefined;
   hideTimer = undefined;
 
-  @State() doShow: boolean = false;
+  @State() doShow = false;
 
-  @Prop() show: boolean = false;
+  @Prop() show = false;
 
   @Watch('show')
-  async showChanged(show) {
+  async showChanged(show: boolean): Promise<void> {
     clearTimeout(this.hideTimer);
     if (show) {
       this.doShow = true; //  if false, set it with a delay
     }
   }
 
-  async componentDidRender() {
+  async componentDidRender(): Promise<void> {
     const parent = this.div.querySelector('slot');
-    const slot = parent && parent.assignedNodes()[0] as HTMLElement;
-    if (!slot) return;
+    const slot = parent && (parent.assignedNodes()[0] as HTMLElement);
 
-    slot.setAttribute('animate', this.show ? 'in-start' : 'out-start');
+    slot?.setAttribute('animate', this.show ? 'in-start' : 'out-start');
 
     await waitNextFrame();
 
-    slot.setAttribute('animate', this.show ? 'in-end' : 'out-end');
+    slot?.setAttribute('animate', this.show ? 'in-end' : 'out-end');
 
     if (!this.show) {
       // Remove element with delay, so transition finishes first:
       const transition = parseFloat(getComputedStyle(slot)['transitionDuration']) * 1000;
       this.hideTimer = setTimeout(() => {
-        this.doShow = false
+        this.doShow = false;
       }, transition);
     }
   }
 
-  render() {
-    return (
-      <div ref={el => this.div = el}>
-        { this.doShow ?
-        <slot/>
-        : '' }
-      </div>
-    );
+  render(): HTMLElement {
+    return <div ref={el => (this.div = el)}>{this.doShow ? <slot /> : ''}</div>;
   }
 }

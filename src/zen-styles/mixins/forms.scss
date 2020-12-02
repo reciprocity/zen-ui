@@ -1,31 +1,29 @@
 @mixin zenInputBase() {
-    font-size: $text-md;
-    color: $color-gray-700;
-    background: $color-white;
-    box-sizing: border-box;
-    border: 1px solid $color-gray-200;
-    border-radius: $input-radius;
+  font-size: $text-md;
+  color: $color-gray-700;
+  background: $color-white;
+  box-sizing: border-box;
+  border: 1px solid $color-gray-200;
+  border-radius: $input-radius;
 
-    transition: color $transition-color,
-      background-color $transition-color,
-      border-color $transition-color,
-      box-shadow $transition-color;
+  transition: color $transition-color, background-color $transition-color, border-color $transition-color,
+    box-shadow $transition-color;
+}
+
+@mixin zenInputFocus() {
+  box-shadow: 0 0 0 2px $color-blue-300;
+  outline: none;
+
+  &:invalid,
+  &.invalid {
+    box-shadow: 0 0 0 2px $color-red-300;
   }
+}
 
-  @mixin zenInputFocus() {
-    box-shadow: 0 0 0 2px $color-blue-300;
-    outline: none;
-
-    &:invalid,
-    &.invalid {
-      box-shadow: 0 0 0 2px $color-red-300;
-    }
+@mixin zenInput() {
+  @include zenInputBase();
+  &:focus,
+  &:active {
+    @include zenInputFocus;
   }
-
-  @mixin zenInput() {
-    @include zenInputBase();
-    &:focus,
-    &:active {
-      @include zenInputFocus;
-    }
-  }
+}

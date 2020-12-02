@@ -19,9 +19,9 @@ describe('zen-button', () => {
       components: [ZenSteps],
       html: `<div></div>`,
     });
-    let component = page.doc.createElement("zen-steps");
+    const component = page.doc.createElement('zen-steps');
 
-    (component as any).steps = [{ label: 'Step one' }];
+    (component as HTMLZenStepsElement).steps = [{ label: 'Step one' }];
     page.root.appendChild(component);
     await page.waitForChanges();
 
@@ -41,16 +41,16 @@ describe('zen-button', () => {
       components: [ZenSteps],
       html: `<div></div>`,
     });
-    let component = page.doc.createElement("zen-steps");
+    const component = page.doc.createElement('zen-steps');
 
-    (component as any).steps = [{ label: 'Step one' }, { label: 'Step two' }];
+    (component as HTMLZenStepsElement).steps = [{ label: 'Step one' }, { label: 'Step two' }];
     page.root.appendChild(component);
     await page.waitForChanges();
 
     expect(page.root.shadowRoot.querySelectorAll('.step').length).toEqual(2);
     expect(page.root.shadowRoot.querySelector('.step.active .label').innerHTML).toEqualHtml('Step one');
 
-    (component as any).activeIndex = 1;
+    (component as HTMLZenStepsElement).activeIndex = 1;
     await page.waitForChanges();
     expect(page.root.shadowRoot.querySelector('.step.active .label').innerHTML).toEqualHtml('Step two');
   });

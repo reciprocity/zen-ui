@@ -1,10 +1,9 @@
 import { Component, Host, h, Prop, Watch } from '@stencil/core';
 
-
 export interface ColorSwatchItem {
-  hex: string,
-  varName: string,
-  isBrightColor: boolean,
+  hex: string;
+  varName: string;
+  isBrightColor: boolean;
 }
 
 export type StringifiedJson = string;
@@ -14,25 +13,23 @@ export type StringifiedJson = string;
   styleUrl: 'color-swatch-group.scss',
   shadow: false,
 })
-
 export class ColorSwatchGroup {
-
   private _colors: ColorSwatchItem[];
   @Prop() colors: StringifiedJson = '[]';
 
   @Watch('colors')
-  colorsToArray(colors: ColorSwatchItem[] | string) {
-    return typeof colors === 'string' ? this._colors = JSON.parse(colors) : this._colors = colors;
+  colorsToArray(colors: ColorSwatchItem[] | string): ColorSwatchItem[] {
+    return typeof colors === 'string' ? (this._colors = JSON.parse(colors)) : (this._colors = colors);
   }
 
-  componentWillLoad() {
+  componentWillLoad(): void {
     this.colorsToArray(this.colors);
   }
 
-  render() {
+  render(): HTMLElement {
     return (
       <Host class="color-swatch-group">
-        {this._colors.map(color=>(
+        {this._colors.map(color => (
           <color-swatch
             key={color.varName}
             var-name={color.varName}
@@ -43,5 +40,4 @@ export class ColorSwatchGroup {
       </Host>
     );
   }
-
 }

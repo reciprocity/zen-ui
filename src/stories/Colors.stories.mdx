@@ -3,23 +3,22 @@ import { groupBy } from 'lodash';
 const sassVars = require('sass-extract-loader!../zen-styles/colors.scss');
 const isBrightColor = rgb => (rgb.r + rgb.g + rgb.b) / 3 > 128;
 
-export const groupColors = function(sassVars) {
+export const groupColors = function (sassVars) {
   // If color's base name isn't same as previous one, start a new line
   // Below regex matches '$color-red' from '$color-red-900'
   const baseName = varName => (varName.match(/^\$[a-z]*-[a-z]*/) || [])[0];
   return groupBy(Object.entries(sassVars), ([varName, _]) => baseName(varName));
-}
+};
 
-export const groupsToSwatchGroups = groups => Object.entries(groups)
-  .map(([name, colors]) => ({
+export const groupsToSwatchGroups = groups =>
+  Object.entries(groups).map(([name, colors]) => ({
     name,
     colors: colors.map(([varName, color]) => ({
       varName,
       hex: color.value.hex,
       isBrightColor: isBrightColor(color.value),
-    }))
-  })
-);
+    })),
+  }));
 
 export const groups = groupColors(sassVars.global);
 export const groupSwatches = groupsToSwatchGroups(groups);
@@ -30,13 +29,15 @@ export const groupSwatches = groupsToSwatchGroups(groups);
 
 Here you can see all color variables defined in [colors.scss](https://github.com/reciprocity/zen-ui/blob/main/src/scss/colors.scss)
 
-export const Template = (args) => <div {...args} />
+export const Template = args => <div {...args} />;
 
-<div style={{
-  display: 'flex',
-  flexFlow: 'column',
-  alignItems: 'start'
-  }}>
+<div
+  style={{
+    display: 'flex',
+    flexFlow: 'column',
+    alignItems: 'start',
+  }}
+>
   {groupSwatches.map(group => (
     <color-swatch-group key={group.name} colors={JSON.stringify(group.colors)}></color-swatch-group>
   ))}

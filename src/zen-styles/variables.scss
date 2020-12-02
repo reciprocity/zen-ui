@@ -1,5 +1,5 @@
-@import "./colors";
-@import "./mixins/index";
+@import './colors';
+@import './mixins/index';
 
 $text-lg: 1.2rem !default;
 $text-md: 1rem !default;
@@ -11,7 +11,7 @@ $grid-breakpoints: (
   sm: 576px,
   md: 768px,
   lg: 992px,
-  xl: 1200px
+  xl: 1200px,
 ) !default;
 
 $spacer: 1rem !default;
@@ -20,21 +20,51 @@ $spacers: () !default;
 $spacers: map-merge(
   (
     0: 0,
-    4:  ($spacer * .4),
-    8:  ($spacer * .8),
-    12: ($spacer * 1.2),
-    16: ($spacer * 1.6),
-    24: ($spacer * 2.4),
-    32: ($spacer * 3.2),
-    40: ($spacer * 4.0),
-    48: ($spacer * 4.8),
-    56: ($spacer * 5.6),
-    64: ($spacer * 6.4),
-    72: ($spacer * 7.2),
-    80: ($spacer * 8.0),
-    96: ($spacer * 9.6),
-    128: ($spacer * 12.8),
-    256: ($spacer * 25.6),
+    4: (
+      $spacer * 0.4,
+    ),
+    8: (
+      $spacer * 0.8,
+    ),
+    12: (
+      $spacer * 1.2,
+    ),
+    16: (
+      $spacer * 1.6,
+    ),
+    24: (
+      $spacer * 2.4,
+    ),
+    32: (
+      $spacer * 3.2,
+    ),
+    40: (
+      $spacer * 4,
+    ),
+    48: (
+      $spacer * 4.8,
+    ),
+    56: (
+      $spacer * 5.6,
+    ),
+    64: (
+      $spacer * 6.4,
+    ),
+    72: (
+      $spacer * 7.2,
+    ),
+    80: (
+      $spacer * 8,
+    ),
+    96: (
+      $spacer * 9.6,
+    ),
+    128: (
+      $spacer * 12.8,
+    ),
+    256: (
+      $spacer * 25.6,
+    ),
   ),
   $spacers
 );

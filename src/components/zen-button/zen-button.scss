@@ -1,6 +1,5 @@
-@import "../../zen-styles/component-helpers.scss";
-@import "./mixins.scss";
-
+@import '../../zen-styles/component-helpers.scss';
+@import './mixins.scss';
 
 .btn {
   position: relative;
@@ -11,16 +10,16 @@
   user-select: none;
   background-color: transparent;
   border: 1px solid transparent;
-  padding: .375rem .5rem;
+  padding: 0.375rem 0.5rem;
   font-size: 0.875rem;
   font-family: inherit;
   min-width: 3.8125rem;
   line-height: 1.25rem;
   border-radius: $button-radius;
-  transition: color $transition-color, background-color $transition-color, border-color $transition-color, box-shadow $transition-color;
+  transition: color $transition-color, background-color $transition-color, border-color $transition-color,
+    box-shadow $transition-color;
   outline: none;
   cursor: pointer;
-
 
   &:disabled {
     opacity: 0.5;
@@ -30,7 +29,14 @@
 }
 
 .btn-primary {
-  @include button-variant($color-white, $color-blue-700, $color-blue-700, $color-blue-800, $color-blue-300, $color-blue-900);
+  @include button-variant(
+    $color-white,
+    $color-blue-700,
+    $color-blue-700,
+    $color-blue-800,
+    $color-blue-300,
+    $color-blue-900
+  );
 }
 
 .btn-destructive {

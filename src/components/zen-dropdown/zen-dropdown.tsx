@@ -1,8 +1,9 @@
 import { Component, Host, h, Prop, State, Watch, Event, EventEmitter, Listen } from '@stencil/core';
 import { key } from '../helpers/keyCodes';
+import { MouseEvent } from '../helpers/helpers';
 
 export interface OptionItem {
-  label: string
+  label: string;
 }
 
 @Component({
@@ -10,44 +11,37 @@ export interface OptionItem {
   styleUrl: 'zen-dropdown.scss',
   shadow: true,
 })
-
 export class ZenDropdown {
-
   div: HTMLElement = undefined;
   clickHandler = undefined;
 
-  @State() opened: boolean = false;
-  @State() focusedIndex: number = -1;
+  @State() opened = false;
+  @State() focusedIndex = -1;
 
   /** Selected option */
   @Prop() val: OptionItem = { label: '' };
   /** Array of available options */
   @Prop() options: Array<OptionItem> = [];
   /** Option key that is unique for each option */
-  @Prop() trackBy: string = 'label';
+  @Prop() trackBy = 'label';
   @Prop() selectedColor: string;
   /** If true, multiple options can be selected */
-  @Prop() multiselect: boolean = false;
+  @Prop() multiselect = false;
 
   @Watch('val')
-  dataDidChangeHandler(val) {
+  dataDidChangeHandler(val: OptionItem): void {
     this.emitValueChanged(val);
   }
 
   /** Emitted on any selection change */
   @Event() input2: EventEmitter<OptionItem>;
-  emitValueChanged(value: OptionItem) {
+  emitValueChanged(value: OptionItem): void {
     this.input2.emit(value);
   }
 
   @Listen('keydown')
-  handleKeyDown(ev: KeyboardEvent){
-    let toggleKeys = [
-      key.SPACE,
-      key.ENTER,
-      key.UP,
-      key.DOWN,
-    ];
+  handleKeyDown(ev: KeyboardEvent): void {
+    const toggleKeys = [key.SPACE, key.ENTER, key.UP, key.DOWN];
 
     if (!this.opened && toggleKeys.includes(ev.keyCode)) {
       this.toggleDropdown();
@@ -83,12 +77,12 @@ export class ZenDropdown {
     }
   }
 
-  selectValue(option) {
+  selectValue(option: OptionItem): void {
     this.val = option;
     this.opened = false;
   }
 
-  toggleDropdown(open?) {
+  toggleDropdown(open?: boolean): void {
     if (open === undefined) open = !this.opened;
 
     if (open) {
@@ -101,48 +95,53 @@ export class ZenDropdown {
     this.opened = open;
   }
 
-  isSelected(option) {
+  isSelected(option: OptionItem): boolean {
     return option[this.trackBy] === this.val[this.trackBy];
   }
 
-  selectedIndex() {
+  selectedIndex(): number {
     return this.options.findIndex(n => n[this.trackBy] === this.val[this.trackBy]);
   }
 
   // Events
-  closeOnClickOut(event: any) {
+  closeOnClickOut(event: MouseEvent): void {
     const clickedInside = this.div.shadowRoot.contains(event.path[0]);
     if (!clickedInside) {
       this.opened = false;
     }
   }
 
-  render() {
+  render(): HTMLElement {
     return (
-      <Host tabindex="0" class="zen-multiselect" ref={el => this.div = el}>
-        <div class={{
+      <Host tabindex="0" class="zen-multiselect" ref={el => (this.div = el)}>
+        <div
+          class={{
             field: true,
-            opened: this.opened
+            opened: this.opened,
           }}
-          onClick={() => {this.toggleDropdown(true)}}>
+          onClick={() => {
+            this.toggleDropdown(true);
+          }}
+        >
           {this.val.label || 'Select something'}
           <div class="arrow"></div>
         </div>
         <div class="list-wrap">
           <zen-animate show={this.opened}>
             <ul class="list">
-              { this.options.map((option, index) =>
+              {this.options.map((option, index) => (
                 <li
                   class={{ selected: this.focusedIndex === index }}
-                  style={{'background-color': this.isSelected(option) ? this.selectedColor : ''}}
+                  style={{ 'background-color': this.isSelected(option) ? this.selectedColor : '' }}
                   onClick={() => this.selectValue(option)}
-                >{option.label}</li>
-              )}
+                >
+                  {option.label}
+                </li>
+              ))}
             </ul>
           </zen-animate>
         </div>
       </Host>
     );
   }
-
 }
