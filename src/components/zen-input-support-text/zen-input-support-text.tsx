@@ -1,4 +1,4 @@
-import { Component, h, Prop } from '@stencil/core';
+import { Component, h, Host, Prop } from '@stencil/core';
 
 @Component({
   tag: 'zen-input-support-text',
@@ -9,7 +9,11 @@ export class ZenInputSupportText {
   /** Supporting text */
   @Prop() text: string = null;
 
-  render(): ZenInputSupportText {
-    return <span class="supporting-text">{this.text}</span>;
+  render(): HTMLElement {
+    return (
+      <Host>
+        <span class="supporting-text">{this.text}</span>
+      </Host>
+    );
   }
 }

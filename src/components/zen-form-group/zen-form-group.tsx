@@ -6,7 +6,7 @@ import { Component, Host, h } from '@stencil/core';
   shadow: true,
 })
 export class ZenFormGroup {
-  render(): ZenFormGroup {
+  render(): HTMLElement {
     return (
       <Host>
         <div class="input-group">

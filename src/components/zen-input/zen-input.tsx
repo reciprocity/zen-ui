@@ -15,7 +15,7 @@ export class ZenInput {
   /** Makes input required */
   @Prop() required = false;
 
-  render(): ZenInput {
+  render(): HTMLElement {
     return (
       <Host>
         <input

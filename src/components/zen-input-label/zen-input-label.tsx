@@ -1,4 +1,4 @@
-import { Component, h, Prop } from '@stencil/core';
+import { Component, h, Host, Prop } from '@stencil/core';
 
 @Component({
   tag: 'zen-input-label',
@@ -10,11 +10,13 @@ export class ZenInputLabel {
   @Prop() text: string = null;
   @Prop() required = false;
 
-  render(): ZenInputLabel {
+  render(): HTMLElement {
     return (
-      <label>
-        {this.text} {this.required ? <span class="required">*</span> : null}
-      </label>
+      <Host>
+        <label>
+          {this.text} {this.required ? <span class="required">*</span> : null}
+        </label>
+      </Host>
     );
   }
 }
