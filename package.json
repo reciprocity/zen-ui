@@ -30,10 +30,10 @@
     "styles:build": "webpack --mode=production",
     "lint:check": "eslint --ext .js,.ts,.tsx src/",
     "lint": "eslint --fix --ext .js,.ts,.tsx src/",
-    "lint:ci": "eslint --ext .js,.ts src/",
+    "lint:ci": "eslint --ext .js,.ts,.tsx src/",
     "format": "prettier --write src/",
     "format:check": "prettier --check src/",
-    "format:ci": "prettier --check src/"
+    "format:ci": "yarn format:check"
   },
   "devDependencies": {
     "@babel/core": "~7.12.3",
