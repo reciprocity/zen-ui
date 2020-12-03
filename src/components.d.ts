@@ -93,21 +93,21 @@ export namespace Components {
          */
         "value"?: string | number | null;
     }
-    interface ZenInputLabel {
-        /**
-          * Shows a red asterisk after label
-         */
-        "required": false;
-        /**
-          * Text of the label
-         */
-        "text": string;
-    }
     interface ZenInputSupportText {
         /**
           * Supporting text
          */
         "text": string;
+    }
+    interface ZenLabel {
+        /**
+          * Text of the label
+         */
+        "label": string;
+        /**
+          * Shows a red asterisk after label
+         */
+        "required": false;
     }
     interface ZenSpinner {
         /**
@@ -179,17 +179,17 @@ declare global {
         prototype: HTMLZenInputElement;
         new (): HTMLZenInputElement;
     };
-    interface HTMLZenInputLabelElement extends Components.ZenInputLabel, HTMLStencilElement {
-    }
-    var HTMLZenInputLabelElement: {
-        prototype: HTMLZenInputLabelElement;
-        new (): HTMLZenInputLabelElement;
-    };
     interface HTMLZenInputSupportTextElement extends Components.ZenInputSupportText, HTMLStencilElement {
     }
     var HTMLZenInputSupportTextElement: {
         prototype: HTMLZenInputSupportTextElement;
         new (): HTMLZenInputSupportTextElement;
+    };
+    interface HTMLZenLabelElement extends Components.ZenLabel, HTMLStencilElement {
+    }
+    var HTMLZenLabelElement: {
+        prototype: HTMLZenLabelElement;
+        new (): HTMLZenLabelElement;
     };
     interface HTMLZenSpinnerElement extends Components.ZenSpinner, HTMLStencilElement {
     }
@@ -212,8 +212,8 @@ declare global {
         "zen-dropdown": HTMLZenDropdownElement;
         "zen-form-group": HTMLZenFormGroupElement;
         "zen-input": HTMLZenInputElement;
-        "zen-input-label": HTMLZenInputLabelElement;
         "zen-input-support-text": HTMLZenInputSupportTextElement;
+        "zen-label": HTMLZenLabelElement;
         "zen-spinner": HTMLZenSpinnerElement;
         "zen-steps": HTMLZenStepsElement;
     }
@@ -311,21 +311,21 @@ declare namespace LocalJSX {
          */
         "value"?: string | number | null;
     }
-    interface ZenInputLabel {
-        /**
-          * Shows a red asterisk after label
-         */
-        "required"?: false;
-        /**
-          * Text of the label
-         */
-        "text"?: string;
-    }
     interface ZenInputSupportText {
         /**
           * Supporting text
          */
         "text"?: string;
+    }
+    interface ZenLabel {
+        /**
+          * Text of the label
+         */
+        "label"?: string;
+        /**
+          * Shows a red asterisk after label
+         */
+        "required"?: false;
     }
     interface ZenSpinner {
         /**
@@ -360,8 +360,8 @@ declare namespace LocalJSX {
         "zen-dropdown": ZenDropdown;
         "zen-form-group": ZenFormGroup;
         "zen-input": ZenInput;
-        "zen-input-label": ZenInputLabel;
         "zen-input-support-text": ZenInputSupportText;
+        "zen-label": ZenLabel;
         "zen-spinner": ZenSpinner;
         "zen-steps": ZenSteps;
     }
@@ -378,8 +378,8 @@ declare module "@stencil/core" {
             "zen-dropdown": LocalJSX.ZenDropdown & JSXBase.HTMLAttributes<HTMLZenDropdownElement>;
             "zen-form-group": LocalJSX.ZenFormGroup & JSXBase.HTMLAttributes<HTMLZenFormGroupElement>;
             "zen-input": LocalJSX.ZenInput & JSXBase.HTMLAttributes<HTMLZenInputElement>;
-            "zen-input-label": LocalJSX.ZenInputLabel & JSXBase.HTMLAttributes<HTMLZenInputLabelElement>;
             "zen-input-support-text": LocalJSX.ZenInputSupportText & JSXBase.HTMLAttributes<HTMLZenInputSupportTextElement>;
+            "zen-label": LocalJSX.ZenLabel & JSXBase.HTMLAttributes<HTMLZenLabelElement>;
             "zen-spinner": LocalJSX.ZenSpinner & JSXBase.HTMLAttributes<HTMLZenSpinnerElement>;
             "zen-steps": LocalJSX.ZenSteps & JSXBase.HTMLAttributes<HTMLZenStepsElement>;
         }

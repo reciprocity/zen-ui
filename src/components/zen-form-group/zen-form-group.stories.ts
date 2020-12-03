@@ -15,8 +15,8 @@ export default {
 const Template = () => {
   return html`
     <zen-form-group>
-      <zen-input-label text="Username" required></zen-input-label>
-      <zen-input></zen-input>
+      <zen-label label="Username" required></zen-label>
+      <zen-input style="margin: .5rem 0;"></zen-input>
       <zen-input-support-text text="This field should be unique"></zen-input-support-text>
     </zen-form-group>
   `;
@@ -25,8 +25,8 @@ const Template = () => {
 const TemplateSimple = () => {
   return html`
     <zen-form-group>
-      <zen-input-label text="Username"></zen-input-label>
-      <zen-input></zen-input>
+      <zen-label label="Username"></zen-label>
+      <zen-input style="margin: .5rem 0;"></zen-input>
       <zen-input-support-text text="This field should be unique"></zen-input-support-text>
     </zen-form-group>
   `;
@@ -35,8 +35,8 @@ const TemplateSimple = () => {
 const TemplateWithLabel = () => {
   return html`
     <zen-form-group>
-      <zen-input-label text="Username"></zen-input-label>
-      <zen-input></zen-input>
+      <zen-label label="Username"></zen-label>
+      <zen-input style="margin: .5rem 0;"></zen-input>
     </zen-form-group>
   `;
 };
@@ -44,8 +44,8 @@ const TemplateWithLabel = () => {
 const TemplateWithLabelRequired = () => {
   return html`
     <zen-form-group>
-      <zen-input-label text="Username" required></zen-input-label>
-      <zen-input required></zen-input>
+      <zen-label label="Username" required></zen-label>
+      <zen-input style="margin: .5rem 0;" required></zen-input>
     </zen-form-group>
   `;
 };
@@ -53,7 +53,7 @@ const TemplateWithLabelRequired = () => {
 const TemplateWithSupportText = () => {
   return html`
     <zen-form-group>
-      <zen-input></zen-input>
+      <zen-input style="margin: .5rem 0;"></zen-input>
       <zen-input-support-text text="This field should be unique"></zen-input-support-text>
     </zen-form-group>
   `;

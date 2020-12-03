@@ -1,13 +1,13 @@
 import { Component, h, Host, Prop } from '@stencil/core';
 
 @Component({
-  tag: 'zen-input-label',
-  styleUrl: 'zen-input-label.scss',
+  tag: 'zen-label',
+  styleUrl: 'zen-label.scss',
   shadow: true,
 })
-export class ZenInputLabel {
+export class ZenLabel {
   /** Text of the label */
-  @Prop() readonly text: string = null;
+  @Prop() readonly label: string = null;
 
   /** Shows a red asterisk after label */
   @Prop() readonly required = false;
@@ -16,7 +16,7 @@ export class ZenInputLabel {
     return (
       <Host>
         <label>
-          {this.text}
+          {this.label}
           {this.required ? <span class="required">*</span> : null}
         </label>
       </Host>

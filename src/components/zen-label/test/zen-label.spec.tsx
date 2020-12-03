@@ -1,18 +1,18 @@
 import { newSpecPage } from '@stencil/core/testing';
-import { ZenInputLabel } from '../zen-input-label';
+import { ZenLabel } from '../zen-label';
 
-describe('zen-input-label', () => {
+describe('zen-label', () => {
   it('renders', async () => {
     const page = await newSpecPage({
-      components: [ZenInputLabel],
-      html: `<zen-input-label></zen-input-label>`,
+      components: [ZenLabel],
+      html: `<zen-label></zen-label>`,
     });
     expect(page.root).toEqualHtml(`
-      <zen-input-label>
+      <zen-label>
         <mock:shadow-root>
           <label></label>
         </mock:shadow-root>
-      </zen-input-label>
+      </zen-label>
     `);
   });
 });

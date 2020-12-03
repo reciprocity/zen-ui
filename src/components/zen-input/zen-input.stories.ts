@@ -6,25 +6,21 @@ const customEvents = ['zenInput'];
 
 const argTypes = {
   value: {
-    type: { name: 'string', required: false },
     control: {
       type: 'text',
     },
   },
   placeholder: {
-    type: { name: 'string', required: false },
     control: {
       type: 'text',
     },
   },
   required: {
-    type: { name: 'string', required: false },
     control: {
       type: 'boolean',
     },
   },
   disabled: {
-    type: { name: 'string', required: false },
     control: {
       type: 'boolean',
     },
