@@ -8,8 +8,8 @@ module.exports = {
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
     'prettier/@typescript-eslint',
-    'plugin:prettier/recommended',
     'plugin:@stencil/recommended',
+    'plugin:prettier/recommended',
   ],
   env: {
     node: true,
