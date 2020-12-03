@@ -1,0 +1,11 @@
+@import "../../zen-styles/variables.scss";
+@import "../../zen-styles/mixins/forms.scss";
+
+:host {
+  display: block;
+}
+
+input.input-control {
+  @include zenInput;
+  @include noselect;
+}

@@ -1,10 +1,10 @@
 @import './colors';
 @import './mixins/index';
 
-$text-lg: 1.2rem !default;
+$text-lg: 1.125rem !default;
 $text-md: 1rem !default;
-$text-sm: 0.8rem !default;
-$text-xs: 0.6rem !default;
+$text-sm: 0.875rem !default;
+$text-xs: 0.75rem !default;
 
 $grid-breakpoints: (
   xs: 0,
