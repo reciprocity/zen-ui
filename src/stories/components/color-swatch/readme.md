@@ -14,7 +14,6 @@
 | `varName`       | `var-name`        | Scss variable name                 | `string`  | `'$color-white'` |
 
 
-
 ## Dependencies
 
 ### Used by

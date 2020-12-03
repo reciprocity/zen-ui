@@ -7,7 +7,7 @@ import { Component, h, Host, Prop } from '@stencil/core';
 })
 export class ZenInputSupportText {
   /** Supporting text */
-  @Prop() text: string = null;
+  @Prop() readonly text: string = null;
 
   render(): HTMLElement {
     return (

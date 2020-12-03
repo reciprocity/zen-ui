@@ -79,7 +79,7 @@ export namespace Components {
         /**
           * Disables input.
          */
-        "disabled": boolean;
+        "disabled": false;
         /**
           * Placeholder of the input.
          */
@@ -87,7 +87,7 @@ export namespace Components {
         /**
           * Makes input required.
          */
-        "required": boolean;
+        "required": false;
         /**
           * The value of the input.
          */
@@ -97,7 +97,7 @@ export namespace Components {
         /**
           * Shows a red asterisk after label
          */
-        "required": boolean;
+        "required": false;
         /**
           * Text of the label
          */
@@ -293,7 +293,7 @@ declare namespace LocalJSX {
         /**
           * Disables input.
          */
-        "disabled"?: boolean;
+        "disabled"?: false;
         /**
           * Emitted when a keyboard input occurred.
          */
@@ -305,7 +305,7 @@ declare namespace LocalJSX {
         /**
           * Makes input required.
          */
-        "required"?: boolean;
+        "required"?: false;
         /**
           * The value of the input.
          */
@@ -315,7 +315,7 @@ declare namespace LocalJSX {
         /**
           * Shows a red asterisk after label
          */
-        "required"?: boolean;
+        "required"?: false;
         /**
           * Text of the label
          */

@@ -7,10 +7,10 @@ import { Component, h, Host, Prop } from '@stencil/core';
 })
 export class ZenInputLabel {
   /** Text of the label */
-  @Prop() text: string = null;
+  @Prop() readonly text: string = null;
 
   /** Shows a red asterisk after label */
-  @Prop() required = false;
+  @Prop() readonly required = false;
 
   render(): HTMLElement {
     return (

@@ -9,17 +9,17 @@ export class ZenInput {
   /**
    * Placeholder of the input.
    */
-  @Prop() placeholder: string = null;
+  @Prop() readonly placeholder: string = null;
 
   /**
    * Disables input.
    */
-  @Prop() disabled = false;
+  @Prop() readonly disabled = false;
 
   /**
    * Makes input required.
    */
-  @Prop() required = false;
+  @Prop() readonly required = false;
 
   /**
    * The value of the input.
