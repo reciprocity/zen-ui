@@ -1,47 +1,30 @@
 import { html } from 'lit-html';
 import markdown from './readme.md';
+import { action } from '../../../.storybook/helpers/custom-action';
+
+const customEvents = ['zenInput'];
 
 const argTypes = {
   value: {
     type: { name: 'string', required: false },
-    description: 'Set value of input.',
-    table: {
-      type: { summary: 'string' },
-      defaultValue: { summary: 'null' },
-    },
     control: {
       type: 'text',
     },
   },
   placeholder: {
     type: { name: 'string', required: false },
-    description: 'Set placeholder of input.',
-    table: {
-      type: { summary: 'string' },
-      defaultValue: { summary: 'null' },
-    },
     control: {
       type: 'text',
     },
   },
   required: {
     type: { name: 'string', required: false },
-    description: 'Set if input is required.',
-    table: {
-      type: { summary: 'boolean' },
-      defaultValue: { summary: false },
-    },
     control: {
       type: 'boolean',
     },
   },
   disabled: {
     type: { name: 'string', required: false },
-    description: 'Set if input is disabled.',
-    table: {
-      type: { summary: 'boolean' },
-      defaultValue: { summary: false },
-    },
     control: {
       type: 'boolean',
     },
@@ -62,7 +45,8 @@ const Template = ({ value, placeholder, disabled, required }) => {
   required = required ? required : false;
   placeholder = placeholder ? placeholder : '';
   value = value ? value : '';
-  return html`<zen-input value=${value} placeholder=${placeholder} disabled=${disabled} required=${required} />`;
+  return html`<zen-input value=${value} placeholder=${placeholder} disabled=${disabled} required=${required} />
+    ${action('zen-input', customEvents)}`;
 };
 
 export const Default = Template.bind({});
