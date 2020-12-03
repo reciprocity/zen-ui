@@ -10,10 +10,12 @@ export interface OptionItem {
   shadow: false,
 })
 export class ColorSwatch {
-  @Prop() color = '#ffffff';
-  @Prop() varName = '$color-white';
+  /** Hex color value */
+  @Prop() readonly color: string = '#ffffff';
+  /** Scss variable name */
+  @Prop() readonly varName: string = '$color-white';
   /** True if color is considered bright */
-  @Prop() isBrightColor = false;
+  @Prop() readonly isBrightColor: boolean = false;
 
   render(): HTMLElement {
     return (

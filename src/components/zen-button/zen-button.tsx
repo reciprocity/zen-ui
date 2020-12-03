@@ -7,13 +7,13 @@ import { Component, Host, h, Prop } from '@stencil/core';
 })
 export class ZenButton {
   /** Color variant of the button */
-  @Prop() variant = 'primary';
+  @Prop() readonly variant = 'primary';
   /** Label of the button */
-  @Prop() label = 'Button';
+  @Prop() readonly label = 'Button';
   /** If present, will show a spinner */
-  @Prop() loading?: boolean = false;
+  @Prop() readonly loading?: boolean = false;
   /** If present, button will be disabled */
-  @Prop() disabled?: boolean = false;
+  @Prop() readonly disabled?: boolean = false;
 
   render(): HTMLElement {
     const classes = {

@@ -11,7 +11,8 @@ export class ZenAnimate {
 
   @State() doShow = false;
 
-  @Prop() show = false;
+  /** Prop that will show the slot */
+  @Prop() readonly show: boolean = false;
 
   @Watch('show')
   async showChanged(show: boolean): Promise<void> {
@@ -24,12 +25,13 @@ export class ZenAnimate {
   async componentDidRender(): Promise<void> {
     const parent = this.div.querySelector('slot');
     const slot = parent && (parent.assignedNodes()[0] as HTMLElement);
+    if (!slot) return;
 
-    slot?.setAttribute('animate', this.show ? 'in-start' : 'out-start');
+    slot.setAttribute('animate', this.show ? 'in-start' : 'out-start');
 
     await waitNextFrame();
 
-    slot?.setAttribute('animate', this.show ? 'in-end' : 'out-end');
+    slot.setAttribute('animate', this.show ? 'in-end' : 'out-end');
 
     if (!this.show) {
       // Remove element with delay, so transition finishes first:

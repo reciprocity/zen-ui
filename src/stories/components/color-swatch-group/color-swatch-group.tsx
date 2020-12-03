@@ -15,7 +15,8 @@ export type StringifiedJson = string;
 })
 export class ColorSwatchGroup {
   private _colors: ColorSwatchItem[];
-  @Prop() colors: StringifiedJson = '[]';
+  /** Array of colors */
+  @Prop() readonly colors: StringifiedJson = '[]';
 
   @Watch('colors')
   colorsToArray(colors: ColorSwatchItem[] | string): ColorSwatchItem[] {
