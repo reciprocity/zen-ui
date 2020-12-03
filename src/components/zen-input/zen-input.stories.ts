@@ -2,9 +2,20 @@ import { html } from 'lit-html';
 import markdown from './readme.md';
 
 const argTypes = {
+  value: {
+    type: { name: 'string', required: false },
+    description: 'Set value of input.',
+    table: {
+      type: { summary: 'string' },
+      defaultValue: { summary: 'null' },
+    },
+    control: {
+      type: 'text',
+    },
+  },
   placeholder: {
     type: { name: 'string', required: false },
-    description: 'set placeholder of the input',
+    description: 'Set placeholder of input.',
     table: {
       type: { summary: 'string' },
       defaultValue: { summary: 'null' },
@@ -15,7 +26,7 @@ const argTypes = {
   },
   required: {
     type: { name: 'string', required: false },
-    description: 'set if the input is required',
+    description: 'Set if input is required.',
     table: {
       type: { summary: 'boolean' },
       defaultValue: { summary: false },
@@ -26,7 +37,7 @@ const argTypes = {
   },
   disabled: {
     type: { name: 'string', required: false },
-    description: 'set if the input is disabled',
+    description: 'Set if input is disabled.',
     table: {
       type: { summary: 'boolean' },
       defaultValue: { summary: false },
@@ -46,11 +57,12 @@ export default {
   },
 };
 
-const Template = ({ disabled, placeholder, required }) => {
+const Template = ({ value, placeholder, disabled, required }) => {
   disabled = disabled ? disabled : false;
   required = required ? required : false;
-  placeholder = placeholder ? placeholder : 'Default placeholder';
-  return html`<zen-input placeholder=${placeholder} disabled=${disabled} required=${required} />`;
+  placeholder = placeholder ? placeholder : '';
+  value = value ? value : '';
+  return html`<zen-input value=${value} placeholder=${placeholder} disabled=${disabled} required=${required} />`;
 };
 
 export const Default = Template.bind({});

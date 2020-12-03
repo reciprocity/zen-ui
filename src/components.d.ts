@@ -77,17 +77,21 @@ export namespace Components {
     }
     interface ZenInput {
         /**
-          * Disables input
+          * Disables input.
          */
         "disabled": boolean;
         /**
-          * Placeholder of the input
+          * Placeholder of the input.
          */
         "placeholder": string;
         /**
-          * Makes input required
+          * Makes input required.
          */
         "required": boolean;
+        /**
+          * The value of the input.
+         */
+        "value"?: string | number | null;
     }
     interface ZenInputLabel {
         /**
@@ -287,17 +291,25 @@ declare namespace LocalJSX {
     }
     interface ZenInput {
         /**
-          * Disables input
+          * Disables input.
          */
         "disabled"?: boolean;
         /**
-          * Placeholder of the input
+          * Emitted when a keyboard input occurred.
+         */
+        "onZenInput"?: (event: CustomEvent<KeyboardEvent>) => void;
+        /**
+          * Placeholder of the input.
          */
         "placeholder"?: string;
         /**
-          * Makes input required
+          * Makes input required.
          */
         "required"?: boolean;
+        /**
+          * The value of the input.
+         */
+        "value"?: string | number | null;
     }
     interface ZenInputLabel {
         /**
