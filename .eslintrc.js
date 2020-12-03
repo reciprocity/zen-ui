@@ -65,7 +65,7 @@ module.exports = {
     '@stencil/own-props-must-be-private': 0,
     '@stencil/prefer-vdom-listener': 0,
     '@stencil/props-must-be-public': 'error',
-    // '@stencil/props-must-be-readonly': 'error',
+    '@stencil/props-must-be-readonly': 'error',
     '@stencil/render-returns-host': 'error',
     '@stencil/required-jsdoc': 'error',
     '@stencil/reserved-member-names': 'error',
