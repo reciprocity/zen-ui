@@ -13,7 +13,6 @@
 | `variant`  | `variant`  | Color variant of the button         | `"primary"` | `'primary'` |
 
 
-
 ## Dependencies
 
 ### Depends on

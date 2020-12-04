@@ -10,7 +10,6 @@
 | `show`   | `show`    | Prop that will show the slot | `boolean` | `false` |
 
 
-
 ## Dependencies
 
 ### Used by

@@ -56,6 +56,16 @@ export namespace Components {
          */
         "variant": "primary";
     }
+    interface ZenCheckbox {
+        /**
+          * Set checked state.
+         */
+        "checked": false;
+        /**
+          * Disables checkbox.
+         */
+        "disabled": false;
+    }
     interface ZenDropdown {
         /**
           * If true, multiple options can be selected
@@ -168,6 +178,12 @@ declare global {
         prototype: HTMLZenButtonElement;
         new (): HTMLZenButtonElement;
     };
+    interface HTMLZenCheckboxElement extends Components.ZenCheckbox, HTMLStencilElement {
+    }
+    var HTMLZenCheckboxElement: {
+        prototype: HTMLZenCheckboxElement;
+        new (): HTMLZenCheckboxElement;
+    };
     interface HTMLZenDropdownElement extends Components.ZenDropdown, HTMLStencilElement {
     }
     var HTMLZenDropdownElement: {
@@ -222,6 +238,7 @@ declare global {
         "text-with-details": HTMLTextWithDetailsElement;
         "zen-animate": HTMLZenAnimateElement;
         "zen-button": HTMLZenButtonElement;
+        "zen-checkbox": HTMLZenCheckboxElement;
         "zen-dropdown": HTMLZenDropdownElement;
         "zen-form-group": HTMLZenFormGroupElement;
         "zen-input": HTMLZenInputElement;
@@ -278,6 +295,16 @@ declare namespace LocalJSX {
           * Color variant of the button
          */
         "variant"?: "primary";
+    }
+    interface ZenCheckbox {
+        /**
+          * Set checked state.
+         */
+        "checked"?: false;
+        /**
+          * Disables checkbox.
+         */
+        "disabled"?: false;
     }
     interface ZenDropdown {
         /**
@@ -377,6 +404,7 @@ declare namespace LocalJSX {
         "text-with-details": TextWithDetails;
         "zen-animate": ZenAnimate;
         "zen-button": ZenButton;
+        "zen-checkbox": ZenCheckbox;
         "zen-dropdown": ZenDropdown;
         "zen-form-group": ZenFormGroup;
         "zen-input": ZenInput;
@@ -396,6 +424,7 @@ declare module "@stencil/core" {
             "text-with-details": LocalJSX.TextWithDetails & JSXBase.HTMLAttributes<HTMLTextWithDetailsElement>;
             "zen-animate": LocalJSX.ZenAnimate & JSXBase.HTMLAttributes<HTMLZenAnimateElement>;
             "zen-button": LocalJSX.ZenButton & JSXBase.HTMLAttributes<HTMLZenButtonElement>;
+            "zen-checkbox": LocalJSX.ZenCheckbox & JSXBase.HTMLAttributes<HTMLZenCheckboxElement>;
             "zen-dropdown": LocalJSX.ZenDropdown & JSXBase.HTMLAttributes<HTMLZenDropdownElement>;
             "zen-form-group": LocalJSX.ZenFormGroup & JSXBase.HTMLAttributes<HTMLZenFormGroupElement>;
             "zen-input": LocalJSX.ZenInput & JSXBase.HTMLAttributes<HTMLZenInputElement>;

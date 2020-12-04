@@ -10,7 +10,6 @@
 | `colors` | `colors`  | Array of colors | `string` | `'[]'`  |
 
 
-
 ## Dependencies
 
 ### Depends on
