@@ -129,6 +129,36 @@ export namespace Components {
          */
         "steps": Array<StepItem>;
     }
+    interface ZenToast {
+        /**
+          * Hide label
+         */
+        "dismissLabel": string;
+        /**
+          * Height
+         */
+        "height": string;
+        /**
+          * Timeout to hide
+         */
+        "timeout": string;
+        /**
+          * Message
+         */
+        "toastMessage": string;
+        /**
+          * Title
+         */
+        "toastTitle": string;
+        /**
+          * Color variant of the toast
+         */
+        "variant": string;
+        /**
+          * Width
+         */
+        "width": string;
+    }
 }
 declare global {
     interface HTMLColorSwatchElement extends Components.ColorSwatch, HTMLStencilElement {
@@ -203,6 +233,12 @@ declare global {
         prototype: HTMLZenStepsElement;
         new (): HTMLZenStepsElement;
     };
+    interface HTMLZenToastElement extends Components.ZenToast, HTMLStencilElement {
+    }
+    var HTMLZenToastElement: {
+        prototype: HTMLZenToastElement;
+        new (): HTMLZenToastElement;
+    };
     interface HTMLElementTagNameMap {
         "color-swatch": HTMLColorSwatchElement;
         "color-swatch-group": HTMLColorSwatchGroupElement;
@@ -216,6 +252,7 @@ declare global {
         "zen-label": HTMLZenLabelElement;
         "zen-spinner": HTMLZenSpinnerElement;
         "zen-steps": HTMLZenStepsElement;
+        "zen-toast": HTMLZenToastElement;
     }
 }
 declare namespace LocalJSX {
@@ -351,6 +388,36 @@ declare namespace LocalJSX {
          */
         "steps"?: Array<StepItem>;
     }
+    interface ZenToast {
+        /**
+          * Hide label
+         */
+        "dismissLabel"?: string;
+        /**
+          * Height
+         */
+        "height"?: string;
+        /**
+          * Timeout to hide
+         */
+        "timeout"?: string;
+        /**
+          * Message
+         */
+        "toastMessage"?: string;
+        /**
+          * Title
+         */
+        "toastTitle"?: string;
+        /**
+          * Color variant of the toast
+         */
+        "variant"?: string;
+        /**
+          * Width
+         */
+        "width"?: string;
+    }
     interface IntrinsicElements {
         "color-swatch": ColorSwatch;
         "color-swatch-group": ColorSwatchGroup;
@@ -364,6 +431,7 @@ declare namespace LocalJSX {
         "zen-label": ZenLabel;
         "zen-spinner": ZenSpinner;
         "zen-steps": ZenSteps;
+        "zen-toast": ZenToast;
     }
 }
 export { LocalJSX as JSX };
@@ -382,6 +450,7 @@ declare module "@stencil/core" {
             "zen-label": LocalJSX.ZenLabel & JSXBase.HTMLAttributes<HTMLZenLabelElement>;
             "zen-spinner": LocalJSX.ZenSpinner & JSXBase.HTMLAttributes<HTMLZenSpinnerElement>;
             "zen-steps": LocalJSX.ZenSteps & JSXBase.HTMLAttributes<HTMLZenStepsElement>;
+            "zen-toast": LocalJSX.ZenToast & JSXBase.HTMLAttributes<HTMLZenToastElement>;
         }
     }
 }
