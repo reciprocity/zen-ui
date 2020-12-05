@@ -12,7 +12,7 @@ export class ZenToast {
   div: HTMLElement = undefined;
 
   /** Variant of toast */
-  @Prop({ reflect: true }) readonly variant: ZenToastVariant = ZenToastVariant.Success;
+  @Prop() readonly variant: ZenToastVariant = ZenToastVariant.Success;
 
   /** Height */
   @Prop() readonly height: string = '5rem';
