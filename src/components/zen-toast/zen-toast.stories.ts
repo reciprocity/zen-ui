@@ -13,7 +13,7 @@ export default {
 };
 
 const Template = () => {
-  return html`<zen-toast></zen-toast> `;
+  return html`<zen-toast timeout="null"></zen-toast> `;
 };
 
 const TemplateSuccess = () => {
@@ -21,6 +21,8 @@ const TemplateSuccess = () => {
     variant="success"
     toast-title="Success"
     toast-message="Settings successfully saved!"
+    timeout="null"
+    dismiss="true"
   ></zen-toast>`;
 };
 
@@ -29,6 +31,8 @@ const TemplateInfo = () => {
     variant="info"
     toast-title="Info"
     toast-message="You have 6 items that need your attention!"
+    timeout="null"
+    dismiss="true"
   ></zen-toast>`;
 };
 
@@ -36,12 +40,20 @@ const TemplateWarning = () => {
   return html`<zen-toast
     variant="warning"
     toast-title="Warning"
-    toast-message="Proceed with caution. Any changes will lead to the recalculation of the risk ratings and scores accross the entire risk regiter."
+    toast-message="Proceed with caution. Any changes will lead to the recalculation of the risk ratings and scores accross the entire risk register."
+    timeout="null"
+    dismiss="true"
   ></zen-toast>`;
 };
 
 const TemplateError = () => {
-  return html`<zen-toast variant="error" toast-title="Error" toast-message="Oops, something went wrong."></zen-toast>`;
+  return html`<zen-toast
+    variant="error"
+    toast-title="Error"
+    toast-message="Oops, something went wrong."
+    timeout="null"
+    dismiss="true"
+  ></zen-toast>`;
 };
 
 export const Default = Template.bind({});
