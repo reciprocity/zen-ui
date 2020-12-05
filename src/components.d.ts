@@ -9,6 +9,7 @@ import { StringifiedJson } from "./stories/components/color-swatch-group/color-s
 import { OptionItem } from "./components/zen-dropdown/zen-dropdown";
 import { StepEvent, StepItem } from "./components/zen-steps/zen-steps";
 import { StepsFilter } from "./components/zen-steps/types";
+import { ZenToastVariant } from "./components/zen-toast/zen-toast-helper";
 export namespace Components {
     interface ColorSwatch {
         /**
@@ -132,17 +133,17 @@ export namespace Components {
     }
     interface ZenToast {
         /**
-          * Hide label
+          * Can dismiss toast
          */
-        "dismissLabel": string;
+        "dismiss": boolean;
         /**
           * Height
          */
         "height": string;
         /**
-          * Timeout to hide
+          * Hide toast in milliseconds
          */
-        "timeout": string;
+        "timeout": number | null;
         /**
           * Message
          */
@@ -152,9 +153,9 @@ export namespace Components {
          */
         "toastTitle": string;
         /**
-          * Color variant of the toast
+          * Variant of toast
          */
-        "variant": string;
+        "variant": ZenToastVariant;
         /**
           * Width
          */
@@ -391,17 +392,17 @@ declare namespace LocalJSX {
     }
     interface ZenToast {
         /**
-          * Hide label
+          * Can dismiss toast
          */
-        "dismissLabel"?: string;
+        "dismiss"?: boolean;
         /**
           * Height
          */
         "height"?: string;
         /**
-          * Timeout to hide
+          * Hide toast in milliseconds
          */
-        "timeout"?: string;
+        "timeout"?: number | null;
         /**
           * Message
          */
@@ -411,9 +412,9 @@ declare namespace LocalJSX {
          */
         "toastTitle"?: string;
         /**
-          * Color variant of the toast
+          * Variant of toast
          */
-        "variant"?: string;
+        "variant"?: ZenToastVariant;
         /**
           * Width
          */

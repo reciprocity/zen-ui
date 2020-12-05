@@ -1,13 +1,7 @@
 import { Component, Host, h, Prop } from '@stencil/core';
 import { renderIcon } from '../helpers/fa-icons';
-import { faBell, faCheck, faExclamation, faTimes } from '@fortawesome/pro-solid-svg-icons';
-
-enum ZenToastVariant {
-  Success = 'success',
-  Info = 'info',
-  Warning = 'warning',
-  Error = 'error',
-}
+import { faTimes } from '@fortawesome/pro-solid-svg-icons';
+import { getToastIcon, ZenToastVariant } from './zen-toast-helper';
 
 @Component({
   tag: 'zen-toast',
@@ -15,20 +9,40 @@ enum ZenToastVariant {
   shadow: true,
 })
 export class ZenToast {
-  /** Color variant of the toast */
-  @Prop() variant = 'success';
+  div: HTMLElement = undefined;
+
+  /** Variant of toast */
+  @Prop({ reflect: true }) readonly variant: ZenToastVariant = ZenToastVariant.Success;
+
   /** Height */
-  @Prop() height = '6rem';
+  @Prop() readonly height: string = '5rem';
+
   /** Width */
-  @Prop() width = '35rem';
+  @Prop() readonly width: string = '25rem';
+
   /** Title */
-  @Prop() toastTitle = 'Success';
+  @Prop() readonly toastTitle: string = 'Success';
+
   /** Message */
-  @Prop() toastMessage = 'You have successfully created new audit!';
-  /** Timeout to hide */
-  @Prop() timeout = '500';
-  /** Hide label */
-  @Prop() dismissLabel = 'true';
+  @Prop() readonly toastMessage: string = 'You have successfully created new audit!';
+
+  /** Hide toast in milliseconds */
+  @Prop() readonly timeout: number | null = 5000;
+
+  /** Can dismiss toast */
+  @Prop() readonly dismiss: boolean = false;
+
+  closeToast(el) {
+    el.className = '';
+  }
+
+  componentDidRender() {
+    if (!isNaN(this.timeout)) {
+      setTimeout(() => {
+        this.closeToast(this.div);
+      }, this.timeout);
+    }
+  }
 
   render(): HTMLElement {
     const classes = {
@@ -39,6 +53,7 @@ export class ZenToast {
     const close = {
       close: true,
       [`close-${this.variant}`]: true,
+      hide: this.dismiss == false,
     };
 
     const icon = {
@@ -46,17 +61,19 @@ export class ZenToast {
     };
 
     return (
-      <Host>
-        <div class={classes} style={{ width: this.width, height: this.height }}>
-          <div class={close}>{renderIcon(faTimes)}</div>
+      <Host class="show" ref={el => (this.div = el)}>
+        <div class={classes} style={{ width: this.width, 'min-height': this.height }}>
+          <div
+            class={close}
+            onClick={() => {
+              this.closeToast(this.div);
+            }}
+          >
+            {renderIcon(faTimes)}
+          </div>
           <div class="row">
             <div class="icon-container">
-              <div class={icon}>
-                {this.variant === ZenToastVariant.Success && renderIcon(faCheck)}
-                {this.variant === ZenToastVariant.Info && renderIcon(faBell)}
-                {this.variant === ZenToastVariant.Warning && renderIcon(faExclamation)}
-                {this.variant === ZenToastVariant.Error && renderIcon(faTimes)}
-              </div>
+              <div class={icon}>{getToastIcon(this.variant)}</div>
             </div>
             <div class="content-container">
               <div class="title">{this.toastTitle}</div>
