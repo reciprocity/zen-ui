@@ -1,12 +1,49 @@
 @import '../../zen-styles/component-helpers.scss';
 @import './mixins.scss';
 
+.show {
+  visibility: visible;
+}
+
+.hide {
+  visibility: hidden;
+}
+
 .toast {
   position: relative;
   padding: 1.3rem 1.3rem;
   margin-bottom: 2rem;
   border: 1px solid transparent;
   border-radius: 0.125rem;
+  transition: 0.3s ease-in;
+
+  &.toast-success {
+    @include toast-variant(
+      $color-green-600,
+      $color-green-100,
+    );
+  }
+
+  &.toast-info {
+    @include toast-variant(
+      $color-gray-700,
+      $color-gray-100,
+    );
+  }
+
+  &.toast-warning {
+    @include toast-variant(
+      $color-yellow-700,
+      $color-yellow-100,
+    );
+  }
+
+  &.toast-error {
+    @include toast-variant(
+      $color-red-700,
+      $color-red-100
+    );
+  }
 }
 
 .close {
@@ -16,17 +53,20 @@
   width: 0.8rem;
   margin: 0.3rem;
 
-  .close-success {
-  color: $color-green-600;
+  &.close-success {
+    color: $color-green-500;
   }
-  .close-info {
-    color: $color-gray-600;
+
+  &.close-info {
+    color: $color-gray-500;
   }
-  .close-warning {
-    color: $color-yellow-600;
+
+  &.close-warning {
+    color: $color-yellow-500;
   }
-  .close-error {
-    color: $color-red-600;
+
+  &.close-error {
+    color: $color-red-500;
   }
 }
 
@@ -41,7 +81,7 @@
   float: left;
   display: flex;
   justify-content: center;
-  margin: 0 1.3rem 0 0.5rem;
+  margin: 0.2rem 1.3rem 0 0.5rem;
   width: 2rem;
   height: 2rem;
   border-radius: 10rem;
@@ -50,19 +90,22 @@
 
   .icon-success {
     width: 20px;
-    margin: 0.3rem;
+    margin: 0.4rem;
     color: $color-green-100;
   }
+
   .icon-info {
     width: 18px;
     margin: 0.3rem;
     color: $color-gray-100;
   }
+
   .icon-warning {
     width: 6px;
     margin: 0.4rem;
     color: $color-yellow-100;
   }
+
   .icon-error {
     width: 15px;
     margin: 0.3rem;
@@ -88,30 +131,4 @@
   }
 }
 
-.toast-success {
-  @include toast-variant(
-    $color-green-600,
-    $color-green-100,
-  );
-}
 
-.toast-info {
-  @include toast-variant(
-    $color-gray-700,
-    $color-gray-100,
-  );
-}
-
-.toast-warning {
-  @include toast-variant(
-    $color-yellow-700,
-    $color-yellow-100,
-  );
-}
-
-.toast-error {
-  @include toast-variant(
-    $color-red-700,
-    $color-red-100
-  );
-}
