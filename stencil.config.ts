@@ -6,7 +6,7 @@ export const config: Config = {
   outputTargets: [
     {
       type: 'dist',
-      esmLoaderPath: '../loader'
+      esmLoaderPath: '../loader',
     },
     {
       type: 'dist-custom-elements-bundle',
@@ -14,9 +14,7 @@ export const config: Config = {
     {
       type: 'docs-readme',
       footer: '',
-    }
+    },
   ],
-  plugins: [
-    sass()
-  ],
+  plugins: [sass()],
 };

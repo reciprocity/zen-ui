@@ -8,7 +8,6 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { StringifiedJson } from "./stories/components/color-swatch-group/color-swatch-group";
 import { OptionItem } from "./components/zen-dropdown/zen-dropdown";
 import { StepEvent, StepItem } from "./components/zen-steps/zen-steps";
-import { ZenToastVariant } from "./components/zen-toast/zen-toast-helper";
 export namespace Components {
     interface ColorSwatch {
         /**
@@ -154,7 +153,7 @@ export namespace Components {
         /**
           * Variant of toast
          */
-        "variant": ZenToastVariant;
+        "variant": string;
         /**
           * Width
          */
@@ -413,7 +412,7 @@ declare namespace LocalJSX {
         /**
           * Variant of toast
          */
-        "variant"?: ZenToastVariant;
+        "variant"?: string;
         /**
           * Width
          */

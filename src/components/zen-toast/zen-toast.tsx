@@ -12,7 +12,7 @@ export class ZenToast {
   div: HTMLElement = undefined;
 
   /** Variant of toast */
-  @Prop() readonly variant: ZenToastVariant = ZenToastVariant.Success;
+  @Prop() readonly variant: string = ZenToastVariant.Success;
 
   /** Height */
   @Prop() readonly height: string = '5rem';
@@ -21,10 +21,10 @@ export class ZenToast {
   @Prop() readonly width: string = '25rem';
 
   /** Title */
-  @Prop() readonly toastTitle: string = 'Success';
+  @Prop() readonly toastTitle: string = '';
 
   /** Message */
-  @Prop() readonly toastMessage: string = 'You have successfully created new audit!';
+  @Prop() readonly toastMessage: string = '';
 
   /** Hide toast in milliseconds */
   @Prop() readonly timeout: number | null = 5000;
