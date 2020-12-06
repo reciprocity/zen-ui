@@ -9,7 +9,6 @@ import { StringifiedJson } from "./stories/components/color-swatch-group/color-s
 import { OptionItem } from "./components/zen-dropdown/zen-dropdown";
 import { StepEvent, StepItem } from "./components/zen-steps/zen-steps";
 import { StepsFilter } from "./components/zen-steps/types";
-import { ZenToastVariant } from "./components/zen-toast/zen-toast-helper";
 export namespace Components {
     interface ColorSwatch {
         /**
@@ -155,7 +154,7 @@ export namespace Components {
         /**
           * Variant of toast
          */
-        "variant": ZenToastVariant;
+        "variant": string;
         /**
           * Width
          */
@@ -414,7 +413,7 @@ declare namespace LocalJSX {
         /**
           * Variant of toast
          */
-        "variant"?: ZenToastVariant;
+        "variant"?: string;
         /**
           * Width
          */

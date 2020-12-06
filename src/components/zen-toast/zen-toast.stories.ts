@@ -16,6 +16,28 @@ const argTypes = {
       options: ['success', 'info', 'warning', 'error'],
     },
   },
+  toastTitle: {
+    name: 'Title',
+    description: 'Toast title',
+    defaultValue: 'Success',
+    table: {
+      type: { summary: 'string' },
+      defaultValue: { summary: '' },
+    },
+    type: { name: 'string', required: true },
+    control: { type: 'text' },
+  },
+  toastMessage: {
+    name: 'Message',
+    description: 'Toast message',
+    defaultValue: 'Settings successfully saved!',
+    table: {
+      type: { summary: 'string' },
+      defaultValue: { summary: '' },
+    },
+    type: { name: 'string', required: true },
+    control: { type: 'text' },
+  },
   timeout: {
     name: 'Timeout',
     description: 'Toast hide timeout ',
@@ -60,9 +82,15 @@ export default {
   },
 };
 
-const Template = ({ variant, timeout, disableTimeout, dismiss }) => {
+const Template = ({ variant, toastTitle, toastMessage, timeout, disableTimeout, dismiss }) => {
   timeout = !disableTimeout ? timeout : null;
-  return html`<zen-toast variant=${variant} timeout=${timeout} dismiss=${dismiss} /> `;
+  return html`<zen-toast
+    variant=${variant}
+    toast-title=${toastTitle}
+    toast-message=${toastMessage}
+    timeout=${timeout}
+    dismiss=${dismiss}
+  /> `;
 };
 
 const TemplateSuccess = () => {
