@@ -8,6 +8,7 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { StringifiedJson } from "./stories/components/color-swatch-group/color-swatch-group";
 import { OptionItem } from "./components/zen-dropdown/zen-dropdown";
 import { StepEvent, StepItem } from "./components/zen-steps/zen-steps";
+import { ZenDismissDuration, ZenToastVariant } from "./components/zen-toast/zen-toast-helper";
 export namespace Components {
     interface ColorSwatch {
         /**
@@ -135,13 +136,13 @@ export namespace Components {
          */
         "dismiss": boolean;
         /**
+          * Hide duration
+         */
+        "dismissDuration": ZenDismissDuration;
+        /**
           * Height
          */
         "height": string;
-        /**
-          * Hide toast in milliseconds
-         */
-        "timeout": number | null;
         /**
           * Message
          */
@@ -151,9 +152,9 @@ export namespace Components {
          */
         "toastTitle": string;
         /**
-          * Variant of toast
+          * Variant
          */
-        "variant": string;
+        "variant": ZenToastVariant;
         /**
           * Width
          */
@@ -394,13 +395,13 @@ declare namespace LocalJSX {
          */
         "dismiss"?: boolean;
         /**
+          * Hide duration
+         */
+        "dismissDuration"?: ZenDismissDuration;
+        /**
           * Height
          */
         "height"?: string;
-        /**
-          * Hide toast in milliseconds
-         */
-        "timeout"?: number | null;
         /**
           * Message
          */
@@ -410,9 +411,9 @@ declare namespace LocalJSX {
          */
         "toastTitle"?: string;
         /**
-          * Variant of toast
+          * Variant
          */
-        "variant"?: string;
+        "variant"?: ZenToastVariant;
         /**
           * Width
          */

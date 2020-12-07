@@ -10,8 +10,12 @@
 }
 
 @keyframes fadeIn {
-  0% {opacity:0;}
-  100% {opacity:1;}
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 .toast {
@@ -23,31 +27,19 @@
   animation: fadeIn 1s;
 
   &.toast-success {
-    @include toast-variant(
-      $color-green-600,
-      $color-green-100,
-    );
+    @include toast-variant($color-green-600, $color-green-100);
   }
 
   &.toast-info {
-    @include toast-variant(
-      $color-gray-700,
-      $color-gray-100,
-    );
+    @include toast-variant($color-gray-700, $color-gray-100);
   }
 
   &.toast-warning {
-    @include toast-variant(
-      $color-yellow-700,
-      $color-yellow-100,
-    );
+    @include toast-variant($color-yellow-700, $color-yellow-100);
   }
 
   &.toast-error {
-    @include toast-variant(
-      $color-red-700,
-      $color-red-100
-    );
+    @include toast-variant($color-red-700, $color-red-100);
   }
 }
 
@@ -136,5 +128,3 @@
     font-size: $text-sm;
   }
 }
-
-
