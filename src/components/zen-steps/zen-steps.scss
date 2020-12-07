@@ -31,7 +31,7 @@
 
     background-color: $color-gray-200;
     color: $color-white;
-    transition: background-color $transition-color, transform $transition-element-bump, box-shadow $transition-color;
+    transition: background-color $transition-color, transform $transition-element-bump;
 
     transform: scale(0.7);
     @include noselect;
@@ -66,7 +66,6 @@
     .roundle {
       transform: scale(1);
       background-color: $color-blue-700;
-      box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 6px, rgba(0, 0, 0, 0.3) 1px 2px 3px;
       transition-delay: 0.2s;
     }
     .label {
