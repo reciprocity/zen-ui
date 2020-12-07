@@ -6,7 +6,9 @@ import { Component, h, Prop } from '@stencil/core';
   shadow: true,
 })
 export class ZenInputLabel {
-  /** Text of the label */
+  /**
+   * Text of the label.
+   */
   @Prop() readonly text: string = null;
 
   render(): HTMLElement {

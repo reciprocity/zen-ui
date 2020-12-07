@@ -111,7 +111,7 @@ export namespace Components {
     }
     interface ZenInputLabel {
         /**
-          * Text of the label
+          * Text of the label.
          */
         "text": string;
     }
@@ -367,7 +367,7 @@ declare namespace LocalJSX {
     }
     interface ZenInputLabel {
         /**
-          * Text of the label
+          * Text of the label.
          */
         "text"?: string;
     }
