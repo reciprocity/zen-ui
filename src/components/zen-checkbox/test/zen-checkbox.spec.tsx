@@ -10,7 +10,7 @@ describe('zen-checkbox', () => {
     expect(page.root).toEqualHtml(`
       <zen-checkbox>
         <mock:shadow-root>
-          <slot></slot>
+          <input class="input-control" type="checkbox">
         </mock:shadow-root>
       </zen-checkbox>
     `);
