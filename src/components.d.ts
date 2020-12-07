@@ -6,6 +6,7 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { StringifiedJson } from "./stories/components/color-swatch-group/color-swatch-group";
+import { CheckboxChangeEventDetail } from "./components/zen-checkbox/zen-checkbox-interface";
 import { OptionItem } from "./components/zen-dropdown/zen-dropdown";
 import { StepEvent, StepItem } from "./components/zen-steps/zen-steps";
 import { StepsFilter } from "./components/zen-steps/types";
@@ -60,11 +61,15 @@ export namespace Components {
         /**
           * Set checked state.
          */
-        "checked": false;
+        "checked": boolean;
         /**
           * Disables checkbox.
          */
         "disabled": false;
+        /**
+          * The value of the checkbox does not mean if it's checked or not, use the `checked` property for that.  The value of a checkbox is analogous to the value of an `<input type="checkbox">`, it's only used when the checkbox participates in a native `<form>`.
+         */
+        "value": "on";
     }
     interface ZenDropdown {
         /**
@@ -300,11 +305,19 @@ declare namespace LocalJSX {
         /**
           * Set checked state.
          */
-        "checked"?: false;
+        "checked"?: boolean;
         /**
           * Disables checkbox.
          */
         "disabled"?: false;
+        /**
+          * Emitted when the checked property has changed.
+         */
+        "onZenChange"?: (event: CustomEvent<CheckboxChangeEventDetail>) => void;
+        /**
+          * The value of the checkbox does not mean if it's checked or not, use the `checked` property for that.  The value of a checkbox is analogous to the value of an `<input type="checkbox">`, it's only used when the checkbox participates in a native `<form>`.
+         */
+        "value"?: "on";
     }
     interface ZenDropdown {
         /**
