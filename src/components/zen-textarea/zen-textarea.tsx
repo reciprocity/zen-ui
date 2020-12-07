@@ -6,11 +6,30 @@ import { Component, Host, h, Prop } from '@stencil/core';
   shadow: true,
 })
 export class ZenTextarea {
-  @Prop() cols = 30;
-  @Prop() rows = 5;
-  @Prop() disabled = false;
-  @Prop() required = false;
-  @Prop() placeholder: string = null;
+  /**
+   * Columns of the textarea.
+   */
+  @Prop() readonly cols = 30;
+
+  /**
+   * Rows of the textarea.
+   */
+  @Prop() readonly rows = 5;
+
+  /**
+   * Makes textarea disabled.
+   */
+  @Prop() readonly disabled = false;
+
+  /**
+   * Makes textarea required.
+   */
+  @Prop() readonly required = false;
+
+  /**
+   * Placeholder of the textarea.
+   */
+  @Prop() readonly placeholder: string = null;
 
   render(): HTMLElement {
     return (

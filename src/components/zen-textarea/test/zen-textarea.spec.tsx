@@ -10,7 +10,7 @@ describe('zen-textarea', () => {
     expect(page.root).toEqualHtml(`
       <zen-textarea>
         <mock:shadow-root>
-          <slot></slot>
+          <textarea class="input-control" cols="30" rows="5"></textarea>
         </mock:shadow-root>
       </zen-textarea>
     `);
