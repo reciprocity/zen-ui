@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop } from '@stencil/core';
+import { Component, Host, h, Prop, EventEmitter, Event } from '@stencil/core';
 
 @Component({
   tag: 'zen-textarea',
@@ -31,7 +31,26 @@ export class ZenTextarea {
    */
   @Prop() readonly placeholder: string = null;
 
+  /**
+   * The value of the textarea.
+   */
+  @Prop({ mutable: true }) value?: string | null = '';
+
+  /**
+   * Emitted when a keyboard input occurred.
+   */
+  @Event() zenTextarea!: EventEmitter<KeyboardEvent>;
+
+  private onInput = (ev: Event) => {
+    const input = ev.target as HTMLTextAreaElement | null;
+    if (input) {
+      this.value = input.value || '';
+    }
+    this.zenTextarea.emit(ev as KeyboardEvent);
+  };
+
   render(): HTMLElement {
+    const value = this.value;
     return (
       <Host>
         <textarea
@@ -41,7 +60,10 @@ export class ZenTextarea {
           placeholder={this.placeholder}
           disabled={this.disabled}
           required={this.required}
-        ></textarea>
+          onInput={this.onInput}
+        >
+          {value}
+        </textarea>
       </Host>
     );
   }

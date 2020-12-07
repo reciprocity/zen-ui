@@ -115,7 +115,7 @@ export namespace Components {
     }
     interface ZenInputLabel {
         /**
-          * Text of the label
+          * Text of the label.
          */
         "text": string;
     }
@@ -156,11 +156,30 @@ export namespace Components {
         "steps": Array<StepItem>;
     }
     interface ZenTextarea {
-        "cols": number;
-        "disabled": boolean;
+        /**
+          * Columns of the textarea.
+         */
+        "cols": 30;
+        /**
+          * Makes textarea disabled.
+         */
+        "disabled": false;
+        /**
+          * Placeholder of the textarea.
+         */
         "placeholder": string;
-        "required": boolean;
-        "rows": number;
+        /**
+          * Makes textarea required.
+         */
+        "required": false;
+        /**
+          * Rows of the textarea.
+         */
+        "rows": 5;
+        /**
+          * The value of the textarea.
+         */
+        "value"?: string | null;
     }
 }
 declare global {
@@ -389,7 +408,7 @@ declare namespace LocalJSX {
     }
     interface ZenInputLabel {
         /**
-          * Text of the label
+          * Text of the label.
          */
         "text"?: string;
     }
@@ -434,11 +453,34 @@ declare namespace LocalJSX {
         "steps"?: Array<StepItem>;
     }
     interface ZenTextarea {
-        "cols"?: number;
-        "disabled"?: boolean;
+        /**
+          * Columns of the textarea.
+         */
+        "cols"?: 30;
+        /**
+          * Makes textarea disabled.
+         */
+        "disabled"?: false;
+        /**
+          * Emitted when a keyboard input occurred.
+         */
+        "onZenTextarea"?: (event: CustomEvent<KeyboardEvent>) => void;
+        /**
+          * Placeholder of the textarea.
+         */
         "placeholder"?: string;
-        "required"?: boolean;
-        "rows"?: number;
+        /**
+          * Makes textarea required.
+         */
+        "required"?: false;
+        /**
+          * Rows of the textarea.
+         */
+        "rows"?: 5;
+        /**
+          * The value of the textarea.
+         */
+        "value"?: string | null;
     }
     interface IntrinsicElements {
         "color-swatch": ColorSwatch;

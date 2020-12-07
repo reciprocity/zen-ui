@@ -7,13 +7,21 @@
 
 ## Properties
 
-| Property      | Attribute     | Description | Type      | Default |
-| ------------- | ------------- | ----------- | --------- | ------- |
-| `cols`        | `cols`        |             | `number`  | `30`    |
-| `disabled`    | `disabled`    |             | `boolean` | `false` |
-| `placeholder` | `placeholder` |             | `string`  | `null`  |
-| `required`    | `required`    |             | `boolean` | `false` |
-| `rows`        | `rows`        |             | `number`  | `5`     |
+| Property      | Attribute     | Description                  | Type      | Default |
+| ------------- | ------------- | ---------------------------- | --------- | ------- |
+| `cols`        | `cols`        | Columns of the textarea.     | `30`      | `30`    |
+| `disabled`    | `disabled`    | Makes textarea disabled.     | `boolean` | `false` |
+| `placeholder` | `placeholder` | Placeholder of the textarea. | `string`  | `null`  |
+| `required`    | `required`    | Makes textarea required.     | `boolean` | `false` |
+| `rows`        | `rows`        | Rows of the textarea.        | `5`       | `5`     |
+| `value`       | `value`       | The value of the textarea.   | `string`  | `''`    |
+
+
+## Events
+
+| Event         | Description                             | Type                         |
+| ------------- | --------------------------------------- | ---------------------------- |
+| `zenTextarea` | Emitted when a keyboard input occurred. | `CustomEvent<KeyboardEvent>` |
 
 
 ----------------------------------------------

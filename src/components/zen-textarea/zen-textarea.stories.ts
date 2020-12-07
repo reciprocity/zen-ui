@@ -1,7 +1,15 @@
 import { html } from 'lit-html';
 import markdown from './readme.md';
+import { action } from '../../../.storybook/helpers/custom-action';
+
+const customEvents = ['zenTextarea'];
 
 const argTypes = {
+  value: {
+    control: {
+      type: 'text',
+    },
+  },
   placeholder: {
     type: { name: 'string', required: false },
     description: 'set placeholder of the input',
@@ -76,19 +84,22 @@ export default {
   },
 };
 
-const Template = ({ disabled, placeholder, required, cols, rows }) => {
+const Template = ({ value, disabled, placeholder, required, cols, rows }) => {
+  value = value ? value : '';
   disabled = disabled ? disabled : false;
   required = required ? required : false;
   placeholder = placeholder ? placeholder : '';
   cols = cols ? cols : 30;
   rows = rows ? rows : 1;
   return html`<zen-textarea
-    placeholder=${placeholder}
-    disabled=${disabled}
-    required=${required}
-    cols=${cols}
-    rows=${rows}
-  />`;
+      value=${value}
+      placeholder=${placeholder}
+      disabled=${disabled}
+      required=${required}
+      cols=${cols}
+      rows=${rows}
+    />
+    ${action('zen-textarea', customEvents)}`;
 };
 
 export const Default = Template.bind({});
