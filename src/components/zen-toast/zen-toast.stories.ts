@@ -8,12 +8,12 @@ const argTypes = {
     defaultValue: 'success',
     table: {
       type: { summary: 'string' },
-      defaultValue: { summary: 'Success' },
+      defaultValue: { summary: 'success' },
     },
     type: { name: 'string', required: true },
     control: {
       type: 'select',
-      options: ['success', 'info', 'warning', 'error'],
+      options: ['success', 'Info', 'Warning', 'Error'],
     },
   },
   toastTitle: {
@@ -38,27 +38,19 @@ const argTypes = {
     type: { name: 'string', required: true },
     control: { type: 'text' },
   },
-  timeout: {
-    name: 'Timeout',
-    description: 'Toast hide timeout ',
-    defaultValue: 5000,
+  dismissDuration: {
+    name: 'Dismiss duration',
+    description: 'Toast hide duration ',
+    defaultValue: 'none',
     table: {
-      type: { summary: 'number' },
-      defaultValue: { summary: '5000' },
+      type: { summary: 'string' },
+      defaultValue: { summary: 'medium' },
     },
-    type: { name: 'number', required: false },
-    control: { type: 'range', min: 0, max: 10000, step: 1000 },
-  },
-  disableTimeout: {
-    name: 'Disable Timeout',
-    description: 'Dont hide toast',
-    defaultValue: true,
-    table: {
-      type: { summary: 'boolean' },
-      defaultValue: { summary: 'true' },
+    type: { name: 'string', required: false },
+    control: {
+      type: 'select',
+      options: ['none', 'short', 'medium', 'long'],
     },
-    type: { name: 'boolean', required: false },
-    control: { type: 'boolean' },
   },
   dismiss: {
     name: 'Dismiss',
@@ -82,13 +74,12 @@ export default {
   },
 };
 
-const Template = ({ variant, toastTitle, toastMessage, timeout, disableTimeout, dismiss }) => {
-  timeout = !disableTimeout ? timeout : null;
+const Template = ({ variant, toastTitle, toastMessage, dismissDuration, dismiss }) => {
   return html`<zen-toast
     variant=${variant}
     toast-title=${toastTitle}
     toast-message=${toastMessage}
-    timeout=${timeout}
+    dismiss-duration=${dismissDuration}
     dismiss=${dismiss}
   /> `;
 };
@@ -98,7 +89,7 @@ const TemplateSuccess = () => {
     variant="success"
     toast-title="Success"
     toast-message="Settings successfully saved!"
-    timeout="null"
+    dismiss-duration="none"
     dismiss="true"
   />`;
 };
@@ -108,7 +99,7 @@ const TemplateInfo = () => {
     variant="info"
     toast-title="Info"
     toast-message="You have 6 items that need your attention!"
-    timeout="null"
+    dismiss-duration="none"
     dismiss="true"
   />`;
 };
@@ -117,8 +108,9 @@ const TemplateWarning = () => {
   return html`<zen-toast
     variant="warning"
     toast-title="Warning"
-    toast-message="Proceed with caution. Any changes will lead to the recalculation of the risk ratings and scores accross the entire risk register."
-    timeout="null"
+    toast-message="Proceed with caution. Any changes will
+  lead to the recalculation of the risk ratings and scores accross the entire risk register."
+    dismiss-duration="none"
     dismiss="true"
   />`;
 };
@@ -128,7 +120,7 @@ const TemplateError = () => {
     variant="error"
     toast-title="Error"
     toast-message="Oops, something went wrong."
-    timeout="null"
+    dismiss-duration="none"
     dismiss="true"
   />`;
 };

@@ -1,7 +1,7 @@
 import { Component, Host, h, Prop } from '@stencil/core';
 import { renderIcon } from '../helpers/fa-icons';
 import { faTimes } from '@fortawesome/pro-solid-svg-icons';
-import { getToastIcon, ZenToastVariant } from './zen-toast-helper';
+import { getToastIcon, getToastTimeout, ZenDismissDuration, ZenToastVariant } from './zen-toast-helper';
 
 @Component({
   tag: 'zen-toast',
@@ -11,8 +11,8 @@ import { getToastIcon, ZenToastVariant } from './zen-toast-helper';
 export class ZenToast {
   div: HTMLElement = undefined;
 
-  /** Variant of toast */
-  @Prop() readonly variant: string = ZenToastVariant.Success;
+  /** Variant  */
+  @Prop() readonly variant: ZenToastVariant = ZenToastVariant.SUCCESS;
 
   /** Height */
   @Prop() readonly height: string = '5rem';
@@ -26,8 +26,8 @@ export class ZenToast {
   /** Message */
   @Prop() readonly toastMessage: string = '';
 
-  /** Hide toast in milliseconds */
-  @Prop() readonly timeout: number | null = 5000;
+  /** Hide duration */
+  @Prop() readonly dismissDuration: ZenDismissDuration = ZenDismissDuration.MEDIUM;
 
   /** Can dismiss toast */
   @Prop() readonly dismiss: boolean = false;
@@ -37,10 +37,10 @@ export class ZenToast {
   }
 
   componentDidRender() {
-    if (!isNaN(this.timeout)) {
+    if (this.dismissDuration !== ZenDismissDuration.NONE) {
       setTimeout(() => {
         this.closeToast(this.div);
-      }, this.timeout);
+      }, getToastTimeout(this.dismissDuration));
     }
   }
 
