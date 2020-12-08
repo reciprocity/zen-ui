@@ -1,9 +1,12 @@
 import { Component, Host, h, Prop, State, Event, EventEmitter, Watch } from '@stencil/core';
 import { faCheck } from '@fortawesome/pro-light-svg-icons';
 import { renderIcon, styles } from '../helpers/fa-icons';
+import { StepsFilter } from './types';
+import { cloneDeep } from 'lodash';
 
 export interface StepItem {
   label: string;
+  completed: boolean;
 }
 
 enum StepState {
@@ -29,7 +32,7 @@ export class ZenSteps {
   /** Index of currently active step */
   @Prop({ reflect: true }) readonly activeIndex = 0;
   /** User can click step to go to step */
-  @Prop({ reflect: true }) readonly selectable = true;
+  @Prop({ reflect: true }) readonly clickable: StepsFilter = StepsFilter.Completed;
 
   @Watch('activeIndex')
   activeIndexChanged(activeIndex: number): void {
@@ -44,14 +47,29 @@ export class ZenSteps {
     this.selected.emit({ index, step });
   }
 
+  stepClicked(index: number, step: StepItem): void {
+    if (this.clickable === StepsFilter.None) return;
+    const stepState = this.getItemState(index);
+    if (this.clickable === StepsFilter.Completed && stepState !== StepState.Completed) return;
+    this.selectStep(index, step);
+  }
+
   getItemState(index: number): StepState {
-    if (index < this.internalActiveIndex) return StepState.Completed;
     if (index === this.internalActiveIndex) return StepState.Active;
+    if (index < this.internalActiveIndex || this.steps[index].completed) return StepState.Completed;
     return StepState.Waiting;
   }
 
   progressWidth(): number {
-    return Math.max(0, Math.min(1, this.internalActiveIndex / (this.steps.length - 1)));
+    // Last completed is either ativeIndex or last step with completed.true:
+    const lastCompletedIndex =
+      this.steps.length - 1 - (cloneDeep(this.steps) as StepItem[]).reverse().findIndex(s => s.completed);
+    const completedExists = this.steps.filter(s => s.completed).length;
+    const lastStep = completedExists
+      ? Math.max(this.internalActiveIndex, lastCompletedIndex)
+      : this.internalActiveIndex;
+
+    return Math.max(0, Math.min(1, lastStep / (this.steps.length - 1)));
   }
 
   connectedCallback(): void {
@@ -70,7 +88,7 @@ export class ZenSteps {
             <li
               class={`step ${this.getItemState(index)}`}
               onClick={() => {
-                if (this.selectable) this.selectStep(index, step);
+                this.stepClicked(index, step);
               }}
             >
               <div class="roundle">
