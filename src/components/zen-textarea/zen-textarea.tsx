@@ -39,14 +39,14 @@ export class ZenTextarea {
   /**
    * Emitted when a keyboard input occurred.
    */
-  @Event() zenTextarea!: EventEmitter<KeyboardEvent>;
+  @Event() keyboardInput!: EventEmitter<KeyboardEvent>;
 
   private onInput = (ev: Event) => {
     const input = ev.target as HTMLTextAreaElement | null;
     if (input) {
       this.value = input.value || '';
     }
-    this.zenTextarea.emit(ev as KeyboardEvent);
+    this.keyboardInput.emit(ev as KeyboardEvent);
   };
 
   render(): HTMLElement {

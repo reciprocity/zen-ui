@@ -464,7 +464,7 @@ declare namespace LocalJSX {
         /**
           * Emitted when a keyboard input occurred.
          */
-        "onZenTextarea"?: (event: CustomEvent<KeyboardEvent>) => void;
+        "onKeyboardInput"?: (event: CustomEvent<KeyboardEvent>) => void;
         /**
           * Placeholder of the textarea.
          */

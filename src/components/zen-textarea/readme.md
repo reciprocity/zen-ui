@@ -1,7 +1,3 @@
-# zen-textarea
-
-
-
 <!-- Auto Generated Below -->
 
 
@@ -19,9 +15,9 @@
 
 ## Events
 
-| Event         | Description                             | Type                         |
-| ------------- | --------------------------------------- | ---------------------------- |
-| `zenTextarea` | Emitted when a keyboard input occurred. | `CustomEvent<KeyboardEvent>` |
+| Event           | Description                             | Type                         |
+| --------------- | --------------------------------------- | ---------------------------- |
+| `keyboardInput` | Emitted when a keyboard input occurred. | `CustomEvent<KeyboardEvent>` |
 
 
 ----------------------------------------------
