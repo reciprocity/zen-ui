@@ -1,7 +1,7 @@
 import { renderIcon } from '../helpers/fa-icons';
 import { faBell, faCheck, faExclamation, faTimes } from '@fortawesome/pro-solid-svg-icons';
 
-export enum ZenToastVariant {
+export enum ZenVariant {
   SUCCESS = 'success',
   INFO = 'info',
   WARNING = 'warning',
@@ -15,26 +15,26 @@ export enum ZenDismissDuration {
   LONG = 'long',
 }
 
-export function getToastIcon(variant): HTMLElement {
+export function getIcon(variant): HTMLElement {
   let icon: HTMLElement;
   switch (variant) {
-    case ZenToastVariant.SUCCESS:
+    case ZenVariant.SUCCESS:
       icon = renderIcon(faCheck);
       break;
-    case ZenToastVariant.INFO:
+    case ZenVariant.INFO:
       icon = renderIcon(faBell);
       break;
-    case ZenToastVariant.WARNING:
+    case ZenVariant.WARNING:
       icon = renderIcon(faExclamation);
       break;
-    case ZenToastVariant.ERROR:
+    case ZenVariant.ERROR:
       icon = renderIcon(faTimes);
       break;
   }
   return icon;
 }
 
-export function getToastTimeout(dismissDuration: ZenDismissDuration): number {
+export function getTimeout(dismissDuration: ZenDismissDuration): number {
   let duration;
   switch (dismissDuration) {
     case ZenDismissDuration.SHORT:
