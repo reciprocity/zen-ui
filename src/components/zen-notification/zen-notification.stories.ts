@@ -4,7 +4,7 @@ import markdown from './readme.md';
 const argTypes = {
   variant: {
     name: 'Variant',
-    description: 'Toast variant',
+    description: 'Variant',
     defaultValue: 'success',
     table: {
       type: { summary: 'string' },
@@ -13,12 +13,12 @@ const argTypes = {
     type: { name: 'string', required: true },
     control: {
       type: 'select',
-      options: ['success', 'Info', 'Warning', 'Error'],
+      options: ['success', 'info', 'warning', 'error'],
     },
   },
-  toastTitle: {
+  nTitle: {
     name: 'Title',
-    description: 'Toast title',
+    description: 'Title',
     defaultValue: 'Success',
     table: {
       type: { summary: 'string' },
@@ -27,9 +27,9 @@ const argTypes = {
     type: { name: 'string', required: true },
     control: { type: 'text' },
   },
-  toastMessage: {
+  nMessage: {
     name: 'Message',
-    description: 'Toast message',
+    description: 'Message',
     defaultValue: 'Settings successfully saved!',
     table: {
       type: { summary: 'string' },
@@ -40,7 +40,7 @@ const argTypes = {
   },
   dismissDuration: {
     name: 'Dismiss duration',
-    description: 'Toast hide duration ',
+    description: 'Dismiss duration',
     defaultValue: 'none',
     table: {
       type: { summary: 'string' },
@@ -54,7 +54,7 @@ const argTypes = {
   },
   dismiss: {
     name: 'Dismiss',
-    description: 'Show close toast icon',
+    description: 'Show close icon',
     defaultValue: true,
     table: {
       type: { summary: 'boolean' },
@@ -66,49 +66,49 @@ const argTypes = {
 };
 
 export default {
-  title: 'Components/Zen Toast',
-  component: 'zen-toast',
+  title: 'Components/Zen Notification',
+  component: 'zen-notification',
   argTypes,
   parameters: {
     notes: { markdown },
   },
 };
 
-const Template = ({ variant, toastTitle, toastMessage, dismissDuration, dismiss }) => {
-  return html`<zen-toast
+const Template = ({ variant, nTitle, nMessage, dismissDuration, dismiss }) => {
+  return html`<zen-notification
     variant=${variant}
-    toast-title=${toastTitle}
-    toast-message=${toastMessage}
+    n-title=${nTitle}
+    n-message=${nMessage}
     dismiss-duration=${dismissDuration}
     dismiss=${dismiss}
   /> `;
 };
 
 const TemplateSuccess = () => {
-  return html`<zen-toast
+  return html`<zen-notification
     variant="success"
-    toast-title="Success"
-    toast-message="Settings successfully saved!"
+    n-title="Success"
+    n-message="Settings successfully saved!"
     dismiss-duration="none"
     dismiss="true"
   />`;
 };
 
 const TemplateInfo = () => {
-  return html`<zen-toast
+  return html`<zen-notification
     variant="info"
-    toast-title="Info"
-    toast-message="You have 6 items that need your attention!"
+    n-title="Info"
+    n-message="You have 6 items that need your attention!"
     dismiss-duration="none"
     dismiss="true"
   />`;
 };
 
 const TemplateWarning = () => {
-  return html`<zen-toast
+  return html`<zen-notification
     variant="warning"
-    toast-title="Warning"
-    toast-message="Proceed with caution. Any changes will
+    n-title="Warning"
+    n-message="Proceed with caution. Any changes will
   lead to the recalculation of the risk ratings and scores accross the entire risk register."
     dismiss-duration="none"
     dismiss="true"
@@ -116,17 +116,17 @@ const TemplateWarning = () => {
 };
 
 const TemplateError = () => {
-  return html`<zen-toast
+  return html`<zen-notification
     variant="error"
-    toast-title="Error"
-    toast-message="Oops, something went wrong."
+    n-title="Error"
+    n-message="Oops, something went wrong."
     dismiss-duration="none"
     dismiss="true"
   />`;
 };
 
 export const Default = Template.bind({});
-export const SuccessToastStory = TemplateSuccess.bind({});
-export const InfoToastStory = TemplateInfo.bind({});
-export const WarningToastStory = TemplateWarning.bind({});
-export const ErrorToastStory = TemplateError.bind({});
+export const SuccessNotificationStory = TemplateSuccess.bind({});
+export const InfoNotificationStory = TemplateInfo.bind({});
+export const WarningNotificationStory = TemplateWarning.bind({});
+export const ErrorNotificationStory = TemplateError.bind({});

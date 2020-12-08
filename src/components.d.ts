@@ -7,8 +7,8 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { StringifiedJson } from "./stories/components/color-swatch-group/color-swatch-group";
 import { OptionItem } from "./components/zen-dropdown/zen-dropdown";
+import { ZenDismissDuration, ZenVariant } from "./components/zen-notification/zen-notification-helper";
 import { StepEvent, StepItem } from "./components/zen-steps/zen-steps";
-import { ZenDismissDuration, ZenToastVariant } from "./components/zen-toast/zen-toast-helper";
 export namespace Components {
     interface ColorSwatch {
         /**
@@ -110,6 +110,36 @@ export namespace Components {
          */
         "required": false;
     }
+    interface ZenNotification {
+        /**
+          * Can dismiss
+         */
+        "dismiss": boolean;
+        /**
+          * Hide duration
+         */
+        "dismissDuration": ZenDismissDuration;
+        /**
+          * Height
+         */
+        "height": string;
+        /**
+          * Message
+         */
+        "nMessage": string;
+        /**
+          * Title
+         */
+        "nTitle": string;
+        /**
+          * Variant
+         */
+        "variant": ZenVariant;
+        /**
+          * Width
+         */
+        "width": string;
+    }
     interface ZenSpinner {
         /**
           * Color of the spinner. Accepts any CSS Legal Color Value.
@@ -129,36 +159,6 @@ export namespace Components {
           * Ordered array of possible steps
          */
         "steps": Array<StepItem>;
-    }
-    interface ZenToast {
-        /**
-          * Can dismiss toast
-         */
-        "dismiss": boolean;
-        /**
-          * Hide duration
-         */
-        "dismissDuration": ZenDismissDuration;
-        /**
-          * Height
-         */
-        "height": string;
-        /**
-          * Message
-         */
-        "toastMessage": string;
-        /**
-          * Title
-         */
-        "toastTitle": string;
-        /**
-          * Variant
-         */
-        "variant": ZenToastVariant;
-        /**
-          * Width
-         */
-        "width": string;
     }
 }
 declare global {
@@ -222,6 +222,12 @@ declare global {
         prototype: HTMLZenLabelElement;
         new (): HTMLZenLabelElement;
     };
+    interface HTMLZenNotificationElement extends Components.ZenNotification, HTMLStencilElement {
+    }
+    var HTMLZenNotificationElement: {
+        prototype: HTMLZenNotificationElement;
+        new (): HTMLZenNotificationElement;
+    };
     interface HTMLZenSpinnerElement extends Components.ZenSpinner, HTMLStencilElement {
     }
     var HTMLZenSpinnerElement: {
@@ -234,12 +240,6 @@ declare global {
         prototype: HTMLZenStepsElement;
         new (): HTMLZenStepsElement;
     };
-    interface HTMLZenToastElement extends Components.ZenToast, HTMLStencilElement {
-    }
-    var HTMLZenToastElement: {
-        prototype: HTMLZenToastElement;
-        new (): HTMLZenToastElement;
-    };
     interface HTMLElementTagNameMap {
         "color-swatch": HTMLColorSwatchElement;
         "color-swatch-group": HTMLColorSwatchGroupElement;
@@ -251,9 +251,9 @@ declare global {
         "zen-input": HTMLZenInputElement;
         "zen-input-support-text": HTMLZenInputSupportTextElement;
         "zen-label": HTMLZenLabelElement;
+        "zen-notification": HTMLZenNotificationElement;
         "zen-spinner": HTMLZenSpinnerElement;
         "zen-steps": HTMLZenStepsElement;
-        "zen-toast": HTMLZenToastElement;
     }
 }
 declare namespace LocalJSX {
@@ -365,6 +365,36 @@ declare namespace LocalJSX {
          */
         "required"?: false;
     }
+    interface ZenNotification {
+        /**
+          * Can dismiss
+         */
+        "dismiss"?: boolean;
+        /**
+          * Hide duration
+         */
+        "dismissDuration"?: ZenDismissDuration;
+        /**
+          * Height
+         */
+        "height"?: string;
+        /**
+          * Message
+         */
+        "nMessage"?: string;
+        /**
+          * Title
+         */
+        "nTitle"?: string;
+        /**
+          * Variant
+         */
+        "variant"?: ZenVariant;
+        /**
+          * Width
+         */
+        "width"?: string;
+    }
     interface ZenSpinner {
         /**
           * Color of the spinner. Accepts any CSS Legal Color Value.
@@ -389,36 +419,6 @@ declare namespace LocalJSX {
          */
         "steps"?: Array<StepItem>;
     }
-    interface ZenToast {
-        /**
-          * Can dismiss toast
-         */
-        "dismiss"?: boolean;
-        /**
-          * Hide duration
-         */
-        "dismissDuration"?: ZenDismissDuration;
-        /**
-          * Height
-         */
-        "height"?: string;
-        /**
-          * Message
-         */
-        "toastMessage"?: string;
-        /**
-          * Title
-         */
-        "toastTitle"?: string;
-        /**
-          * Variant
-         */
-        "variant"?: ZenToastVariant;
-        /**
-          * Width
-         */
-        "width"?: string;
-    }
     interface IntrinsicElements {
         "color-swatch": ColorSwatch;
         "color-swatch-group": ColorSwatchGroup;
@@ -430,9 +430,9 @@ declare namespace LocalJSX {
         "zen-input": ZenInput;
         "zen-input-support-text": ZenInputSupportText;
         "zen-label": ZenLabel;
+        "zen-notification": ZenNotification;
         "zen-spinner": ZenSpinner;
         "zen-steps": ZenSteps;
-        "zen-toast": ZenToast;
     }
 }
 export { LocalJSX as JSX };
@@ -449,9 +449,9 @@ declare module "@stencil/core" {
             "zen-input": LocalJSX.ZenInput & JSXBase.HTMLAttributes<HTMLZenInputElement>;
             "zen-input-support-text": LocalJSX.ZenInputSupportText & JSXBase.HTMLAttributes<HTMLZenInputSupportTextElement>;
             "zen-label": LocalJSX.ZenLabel & JSXBase.HTMLAttributes<HTMLZenLabelElement>;
+            "zen-notification": LocalJSX.ZenNotification & JSXBase.HTMLAttributes<HTMLZenNotificationElement>;
             "zen-spinner": LocalJSX.ZenSpinner & JSXBase.HTMLAttributes<HTMLZenSpinnerElement>;
             "zen-steps": LocalJSX.ZenSteps & JSXBase.HTMLAttributes<HTMLZenStepsElement>;
-            "zen-toast": LocalJSX.ZenToast & JSXBase.HTMLAttributes<HTMLZenToastElement>;
         }
     }
 }

@@ -1,10 +1,10 @@
 import { newSpecPage } from '@stencil/core/testing';
-import { ZenToast } from '../zen-toast';
+import { ZenNotification } from '../zen-notification';
 
-describe('zen-toast', () => {
+describe('zen-notification', () => {
   it('renders', async () => {
     const page = await newSpecPage({
-      components: [ZenToast],
+      components: [ZenNotification],
       html: `<zen-toast></zen-toast>`,
     });
     expect(page.root).toEqualHtml(`

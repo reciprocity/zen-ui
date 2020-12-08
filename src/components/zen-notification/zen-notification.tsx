@@ -1,18 +1,18 @@
 import { Component, Host, h, Prop } from '@stencil/core';
 import { renderIcon } from '../helpers/fa-icons';
 import { faTimes } from '@fortawesome/pro-solid-svg-icons';
-import { getToastIcon, getToastTimeout, ZenDismissDuration, ZenToastVariant } from './zen-toast-helper';
+import { getIcon, getTimeout, ZenDismissDuration, ZenVariant } from './zen-notification-helper';
 
 @Component({
-  tag: 'zen-toast',
-  styleUrl: 'zen-toast.scss',
+  tag: 'zen-notification',
+  styleUrl: 'zen-notification.scss',
   shadow: true,
 })
-export class ZenToast {
+export class ZenNotification {
   div: HTMLElement = undefined;
 
   /** Variant  */
-  @Prop() readonly variant: ZenToastVariant = ZenToastVariant.SUCCESS;
+  @Prop() readonly variant: ZenVariant = ZenVariant.SUCCESS;
 
   /** Height */
   @Prop() readonly height: string = '5rem';
@@ -21,33 +21,33 @@ export class ZenToast {
   @Prop() readonly width: string = '25rem';
 
   /** Title */
-  @Prop() readonly toastTitle: string = '';
+  @Prop() readonly nTitle: string = '';
 
   /** Message */
-  @Prop() readonly toastMessage: string = '';
+  @Prop() readonly nMessage: string = '';
 
   /** Hide duration */
   @Prop() readonly dismissDuration: ZenDismissDuration = ZenDismissDuration.MEDIUM;
 
-  /** Can dismiss toast */
+  /** Can dismiss */
   @Prop() readonly dismiss: boolean = false;
 
-  closeToast(el) {
+  close(el) {
     el.className = '';
   }
 
   componentDidRender() {
     if (this.dismissDuration !== ZenDismissDuration.NONE) {
       setTimeout(() => {
-        this.closeToast(this.div);
-      }, getToastTimeout(this.dismissDuration));
+        this.close(this.div);
+      }, getTimeout(this.dismissDuration));
     }
   }
 
   render(): HTMLElement {
     const classes = {
-      toast: true,
-      [`toast-${this.variant}`]: true,
+      notification: true,
+      [`notification-${this.variant}`]: true,
     };
 
     const close = {
@@ -66,18 +66,18 @@ export class ZenToast {
           <div
             class={close}
             onClick={() => {
-              this.closeToast(this.div);
+              this.close(this.div);
             }}
           >
             {renderIcon(faTimes)}
           </div>
           <div class="row">
             <div class="icon-container">
-              <div class={icon}>{getToastIcon(this.variant)}</div>
+              <div class={icon}>{getIcon(this.variant)}</div>
             </div>
             <div class="content-container">
-              <div class="title">{this.toastTitle}</div>
-              <div class="message">{this.toastMessage}</div>
+              <div class="title">{this.nTitle}</div>
+              <div class="message">{this.nMessage}</div>
             </div>
           </div>
         </div>
