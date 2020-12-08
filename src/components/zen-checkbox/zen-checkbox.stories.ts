@@ -2,6 +2,12 @@ import { html } from 'lit-html';
 import markdown from './readme.md';
 
 const argTypes = {
+  label: {
+    defaultValue: 'Label',
+    control: {
+      type: 'text',
+    },
+  },
   checked: {
     type: { name: 'string', required: false },
     description: 'set if the input is checked',
@@ -35,10 +41,11 @@ export default {
   },
 };
 
-const Template = ({ checked, disabled }) => {
+const Template = ({ label, checked, disabled }) => {
   checked = checked ? checked : false;
   disabled = disabled ? disabled : false;
-  return html`<zen-checkbox checked=${checked} disabled=${disabled} />`;
+  label = label ? label : '';
+  return html`<zen-checkbox checked=${checked} disabled=${disabled} label=${label} />`;
 };
 
 export const Default = Template.bind({});

@@ -1,5 +1,5 @@
 import { Component, Host, h, Prop, Event, EventEmitter, Watch } from '@stencil/core';
-import { CheckboxChangeEventDetail } from './zen-checkbox-interface';
+import { CheckboxChangeEventDetail } from './types';
 
 @Component({
   tag: 'zen-checkbox',
@@ -18,13 +18,9 @@ export class ZenCheckbox {
   @Prop() readonly disabled = false;
 
   /**
-   * The value of the checkbox does not mean if it's checked or not, use the `checked`
-   * property for that.
-   *
-   * The value of a checkbox is analogous to the value of an `<input type="checkbox">`,
-   * it's only used when the checkbox participates in a native `<form>`.
+   * Label of the checkbox.
    */
-  @Prop() readonly value = 'on';
+  @Prop() readonly label: string = null;
 
   /**
    * Emitted when the checked property has changed.
@@ -35,7 +31,6 @@ export class ZenCheckbox {
   checkedChanged(isChecked: boolean): void {
     this.zenChange.emit({
       checked: isChecked,
-      value: this.value,
     });
   }
 
@@ -48,6 +43,7 @@ export class ZenCheckbox {
     return (
       <Host onClick={this.onClick}>
         <input type="checkbox" class="input-control" disabled={this.disabled} checked={this.checked} />
+        {this.label ? <zen-label label={this.label} /> : null}
       </Host>
     );
   }
