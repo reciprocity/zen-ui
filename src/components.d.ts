@@ -304,7 +304,7 @@ declare namespace LocalJSX {
         /**
           * Emitted when the checked property has changed.
          */
-        "onZenChange"?: (event: CustomEvent<CheckboxChangeEventDetail>) => void;
+        "onChange"?: (event: CustomEvent<CheckboxChangeEventDetail>) => void;
     }
     interface ZenDropdown {
         /**

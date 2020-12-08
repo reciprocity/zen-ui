@@ -25,11 +25,11 @@ export class ZenCheckbox {
   /**
    * Emitted when the checked property has changed.
    */
-  @Event() zenChange!: EventEmitter<CheckboxChangeEventDetail>;
+  @Event() change!: EventEmitter<CheckboxChangeEventDetail>;
 
   @Watch('checked')
   checkedChanged(isChecked: boolean): void {
-    this.zenChange.emit({
+    this.change.emit({
       checked: isChecked,
     });
   }

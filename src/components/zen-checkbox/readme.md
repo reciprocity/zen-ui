@@ -16,9 +16,9 @@
 
 ## Events
 
-| Event       | Description                                    | Type                                     |
-| ----------- | ---------------------------------------------- | ---------------------------------------- |
-| `zenChange` | Emitted when the checked property has changed. | `CustomEvent<CheckboxChangeEventDetail>` |
+| Event    | Description                                    | Type                                     |
+| -------- | ---------------------------------------------- | ---------------------------------------- |
+| `change` | Emitted when the checked property has changed. | `CustomEvent<CheckboxChangeEventDetail>` |
 
 
 ## Dependencies
