@@ -1,7 +1,7 @@
 @import '../../zen-styles/variables.scss';
 
 :host {
-  $side-padding: 4.8rem;
+  $side-padding: 3rem;
 
   display: block;
   position: relative;
@@ -25,13 +25,13 @@
     align-items: center;
     justify-content: center;
     margin: auto;
-    width: 2.4rem;
-    height: 2.4rem;
-    border-radius: 10rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 6.25rem;
 
     background-color: $color-gray-200;
     color: $color-white;
-    transition: background-color $transition-color, transform $transition-element-bump, box-shadow $transition-color;
+    transition: background-color $transition-color, transform $transition-element-bump;
 
     transform: scale(0.7);
     @include noselect;
@@ -43,10 +43,10 @@
     left: 50%;
     transform: translate(-50%, 0);
     padding-top: 1.2em;
-    width: 12.8rem;
+    width: 8rem;
     text-align: center;
 
-    font-size: $text-md;
+    font-size: $text-sm;
     color: $color-gray-200;
     transition: color $transition-color;
     @include noselect;
@@ -66,7 +66,6 @@
     .roundle {
       transform: scale(1);
       background-color: $color-blue-700;
-      box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 6px, rgba(0, 0, 0, 0.3) 1px 2px 3px;
       transition-delay: 0.2s;
     }
     .label {
@@ -77,9 +76,9 @@
 
   .progressbar {
     position: absolute;
-    top: 1.2rem;
-    left: #{$side-padding + 1.2rem};
-    right: #{$side-padding + 1.2rem};
+    top: 0.75rem;
+    left: #{$side-padding + 0.75rem};
+    right: #{$side-padding + 0.75rem};
     height: 1px;
     background-color: $color-gray-200;
   }
