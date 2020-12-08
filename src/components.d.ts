@@ -8,6 +8,7 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { StringifiedJson } from "./stories/components/color-swatch-group/color-swatch-group";
 import { OptionItem } from "./components/zen-dropdown/zen-dropdown";
 import { StepEvent, StepItem } from "./components/zen-steps/zen-steps";
+import { StepsFilter } from "./components/zen-steps/types";
 export namespace Components {
     interface ColorSwatch {
         /**
@@ -123,7 +124,7 @@ export namespace Components {
         /**
           * User can click step to go to step
          */
-        "selectable": true;
+        "clickable": StepsFilter;
         /**
           * Ordered array of possible steps
          */
@@ -339,13 +340,13 @@ declare namespace LocalJSX {
          */
         "activeIndex"?: 0;
         /**
+          * User can click step to go to step
+         */
+        "clickable"?: StepsFilter;
+        /**
           * User clicked a step
          */
         "onSelected"?: (event: CustomEvent<StepEvent>) => void;
-        /**
-          * User can click step to go to step
-         */
-        "selectable"?: true;
         /**
           * Ordered array of possible steps
          */
