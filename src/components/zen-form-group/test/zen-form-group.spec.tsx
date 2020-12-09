@@ -10,9 +10,7 @@ describe('zen-form-group', () => {
     expect(page.root).toEqualHtml(`
       <zen-form-group>
         <mock:shadow-root>
-          <div class="input-group">
             <slot></slot>
-          </div>
         </mock:shadow-root>
       </zen-form-group>
     `);

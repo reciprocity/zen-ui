@@ -1,0 +1,40 @@
+@import '../../zen-styles/variables.scss';
+@import '../../zen-styles/mixins/forms.scss';
+
+:host {
+  display: flex;
+  width: fit-content;
+  font-size: $text-md;
+  color: $color-gray-700;
+  margin: 0.5rem 0;
+  label {
+    @include noselect;
+    margin-left: 0.125rem;
+
+    & span.required {
+      color: $color-red-700;
+    }
+
+    &.disabled {
+      opacity: 0.5;
+      pointer-events: none;
+      cursor: default;
+    }
+  }
+}
+
+input.input-control {
+  @include noselect;
+  width: auto;
+  font-size: inherit;
+  &:focus {
+    box-shadow: 0 0 0 1px $color-blue-300;
+    outline: 0;
+    &:invalid {
+      box-shadow: 0 0 0 1px $color-red-300;
+    }
+  }
+  &:invalid {
+    box-shadow: 0 0 0 1px $color-red-300;
+  }
+}

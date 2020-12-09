@@ -6,6 +6,7 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { StringifiedJson } from "./stories/components/color-swatch-group/color-swatch-group";
+import { CheckboxChangeEventDetail } from "./components/zen-checkbox/types";
 import { OptionItem } from "./components/zen-dropdown/zen-dropdown";
 import { StepEvent, StepItem } from "./components/zen-steps/zen-steps";
 import { StepsFilter } from "./components/zen-steps/types";
@@ -55,6 +56,24 @@ export namespace Components {
           * Color variant of the button
          */
         "variant": "primary";
+    }
+    interface ZenCheckbox {
+        /**
+          * Set checked state.
+         */
+        "checked": boolean;
+        /**
+          * Disables checkbox.
+         */
+        "disabled": false;
+        /**
+          * Label of the checkbox.
+         */
+        "label": string;
+        /**
+          * Shows a red asterisk after label.
+         */
+        "required": false;
     }
     interface ZenDropdown {
         /**
@@ -162,6 +181,12 @@ declare global {
         prototype: HTMLZenButtonElement;
         new (): HTMLZenButtonElement;
     };
+    interface HTMLZenCheckboxElement extends Components.ZenCheckbox, HTMLStencilElement {
+    }
+    var HTMLZenCheckboxElement: {
+        prototype: HTMLZenCheckboxElement;
+        new (): HTMLZenCheckboxElement;
+    };
     interface HTMLZenDropdownElement extends Components.ZenDropdown, HTMLStencilElement {
     }
     var HTMLZenDropdownElement: {
@@ -210,6 +235,7 @@ declare global {
         "text-with-details": HTMLTextWithDetailsElement;
         "zen-animate": HTMLZenAnimateElement;
         "zen-button": HTMLZenButtonElement;
+        "zen-checkbox": HTMLZenCheckboxElement;
         "zen-dropdown": HTMLZenDropdownElement;
         "zen-form-group": HTMLZenFormGroupElement;
         "zen-input": HTMLZenInputElement;
@@ -265,6 +291,28 @@ declare namespace LocalJSX {
           * Color variant of the button
          */
         "variant"?: "primary";
+    }
+    interface ZenCheckbox {
+        /**
+          * Set checked state.
+         */
+        "checked"?: boolean;
+        /**
+          * Disables checkbox.
+         */
+        "disabled"?: false;
+        /**
+          * Label of the checkbox.
+         */
+        "label"?: string;
+        /**
+          * Emitted when the checked property has changed.
+         */
+        "onCheckboxChange"?: (event: CustomEvent<CheckboxChangeEventDetail>) => void;
+        /**
+          * Shows a red asterisk after label.
+         */
+        "required"?: false;
     }
     interface ZenDropdown {
         /**
@@ -358,6 +406,7 @@ declare namespace LocalJSX {
         "text-with-details": TextWithDetails;
         "zen-animate": ZenAnimate;
         "zen-button": ZenButton;
+        "zen-checkbox": ZenCheckbox;
         "zen-dropdown": ZenDropdown;
         "zen-form-group": ZenFormGroup;
         "zen-input": ZenInput;
@@ -376,6 +425,7 @@ declare module "@stencil/core" {
             "text-with-details": LocalJSX.TextWithDetails & JSXBase.HTMLAttributes<HTMLTextWithDetailsElement>;
             "zen-animate": LocalJSX.ZenAnimate & JSXBase.HTMLAttributes<HTMLZenAnimateElement>;
             "zen-button": LocalJSX.ZenButton & JSXBase.HTMLAttributes<HTMLZenButtonElement>;
+            "zen-checkbox": LocalJSX.ZenCheckbox & JSXBase.HTMLAttributes<HTMLZenCheckboxElement>;
             "zen-dropdown": LocalJSX.ZenDropdown & JSXBase.HTMLAttributes<HTMLZenDropdownElement>;
             "zen-form-group": LocalJSX.ZenFormGroup & JSXBase.HTMLAttributes<HTMLZenFormGroupElement>;
             "zen-input": LocalJSX.ZenInput & JSXBase.HTMLAttributes<HTMLZenInputElement>;
