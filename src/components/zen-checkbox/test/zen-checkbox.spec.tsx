@@ -57,4 +57,38 @@ describe('zen-checkbox', () => {
       </zen-checkbox>
     `);
   });
+
+  it('renders checkbox with label', async () => {
+    const page = await newSpecPage({
+      components: [ZenCheckbox],
+      html: `<zen-checkbox label="This is an example label"></zen-checkbox>`,
+    });
+    expect(page.root).toEqualHtml(`
+      <zen-checkbox label="This is an example label">
+        <mock:shadow-root>
+          <input class="input-control" type="checkbox">
+          <label>
+            This is an example label
+          </label>
+        </mock:shadow-root>
+      </zen-checkbox>
+    `);
+  });
+
+  it('renders checkbox with label and it is disabled', async () => {
+    const page = await newSpecPage({
+      components: [ZenCheckbox],
+      html: `<zen-checkbox label="This is an example label" disabled=""></zen-checkbox>`,
+    });
+    expect(page.root).toEqualHtml(`
+      <zen-checkbox label="This is an example label" disabled="">
+        <mock:shadow-root>
+          <input class="input-control" type="checkbox" disabled="">
+          <label class="disabled">
+            This is an example label
+          </label>
+        </mock:shadow-root>
+      </zen-checkbox>
+    `);
+  });
 });
