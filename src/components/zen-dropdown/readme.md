@@ -13,7 +13,7 @@
 | `multiselect` | `multiselect` | If true, multiple options can be selected                | `boolean`      | `false`   |
 | `options`     | --            | Array of available options                               | `OptionItem[]` | `[]`      |
 | `trackBy`     | `track-by`    | Option key that is unique for each option                | `string`       | `'label'` |
-| `val`         | --            | Selected option                                          | `OptionItem`   | `null`    |
+| `value`       | --            | Selected option                                          | `OptionItem`   | `null`    |
 
 
 ## Events

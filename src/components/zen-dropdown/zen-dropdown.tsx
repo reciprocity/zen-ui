@@ -23,7 +23,7 @@ export class ZenDropdown {
   @State() focusedIndex = -1;
 
   /** Selected option */
-  @Prop({ mutable: true }) val: OptionItem = null;
+  @Prop({ mutable: true }) value: OptionItem = null;
   /** Array of available options */
   @Prop() readonly options: Array<OptionItem> = [];
   /** Option key that is unique for each option */
@@ -78,7 +78,7 @@ export class ZenDropdown {
   }
 
   selectValue(option: OptionItem): void {
-    this.val = option;
+    this.value = option;
     this.opened = false;
   }
 
@@ -96,11 +96,11 @@ export class ZenDropdown {
   }
 
   isSelected(option: OptionItem): boolean {
-    return option[this.trackBy] === get(this, 'val.' + this.trackBy);
+    return option[this.trackBy] === get(this, 'value.' + this.trackBy);
   }
 
   selectedIndex(): number {
-    return this.options.findIndex(n => n[this.trackBy] === get(this, 'val.' + this.trackBy));
+    return this.options.findIndex(n => n[this.trackBy] === get(this, 'value.' + this.trackBy));
   }
 
   // Events
@@ -135,7 +135,7 @@ export class ZenDropdown {
             this.toggleDropdown(true);
           }}
         >
-          {get(this, 'val.label') || 'Select something'}
+          {get(this, 'value.label') || 'Select something'}
           <div class="arrow">{renderIcon(faChevronDown)}</div>
         </div>
         <div class={{ 'list-wrap': true, 'open-above': this.openAbove() }} ref={el => (this.listWrap = el)}>

@@ -95,7 +95,7 @@ export namespace Components {
         /**
           * Selected option
          */
-        "val": OptionItem;
+        "value": OptionItem;
     }
     interface ZenFormGroup {
     }
@@ -367,7 +367,7 @@ declare namespace LocalJSX {
         /**
           * Selected option
          */
-        "val"?: OptionItem;
+        "value"?: OptionItem;
     }
     interface ZenFormGroup {
     }
