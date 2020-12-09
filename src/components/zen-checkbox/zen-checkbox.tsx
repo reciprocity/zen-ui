@@ -31,6 +31,7 @@ export class ZenCheckbox {
 
   private onClick = (ev: MouseEvent) => {
     ev.preventDefault();
+    if (this.disabled) return;
     this.checked = !this.checked;
   };
 

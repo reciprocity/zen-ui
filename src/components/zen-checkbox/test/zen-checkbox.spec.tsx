@@ -91,4 +91,24 @@ describe('zen-checkbox', () => {
       </zen-checkbox>
     `);
   });
+
+  it('renders checkbox with label and it is required', async () => {
+    const page = await newSpecPage({
+      components: [ZenCheckbox],
+      html: `<zen-checkbox label="This is an example label" required=""></zen-checkbox>`,
+    });
+    expect(page.root).toEqualHtml(`
+      <zen-checkbox label="This is an example label" required="">
+        <mock:shadow-root>
+          <input class="input-control" type="checkbox" required="">
+          <label>
+            This is an example label
+            <span class="required">
+              *
+            </span>
+          </label>
+        </mock:shadow-root>
+      </zen-checkbox>
+    `);
+  });
 });
