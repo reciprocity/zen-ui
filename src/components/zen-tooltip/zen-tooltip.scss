@@ -1,0 +1,77 @@
+@import '../../zen-styles/component-helpers.scss';
+
+:host {
+  display: block;
+}
+
+span {
+  background: $color-gray-800;
+  font-size: 0.75rem;
+  color: #fff;
+  padding: 0.9375rem;
+  border-radius: 0.1rem;
+  line-height: 1rem;
+  text-align: center;
+  font-weight: 400;
+  position: relative;
+  display: inline-block;
+  font-family: inherit;
+  max-width: 11rem;
+}
+
+span:before {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+
+.top:before,
+.bottom:before {
+  border-left: 0.25rem solid transparent;
+  border-right: 0.25rem solid transparent;
+  left: 50%;
+  transform: translateX(-2px);
+}
+
+.top:before {
+  top: -0.25rem;
+  border-bottom: 0.25rem solid $color-gray-800;
+}
+
+.bottom:before {
+  bottom: -0.25rem;
+  border-top: 0.25rem solid $color-gray-800;
+}
+
+.right:before,
+.left:before {
+  top: 0.4375rem;
+  border-top: 0.25rem solid transparent;
+  border-bottom: 0.25rem solid transparent;
+}
+.right:before {
+  right: -0.25rem;
+  border-left: 0.25rem solid $color-gray-800;
+}
+.left:before {
+  left: -0.25rem;
+  border-right: 0.25rem solid $color-gray-800;
+}
+
+.error {
+  background-color: $color-red-800;
+}
+
+.error.top:before {
+  border-bottom-color: $color-red-800;
+}
+.error.right:before {
+  border-left-color: $color-red-800;
+}
+.error.bottom:before {
+  border-top-color: $color-red-800;
+}
+.error.left:before {
+  border-right-color: $color-red-800;
+}

@@ -12,6 +12,7 @@ import { OptionItem, OptionValue } from "./components/zen-dropdown/zen-dropdown"
 import { ZenDismissDuration, ZenVariant } from "./components/zen-notification/zen-notification-helper";
 import { StepEvent, StepItem } from "./components/zen-steps/zen-steps";
 import { StepsFilter } from "./components/zen-steps/types";
+import { ArrowPosition } from "./components/zen-tooltip/types";
 export namespace Components {
     interface ColorSwatch {
         /**
@@ -225,6 +226,20 @@ export namespace Components {
          */
         "text"?: string | null;
     }
+    interface ZenTooltip {
+        /**
+          * Arrow position
+         */
+        "arrow"?: ArrowPosition;
+        /**
+          * Set error state
+         */
+        "error"?: boolean;
+        /**
+          * Set text
+         */
+        "text"?: string;
+    }
 }
 declare global {
     interface HTMLColorSwatchElement extends Components.ColorSwatch, HTMLStencilElement {
@@ -323,6 +338,12 @@ declare global {
         prototype: HTMLZenTextareaElement;
         new (): HTMLZenTextareaElement;
     };
+    interface HTMLZenTooltipElement extends Components.ZenTooltip, HTMLStencilElement {
+    }
+    var HTMLZenTooltipElement: {
+        prototype: HTMLZenTooltipElement;
+        new (): HTMLZenTooltipElement;
+    };
     interface HTMLElementTagNameMap {
         "color-swatch": HTMLColorSwatchElement;
         "color-swatch-group": HTMLColorSwatchGroupElement;
@@ -340,6 +361,7 @@ declare global {
         "zen-spinner": HTMLZenSpinnerElement;
         "zen-steps": HTMLZenStepsElement;
         "zen-textarea": HTMLZenTextareaElement;
+        "zen-tooltip": HTMLZenTooltipElement;
     }
 }
 declare namespace LocalJSX {
@@ -575,6 +597,20 @@ declare namespace LocalJSX {
          */
         "text"?: string | null;
     }
+    interface ZenTooltip {
+        /**
+          * Arrow position
+         */
+        "arrow"?: ArrowPosition;
+        /**
+          * Set error state
+         */
+        "error"?: boolean;
+        /**
+          * Set text
+         */
+        "text"?: string;
+    }
     interface IntrinsicElements {
         "color-swatch": ColorSwatch;
         "color-swatch-group": ColorSwatchGroup;
@@ -592,6 +628,7 @@ declare namespace LocalJSX {
         "zen-spinner": ZenSpinner;
         "zen-steps": ZenSteps;
         "zen-textarea": ZenTextarea;
+        "zen-tooltip": ZenTooltip;
     }
 }
 export { LocalJSX as JSX };
@@ -614,6 +651,7 @@ declare module "@stencil/core" {
             "zen-spinner": LocalJSX.ZenSpinner & JSXBase.HTMLAttributes<HTMLZenSpinnerElement>;
             "zen-steps": LocalJSX.ZenSteps & JSXBase.HTMLAttributes<HTMLZenStepsElement>;
             "zen-textarea": LocalJSX.ZenTextarea & JSXBase.HTMLAttributes<HTMLZenTextareaElement>;
+            "zen-tooltip": LocalJSX.ZenTooltip & JSXBase.HTMLAttributes<HTMLZenTooltipElement>;
         }
     }
 }
