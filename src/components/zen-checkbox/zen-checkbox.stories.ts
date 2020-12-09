@@ -9,23 +9,16 @@ const argTypes = {
     },
   },
   checked: {
-    type: { name: 'string', required: false },
-    description: 'set if the input is checked',
-    table: {
-      type: { summary: 'boolean' },
-      defaultValue: { summary: false },
-    },
     control: {
       type: 'boolean',
     },
   },
   disabled: {
-    type: { name: 'string', required: false },
-    description: 'set if the input is disabled',
-    table: {
-      type: { summary: 'boolean' },
-      defaultValue: { summary: false },
+    control: {
+      type: 'boolean',
     },
+  },
+  required: {
     control: {
       type: 'boolean',
     },
@@ -41,11 +34,12 @@ export default {
   },
 };
 
-const Template = ({ label, checked, disabled }) => {
+const Template = ({ label, checked, required, disabled }) => {
   checked = checked ? checked : false;
   disabled = disabled ? disabled : false;
+  required = required ? required : false;
   label = label ? label : '';
-  return html`<zen-checkbox checked=${checked} disabled=${disabled} label=${label} />`;
+  return html`<zen-checkbox checked=${checked} disabled=${disabled} label=${label} required=${required} />`;
 };
 
 export const Default = Template.bind({});

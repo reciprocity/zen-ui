@@ -7,29 +7,24 @@ import { CheckboxChangeEventDetail } from './types';
   shadow: true,
 })
 export class ZenCheckbox {
-  /**
-   * Set checked state.
-   */
+  /** Set checked state. */
   @Prop({ mutable: true }) checked = false;
 
-  /**
-   * Disables checkbox.
-   */
+  /** Disables checkbox. */
   @Prop() readonly disabled = false;
 
-  /**
-   * Label of the checkbox.
-   */
+  /** Label of the checkbox. */
   @Prop() readonly label: string = null;
 
-  /**
-   * Emitted when the checked property has changed.
-   */
-  @Event() change!: EventEmitter<CheckboxChangeEventDetail>;
+  /** Shows a red asterisk after label. */
+  @Prop() readonly required: false;
+
+  /** Emitted when the checked property has changed. */
+  @Event() checkboxChange!: EventEmitter<CheckboxChangeEventDetail>;
 
   @Watch('checked')
   checkedChanged(isChecked: boolean): void {
-    this.change.emit({
+    this.checkboxChange.emit({
       checked: isChecked,
     });
   }
@@ -42,8 +37,18 @@ export class ZenCheckbox {
   render(): HTMLElement {
     return (
       <Host onClick={this.onClick}>
-        <input type="checkbox" class="input-control" disabled={this.disabled} checked={this.checked} />
-        {this.label ? <zen-label label={this.label} /> : null}
+        <input
+          type="checkbox"
+          class="input-control"
+          disabled={this.disabled}
+          checked={this.checked}
+          required={this.required}
+        />
+        {this.label ? (
+          <label class={{ disabled: this.disabled }}>
+            {this.label} {this.required ? <span class="required">*</span> : null}
+          </label>
+        ) : null}
       </Host>
     );
   }

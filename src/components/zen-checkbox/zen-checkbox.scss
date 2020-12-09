@@ -3,12 +3,26 @@
 
 :host {
   display: flex;
-  align-items: center;
   width: fit-content;
-  zen-label {
+  label {
     @include noselect;
     margin-left: 0.125rem;
+    font-size: $text-md;
+    line-height: 1rem;
+    color: $color-gray-700;
+    padding-top: 1px;
+
+    & span.required {
+      color: $color-red-700;
+    }
+
+    &.disabled {
+      opacity: 0.5;
+      pointer-events: none;
+      cursor: default;
+    }
   }
+  
 }
 
 input.input-control {
@@ -17,5 +31,11 @@ input.input-control {
   width: auto;
   &:focus {
     box-shadow: 0 0 0 1px $color-blue-300;
+    &:invalid {
+      box-shadow: 0 0 0 1px $color-red-300;
+    }
+  }
+  &:invalid {
+    box-shadow: 0 0 0 1px $color-red-300;
   }
 }

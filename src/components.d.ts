@@ -70,6 +70,10 @@ export namespace Components {
           * Label of the checkbox.
          */
         "label": string;
+        /**
+          * Shows a red asterisk after label.
+         */
+        "required": false;
     }
     interface ZenDropdown {
         /**
@@ -304,7 +308,11 @@ declare namespace LocalJSX {
         /**
           * Emitted when the checked property has changed.
          */
-        "onChange"?: (event: CustomEvent<CheckboxChangeEventDetail>) => void;
+        "onCheckboxChange"?: (event: CustomEvent<CheckboxChangeEventDetail>) => void;
+        /**
+          * Shows a red asterisk after label.
+         */
+        "required"?: false;
     }
     interface ZenDropdown {
         /**
