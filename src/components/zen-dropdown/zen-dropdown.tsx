@@ -34,10 +34,7 @@ export class ZenDropdown {
   @Prop() readonly menuHeight: number = 170;
 
   /** Emitted on any selection change */
-  @Event() input2: EventEmitter<OptionItem>;
-  emitValueChanged(value: OptionItem): void {
-    this.input2.emit(value);
-  }
+  @Event() zenInput: EventEmitter<OptionItem>;
 
   @Listen('keydown')
   handleKeyDown(ev: KeyboardEvent): void {
@@ -80,6 +77,7 @@ export class ZenDropdown {
   selectValue(option: OptionItem): void {
     this.value = option;
     this.opened = false;
+    this.zenInput.emit(this.value);
   }
 
   toggleDropdown(open?: boolean): void {

@@ -18,9 +18,9 @@
 
 ## Events
 
-| Event    | Description                     | Type                      |
-| -------- | ------------------------------- | ------------------------- |
-| `input2` | Emitted on any selection change | `CustomEvent<OptionItem>` |
+| Event      | Description                     | Type                      |
+| ---------- | ------------------------------- | ------------------------- |
+| `zenInput` | Emitted on any selection change | `CustomEvent<OptionItem>` |
 
 
 ## Dependencies

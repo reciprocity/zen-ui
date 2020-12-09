@@ -2,7 +2,7 @@ import { html } from 'lit-html';
 import markdown from './readme.md';
 import { eventHandles, action } from '../../../.storybook/helpers/custom-action';
 
-const customEvents = ['input2'];
+const customEvents = ['zenInput'];
 const events = [...eventHandles(customEvents)];
 
 const argTypes = {

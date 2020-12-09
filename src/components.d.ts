@@ -355,7 +355,7 @@ declare namespace LocalJSX {
         /**
           * Emitted on any selection change
          */
-        "onInput2"?: (event: CustomEvent<OptionItem>) => void;
+        "onZenInput"?: (event: CustomEvent<OptionItem>) => void;
         /**
           * Array of available options
          */
