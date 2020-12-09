@@ -36,7 +36,13 @@ const Template = ({ selectedColor }) => {
     label: `item ${n}`,
   }));
   return html`
-    <zen-dropdown class="my-96" style="max-width: 300px;" .options=${opts} selected-color=${selectedColor}>
+    <zen-dropdown
+      class="my-96"
+      style="max-width: 300px;"
+      value=${opts[2].label}
+      .options=${opts}
+      selected-color=${selectedColor}
+    >
     </zen-dropdown>
     ${action('zen-dropdown', customEvents)}
   `;
