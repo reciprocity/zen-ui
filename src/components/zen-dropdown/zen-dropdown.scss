@@ -9,6 +9,7 @@ $background: #fff;
   display: block;
   text-align-last: left;
   outline: none;
+  font-size: $text-md;
 }
 
 :host(:focus) .field {
@@ -50,6 +51,9 @@ $background: #fff;
   z-index: 100;
 }
 
+$item-line-height: 1.2rem;
+$item-ypadding: 0.5rem;
+
 .list {
   border: 1px solid $border;
   border-top: none;
@@ -57,7 +61,7 @@ $background: #fff;
   padding: 0;
   margin: 0;
   box-shadow: rgba(0, 0, 0, 0.05) 0px 4px 5px, rgba(0, 0, 0, 0.1) 1px 4px 24px;
-  max-height: 20rem;
+  max-height: #{4 * ($item-line-height + 2 * $item-ypadding)};
   transition: transform 0.3s, opacity 0.3s linear;
   overflow: auto;
   scroll-behavior: smooth;
@@ -66,9 +70,13 @@ $background: #fff;
   border-bottom-right-radius: $input-radius;
 
   li {
+    line-height: $item-line-height;
     list-style-type: none;
     transition: background-color 0.1s linear;
-    padding: 1rem 2rem;
+    padding: $item-ypadding 1rem;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
 
     &:hover {
       background-color: rgba(#000, 0.05);
