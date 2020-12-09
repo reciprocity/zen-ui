@@ -29,8 +29,8 @@ const Template = ({ arrow, text, error }) => {
 
 const TemplateSlot = () => {
   return html`
-    <zen-tooltip arrow="bottom">
-      <slot><div>This is a HTML content</div></slot>
+    <zen-tooltip arrow="bottom" text="Override text">
+      <div slot="text"><b>This is a HTML content</b></div>
     </zen-tooltip>
   `;
 };

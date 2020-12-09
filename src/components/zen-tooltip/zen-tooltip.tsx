@@ -20,8 +20,7 @@ export class ZenTooltip {
     return (
       <Host>
         <span class={`${this.error ? 'error' : ''} ${this.arrow ? this.arrow : ''}`}>
-          {this.text}
-          <slot></slot>
+          <slot name="text">{this.text}</slot>
         </span>
       </Host>
     );
