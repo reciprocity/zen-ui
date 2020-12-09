@@ -155,10 +155,6 @@ export namespace Components {
          */
         "disabled": false;
         /**
-          * Set height in any valid CSS unit.
-         */
-        "height": string;
-        /**
           * Placeholder of the textarea.
          */
         "placeholder": string;
@@ -170,10 +166,6 @@ export namespace Components {
           * The text of the textarea.
          */
         "text"?: string | null;
-        /**
-          * Set width in any valid CSS unit.
-         */
-        "width": string;
     }
 }
 declare global {
@@ -439,13 +431,9 @@ declare namespace LocalJSX {
          */
         "disabled"?: false;
         /**
-          * Set height in any valid CSS unit.
-         */
-        "height"?: string;
-        /**
           * Emitted when a keyboard input occurred.
          */
-        "onKeyboardInput"?: (event: CustomEvent<KeyboardEvent>) => void;
+        "onZenInput"?: (event: CustomEvent<KeyboardEvent>) => void;
         /**
           * Placeholder of the textarea.
          */
@@ -458,10 +446,6 @@ declare namespace LocalJSX {
           * The text of the textarea.
          */
         "text"?: string | null;
-        /**
-          * Set width in any valid CSS unit.
-         */
-        "width"?: string;
     }
     interface IntrinsicElements {
         "color-swatch": ColorSwatch;

@@ -2,45 +2,11 @@ import { html } from 'lit-html';
 import markdown from './readme.md';
 import { action } from '../../../.storybook/helpers/custom-action';
 
-const customEvents = ['keyboardInput'];
-
-const argTypes = {
-  text: {
-    control: {
-      type: 'text',
-    },
-  },
-  placeholder: {
-    control: {
-      type: 'text',
-    },
-  },
-  required: {
-    control: {
-      type: 'boolean',
-    },
-  },
-  disabled: {
-    control: {
-      type: 'boolean',
-    },
-  },
-  width: {
-    control: {
-      type: 'text',
-    },
-  },
-  height: {
-    control: {
-      type: 'text',
-    },
-  },
-};
+const customEvents = ['zenInput'];
 
 export default {
   title: 'Components/Zen Textarea',
   component: 'zen-textarea',
-  argTypes,
   parameters: {
     notes: { markdown },
   },
@@ -65,3 +31,9 @@ const Template = ({ text, placeholder, required, disabled, width, height }) => {
 };
 
 export const Default = Template.bind({});
+Default.args = {
+  text: '',
+  placeholder: '',
+  required: false,
+  disabled: false,
+};

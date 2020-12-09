@@ -6,12 +6,6 @@ import { Component, Host, h, Prop, EventEmitter, Event } from '@stencil/core';
   shadow: true,
 })
 export class ZenTextarea {
-  /** Set width in any valid CSS unit. */
-  @Prop() readonly width: string = null;
-
-  /** Set height in any valid CSS unit. */
-  @Prop() readonly height: string = null;
-
   /** Makes textarea disabled. */
   @Prop() readonly disabled = false;
 
@@ -25,14 +19,14 @@ export class ZenTextarea {
   @Prop({ mutable: true }) text?: string | null = '';
 
   /** Emitted when a keyboard input occurred. */
-  @Event() keyboardInput!: EventEmitter<KeyboardEvent>;
+  @Event() zenInput!: EventEmitter<KeyboardEvent>;
 
   private onInput = (ev: Event) => {
     const input = ev.target as HTMLTextAreaElement | null;
     if (input) {
       this.text = input.value || '';
     }
-    this.keyboardInput.emit(ev as KeyboardEvent);
+    this.zenInput.emit(ev as KeyboardEvent);
   };
 
   render(): HTMLElement {
@@ -45,7 +39,6 @@ export class ZenTextarea {
           disabled={this.disabled}
           required={this.required}
           onInput={this.onInput}
-          style={{ width: this.width, height: this.height }}
         >
           {text}
         </textarea>
