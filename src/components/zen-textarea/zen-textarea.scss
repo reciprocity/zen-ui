@@ -8,5 +8,5 @@
 textarea.input-control {
   @include zenInput;
   @include noselect;
-  width: auto;
+  width: 100%;
 }

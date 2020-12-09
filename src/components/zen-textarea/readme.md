@@ -3,14 +3,14 @@
 
 ## Properties
 
-| Property      | Attribute     | Description                  | Type      | Default |
-| ------------- | ------------- | ---------------------------- | --------- | ------- |
-| `cols`        | `cols`        | Columns of the textarea.     | `30`      | `30`    |
-| `disabled`    | `disabled`    | Makes textarea disabled.     | `boolean` | `false` |
-| `placeholder` | `placeholder` | Placeholder of the textarea. | `string`  | `null`  |
-| `required`    | `required`    | Makes textarea required.     | `boolean` | `false` |
-| `rows`        | `rows`        | Rows of the textarea.        | `5`       | `5`     |
-| `value`       | `value`       | The value of the textarea.   | `string`  | `''`    |
+| Property      | Attribute     | Description                       | Type      | Default |
+| ------------- | ------------- | --------------------------------- | --------- | ------- |
+| `disabled`    | `disabled`    | Makes textarea disabled.          | `boolean` | `false` |
+| `height`      | `height`      | Set height in any valid CSS unit. | `string`  | `null`  |
+| `placeholder` | `placeholder` | Placeholder of the textarea.      | `string`  | `null`  |
+| `required`    | `required`    | Makes textarea required.          | `boolean` | `false` |
+| `text`        | `text`        | The text of the textarea.         | `string`  | `''`    |
+| `width`       | `width`       | Set width in any valid CSS unit.  | `string`  | `null`  |
 
 
 ## Events

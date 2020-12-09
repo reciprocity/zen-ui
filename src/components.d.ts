@@ -151,13 +151,13 @@ export namespace Components {
     }
     interface ZenTextarea {
         /**
-          * Columns of the textarea.
-         */
-        "cols": 30;
-        /**
           * Makes textarea disabled.
          */
         "disabled": false;
+        /**
+          * Set height in any valid CSS unit.
+         */
+        "height": string;
         /**
           * Placeholder of the textarea.
          */
@@ -167,13 +167,13 @@ export namespace Components {
          */
         "required": false;
         /**
-          * Rows of the textarea.
+          * The text of the textarea.
          */
-        "rows": 5;
+        "text"?: string | null;
         /**
-          * The value of the textarea.
+          * Set width in any valid CSS unit.
          */
-        "value"?: string | null;
+        "width": string;
     }
 }
 declare global {
@@ -435,13 +435,13 @@ declare namespace LocalJSX {
     }
     interface ZenTextarea {
         /**
-          * Columns of the textarea.
-         */
-        "cols"?: 30;
-        /**
           * Makes textarea disabled.
          */
         "disabled"?: false;
+        /**
+          * Set height in any valid CSS unit.
+         */
+        "height"?: string;
         /**
           * Emitted when a keyboard input occurred.
          */
@@ -455,13 +455,13 @@ declare namespace LocalJSX {
          */
         "required"?: false;
         /**
-          * Rows of the textarea.
+          * The text of the textarea.
          */
-        "rows"?: 5;
+        "text"?: string | null;
         /**
-          * The value of the textarea.
+          * Set width in any valid CSS unit.
          */
-        "value"?: string | null;
+        "width"?: string;
     }
     interface IntrinsicElements {
         "color-swatch": ColorSwatch;
