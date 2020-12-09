@@ -1,6 +1,8 @@
 import { Component, Host, h, Prop, State, Watch, Event, EventEmitter, Listen } from '@stencil/core';
 import { key } from '../helpers/keyCodes';
 import { MouseEvent } from '../helpers/helpers';
+import { faChevronDown } from '@fortawesome/pro-light-svg-icons';
+import { renderIcon, styles } from '../helpers/fa-icons';
 
 export interface OptionItem {
   label: string;
@@ -119,6 +121,7 @@ export class ZenDropdown {
   render(): HTMLElement {
     return (
       <Host tabindex="0" class="zen-multiselect" ref={el => (this.div = el)}>
+        <style>{styles}</style>
         <div
           class={{
             field: true,
@@ -129,7 +132,7 @@ export class ZenDropdown {
           }}
         >
           {this.internalValue.label || 'Select something'}
-          <div class="arrow"></div>
+          <div class="arrow">{renderIcon(faChevronDown)}</div>
         </div>
         <div class="list-wrap">
           <zen-animate show={this.opened}>

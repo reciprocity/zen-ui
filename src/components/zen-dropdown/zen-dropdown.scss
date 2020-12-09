@@ -26,10 +26,8 @@ $background: #fff;
   .arrow {
     position: absolute;
     right: 10px;
-    top: calc(50% - 3px);
-    border-top: 5px solid $color-gray-500;
-    border-left: 4px solid transparent;
-    border-right: 4px solid transparent;
+    top: calc(50% - 9px);
+    color: $color-gray-500;
     border-bottom-width: 0;
     transition: transform 0.3s;
   }
