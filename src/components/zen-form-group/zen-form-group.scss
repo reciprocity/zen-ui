@@ -2,8 +2,5 @@
   position: relative;
   display: block;
   font-family: inherit;
-
-  zen-label + zen-textarea, zen-label + zen-input, zen-label + zen-checkbox {
-    margin-top: 0.25rem;
-  }
+  margin: 0.75rem 0;
 }

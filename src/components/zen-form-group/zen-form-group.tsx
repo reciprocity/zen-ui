@@ -9,9 +9,7 @@ export class ZenFormGroup {
   render(): HTMLElement {
     return (
       <Host>
-        <div class="input-group">
-          <slot />
-        </div>
+        <slot />
       </Host>
     );
   }
