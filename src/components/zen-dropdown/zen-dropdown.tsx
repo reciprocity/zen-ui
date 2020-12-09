@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, State, Event, EventEmitter, Listen } from '@stencil/core';
+import { Component, Host, h, Prop, State, Event, EventEmitter, Listen, Watch } from '@stencil/core';
 import { key } from '../helpers/keyCodes';
 import { MouseEvent } from '../helpers/helpers';
 import { faChevronDown } from '@fortawesome/pro-light-svg-icons';
@@ -9,6 +9,8 @@ export interface OptionItem {
   label: string;
 }
 
+type OptionValue = string | number | undefined;
+
 @Component({
   tag: 'zen-dropdown',
   styleUrl: 'zen-dropdown.scss',
@@ -18,12 +20,13 @@ export class ZenDropdown {
   div: HTMLElement = undefined;
   listWrap: HTMLElement = undefined;
   clickHandler = undefined;
+  selectedOption: OptionItem = null;
 
   @State() opened = false;
   @State() focusedIndex = -1;
 
   /** Selected option */
-  @Prop({ mutable: true }) value: OptionItem = null;
+  @Prop({ mutable: true }) value: OptionValue = undefined;
   /** Array of available options */
   @Prop() readonly options: Array<OptionItem> = [];
   /** Option key that is unique for each option */
@@ -34,7 +37,12 @@ export class ZenDropdown {
   @Prop() readonly menuHeight: number = 170;
 
   /** Emitted on any selection change */
-  @Event() zenInput: EventEmitter<OptionItem>;
+  @Event() zenInput: EventEmitter<OptionValue>;
+
+  @Watch('value')
+  valueChanged(value: OptionValue): void {
+    this.selectedOption = value ? this.options.find(n => n[this.trackBy] === value) : undefined;
+  }
 
   @Listen('keydown')
   handleKeyDown(ev: KeyboardEvent): void {
@@ -75,7 +83,7 @@ export class ZenDropdown {
   }
 
   selectValue(option: OptionItem): void {
-    this.value = option;
+    this.value = option[this.trackBy];
     this.opened = false;
     this.zenInput.emit(this.value);
   }
@@ -94,11 +102,11 @@ export class ZenDropdown {
   }
 
   isSelected(option: OptionItem): boolean {
-    return option[this.trackBy] === get(this, 'value.' + this.trackBy);
+    return option[this.trackBy] === this.value;
   }
 
   selectedIndex(): number {
-    return this.options.findIndex(n => n[this.trackBy] === get(this, 'value.' + this.trackBy));
+    return this.options.findIndex(n => n[this.trackBy] === this.value);
   }
 
   // Events
@@ -120,6 +128,10 @@ export class ZenDropdown {
     return y < window.pageYOffset || y + this.menuHeight > window.pageYOffset + window.innerHeight;
   }
 
+  connectedCallback(): void {
+    this.valueChanged(this.value);
+  }
+
   render(): HTMLElement {
     return (
       <Host tabindex="0" class="zen-multiselect" ref={el => (this.div = el)}>
@@ -133,7 +145,7 @@ export class ZenDropdown {
             this.toggleDropdown(true);
           }}
         >
-          {get(this, 'value.label') || 'Select something'}
+          {get(this.selectedOption, 'label') || 'Select something'}
           <div class="arrow">{renderIcon(faChevronDown)}</div>
         </div>
         <div class={{ 'list-wrap': true, 'open-above': this.openAbove() }} ref={el => (this.listWrap = el)}>
