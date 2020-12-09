@@ -15,6 +15,7 @@ export interface OptionItem {
 })
 export class ZenDropdown {
   div: HTMLElement = undefined;
+  listWrap: HTMLElement = undefined;
   clickHandler = undefined;
 
   @State() opened = false;
@@ -29,6 +30,8 @@ export class ZenDropdown {
   @Prop() readonly trackBy: string = 'label';
   /** If true, multiple options can be selected */
   @Prop() readonly multiselect: boolean = false;
+  /** To determine if there's enough space under field on open */
+  @Prop() readonly menuHeight: number = 170;
 
   @Watch('val')
   valueDidChangeHandler(val: OptionItem): void {
@@ -118,6 +121,17 @@ export class ZenDropdown {
     this.valueDidChangeHandler(this.val);
   }
 
+  openAbove(): boolean {
+    if (!this.listWrap) return false;
+    let el: HTMLElement = this.listWrap;
+    let y = el.offsetTop;
+    while (el.offsetParent) {
+      el = el.offsetParent as HTMLElement;
+      y += el.offsetTop;
+    }
+    return y < window.pageYOffset || y + this.menuHeight > window.pageYOffset + window.innerHeight;
+  }
+
   render(): HTMLElement {
     return (
       <Host tabindex="0" class="zen-multiselect" ref={el => (this.div = el)}>
@@ -134,7 +148,7 @@ export class ZenDropdown {
           {this.internalValue.label || 'Select something'}
           <div class="arrow">{renderIcon(faChevronDown)}</div>
         </div>
-        <div class="list-wrap">
+        <div class={{ 'list-wrap': true, 'open-above': this.openAbove() }} ref={el => (this.listWrap = el)}>
           <zen-animate show={this.opened}>
             <ul class="list">
               {this.options.map((option, index) => (

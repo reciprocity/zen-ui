@@ -3,6 +3,7 @@
 
 $border: rgba(#000, 0.1);
 $background: #fff;
+$open-transition: 0.2s;
 
 :host {
   position: relative;
@@ -16,13 +17,16 @@ $background: #fff;
   @include zenInputFocus;
 }
 
+$field-height: #{1.2rem + 2 * 0.5rem};
+
 .field {
   @include zenInput;
   @include noselect;
   z-index: 1;
   position: relative;
-  padding: 0.5em 2em;
+  padding: 0.5rem 1rem;
   border-radius: $input-radius;
+  height: $field-height;
 
   .arrow {
     position: absolute;
@@ -30,7 +34,7 @@ $background: #fff;
     top: calc(50% - 9px);
     color: $color-gray-500;
     border-bottom-width: 0;
-    transition: transform 0.3s;
+    transition: transform $open-transition;
   }
 
   &.opened {
@@ -62,7 +66,7 @@ $item-ypadding: 0.5rem;
   margin: 0;
   box-shadow: rgba(0, 0, 0, 0.05) 0px 4px 5px, rgba(0, 0, 0, 0.1) 1px 4px 24px;
   max-height: #{4 * ($item-line-height + 2 * $item-ypadding)};
-  transition: transform 0.3s, opacity 0.3s linear;
+  transition: transform $open-transition, opacity $open-transition linear;
   overflow: auto;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
@@ -92,4 +96,23 @@ $item-ypadding: 0.5rem;
 .list[animate='in-start'] {
   opacity: 0;
   transform: translate(0, -100px);
+}
+
+.list-wrap.open-above {
+  // Move menu above the dropdown:
+  transform: translate(0, calc(-100% - #{$field-height}));
+  padding-top: 24px;
+  padding-bottom: 0;
+
+  .list {
+    border-radius: 0;
+    border-top-left-radius: $input-radius;
+    border-top-right-radius: $input-radius;
+  }
+
+  .list[animate='out-end'],
+  .list[animate='in-start'] {
+    // Drive in from below:
+    transform: translate(0, 100px);
+  }
 }
