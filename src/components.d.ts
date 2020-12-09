@@ -58,6 +58,10 @@ export namespace Components {
     }
     interface ZenDropdown {
         /**
+          * To determine if there's enough space under field on open
+         */
+        "menuHeight": number;
+        /**
           * If true, multiple options can be selected
          */
         "multiselect": boolean;
@@ -267,6 +271,10 @@ declare namespace LocalJSX {
         "variant"?: "primary";
     }
     interface ZenDropdown {
+        /**
+          * To determine if there's enough space under field on open
+         */
+        "menuHeight"?: number;
         /**
           * If true, multiple options can be selected
          */
