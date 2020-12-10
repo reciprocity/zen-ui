@@ -23,7 +23,7 @@
   padding: 1.3rem 1.3rem;
   margin-bottom: 2rem;
   border: 1px solid transparent;
-  border-radius: 0.125rem;
+  border-radius: $border-radius-default;
   animation: fadeIn 1s;
 
   &.notification-success {
