@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, State, Event, EventEmitter, Listen, Watch } from '@stencil/core';
+import { Component, Host, h, Prop, State, Event, EventEmitter, Listen, Watch, Element } from '@stencil/core';
 import { key } from '../helpers/keyCodes';
 import { MouseEvent } from '../helpers/helpers';
 import { faChevronDown } from '@fortawesome/pro-light-svg-icons';
@@ -23,6 +23,9 @@ export class ZenDropdown {
   list: HTMLElement = undefined;
   clickHandler = undefined;
   selectedOption: OptionItem = null;
+  hasOptionsSlot = false;
+
+  @Element() hostElement: HTMLZenDropdownElement;
 
   @State() opened = false;
   @State() focusedIndex = -1;
@@ -147,6 +150,11 @@ export class ZenDropdown {
     this.valueChanged(this.value);
   }
 
+  componentWillLoad(): void {
+    this.valueChanged(this.value);
+    this.hasOptionsSlot = !!this.hostElement.querySelector('[slot="options"]');
+  }
+
   render(): HTMLElement {
     return (
       <Host tabindex="0" class="zen-multiselect" ref={el => (this.div = el)}>
@@ -166,14 +174,18 @@ export class ZenDropdown {
         <div class={{ 'list-wrap': true, 'open-above': this.openAbove() }} ref={el => (this.listWrap = el)}>
           <zen-animate show={this.opened}>
             <div class="list" ref={el => (this.list = el)}>
-              {this.options.map((option, index) => (
+              {!this.hasOptionsSlot ? (
+                this.options.map((option, index) => (
                 <zen-menu-item
                   label={option.label}
                   focused={this.focusedIndex === index}
                   selected={option[this.trackBy] === this.value}
                   onClick={() => this.selectValue(option)}
                 />
-              ))}
+                ))
+              ) : (
+                <slot name="options"></slot>
+              )}
             </div>
           </zen-animate>
         </div>
