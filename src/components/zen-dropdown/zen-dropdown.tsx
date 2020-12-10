@@ -62,9 +62,7 @@ export class ZenDropdown {
     this.zenFocusItem.emit(focusedIndex);
     if (!this.hasOptionsSlot) return;
 
-    const optionsSlot = this.hostElement.shadowRoot.querySelector('slot[name=options]') as HTMLSlotElement;
-    const list = optionsSlot.assignedNodes()[0] as HTMLElement;
-    const items = list.querySelectorAll('zen-menu-item');
+    const items = this.getSlottedOptionItems();
     for (let i = 0; i < items.length; i++) {
       items[i].focused = i === focusedIndex;
     }
@@ -125,6 +123,12 @@ export class ZenDropdown {
         ev.preventDefault();
         break;
     }
+  }
+
+  getSlottedOptionItems(): NodeListOf<HTMLZenMenuItemElement> {
+    const optionsSlot = this.hostElement.shadowRoot.querySelector('slot[name=options]') as HTMLSlotElement;
+    const list = optionsSlot.assignedNodes()[0] as HTMLElement;
+    return list.querySelectorAll('zen-menu-item');
   }
 
   selectValue(option: OptionItem): void {
