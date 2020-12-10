@@ -95,7 +95,7 @@ export namespace Components {
         /**
           * Selected option
          */
-        "value": OptionItem;
+        "value": OptionValue;
     }
     interface ZenFormGroup {
     }
@@ -355,7 +355,7 @@ declare namespace LocalJSX {
         /**
           * Emitted on any selection change
          */
-        "onZenInput"?: (event: CustomEvent<OptionItem>) => void;
+        "onZenInput"?: (event: CustomEvent<OptionValue>) => void;
         /**
           * Array of available options
          */
@@ -367,7 +367,7 @@ declare namespace LocalJSX {
         /**
           * Selected option
          */
-        "value"?: OptionItem;
+        "value"?: OptionValue;
     }
     interface ZenFormGroup {
     }
