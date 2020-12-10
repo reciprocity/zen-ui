@@ -1,0 +1,15 @@
+@import '../../zen-styles/variables.scss';
+@import '../../zen-styles/mixins/forms.scss';
+
+:host {
+  display: flex;
+  width: 100%;
+  height: 5rem;
+  font-size: $text-md;
+  margin: 0.5rem 0 0.25rem 0;
+}
+
+textarea.input-control {
+  @include zenInput;
+  @include noselect;
+}

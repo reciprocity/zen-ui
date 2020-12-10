@@ -59,6 +59,16 @@ const TemplateWithSupportText = () => {
   `;
 };
 
+const TemplateWithLabelAndTextarea = () => {
+  return html`
+    <zen-form-group>
+      <zen-label label="Describe yourself"></zen-label>
+      <zen-textarea placeholder="Write here..."></zen-textarea>
+      <zen-input-support-text text="0 of 2500 characters"></zen-input-support-text>
+    </zen-form-group>
+  `;
+};
+
 const FullTemplate = () => {
   return html`
     <zen-form-group>
@@ -81,6 +91,12 @@ const FullTemplate = () => {
       <zen-checkbox label="Keep session alive" checked></zen-checkbox>
       <zen-checkbox label="Render components using Stencil"></zen-checkbox>
     </zen-form-group>
+    <zen-form-group>
+      <zen-label label="Describe yourself"></zen-label>
+      <zen-textarea placeholder="Write here..."></zen-textarea>
+      <zen-input-support-text text="0 of 2500 characters"></zen-input-support-text>
+    </zen-form-group>
+    <zen-button label="Sign up"></zen-button>
   `;
 };
 
@@ -89,4 +105,5 @@ export const FormGroupWithLabelAndSupportText = TemplateSimple.bind({});
 export const FormGroupWithLabel = TemplateWithLabel.bind({});
 export const FormGroupWithLabelRequired = TemplateWithLabelRequired.bind({});
 export const FormGroupWithSupportText = TemplateWithSupportText.bind({});
+export const FormGroupWithLabelAndTextarea = TemplateWithLabelAndTextarea.bind({});
 export const FormGroupWithAllElements = FullTemplate.bind({});

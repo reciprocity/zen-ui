@@ -37,7 +37,7 @@
   }
 
   &:disabled {
-    opacity: 0.5;
+    background-color: $color-gray-100;
     pointer-events: none;
     cursor: default;
   }
