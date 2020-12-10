@@ -1,4 +1,4 @@
-import { Component, Host, h } from '@stencil/core';
+import { Component, Host, h, Prop } from '@stencil/core';
 
 @Component({
   tag: 'zen-menu-item',
@@ -6,7 +6,20 @@ import { Component, Host, h } from '@stencil/core';
   shadow: true,
 })
 export class ZenMenuItem {
+  /** Text inside the item */
+  @Prop() readonly label: string = 'Item';
+  /** Render item as selected */
+  @Prop() readonly selected: boolean = false;
+  /** False to enable custom item padding */
+  @Prop() readonly defaultPadding: boolean = true;
+
   render(): HTMLElement {
-    return <Host>Zen menu item</Host>;
+    return (
+      <Host>
+        <div class={{ background: true, selected: this.selected }}>
+          <div class="content">{this.label}</div>
+        </div>
+      </Host>
+    );
   }
 }

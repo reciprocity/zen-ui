@@ -12,8 +12,11 @@ export default {
   },
 };
 
-const Template = () => {
-  return html` <zen-menu-item> </zen-menu-item> `;
+const Template = ({ selected }) => {
+  return html` <zen-menu-item selected=${selected}></zen-menu-item> `;
 };
 
 export const Default = Template.bind({});
+Default.args = {
+  selected: false,
+};

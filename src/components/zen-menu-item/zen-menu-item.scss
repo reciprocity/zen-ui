@@ -1,6 +1,32 @@
 @import '../../zen-styles/variables.scss';
 @import '../../zen-styles/mixins/forms.scss';
 
+$item-line-height: 1.2rem;
+$item-ypadding: 0.5rem;
+
 :host {
   position: relative;
+  box-sizing: border-box;
+  font-size: $text-md;
+  cursor: pointer;
+  line-height: $item-line-height;
+
+  .background {
+    transition: background-color 0.2s linear;
+
+    &:hover,
+    &.selected {
+      background-color: $color-gray-100;
+    }
+
+    &.selected:hover {
+      background-color: $color-gray-200;
+    }
+  }
+}
+
+.content {
+  padding: $item-ypadding 1rem;
+  display: flex;
+  align-items: center;
 }
