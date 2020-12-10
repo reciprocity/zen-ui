@@ -13,18 +13,18 @@ $item-ypadding: 0.5rem;
 
   .background {
     transition: background-color 0.2s linear;
+  }
+}
 
-    &:hover,
-    &.focused,
-    &.selected {
-      background-color: $color-gray-100;
-    }
+:host(:hover,[selected],[focused]) {
+  .background {
+    background-color: $color-gray-100;
+  }
+}
 
-    &.focused:hover,
-    &.focused.selected,
-    &.selected:hover {
-      background-color: $color-gray-200;
-    }
+:host([selected][focused], [selected]:hover, [focused]:hover) {
+  .background {
+    background-color: $color-gray-200;
   }
 }
 
