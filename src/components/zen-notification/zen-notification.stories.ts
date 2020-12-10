@@ -1,15 +1,11 @@
 import { html } from 'lit-html';
 import markdown from './readme.md';
+import { ZenDismissDuration, ZenVariant } from './zen-notification-helper';
 
 const argTypes = {
   variant: {
     name: 'Variant',
     description: 'Variant',
-    defaultValue: 'success',
-    table: {
-      type: { summary: 'string' },
-      defaultValue: { summary: 'success' },
-    },
     type: { name: 'string', required: true },
     control: {
       type: 'select',
@@ -19,33 +15,18 @@ const argTypes = {
   nTitle: {
     name: 'Title',
     description: 'Title',
-    defaultValue: 'Success',
-    table: {
-      type: { summary: 'string' },
-      defaultValue: { summary: '' },
-    },
     type: { name: 'string', required: true },
     control: { type: 'text' },
   },
   nMessage: {
     name: 'Message',
     description: 'Message',
-    defaultValue: 'Settings successfully saved!',
-    table: {
-      type: { summary: 'string' },
-      defaultValue: { summary: '' },
-    },
     type: { name: 'string', required: true },
     control: { type: 'text' },
   },
   dismissDuration: {
     name: 'Dismiss duration',
     description: 'Dismiss duration',
-    defaultValue: 'none',
-    table: {
-      type: { summary: 'string' },
-      defaultValue: { summary: 'medium' },
-    },
     type: { name: 'string', required: false },
     control: {
       type: 'select',
@@ -55,11 +36,6 @@ const argTypes = {
   dismiss: {
     name: 'Dismiss',
     description: 'Show close icon',
-    defaultValue: true,
-    table: {
-      type: { summary: 'boolean' },
-      defaultValue: { summary: 'true' },
-    },
     type: { name: 'boolean', required: false },
     control: { type: 'boolean' },
   },
@@ -126,6 +102,13 @@ const TemplateError = () => {
 };
 
 export const Default = Template.bind({});
+Default.args = {
+  variant: ZenVariant.SUCCESS,
+  nTitle: 'Success',
+  nMessage: 'Settings successfully saved!',
+  dismissDuration: ZenDismissDuration.NONE,
+  dismiss: false,
+};
 export const SuccessNotificationStory = TemplateSuccess.bind({});
 export const InfoNotificationStory = TemplateInfo.bind({});
 export const WarningNotificationStory = TemplateWarning.bind({});
