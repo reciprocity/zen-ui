@@ -4,7 +4,7 @@ import markdown from './readme.md';
 const argTypes = {};
 
 export default {
-  title: 'Components/Menu Item',
+  title: 'Dropdown/Menu Item',
   component: 'zen-menu-item',
   argTypes,
   parameters: {
