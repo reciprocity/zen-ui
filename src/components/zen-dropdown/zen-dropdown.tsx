@@ -9,7 +9,7 @@ export interface OptionItem {
   label: string;
 }
 
-type OptionValue = string | number | undefined;
+export type OptionValue = string | number | undefined;
 
 @Component({
   tag: 'zen-dropdown',

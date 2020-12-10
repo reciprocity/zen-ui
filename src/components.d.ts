@@ -7,7 +7,7 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { StringifiedJson } from "./stories/components/color-swatch-group/color-swatch-group";
 import { CheckboxChangeEventDetail } from "./components/zen-checkbox/types";
-import { OptionItem } from "./components/zen-dropdown/zen-dropdown";
+import { OptionItem, OptionValue } from "./components/zen-dropdown/zen-dropdown";
 import { StepEvent, StepItem } from "./components/zen-steps/zen-steps";
 import { StepsFilter } from "./components/zen-steps/types";
 export namespace Components {
