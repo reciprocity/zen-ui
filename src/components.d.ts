@@ -134,6 +134,18 @@ export namespace Components {
         "required": false;
     }
     interface ZenMenuItem {
+        /**
+          * False to enable custom item padding
+         */
+        "defaultPadding": boolean;
+        /**
+          * Text inside the item
+         */
+        "label": string;
+        /**
+          * Render item as selected
+         */
+        "selected": boolean;
     }
     interface ZenSpinner {
         /**
@@ -419,6 +431,18 @@ declare namespace LocalJSX {
         "required"?: false;
     }
     interface ZenMenuItem {
+        /**
+          * False to enable custom item padding
+         */
+        "defaultPadding"?: boolean;
+        /**
+          * Text inside the item
+         */
+        "label"?: string;
+        /**
+          * Render item as selected
+         */
+        "selected"?: boolean;
     }
     interface ZenSpinner {
         /**
