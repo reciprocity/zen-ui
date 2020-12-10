@@ -68,7 +68,6 @@ $item-ypadding: 0.5rem;
   max-height: #{4 * ($item-line-height + 2 * $item-ypadding)};
   transition: transform $open-transition, opacity $open-transition linear;
   overflow: auto;
-  scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
   border-bottom-left-radius: $input-radius;
   border-bottom-right-radius: $input-radius;

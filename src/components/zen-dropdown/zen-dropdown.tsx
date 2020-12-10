@@ -4,6 +4,7 @@ import { MouseEvent } from '../helpers/helpers';
 import { faChevronDown } from '@fortawesome/pro-light-svg-icons';
 import { renderIcon, styles } from '../helpers/fa-icons';
 import { get } from 'lodash';
+import { waitNextFrame } from '../helpers/helpers';
 
 export interface OptionItem {
   label: string;
@@ -19,6 +20,7 @@ export type OptionValue = string | number | undefined;
 export class ZenDropdown {
   div: HTMLElement = undefined;
   listWrap: HTMLElement = undefined;
+  list: HTMLElement = undefined;
   clickHandler = undefined;
   selectedOption: OptionItem = null;
 
@@ -45,12 +47,18 @@ export class ZenDropdown {
   }
 
   @Watch('opened')
-  openedChanged(opened: boolean): void {
+  async openedChanged(opened: boolean): Promise<void> {
     if (opened) {
       if (!this.clickHandler) {
         this.clickHandler = event => this.closeOnClickOut(event);
       }
       document.addEventListener('mousedown', this.clickHandler);
+
+      // Reset scroll:
+      if (this.list) {
+        await waitNextFrame();
+        this.list.scrollTop = 0;
+      }
     } else {
       document.removeEventListener('mousedown', this.clickHandler);
     }
@@ -157,7 +165,7 @@ export class ZenDropdown {
         </div>
         <div class={{ 'list-wrap': true, 'open-above': this.openAbove() }} ref={el => (this.listWrap = el)}>
           <zen-animate show={this.opened}>
-            <div class="list">
+            <div class="list" ref={el => (this.list = el)}>
               {this.options.map((option, index) => (
                 <zen-menu-item
                   label={option.label}
