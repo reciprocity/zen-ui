@@ -54,6 +54,18 @@ export class ZenDropdown {
     this.selectedOption = value ? this.options.find(n => n[this.trackBy] === value) : undefined;
   }
 
+  @Watch('focusedIndex')
+  focusedIndexChanged(focusedIndex: OptionValue): void {
+    if (!this.hasOptionsSlot) return;
+
+    const optionsSlot = this.hostElement.shadowRoot.querySelector('slot[name=options]') as HTMLSlotElement;
+    const list = optionsSlot.assignedNodes()[0] as HTMLElement;
+    const items = list.querySelectorAll('zen-menu-item');
+    for (let i = 0; i < items.length; i++) {
+      items[i].focused = i === focusedIndex;
+    }
+  }
+
   @Watch('opened')
   async openedChanged(opened: boolean): Promise<void> {
     if (opened) {
@@ -64,6 +76,7 @@ export class ZenDropdown {
 
       // Reset scroll:
       if (this.list) {
+        await waitNextFrame();
         await waitNextFrame();
         this.list.scrollTop = 0;
       }
@@ -181,12 +194,12 @@ export class ZenDropdown {
             <div class="list" ref={el => (this.list = el)}>
               {!this.hasOptionsSlot ? (
                 this.options.map((option, index) => (
-                <zen-menu-item
-                  label={option.label}
-                  focused={this.focusedIndex === index}
-                  selected={option[this.trackBy] === this.value}
-                  onClick={() => this.selectValue(option)}
-                />
+                  <zen-menu-item
+                    label={option.label}
+                    focused={this.focusedIndex === index}
+                    selected={option[this.trackBy] === this.value}
+                    onClick={() => this.selectValue(option)}
+                  />
                 ))
               ) : (
                 <slot name="options"></slot>
