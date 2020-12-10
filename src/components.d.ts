@@ -133,6 +133,8 @@ export namespace Components {
          */
         "required": false;
     }
+    interface ZenMenuItem {
+    }
     interface ZenSpinner {
         /**
           * Color of the spinner. Accepts any CSS Legal Color Value.
@@ -239,6 +241,12 @@ declare global {
         prototype: HTMLZenLabelElement;
         new (): HTMLZenLabelElement;
     };
+    interface HTMLZenMenuItemElement extends Components.ZenMenuItem, HTMLStencilElement {
+    }
+    var HTMLZenMenuItemElement: {
+        prototype: HTMLZenMenuItemElement;
+        new (): HTMLZenMenuItemElement;
+    };
     interface HTMLZenSpinnerElement extends Components.ZenSpinner, HTMLStencilElement {
     }
     var HTMLZenSpinnerElement: {
@@ -269,6 +277,7 @@ declare global {
         "zen-input": HTMLZenInputElement;
         "zen-input-support-text": HTMLZenInputSupportTextElement;
         "zen-label": HTMLZenLabelElement;
+        "zen-menu-item": HTMLZenMenuItemElement;
         "zen-spinner": HTMLZenSpinnerElement;
         "zen-steps": HTMLZenStepsElement;
         "zen-textarea": HTMLZenTextareaElement;
@@ -409,6 +418,8 @@ declare namespace LocalJSX {
          */
         "required"?: false;
     }
+    interface ZenMenuItem {
+    }
     interface ZenSpinner {
         /**
           * Color of the spinner. Accepts any CSS Legal Color Value.
@@ -467,6 +478,7 @@ declare namespace LocalJSX {
         "zen-input": ZenInput;
         "zen-input-support-text": ZenInputSupportText;
         "zen-label": ZenLabel;
+        "zen-menu-item": ZenMenuItem;
         "zen-spinner": ZenSpinner;
         "zen-steps": ZenSteps;
         "zen-textarea": ZenTextarea;
@@ -487,6 +499,7 @@ declare module "@stencil/core" {
             "zen-input": LocalJSX.ZenInput & JSXBase.HTMLAttributes<HTMLZenInputElement>;
             "zen-input-support-text": LocalJSX.ZenInputSupportText & JSXBase.HTMLAttributes<HTMLZenInputSupportTextElement>;
             "zen-label": LocalJSX.ZenLabel & JSXBase.HTMLAttributes<HTMLZenLabelElement>;
+            "zen-menu-item": LocalJSX.ZenMenuItem & JSXBase.HTMLAttributes<HTMLZenMenuItemElement>;
             "zen-spinner": LocalJSX.ZenSpinner & JSXBase.HTMLAttributes<HTMLZenSpinnerElement>;
             "zen-steps": LocalJSX.ZenSteps & JSXBase.HTMLAttributes<HTMLZenStepsElement>;
             "zen-textarea": LocalJSX.ZenTextarea & JSXBase.HTMLAttributes<HTMLZenTextareaElement>;
