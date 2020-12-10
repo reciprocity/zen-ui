@@ -19,3 +19,27 @@
     border-color: $active;
   }
 }
+
+@mixin outline-button-variant($color, $background, $border, $hover-color, $hover-background, $focus, $active) {
+  color: $color;
+  background-color: $background;
+  border-color: $border;
+
+  &:hover:not([disabled]) {
+    color: $hover-color;
+    background-color: $hover-background;
+    border-color: $hover-background;
+    cursor: pointer;
+  }
+
+  &:focus,
+  &:active {
+    box-shadow: 0px 0px 0px 2px $focus;
+  }
+
+  &:active {
+    color: $hover-color;
+    background-color: $active;
+    border-color: $active;
+  }
+}

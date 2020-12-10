@@ -48,8 +48,17 @@ const TemplateDestructive = () => {
   `;
 };
 
+const TemplatePositive = () => {
+  return html`
+    <zen-button label="Positive button" variant="positive"></zen-button>
+    <zen-button label="Positive button" variant="positive" disabled></zen-button>
+    <zen-button label="Positive button" variant="positive" loading></zen-button>
+  `;
+};
+
 export const Default = Template.bind({});
 export const PrimaryButtonStory = TemplatePrimary.bind({});
 export const SecondaryButtonStory = TemplateSecondary.bind({});
 export const TertiaryButtonStory = TemplateTertiary.bind({});
 export const DestructiveButtonStory = TemplateDestructive.bind({});
+export const PositiveButtonStory = TemplatePositive.bind({});
