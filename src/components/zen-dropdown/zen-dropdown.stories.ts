@@ -5,19 +5,7 @@ import { eventHandles, action } from '../../../.storybook/helpers/custom-action'
 const customEvents = ['zenInput'];
 const events = [...eventHandles(customEvents)];
 
-const argTypes = {
-  selectedColor: {
-    type: { name: 'string', required: false },
-    description: 'color of selected item',
-    table: {
-      type: { summary: 'string' },
-      defaultValue: { summary: '#f00' },
-    },
-    control: {
-      type: 'color',
-    },
-  },
-};
+const argTypes = {};
 
 export default {
   title: 'Dropdown/_Dropdown',
@@ -31,19 +19,12 @@ export default {
   },
 };
 
-const Template = ({ selectedColor }) => {
+const Template = () => {
   const opts = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16].map(n => ({
     label: `item ${n}`,
   }));
   return html`
-    <zen-dropdown
-      class="my-96"
-      style="max-width: 300px;"
-      value=${opts[2].label}
-      .options=${opts}
-      selected-color=${selectedColor}
-    >
-    </zen-dropdown>
+    <zen-dropdown class="my-96" style="max-width: 300px;" value=${opts[2].label} .options=${opts} />
     ${action('zen-dropdown', customEvents)}
   `;
 };
