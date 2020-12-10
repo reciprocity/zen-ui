@@ -9,9 +9,7 @@ describe('zen-textarea', () => {
     });
     expect(page.root).toEqualHtml(`
       <zen-textarea>
-        <mock:shadow-root>
-          <textarea class="input-control" cols="30" rows="5"></textarea>
-        </mock:shadow-root>
+        <mock:shadow-root><textarea class="input-control"></textarea>
       </zen-textarea>
     `);
   });
@@ -23,9 +21,7 @@ describe('zen-textarea', () => {
     });
     expect(page.root).toEqualHtml(`
       <zen-textarea cols="50" rows="15">
-        <mock:shadow-root>
-          <textarea class="input-control" cols="50" rows="15"></textarea>
-        </mock:shadow-root>
+        <mock:shadow-root><textarea class="input-control"></textarea>
       </zen-textarea>
     `);
   });
@@ -37,9 +33,7 @@ describe('zen-textarea', () => {
     });
     expect(page.root).toEqualHtml(`
       <zen-textarea value="Something to test">
-        <mock:shadow-root>
-          <textarea class="input-control" cols="30" rows="5">Something to test</textarea>
-        </mock:shadow-root>
+        <mock:shadow-root><textarea class="input-control"></textarea>
       </zen-textarea>
     `);
   });
@@ -51,9 +45,7 @@ describe('zen-textarea', () => {
     });
     expect(page.root).toEqualHtml(`
       <zen-textarea disabled="">
-        <mock:shadow-root>
-          <textarea class="input-control" cols="30" rows="5" disabled=""></textarea>
-        </mock:shadow-root>
+        <mock:shadow-root><textarea class="input-control" disabled=""></textarea>
       </zen-textarea>
     `);
   });
@@ -65,9 +57,7 @@ describe('zen-textarea', () => {
     });
     expect(page.root).toEqualHtml(`
       <zen-textarea required="">
-        <mock:shadow-root>
-          <textarea class="input-control" cols="30" rows="5" required=""></textarea>
-        </mock:shadow-root>
+        <mock:shadow-root><textarea class="input-control" required=""></textarea>
       </zen-textarea>
     `);
   });
@@ -79,9 +69,7 @@ describe('zen-textarea', () => {
     });
     expect(page.root).toEqualHtml(`
       <zen-textarea disabled="" required="" value="Some custom value" rows="22" cols="44">
-        <mock:shadow-root>
-          <textarea class="input-control" cols="44" rows="22" disabled="" required="">Some custom value</textarea>
-        </mock:shadow-root>
+        <mock:shadow-root><textarea class="input-control" disabled="" required=""></textarea>
       </zen-textarea>
     `);
   });

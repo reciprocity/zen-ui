@@ -1,12 +1,15 @@
-import { Component, Host, h, Prop, State, Watch, Event, EventEmitter, Listen } from '@stencil/core';
+import { Component, Host, h, Prop, State, Event, EventEmitter, Listen, Watch } from '@stencil/core';
 import { key } from '../helpers/keyCodes';
 import { MouseEvent } from '../helpers/helpers';
 import { faChevronDown } from '@fortawesome/pro-light-svg-icons';
 import { renderIcon, styles } from '../helpers/fa-icons';
+import { get } from 'lodash';
 
 export interface OptionItem {
   label: string;
 }
+
+export type OptionValue = string | number | undefined;
 
 @Component({
   tag: 'zen-dropdown',
@@ -17,13 +20,13 @@ export class ZenDropdown {
   div: HTMLElement = undefined;
   listWrap: HTMLElement = undefined;
   clickHandler = undefined;
+  selectedOption: OptionItem = null;
 
   @State() opened = false;
   @State() focusedIndex = -1;
-  @State() internalValue: OptionItem = null;
 
   /** Selected option */
-  @Prop() readonly val: OptionItem = { label: '' };
+  @Prop({ mutable: true }) value: OptionValue = undefined;
   /** Array of available options */
   @Prop() readonly options: Array<OptionItem> = [];
   /** Option key that is unique for each option */
@@ -33,16 +36,12 @@ export class ZenDropdown {
   /** To determine if there's enough space under field on open */
   @Prop() readonly menuHeight: number = 170;
 
-  @Watch('val')
-  valueDidChangeHandler(val: OptionItem): void {
-    this.internalValue = val;
-    this.emitValueChanged(val);
-  }
-
   /** Emitted on any selection change */
-  @Event() input2: EventEmitter<OptionItem>;
-  emitValueChanged(value: OptionItem): void {
-    this.input2.emit(value);
+  @Event() zenInput: EventEmitter<OptionValue>;
+
+  @Watch('value')
+  valueChanged(value: OptionValue): void {
+    this.selectedOption = value ? this.options.find(n => n[this.trackBy] === value) : undefined;
   }
 
   @Listen('keydown')
@@ -84,8 +83,9 @@ export class ZenDropdown {
   }
 
   selectValue(option: OptionItem): void {
-    this.internalValue = option;
+    this.value = option[this.trackBy];
     this.opened = false;
+    this.zenInput.emit(this.value);
   }
 
   toggleDropdown(open?: boolean): void {
@@ -102,11 +102,11 @@ export class ZenDropdown {
   }
 
   isSelected(option: OptionItem): boolean {
-    return option[this.trackBy] === this.internalValue[this.trackBy];
+    return option[this.trackBy] === this.value;
   }
 
   selectedIndex(): number {
-    return this.options.findIndex(n => n[this.trackBy] === this.internalValue[this.trackBy]);
+    return this.options.findIndex(n => n[this.trackBy] === this.value);
   }
 
   // Events
@@ -115,10 +115,6 @@ export class ZenDropdown {
     if (!clickedInside) {
       this.opened = false;
     }
-  }
-
-  connectedCallback(): void {
-    this.valueDidChangeHandler(this.val);
   }
 
   openAbove(): boolean {
@@ -130,6 +126,10 @@ export class ZenDropdown {
       y += el.offsetTop;
     }
     return y < window.pageYOffset || y + this.menuHeight > window.pageYOffset + window.innerHeight;
+  }
+
+  connectedCallback(): void {
+    this.valueChanged(this.value);
   }
 
   render(): HTMLElement {
@@ -145,7 +145,7 @@ export class ZenDropdown {
             this.toggleDropdown(true);
           }}
         >
-          {this.internalValue.label || 'Select something'}
+          {get(this.selectedOption, 'label') || 'Select something'}
           <div class="arrow">{renderIcon(faChevronDown)}</div>
         </div>
         <div class={{ 'list-wrap': true, 'open-above': this.openAbove() }} ref={el => (this.listWrap = el)}>

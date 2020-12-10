@@ -7,7 +7,7 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { StringifiedJson } from "./stories/components/color-swatch-group/color-swatch-group";
 import { CheckboxChangeEventDetail } from "./components/zen-checkbox/types";
-import { OptionItem } from "./components/zen-dropdown/zen-dropdown";
+import { OptionItem, OptionValue } from "./components/zen-dropdown/zen-dropdown";
 import { StepEvent, StepItem } from "./components/zen-steps/zen-steps";
 import { StepsFilter } from "./components/zen-steps/types";
 export namespace Components {
@@ -95,7 +95,7 @@ export namespace Components {
         /**
           * Selected option
          */
-        "val": OptionItem;
+        "value": OptionValue;
     }
     interface ZenFormGroup {
     }
@@ -355,7 +355,7 @@ declare namespace LocalJSX {
         /**
           * Emitted on any selection change
          */
-        "onInput2"?: (event: CustomEvent<OptionItem>) => void;
+        "onZenInput"?: (event: CustomEvent<OptionValue>) => void;
         /**
           * Array of available options
          */
@@ -367,7 +367,7 @@ declare namespace LocalJSX {
         /**
           * Selected option
          */
-        "val"?: OptionItem;
+        "value"?: OptionValue;
     }
     interface ZenFormGroup {
     }

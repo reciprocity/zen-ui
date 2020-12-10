@@ -2,7 +2,7 @@ import { html } from 'lit-html';
 import markdown from './readme.md';
 import { eventHandles, action } from '../../../.storybook/helpers/custom-action';
 
-const customEvents = ['input2'];
+const customEvents = ['zenInput'];
 const events = [...eventHandles(customEvents)];
 
 const argTypes = {
@@ -36,7 +36,13 @@ const Template = ({ selectedColor }) => {
     label: `item ${n}`,
   }));
   return html`
-    <zen-dropdown class="my-96" style="max-width: 300px;" .options=${opts} selected-color=${selectedColor}>
+    <zen-dropdown
+      class="my-96"
+      style="max-width: 300px;"
+      value=${opts[2].label}
+      .options=${opts}
+      selected-color=${selectedColor}
+    >
     </zen-dropdown>
     ${action('zen-dropdown', customEvents)}
   `;
