@@ -43,6 +43,9 @@ export class ZenDropdown {
 
   /** Emitted on any selection change */
   @Event() zenInput: EventEmitter<OptionValue>;
+  /** Focused item changed (keyboard arrows) */
+  @Event() zenFocusItem: EventEmitter<OptionValue>;
+
   /** Close an opened dropdown menu */
   @Method()
   async close(): Promise<void> {
@@ -56,6 +59,7 @@ export class ZenDropdown {
 
   @Watch('focusedIndex')
   focusedIndexChanged(focusedIndex: OptionValue): void {
+    this.zenFocusItem.emit(focusedIndex);
     if (!this.hasOptionsSlot) return;
 
     const optionsSlot = this.hostElement.shadowRoot.querySelector('slot[name=options]') as HTMLSlotElement;
