@@ -44,6 +44,19 @@ export class ZenDropdown {
     this.selectedOption = value ? this.options.find(n => n[this.trackBy] === value) : undefined;
   }
 
+  @Watch('opened')
+  openedChanged(opened: boolean): void {
+    if (opened) {
+      this.focusedIndex = this.selectedIndex();
+      if (!this.clickHandler) {
+        this.clickHandler = event => this.closeOnClickOut(event);
+      }
+      document.addEventListener('mousedown', this.clickHandler);
+    } else {
+      document.removeEventListener('mousedown', this.clickHandler);
+    }
+  }
+
   @Listen('keydown')
   handleKeyDown(ev: KeyboardEvent): void {
     const toggleKeys = [key.SPACE, key.ENTER, key.UP, key.DOWN];
@@ -84,20 +97,16 @@ export class ZenDropdown {
 
   selectValue(option: OptionItem): void {
     this.value = option[this.trackBy];
+    if (open) {
+      this.focusedIndex = this.selectedIndex();
+    }
     this.opened = false;
     this.zenInput.emit(this.value);
   }
 
   toggleDropdown(open?: boolean): void {
     if (open === undefined) open = !this.opened;
-
-    if (open) {
-      this.focusedIndex = this.selectedIndex();
-      this.clickHandler = event => this.closeOnClickOut(event);
-      document.addEventListener('mousedown', this.clickHandler);
-    } else {
-      document.removeEventListener('mousedown', this.clickHandler);
-    }
+    this.focusedIndex = this.selectedIndex();
     this.opened = open;
   }
 
@@ -111,7 +120,7 @@ export class ZenDropdown {
 
   // Events
   closeOnClickOut(event: MouseEvent): void {
-    const clickedInside = this.div.shadowRoot.contains(event.path[0]);
+    const clickedInside = event.path.find(n => n === this.div);
     if (!clickedInside) {
       this.opened = false;
     }
@@ -150,13 +159,15 @@ export class ZenDropdown {
         </div>
         <div class={{ 'list-wrap': true, 'open-above': this.openAbove() }} ref={el => (this.listWrap = el)}>
           <zen-animate show={this.opened}>
-            <ul class="list">
+            <div class="list">
               {this.options.map((option, index) => (
-                <li class={{ selected: this.focusedIndex === index }} onClick={() => this.selectValue(option)}>
-                  {option.label}
-                </li>
+                <zen-menu-item
+                  label={option.label}
+                  selected={this.focusedIndex === index}
+                  onClick={() => this.selectValue(option)}
+                />
               ))}
-            </ul>
+            </div>
           </zen-animate>
         </div>
       </Host>
