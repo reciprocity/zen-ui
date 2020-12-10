@@ -15,7 +15,7 @@ $item-ypadding: 0.5rem;
     transition: background-color 0.2s linear;
 
     &:hover,
-    &:focused,
+    &.focused,
     &.selected {
       background-color: $color-gray-100;
     }

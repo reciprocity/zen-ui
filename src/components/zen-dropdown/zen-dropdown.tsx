@@ -47,7 +47,6 @@ export class ZenDropdown {
   @Watch('opened')
   openedChanged(opened: boolean): void {
     if (opened) {
-      this.focusedIndex = this.selectedIndex();
       if (!this.clickHandler) {
         this.clickHandler = event => this.closeOnClickOut(event);
       }
@@ -106,7 +105,7 @@ export class ZenDropdown {
 
   toggleDropdown(open?: boolean): void {
     if (open === undefined) open = !this.opened;
-    this.focusedIndex = this.selectedIndex();
+    this.focusedIndex = -1;
     this.opened = open;
   }
 
@@ -162,7 +161,8 @@ export class ZenDropdown {
               {this.options.map((option, index) => (
                 <zen-menu-item
                   label={option.label}
-                  selected={this.focusedIndex === index}
+                  focused={this.focusedIndex === index}
+                  selected={option[this.trackBy] === this.value}
                   onClick={() => this.selectValue(option)}
                 />
               ))}
