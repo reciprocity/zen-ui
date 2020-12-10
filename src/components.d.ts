@@ -158,17 +158,17 @@ export namespace Components {
          */
         "dismissDuration": ZenDismissDuration;
         /**
+          * Title
+         */
+        "heading": string;
+        /**
           * Height
          */
         "height": string;
         /**
           * Message
          */
-        "nMessage": string;
-        /**
-          * Title
-         */
-        "nTitle": string;
+        "message": string;
         /**
           * Variant
          */
@@ -492,17 +492,17 @@ declare namespace LocalJSX {
          */
         "dismissDuration"?: ZenDismissDuration;
         /**
+          * Title
+         */
+        "heading"?: string;
+        /**
           * Height
          */
         "height"?: string;
         /**
           * Message
          */
-        "nMessage"?: string;
-        /**
-          * Title
-         */
-        "nTitle"?: string;
+        "message"?: string;
         /**
           * Variant
          */

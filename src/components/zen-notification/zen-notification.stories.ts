@@ -12,13 +12,13 @@ const argTypes = {
       options: ['success', 'info', 'warning', 'error'],
     },
   },
-  nTitle: {
+  heading: {
     name: 'Title',
     description: 'Title',
     type: { name: 'string', required: true },
     control: { type: 'text' },
   },
-  nMessage: {
+  message: {
     name: 'Message',
     description: 'Message',
     type: { name: 'string', required: true },
@@ -50,11 +50,11 @@ export default {
   },
 };
 
-const Template = ({ variant, nTitle, nMessage, dismissDuration, dismiss }) => {
+const Template = ({ variant, heading, message, dismissDuration, dismiss }) => {
   return html`<zen-notification
     variant=${variant}
-    n-title=${nTitle}
-    n-message=${nMessage}
+    heading=${heading}
+    message=${message}
     dismiss-duration=${dismissDuration}
     dismiss=${dismiss}
   /> `;
@@ -63,8 +63,8 @@ const Template = ({ variant, nTitle, nMessage, dismissDuration, dismiss }) => {
 const TemplateSuccess = () => {
   return html`<zen-notification
     variant="success"
-    n-title="Success"
-    n-message="Settings successfully saved!"
+    heading="Success"
+    message="Settings successfully saved!"
     dismiss-duration="none"
     dismiss="true"
   />`;
@@ -73,8 +73,8 @@ const TemplateSuccess = () => {
 const TemplateInfo = () => {
   return html`<zen-notification
     variant="info"
-    n-title="Info"
-    n-message="You have 6 items that need your attention!"
+    heading="Info"
+    message="You have 6 items that need your attention!"
     dismiss-duration="none"
     dismiss="true"
   />`;
@@ -83,8 +83,8 @@ const TemplateInfo = () => {
 const TemplateWarning = () => {
   return html`<zen-notification
     variant="warning"
-    n-title="Warning"
-    n-message="Proceed with caution. Any changes will
+    heading="Warning"
+    message="Proceed with caution. Any changes will
   lead to the recalculation of the risk ratings and scores accross the entire risk register."
     dismiss-duration="none"
     dismiss="true"
@@ -94,8 +94,8 @@ const TemplateWarning = () => {
 const TemplateError = () => {
   return html`<zen-notification
     variant="error"
-    n-title="Error"
-    n-message="Oops, something went wrong."
+    heading="Error"
+    message="Oops, something went wrong."
     dismiss-duration="none"
     dismiss="true"
   />`;
@@ -104,8 +104,8 @@ const TemplateError = () => {
 export const Default = Template.bind({});
 Default.args = {
   variant: ZenVariant.SUCCESS,
-  nTitle: 'Success',
-  nMessage: 'Settings successfully saved!',
+  heading: 'Success',
+  message: 'Settings successfully saved!',
   dismissDuration: ZenDismissDuration.NONE,
   dismiss: false,
 };

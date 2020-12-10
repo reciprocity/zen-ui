@@ -21,10 +21,10 @@ export class ZenNotification {
   @Prop() readonly width: string = '25rem';
 
   /** Title */
-  @Prop() readonly nTitle: string = '';
+  @Prop() readonly heading: string = '';
 
   /** Message */
-  @Prop() readonly nMessage: string = '';
+  @Prop() readonly message: string = '';
 
   /** Hide duration */
   @Prop() readonly dismissDuration: ZenDismissDuration = ZenDismissDuration.MEDIUM;
@@ -76,8 +76,8 @@ export class ZenNotification {
               <div class={icon}>{getIcon(this.variant)}</div>
             </div>
             <div class="content-container">
-              <div class="title">{this.nTitle}</div>
-              <div class="message">{this.nMessage}</div>
+              <div class="title">{this.heading}</div>
+              <div class="message">{this.message}</div>
             </div>
           </div>
         </div>
