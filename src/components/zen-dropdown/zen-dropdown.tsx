@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, State, Event, EventEmitter, Listen, Watch, Element } from '@stencil/core';
+import { Component, Host, h, Prop, State, Event, EventEmitter, Listen, Watch, Element, Method } from '@stencil/core';
 import { key } from '../helpers/keyCodes';
 import { MouseEvent } from '../helpers/helpers';
 import { faChevronDown } from '@fortawesome/pro-light-svg-icons';
@@ -43,6 +43,11 @@ export class ZenDropdown {
 
   /** Emitted on any selection change */
   @Event() zenInput: EventEmitter<OptionValue>;
+  /** Close an opened dropdown menu */
+  @Method()
+  async close(): Promise<void> {
+    this.opened = false;
+  }
 
   @Watch('value')
   valueChanged(value: OptionValue): void {
