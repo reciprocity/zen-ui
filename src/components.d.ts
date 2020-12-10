@@ -8,6 +8,7 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { StringifiedJson } from "./stories/components/color-swatch-group/color-swatch-group";
 import { CheckboxChangeEventDetail } from "./components/zen-checkbox/types";
 import { OptionItem, OptionValue } from "./components/zen-dropdown/zen-dropdown";
+import { ZenDismissDuration, ZenVariant } from "./components/zen-notification/zen-notification-helper";
 import { StepEvent, StepItem } from "./components/zen-steps/zen-steps";
 import { StepsFilter } from "./components/zen-steps/types";
 export namespace Components {
@@ -148,6 +149,34 @@ export namespace Components {
         "selected": boolean;
     }
     interface ZenNotification {
+        /**
+          * Can dismiss
+         */
+        "dismiss": boolean;
+        /**
+          * Hide duration
+         */
+        "dismissDuration": ZenDismissDuration;
+        /**
+          * Height
+         */
+        "height": string;
+        /**
+          * Message
+         */
+        "nMessage": string;
+        /**
+          * Title
+         */
+        "nTitle": string;
+        /**
+          * Variant
+         */
+        "variant": ZenVariant;
+        /**
+          * Width
+         */
+        "width": string;
     }
     interface ZenSpinner {
         /**
@@ -454,6 +483,34 @@ declare namespace LocalJSX {
         "selected"?: boolean;
     }
     interface ZenNotification {
+        /**
+          * Can dismiss
+         */
+        "dismiss"?: boolean;
+        /**
+          * Hide duration
+         */
+        "dismissDuration"?: ZenDismissDuration;
+        /**
+          * Height
+         */
+        "height"?: string;
+        /**
+          * Message
+         */
+        "nMessage"?: string;
+        /**
+          * Title
+         */
+        "nTitle"?: string;
+        /**
+          * Variant
+         */
+        "variant"?: ZenVariant;
+        /**
+          * Width
+         */
+        "width"?: string;
     }
     interface ZenSpinner {
         /**
