@@ -82,6 +82,10 @@ export class ZenDropdown {
         await waitNextFrame();
         this.list.scrollTop = 0;
       }
+
+      if (this.hasOptionsSlot) {
+        this.markSelectedSlottedOption(this.value);
+      }
     } else {
       document.removeEventListener('mousedown', this.clickHandler);
     }
@@ -125,10 +129,22 @@ export class ZenDropdown {
     }
   }
 
-  getSlottedOptionItems(): NodeListOf<HTMLZenMenuItemElement> {
+  getSlottedOptionItems(): NodeListOf<HTMLZenMenuItemElement> | undefined[] {
     const optionsSlot = this.hostElement.shadowRoot.querySelector('slot[name=options]') as HTMLSlotElement;
+    if (!optionsSlot) return []; // happens when dropdown isn't opened
+
     const list = optionsSlot.assignedNodes()[0] as HTMLElement;
     return list.querySelectorAll('zen-menu-item');
+  }
+
+  markSelectedSlottedOption(value: OptionValue): void {
+    // Set attr `selected` to currently selected slotted item:
+    if (!this.hasOptionsSlot) return;
+
+    const items = this.getSlottedOptionItems();
+    for (let i = 0; i < items.length; i++) {
+      items[i].selected = this.options[i][this.trackBy] === value;
+    }
   }
 
   selectValue(option: OptionItem): void {
@@ -177,8 +193,8 @@ export class ZenDropdown {
   }
 
   componentWillLoad(): void {
-    this.valueChanged(this.value);
     this.hasOptionsSlot = !!this.hostElement.querySelector('[slot="options"]');
+    this.valueChanged(this.value);
   }
 
   render(): HTMLElement {
