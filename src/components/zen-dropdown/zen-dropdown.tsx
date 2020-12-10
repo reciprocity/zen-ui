@@ -121,9 +121,8 @@ export class ZenDropdown {
   // Events
   closeOnClickOut(event: MouseEvent): void {
     const clickedInside = event.path.find(n => n === this.div);
-    if (!clickedInside) {
-      this.opened = false;
-    }
+    if (clickedInside) return;
+    this.opened = false;
   }
 
   openAbove(): boolean {
