@@ -1,6 +1,11 @@
-export enum ArrowPosition {
+export enum Position {
   TOP = 'top',
   RIGHT = 'right',
-  LEFT = 'left',
   BOTTOM = 'bottom',
+  LEFT = 'left',
+}
+
+export enum Variant {
+  DEFAULT = 'default',
+  ERROR = 'error',
 }

@@ -12,7 +12,7 @@ import { OptionItem, OptionValue } from "./components/zen-dropdown/zen-dropdown"
 import { ZenDismissDuration, ZenVariant } from "./components/zen-notification/zen-notification-helper";
 import { StepEvent, StepItem } from "./components/zen-steps/zen-steps";
 import { StepsFilter } from "./components/zen-steps/types";
-import { ArrowPosition } from "./components/zen-tooltip/types";
+import { Position, Variant } from "./components/zen-tooltip/types";
 export namespace Components {
     interface ColorSwatch {
         /**
@@ -228,17 +228,17 @@ export namespace Components {
     }
     interface ZenTooltip {
         /**
-          * Arrow position
+          * Set arrow position
          */
-        "arrow"?: ArrowPosition;
+        "position"?: Position;
         /**
-          * Set error state
-         */
-        "error"?: boolean;
-        /**
-          * Set text
+          * Set tooltip text
          */
         "text"?: string;
+        /**
+          * Set tooltip variant
+         */
+        "variant"?: Variant;
     }
 }
 declare global {
@@ -599,17 +599,17 @@ declare namespace LocalJSX {
     }
     interface ZenTooltip {
         /**
-          * Arrow position
+          * Set arrow position
          */
-        "arrow"?: ArrowPosition;
+        "position"?: Position;
         /**
-          * Set error state
-         */
-        "error"?: boolean;
-        /**
-          * Set text
+          * Set tooltip text
          */
         "text"?: string;
+        /**
+          * Set tooltip variant
+         */
+        "variant"?: Variant;
     }
     interface IntrinsicElements {
         "color-swatch": ColorSwatch;

@@ -1,5 +1,5 @@
 import { Component, Host, h, Prop } from '@stencil/core';
-import { ArrowPosition } from './types';
+import { Position, Variant } from './types';
 
 @Component({
   tag: 'zen-tooltip',
@@ -7,19 +7,42 @@ import { ArrowPosition } from './types';
   shadow: true,
 })
 export class ZenTooltip {
-  /** Arrow position */
-  @Prop() readonly arrow?: ArrowPosition = ArrowPosition.LEFT;
+  private element: HTMLElement;
+  /** Set arrow position */
+  @Prop() readonly position?: Position = Position.BOTTOM;
 
-  /** Set error state  */
-  @Prop() readonly error?: boolean = false;
+  /** Set tooltip variant */
+  @Prop() readonly variant?: Variant = Variant.DEFAULT;
 
-  /** Set text */
+  /** Set tooltip text */
   @Prop() readonly text?: string = '';
+
+  getClassNames() {
+    return this.variant + ' ' + this.position + ' ';
+  }
+
+  open() {
+    this.element.shadowRoot.querySelector('span').classList.add('open');
+  }
+
+  close() {
+    this.element.shadowRoot.querySelector('span').classList.remove('open');
+  }
+
+  componentDidLoad() {
+    const previousElement = this.element.previousElementSibling;
+    if (previousElement) {
+      previousElement.addEventListener('mouseover', () => this.open());
+      previousElement.addEventListener('touchstart', () => this.open());
+      previousElement.addEventListener('mouseout', () => this.close());
+      previousElement.addEventListener('touchcancel', () => this.close());
+    }
+  }
 
   render() {
     return (
-      <Host>
-        <span class={`${this.error ? 'error' : ''} ${this.arrow ? this.arrow : ''}`}>
+      <Host ref={el => (this.element = el)}>
+        <span class={this.getClassNames()}>
           <slot name="text">{this.text}</slot>
         </span>
       </Host>
