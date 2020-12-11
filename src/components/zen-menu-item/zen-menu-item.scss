@@ -16,7 +16,7 @@ $item-ypadding: 0.5rem;
   }
 }
 
-:host(:hover,[selected],[focused]) {
+:host(:hover, [selected], [focused]) {
   .background {
     background-color: $color-gray-100;
   }
