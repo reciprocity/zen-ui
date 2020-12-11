@@ -1,16 +1,16 @@
 @import '../../zen-styles/component-helpers.scss';
 
 :host {
-  max-width: 11rem
+  max-width: 11rem;
 }
 
 .open {
   display: block;
+  z-index: 999;
 }
 
 span {
   display: none;
-  position: absolute;
   background: $color-gray-800;
   font-size: $text-sm;
   color: $color-white;
@@ -19,7 +19,8 @@ span {
   line-height: 1rem;
   text-align: center;
   font-family: inherit;
-  max-width: 11rem
+  max-width: 11rem;
+  z-index: 999;
 }
 
 span:before {
