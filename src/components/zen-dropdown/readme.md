@@ -25,7 +25,7 @@
 
 ## Methods
 
-### `close() => Promise<void>`
+### `toggle(open?: boolean) => Promise<void>`
 
 Close an opened dropdown menu
 

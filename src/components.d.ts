@@ -77,10 +77,6 @@ export namespace Components {
     }
     interface ZenDropdown {
         /**
-          * Close an opened dropdown menu
-         */
-        "close": () => Promise<void>;
-        /**
           * Close dropdown menu after selecting an item
          */
         "closeOnSelect": true;
@@ -92,6 +88,10 @@ export namespace Components {
           * Array of available options
          */
         "options": Array<OptionItem>;
+        /**
+          * Close an opened dropdown menu
+         */
+        "toggle": (open?: boolean) => Promise<void>;
         /**
           * Option key that is unique for each option
          */
