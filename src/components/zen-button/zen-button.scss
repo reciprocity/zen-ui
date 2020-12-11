@@ -1,9 +1,15 @@
 @import '../../zen-styles/component-helpers.scss';
 @import './mixins.scss';
 
+:host {
+  display: flex;
+}
+
 .btn {
   position: relative;
-  display: inline-block;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
   color: $color-gray-700;
   text-align: center;
   vertical-align: middle;
@@ -19,7 +25,6 @@
   transition: color $transition-color, background-color $transition-color, border-color $transition-color,
     box-shadow $transition-color;
   outline: none;
-
   cursor: pointer;
 
   &:disabled {
@@ -29,15 +34,23 @@
   }
 }
 
+span {
+  &.ml {
+    margin-left: 0.5rem;
+  }
+
+  &.mr {
+    margin-right: 0.5rem;
+  }
+}
+
 .btn-primary {
-  @include button-variant(
-    $color-white,
+  @include button-variant($color-white,
     $color-blue-700,
     $color-blue-700,
     $color-blue-800,
     $color-blue-300,
-    $color-blue-900
-  );
+    $color-blue-900);
 }
 
 .btn-secondary {
@@ -47,12 +60,12 @@
     $color-white,
     $color-gray-600,
     $color-gray-300,
-    $color-gray-700
-  );
+    $color-gray-700);
 }
 
 .btn-tertiary {
   color: $color-blue-700;
+  background-color: $color-white;
 
   &:hover:not([disabled]) {
     background-color: $color-gray-100;
@@ -71,26 +84,22 @@
 }
 
 .btn-positive {
-  @include outline-button-variant(
-    $color-green-700,
+  @include outline-button-variant($color-green-700,
     $color-white,
     $color-green-700,
     $color-white,
     $color-green-700,
     $color-green-500,
-    $color-green-800
-  );
+    $color-green-800);
 }
 
 .btn-destructive {
-  @include button-variant(
-    $color-white,
+  @include button-variant($color-white,
     $color-red-700,
     $color-red-700,
     $color-red-800,
     $color-red-300,
-    $color-red-900
-  );
+    $color-red-900);
 }
 
 zen-spinner {

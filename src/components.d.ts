@@ -48,7 +48,7 @@ export namespace Components {
         /**
           * Label of the button
          */
-        "label": "Button";
+        "label": "";
         /**
           * If present, will show a spinner
          */
@@ -378,7 +378,7 @@ declare namespace LocalJSX {
         /**
           * Label of the button
          */
-        "label"?: "Button";
+        "label"?: "";
         /**
           * If present, will show a spinner
          */

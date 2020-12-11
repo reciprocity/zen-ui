@@ -8,7 +8,7 @@
 | Property   | Attribute  | Description                         | Type        | Default     |
 | ---------- | ---------- | ----------------------------------- | ----------- | ----------- |
 | `disabled` | `disabled` | If present, button will be disabled | `boolean`   | `false`     |
-| `label`    | `label`    | Label of the button                 | `"Button"`  | `'Button'`  |
+| `label`    | `label`    | Label of the button                 | `""`        | `''`        |
 | `loading`  | `loading`  | If present, will show a spinner     | `boolean`   | `false`     |
 | `variant`  | `variant`  | Color variant of the button         | `"primary"` | `'primary'` |
 
