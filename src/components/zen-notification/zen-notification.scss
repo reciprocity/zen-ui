@@ -27,7 +27,7 @@
   animation: fadeIn 1s;
 
   &.notification-success {
-    @include variant($color-green-600, $color-green-100);
+    @include variant($color-green-700, $color-green-100);
   }
 
   &.notification-info {
@@ -52,7 +52,7 @@
   cursor: pointer;
 
   &.close-success {
-    color: $color-green-500;
+    color: $color-green-700;
   }
 
   &.close-info {
