@@ -9,14 +9,16 @@ export class ZenMenuItem {
   /** Text inside the item */
   @Prop() readonly label: string = 'Item';
   /** Render item as selected */
-  @Prop() readonly selected: boolean = false;
+  @Prop({ reflect: true }) readonly selected: boolean = false;
+  /** Render item as focused */
+  @Prop({ reflect: true }) readonly focused: boolean = false;
   /** False to enable custom item padding */
   @Prop() readonly defaultPadding: boolean = true;
 
   render(): HTMLElement {
     return (
       <Host>
-        <div class={{ background: true, selected: this.selected }}>
+        <div class="background">
           <div class="content">{this.label}</div>
         </div>
       </Host>

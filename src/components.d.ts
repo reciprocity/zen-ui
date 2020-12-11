@@ -78,17 +78,21 @@ export namespace Components {
     }
     interface ZenDropdown {
         /**
+          * Close dropdown menu after selecting an item
+         */
+        "closeOnSelect": true;
+        /**
           * To determine if there's enough space under field on open
          */
         "menuHeight": number;
         /**
-          * If true, multiple options can be selected
-         */
-        "multiselect": boolean;
-        /**
           * Array of available options
          */
         "options": Array<OptionItem>;
+        /**
+          * Close an opened dropdown menu
+         */
+        "toggle": (open?: boolean) => Promise<void>;
         /**
           * Option key that is unique for each option
          */
@@ -139,6 +143,10 @@ export namespace Components {
           * False to enable custom item padding
          */
         "defaultPadding": boolean;
+        /**
+          * Render item as focused
+         */
+        "focused": boolean;
         /**
           * Text inside the item
          */
@@ -404,13 +412,17 @@ declare namespace LocalJSX {
     }
     interface ZenDropdown {
         /**
+          * Close dropdown menu after selecting an item
+         */
+        "closeOnSelect"?: true;
+        /**
           * To determine if there's enough space under field on open
          */
         "menuHeight"?: number;
         /**
-          * If true, multiple options can be selected
+          * Focused item changed (keyboard arrows)
          */
-        "multiselect"?: boolean;
+        "onZenFocusItem"?: (event: CustomEvent<OptionValue>) => void;
         /**
           * Emitted on any selection change
          */
@@ -473,6 +485,10 @@ declare namespace LocalJSX {
           * False to enable custom item padding
          */
         "defaultPadding"?: boolean;
+        /**
+          * Render item as focused
+         */
+        "focused"?: boolean;
         /**
           * Text inside the item
          */
