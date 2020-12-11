@@ -69,8 +69,7 @@ $item-ypadding: 0.5rem;
   transition: transform $open-transition, opacity $open-transition linear;
   overflow: auto;
   -webkit-overflow-scrolling: touch;
-  border-bottom-left-radius: $input-radius;
-  border-bottom-right-radius: $input-radius;
+  border-radius: $input-radius;
 
   li {
     line-height: $item-line-height;
@@ -102,12 +101,6 @@ $item-ypadding: 0.5rem;
   transform: translate(0, calc(-100% - #{$field-height}));
   padding-top: 24px;
   padding-bottom: 0;
-
-  .list {
-    border-radius: 0;
-    border-top-left-radius: $input-radius;
-    border-top-right-radius: $input-radius;
-  }
 
   .list[animate='out-end'],
   .list[animate='in-start'] {
