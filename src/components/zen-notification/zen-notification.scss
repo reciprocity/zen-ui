@@ -1,0 +1,130 @@
+@import '../../zen-styles/component-helpers.scss';
+@import './mixins.scss';
+
+.show {
+  visibility: visible;
+}
+
+.hide {
+  visibility: hidden;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.notification {
+  position: relative;
+  padding: 1.3rem 1.3rem;
+  margin-bottom: 2rem;
+  border: 1px solid transparent;
+  border-radius: $border-radius-default;
+  animation: fadeIn 1s;
+
+  &.notification-success {
+    @include variant($color-green-700, $color-green-100);
+  }
+
+  &.notification-info {
+    @include variant($color-gray-700, $color-gray-100);
+  }
+
+  &.notification-warning {
+    @include variant($color-yellow-700, $color-yellow-100);
+  }
+
+  &.notification-error {
+    @include variant($color-red-700, $color-red-100);
+  }
+}
+
+.close {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.8rem;
+  width: 0.8rem;
+  margin: 0.3rem;
+  cursor: pointer;
+
+  &.close-success {
+    color: $color-green-700;
+  }
+
+  &.close-info {
+    color: $color-gray-500;
+  }
+
+  &.close-warning {
+    color: $color-yellow-500;
+  }
+
+  &.close-error {
+    color: $color-red-500;
+  }
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.icon-container {
+  float: left;
+  display: flex;
+  justify-content: center;
+  margin: 0.2rem 1.3rem 0 0.5rem;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 10rem;
+  background-color: currentColor;
+  vertical-align: top;
+
+  .icon-success {
+    width: 20px;
+    margin: 0.4rem;
+    color: $color-green-100;
+  }
+
+  .icon-info {
+    width: 18px;
+    margin: 0.3rem;
+    color: $color-gray-100;
+  }
+
+  .icon-warning {
+    width: 6px;
+    margin: 0.4rem;
+    color: $color-yellow-100;
+  }
+
+  .icon-error {
+    width: 15px;
+    margin: 0.3rem;
+    color: $color-red-100;
+  }
+}
+
+.content-container {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
+  flex: 1;
+  justify-content: center;
+
+  .title {
+    font-size: $text-md;
+    font-weight: 600;
+    padding-bottom: 0.4rem;
+  }
+
+  .message {
+    font-size: $text-sm;
+  }
+}

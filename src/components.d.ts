@@ -8,6 +8,7 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { StringifiedJson } from "./stories/components/color-swatch-group/color-swatch-group";
 import { CheckboxChangeEventDetail } from "./components/zen-checkbox/types";
 import { OptionItem, OptionValue } from "./components/zen-dropdown/zen-dropdown";
+import { ZenDismissDuration, ZenVariant } from "./components/zen-notification/zen-notification-helper";
 import { StepEvent, StepItem } from "./components/zen-steps/zen-steps";
 import { StepsFilter } from "./components/zen-steps/types";
 export namespace Components {
@@ -147,6 +148,36 @@ export namespace Components {
          */
         "selected": boolean;
     }
+    interface ZenNotification {
+        /**
+          * Can dismiss
+         */
+        "dismiss": boolean;
+        /**
+          * Hide duration
+         */
+        "dismissDuration": ZenDismissDuration;
+        /**
+          * Title
+         */
+        "heading": string;
+        /**
+          * Height
+         */
+        "height": string;
+        /**
+          * Message
+         */
+        "message": string;
+        /**
+          * Variant
+         */
+        "variant": ZenVariant;
+        /**
+          * Width
+         */
+        "width": string;
+    }
     interface ZenSpinner {
         /**
           * Color of the spinner. Accepts any CSS Legal Color Value.
@@ -259,6 +290,12 @@ declare global {
         prototype: HTMLZenMenuItemElement;
         new (): HTMLZenMenuItemElement;
     };
+    interface HTMLZenNotificationElement extends Components.ZenNotification, HTMLStencilElement {
+    }
+    var HTMLZenNotificationElement: {
+        prototype: HTMLZenNotificationElement;
+        new (): HTMLZenNotificationElement;
+    };
     interface HTMLZenSpinnerElement extends Components.ZenSpinner, HTMLStencilElement {
     }
     var HTMLZenSpinnerElement: {
@@ -290,6 +327,7 @@ declare global {
         "zen-input-support-text": HTMLZenInputSupportTextElement;
         "zen-label": HTMLZenLabelElement;
         "zen-menu-item": HTMLZenMenuItemElement;
+        "zen-notification": HTMLZenNotificationElement;
         "zen-spinner": HTMLZenSpinnerElement;
         "zen-steps": HTMLZenStepsElement;
         "zen-textarea": HTMLZenTextareaElement;
@@ -444,6 +482,36 @@ declare namespace LocalJSX {
          */
         "selected"?: boolean;
     }
+    interface ZenNotification {
+        /**
+          * Can dismiss
+         */
+        "dismiss"?: boolean;
+        /**
+          * Hide duration
+         */
+        "dismissDuration"?: ZenDismissDuration;
+        /**
+          * Title
+         */
+        "heading"?: string;
+        /**
+          * Height
+         */
+        "height"?: string;
+        /**
+          * Message
+         */
+        "message"?: string;
+        /**
+          * Variant
+         */
+        "variant"?: ZenVariant;
+        /**
+          * Width
+         */
+        "width"?: string;
+    }
     interface ZenSpinner {
         /**
           * Color of the spinner. Accepts any CSS Legal Color Value.
@@ -503,6 +571,7 @@ declare namespace LocalJSX {
         "zen-input-support-text": ZenInputSupportText;
         "zen-label": ZenLabel;
         "zen-menu-item": ZenMenuItem;
+        "zen-notification": ZenNotification;
         "zen-spinner": ZenSpinner;
         "zen-steps": ZenSteps;
         "zen-textarea": ZenTextarea;
@@ -524,6 +593,7 @@ declare module "@stencil/core" {
             "zen-input-support-text": LocalJSX.ZenInputSupportText & JSXBase.HTMLAttributes<HTMLZenInputSupportTextElement>;
             "zen-label": LocalJSX.ZenLabel & JSXBase.HTMLAttributes<HTMLZenLabelElement>;
             "zen-menu-item": LocalJSX.ZenMenuItem & JSXBase.HTMLAttributes<HTMLZenMenuItemElement>;
+            "zen-notification": LocalJSX.ZenNotification & JSXBase.HTMLAttributes<HTMLZenNotificationElement>;
             "zen-spinner": LocalJSX.ZenSpinner & JSXBase.HTMLAttributes<HTMLZenSpinnerElement>;
             "zen-steps": LocalJSX.ZenSteps & JSXBase.HTMLAttributes<HTMLZenStepsElement>;
             "zen-textarea": LocalJSX.ZenTextarea & JSXBase.HTMLAttributes<HTMLZenTextareaElement>;
