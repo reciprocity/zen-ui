@@ -1,10 +1,10 @@
 import { Component, Host, h, Prop, State, Event, EventEmitter, Listen, Watch, Element, Method } from '@stencil/core';
-import { key } from '../helpers/keyCodes';
 import { MouseEvent } from '../helpers/helpers';
 import { faChevronDown } from '@fortawesome/pro-light-svg-icons';
 import { renderIcon, styles } from '../helpers/fa-icons';
 import { get } from 'lodash';
 import { waitNextFrame } from '../helpers/helpers';
+import { Key } from 'ts-key-enum';
 
 export interface OptionItem {
   label: string;
@@ -96,16 +96,16 @@ export class ZenDropdown {
 
   @Listen('keydown')
   handleKeyDown(ev: KeyboardEvent): void {
-    const toggleKeys = [key.SPACE, key.ENTER, key.UP, key.DOWN];
+    const toggleKeys = ['Space', Key.Enter, Key.ArrowUp, Key.ArrowDown];
 
-    if (!this.opened && toggleKeys.includes(ev.keyCode)) {
+    if (!this.opened && toggleKeys.includes(ev.key)) {
       this.toggleDropdown();
       ev.preventDefault();
       return;
     }
 
-    switch (ev.keyCode) {
-      case key.DOWN:
+    switch (ev.key) {
+      case Key.ArrowDown:
         this.focusedIndex++;
         if (this.focusedIndex > this.options.length - 1) {
           this.focusedIndex = 0;
@@ -113,7 +113,7 @@ export class ZenDropdown {
         ev.preventDefault();
         break;
 
-      case key.UP:
+      case Key.ArrowUp:
         this.focusedIndex--;
         if (this.focusedIndex < 0) {
           this.focusedIndex = this.options.length - 1;
@@ -121,8 +121,8 @@ export class ZenDropdown {
         ev.preventDefault();
         break;
 
-      case key.ENTER:
-      case key.SPACE:
+      case Key.Enter:
+      case 'Space':
         const focused = this.options[this.focusedIndex];
         if (focused) {
           this.selectValue(focused);
