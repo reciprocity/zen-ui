@@ -48,8 +48,11 @@ export class ZenDropdown {
 
   /** Close an opened dropdown menu */
   @Method()
-  async close(): Promise<void> {
-    this.opened = false;
+  async toggle(open?: boolean): Promise<void> {
+    if (open === undefined) {
+      open = !this.opened;
+    }
+    this.opened = open;
   }
 
   @Watch('value')

@@ -36,7 +36,7 @@ const Template = ({ options, value, closeOnSelect }) => {
 const SlottedTemplate = ({ options }) => {
   interface ZenDropdownHTMLElement extends HTMLElement {
     value: string;
-    close: () => void;
+    toggle: (open: boolean) => void;
   }
 
   function dropdown(): ZenDropdownHTMLElement {
@@ -45,7 +45,7 @@ const SlottedTemplate = ({ options }) => {
 
   function onOptionClick(option) {
     dropdown().value = option.label;
-    dropdown().close();
+    dropdown().toggle(false);
   }
 
   return html`
