@@ -36,8 +36,6 @@ export class ZenDropdown {
   @Prop() readonly options: Array<OptionItem> = [];
   /** Option key that is unique for each option */
   @Prop() readonly trackBy: string = 'label';
-  /** If true, multiple options can be selected */
-  @Prop() readonly multiselect: boolean = false;
   /** To determine if there's enough space under field on open */
   @Prop() readonly menuHeight: number = 170;
 
@@ -199,7 +197,7 @@ export class ZenDropdown {
 
   render(): HTMLElement {
     return (
-      <Host tabindex="0" class="zen-multiselect" ref={el => (this.div = el)}>
+      <Host tabindex="0" ref={el => (this.div = el)}>
         <style>{styles}</style>
         <div
           class={{

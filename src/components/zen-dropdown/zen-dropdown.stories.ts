@@ -19,27 +19,14 @@ export default {
   },
 };
 
-const Template = () => {
-  const opts = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16].map(n => ({
-    label: `item ${n}`,
-  }));
+const Template = ({ options, value }) => {
   return html`
-    <zen-dropdown
-      id="default-dropdown"
-      class="my-96"
-      style="max-width: 300px;"
-      value=${opts[2].label}
-      .options=${opts}
-    />
+    <zen-dropdown id="default-dropdown" class="my-80" style="max-width: 300px;" value=${value} .options=${options} />
     ${action('#default-dropdown', customEvents)}
   `;
 };
 
-const SlottedTemplate = () => {
-  const opts = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16].map(n => ({
-    label: `item ${n}`,
-  }));
-
+const SlottedTemplate = ({ options }) => {
   interface ZenDropdownHTMLElement extends HTMLElement {
     value: string;
     close: () => void;
@@ -65,14 +52,14 @@ const SlottedTemplate = () => {
     </style>
     <zen-dropdown
       id="dropdown-with-options-slot"
-      class="my-96"
+      class="my-80"
       style="max-width: 300px;"
-      value=${opts[2].label}
-      .options=${opts}
+      value=${options[2].label}
+      .options=${options}
     >
       <div slot="options">
         <div class="separator">Some custom title</div>
-        ${opts.map(
+        ${options.map(
           item =>
             html`<zen-menu-item
               label=${item.label}
@@ -88,5 +75,16 @@ const SlottedTemplate = () => {
 };
 
 export const Default = Template.bind({});
+Default.args = {
+  options: [1, 2, 3, 4, 5, 6, 7, 8, 9].map(n => ({
+    label: `item ${n}`,
+  })),
+  value: 'item 2',
+};
 
-export const Slotted = SlottedTemplate.bind({});
+export const DropdownWithManuallyRenderedOptions = SlottedTemplate.bind({});
+DropdownWithManuallyRenderedOptions.args = {
+  options: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16].map(n => ({
+    label: `item ${n}`,
+  })),
+};
