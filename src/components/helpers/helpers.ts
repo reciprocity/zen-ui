@@ -9,7 +9,7 @@ export function waitNextFrame(): Promise<boolean> {
 }
 
 export function slotPassed(host: HTMLElement, slotName: string): boolean {
-  const selector = slotName ? `slot[name="${slotName}"]` : 'slot';
+  const selector = slotName ? `[slot="${slotName}"]` : 'slot';
   return !!host.querySelector(selector);
 }
 

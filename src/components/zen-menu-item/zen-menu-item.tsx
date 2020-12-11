@@ -1,4 +1,5 @@
-import { Component, Host, h, Prop } from '@stencil/core';
+import { Component, Host, h, Prop, Element } from '@stencil/core';
+import { slotPassed } from '../helpers/helpers';
 
 @Component({
   tag: 'zen-menu-item',
@@ -6,6 +7,10 @@ import { Component, Host, h, Prop } from '@stencil/core';
   shadow: true,
 })
 export class ZenMenuItem {
+  contentSlotPassed = false;
+
+  @Element() hostElement: HTMLZenMenuItemElement;
+
   /** Text inside the item */
   @Prop() readonly label: string = 'Item';
   /** Render item as selected */
@@ -15,11 +20,16 @@ export class ZenMenuItem {
   /** False to enable custom item padding */
   @Prop() readonly defaultPadding: boolean = true;
 
+  componentWillLoad(): void {
+    this.contentSlotPassed = slotPassed(this.hostElement, 'content');
+  }
+
   render(): HTMLElement {
     return (
       <Host>
+        <div>{this.contentSlotPassed ? 'yes' : 'no'}</div>
         <div class="background">
-          <div class="content">{this.label}</div>
+          {this.contentSlotPassed ? <slot name="content"></slot> : <div class="content">{this.label}</div>}
         </div>
       </Host>
     );
