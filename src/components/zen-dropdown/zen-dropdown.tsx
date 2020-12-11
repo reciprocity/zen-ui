@@ -38,6 +38,8 @@ export class ZenDropdown {
   @Prop() readonly trackBy: string = 'label';
   /** To determine if there's enough space under field on open */
   @Prop() readonly menuHeight: number = 170;
+  /** Close dropdown menu after selecting an item */
+  @Prop() readonly closeOnSelect = true;
 
   /** Emitted on any selection change */
   @Event() zenInput: EventEmitter<OptionValue>;
@@ -150,7 +152,9 @@ export class ZenDropdown {
     if (open) {
       this.focusedIndex = this.selectedIndex();
     }
-    this.opened = false;
+    if (this.closeOnSelect) {
+      this.opened = false;
+    }
     this.zenInput.emit(this.value);
   }
 

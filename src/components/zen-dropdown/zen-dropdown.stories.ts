@@ -19,9 +19,16 @@ export default {
   },
 };
 
-const Template = ({ options, value }) => {
+const Template = ({ options, value, closeOnSelect }) => {
   return html`
-    <zen-dropdown id="default-dropdown" class="my-80" style="max-width: 300px;" value=${value} .options=${options} />
+    <zen-dropdown
+      id="default-dropdown"
+      class="my-80"
+      style="max-width: 300px;"
+      value=${value}
+      .options=${options}
+      close-on-select=${closeOnSelect}
+    />
     ${action('#default-dropdown', customEvents)}
   `;
 };
@@ -80,6 +87,7 @@ Default.args = {
     label: `item ${n}`,
   })),
   value: 'item 2',
+  closeOnSelect: true,
 };
 
 export const DropdownWithManuallyRenderedOptions = SlottedTemplate.bind({});
