@@ -72,7 +72,7 @@ export class ZenDropdown {
       if (!this.clickHandler) {
         this.clickHandler = event => this.closeOnClickOut(event);
       }
-      document.addEventListener('mousedown', this.clickHandler);
+      document.addEventListener('mouseup', this.clickHandler);
 
       // Reset scroll:
       if (this.list) {
@@ -85,7 +85,7 @@ export class ZenDropdown {
         this.markSelectedSlottedOption(this.value);
       }
     } else {
-      document.removeEventListener('mousedown', this.clickHandler);
+      document.removeEventListener('mouseup', this.clickHandler);
     }
   }
 
@@ -169,9 +169,10 @@ export class ZenDropdown {
   }
 
   // Events
-  closeOnClickOut(event: MouseEvent): void {
-    const clickedInside = event.path.find(n => n === this.div);
+  async closeOnClickOut(event: MouseEvent): Promise<void> {
+    const clickedInside = event.path.find(n => n === this.list);
     if (clickedInside) return;
+    await waitNextFrame(); // prevent race with click-open
     this.opened = false;
   }
 
