@@ -81,6 +81,10 @@ export namespace Components {
          */
         "close": () => Promise<void>;
         /**
+          * Close dropdown menu after selecting an item
+         */
+        "closeOnSelect": true;
+        /**
           * To determine if there's enough space under field on open
          */
         "menuHeight": number;
@@ -369,6 +373,10 @@ declare namespace LocalJSX {
         "required"?: false;
     }
     interface ZenDropdown {
+        /**
+          * Close dropdown menu after selecting an item
+         */
+        "closeOnSelect"?: true;
         /**
           * To determine if there's enough space under field on open
          */

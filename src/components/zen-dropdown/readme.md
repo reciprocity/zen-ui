@@ -6,12 +6,13 @@
 
 ## Properties
 
-| Property     | Attribute     | Description                                              | Type               | Default     |
-| ------------ | ------------- | -------------------------------------------------------- | ------------------ | ----------- |
-| `menuHeight` | `menu-height` | To determine if there's enough space under field on open | `number`           | `170`       |
-| `options`    | --            | Array of available options                               | `OptionItem[]`     | `[]`        |
-| `trackBy`    | `track-by`    | Option key that is unique for each option                | `string`           | `'label'`   |
-| `value`      | `value`       | Selected option                                          | `number \| string` | `undefined` |
+| Property        | Attribute         | Description                                              | Type               | Default     |
+| --------------- | ----------------- | -------------------------------------------------------- | ------------------ | ----------- |
+| `closeOnSelect` | `close-on-select` | Close dropdown menu after selecting an item              | `boolean`          | `true`      |
+| `menuHeight`    | `menu-height`     | To determine if there's enough space under field on open | `number`           | `170`       |
+| `options`       | --                | Array of available options                               | `OptionItem[]`     | `[]`        |
+| `trackBy`       | `track-by`        | Option key that is unique for each option                | `string`           | `'label'`   |
+| `value`         | `value`           | Selected option                                          | `number \| string` | `undefined` |
 
 
 ## Events
