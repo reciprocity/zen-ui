@@ -4,40 +4,16 @@ import { ZenDismissDuration, ZenVariant } from './zen-notification-helper';
 
 const argTypes = {
   variant: {
-    name: 'Variant',
-    description: 'Variant',
-    type: { name: 'string', required: true },
     control: {
       type: 'select',
       options: ['success', 'info', 'warning', 'error'],
     },
   },
-  heading: {
-    name: 'Title',
-    description: 'Title',
-    type: { name: 'string', required: true },
-    control: { type: 'text' },
-  },
-  message: {
-    name: 'Message',
-    description: 'Message',
-    type: { name: 'string', required: true },
-    control: { type: 'text' },
-  },
   dismissDuration: {
-    name: 'Dismiss duration',
-    description: 'Dismiss duration',
-    type: { name: 'string', required: false },
     control: {
       type: 'select',
       options: ['none', 'short', 'medium', 'long'],
     },
-  },
-  dismiss: {
-    name: 'Dismiss',
-    description: 'Show close icon',
-    type: { name: 'boolean', required: false },
-    control: { type: 'boolean' },
   },
 };
 
