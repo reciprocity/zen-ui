@@ -28,8 +28,7 @@ Default.args = {
 
 const SlottedTemplate = () => {
   return html`<style>
-      ${styles}
-      .icon {
+      ${styles} .icon {
         height: 1rem;
         margin-right: 0.5rem;
       }
