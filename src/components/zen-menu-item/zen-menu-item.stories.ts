@@ -24,8 +24,24 @@ Default.args = {
 };
 
 const SlottedTemplate = () => {
-  return html` <zen-menu-item>
-    <div slot="content">Custom content</div>
+  return html`<style>
+      ${styles}
+      .content {
+        display: flex;
+        align-items: center;
+        padding: 1rem;
+      }
+      zen-menu-item {
+        display: inline-block;
+        max-width: 300px;
+        width: 100%;
+      }
+    </style>
+
+    <zen-menu-item default-padding="false">
+      <div class="content" slot="content">
+        <b>Custom content</b>
+      </div>
   </zen-menu-item>`;
 };
 
