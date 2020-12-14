@@ -6,6 +6,7 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { StringifiedJson } from "./stories/components/color-swatch-group/color-swatch-group";
+import { ButtonVariants } from "./components/zen-button/types";
 import { CheckboxChangeEventDetail } from "./components/zen-checkbox/types";
 import { OptionItem, OptionValue } from "./components/zen-dropdown/zen-dropdown";
 import { ZenDismissDuration, ZenVariant } from "./components/zen-notification/zen-notification-helper";
@@ -56,7 +57,7 @@ export namespace Components {
         /**
           * Color variant of the button
          */
-        "variant": "primary";
+        "variant": ButtonVariants;
     }
     interface ZenCheckbox {
         /**
@@ -386,7 +387,7 @@ declare namespace LocalJSX {
         /**
           * Color variant of the button
          */
-        "variant"?: "primary";
+        "variant"?: ButtonVariants;
     }
     interface ZenCheckbox {
         /**

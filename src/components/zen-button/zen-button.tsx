@@ -1,4 +1,5 @@
 import { Component, Host, h, Prop, Element } from '@stencil/core';
+import { ButtonVariants } from './types';
 
 /**
  * @slot leadingIcon - Slot for the icon at the left
@@ -16,7 +17,7 @@ export class ZenButton {
   @Element() hostElement: HTMLZenButtonElement;
 
   /** Color variant of the button */
-  @Prop() readonly variant = 'primary';
+  @Prop() readonly variant: ButtonVariants = ButtonVariants.Primary;
 
   /** Label of the button */
   @Prop() readonly label = 'Button';
