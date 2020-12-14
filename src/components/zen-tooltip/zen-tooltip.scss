@@ -19,7 +19,6 @@ span {
   line-height: 1rem;
   text-align: center;
   font-family: inherit;
-  max-width: 11rem;
   z-index: 999;
 }
 
@@ -88,6 +87,8 @@ span:before {
     $color-white,
     $color-gray-200,
   );
+
+  box-shadow: 0 4px 6px 0 rgba($color-gray-200, 0.3);
 
   &.top:before {
     border-top: 0.25rem solid $color-gray-200;
