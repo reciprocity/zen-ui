@@ -2,7 +2,7 @@ import { Component, Host, h, Prop, State, Event, EventEmitter, Watch } from '@st
 import { faCheck } from '@fortawesome/pro-light-svg-icons';
 import { renderIcon, styles } from '../helpers/fa-icons';
 import { StepsFilter } from './types';
-import { cloneDeep } from 'lodash';
+import cloneDeep from 'lodash/cloneDeep';
 
 export interface StepItem {
   label: string;

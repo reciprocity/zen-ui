@@ -15,7 +15,7 @@ export enum ZenDismissDuration {
   LONG = 'long',
 }
 
-export function getIcon(variant): HTMLElement {
+export function getIcon(variant: ZenVariant): HTMLElement {
   let icon: HTMLElement;
   switch (variant) {
     case ZenVariant.SUCCESS:
