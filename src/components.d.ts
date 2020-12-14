@@ -128,13 +128,13 @@ export namespace Components {
          */
         "fireFocusEvents": true;
         /**
+          * Shows invalid styles.
+         */
+        "invalid": false;
+        /**
           * Placeholder of the input.
          */
         "placeholder": string;
-        /**
-          * Makes input required.
-         */
-        "required": false;
         /**
           * The value of the input.
          */
@@ -482,6 +482,10 @@ declare namespace LocalJSX {
          */
         "fireFocusEvents"?: true;
         /**
+          * Shows invalid styles.
+         */
+        "invalid"?: false;
+        /**
           * Emitted when the input loses focus.
          */
         "onZenBlur"?: (event: CustomEvent<FocusEvent>) => void;
@@ -497,10 +501,6 @@ declare namespace LocalJSX {
           * Placeholder of the input.
          */
         "placeholder"?: string;
-        /**
-          * Makes input required.
-         */
-        "required"?: false;
         /**
           * The value of the input.
          */

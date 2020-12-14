@@ -26,6 +26,14 @@ input.input-control {
 
 :host(.invalid) {
   box-shadow: 0 0 0 2px $color-red-300;
+  border: 1px solid $color-red-700;
+}
+
+:host(.disabled) {
+  opacity: 0.5;
+  background-color: $color-gray-100;
+  pointer-events: none;
+  cursor: default;
 }
 
 input {
@@ -34,6 +42,13 @@ input {
   width: 100%;
   border: none;
   padding: 0;
+
+  &:disabled {
+    opacity: 0.5;
+    background-color: $color-gray-100;
+    pointer-events: none;
+    cursor: default;
+  }
 
   &:focus {
     outline: none;

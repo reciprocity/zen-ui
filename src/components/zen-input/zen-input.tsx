@@ -34,9 +34,9 @@ export class ZenInput {
   @Prop() readonly disabled = false;
 
   /**
-   * Makes input required.
+   * Shows invalid styles.
    */
-  @Prop() readonly required = false;
+  @Prop() readonly invalid = false;
 
   /**
    * The value of the input.
@@ -95,15 +95,14 @@ export class ZenInput {
     const value = this.getValue();
 
     return (
-      <Host class={{ 'has-focus': this.hasFocus }}>
+      <Host class={{ 'has-focus': this.hasFocus, invalid: this.invalid, disabled: this.disabled }}>
         <slot name="leadingSlot"></slot>
         <input
           type="text"
           class={{ ml: this.leadingSlotFulfilled, mr: this.trailingSlotFulfilled }}
           placeholder={this.placeholder}
-          disabled={this.disabled}
-          required={this.required}
           value={value}
+          disabled={this.disabled}
           onBlur={this.onBlur}
           onFocus={this.onFocus}
           onInput={this.onInput}
