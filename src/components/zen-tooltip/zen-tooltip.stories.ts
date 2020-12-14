@@ -1,9 +1,6 @@
 import { html } from 'lit-html';
 import markdown from './readme.md';
 import { Position, Variant } from './types';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { faTrash } from '@fortawesome/pro-light-svg-icons';
-library.add(faTrash);
 
 const argTypes = {
   position: {
@@ -63,7 +60,7 @@ const TemplateSlot = () => {
         margin: 0;
       }
     </style>
-    <div style="text-align: center; padding-top: 6rem;">
+    <div style="cursor:pointer; text-align: center; padding-top: 6rem;">
       <span>john.doe@reciprocity.com</span>
       <zen-tooltip style="max-width: 400px;" position="top" variant="light" text="Override text">
         <div slot="text" style="text-align: left;">

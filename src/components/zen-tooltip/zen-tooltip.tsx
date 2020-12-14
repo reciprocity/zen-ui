@@ -43,7 +43,7 @@ export class ZenTooltip {
         break;
 
       case Position.RIGHT:
-        x += (bounds.width + myBounds.width) / 2 - this.offset;
+        x += (bounds.width + myBounds.width) / 2 + this.offset;
         break;
 
       case Position.TOP:
@@ -51,7 +51,7 @@ export class ZenTooltip {
         break;
 
       case Position.BOTTOM:
-        y += (bounds.height + myBounds.height) / 2 - this.offset;
+        y += (bounds.height + myBounds.height) / 2 + this.offset;
         break;
     }
 
