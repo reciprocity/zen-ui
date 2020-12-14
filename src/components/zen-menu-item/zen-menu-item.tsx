@@ -1,4 +1,8 @@
-import { Component, Host, h, Prop } from '@stencil/core';
+import { Component, Host, h, Prop, Element } from '@stencil/core';
+
+/**
+ * @slot content - Replace content of item. Padding stays. To remove it set `defaultPadding="false"`
+ */
 
 @Component({
   tag: 'zen-menu-item',
@@ -6,6 +10,8 @@ import { Component, Host, h, Prop } from '@stencil/core';
   shadow: true,
 })
 export class ZenMenuItem {
+  @Element() hostElement: HTMLZenMenuItemElement;
+
   /** Text inside the item */
   @Prop() readonly label: string = 'Item';
   /** Render item as selected */
@@ -18,8 +24,10 @@ export class ZenMenuItem {
   render(): HTMLElement {
     return (
       <Host>
-        <div class="background">
-          <div class="content">{this.label}</div>
+        <div class={{ background: true, paddingless: !this.defaultPadding }}>
+          <slot name="content">
+            <div class="content">{this.label}</div>
+          </slot>
         </div>
       </Host>
     );

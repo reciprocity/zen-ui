@@ -33,3 +33,23 @@ export function renderIcon(icon: IconDefinition): HTMLElement {
     </svg>
   );
 }
+
+export function litHtmlIcon(icon: IconDefinition): string {
+  const [width, height, , , svg] = icon.icon;
+  const classes = `svg-inline--fa fa-w-20 mr-3 fa-${icon.iconName}`;
+  console.log(svg);
+
+  return `<svg
+    class="${classes}"
+    aria-hidden="true"
+    focusable="false"
+    data-prefix="fal"
+    data-icon="${icon.iconName}"
+    role="img"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 ${width} ${height}"
+    data-fa-i2svg=""
+  >
+    <path fill="currentColor" d="${svg}" />
+  </svg>`;
+}

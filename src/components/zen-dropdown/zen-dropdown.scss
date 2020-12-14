@@ -7,7 +7,8 @@ $open-transition: 0.2s;
 
 :host {
   position: relative;
-  display: block;
+  display: inline-block;
+  width: 100%;
   text-align-last: left;
   outline: none;
   font-size: $text-md;

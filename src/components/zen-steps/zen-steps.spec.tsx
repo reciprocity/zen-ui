@@ -21,7 +21,7 @@ describe('zen-button', () => {
     });
     const component = page.doc.createElement('zen-steps');
 
-    (component as HTMLZenStepsElement).steps = [{ label: 'Step one' }];
+    (component as HTMLZenStepsElement).steps = [{ label: 'Step one', completed: true }];
     page.root.appendChild(component);
     await page.waitForChanges();
 

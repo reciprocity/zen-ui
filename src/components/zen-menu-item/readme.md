@@ -15,6 +15,13 @@
 | `selected`       | `selected`        | Render item as selected             | `boolean` | `false`  |
 
 
+## Slots
+
+| Slot        | Description                                                                       |
+| ----------- | --------------------------------------------------------------------------------- |
+| `"content"` | Replace content of item. Padding stays. To remove it set `defaultPadding="false"` |
+
+
 ## Dependencies
 
 ### Used by

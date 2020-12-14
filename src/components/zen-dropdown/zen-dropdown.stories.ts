@@ -1,6 +1,9 @@
 import { html } from 'lit-html';
 import markdown from './readme.md';
 import { eventHandles, action } from '../../../.storybook/helpers/custom-action';
+import icon from '../../img/reci-icon-g.png';
+import { faCheck } from '@fortawesome/pro-light-svg-icons';
+import { litHtmlIcon, styles } from '../helpers/fa-icons';
 
 const customEvents = ['zenInput'];
 const events = [...eventHandles(customEvents)];
@@ -50,12 +53,27 @@ const SlottedTemplate = ({ options }) => {
 
   return html`
     <style>
+      .icon {
+        height: 1rem;
+        margin-right: 0.5rem;
+      }
+      .content {
+        display: flex;
+        align-items: center;
+        padding: 1rem;
+      }
+      zen-menu-item {
+        display: inline-block;
+        max-width: 300px;
+        width: 100%;
+      }
       .separator {
         margin-top: 1rem;
         border-bottom: 1px solid;
         color: #0078cd;
         padding: 0 1rem;
       }
+      ${styles}
     </style>
     <zen-dropdown
       id="dropdown-with-options-slot"
@@ -66,14 +84,26 @@ const SlottedTemplate = ({ options }) => {
     >
       <div slot="options">
         <div class="separator">Some custom title</div>
-        ${options.map(
-          item =>
-            html`<zen-menu-item
-              label=${item.label}
-              @click="${() => {
-                onOptionClick(item);
-              }}"
-            ></zen-menu-item>`,
+        ${options.map((item, index) =>
+          index !== 1
+            ? html`<zen-menu-item
+                label=${item.label}
+                @click="${() => {
+                  onOptionClick(item);
+                }}"
+              ></zen-menu-item>`
+            : html`<zen-menu-item
+                default-padding="false"
+                @click="${() => {
+                  onOptionClick(item);
+                }}"
+              >
+                <div class="content" slot="content">
+                  <img class="icon" src=${icon} alt="icon" />
+                  <b>${item.label}</b>
+                  <span style="margin-left: auto" .innerHTML="${litHtmlIcon(faCheck)}"></span>
+                </div>
+              </zen-menu-item>`,
         )}
       </div>
     </zen-dropdown>

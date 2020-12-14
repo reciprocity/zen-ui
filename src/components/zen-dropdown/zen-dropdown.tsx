@@ -1,5 +1,5 @@
 import { Component, Host, h, Prop, State, Event, EventEmitter, Listen, Watch, Element, Method } from '@stencil/core';
-import { MouseEvent } from '../helpers/helpers';
+import { MouseEvent, slotPassed, getSlotElement } from '../helpers/helpers';
 import { faChevronDown } from '@fortawesome/pro-light-svg-icons';
 import { renderIcon, styles } from '../helpers/fa-icons';
 import { get } from 'lodash';
@@ -133,10 +133,8 @@ export class ZenDropdown {
   }
 
   getSlottedOptionItems(): NodeListOf<HTMLZenMenuItemElement> | undefined[] {
-    const optionsSlot = this.hostElement.shadowRoot.querySelector('slot[name=options]') as HTMLSlotElement;
-    if (!optionsSlot) return []; // happens when dropdown isn't opened
-
-    const list = optionsSlot.assignedNodes()[0] as HTMLElement;
+    const list = getSlotElement(this.hostElement, 'options');
+    if (!list) return []; // happens when dropdown isn't opened
     return list.querySelectorAll('zen-menu-item');
   }
 
@@ -199,7 +197,7 @@ export class ZenDropdown {
   }
 
   componentWillLoad(): void {
-    this.hasOptionsSlot = !!this.hostElement.querySelector('[slot="options"]');
+    this.hasOptionsSlot = slotPassed(this.hostElement, 'options');
     this.valueChanged(this.value);
   }
 
@@ -222,18 +220,16 @@ export class ZenDropdown {
         <div class={{ 'list-wrap': true, 'open-above': this.openAbove() }} ref={el => (this.listWrap = el)}>
           <zen-animate show={this.opened}>
             <div class="list" ref={el => (this.list = el)}>
-              {!this.hasOptionsSlot ? (
-                this.options.map((option, index) => (
+              <slot name="options">
+                {this.options.map((option, index) => (
                   <zen-menu-item
                     label={option.label}
                     focused={this.focusedIndex === index}
                     selected={option[this.trackBy] === this.value}
                     onClick={() => this.selectValue(option)}
                   />
-                ))
-              ) : (
-                <slot name="options"></slot>
-              )}
+                ))}
+              </slot>
             </div>
           </zen-animate>
         </div>
