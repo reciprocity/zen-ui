@@ -10,7 +10,7 @@
 | `disabled` | `disabled` | If present, button will be disabled | `boolean`   | `false`     |
 | `label`    | `label`    | Label of the button                 | `"Button"`  | `'Button'`  |
 | `loading`  | `loading`  | If present, will show a spinner     | `boolean`   | `false`     |
-| `variant`  | `variant`  | Color variant of the button         | `"Primary"` | `'Primary'` |
+| `variant`  | `variant`  | Color variant of the button         | `"primary"` | `'primary'` |
 
 
 ## Slots

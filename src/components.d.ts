@@ -56,7 +56,7 @@ export namespace Components {
         /**
           * Color variant of the button
          */
-        "variant": "Primary";
+        "variant": "primary";
     }
     interface ZenCheckbox {
         /**
@@ -386,7 +386,7 @@ declare namespace LocalJSX {
         /**
           * Color variant of the button
          */
-        "variant"?: "Primary";
+        "variant"?: "primary";
     }
     interface ZenCheckbox {
         /**
