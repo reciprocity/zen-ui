@@ -1,6 +1,8 @@
 import { html } from 'lit-html';
 import markdown from './readme.md';
 import icon from '../../img/reci-icon-g.png';
+import { faCheck } from '@fortawesome/pro-light-svg-icons';
+import { litHtmlIcon, styles } from '../helpers/fa-icons';
 
 const argTypes = {};
 
@@ -47,8 +49,9 @@ const SlottedTemplate = () => {
       <div class="content" slot="content">
         <img class="icon" src=${icon} alt="icon" />
         <b>Custom content</b>
+        <span style="margin-left: auto">${litHtmlIcon(faCheck)}</span>
       </div>
-  </zen-menu-item>`;
+    </zen-menu-item>`;
 };
 
 export const CustomContentSlot = SlottedTemplate.bind({});

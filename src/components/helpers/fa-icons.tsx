@@ -1,4 +1,5 @@
 import { h } from '@stencil/core';
+import { html, TemplateResult } from 'lit-html';
 import { IconDefinition } from '@fortawesome/fontawesome-common-types';
 
 // Hard-copied from node_modules/@fortawesome/fontawesome-svg-core/index.js L2146:
@@ -32,4 +33,24 @@ export function renderIcon(icon: IconDefinition): HTMLElement {
       <path fill="currentColor" d={svg as string}></path>
     </svg>
   );
+}
+
+export function litHtmlIcon(icon: IconDefinition): TemplateResult {
+  const [width, height, , , svg] = icon.icon;
+  const classes = `svg-inline--fa fa-w-20 mr-3 fa-${icon.iconName}`;
+  console.log(svg);
+
+  return html`<svg
+    class=${classes}
+    aria-hidden="true"
+    focusable="false"
+    data-prefix="fal"
+    data-icon=${icon.iconName}
+    role="img"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 ${width} ${height}"
+    data-fa-i2svg=""
+  >
+    <path fill="currentColor" d=${svg} />
+  </svg>`;
 }
