@@ -48,7 +48,7 @@ const SlottedTemplate = () => {
       <div class="content" slot="content">
         <img class="icon" src=${icon} alt="icon" />
         <b>Custom content</b>
-        <span style="margin-left: auto">${litHtmlIcon(faCheck)}</span>
+        <span style="margin-left: auto" .innerHTML="${litHtmlIcon(faCheck)}"></span>
       </div>
     </zen-menu-item>`;
 };
