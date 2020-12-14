@@ -19,6 +19,8 @@
 
 | Event      | Description                             | Type                         |
 | ---------- | --------------------------------------- | ---------------------------- |
+| `zenBlur`  | Emitted when the input loses focus.     | `CustomEvent<FocusEvent>`    |
+| `zenFocus` | Emitted when the input has focus.       | `CustomEvent<FocusEvent>`    |
 | `zenInput` | Emitted when a keyboard input occurred. | `CustomEvent<KeyboardEvent>` |
 
 

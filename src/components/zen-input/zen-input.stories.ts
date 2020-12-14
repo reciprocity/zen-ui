@@ -45,4 +45,18 @@ const Template = ({ value, placeholder, disabled, required }) => {
     ${action('zen-input', customEvents)}`;
 };
 
+const TemplateLeading = () => {
+  return html`<zen-input placeholder="Insert text here...">
+    <zen-spinner slot="leadingSlot"></zen-spinner>
+  </zen-input>`;
+};
+
+const TemplateTrailing = () => {
+  return html`<zen-input placeholder="Insert text here...">
+    <zen-spinner slot="trailingSlot"></zen-spinner>
+  </zen-input>`;
+};
+
 export const Default = Template.bind({});
+export const WithLeadingSpinner = TemplateLeading.bind({});
+export const WithTrailingSpinner = TemplateTrailing.bind({});
