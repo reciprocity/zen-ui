@@ -45,22 +45,26 @@ span {
 }
 
 .btn-primary {
-  @include button-variant($color-white,
+  @include button-variant(
+    $color-white,
     $color-blue-700,
     $color-blue-700,
     $color-blue-800,
     $color-blue-300,
-    $color-blue-900);
+    $color-blue-900
+  );
 }
 
 .btn-secondary {
-  @include outline-button-variant($color-gray-500,
+  @include outline-button-variant(
+    $color-gray-500,
     $color-white,
     $color-gray-500,
     $color-white,
     $color-gray-600,
     $color-gray-300,
-    $color-gray-700);
+    $color-gray-700
+  );
 }
 
 .btn-tertiary {
@@ -84,22 +88,19 @@ span {
 }
 
 .btn-positive {
-  @include outline-button-variant($color-green-700,
+  @include outline-button-variant(
+    $color-green-700,
     $color-white,
     $color-green-700,
     $color-white,
     $color-green-700,
     $color-green-500,
-    $color-green-800);
+    $color-green-800
+  );
 }
 
 .btn-destructive {
-  @include button-variant($color-white,
-    $color-red-700,
-    $color-red-700,
-    $color-red-800,
-    $color-red-300,
-    $color-red-900);
+  @include button-variant($color-white, $color-red-700, $color-red-700, $color-red-800, $color-red-300, $color-red-900);
 }
 
 zen-spinner {
