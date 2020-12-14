@@ -12,6 +12,7 @@ describe('zen-button', () => {
         <mock:shadow-root>
           <button class="btn btn-primary" type="button">
             <slot name="leadingIcon"></slot>
+            <span>Button</span>
             <slot name="trailingIcon"></slot>
           </button>
         </mock:shadow-root>
@@ -29,6 +30,7 @@ describe('zen-button', () => {
         <mock:shadow-root>
           <button class="btn btn-secondary" type="button">
             <slot name="leadingIcon"></slot>
+            <span>Button</span>
             <slot name="trailingIcon"></slot>
           </button>
         </mock:shadow-root>
@@ -46,6 +48,7 @@ describe('zen-button', () => {
         <mock:shadow-root>
           <button class="btn btn-tertiary" type="button">
             <slot name="leadingIcon"></slot>
+            <span>Button</span>
             <slot name="trailingIcon"></slot>
           </button>
         </mock:shadow-root>
@@ -63,6 +66,7 @@ describe('zen-button', () => {
         <mock:shadow-root>
           <button class="btn btn-destructive" type="button">
             <slot name="leadingIcon"></slot>
+            <span>Button</span>
             <slot name="trailingIcon"></slot>
           </button>
         </mock:shadow-root>
@@ -80,6 +84,7 @@ describe('zen-button', () => {
         <mock:shadow-root>
           <button class="btn btn-positive" type="button">
             <slot name="leadingIcon"></slot>
+            <span>Button</span>
             <slot name="trailingIcon"></slot>
           </button>
         </mock:shadow-root>
@@ -97,6 +102,7 @@ describe('zen-button', () => {
         <mock:shadow-root>
           <button class="btn btn-primary" type="button">
             <slot name="leadingIcon"></slot>
+            <span class="ml">Button</span>
             <slot name="trailingIcon"></slot>
           </button>
         </mock:shadow-root>
@@ -115,6 +121,7 @@ describe('zen-button', () => {
         <mock:shadow-root>
           <button class="btn btn-primary" type="button">
             <slot name="leadingIcon"></slot>
+            <span class="mr">Button</span>
             <slot name="trailingIcon"></slot>
           </button>
         </mock:shadow-root>
@@ -133,6 +140,7 @@ describe('zen-button', () => {
         <mock:shadow-root>
           <button class="btn btn-primary" type="button">
             <slot name="leadingIcon"></slot>
+            <span class="ml mr">Button</span>
             <slot name="trailingIcon"></slot>
           </button>
         </mock:shadow-root>
