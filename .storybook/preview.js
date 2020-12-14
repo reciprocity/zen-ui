@@ -26,7 +26,7 @@ export const parameters = {
           <Title />
           <Subtitle />
           <Primary />
-          <h2>Playground</h2>
+          <h3 className="css-5nkye">Playground</h3>
           <ArgsTable story={PRIMARY_STORY} />
           <Description />
           <Stories />
