@@ -55,34 +55,26 @@ span {
 
 .btn-secondary {
   @include outline-button-variant(
-    $color-gray-500,
+    $color-blue-700,
     $color-white,
-    $color-gray-500,
-    $color-white,
-    $color-gray-600,
-    $color-gray-300,
-    $color-gray-700
+    $color-blue-700,
+    $color-blue-800,
+    $color-gray-100,
+    $color-blue-300,
+    $color-blue-900,
+    $color-gray-200
   );
 }
 
 .btn-tertiary {
-  color: $color-blue-700;
-  background-color: $color-white;
-
-  &:hover:not([disabled]) {
-    background-color: $color-gray-100;
-    border-color: $color-gray-100;
-  }
-
-  &:focus,
-  &:active {
-    box-shadow: 0 0 0 2px $color-blue-300;
-  }
-
-  &:active {
-    background-color: $color-gray-200;
-    border-color: $color-gray-200;
-  }
+  @include button-variant(
+    $color-gray-600,
+    $color-white,
+    $color-white,
+    $color-gray-100,
+    $color-gray-300,
+    $color-gray-200
+  );
 }
 
 .btn-positive {
@@ -90,10 +82,11 @@ span {
     $color-green-700,
     $color-white,
     $color-green-700,
-    $color-white,
-    $color-green-700,
-    $color-green-500,
-    $color-green-800
+    $color-green-800,
+    $color-green-100,
+    $color-green-300,
+    $color-green-900,
+    $color-green-300
   );
 }
 

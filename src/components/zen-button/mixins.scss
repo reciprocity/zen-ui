@@ -3,7 +3,7 @@
   background-color: $background;
   border-color: $border;
 
-  &:hover:not([disabled]) {
+  &:hover {
     background-color: $hover;
     border-color: $hover;
     cursor: pointer;
@@ -20,15 +20,24 @@
   }
 }
 
-@mixin outline-button-variant($color, $background, $border, $hover-color, $hover-background, $focus, $active) {
+@mixin outline-button-variant(
+  $color,
+  $background,
+  $border,
+  $hover-color,
+  $hover-background,
+  $focus,
+  $active-color,
+  $active-background
+) {
   color: $color;
   background-color: $background;
   border-color: $border;
 
-  &:hover:not([disabled]) {
+  &:hover {
     color: $hover-color;
     background-color: $hover-background;
-    border-color: $hover-background;
+    border-color: $hover-color;
     cursor: pointer;
   }
 
@@ -38,8 +47,8 @@
   }
 
   &:active {
-    color: $hover-color;
-    background-color: $active;
-    border-color: $active;
+    color: $active-color;
+    background-color: $active-background;
+    border-color: $active-color;
   }
 }
