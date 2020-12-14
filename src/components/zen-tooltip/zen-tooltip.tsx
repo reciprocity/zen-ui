@@ -20,88 +20,50 @@ export class ZenTooltip {
   /** Set tooltip offset to target element */
   @Prop() readonly offset?: number = 10;
 
-  getClassNames() {
+  getClassNames(): string {
     return this.variant + ' ' + this.position;
   }
 
-  show() {
+  show(): void {
     const previousElement = this.element.previousElementSibling as HTMLElement;
 
-    const rect = previousElement.getBoundingClientRect();
-    const width = rect.width;
-    const height = rect.height;
+    const bounds = previousElement.getBoundingClientRect();
 
-    const top = previousElement.offsetTop - previousElement.scrollTop + previousElement.clientTop;
-    const left = previousElement.offsetLeft - previousElement.scrollTop + previousElement.clientTop;
+    this.element.style.display = 'block';
+    this.element.style.left = '0';
+    this.element.style.top = '0';
+    const myBounds = this.element.getBoundingClientRect();
 
-    const centerX = left + width / 2;
-    const centerY = top + height / 2;
+    let x = bounds.left - myBounds.left + (bounds.width - myBounds.width) / 2;
+    let y = bounds.top - myBounds.top + (bounds.height - myBounds.height) / 2;
 
-    const tooltip = this.element.shadowRoot.querySelector('span');
-
-    // To solve display none has no width and height we set it to block and back again
-    tooltip.style.display = 'block';
-    const tooltipRect = tooltip.getBoundingClientRect();
-    const tooltipWidth = tooltipRect.width;
-    const tooltipHeight = tooltipRect.height;
-    tooltip.style.display = 'none';
-
-    console.log('TOOLTIP WIDTH: ', tooltipWidth);
-    console.log('TOOLTIP HEIGHT: ', tooltipHeight);
-    console.log('TOP: ', top);
-    console.log('TOP Y: ', rect.y);
-    console.log('LEFT: ', left);
-    console.log('LEFT X: ', rect.x);
-    console.log('RIGHT: ', rect.right);
-    console.log('BOTTOM: ', rect.bottom);
-    console.log('WIDTH: ', width);
-    console.log('HEIGHT: ', height);
-    console.log('CENTER-X: ', centerX);
-    console.log('CENTER-Y: ', centerY);
-
-    let calculatedTop = 0;
-    let calculatedLeft = 0;
-
-    // Calculate tooltip positions
     switch (this.position) {
-      case Position.BOTTOM:
-        calculatedLeft = centerX - tooltipWidth / 2;
-        calculatedTop = centerY + height + this.offset;
-
-        tooltip.style.left = calculatedLeft + 'px';
-        tooltip.style.top = calculatedTop + 'px';
-        break;
       case Position.LEFT:
-        calculatedLeft = left - tooltipWidth - this.offset;
-        calculatedTop = centerY - tooltipHeight / 2;
-
-        tooltip.style.left = calculatedLeft + 'px';
-        tooltip.style.top = calculatedTop + 'px';
+        x -= (bounds.width + myBounds.width) / 2 + this.offset;
         break;
-      case Position.TOP:
-        calculatedLeft = centerX - tooltipWidth / 2;
-        calculatedTop = centerY + height + this.offset;
 
-        tooltip.style.left = calculatedLeft + 'px';
-        tooltip.style.bottom = calculatedTop + 'px';
-        break;
       case Position.RIGHT:
-        calculatedLeft = left + width + this.offset;
-        calculatedTop = centerY - tooltipHeight / 2;
+        x += (bounds.width + myBounds.width) / 2 - this.offset;
+        break;
 
-        tooltip.style.left = calculatedLeft + 'px';
-        tooltip.style.top = calculatedTop + 'px';
+      case Position.TOP:
+        y -= (bounds.height + myBounds.height) / 2 + this.offset;
+        break;
+
+      case Position.BOTTOM:
+        y += (bounds.height + myBounds.height) / 2 - this.offset;
         break;
     }
 
-    tooltip.style.display = 'block';
+    this.element.style.left = `${x}px`;
+    this.element.style.top = `${y}px`;
   }
 
-  hide() {
-    this.element.shadowRoot.querySelector('span').style.display = 'none';
+  hide(): void {
+    this.element.style.display = 'none';
   }
 
-  componentDidLoad() {
+  componentDidLoad(): void {
     const previousElement = this.element.previousElementSibling;
     if (previousElement) {
       previousElement.addEventListener('mouseover', () => this.show());
@@ -111,7 +73,7 @@ export class ZenTooltip {
     }
   }
 
-  render() {
+  render(): HTMLElement {
     return (
       <Host ref={el => (this.element = el)}>
         <span class={this.getClassNames()}>

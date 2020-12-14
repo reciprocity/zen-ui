@@ -2,13 +2,16 @@
 @import './mixins.scss';
 
 :host {
+  position: absolute;
+  display: none;
   max-width: 11rem;
   z-index: 999;
 }
 
 span {
-  position: absolute;
-  display: none;
+  display: block;
+  position: relative;
+  pointer-events: none;
   font-size: $text-sm;
   color: $color-white;
   padding: 1rem;
