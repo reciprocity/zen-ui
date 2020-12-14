@@ -1,5 +1,9 @@
 import { Component, Host, h, Prop, Element } from '@stencil/core';
 
+/**
+ * @slot leadingIcon - Slot for the icon at the left
+ * @slot trailingIcon - Slot for the icon at the right
+ */
 @Component({
   tag: 'zen-button',
   styleUrl: 'zen-button.scss',

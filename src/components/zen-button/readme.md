@@ -13,6 +13,14 @@
 | `variant`  | `variant`  | Color variant of the button         | `"primary"` | `'primary'` |
 
 
+## Slots
+
+| Slot             | Description                    |
+| ---------------- | ------------------------------ |
+| `"leadingIcon"`  | Slot for the icon at the left  |
+| `"trailingIcon"` | Slot for the icon at the right |
+
+
 ## Dependencies
 
 ### Depends on

@@ -23,7 +23,36 @@ const Template = ({ label, variant, loading, disabled }) => {
   `;
 };
 
+const TemplateLeading = () => {
+  return html`
+    <zen-button label="Button">
+      <zen-spinner slot="leadingIcon"></zen-spinner>
+    </zen-button>
+  `;
+};
+
+const TemplateTrailing = () => {
+  return html`
+    <zen-button label="Button">
+      <zen-spinner slot="trailingIcon"></zen-spinner>
+    </zen-button>
+  `;
+};
+
+const TemplateBoth = () => {
+  return html`
+    <zen-button label="Button">
+      <zen-spinner slot="leadingIcon"></zen-spinner>
+      <zen-spinner slot="trailingIcon"></zen-spinner>
+    </zen-button>
+  `;
+};
+
 export const Default = Template.bind({});
+export const WithLeadingSlot = TemplateLeading.bind({});
+export const WithTrailingSlot = TemplateTrailing.bind({});
+export const WithBothSlot = TemplateBoth.bind({});
+
 Default.args = {
   label: 'Button',
   variant: 'primary',
