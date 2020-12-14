@@ -1,5 +1,4 @@
 import { Component, Host, h, Prop, Element } from '@stencil/core';
-import { slotPassed } from '../helpers/helpers';
 
 /**
  * @slot content - Replace content of item. Padding stays. To remove it set `defaultPadding="false"`
@@ -11,8 +10,6 @@ import { slotPassed } from '../helpers/helpers';
   shadow: true,
 })
 export class ZenMenuItem {
-  contentSlotPassed = false;
-
   @Element() hostElement: HTMLZenMenuItemElement;
 
   /** Text inside the item */
@@ -24,15 +21,13 @@ export class ZenMenuItem {
   /** False to enable custom item padding */
   @Prop() readonly defaultPadding: boolean = true;
 
-  componentWillLoad(): void {
-    this.contentSlotPassed = slotPassed(this.hostElement, 'content');
-  }
-
   render(): HTMLElement {
     return (
       <Host>
         <div class={{ background: true, paddingless: !this.defaultPadding }}>
-          {this.contentSlotPassed ? <slot name="content"></slot> : <div class="content">{this.label}</div>}
+          <slot name="content">
+            <div class="content">{this.label}</div>
+          </slot>
         </div>
       </Host>
     );

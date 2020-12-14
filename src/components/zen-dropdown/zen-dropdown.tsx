@@ -220,18 +220,16 @@ export class ZenDropdown {
         <div class={{ 'list-wrap': true, 'open-above': this.openAbove() }} ref={el => (this.listWrap = el)}>
           <zen-animate show={this.opened}>
             <div class="list" ref={el => (this.list = el)}>
-              {!this.hasOptionsSlot ? (
-                this.options.map((option, index) => (
+              <slot name="options">
+                {this.options.map((option, index) => (
                   <zen-menu-item
                     label={option.label}
                     focused={this.focusedIndex === index}
                     selected={option[this.trackBy] === this.value}
                     onClick={() => this.selectValue(option)}
                   />
-                ))
-              ) : (
-                <slot name="options"></slot>
-              )}
+                ))}
+              </slot>
             </div>
           </zen-animate>
         </div>
