@@ -8,9 +8,9 @@
 | Property   | Attribute  | Description                         | Type        | Default     |
 | ---------- | ---------- | ----------------------------------- | ----------- | ----------- |
 | `disabled` | `disabled` | If present, button will be disabled | `boolean`   | `false`     |
-| `label`    | `label`    | Label of the button                 | `""`        | `''`        |
+| `label`    | `label`    | Label of the button                 | `"Button"`  | `'Button'`  |
 | `loading`  | `loading`  | If present, will show a spinner     | `boolean`   | `false`     |
-| `variant`  | `variant`  | Color variant of the button         | `"primary"` | `'primary'` |
+| `variant`  | `variant`  | Color variant of the button         | `"Primary"` | `'Primary'` |
 
 
 ## Slots

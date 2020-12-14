@@ -48,7 +48,7 @@ export namespace Components {
         /**
           * Label of the button
          */
-        "label": "";
+        "label": "Button";
         /**
           * If present, will show a spinner
          */
@@ -56,7 +56,7 @@ export namespace Components {
         /**
           * Color variant of the button
          */
-        "variant": "primary";
+        "variant": "Primary";
     }
     interface ZenCheckbox {
         /**
@@ -378,7 +378,7 @@ declare namespace LocalJSX {
         /**
           * Label of the button
          */
-        "label"?: "";
+        "label"?: "Button";
         /**
           * If present, will show a spinner
          */
@@ -386,7 +386,7 @@ declare namespace LocalJSX {
         /**
           * Color variant of the button
          */
-        "variant"?: "primary";
+        "variant"?: "Primary";
     }
     interface ZenCheckbox {
         /**

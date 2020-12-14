@@ -23,6 +23,36 @@ const Template = ({ label, variant, loading, disabled }) => {
   `;
 };
 
+const TemplatePrimary = () => {
+  return html` <zen-button style="margin: 10px;" label="Primary button"></zen-button>
+    <zen-button style="margin: 10px;" label="Primary button" disabled></zen-button>
+    <zen-button style="margin: 10px;" label="Primary button" loading></zen-button>`;
+};
+
+const TemplateSecondary = () => {
+  return html` <zen-button style="margin: 10px;" variant="secondary" label="Secondary button"></zen-button>
+    <zen-button style="margin: 10px;" variant="secondary" label="Secondary button" disabled></zen-button>
+    <zen-button style="margin: 10px;" variant="secondary" label="Secondary button" loading></zen-button>`;
+};
+
+const TemplateTertiary = () => {
+  return html` <zen-button style="margin: 10px;" variant="tertiary" label="Tertiary button"></zen-button>
+    <zen-button style="margin: 10px;" variant="tertiary" label="Tertiary button" disabled></zen-button>
+    <zen-button style="margin: 10px;" variant="tertiary" label="Tertiary button" loading></zen-button>`;
+};
+
+const TemplateDestructive = () => {
+  return html` <zen-button style="margin: 10px;" variant="destructive" label="Destructive button"></zen-button>
+    <zen-button style="margin: 10px;" variant="destructive" label="Destructive button" disabled></zen-button>
+    <zen-button style="margin: 10px;" variant="destructive" label="Destructive button" loading></zen-button>`;
+};
+
+const TemplatePositive = () => {
+  return html` <zen-button style="margin: 10px;" variant="positive" label="Positive button"></zen-button>
+    <zen-button style="margin: 10px;" variant="positive" label="Positive button" disabled></zen-button>
+    <zen-button style="margin: 10px;" variant="positive" label="Positive button" loading></zen-button>`;
+};
+
 const TemplateLeading = () => {
   return html`
     <zen-button label="Button">
@@ -49,6 +79,11 @@ const TemplateBoth = () => {
 };
 
 export const Default = Template.bind({});
+export const PrimaryButtonStory = TemplatePrimary.bind({});
+export const SecondaryButtonStory = TemplateSecondary.bind({});
+export const TertiaryButtonStory = TemplateTertiary.bind({});
+export const DestructiveButtonStory = TemplateDestructive.bind({});
+export const PositiveButtonStory = TemplatePositive.bind({});
 export const WithLeadingSlot = TemplateLeading.bind({});
 export const WithTrailingSlot = TemplateTrailing.bind({});
 export const WithBothSlot = TemplateBoth.bind({});

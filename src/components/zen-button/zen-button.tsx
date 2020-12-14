@@ -10,8 +10,8 @@ import { Component, Host, h, Prop, Element } from '@stencil/core';
   shadow: true,
 })
 export class ZenButton {
-  leftSlotFulfilled: boolean;
-  rightSlotFulfilled: boolean;
+  leadingIconSlotFulfilled: boolean;
+  trailingIconSlotFulfilled: boolean;
 
   @Element() hostElement: HTMLZenButtonElement;
 
@@ -19,7 +19,7 @@ export class ZenButton {
   @Prop() readonly variant = 'primary';
 
   /** Label of the button */
-  @Prop() readonly label = '';
+  @Prop() readonly label = 'Button';
 
   /** If present, will show a spinner */
   @Prop() readonly loading?: boolean = false;
@@ -28,8 +28,8 @@ export class ZenButton {
   @Prop() readonly disabled?: boolean = false;
 
   componentWillLoad(): void {
-    this.leftSlotFulfilled = !!this.hostElement.querySelector('[slot="leadingIcon"]');
-    this.rightSlotFulfilled = !!this.hostElement.querySelector('[slot="trailingIcon"]');
+    this.leadingIconSlotFulfilled = !!this.hostElement.querySelector('[slot="leadingIcon"]');
+    this.trailingIconSlotFulfilled = !!this.hostElement.querySelector('[slot="trailingIcon"]');
   }
 
   render(): HTMLElement {
@@ -39,7 +39,7 @@ export class ZenButton {
           <slot name="leadingIcon" />
           {this.loading ? <zen-spinner></zen-spinner> : null}
           {this.label ? (
-            <span class={{ ml: this.leftSlotFulfilled, mr: this.rightSlotFulfilled }}>{this.label}</span>
+            <span class={{ ml: this.leadingIconSlotFulfilled, mr: this.trailingIconSlotFulfilled }}>{this.label}</span>
           ) : null}
           <slot name="trailingIcon" />
         </button>
