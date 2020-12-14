@@ -92,7 +92,12 @@ const SlottedTemplate = ({ options }) => {
                   onOptionClick(item);
                 }}"
               ></zen-menu-item>`
-            : html`<zen-menu-item default-padding="false">
+            : html`<zen-menu-item
+                default-padding="false"
+                @click="${() => {
+                  onOptionClick(item);
+                }}"
+              >
                 <div class="content" slot="content">
                   <img class="icon" src=${icon} alt="icon" />
                   <b>${item.label}</b>
