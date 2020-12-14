@@ -1,5 +1,6 @@
 import { html } from 'lit-html';
 import markdown from './readme.md';
+import icon from '../../img/reci-icon-g.png';
 
 const argTypes = {};
 
@@ -26,6 +27,10 @@ Default.args = {
 const SlottedTemplate = () => {
   return html`<style>
       ${styles}
+      .icon {
+        height: 1rem;
+        margin-right: 0.5rem;
+      }
       .content {
         display: flex;
         align-items: center;
@@ -40,6 +45,7 @@ const SlottedTemplate = () => {
 
     <zen-menu-item default-padding="false">
       <div class="content" slot="content">
+        <img class="icon" src=${icon} alt="icon" />
         <b>Custom content</b>
       </div>
   </zen-menu-item>`;
