@@ -6,6 +6,7 @@ export enum Position {
 }
 
 export enum Variant {
-  DEFAULT = 'default',
+  DARK = 'dark',
+  LIGHT = 'light',
   ERROR = 'error',
 }

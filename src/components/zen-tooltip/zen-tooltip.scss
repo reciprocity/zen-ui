@@ -1,17 +1,14 @@
 @import '../../zen-styles/component-helpers.scss';
+@import './mixins.scss';
 
 :host {
   max-width: 11rem;
-}
-
-.open {
-  display: block;
   z-index: 999;
 }
 
 span {
+  position: absolute;
   display: none;
-  background: $color-gray-800;
   font-size: $text-sm;
   color: $color-white;
   padding: 1rem;
@@ -39,43 +36,88 @@ span:before {
 }
 
 .top:before {
-  top: -0.25rem;
-  border-bottom: 0.25rem solid $color-gray-800;
+  bottom: -0.25rem;
 }
 
 .bottom:before {
-  bottom: -0.25rem;
-  border-top: 0.25rem solid $color-gray-800;
+  top: -0.25rem;
 }
 
 .right:before,
 .left:before {
-  top: 0.5rem;
+  top: 50%;
   border-top: 0.25rem solid transparent;
   border-bottom: 0.25rem solid transparent;
 }
+
 .right:before {
-  right: -0.25rem;
-  border-left: 0.25rem solid $color-gray-800;
-}
-.left:before {
   left: -0.25rem;
-  border-right: 0.25rem solid $color-gray-800;
+}
+
+.left:before {
+  right: -0.25rem;
+}
+
+.dark {
+  @include tooltip-variant(
+    $color-white,
+    $color-gray-800,
+    $color-gray-800,
+  );
+
+  &.top:before {
+    border-top: 0.25rem solid $color-gray-800;
+  }
+  &.bottom:before {
+    border-bottom: 0.25rem solid $color-gray-800;
+  }
+  &.left:before {
+    border-left: 0.25rem solid $color-gray-800;
+  }
+  &.right:before {
+    border-right: 0.25rem solid $color-gray-800;
+  }
+}
+
+.light {
+  @include tooltip-variant(
+    $color-gray-800,
+    $color-white,
+    $color-gray-200,
+  );
+
+  &.top:before {
+    border-top: 0.25rem solid $color-gray-200;
+  }
+  &.bottom:before {
+    border-bottom: 0.25rem solid $color-gray-200;
+  }
+  &.left:before {
+    border-left: 0.25rem solid $color-gray-200;
+  }
+  &.right:before {
+    border-right: 0.25rem solid $color-gray-200;
+  }
 }
 
 .error {
-  background-color: $color-red-800;
+  @include tooltip-variant(
+    $color-white,
+    $color-red-800,
+    $color-red-800,
+  );
+
+  &.top:before {
+    border-top: 0.25rem solid $color-red-800;
+  }
+  &.bottom:before {
+    border-bottom: 0.25rem solid $color-red-800;
+  }
+  &.left:before {
+    border-left: 0.25rem solid $color-red-800;
+  }
+  &.right:before {
+    border-right: 0.25rem solid $color-red-800;
+  }
 }
 
-.error.top:before {
-  border-bottom-color: $color-red-800;
-}
-.error.right:before {
-  border-left-color: $color-red-800;
-}
-.error.bottom:before {
-  border-top-color: $color-red-800;
-}
-.error.left:before {
-  border-right-color: $color-red-800;
-}

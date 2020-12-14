@@ -228,7 +228,11 @@ export namespace Components {
     }
     interface ZenTooltip {
         /**
-          * Set arrow position
+          * Set tooltip offset to target element
+         */
+        "offset"?: number;
+        /**
+          * Set tooltip position
          */
         "position"?: Position;
         /**
@@ -599,7 +603,11 @@ declare namespace LocalJSX {
     }
     interface ZenTooltip {
         /**
-          * Set arrow position
+          * Set tooltip offset to target element
+         */
+        "offset"?: number;
+        /**
+          * Set tooltip position
          */
         "position"?: Position;
         /**
