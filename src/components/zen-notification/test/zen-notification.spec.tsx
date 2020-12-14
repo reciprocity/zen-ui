@@ -1,4 +1,3 @@
-import { h } from '@stencil/core';
 import { newSpecPage } from '@stencil/core/testing';
 import { ZenNotification } from '../zen-notification';
 

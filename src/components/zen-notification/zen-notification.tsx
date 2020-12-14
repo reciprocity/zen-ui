@@ -32,11 +32,11 @@ export class ZenNotification {
   /** Can dismiss */
   @Prop() readonly dismiss: boolean = false;
 
-  close(el) {
+  close(el: HTMLElement): void {
     el.className = '';
   }
 
-  componentDidRender() {
+  componentDidRender(): void {
     if (this.dismissDuration !== ZenDismissDuration.NONE) {
       setTimeout(() => {
         this.close(this.div);
