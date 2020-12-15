@@ -15,20 +15,29 @@ $open-transition: 0.2s;
 }
 
 :host(:focus) .field {
-  @include zenInputFocus;
+  &:not(.borderless) {
+    @include zenInputFocus;
+  }
+
+  &.borderless {
+    font-weight: bold;
+  }
 }
 
 $field-height: #{1.2rem + 2 * 0.5rem};
 
 .field {
   @include zenInput;
-  @include zenInputBorder;
   @include noselect;
   z-index: 1;
   position: relative;
   padding: 0.5rem 1rem;
   border-radius: $input-radius;
   height: $field-height;
+
+  &:not(.borderless) {
+    @include zenInputBorder;
+  }
 
   .arrow {
     position: absolute;

@@ -40,6 +40,8 @@ export class ZenDropdown {
   @Prop() readonly menuHeight: number = 170;
   /** Close dropdown menu after selecting an item */
   @Prop() readonly closeOnSelect = true;
+  /** Don't draw border around field */
+  @Prop() readonly borderless = false;
 
   /** Emitted on any selection change */
   @Event() zenInput: EventEmitter<OptionValue>;
@@ -209,6 +211,7 @@ export class ZenDropdown {
           class={{
             field: true,
             opened: this.opened,
+            borderless: this.borderless,
           }}
           onClick={() => {
             this.toggleDropdown(true);
