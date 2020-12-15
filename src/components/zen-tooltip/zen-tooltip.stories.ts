@@ -151,8 +151,7 @@ export const Default = Template.bind({});
 Default.args = {
   position: Position.TOP,
   variant: Variant.DARK,
-  text:
-    'The Manager can edit and create in the context of the PCI-DSS framework. They can also grant access to the framework to additional teammates.',
+  text: 'The Manager can edit and create in the context of the PCI-DSS framework.',
   offset: 10,
 };
 
