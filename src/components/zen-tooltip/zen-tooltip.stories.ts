@@ -1,6 +1,6 @@
 import { html } from 'lit-html';
 import markdown from './readme.md';
-import { Position, Variant } from './types';
+import { Position, Variant } from '../helpers/helpers';
 
 const argTypes = {
   position: {

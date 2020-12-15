@@ -12,7 +12,7 @@ import { OptionItem, OptionValue } from "./components/zen-dropdown/zen-dropdown"
 import { ZenDismissDuration, ZenVariant } from "./components/zen-notification/zen-notification-helper";
 import { StepEvent, StepItem } from "./components/zen-steps/zen-steps";
 import { StepsFilter } from "./components/zen-steps/types";
-import { Position, Variant } from "./components/zen-tooltip/types";
+import { Position, Variant } from "./components/helpers/helpers";
 export namespace Components {
     interface ColorSwatch {
         /**

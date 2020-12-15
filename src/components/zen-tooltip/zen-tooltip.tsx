@@ -1,5 +1,5 @@
 import { Component, Host, h, Prop } from '@stencil/core';
-import { Position, Variant } from './types';
+import { Position, Variant } from '../helpers/helpers';
 
 @Component({
   tag: 'zen-tooltip',
