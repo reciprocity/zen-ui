@@ -1,5 +1,4 @@
 @import '../../zen-styles/component-helpers.scss';
-@import './mixins.scss';
 
 :host {
   position: absolute;
@@ -61,7 +60,9 @@ span:before {
 }
 
 .dark {
-  @include tooltip-variant($color-white, $color-gray-800, $color-gray-800);
+  color: $color-white;
+  background-color: $color-gray-800;
+  border: 1px solid $color-gray-800;
 
   &.top:before {
     border-top: 0.25rem solid $color-gray-800;
@@ -78,7 +79,9 @@ span:before {
 }
 
 .light {
-  @include tooltip-variant($color-gray-800, $color-white, $color-gray-200);
+  color: $color-gray-800;
+  background-color: $color-white;
+  border: 1px solid $color-gray-200;
 
   box-shadow: 0 4px 6px 0 rgba($color-gray-200, 0.3);
 
@@ -97,7 +100,9 @@ span:before {
 }
 
 .error {
-  @include tooltip-variant($color-white, $color-red-800, $color-red-800);
+  color: $color-white;
+  background-color: $color-red-800;
+  border: 1px solid $color-red-800;
 
   &.top:before {
     border-top: 0.25rem solid $color-red-800;
