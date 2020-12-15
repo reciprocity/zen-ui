@@ -1,7 +1,6 @@
 import { html } from 'lit-html';
 import markdown from './readme.md';
 import { Position, Variant } from './types';
-import profile from './assets/profile.svg';
 
 const argTypes = {
   position: {
@@ -68,7 +67,7 @@ const TemplateSlot = () => {
         text-transform: uppercase;
         margin: 0;
       }
-      .profile-image {
+      .profile {
         min-height: 2rem;
         min-width: 2rem;
         max-height: 2rem;
@@ -76,10 +75,14 @@ const TemplateSlot = () => {
         border-radius: 50%;
         position: relative;
         cursor: pointer;
+        background: #ffdaff;
+        text-align: center;
+        line-height: 2rem;
+        color: #b875c4;
       }
     </style>
     <div style="cursor:pointer; text-align: center; padding-top: 6rem;">
-      <span>john.doe@reciprocity.com</span>
+      <span>kim.anderson@reciprocity.com</span>
       <zen-tooltip
         style="max-width: fit-content;"
         always-visible="true"
@@ -88,7 +91,7 @@ const TemplateSlot = () => {
         text="Override text"
       >
         <div slot="text" class="row">
-          <img src="${profile}" class="column profile-image" />
+          <div class="column profile">KA</div>
           <div class="column">
             <span class="tooltip-title">Kim Anderson</span>
             <p class="tooltip-code">kim.anderson@reciprocitylabs.com</p>
@@ -106,7 +109,9 @@ const TemplateVariants = () => {
       .container {
         display: flex;
         justify-content: space-between;
-        padding: 5rem;
+        padding-top: 7rem;
+        padding-left: 7rem;
+        padding-right: 7rem;
       }
     </style>
     <div class="container">
