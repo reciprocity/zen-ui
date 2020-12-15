@@ -8,24 +8,21 @@ import { Position, Variant } from '../helpers/helpers';
 })
 export class ZenTooltip {
   private element: HTMLElement;
+
   /** Set tooltip position */
   @Prop() readonly position?: Position = Position.TOP;
 
   /** Set tooltip variant */
   @Prop() readonly variant?: Variant = Variant.DARK;
 
-  /** Set tooltip text */
-  @Prop() readonly text?: string = '';
+  /** Set tooltip label */
+  @Prop() readonly label?: string = '';
 
   /** Set tooltip offset to target element */
   @Prop() readonly offset?: number = 10;
 
   /** Dont hide tooltip */
   @Prop() readonly alwaysVisible?: boolean = false;
-
-  getClassNames(): string {
-    return this.variant + ' ' + this.position;
-  }
 
   show(): void {
     const previousElement = this.element.previousElementSibling as HTMLElement;
@@ -89,7 +86,7 @@ export class ZenTooltip {
     return (
       <Host ref={el => (this.element = el)}>
         <span class={classes}>
-          <slot name="text">{this.text}</slot>
+          <slot name="label">{this.label}</slot>
         </span>
       </Host>
     );

@@ -232,6 +232,10 @@ export namespace Components {
          */
         "alwaysVisible"?: boolean;
         /**
+          * Set tooltip label
+         */
+        "label"?: string;
+        /**
           * Set tooltip offset to target element
          */
         "offset"?: number;
@@ -239,10 +243,6 @@ export namespace Components {
           * Set tooltip position
          */
         "position"?: Position;
-        /**
-          * Set tooltip text
-         */
-        "text"?: string;
         /**
           * Set tooltip variant
          */
@@ -611,6 +611,10 @@ declare namespace LocalJSX {
          */
         "alwaysVisible"?: boolean;
         /**
+          * Set tooltip label
+         */
+        "label"?: string;
+        /**
           * Set tooltip offset to target element
          */
         "offset"?: number;
@@ -618,10 +622,6 @@ declare namespace LocalJSX {
           * Set tooltip position
          */
         "position"?: Position;
-        /**
-          * Set tooltip text
-         */
-        "text"?: string;
         /**
           * Set tooltip variant
          */

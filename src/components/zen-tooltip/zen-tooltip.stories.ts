@@ -9,9 +9,6 @@ const argTypes = {
   variant: {
     control: { type: 'select', options: Object.keys(Variant).map(n => Variant[n]) },
   },
-  text: {
-    control: { type: 'text' },
-  },
 };
 
 export default {
@@ -23,7 +20,7 @@ export default {
   },
 };
 
-const Template = ({ position, text, variant }) => {
+const Template = ({ position, variant, label }) => {
   return html`
     <style>
       .wrapper {
@@ -34,7 +31,7 @@ const Template = ({ position, text, variant }) => {
     </style>
     <div class="wrapper">
       <zen-button style="display:inline-block" label="Apply changes" variant="secondary"></zen-button>
-      <zen-tooltip position="${position}" variant="${variant}" text="${text}"></zen-tooltip>
+      <zen-tooltip position="${position}" variant="${variant}" label="${label}"></zen-tooltip>
     </div>
   `;
 };
@@ -88,9 +85,9 @@ const TemplateSlot = () => {
         always-visible="true"
         position="top"
         variant="light"
-        text="Override text"
+        label="Override text"
       >
-        <div slot="text" class="row">
+        <div slot="label" class="row">
           <div class="column profile">KA</div>
           <div class="column">
             <span class="tooltip-title">Kim Anderson</span>
@@ -117,12 +114,12 @@ const TemplateVariants = () => {
     </style>
     <div class="container">
       <div>
-        <zen-button style="display: block" label="Edit" variant="primary"></zen-button>
+        <zen-button style="display: block" label="Edit" variant="primary"></zen-button style="display: block">
         <zen-tooltip
           always-visible="true"
           position="top"
           variant="dark"
-          text="The Manager can edit and create the PCI-DSS."
+          label="The Manager can edit and create the PCI-DSS."
         >
         </zen-tooltip>
       </div>
@@ -132,7 +129,7 @@ const TemplateVariants = () => {
           always-visible="true"
           position="top"
           variant="light"
-          text="This is a information tooltip."
+          label="This is a information tooltip."
         ></zen-tooltip>
       </div>
       <div>
@@ -141,7 +138,7 @@ const TemplateVariants = () => {
           always-visible="true"
           position="top"
           variant="error"
-          text="Are you sure you want to delete the object!"
+          label="Are you sure you want to delete the object!"
         ></zen-tooltip>
       </div>
     </div>
@@ -152,7 +149,7 @@ export const Default = Template.bind({});
 Default.args = {
   position: Position.TOP,
   variant: Variant.DARK,
-  text: 'The Manager can edit and create in the context of the PCI-DSS framework.',
+  label: 'The Manager can edit and create in the context of the PCI-DSS framework.',
   offset: 10,
 };
 
