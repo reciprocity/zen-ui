@@ -20,3 +20,14 @@ export function getSlotElement(host: HTMLElement, slotName: string): HTMLElement
   if (!slot) return undefined;
   return slot.assignedNodes()[0] as HTMLElement;
 }
+
+export function getElementPath(element: HTMLElement): HTMLElement[] {
+  const path = [];
+  while (element) {
+    path.push(element);
+    element = element.parentElement;
+  }
+  if (path.indexOf(window) === -1 && path.indexOf(document) === -1) path.push(document);
+  if (path.indexOf(window) === -1) path.push(window);
+  return path;
+}

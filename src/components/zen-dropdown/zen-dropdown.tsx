@@ -2,8 +2,8 @@ import { Component, Host, h, Prop, State, Event, EventEmitter, Listen, Watch, El
 import { MouseEvent, slotPassed, getSlotElement } from '../helpers/helpers';
 import { faChevronDown } from '@fortawesome/pro-light-svg-icons';
 import { renderIcon, styles } from '../helpers/fa-icons';
-import get from 'lodash/get';
-import { waitNextFrame } from '../helpers/helpers';
+import { get } from 'lodash/get';
+import { waitNextFrame, getElementPath } from '../helpers/helpers';
 import { Key } from 'ts-key-enum';
 import { Align } from '../helpers/types';
 
@@ -182,7 +182,8 @@ export class ZenDropdown {
 
   // Events
   async closeOnClickOut(event: MouseEvent): Promise<void> {
-    const clickedInside = event.path.find(n => n === this.list);
+    const path = getElementPath(event.target as HTMLElement);
+    const clickedInside = path.find(n => n === this.list);
     if (clickedInside) return;
     await waitNextFrame(); // prevent race with click-open
     this.opened = false;
