@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, EventEmitter, Event, State, Element } from '@stencil/core';
+import { Component, Host, h, Prop, EventEmitter, Event, State, Element, Method } from '@stencil/core';
 
 /**
  * @slot leadingSlot - Slot placed at the left
@@ -26,40 +26,35 @@ export class ZenInput {
 
   @State() hasFocus = false;
 
-  /**
-   * Placeholder of the input.
-   */
+  /** Placeholder of the input. */
   @Prop() readonly placeholder: string = null;
 
-  /**
-   * Disables input.
-   */
+  /** Disables input. */
   @Prop() readonly disabled = false;
 
-  /**
-   * Shows invalid styles.
-   */
+  /** Shows invalid styles. */
   @Prop() readonly invalid = false;
 
-  /**
-   * The value of the input.
-   */
+  /** The value of the input. */
   @Prop({ mutable: true }) value?: string | number | null = '';
 
-  /**
-   * Emitted when a keyboard input occurred.
-   */
+  /** Emitted when a keyboard input occurred. */
   @Event() zenInput!: EventEmitter<KeyboardEvent>;
 
-  /**
-   * Emitted when the input loses focus.
-   */
+  /** Emitted when the input loses focus. */
   @Event() zenBlur!: EventEmitter<FocusEvent>;
 
-  /**
-   * Emitted when the input has focus.
-   */
+  /** Emitted when the input has focus. */
   @Event() zenFocus!: EventEmitter<FocusEvent>;
+
+  /** Set and unset focus on the input. */
+  @Method()
+  async toggleFocus(focused?: boolean): Promise<void> {
+    if (focused === undefined) {
+      focused = !this.hasFocus;
+    }
+    this.hasFocus = focused;
+  }
 
   componentWillLoad(): void {
     this.leadingSlotFulfilled = !!this.hostElement.querySelector('[slot="leadingSlot"]');

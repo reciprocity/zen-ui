@@ -7,13 +7,6 @@
   font-size: $text-md;
 }
 
-<<<<<<< HEAD
-input.input-control {
-  @include zenInput;
-  @include zenInputBase;
-  @include zenInputBorder;
-  @include noselect;
-=======
 :host(:hover) {
   border-color: $color-blue-700;
 }
@@ -62,5 +55,4 @@ input {
   &.mr {
     margin-right: 0.5rem;
   }
->>>>>>> 4fbd595... refactor: updated zen-input styles and added slots capabilities
 }
