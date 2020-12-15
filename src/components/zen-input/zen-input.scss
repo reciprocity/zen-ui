@@ -2,14 +2,57 @@
 @import '../../zen-styles/mixins/forms.scss';
 
 :host {
-  display: block;
+  @include zenInputBase;
+  display: flex;
   font-size: $text-md;
-  margin: 0.5rem 0 0.25rem 0;
 }
 
-input.input-control {
-  @include zenInput;
+:host(:hover) {
+  border-color: $color-blue-700;
+}
+
+:host(.has-focus) {
+  box-shadow: 0 0 0 2px $color-blue-300;
+  border-color: $color-blue-700;
+  outline: none;
+}
+
+:host(.invalid) {
+  box-shadow: 0 0 0 2px $color-red-300;
+  border: 1px solid $color-red-700;
+}
+
+:host(.disabled) {
+  opacity: 0.5;
+  background-color: $color-gray-100;
+  pointer-events: none;
+  cursor: default;
+}
+
+input {
   @include zenInputBase;
-  @include zenInputBorder;
-  @include noselect;
+  display: flex;
+  width: 100%;
+  border: none;
+  padding: 0;
+
+  &:disabled {
+    opacity: 0.5;
+    background-color: $color-gray-100;
+    pointer-events: none;
+    cursor: default;
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: none;
+  }
+
+  &.ml {
+    margin-left: 0.5rem;
+  }
+
+  &.mr {
+    margin-right: 0.5rem;
+  }
 }

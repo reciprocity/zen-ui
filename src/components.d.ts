@@ -124,13 +124,17 @@ export namespace Components {
          */
         "disabled": false;
         /**
+          * This is required for a WebKit bug which requires us to blur and focus an input to properly focus the input in an item with delegatesFocus.
+         */
+        "fireFocusEvents": true;
+        /**
+          * Shows invalid styles.
+         */
+        "invalid": false;
+        /**
           * Placeholder of the input.
          */
         "placeholder": string;
-        /**
-          * Makes input required.
-         */
-        "required": false;
         /**
           * The value of the input.
          */
@@ -474,6 +478,22 @@ declare namespace LocalJSX {
          */
         "disabled"?: false;
         /**
+          * This is required for a WebKit bug which requires us to blur and focus an input to properly focus the input in an item with delegatesFocus.
+         */
+        "fireFocusEvents"?: true;
+        /**
+          * Shows invalid styles.
+         */
+        "invalid"?: false;
+        /**
+          * Emitted when the input loses focus.
+         */
+        "onZenBlur"?: (event: CustomEvent<FocusEvent>) => void;
+        /**
+          * Emitted when the input has focus.
+         */
+        "onZenFocus"?: (event: CustomEvent<FocusEvent>) => void;
+        /**
           * Emitted when a keyboard input occurred.
          */
         "onZenInput"?: (event: CustomEvent<KeyboardEvent>) => void;
@@ -481,10 +501,6 @@ declare namespace LocalJSX {
           * Placeholder of the input.
          */
         "placeholder"?: string;
-        /**
-          * Makes input required.
-         */
-        "required"?: false;
         /**
           * The value of the input.
          */
