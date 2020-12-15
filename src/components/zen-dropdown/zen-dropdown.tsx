@@ -2,7 +2,7 @@ import { Component, Host, h, Prop, State, Event, EventEmitter, Listen, Watch, El
 import { MouseEvent, slotPassed, getSlotElement } from '../helpers/helpers';
 import { faChevronDown } from '@fortawesome/pro-light-svg-icons';
 import { renderIcon, styles } from '../helpers/fa-icons';
-import { get } from 'lodash/get';
+import get from 'lodash/get';
 import { waitNextFrame, getElementPath } from '../helpers/helpers';
 import { Key } from 'ts-key-enum';
 import { Align } from '../helpers/types';
