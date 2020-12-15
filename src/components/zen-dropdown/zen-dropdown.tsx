@@ -5,6 +5,7 @@ import { renderIcon, styles } from '../helpers/fa-icons';
 import get from 'lodash/get';
 import { waitNextFrame } from '../helpers/helpers';
 import { Key } from 'ts-key-enum';
+import { Align } from '../helpers/types';
 
 export interface OptionItem {
   label: string;
@@ -36,6 +37,8 @@ export class ZenDropdown {
   @Prop() readonly options: Array<OptionItem> = [];
   /** Option key that is unique for each option */
   @Prop() readonly trackBy: string = 'label';
+  /** Alignment of field content and menu (if menuWidth set). */
+  @Prop() readonly fieldAlign: Align = Align.LEFT;
   /** Width of menu. Set '100%' to match field width. */
   @Prop() readonly menuWidth: string = '100%';
   /** To determine if there's enough space under field on open */
@@ -223,7 +226,7 @@ export class ZenDropdown {
           <div class="arrow">{renderIcon(faChevronDown)}</div>
         </div>
         <div
-          class={{ 'list-wrap': true, 'open-above': this.openAbove() }}
+          class={{ 'list-wrap': true, 'open-above': this.openAbove(), 'align-right': this.fieldAlign !== Align.LEFT }}
           style={{ width: this.menuWidth }}
           ref={el => (this.listWrap = el)}
         >

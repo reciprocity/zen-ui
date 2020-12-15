@@ -63,6 +63,11 @@ $field-height: #{1.2rem + 2 * 0.5rem};
   padding-bottom: 24px;
   overflow: hidden;
   z-index: 100;
+
+  &.align-right {
+    left: auto;
+    right: -24px;
+  }
 }
 
 $item-line-height: 1.2rem;

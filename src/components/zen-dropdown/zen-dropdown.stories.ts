@@ -4,11 +4,16 @@ import { eventHandles, action } from '../../../.storybook/helpers/custom-action'
 import icon from '../../img/reci-icon-g.png';
 import { faCheck } from '@fortawesome/pro-light-svg-icons';
 import { litHtmlIcon, styles } from '../helpers/fa-icons';
+import { Align } from '../helpers/types';
 
 const customEvents = ['zenInput'];
 const events = [...eventHandles(customEvents)];
 
-const argTypes = {};
+const argTypes = {
+  fieldAlign: {
+    control: { type: 'select', options: Object.keys(Align).map(n => Align[n]) },
+  },
+};
 
 export default {
   title: 'Dropdown/_Dropdown',
@@ -22,7 +27,7 @@ export default {
   },
 };
 
-const Template = ({ options, value, closeOnSelect, borderless, menuWidth }) => {
+const Template = ({ options, value, closeOnSelect, borderless, menuWidth, fieldAlign }) => {
   return html`
     <zen-dropdown
       id="default-dropdown"
@@ -33,6 +38,7 @@ const Template = ({ options, value, closeOnSelect, borderless, menuWidth }) => {
       borderless=${borderless}
       close-on-select=${closeOnSelect}
       menu-width=${menuWidth}
+      field-align=${fieldAlign}
     />
     ${action('#default-dropdown', customEvents)}
   `;
@@ -47,6 +53,7 @@ Default.args = {
   closeOnSelect: true,
   borderless: false,
   menuWidth: '100%',
+  fieldAlign: 'right',
 };
 
 const SlottedTemplate = ({ options }) => {
