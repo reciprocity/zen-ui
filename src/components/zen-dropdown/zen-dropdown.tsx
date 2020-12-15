@@ -36,6 +36,8 @@ export class ZenDropdown {
   @Prop() readonly options: Array<OptionItem> = [];
   /** Option key that is unique for each option */
   @Prop() readonly trackBy: string = 'label';
+  /** Width of menu. Set '100%' to match field width. */
+  @Prop() readonly menuWidth: string = '100%';
   /** To determine if there's enough space under field on open */
   @Prop() readonly menuHeight: number = 170;
   /** Close dropdown menu after selecting an item */
@@ -220,7 +222,11 @@ export class ZenDropdown {
           {get(this.selectedOption, 'label') || 'Select something'}
           <div class="arrow">{renderIcon(faChevronDown)}</div>
         </div>
-        <div class={{ 'list-wrap': true, 'open-above': this.openAbove() }} ref={el => (this.listWrap = el)}>
+        <div
+          class={{ 'list-wrap': true, 'open-above': this.openAbove() }}
+          style={{ width: this.menuWidth }}
+          ref={el => (this.listWrap = el)}
+        >
           <zen-animate show={this.opened}>
             <div class="list" ref={el => (this.list = el)}>
               <slot name="options">

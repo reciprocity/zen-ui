@@ -22,7 +22,7 @@ export default {
   },
 };
 
-const Template = ({ options, value, closeOnSelect, borderless }) => {
+const Template = ({ options, value, closeOnSelect, borderless, menuWidth }) => {
   return html`
     <zen-dropdown
       id="default-dropdown"
@@ -32,9 +32,21 @@ const Template = ({ options, value, closeOnSelect, borderless }) => {
       .options=${options}
       borderless=${borderless}
       close-on-select=${closeOnSelect}
+      menu-width=${menuWidth}
     />
     ${action('#default-dropdown', customEvents)}
   `;
+};
+
+export const Default = Template.bind({});
+Default.args = {
+  options: [1, 2, 3, 4, 5, 6, 7, 8, 9].map(n => ({
+    label: `item ${n}`,
+  })),
+  value: 'item 2',
+  closeOnSelect: true,
+  borderless: false,
+  menuWidth: '100%',
 };
 
 const SlottedTemplate = ({ options }) => {
@@ -110,16 +122,6 @@ const SlottedTemplate = ({ options }) => {
     </zen-dropdown>
     ${action('#dropdown-with-options-slot', customEvents)}
   `;
-};
-
-export const Default = Template.bind({});
-Default.args = {
-  options: [1, 2, 3, 4, 5, 6, 7, 8, 9].map(n => ({
-    label: `item ${n}`,
-  })),
-  value: 'item 2',
-  closeOnSelect: true,
-  borderless: false,
 };
 
 export const DropdownWithManuallyRenderedOptions = SlottedTemplate.bind({});
