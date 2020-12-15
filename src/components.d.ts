@@ -79,6 +79,10 @@ export namespace Components {
     }
     interface ZenDropdown {
         /**
+          * Don't draw border around field
+         */
+        "borderless": false;
+        /**
           * Close dropdown menu after selecting an item
          */
         "closeOnSelect": true;
@@ -412,6 +416,10 @@ declare namespace LocalJSX {
         "required"?: false;
     }
     interface ZenDropdown {
+        /**
+          * Don't draw border around field
+         */
+        "borderless"?: false;
         /**
           * Close dropdown menu after selecting an item
          */
