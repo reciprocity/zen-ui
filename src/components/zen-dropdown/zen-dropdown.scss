@@ -15,19 +15,30 @@ $open-transition: 0.2s;
 }
 
 :host(:focus) .field {
-  @include zenInputFocus;
+  &:not(.borderless) {
+    @include zenInputFocus;
+  }
+
+  &.borderless {
+    font-weight: bold;
+  }
 }
 
 $field-height: #{1.2rem + 2 * 0.5rem};
 
 .field {
   @include zenInput;
+  @include zenInputBase;
   @include noselect;
   z-index: 1;
   position: relative;
   padding: 0.5rem 1rem;
   border-radius: $input-radius;
   height: $field-height;
+
+  &:not(.borderless) {
+    @include zenInputBorder;
+  }
 
   .arrow {
     position: absolute;
@@ -48,12 +59,16 @@ $field-height: #{1.2rem + 2 * 0.5rem};
 .list-wrap {
   position: absolute;
   left: -24px;
-  right: -24px;
   padding-right: 24px;
   padding-left: 24px;
   padding-bottom: 24px;
   overflow: hidden;
   z-index: 100;
+
+  &.align-right {
+    left: auto;
+    right: -24px;
+  }
 }
 
 $item-line-height: 1.2rem;

@@ -11,5 +11,7 @@
 
 textarea.input-control {
   @include zenInput;
+  @include zenInputBase;
+  @include zenInputBorder;
   @include noselect;
 }

@@ -9,6 +9,7 @@ import { StringifiedJson } from "./stories/components/color-swatch-group/color-s
 import { ButtonVariants } from "./components/zen-button/types";
 import { CheckboxChangeEventDetail } from "./components/zen-checkbox/types";
 import { OptionItem, OptionValue } from "./components/zen-dropdown/zen-dropdown";
+import { Align } from "./components/helpers/types";
 import { ZenDismissDuration, ZenVariant } from "./components/zen-notification/zen-notification-helper";
 import { StepEvent, StepItem } from "./components/zen-steps/zen-steps";
 import { StepsFilter } from "./components/zen-steps/types";
@@ -79,13 +80,25 @@ export namespace Components {
     }
     interface ZenDropdown {
         /**
+          * Don't draw border around field
+         */
+        "borderless": false;
+        /**
           * Close dropdown menu after selecting an item
          */
         "closeOnSelect": true;
         /**
+          * Alignment of field content and menu (if menuWidth set).
+         */
+        "fieldAlign": Align;
+        /**
           * To determine if there's enough space under field on open
          */
         "menuHeight": number;
+        /**
+          * Width of menu. Set '100%' to match field width.
+         */
+        "menuWidth": string;
         /**
           * Array of available options
          */
@@ -413,13 +426,25 @@ declare namespace LocalJSX {
     }
     interface ZenDropdown {
         /**
+          * Don't draw border around field
+         */
+        "borderless"?: false;
+        /**
           * Close dropdown menu after selecting an item
          */
         "closeOnSelect"?: true;
         /**
+          * Alignment of field content and menu (if menuWidth set).
+         */
+        "fieldAlign"?: Align;
+        /**
           * To determine if there's enough space under field on open
          */
         "menuHeight"?: number;
+        /**
+          * Width of menu. Set '100%' to match field width.
+         */
+        "menuWidth"?: string;
         /**
           * Focused item changed (keyboard arrows)
          */

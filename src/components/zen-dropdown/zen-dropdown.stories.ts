@@ -4,11 +4,16 @@ import { eventHandles, action } from '../../../.storybook/helpers/custom-action'
 import icon from '../../img/reci-icon-g.png';
 import { faCheck } from '@fortawesome/pro-light-svg-icons';
 import { litHtmlIcon, styles } from '../helpers/fa-icons';
+import { Align } from '../helpers/types';
 
 const customEvents = ['zenInput'];
 const events = [...eventHandles(customEvents)];
 
-const argTypes = {};
+const argTypes = {
+  fieldAlign: {
+    control: { type: 'select', options: Object.keys(Align).map(n => Align[n]) },
+  },
+};
 
 export default {
   title: 'Dropdown/_Dropdown',
@@ -22,18 +27,33 @@ export default {
   },
 };
 
-const Template = ({ options, value, closeOnSelect }) => {
+const Template = ({ options, value, closeOnSelect, borderless, menuWidth, fieldAlign }) => {
   return html`
     <zen-dropdown
       id="default-dropdown"
-      class="my-80"
+      class="mb-80"
       style="max-width: 300px;"
       value=${value}
       .options=${options}
+      borderless=${borderless}
       close-on-select=${closeOnSelect}
+      menu-width=${menuWidth}
+      field-align=${fieldAlign}
     />
     ${action('#default-dropdown', customEvents)}
   `;
+};
+
+export const Default = Template.bind({});
+Default.args = {
+  options: [1, 2, 3, 4, 5, 6, 7, 8, 9].map(n => ({
+    label: `item ${n}`,
+  })),
+  value: 'item 2',
+  closeOnSelect: true,
+  borderless: false,
+  menuWidth: '100%',
+  fieldAlign: 'right',
 };
 
 const SlottedTemplate = ({ options }) => {
@@ -77,7 +97,7 @@ const SlottedTemplate = ({ options }) => {
     </style>
     <zen-dropdown
       id="dropdown-with-options-slot"
-      class="my-80"
+      class="mb-80"
       style="max-width: 300px;"
       value=${options[2].label}
       .options=${options}
@@ -109,15 +129,6 @@ const SlottedTemplate = ({ options }) => {
     </zen-dropdown>
     ${action('#dropdown-with-options-slot', customEvents)}
   `;
-};
-
-export const Default = Template.bind({});
-Default.args = {
-  options: [1, 2, 3, 4, 5, 6, 7, 8, 9].map(n => ({
-    label: `item ${n}`,
-  })),
-  value: 'item 2',
-  closeOnSelect: true,
 };
 
 export const DropdownWithManuallyRenderedOptions = SlottedTemplate.bind({});

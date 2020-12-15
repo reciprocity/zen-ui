@@ -3,8 +3,9 @@ import { MouseEvent, slotPassed, getSlotElement } from '../helpers/helpers';
 import { faChevronDown } from '@fortawesome/pro-light-svg-icons';
 import { renderIcon, styles } from '../helpers/fa-icons';
 import get from 'lodash/get';
-import { waitNextFrame } from '../helpers/helpers';
+import { waitNextFrame, getElementPath } from '../helpers/helpers';
 import { Key } from 'ts-key-enum';
+import { Align } from '../helpers/types';
 
 export interface OptionItem {
   label: string;
@@ -36,10 +37,16 @@ export class ZenDropdown {
   @Prop() readonly options: Array<OptionItem> = [];
   /** Option key that is unique for each option */
   @Prop() readonly trackBy: string = 'label';
+  /** Alignment of field content and menu (if menuWidth set). */
+  @Prop() readonly fieldAlign: Align = Align.LEFT;
+  /** Width of menu. Set '100%' to match field width. */
+  @Prop() readonly menuWidth: string = '100%';
   /** To determine if there's enough space under field on open */
   @Prop() readonly menuHeight: number = 170;
   /** Close dropdown menu after selecting an item */
   @Prop() readonly closeOnSelect = true;
+  /** Don't draw border around field */
+  @Prop() readonly borderless = false;
 
   /** Emitted on any selection change */
   @Event() zenInput: EventEmitter<OptionValue>;
@@ -175,7 +182,8 @@ export class ZenDropdown {
 
   // Events
   async closeOnClickOut(event: MouseEvent): Promise<void> {
-    const clickedInside = event.path.find(n => n === this.list);
+    const path = getElementPath(event.target as HTMLElement);
+    const clickedInside = path.find(n => n === this.list);
     if (clickedInside) return;
     await waitNextFrame(); // prevent race with click-open
     this.opened = false;
@@ -209,6 +217,7 @@ export class ZenDropdown {
           class={{
             field: true,
             opened: this.opened,
+            borderless: this.borderless,
           }}
           onClick={() => {
             this.toggleDropdown(true);
@@ -217,7 +226,11 @@ export class ZenDropdown {
           {get(this.selectedOption, 'label') || 'Select something'}
           <div class="arrow">{renderIcon(faChevronDown)}</div>
         </div>
-        <div class={{ 'list-wrap': true, 'open-above': this.openAbove() }} ref={el => (this.listWrap = el)}>
+        <div
+          class={{ 'list-wrap': true, 'open-above': this.openAbove(), 'align-right': this.fieldAlign !== Align.LEFT }}
+          style={{ width: this.menuWidth }}
+          ref={el => (this.listWrap = el)}
+        >
           <zen-animate show={this.opened}>
             <div class="list" ref={el => (this.list = el)}>
               <slot name="options">
