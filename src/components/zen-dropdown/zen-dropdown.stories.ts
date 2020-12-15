@@ -26,7 +26,7 @@ const Template = ({ options, value, closeOnSelect }) => {
   return html`
     <zen-dropdown
       id="default-dropdown"
-      class="my-80"
+      class="mb-80"
       style="max-width: 300px;"
       value=${value}
       .options=${options}
@@ -77,7 +77,7 @@ const SlottedTemplate = ({ options }) => {
     </style>
     <zen-dropdown
       id="dropdown-with-options-slot"
-      class="my-80"
+      class="mb-80"
       style="max-width: 300px;"
       value=${options[2].label}
       .options=${options}
