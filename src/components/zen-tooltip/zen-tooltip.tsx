@@ -20,13 +20,15 @@ export class ZenTooltip {
   /** Set tooltip offset to target element */
   @Prop() readonly offset?: number = 10;
 
+  /** Dont hide tooltip */
+  @Prop() readonly alwaysVisible?: boolean = false;
+
   getClassNames(): string {
     return this.variant + ' ' + this.position;
   }
 
   show(): void {
     const previousElement = this.element.previousElementSibling as HTMLElement;
-
     const bounds = previousElement.getBoundingClientRect();
 
     this.element.style.display = 'block';
@@ -64,6 +66,11 @@ export class ZenTooltip {
   }
 
   componentDidLoad(): void {
+    if (this.alwaysVisible) {
+      this.show();
+      return;
+    }
+
     const previousElement = this.element.previousElementSibling;
     if (previousElement) {
       previousElement.addEventListener('mouseover', () => this.show());

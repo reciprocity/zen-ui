@@ -228,6 +228,10 @@ export namespace Components {
     }
     interface ZenTooltip {
         /**
+          * Dont hide tooltip
+         */
+        "alwaysVisible"?: boolean;
+        /**
           * Set tooltip offset to target element
          */
         "offset"?: number;
@@ -602,6 +606,10 @@ declare namespace LocalJSX {
         "text"?: string | null;
     }
     interface ZenTooltip {
+        /**
+          * Dont hide tooltip
+         */
+        "alwaysVisible"?: boolean;
         /**
           * Set tooltip offset to target element
          */

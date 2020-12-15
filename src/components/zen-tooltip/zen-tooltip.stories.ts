@@ -1,6 +1,7 @@
 import { html } from 'lit-html';
 import markdown from './readme.md';
 import { Position, Variant } from './types';
+import profile from './assets/profile.svg';
 
 const argTypes = {
   position: {
@@ -42,16 +43,24 @@ const Template = ({ position, text, variant }) => {
 const TemplateSlot = () => {
   return html`
     <style>
-      .info-tooltip--title {
+      .row {
+        display: flex;
+      }
+      .column {
+        flex-direction: column;
+        text-align: left;
+        margin-right: 0.7rem;
+      }
+      .tooltip-title {
         font-size: 0.875rem;
-        margin-bottom: 2px;
+        margin-bottom: 0.2rem;
         font-weight: bold;
       }
-      .info-tooltip--code {
+      .tooltip-code {
         font-size: 0.75rem;
-        margin-bottom: 4px;
+        margin-bottom: 0.2rem;
       }
-      .info-tooltip--role {
+      .tooltip-role {
         color: #868e96;
         font-size: 0.625rem;
         font-weight: bold;
@@ -59,14 +68,32 @@ const TemplateSlot = () => {
         text-transform: uppercase;
         margin: 0;
       }
+      .profile-image {
+        min-height: 2rem;
+        min-width: 2rem;
+        max-height: 2rem;
+        max-width: 2rem;
+        border-radius: 50%;
+        position: relative;
+        cursor: pointer;
+      }
     </style>
     <div style="cursor:pointer; text-align: center; padding-top: 6rem;">
       <span>john.doe@reciprocity.com</span>
-      <zen-tooltip style="max-width: 400px;" position="top" variant="light" text="Override text">
-        <div slot="text" style="text-align: left;">
-          <span class="info-tooltip--title">John Doe</span>
-          <p class="info-tooltip--code">john.doe@reciprocitylabs.com</p>
-          <p class="info-tooltip--role">administrator</p>
+      <zen-tooltip
+        style="max-width: fit-content;"
+        always-visible="true"
+        position="top"
+        variant="light"
+        text="Override text"
+      >
+        <div slot="text" class="row">
+          <img src="${profile}" class="column profile-image" />
+          <div class="column">
+            <span class="tooltip-title">Kim Anderson</span>
+            <p class="tooltip-code">kim.anderson@reciprocitylabs.com</p>
+            <p class="tooltip-role">administrator</p>
+          </div>
         </div>
       </zen-tooltip>
     </div>
@@ -85,16 +112,31 @@ const TemplateVariants = () => {
     <div class="container">
       <div>
         <zen-button label="Edit" variant="primary"></zen-button>
-        <zen-tooltip position="top" text="The Manager can edit and create in the context of the PCI-DSS framework.">
+        <zen-tooltip
+          always-visible="true"
+          position="top"
+          variant="dark"
+          text="The Manager can edit and create the PCI-DSS framework."
+        >
         </zen-tooltip>
       </div>
       <div>
         <zen-button label="Info" variant="secondary"></zen-button>
-        <zen-tooltip position="top" variant="light" text="This is a information tooltip."></zen-tooltip>
+        <zen-tooltip
+          always-visible="true"
+          position="top"
+          variant="light"
+          text="This is a information tooltip."
+        ></zen-tooltip>
       </div>
       <div>
         <zen-button label="Delete" variant="destructive"></zen-button>
-        <zen-tooltip position="top" variant="error" text="Are you sure you want to delete the object!"></zen-tooltip>
+        <zen-tooltip
+          always-visible="true"
+          position="top"
+          variant="error"
+          text="Are you sure you want to delete the object!"
+        ></zen-tooltip>
       </div>
     </div>
   `;
