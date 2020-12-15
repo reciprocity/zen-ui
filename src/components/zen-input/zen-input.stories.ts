@@ -60,5 +60,5 @@ const TemplateTrailing = () => {
 };
 
 export const Default = Template.bind({});
-export const WithLeadingSpinner = TemplateLeading.bind({});
-export const WithTrailingSpinner = TemplateTrailing.bind({});
+export const WithSpinnerInLeadingSlot = TemplateLeading.bind({});
+export const WithSpinnerInTrailingSlot = TemplateTrailing.bind({});

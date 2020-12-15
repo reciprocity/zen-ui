@@ -24,6 +24,14 @@
 | `zenInput` | Emitted when a keyboard input occurred. | `CustomEvent<KeyboardEvent>` |
 
 
+## Slots
+
+| Slot             | Description              |
+| ---------------- | ------------------------ |
+| `"leadingSlot"`  | Slot placed at the left  |
+| `"trailingSlot"` | Slot placed at the right |
+
+
 ----------------------------------------------
 
 

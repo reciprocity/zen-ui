@@ -1,6 +1,9 @@
 import { Component, Host, h, Prop, EventEmitter, Event, State, Element } from '@stencil/core';
-// import { StyleEventDetail } from './types';
 
+/**
+ * @slot leadingSlot - Slot placed at the left
+ * @slot trailingSlot - Slot placed at the right
+ */
 @Component({
   tag: 'zen-input',
   styleUrl: 'zen-input.scss',
