@@ -9,5 +9,6 @@
 
 input.input-control {
   @include zenInput;
+  @include zenInputBorder;
   @include noselect;
 }
