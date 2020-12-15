@@ -15,7 +15,7 @@ span {
   font-size: $text-sm;
   color: $color-white;
   padding: 1rem;
-  border-radius: 0.1rem;
+  border-radius: $border-radius-default;
   line-height: 1rem;
   text-align: center;
   font-family: inherit;
