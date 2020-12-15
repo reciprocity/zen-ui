@@ -10,7 +10,9 @@ describe('zen-input', () => {
     expect(page.root).toEqualHtml(`
       <zen-input>
         <mock:shadow-root>
-          <input class="input-control" type="text" value="">
+        <slot name="leadingSlot"></slot>
+          <input type="text" value="">
+        <slot name="trailingSlot"></slot>
         </mock:shadow-root>
       </zen-input>
     `);
