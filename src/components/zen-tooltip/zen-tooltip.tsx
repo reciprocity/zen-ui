@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop } from '@stencil/core';
+import { Component, Host, h, Prop, State } from '@stencil/core';
 import { Position, Variant } from '../helpers/helpers';
 
 @Component({
@@ -8,6 +8,8 @@ import { Position, Variant } from '../helpers/helpers';
 })
 export class ZenTooltip {
   private element: HTMLElement;
+
+  @State() visible = false;
 
   /** Set tooltip position */
   @Prop() readonly position?: Position = Position.TOP;
@@ -28,10 +30,12 @@ export class ZenTooltip {
     const previousElement = this.element.previousElementSibling as HTMLElement;
     const bounds = previousElement.getBoundingClientRect();
 
+    this.visible = true;
     this.element.style.display = 'block';
     this.element.style.left = '0';
     this.element.style.top = '0';
     const myBounds = this.element.getBoundingClientRect();
+    this.element.style.display = '';
 
     let x = bounds.left - myBounds.left + (bounds.width - myBounds.width) / 2;
     let y = bounds.top - myBounds.top + (bounds.height - myBounds.height) / 2;
@@ -59,7 +63,7 @@ export class ZenTooltip {
   }
 
   hide(): void {
-    this.element.style.display = 'none';
+    this.visible = false;
   }
 
   componentDidLoad(): void {
@@ -84,7 +88,7 @@ export class ZenTooltip {
       [`${this.position}`]: true,
     };
     return (
-      <Host ref={el => (this.element = el)}>
+      <Host class={{ visible: this.visible }} ref={el => (this.element = el)}>
         <span class={classes}>
           <slot name="label">{this.label}</slot>
         </span>

@@ -2,9 +2,13 @@
 
 :host {
   position: absolute;
-  display: none;
   max-width: 11rem;
   z-index: 999;
+  display: none;
+}
+
+:host(.visible) {
+  display: block;
 }
 
 .tooltip {
