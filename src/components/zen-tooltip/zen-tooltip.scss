@@ -7,7 +7,7 @@
   z-index: 999;
 }
 
-span {
+.tooltip {
   display: block;
   position: relative;
   pointer-events: none;
@@ -21,7 +21,7 @@ span {
   z-index: 999;
 }
 
-span:before {
+.tooltip:before {
   content: '';
   position: absolute;
   width: 0;

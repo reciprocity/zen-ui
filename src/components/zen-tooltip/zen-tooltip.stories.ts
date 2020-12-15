@@ -33,7 +33,7 @@ const Template = ({ position, text, variant }) => {
       }
     </style>
     <div class="wrapper">
-      <zen-button label="Apply changes" variant="secondary"></zen-button>
+      <zen-button style="display:inline-block" label="Apply changes" variant="secondary"></zen-button>
       <zen-tooltip position="${position}" variant="${variant}" text="${text}"></zen-tooltip>
     </div>
   `;
@@ -112,16 +112,17 @@ const TemplateVariants = () => {
         padding-top: 7rem;
         padding-left: 7rem;
         padding-right: 7rem;
+        text-align: center;
       }
     </style>
     <div class="container">
       <div>
-        <zen-button label="Edit" variant="primary"></zen-button>
+        <zen-button style="display: block" label="Edit" variant="primary"></zen-button>
         <zen-tooltip
           always-visible="true"
           position="top"
           variant="dark"
-          text="The Manager can edit and create the PCI-DSS framework."
+          text="The Manager can edit and create the PCI-DSS."
         >
         </zen-tooltip>
       </div>

@@ -81,9 +81,14 @@ export class ZenTooltip {
   }
 
   render(): HTMLElement {
+    const classes = {
+      tooltip: true,
+      [`${this.variant}`]: true,
+      [`${this.position}`]: true,
+    };
     return (
       <Host ref={el => (this.element = el)}>
-        <span class={this.getClassNames()}>
+        <span class={classes}>
           <slot name="text">{this.text}</slot>
         </span>
       </Host>
