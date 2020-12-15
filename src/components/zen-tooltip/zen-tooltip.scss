@@ -3,7 +3,7 @@
 :host {
   position: absolute;
   max-width: 11rem;
-  z-index: $z-index-tooltips;;
+  z-index: $z-index-tooltips;
   display: none;
 }
 
@@ -24,7 +24,7 @@
   font-family: inherit;
   z-index: $z-index-tooltips;
 
-  &:before{
+  &:before {
     content: '';
     position: absolute;
   }
