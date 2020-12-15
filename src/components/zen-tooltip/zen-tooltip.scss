@@ -23,42 +23,42 @@
   text-align: center;
   font-family: inherit;
   z-index: $z-index-tooltips;
-}
 
-.tooltip:before {
-  content: '';
-  position: absolute;
-}
+  &:before{
+    content: '';
+    position: absolute;
+  }
 
-.top:before,
-.bottom:before {
-  border-left: 0.25rem solid transparent;
-  border-right: 0.25rem solid transparent;
-  left: 50%;
-  transform: translateX(-2px);
-}
+  &.top:before,
+  &.bottom:before {
+    border-left: 0.25rem solid transparent;
+    border-right: 0.25rem solid transparent;
+    left: 50%;
+    transform: translateX(-2px);
+  }
 
-.top:before {
-  bottom: -0.25rem;
-}
+  &.top:before {
+    bottom: -0.25rem;
+  }
 
-.bottom:before {
-  top: -0.25rem;
-}
+  &.bottom:before {
+    top: -0.25rem;
+  }
 
-.right:before,
-.left:before {
-  top: 50%;
-  border-top: 0.25rem solid transparent;
-  border-bottom: 0.25rem solid transparent;
-}
+  &.right:before,
+  &.left:before {
+    top: 50%;
+    border-top: 0.25rem solid transparent;
+    border-bottom: 0.25rem solid transparent;
+  }
 
-.right:before {
-  left: -0.25rem;
-}
+  &.right:before {
+    left: -0.25rem;
+  }
 
-.left:before {
-  right: -0.25rem;
+  &.left:before {
+    right: -0.25rem;
+  }
 }
 
 .dark {
