@@ -37,7 +37,6 @@ export function renderIcon(icon: IconDefinition): HTMLElement {
 export function litHtmlIcon(icon: IconDefinition): string {
   const [width, height, , , svg] = icon.icon;
   const classes = `svg-inline--fa fa-w-20 mr-3 fa-${icon.iconName}`;
-  console.log(svg);
 
   return `<svg
     class="${classes}"
