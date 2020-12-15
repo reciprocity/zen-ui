@@ -16,10 +16,13 @@
   border: 1px solid $color-gray-200;
   border-radius: $input-radius;
 
-  @include zenInputBase();
   &:focus,
   &:active {
     @include zenInputFocus;
+  }
+
+  &:not(:disabled):hover {
+    border-color: $color-blue-700;
   }
 }
 
@@ -43,9 +46,5 @@
     background-color: $color-gray-100;
     pointer-events: none;
     cursor: default;
-  }
-
-  &:hover {
-    border-color: $color-blue-700;
   }
 }
