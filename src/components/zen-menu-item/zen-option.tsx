@@ -4,6 +4,8 @@ import { Component, Host, h, Prop, Element } from '@stencil/core';
  * @slot content - Replace content of item. Padding stays. To remove it set `defaultPadding="false"`
  */
 
+export type OptionValue = string | number | undefined;
+
 @Component({
   tag: 'zen-option',
   styleUrl: 'zen-option.scss',
@@ -18,6 +20,8 @@ export class ZenOption {
   @Prop({ reflect: true }) readonly selected: boolean = false;
   /** Render item as focused */
   @Prop({ reflect: true }) readonly focused: boolean = false;
+  /** Value of option if used inside dropdown */
+  @Prop({ reflect: true }) readonly value: OptionValue = '';
   /** False to enable custom item padding */
   @Prop() readonly defaultPadding: boolean = true;
 

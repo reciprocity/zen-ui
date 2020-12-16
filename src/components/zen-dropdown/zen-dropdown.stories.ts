@@ -57,20 +57,6 @@ Default.args = {
 };
 
 const SlottedTemplate = ({ options }) => {
-  interface ZenDropdownHTMLElement extends HTMLElement {
-    value: string;
-    toggle: (open: boolean) => void;
-  }
-
-  function dropdown(): ZenDropdownHTMLElement {
-    return document.querySelector('#dropdown-with-options-slot') as ZenDropdownHTMLElement;
-  }
-
-  function onOptionClick(option) {
-    dropdown().value = option.label;
-    dropdown().toggle(false);
-  }
-
   return html`
     <style>
       .icon {
@@ -106,18 +92,8 @@ const SlottedTemplate = ({ options }) => {
         <div class="separator">Some custom title</div>
         ${options.map((item, index) =>
           index !== 1
-            ? html`<zen-option
-                label=${item.label}
-                @click="${() => {
-                  onOptionClick(item);
-                }}"
-              ></zen-option>`
-            : html`<zen-option
-                default-padding="false"
-                @click="${() => {
-                  onOptionClick(item);
-                }}"
-              >
+            ? html`<zen-option label=${item.label} value=${item.label}></zen-option>`
+            : html`<zen-option default-padding="false" value=${item.label}>
                 <div class="content" slot="content">
                   <img class="icon" src=${icon} alt="icon" />
                   <b>${item.label}</b>

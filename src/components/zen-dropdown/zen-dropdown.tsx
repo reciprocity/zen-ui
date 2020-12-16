@@ -2,6 +2,7 @@ import { Component, Host, h, Prop, State, Event, EventEmitter, Listen, Watch, El
 import { MouseEvent, slotPassed, getSlotElement } from '../helpers/helpers';
 import { faChevronDown } from '@fortawesome/pro-light-svg-icons';
 import { renderIcon, styles } from '../helpers/fa-icons';
+import { OptionValue } from '../zen-menu-item/zen-option';
 import get from 'lodash/get';
 import { waitNextFrame, getElementPath } from '../helpers/helpers';
 import { Key } from 'ts-key-enum';
@@ -10,8 +11,6 @@ import { Align } from '../helpers/types';
 export interface OptionItem {
   label: string;
 }
-
-export type OptionValue = string | number | undefined;
 
 @Component({
   tag: 'zen-dropdown',
@@ -96,6 +95,8 @@ export class ZenDropdown {
       if (this.hasOptionsSlot) {
         this.markSelectedSlottedOption(this.value);
       }
+
+      this.appendOptionsOnClickHandlers();
     } else {
       document.removeEventListener('mouseup', this.clickHandler);
     }
@@ -132,7 +133,7 @@ export class ZenDropdown {
       case 'Space':
         const focused = this.options[this.focusedIndex];
         if (focused) {
-          this.selectValue(focused);
+          this.selectValue(focused[this.trackBy]);
         }
         ev.preventDefault();
         break;
@@ -155,15 +156,15 @@ export class ZenDropdown {
     }
   }
 
-  selectValue(option: OptionItem): void {
-    this.value = option[this.trackBy];
+  selectValue(value: OptionValue): void {
+    this.value = value;
     if (open) {
       this.focusedIndex = this.selectedIndex();
     }
     if (this.closeOnSelect) {
       this.opened = false;
     }
-    this.zenInput.emit(this.value);
+    this.zenInput.emit(value);
   }
 
   toggleDropdown(open?: boolean): void {
@@ -209,6 +210,19 @@ export class ZenDropdown {
     this.valueChanged(this.value);
   }
 
+  appendOptionsOnClickHandlers(): void {
+    if (!this.hasOptionsSlot) return;
+
+    const items = this.getSlottedOptionItems();
+    for (let i = 0; i < items.length; i++) {
+      if (items[i].getAttribute('data-click-mounted')) continue;
+      items[i].setAttribute('data-click-mounted', 'true');
+      items[i].addEventListener('click', () => {
+        this.selectValue(items[i].getAttribute('value'));
+      });
+    }
+  }
+
   render(): HTMLElement {
     return (
       <Host tabindex="0" ref={el => (this.div = el)}>
@@ -239,7 +253,7 @@ export class ZenDropdown {
                     label={option.label}
                     focused={this.focusedIndex === index}
                     selected={option[this.trackBy] === this.value}
-                    onClick={() => this.selectValue(option)}
+                    value={option[this.trackBy]}
                   />
                 ))}
               </slot>
