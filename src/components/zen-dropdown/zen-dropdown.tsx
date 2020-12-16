@@ -29,8 +29,6 @@ export class ZenDropdown {
 
   /** Selected option */
   @Prop({ mutable: true }) value: OptionValue = undefined;
-  /** Array of available options */
-  @Prop() readonly options: Array<OptionItem> = [];
   /** Alignment of field content and menu (if menuWidth set). */
   @Prop() readonly fieldAlign: Align = Align.LEFT;
   /** Width of menu. Set '100%' to match field width. */

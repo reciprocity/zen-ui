@@ -52,13 +52,7 @@ const Template = ({ options }) => {
       }
       ${styles}
     </style>
-    <zen-dropdown
-      id="dropdown-with-options-slot"
-      class="mb-80"
-      style="max-width: 300px;"
-      value=${options[2].label}
-      .options=${options}
-    >
+    <zen-dropdown id="dropdown-with-options-slot" class="mb-80" style="max-width: 300px;" value=${options[2].label}>
       <div slot="options">
         <div class="separator">Some custom title</div>
         ${options.map((item, index) =>
