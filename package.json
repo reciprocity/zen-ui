@@ -100,7 +100,6 @@
   "dependencies": {
     "@stencil/core": "~2.3.0",
     "lodash": "~4.17.20"
-
   },
   "repository": {
     "type": "git",

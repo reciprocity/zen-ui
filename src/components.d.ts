@@ -8,9 +8,10 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { StringifiedJson } from "./stories/components/color-swatch-group/color-swatch-group";
 import { ButtonVariants } from "./components/zen-button/types";
 import { CheckboxChangeEventDetail } from "./components/zen-checkbox/types";
-import { OptionItem, OptionValue } from "./components/zen-dropdown/zen-dropdown";
+import { OptionValue } from "./components/zen-menu-item/zen-option";
 import { Align } from "./components/helpers/types";
 import { ZenDismissDuration, ZenVariant } from "./components/zen-notification/zen-notification-helper";
+import { OptionValue as OptionValue1 } from "./components/zen-menu-item/zen-option";
 import { StepEvent, StepItem } from "./components/zen-steps/zen-steps";
 import { StepsFilter } from "./components/zen-steps/types";
 import { Position, Variant } from "./components/helpers/helpers";
@@ -101,17 +102,9 @@ export namespace Components {
          */
         "menuWidth": string;
         /**
-          * Array of available options
-         */
-        "options": Array<OptionItem>;
-        /**
           * Close an opened dropdown menu
          */
         "toggle": (open?: boolean) => Promise<void>;
-        /**
-          * Option key that is unique for each option
-         */
-        "trackBy": string;
         /**
           * Selected option
          */
@@ -208,6 +201,10 @@ export namespace Components {
           * Render item as selected
          */
         "selected": boolean;
+        /**
+          * Value of option if used inside dropdown
+         */
+        "value": OptionValue;
     }
     interface ZenSpinner {
         /**
@@ -484,21 +481,9 @@ declare namespace LocalJSX {
          */
         "menuWidth"?: string;
         /**
-          * Focused item changed (keyboard arrows)
-         */
-        "onZenFocusItem"?: (event: CustomEvent<OptionValue>) => void;
-        /**
           * Emitted on any selection change
          */
-        "onZenInput"?: (event: CustomEvent<OptionValue>) => void;
-        /**
-          * Array of available options
-         */
-        "options"?: Array<OptionItem>;
-        /**
-          * Option key that is unique for each option
-         */
-        "trackBy"?: string;
+        "onZenChange"?: (event: CustomEvent<OptionValue>) => void;
         /**
           * Selected option
          */
@@ -603,6 +588,10 @@ declare namespace LocalJSX {
           * Render item as selected
          */
         "selected"?: boolean;
+        /**
+          * Value of option if used inside dropdown
+         */
+        "value"?: OptionValue;
     }
     interface ZenSpinner {
         /**
