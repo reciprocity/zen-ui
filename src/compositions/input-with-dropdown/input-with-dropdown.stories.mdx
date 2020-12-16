@@ -2,7 +2,7 @@ import { html } from 'lit-html';
 import Readme from './readme.md';
 import { Meta, Description, Story, Canvas, Preview, Props } from '@storybook/addon-docs/blocks';
 
-<Meta title="Forms/Invite user dropdown" component={'zen-dropdown'}/>
+<Meta title="Forms/Invite user dropdown" component={'zen-dropdown'} />
 
 # Dropdown
 
@@ -11,34 +11,32 @@ This component **is NOT really a component**. It's actually just a composition o
 ## Component preview
 
 export const Template = ({ menuWidth, fieldAlign }) => {
-  const options = [
-    {label: 'ZenGRC Administrator'},
-    {label: 'Manager'},
-    {label: 'Collaborator'},
-  ];
+  const options = [{ label: 'ZenGRC Administrator' }, { label: 'Manager' }, { label: 'Collaborator' }];
   return html`<zen-input placeholder="Username" class="mb-80">
     <zen-dropdown
       slot="trailingSlot"
       borderless="true"
       placeholder="choose role"
-      style="width: auto;" .options=${options}
+      style="width: auto;"
+      .options=${options}
       menu-width=${menuWidth}
       field-align=${fieldAlign}
     >
       <div slot="options">
-        ${options.map((item, index) =>
-          html`<zen-option label=${item.label} value=${item.label}></zen-option>`,
-        )}
+        ${options.map((item, index) => html`<zen-option label=${item.label} value=${item.label}></zen-option>`)}
       </div>
     </zen-dropdown>
   </zen-input>`;
-}
+};
 
 <Preview>
-  <Story name="button" args={{
-    menuWidth: '220px',
-    fieldAlign: 'right',
-  }}>
+  <Story
+    name="button"
+    args={{
+      menuWidth: '220px',
+      fieldAlign: 'right',
+    }}
+  >
     {Template.bind({})}
   </Story>
 </Preview>
