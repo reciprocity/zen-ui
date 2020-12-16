@@ -10,9 +10,21 @@ This component **is NOT really a component**. It's actually just a composition o
 
 ## Component preview
 
-export const Template = ({ options, menuWidth, fieldAlign }) => {
+export const Template = ({ menuWidth, fieldAlign }) => {
+  const options = [
+    {label: 'ZenGRC Administrator'},
+    {label: 'Manager'},
+    {label: 'Collaborator'},
+  ];
   return html`<zen-input placeholder="Username" class="mb-80">
-    <zen-dropdown slot="trailingSlot" borderless="true" placeholder="choose role" style="max-width: 300px;" .options=${options}>
+    <zen-dropdown
+      slot="trailingSlot"
+      borderless="true"
+      placeholder="choose role"
+      style="width: auto;" .options=${options}
+      menu-width=${menuWidth}
+      field-align=${fieldAlign}
+    >
       <div slot="options">
         ${options.map((item, index) =>
           html`<zen-option label=${item.label} value=${item.label}></zen-option>`,
@@ -24,12 +36,7 @@ export const Template = ({ options, menuWidth, fieldAlign }) => {
 
 <Preview>
   <Story name="button" args={{
-    options: [
-      {label: 'ZenGRC Administrator'},
-      {label: 'Manager'},
-      {label: 'Collaborator'},
-    ],
-    menuWidth: '100%',
+    menuWidth: '220px',
     fieldAlign: 'right',
   }}>
     {Template.bind({})}
