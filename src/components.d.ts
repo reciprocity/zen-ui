@@ -102,6 +102,10 @@ export namespace Components {
          */
         "menuWidth": string;
         /**
+          * Text in field if nothing selected
+         */
+        "placeholder": "Select something";
+        /**
           * Close an opened dropdown menu
          */
         "toggle": (open?: boolean) => Promise<void>;
@@ -118,9 +122,9 @@ export namespace Components {
          */
         "disabled": false;
         /**
-          * This is required for a WebKit bug which requires us to blur and focus an input to properly focus the input in an item with delegatesFocus.
+          * Paint focused border
          */
-        "fireFocusEvents": true;
+        "hasFocus": boolean;
         /**
           * Shows invalid styles.
          */
@@ -129,10 +133,6 @@ export namespace Components {
           * Placeholder of the input.
          */
         "placeholder": string;
-        /**
-          * Set and unset focus on the input.
-         */
-        "toggleFocus": (focused?: boolean) => Promise<void>;
         /**
           * The value of the input.
          */
@@ -485,6 +485,10 @@ declare namespace LocalJSX {
          */
         "onZenChange"?: (event: CustomEvent<OptionValue>) => void;
         /**
+          * Text in field if nothing selected
+         */
+        "placeholder"?: "Select something";
+        /**
           * Selected option
          */
         "value"?: OptionValue;
@@ -497,9 +501,9 @@ declare namespace LocalJSX {
          */
         "disabled"?: false;
         /**
-          * This is required for a WebKit bug which requires us to blur and focus an input to properly focus the input in an item with delegatesFocus.
+          * Paint focused border
          */
-        "fireFocusEvents"?: true;
+        "hasFocus"?: boolean;
         /**
           * Shows invalid styles.
          */

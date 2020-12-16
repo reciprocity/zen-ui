@@ -2,6 +2,7 @@
 @import '../../zen-styles/mixins/forms.scss';
 
 :host {
+  @include zenInputBorder;
   @include zenInputBase;
   display: flex;
   font-size: $text-md;
@@ -31,10 +32,10 @@
 
 input {
   @include zenInputBase;
+  padding: 0.375rem 0.5rem;
   display: flex;
   width: 100%;
   border: none;
-  padding: 0;
 
   &:disabled {
     opacity: 0.5;

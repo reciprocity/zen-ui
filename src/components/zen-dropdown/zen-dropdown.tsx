@@ -39,6 +39,8 @@ export class ZenDropdown {
   @Prop() readonly closeOnSelect = true;
   /** Don't draw border around field */
   @Prop() readonly borderless = false;
+  /** Text in field if nothing selected */
+  @Prop() readonly placeholder = 'Select something';
 
   /** Emitted on any selection change */
   @Event() zenChange: EventEmitter<OptionValue>;
@@ -233,7 +235,7 @@ export class ZenDropdown {
             this.toggleDropdown(true);
           }}
         >
-          {this.value || 'Select something'}
+          {this.value || this.placeholder}
           <div class="arrow">{renderIcon(faChevronDown)}</div>
         </div>
         <div

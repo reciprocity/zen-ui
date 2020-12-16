@@ -10,6 +10,7 @@
 | Property      | Attribute     | Description               | Type               | Default |
 | ------------- | ------------- | ------------------------- | ------------------ | ------- |
 | `disabled`    | `disabled`    | Disables input.           | `boolean`          | `false` |
+| `hasFocus`    | `has-focus`   | Paint focused border      | `boolean`          | `false` |
 | `invalid`     | `invalid`     | Shows invalid styles.     | `boolean`          | `false` |
 | `placeholder` | `placeholder` | Placeholder of the input. | `string`           | `null`  |
 | `value`       | `value`       | The value of the input.   | `number \| string` | `''`    |
@@ -22,19 +23,6 @@
 | `zenBlur`  | Emitted when the input loses focus.     | `CustomEvent<FocusEvent>`    |
 | `zenFocus` | Emitted when the input has focus.       | `CustomEvent<FocusEvent>`    |
 | `zenInput` | Emitted when a keyboard input occurred. | `CustomEvent<KeyboardEvent>` |
-
-
-## Methods
-
-### `toggleFocus(focused?: boolean) => Promise<void>`
-
-Set and unset focus on the input.
-
-#### Returns
-
-Type: `Promise<void>`
-
-
 
 
 ## Slots
