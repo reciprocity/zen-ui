@@ -44,13 +44,13 @@ Type: `Promise<void>`
 ### Depends on
 
 - [zen-animate](../zen-animate)
-- [zen-menu-item](../zen-menu-item)
+- [zen-option](../zen-menu-item)
 
 ### Graph
 ```mermaid
 graph TD;
   zen-dropdown --> zen-animate
-  zen-dropdown --> zen-menu-item
+  zen-dropdown --> zen-option
   style zen-dropdown fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

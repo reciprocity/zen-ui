@@ -2,7 +2,7 @@ import { Component, Host, h, Prop, State, Event, EventEmitter, Listen, Watch, El
 import { MouseEvent, slotPassed, getSlotElement } from '../helpers/helpers';
 import { faChevronDown } from '@fortawesome/pro-light-svg-icons';
 import { renderIcon, styles } from '../helpers/fa-icons';
-import get from 'lodash/get';
+import { OptionValue } from '../zen-menu-item/zen-option';
 import { waitNextFrame, getElementPath } from '../helpers/helpers';
 import { Key } from 'ts-key-enum';
 import { Align } from '../helpers/types';
@@ -10,8 +10,6 @@ import { Align } from '../helpers/types';
 export interface OptionItem {
   label: string;
 }
-
-export type OptionValue = string | number | undefined;
 
 @Component({
   tag: 'zen-dropdown',
@@ -23,20 +21,14 @@ export class ZenDropdown {
   listWrap: HTMLElement = undefined;
   list: HTMLElement = undefined;
   clickHandler = undefined;
-  selectedOption: OptionItem = null;
   hasOptionsSlot = false;
 
   @Element() hostElement: HTMLZenDropdownElement;
 
   @State() opened = false;
-  @State() focusedIndex = -1;
 
   /** Selected option */
   @Prop({ mutable: true }) value: OptionValue = undefined;
-  /** Array of available options */
-  @Prop() readonly options: Array<OptionItem> = [];
-  /** Option key that is unique for each option */
-  @Prop() readonly trackBy: string = 'label';
   /** Alignment of field content and menu (if menuWidth set). */
   @Prop() readonly fieldAlign: Align = Align.LEFT;
   /** Width of menu. Set '100%' to match field width. */
@@ -49,9 +41,7 @@ export class ZenDropdown {
   @Prop() readonly borderless = false;
 
   /** Emitted on any selection change */
-  @Event() zenInput: EventEmitter<OptionValue>;
-  /** Focused item changed (keyboard arrows) */
-  @Event() zenFocusItem: EventEmitter<OptionValue>;
+  @Event() zenChange: EventEmitter<OptionValue>;
 
   /** Close an opened dropdown menu */
   @Method()
@@ -60,22 +50,6 @@ export class ZenDropdown {
       open = !this.opened;
     }
     this.opened = open;
-  }
-
-  @Watch('value')
-  valueChanged(value: OptionValue): void {
-    this.selectedOption = value ? this.options.find(n => n[this.trackBy] === value) : undefined;
-  }
-
-  @Watch('focusedIndex')
-  focusedIndexChanged(focusedIndex: OptionValue): void {
-    this.zenFocusItem.emit(focusedIndex);
-    if (!this.hasOptionsSlot) return;
-
-    const items = this.getSlottedOptionItems();
-    for (let i = 0; i < items.length; i++) {
-      items[i].focused = i === focusedIndex;
-    }
   }
 
   @Watch('opened')
@@ -96,6 +70,8 @@ export class ZenDropdown {
       if (this.hasOptionsSlot) {
         this.markSelectedSlottedOption(this.value);
       }
+
+      this.appendOptionsOnClickHandlers();
     } else {
       document.removeEventListener('mouseup', this.clickHandler);
     }
@@ -113,36 +89,34 @@ export class ZenDropdown {
 
     switch (ev.key) {
       case Key.ArrowDown:
-        this.focusedIndex++;
-        if (this.focusedIndex > this.options.length - 1) {
-          this.focusedIndex = 0;
-        }
+        this.moveFocusedOption('forward');
         ev.preventDefault();
         break;
 
       case Key.ArrowUp:
-        this.focusedIndex--;
-        if (this.focusedIndex < 0) {
-          this.focusedIndex = this.options.length - 1;
-        }
+        this.moveFocusedOption('backward');
         ev.preventDefault();
         break;
 
       case Key.Enter:
       case 'Space':
-        const focused = this.options[this.focusedIndex];
+        const focused = this.getFocusedOption();
         if (focused) {
-          this.selectValue(focused);
+          this.selectValue(focused.getAttribute('value'));
         }
         ev.preventDefault();
         break;
     }
   }
 
-  getSlottedOptionItems(): NodeListOf<HTMLZenMenuItemElement> | undefined[] {
+  getOptionValue(option: HTMLZenOptionElement): OptionValue {
+    return option.getAttribute('value');
+  }
+
+  getSlottedOptionItems(): NodeListOf<HTMLZenOptionElement> | undefined[] {
     const list = getSlotElement(this.hostElement, 'options');
     if (!list) return []; // happens when dropdown isn't opened
-    return list.querySelectorAll('zen-menu-item');
+    return list.querySelectorAll('zen-option[value]');
   }
 
   markSelectedSlottedOption(value: OptionValue): void {
@@ -151,33 +125,61 @@ export class ZenDropdown {
 
     const items = this.getSlottedOptionItems();
     for (let i = 0; i < items.length; i++) {
-      items[i].selected = this.options[i][this.trackBy] === value;
+      items[i].selected = this.getOptionValue(items[i]) === value;
     }
   }
 
-  selectValue(option: OptionItem): void {
-    this.value = option[this.trackBy];
+  getSelectedOptionElement(): HTMLZenOptionElement {
+    const items = this.getSlottedOptionItems();
+    for (let i = 0; i < items.length; i++) {
+      if (this.getOptionValue(items[i]) === this.value) {
+        return items[i];
+      }
+    }
+  }
+
+  selectValue(value: OptionValue): void {
+    this.value = value;
     if (open) {
-      this.focusedIndex = this.selectedIndex();
+      this.setFocusedOption(this.getSelectedOptionElement());
     }
     if (this.closeOnSelect) {
       this.opened = false;
     }
-    this.zenInput.emit(this.value);
+    this.zenChange.emit(value);
   }
 
   toggleDropdown(open?: boolean): void {
     if (open === undefined) open = !this.opened;
-    this.focusedIndex = -1;
+    this.setFocusedOption();
     this.opened = open;
   }
 
-  isSelected(option: OptionItem): boolean {
-    return option[this.trackBy] === this.value;
+  setFocusedOption(option?: HTMLZenOptionElement): void {
+    // only one item can be focused, so remove focus from all other items:
+    const items = this.getSlottedOptionItems();
+    for (let i = 0; i < items.length; i++) {
+      items[i].removeAttribute('focused');
+    }
+    if (!option) return;
+    option.setAttribute('focused', 'true');
   }
 
-  selectedIndex(): number {
-    return this.options.findIndex(n => n[this.trackBy] === this.value);
+  getFocusedOption = (): HTMLZenOptionElement =>
+    Array.from(this.getSlottedOptionItems()).filter(el => el.hasAttribute('focused'))[0];
+
+  moveFocusedOption(direction = 'forward'): void {
+    const items = this.getSlottedOptionItems();
+    let prev = items[items.length - 1];
+    let next = items[0];
+    for (let i = 0; i < items.length; i++) {
+      if (items[i].hasAttribute('focused')) {
+        prev = items[i - 1] || prev;
+        next = items[i + 1] || next;
+      }
+    }
+    const focusOption = direction === 'forward' ? next : prev;
+    this.setFocusedOption(focusOption);
   }
 
   // Events
@@ -200,13 +202,21 @@ export class ZenDropdown {
     return y < window.pageYOffset || y + this.menuHeight > window.pageYOffset + window.innerHeight;
   }
 
-  connectedCallback(): void {
-    this.valueChanged(this.value);
-  }
-
   componentWillLoad(): void {
     this.hasOptionsSlot = slotPassed(this.hostElement, 'options');
-    this.valueChanged(this.value);
+  }
+
+  appendOptionsOnClickHandlers(): void {
+    if (!this.hasOptionsSlot) return;
+
+    const items = this.getSlottedOptionItems();
+    for (let i = 0; i < items.length; i++) {
+      if (items[i].getAttribute('data-click-mounted')) continue;
+      items[i].setAttribute('data-click-mounted', 'true');
+      items[i].addEventListener('click', () => {
+        this.selectValue(this.getOptionValue(items[i]));
+      });
+    }
   }
 
   render(): HTMLElement {
@@ -223,7 +233,7 @@ export class ZenDropdown {
             this.toggleDropdown(true);
           }}
         >
-          {get(this.selectedOption, 'label') || 'Select something'}
+          {this.value || 'Select something'}
           <div class="arrow">{renderIcon(faChevronDown)}</div>
         </div>
         <div
@@ -233,16 +243,7 @@ export class ZenDropdown {
         >
           <zen-animate show={this.opened}>
             <div class="list" ref={el => (this.list = el)}>
-              <slot name="options">
-                {this.options.map((option, index) => (
-                  <zen-menu-item
-                    label={option.label}
-                    focused={this.focusedIndex === index}
-                    selected={option[this.trackBy] === this.value}
-                    onClick={() => this.selectValue(option)}
-                  />
-                ))}
-              </slot>
+              <slot name="options" />
             </div>
           </zen-animate>
         </div>

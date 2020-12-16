@@ -31,8 +31,8 @@
 ### Graph
 ```mermaid
 graph TD;
-  zen-dropdown --> zen-menu-item
-  style zen-menu-item fill:#f9f,stroke:#333,stroke-width:4px
+  zen-dropdown --> zen-option
+  style zen-option fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
 ----------------------------------------------

@@ -24,6 +24,19 @@
 | `zenInput` | Emitted when a keyboard input occurred. | `CustomEvent<KeyboardEvent>` |
 
 
+## Methods
+
+### `toggleFocus(focused?: boolean) => Promise<void>`
+
+Set and unset focus on the input.
+
+#### Returns
+
+Type: `Promise<void>`
+
+
+
+
 ## Slots
 
 | Slot             | Description              |

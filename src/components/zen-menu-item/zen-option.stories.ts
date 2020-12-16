@@ -7,8 +7,8 @@ import { litHtmlIcon, styles } from '../helpers/fa-icons';
 const argTypes = {};
 
 export default {
-  title: 'Dropdown/Menu Item',
-  component: 'zen-menu-item',
+  title: 'Dropdown/Option',
+  component: 'zen-option',
   argTypes,
   parameters: {
     notes: { markdown },
@@ -16,14 +16,14 @@ export default {
 };
 
 const Template = ({ selected, label, focused }) => {
-  return html` <zen-menu-item ?selected=${selected} ?focused=${focused} label=${label} />`;
+  return html` <zen-option ?selected=${selected} ?focused=${focused} label=${label} />`;
 };
 
 export const Default = Template.bind({});
 Default.args = {
   selected: false,
   focused: false,
-  label: 'My menu item',
+  label: 'My option item',
 };
 
 const SlottedTemplate = () => {
@@ -37,20 +37,20 @@ const SlottedTemplate = () => {
         align-items: center;
         padding: 1rem;
       }
-      zen-menu-item {
+      zen-option {
         display: inline-block;
         max-width: 300px;
         width: 100%;
       }
     </style>
 
-    <zen-menu-item default-padding="false">
+    <zen-option default-padding="false">
       <div class="content" slot="content">
         <img class="icon" src=${icon} alt="icon" />
         <b>Custom content</b>
         <span style="margin-left: auto" .innerHTML="${litHtmlIcon(faCheck)}"></span>
       </div>
-    </zen-menu-item>`;
+    </zen-option>`;
 };
 
 export const CustomContentSlot = SlottedTemplate.bind({});

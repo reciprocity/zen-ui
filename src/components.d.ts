@@ -136,6 +136,10 @@ export namespace Components {
          */
         "placeholder": string;
         /**
+          * Set and unset focus on the input.
+         */
+        "toggleFocus": (focused?: boolean) => Promise<void>;
+        /**
           * The value of the input.
          */
         "value"?: string | number | null;
@@ -155,24 +159,6 @@ export namespace Components {
           * Shows a red asterisk after label
          */
         "required": false;
-    }
-    interface ZenMenuItem {
-        /**
-          * False to enable custom item padding
-         */
-        "defaultPadding": boolean;
-        /**
-          * Render item as focused
-         */
-        "focused": boolean;
-        /**
-          * Text inside the item
-         */
-        "label": string;
-        /**
-          * Render item as selected
-         */
-        "selected": boolean;
     }
     interface ZenNotification {
         /**
@@ -203,6 +189,24 @@ export namespace Components {
           * Width
          */
         "width": string;
+    }
+    interface ZenOption {
+        /**
+          * False to enable custom item padding
+         */
+        "defaultPadding": boolean;
+        /**
+          * Render item as focused
+         */
+        "focused": boolean;
+        /**
+          * Text inside the item
+         */
+        "label": string;
+        /**
+          * Render item as selected
+         */
+        "selected": boolean;
     }
     interface ZenSpinner {
         /**
@@ -310,17 +314,17 @@ declare global {
         prototype: HTMLZenLabelElement;
         new (): HTMLZenLabelElement;
     };
-    interface HTMLZenMenuItemElement extends Components.ZenMenuItem, HTMLStencilElement {
-    }
-    var HTMLZenMenuItemElement: {
-        prototype: HTMLZenMenuItemElement;
-        new (): HTMLZenMenuItemElement;
-    };
     interface HTMLZenNotificationElement extends Components.ZenNotification, HTMLStencilElement {
     }
     var HTMLZenNotificationElement: {
         prototype: HTMLZenNotificationElement;
         new (): HTMLZenNotificationElement;
+    };
+    interface HTMLZenOptionElement extends Components.ZenOption, HTMLStencilElement {
+    }
+    var HTMLZenOptionElement: {
+        prototype: HTMLZenOptionElement;
+        new (): HTMLZenOptionElement;
     };
     interface HTMLZenSpinnerElement extends Components.ZenSpinner, HTMLStencilElement {
     }
@@ -352,8 +356,8 @@ declare global {
         "zen-input": HTMLZenInputElement;
         "zen-input-support-text": HTMLZenInputSupportTextElement;
         "zen-label": HTMLZenLabelElement;
-        "zen-menu-item": HTMLZenMenuItemElement;
         "zen-notification": HTMLZenNotificationElement;
+        "zen-option": HTMLZenOptionElement;
         "zen-spinner": HTMLZenSpinnerElement;
         "zen-steps": HTMLZenStepsElement;
         "zen-textarea": HTMLZenTextareaElement;
@@ -522,24 +526,6 @@ declare namespace LocalJSX {
          */
         "required"?: false;
     }
-    interface ZenMenuItem {
-        /**
-          * False to enable custom item padding
-         */
-        "defaultPadding"?: boolean;
-        /**
-          * Render item as focused
-         */
-        "focused"?: boolean;
-        /**
-          * Text inside the item
-         */
-        "label"?: string;
-        /**
-          * Render item as selected
-         */
-        "selected"?: boolean;
-    }
     interface ZenNotification {
         /**
           * Can dismiss
@@ -569,6 +555,24 @@ declare namespace LocalJSX {
           * Width
          */
         "width"?: string;
+    }
+    interface ZenOption {
+        /**
+          * False to enable custom item padding
+         */
+        "defaultPadding"?: boolean;
+        /**
+          * Render item as focused
+         */
+        "focused"?: boolean;
+        /**
+          * Text inside the item
+         */
+        "label"?: string;
+        /**
+          * Render item as selected
+         */
+        "selected"?: boolean;
     }
     interface ZenSpinner {
         /**
@@ -628,8 +632,8 @@ declare namespace LocalJSX {
         "zen-input": ZenInput;
         "zen-input-support-text": ZenInputSupportText;
         "zen-label": ZenLabel;
-        "zen-menu-item": ZenMenuItem;
         "zen-notification": ZenNotification;
+        "zen-option": ZenOption;
         "zen-spinner": ZenSpinner;
         "zen-steps": ZenSteps;
         "zen-textarea": ZenTextarea;
@@ -650,8 +654,8 @@ declare module "@stencil/core" {
             "zen-input": LocalJSX.ZenInput & JSXBase.HTMLAttributes<HTMLZenInputElement>;
             "zen-input-support-text": LocalJSX.ZenInputSupportText & JSXBase.HTMLAttributes<HTMLZenInputSupportTextElement>;
             "zen-label": LocalJSX.ZenLabel & JSXBase.HTMLAttributes<HTMLZenLabelElement>;
-            "zen-menu-item": LocalJSX.ZenMenuItem & JSXBase.HTMLAttributes<HTMLZenMenuItemElement>;
             "zen-notification": LocalJSX.ZenNotification & JSXBase.HTMLAttributes<HTMLZenNotificationElement>;
+            "zen-option": LocalJSX.ZenOption & JSXBase.HTMLAttributes<HTMLZenOptionElement>;
             "zen-spinner": LocalJSX.ZenSpinner & JSXBase.HTMLAttributes<HTMLZenSpinnerElement>;
             "zen-steps": LocalJSX.ZenSteps & JSXBase.HTMLAttributes<HTMLZenStepsElement>;
             "zen-textarea": LocalJSX.ZenTextarea & JSXBase.HTMLAttributes<HTMLZenTextareaElement>;
