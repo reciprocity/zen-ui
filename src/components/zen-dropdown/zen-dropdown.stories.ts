@@ -6,7 +6,7 @@ import { faCheck } from '@fortawesome/pro-light-svg-icons';
 import { litHtmlIcon, styles } from '../helpers/fa-icons';
 import { Align } from '../helpers/types';
 
-const customEvents = ['zenInput'];
+const customEvents = ['zenChange'];
 const events = [...eventHandles(customEvents)];
 
 const argTypes = {

@@ -41,7 +41,7 @@ export class ZenDropdown {
   @Prop() readonly borderless = false;
 
   /** Emitted on any selection change */
-  @Event() zenInput: EventEmitter<OptionValue>;
+  @Event() zenChange: EventEmitter<OptionValue>;
 
   /** Close an opened dropdown menu */
   @Method()
@@ -146,7 +146,7 @@ export class ZenDropdown {
     if (this.closeOnSelect) {
       this.opened = false;
     }
-    this.zenInput.emit(value);
+    this.zenChange.emit(value);
   }
 
   toggleDropdown(open?: boolean): void {
