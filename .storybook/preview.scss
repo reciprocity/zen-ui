@@ -3,3 +3,80 @@
 small {
   font-size: 10px;
 }
+
+$text-color: $color-gray-600;
+
+#docs-root > .sbdocs {
+  // Page
+  background: #f9f9f9;
+  color: $text-color;
+}
+
+span.css-in3yi3,
+p.css-15n5lxj {
+  color: $text-color;
+}
+
+.css-xvwzt3 {
+  // Preview
+  background: #fff;
+}
+
+h1.sbdocs-h1 {
+  font-size: 40px;
+}
+
+.sbdocs h2 {
+  color: $color-blue-700;
+}
+
+.stencildoc + div {
+  code {
+    font-size: 0.8rem;
+    color: #3a537b !important;
+    max-width: 300px;
+    white-space: normal;
+  }
+
+  h2 {
+    color: $color-blue-700;
+    border-top: 1px solid rgba(0,0,0,.1);
+  }
+
+  h3 code {
+    // method title
+    max-width: none;
+    font-size: 1.2rem;
+    color: #000 !important;
+    background: transparent;
+    border: none;
+    font-family: inherit;
+    padding: 0;
+  }
+
+  h4 {
+    line-height: 1em;
+    margin-top: 1rem !important;
+  }
+
+  #depends-on { display: none; }
+
+  #graph, #graph + pre { display: none; }
+}
+
+.docblock-argstable-body {
+  box-shadow: none !important;
+
+  td {
+    background: transparent !important;
+  }
+
+  tr {
+    background: rgba(0,0,0,0.05) !important;
+    border: none !important;
+  }
+
+  tr:nth-child(2n - 1) {
+      background: rgba(0,0,0,0.02) !important;
+    }
+}
