@@ -1,14 +1,14 @@
 import { html } from 'lit-html';
-import markdown from './readme.md';
+import Readme from './readme.md';
+import { Meta, Description, Story, Canvas, Preview, Props } from '@storybook/addon-docs/blocks';
 import { eventHandles, action } from '../../../.storybook/helpers/custom-action';
+
 import icon from '../../img/reci-icon-g.png';
 import { faCheck } from '@fortawesome/pro-light-svg-icons';
 import { litHtmlIcon, styles } from '../helpers/fa-icons';
 import { Align } from '../helpers/types';
-
 const customEvents = ['zenChange'];
 const events = [...eventHandles(customEvents)];
-
 const argTypes = {
   fieldAlign: {
     control: { type: 'select', options: Object.keys(Align).map(n => Align[n]) },
@@ -27,8 +27,13 @@ export default {
   },
 };
 
-const Template = ({ options }) => {
-  return html`
+# Dropdown
+
+A standard dropdown component
+
+## Component preview
+
+export const Template = ({ options, value, closeOnSelect, borderless, menuWidth, fieldAlign }) => html`
     <style>
       .icon {
         height: 1rem;
@@ -70,11 +75,23 @@ const Template = ({ options }) => {
     </zen-dropdown>
     ${action('#dropdown-with-options-slot', customEvents)}
   `;
-};
 
-export const Default = Template.bind({});
-Default.args = {
-  options: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16].map(n => ({
-    label: `item ${n}`,
-  })),
-};
+<Preview>
+  <Story name="button" args={{
+    options: [1, 2, 3, 4, 5, 6, 7, 8, 9].map(n => ({
+      label: `item ${n}`,
+    })),
+    value: 'item 2',
+    closeOnSelect: true,
+    borderless: false,
+    menuWidth: '100%',
+    fieldAlign: 'right',
+  }}>
+    {Template.bind({})}
+  </Story>
+</Preview>
+
+<Props story="button" />
+
+<div class="stencildoc"/>
+<Description>{Readme}</Description>
