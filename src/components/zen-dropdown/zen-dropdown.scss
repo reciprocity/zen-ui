@@ -32,9 +32,10 @@ $field-height: #{1.2rem + 2 * 0.5rem};
   @include noselect;
   z-index: 1;
   position: relative;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 3rem 0.5rem 1rem;
   border-radius: $input-radius;
   height: $field-height;
+  white-space: nowrap;
 
   &:not(.borderless) {
     @include zenInputBorder;
