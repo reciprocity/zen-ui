@@ -33,17 +33,17 @@ yarn check:format
 
 ## How to consume the library
 #### Install it
+```bash
+yarn add @reciprocity/zen-ui
+```
+
+#### Import all components at once
 ```js
 import { applyPolyfills, defineCustomElements } from '@reciprocity/zen-ui/loader';
 
 applyPolyfills().then(() => {
   defineCustomElements();
 });
-```
-
-#### Import all components
-```bash
-yarn add @reciprocity/zen-ui
 ```
 
 #### Import components one at a time
