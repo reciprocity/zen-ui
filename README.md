@@ -22,12 +22,12 @@ yarn create:component zen-{component-name}
 
 #### To lint-check code
 ```bash
-yarn check:lint
+yarn lint:check
 ```
 
 #### To format styles with Prettier
 ```bash
-yarn check:format
+yarn format:check
 ```
 ###### Both previous commands will ran before the changes are pushed to the repository. (Husky's Pre-Push Hook)
 
