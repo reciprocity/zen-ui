@@ -82,7 +82,7 @@ const SlottedTemplate = ({ options }) => {
         align-items: center;
         padding: 1rem;
       }
-      zen-menu-item {
+      zen-option {
         display: inline-block;
         max-width: 300px;
         width: 100%;
@@ -106,13 +106,13 @@ const SlottedTemplate = ({ options }) => {
         <div class="separator">Some custom title</div>
         ${options.map((item, index) =>
           index !== 1
-            ? html`<zen-menu-item
+            ? html`<zen-option
                 label=${item.label}
                 @click="${() => {
                   onOptionClick(item);
                 }}"
-              ></zen-menu-item>`
-            : html`<zen-menu-item
+              ></zen-option>`
+            : html`<zen-option
                 default-padding="false"
                 @click="${() => {
                   onOptionClick(item);
@@ -123,7 +123,7 @@ const SlottedTemplate = ({ options }) => {
                   <b>${item.label}</b>
                   <span style="margin-left: auto" .innerHTML="${litHtmlIcon(faCheck)}"></span>
                 </div>
-              </zen-menu-item>`,
+              </zen-option>`,
         )}
       </div>
     </zen-dropdown>

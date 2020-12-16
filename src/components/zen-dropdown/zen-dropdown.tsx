@@ -139,10 +139,10 @@ export class ZenDropdown {
     }
   }
 
-  getSlottedOptionItems(): NodeListOf<HTMLZenMenuItemElement> | undefined[] {
+  getSlottedOptionItems(): NodeListOf<HTMLZenOptionElement> | undefined[] {
     const list = getSlotElement(this.hostElement, 'options');
     if (!list) return []; // happens when dropdown isn't opened
-    return list.querySelectorAll('zen-menu-item');
+    return list.querySelectorAll('zen-option');
   }
 
   markSelectedSlottedOption(value: OptionValue): void {
@@ -235,7 +235,7 @@ export class ZenDropdown {
             <div class="list" ref={el => (this.list = el)}>
               <slot name="options">
                 {this.options.map((option, index) => (
-                  <zen-menu-item
+                  <zen-option
                     label={option.label}
                     focused={this.focusedIndex === index}
                     selected={option[this.trackBy] === this.value}

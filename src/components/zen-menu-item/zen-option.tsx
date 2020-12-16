@@ -5,12 +5,12 @@ import { Component, Host, h, Prop, Element } from '@stencil/core';
  */
 
 @Component({
-  tag: 'zen-menu-item',
-  styleUrl: 'zen-menu-item.scss',
+  tag: 'zen-option',
+  styleUrl: 'zen-option.scss',
   shadow: true,
 })
-export class ZenMenuItem {
-  @Element() hostElement: HTMLZenMenuItemElement;
+export class ZenOption {
+  @Element() hostElement: HTMLZenOptionElement;
 
   /** Text inside the item */
   @Prop() readonly label: string = 'Item';
