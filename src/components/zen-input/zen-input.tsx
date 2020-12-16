@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, EventEmitter, Event, State, Element, Method } from '@stencil/core';
+import { Component, Host, h, Prop, EventEmitter, Event, Element } from '@stencil/core';
 
 /**
  * @slot leadingSlot - Slot placed at the left
@@ -21,7 +21,8 @@ export class ZenInput {
    */
   @Prop() readonly fireFocusEvents = true;
 
-  @State() hasFocus = false;
+  /** Paint focused border */
+  @Prop({ mutable: true }) hasFocus = false;
 
   /** Placeholder of the input. */
   @Prop() readonly placeholder: string = null;
@@ -43,15 +44,6 @@ export class ZenInput {
 
   /** Emitted when the input has focus. */
   @Event() zenFocus!: EventEmitter<FocusEvent>;
-
-  /** Set and unset focus on the input. */
-  @Method()
-  async toggleFocus(focused?: boolean): Promise<void> {
-    if (focused === undefined) {
-      focused = !this.hasFocus;
-    }
-    this.hasFocus = focused;
-  }
 
   private onInput = (ev: Event) => {
     const input = ev.target as HTMLInputElement | null;
