@@ -12,15 +12,6 @@ import { Component, Host, h, Prop, EventEmitter, Event, Element } from '@stencil
 export class ZenInput {
   @Element() hostElement: HTMLZenInputElement;
 
-  /**
-   * This is required for a WebKit bug which requires us to
-   * blur and focus an input to properly focus the input in
-   * an item with delegatesFocus.
-   *
-   * @internal
-   */
-  @Prop() readonly fireFocusEvents = true;
-
   /** Paint focused border */
   @Prop({ mutable: true }) hasFocus = false;
 
@@ -55,18 +46,12 @@ export class ZenInput {
 
   private onBlur = (ev: FocusEvent) => {
     this.hasFocus = false;
-
-    if (this.fireFocusEvents) {
-      this.zenBlur.emit(ev);
-    }
+    this.zenBlur.emit(ev);
   };
 
   private onFocus = (ev: FocusEvent) => {
     this.hasFocus = true;
-
-    if (this.fireFocusEvents) {
-      this.zenFocus.emit(ev);
-    }
+    this.zenFocus.emit(ev);
   };
 
   private getValue(): string {
