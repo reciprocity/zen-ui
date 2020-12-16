@@ -136,6 +136,10 @@ export namespace Components {
          */
         "placeholder": string;
         /**
+          * Set and unset focus on the input.
+         */
+        "toggleFocus": (focused?: boolean) => Promise<void>;
+        /**
           * The value of the input.
          */
         "value"?: string | number | null;
