@@ -13,6 +13,7 @@ import { Align } from "./components/helpers/types";
 import { ZenDismissDuration, ZenVariant } from "./components/zen-notification/zen-notification-helper";
 import { StepEvent, StepItem } from "./components/zen-steps/zen-steps";
 import { StepsFilter } from "./components/zen-steps/types";
+import { Position, Variant } from "./components/helpers/helpers";
 export namespace Components {
     interface ColorSwatch {
         /**
@@ -246,6 +247,28 @@ export namespace Components {
          */
         "text"?: string | null;
     }
+    interface ZenTooltip {
+        /**
+          * Dont hide tooltip
+         */
+        "alwaysVisible"?: boolean;
+        /**
+          * Set tooltip label
+         */
+        "label"?: string;
+        /**
+          * Set tooltip offset to target element
+         */
+        "offset"?: number;
+        /**
+          * Set tooltip position
+         */
+        "position"?: Position;
+        /**
+          * Set tooltip variant
+         */
+        "variant"?: Variant;
+    }
 }
 declare global {
     interface HTMLColorSwatchElement extends Components.ColorSwatch, HTMLStencilElement {
@@ -344,6 +367,12 @@ declare global {
         prototype: HTMLZenTextareaElement;
         new (): HTMLZenTextareaElement;
     };
+    interface HTMLZenTooltipElement extends Components.ZenTooltip, HTMLStencilElement {
+    }
+    var HTMLZenTooltipElement: {
+        prototype: HTMLZenTooltipElement;
+        new (): HTMLZenTooltipElement;
+    };
     interface HTMLElementTagNameMap {
         "color-swatch": HTMLColorSwatchElement;
         "color-swatch-group": HTMLColorSwatchGroupElement;
@@ -361,6 +390,7 @@ declare global {
         "zen-spinner": HTMLZenSpinnerElement;
         "zen-steps": HTMLZenStepsElement;
         "zen-textarea": HTMLZenTextareaElement;
+        "zen-tooltip": HTMLZenTooltipElement;
     }
 }
 declare namespace LocalJSX {
@@ -620,6 +650,28 @@ declare namespace LocalJSX {
          */
         "text"?: string | null;
     }
+    interface ZenTooltip {
+        /**
+          * Dont hide tooltip
+         */
+        "alwaysVisible"?: boolean;
+        /**
+          * Set tooltip label
+         */
+        "label"?: string;
+        /**
+          * Set tooltip offset to target element
+         */
+        "offset"?: number;
+        /**
+          * Set tooltip position
+         */
+        "position"?: Position;
+        /**
+          * Set tooltip variant
+         */
+        "variant"?: Variant;
+    }
     interface IntrinsicElements {
         "color-swatch": ColorSwatch;
         "color-swatch-group": ColorSwatchGroup;
@@ -637,6 +689,7 @@ declare namespace LocalJSX {
         "zen-spinner": ZenSpinner;
         "zen-steps": ZenSteps;
         "zen-textarea": ZenTextarea;
+        "zen-tooltip": ZenTooltip;
     }
 }
 export { LocalJSX as JSX };
@@ -659,6 +712,7 @@ declare module "@stencil/core" {
             "zen-spinner": LocalJSX.ZenSpinner & JSXBase.HTMLAttributes<HTMLZenSpinnerElement>;
             "zen-steps": LocalJSX.ZenSteps & JSXBase.HTMLAttributes<HTMLZenStepsElement>;
             "zen-textarea": LocalJSX.ZenTextarea & JSXBase.HTMLAttributes<HTMLZenTextareaElement>;
+            "zen-tooltip": LocalJSX.ZenTooltip & JSXBase.HTMLAttributes<HTMLZenTooltipElement>;
         }
     }
 }
