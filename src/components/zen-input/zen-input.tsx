@@ -10,9 +10,6 @@ import { Component, Host, h, Prop, EventEmitter, Event, State, Element, Method }
   shadow: true,
 })
 export class ZenInput {
-  leadingSlotFulfilled: boolean;
-  trailingSlotFulfilled: boolean;
-
   @Element() hostElement: HTMLZenInputElement;
 
   /**
@@ -56,11 +53,6 @@ export class ZenInput {
     this.hasFocus = focused;
   }
 
-  componentWillLoad(): void {
-    this.leadingSlotFulfilled = !!this.hostElement.querySelector('[slot="leadingSlot"]');
-    this.trailingSlotFulfilled = !!this.hostElement.querySelector('[slot="trailingSlot"]');
-  }
-
   private onInput = (ev: Event) => {
     const input = ev.target as HTMLInputElement | null;
     if (input) {
@@ -97,7 +89,6 @@ export class ZenInput {
         <slot name="leadingSlot"></slot>
         <input
           type="text"
-          class={{ ml: this.leadingSlotFulfilled, mr: this.trailingSlotFulfilled }}
           placeholder={this.placeholder}
           value={value}
           disabled={this.disabled}
