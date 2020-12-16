@@ -31,6 +31,28 @@ yarn check:format
 ```
 ###### Both previous commands will ran before the changes are pushed to the repository. (Husky's Pre-Push Hook)
 
+## How to consume the library
+#### Install it
+```js
+import { applyPolyfills, defineCustomElements } from '@reciprocity/zen-ui/loader';
+
+applyPolyfills().then(() => {
+  defineCustomElements();
+});
+```
+
+#### Import all components
+```bash
+yarn add @reciprocity/zen-ui
+```
+
+#### Import components one at a time
+```js
+import { ZenButton, ZenSpinner } from '@reciprocity/zen-ui/dist/custom-elements';
+
+customElements.define('zen-button', ZenButton);
+customElements.define('zen-spinner', ZenSpinner);
+```
 
 ## Folder structure
 `src/components` Stencil src folder. Implementation, tests, and stories for all available Zen UI components.\
