@@ -102,6 +102,10 @@ export namespace Components {
          */
         "menuWidth": string;
         /**
+          * Text in field if nothing selected
+         */
+        "placeholder": "Select something";
+        /**
           * Close an opened dropdown menu
          */
         "toggle": (open?: boolean) => Promise<void>;
@@ -484,6 +488,10 @@ declare namespace LocalJSX {
           * Emitted on any selection change
          */
         "onZenChange"?: (event: CustomEvent<OptionValue>) => void;
+        /**
+          * Text in field if nothing selected
+         */
+        "placeholder"?: "Select something";
         /**
           * Selected option
          */
