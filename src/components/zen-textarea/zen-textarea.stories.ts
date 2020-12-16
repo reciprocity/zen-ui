@@ -5,7 +5,7 @@ import { action } from '../../../.storybook/helpers/custom-action';
 const customEvents = ['zenInput'];
 
 export default {
-  title: 'Components/Zen Textarea',
+  title: 'Forms/Textarea',
   component: 'zen-textarea',
   parameters: {
     notes: { markdown },

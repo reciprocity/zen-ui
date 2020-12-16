@@ -16,7 +16,7 @@ const argTypes = {
 };
 
 export default {
-  title: 'Dropdown/_Dropdown',
+  title: 'Forms/Dropdown',
   component: 'zen-dropdown',
   argTypes,
   parameters: {

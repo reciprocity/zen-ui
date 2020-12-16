@@ -2,7 +2,7 @@ import { html } from 'lit-html';
 import markdown from './readme.md';
 
 export default {
-  title: 'Components/Zen Spinner',
+  title: 'Icons/Spinner',
   component: 'zen-spinner',
   parameters: {
     notes: { markdown },

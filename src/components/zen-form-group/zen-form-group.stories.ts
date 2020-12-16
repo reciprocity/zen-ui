@@ -4,7 +4,7 @@ import markdown from './readme.md';
 const argTypes = {};
 
 export default {
-  title: 'Components/Zen Form Group',
+  title: 'Forms/Form Group',
   component: 'zen-form-group',
   argTypes,
   parameters: {
