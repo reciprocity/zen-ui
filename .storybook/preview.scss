@@ -26,6 +26,10 @@ h1.sbdocs-h1 {
   font-size: 40px;
 }
 
+.sbdocs h2 {
+  color: $color-blue-700;
+}
+
 .stencildoc + div {
   code {
     font-size: 0.8rem;
