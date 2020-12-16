@@ -3,13 +3,14 @@
 
 :host {
   display: flex;
+  width: min-content;
 }
 
 .btn {
   position: relative;
   display: flex;
   color: $color-gray-700;
-  text-align: center;
+  justify-content: center;
   vertical-align: middle;
   user-select: none;
   background-color: transparent;
@@ -17,7 +18,7 @@
   padding: 0.375rem 0.5rem;
   font-size: $text-md;
   font-family: inherit;
-  min-width: 3.8125rem;
+  width: 100%;
   line-height: 1.25rem;
   border-radius: $button-radius;
   transition: color $transition-color, background-color $transition-color, border-color $transition-color,
