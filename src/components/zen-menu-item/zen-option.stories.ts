@@ -7,7 +7,7 @@ import { litHtmlIcon, styles } from '../helpers/fa-icons';
 const argTypes = {};
 
 export default {
-  title: 'Dropdown/Option',
+  title: 'Forms/.Fragments/Option',
   component: 'zen-option',
   argTypes,
   parameters: {

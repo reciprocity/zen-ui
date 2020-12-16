@@ -19,6 +19,13 @@ import {
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
   controls: { expanded: false },
+  options: {
+    storySort: {
+      method: '',
+      order: ['Guides', 'Buttons', 'Forms', 'Icons', 'Notifications'],
+      locales: '',
+    },
+  },
   docs: {
     theme: zenDocsTheme,
     page: () => (

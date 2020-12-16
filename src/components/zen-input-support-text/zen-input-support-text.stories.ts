@@ -11,7 +11,7 @@ const argTypes = {
 };
 
 export default {
-  title: 'Components/Zen Input Support Text',
+  title: 'Forms/.Fragments/Input Support Text',
   component: 'zen-input-support-text',
   argTypes,
   parameters: {

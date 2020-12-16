@@ -28,7 +28,7 @@ const argTypes = {
 };
 
 export default {
-  title: 'Components/Zen Input',
+  title: 'Forms/Input',
   component: 'zen-input',
   argTypes,
   parameters: {

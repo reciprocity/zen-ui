@@ -9,7 +9,7 @@ const argTypes = {
 };
 
 export default {
-  title: 'Components/Zen Button',
+  title: 'Buttons/Button',
   component: 'zen-button',
   argTypes,
   parameters: {

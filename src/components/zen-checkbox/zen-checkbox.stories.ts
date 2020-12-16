@@ -2,7 +2,7 @@ import { html } from 'lit-html';
 import markdown from './readme.md';
 
 export default {
-  title: 'Components/Zen Checkbox',
+  title: 'Forms/Checkbox',
   component: 'zen-checkbox',
   parameters: {
     notes: { markdown },

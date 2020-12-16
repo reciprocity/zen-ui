@@ -12,7 +12,7 @@ const argTypes = {
 };
 
 export default {
-  title: 'Components/Zen Steps',
+  title: 'Navigation/Steps',
   component: 'ZenSteps',
   argTypes,
   parameters: {

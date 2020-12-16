@@ -18,7 +18,7 @@ const argTypes = {
 };
 
 export default {
-  title: 'Components/Zen Notification',
+  title: 'Notifications/Notification',
   component: 'zen-notification',
   argTypes,
   parameters: {
