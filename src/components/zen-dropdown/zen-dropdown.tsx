@@ -247,16 +247,7 @@ export class ZenDropdown {
         >
           <zen-animate show={this.opened}>
             <div class="list" ref={el => (this.list = el)}>
-              <slot name="options">
-                {this.options.map((option, index) => (
-                  <zen-option
-                    label={option.label}
-                    focused={this.focusedIndex === index}
-                    selected={option[this.trackBy] === this.value}
-                    value={option[this.trackBy]}
-                  />
-                ))}
-              </slot>
+              <slot name="options" />
             </div>
           </zen-animate>
         </div>
