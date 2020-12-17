@@ -3,7 +3,7 @@ import markdown from './readme.md';
 import { ButtonVariants } from './types';
 import { action } from '../../../.storybook/helpers/custom-action';
 
-const customEvents = ['zenClick'];
+const customEvents = ['click'];
 
 const argTypes = {
   variant: {
