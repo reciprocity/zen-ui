@@ -3,18 +3,17 @@
   background-color: $background;
   border-color: $border;
 
-  &:hover {
+  :host(&:hover) {
     background-color: $hover;
     border-color: $hover;
     cursor: pointer;
   }
 
-  &:focus,
-  &:active {
+  :host(&:focus, &:active) {
     box-shadow: 0 0 0 2px $focus;
   }
 
-  &:active {
+  :host(&:active) {
     background-color: $active;
     border-color: $active;
   }
@@ -34,19 +33,18 @@
   background-color: $background;
   border-color: $border;
 
-  &:hover {
+  :host(&:hover) {
     color: $hover-color;
     background-color: $hover-background;
     border-color: $hover-color;
     cursor: pointer;
   }
 
-  &:focus,
-  &:active {
+  :host(&:focus, &:active) {
     box-shadow: 0px 0px 0px 2px $focus;
   }
 
-  &:active {
+  :host(&:active) {
     color: $active-color;
     background-color: $active-background;
     border-color: $active-color;

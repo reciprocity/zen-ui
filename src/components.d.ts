@@ -433,6 +433,10 @@ declare namespace LocalJSX {
          */
         "loading"?: boolean;
         /**
+          * Emitted when a 'Enter' keyboard or mouse input occurred.
+         */
+        "onZenClick"?: (event: CustomEvent<KeyboardEvent | MouseEvent>) => void;
+        /**
           * Color variant of the button
          */
         "variant"?: ButtonVariants;

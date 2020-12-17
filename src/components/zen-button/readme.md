@@ -13,6 +13,13 @@
 | `variant`  | `variant`  | Color variant of the button         | `ButtonVariants.Destructive \| ButtonVariants.Positive \| ButtonVariants.Primary \| ButtonVariants.Secondary \| ButtonVariants.Tertiary` | `ButtonVariants.Primary` |
 
 
+## Events
+
+| Event      | Description                                              | Type                                       |
+| ---------- | -------------------------------------------------------- | ------------------------------------------ |
+| `zenClick` | Emitted when a 'Enter' keyboard or mouse input occurred. | `CustomEvent<KeyboardEvent \| MouseEvent>` |
+
+
 ## Slots
 
 | Slot             | Description                    |
