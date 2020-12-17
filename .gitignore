@@ -2,6 +2,9 @@ dist/
 www/
 loader/
 public/
+stencilDocs.json
+stencilDocs.d.ts
+/src/components/**/readme.md
 
 *~
 *.sw[mnpcod]
