@@ -1,6 +1,9 @@
 import { html } from 'lit-html';
 import markdown from './readme.md';
 import { ButtonVariants } from './types';
+import { action } from '../../../.storybook/helpers/custom-action';
+
+const customEvents = ['zenClick'];
 
 const argTypes = {
   variant: {
@@ -20,6 +23,7 @@ export default {
 const Template = ({ label, variant, loading, disabled }) => {
   return html`
     <zen-button label="${label}" variant="${variant}" loading="${loading}" disabled="${disabled}"></zen-button>
+    ${action('zen-button', customEvents)}
   `;
 };
 

@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, Element, State, Watch } from '@stencil/core';
+import { Component, Host, h, Prop, Element, State, Watch, Listen, Event, EventEmitter } from '@stencil/core';
 import { ButtonVariants } from './types';
 
 /**
@@ -36,10 +36,23 @@ export class ZenButton {
     this.tabindex = disabled ? -1 : 0;
   }
 
+  /** Emitted when a 'Enter' keyboard or mouse input occurred. */
+  @Event() zenClick!: EventEmitter<KeyboardEvent | MouseEvent>;
+
   componentWillLoad(): void {
     this.leadingIconSlotFulfilled = !!this.hostElement.querySelector('[slot="leadingIcon"]');
     this.trailingIconSlotFulfilled = !!this.hostElement.querySelector('[slot="trailingIcon"]');
     this.disabledChanged(this.disabled);
+  }
+
+  @Listen('keydown')
+  handleKeyDown(ev: KeyboardEvent): void {
+    ev.code === 'Enter' ? this.zenClick.emit(ev) : null;
+  }
+
+  @Listen('click')
+  handleClick(ev: MouseEvent): void {
+    this.zenClick.emit(ev);
   }
 
   render(): HTMLElement {
