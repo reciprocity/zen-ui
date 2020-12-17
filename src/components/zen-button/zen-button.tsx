@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, Element } from '@stencil/core';
+import { Component, Host, h, Prop, Element, State, Watch } from '@stencil/core';
 import { ButtonVariants } from './types';
 
 /**
@@ -28,22 +28,29 @@ export class ZenButton {
   /** If present, button will be disabled */
   @Prop() readonly disabled?: boolean = false;
 
+  /** Sets if button can be tabbable/focusable */
+  @State() tabindex = 0;
+
+  @Watch('disabled')
+  async disabledChanged(disabled: boolean): Promise<void> {
+    this.tabindex = disabled ? -1 : 0;
+  }
+
   componentWillLoad(): void {
     this.leadingIconSlotFulfilled = !!this.hostElement.querySelector('[slot="leadingIcon"]');
     this.trailingIconSlotFulfilled = !!this.hostElement.querySelector('[slot="trailingIcon"]');
+    this.disabledChanged(this.disabled);
   }
 
   render(): HTMLElement {
     return (
-      <Host class={{ disabled: this.disabled }}>
-        <button type="button" class={{ btn: true, [`btn-${this.variant}`]: true }} disabled={this.disabled}>
-          <slot name="leadingIcon" />
-          {this.loading ? <zen-spinner></zen-spinner> : null}
-          {this.label ? (
-            <span class={{ ml: this.leadingIconSlotFulfilled, mr: this.trailingIconSlotFulfilled }}>{this.label}</span>
-          ) : null}
-          <slot name="trailingIcon" />
-        </button>
+      <Host class={{ btn: true, [`btn-${this.variant}`]: true, disabled: this.disabled }} tabindex={this.tabindex}>
+        <slot name="leadingIcon" />
+        {this.loading ? <zen-spinner></zen-spinner> : null}
+        {this.label ? (
+          <span class={{ ml: this.leadingIconSlotFulfilled, mr: this.trailingIconSlotFulfilled }}>{this.label}</span>
+        ) : null}
+        <slot name="trailingIcon" />
       </Host>
     );
   }
