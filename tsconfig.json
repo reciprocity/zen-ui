@@ -14,7 +14,9 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "jsx": "react",
-    "jsxFactory": "h"
+    "jsxFactory": "h",
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
   },
   "include": [
     "src", "types/jsx.d.ts", "./typings.d.ts", "./stencil.config.ts"
