@@ -8,13 +8,11 @@ describe('zen-button', () => {
       html: `<zen-button></zen-button>`,
     });
     expect(page.root).toEqualHtml(`
-      <zen-button>
+      <zen-button class="btn btn-primary" tabindex="0">
         <mock:shadow-root>
-          <button class="btn btn-primary" type="button">
-            <slot name="leadingIcon"></slot>
-            <span>Button</span>
-            <slot name="trailingIcon"></slot>
-          </button>
+          <slot name="leadingIcon"></slot>
+          <span>Button</span>
+          <slot name="trailingIcon"></slot>
         </mock:shadow-root>
       </zen-button>
     `);
@@ -26,13 +24,11 @@ describe('zen-button', () => {
       html: `<zen-button variant="secondary"></zen-button>`,
     });
     expect(page.root).toEqualHtml(`
-      <zen-button variant="secondary">
+      <zen-button variant="secondary" class="btn btn-secondary" tabindex="0">
         <mock:shadow-root>
-          <button class="btn btn-secondary" type="button">
-            <slot name="leadingIcon"></slot>
-            <span>Button</span>
-            <slot name="trailingIcon"></slot>
-          </button>
+          <slot name="leadingIcon"></slot>
+          <span>Button</span>
+          <slot name="trailingIcon"></slot>
         </mock:shadow-root>
       </zen-button>
     `);
@@ -44,13 +40,11 @@ describe('zen-button', () => {
       html: `<zen-button variant="tertiary"></zen-button>`,
     });
     expect(page.root).toEqualHtml(`
-      <zen-button variant="tertiary">
+      <zen-button variant="tertiary" class="btn btn-tertiary" tabindex="0">
         <mock:shadow-root>
-          <button class="btn btn-tertiary" type="button">
-            <slot name="leadingIcon"></slot>
-            <span>Button</span>
-            <slot name="trailingIcon"></slot>
-          </button>
+          <slot name="leadingIcon"></slot>
+          <span>Button</span>
+          <slot name="trailingIcon"></slot>
         </mock:shadow-root>
       </zen-button>
     `);
@@ -62,13 +56,11 @@ describe('zen-button', () => {
       html: `<zen-button variant="destructive"></zen-button>`,
     });
     expect(page.root).toEqualHtml(`
-      <zen-button variant="destructive">
+      <zen-button variant="destructive" class="btn btn-destructive" tabindex="0">
         <mock:shadow-root>
-          <button class="btn btn-destructive" type="button">
-            <slot name="leadingIcon"></slot>
-            <span>Button</span>
-            <slot name="trailingIcon"></slot>
-          </button>
+          <slot name="leadingIcon"></slot>
+          <span>Button</span>
+          <slot name="trailingIcon"></slot>
         </mock:shadow-root>
       </zen-button>
     `);
@@ -80,13 +72,11 @@ describe('zen-button', () => {
       html: `<zen-button variant="positive"></zen-button>`,
     });
     expect(page.root).toEqualHtml(`
-      <zen-button variant="positive">
+      <zen-button variant="positive" class="btn btn-positive" tabindex="0">
         <mock:shadow-root>
-          <button class="btn btn-positive" type="button">
-            <slot name="leadingIcon"></slot>
-            <span>Button</span>
-            <slot name="trailingIcon"></slot>
-          </button>
+          <slot name="leadingIcon"></slot>
+          <span>Button</span>
+          <slot name="trailingIcon"></slot>
         </mock:shadow-root>
       </zen-button>
     `);
@@ -98,13 +88,11 @@ describe('zen-button', () => {
       html: `<zen-button><zen-spinner slot="leadingIcon"></zen-spinner></zen-button>`,
     });
     expect(page.root).toEqualHtml(`
-      <zen-button>
+      <zen-button class="btn btn-primary" tabindex="0">
         <mock:shadow-root>
-          <button class="btn btn-primary" type="button">
-            <slot name="leadingIcon"></slot>
-            <span class="ml">Button</span>
-            <slot name="trailingIcon"></slot>
-          </button>
+          <slot name="leadingIcon"></slot>
+          <span class="ml">Button</span>
+          <slot name="trailingIcon"></slot>
         </mock:shadow-root>
         <zen-spinner slot="leadingIcon"></zen-spinner>
       </zen-button>
@@ -117,13 +105,11 @@ describe('zen-button', () => {
       html: `<zen-button><zen-spinner slot="trailingIcon"></zen-spinner></zen-button>`,
     });
     expect(page.root).toEqualHtml(`
-      <zen-button>
+      <zen-button class="btn btn-primary" tabindex="0">
         <mock:shadow-root>
-          <button class="btn btn-primary" type="button">
-            <slot name="leadingIcon"></slot>
-            <span class="mr">Button</span>
-            <slot name="trailingIcon"></slot>
-          </button>
+          <slot name="leadingIcon"></slot>
+          <span class="mr">Button</span>
+          <slot name="trailingIcon"></slot>
         </mock:shadow-root>
         <zen-spinner slot="trailingIcon"></zen-spinner>
       </zen-button>
@@ -136,16 +122,47 @@ describe('zen-button', () => {
       html: `<zen-button><zen-spinner slot="leadingIcon"></zen-spinner><zen-spinner slot="trailingIcon"></zen-spinner></zen-button>`,
     });
     expect(page.root).toEqualHtml(`
-      <zen-button>
+      <zen-button class="btn btn-primary" tabindex="0">
         <mock:shadow-root>
-          <button class="btn btn-primary" type="button">
             <slot name="leadingIcon"></slot>
             <span class="ml mr">Button</span>
             <slot name="trailingIcon"></slot>
-          </button>
         </mock:shadow-root>
         <zen-spinner slot="leadingIcon"></zen-spinner>
         <zen-spinner slot="trailingIcon"></zen-spinner>
+      </zen-button>
+    `);
+  });
+
+  it('renders with loading state', async () => {
+    const page = await newSpecPage({
+      components: [ZenButton],
+      html: `<zen-button disabled></zen-button>`,
+    });
+    expect(page.root).toEqualHtml(`
+      <zen-button class="btn btn-primary disabled" disabled="" tabindex="-1">
+        <mock:shadow-root>
+            <slot name="leadingIcon"></slot>
+            <span>Button</span>
+            <slot name="trailingIcon"></slot>
+        </mock:shadow-root>
+      </zen-button>
+    `);
+  });
+
+  it('renders with disabled state', async () => {
+    const page = await newSpecPage({
+      components: [ZenButton],
+      html: `<zen-button loading></zen-button>`,
+    });
+    expect(page.root).toEqualHtml(`
+      <zen-button class="btn btn-primary" loading="" tabindex="0">
+        <mock:shadow-root>
+            <slot name="leadingIcon"></slot>
+            <zen-spinner></zen-spinner>
+            <span>Button</span>
+            <slot name="trailingIcon"></slot>
+        </mock:shadow-root>
       </zen-button>
     `);
   });
