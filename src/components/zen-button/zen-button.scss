@@ -6,6 +6,10 @@
   width: fit-content;
 }
 
+:host(.disabled) {
+  pointer-events: none;
+}
+
 .btn {
   position: relative;
   display: flex;

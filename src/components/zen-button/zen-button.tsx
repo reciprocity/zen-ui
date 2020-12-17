@@ -35,7 +35,7 @@ export class ZenButton {
 
   render(): HTMLElement {
     return (
-      <Host>
+      <Host class={{ disabled: this.disabled }}>
         <button type="button" class={{ btn: true, [`btn-${this.variant}`]: true }} disabled={this.disabled}>
           <slot name="leadingIcon" />
           {this.loading ? <zen-spinner></zen-spinner> : null}
