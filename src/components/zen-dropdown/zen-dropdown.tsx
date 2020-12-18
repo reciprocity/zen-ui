@@ -135,6 +135,7 @@ export class ZenDropdown {
     const selected = this.getSelectedOptionElement();
     if (!selected) return;
     const copy = selected.cloneNode(true) as HTMLElement;
+    copy.setAttribute('no-hover', 'true');
     this.hostElement.appendChild(copy);
     (copy as Element).slot = 'field-private';
   }

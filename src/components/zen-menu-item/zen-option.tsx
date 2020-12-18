@@ -20,6 +20,8 @@ export class ZenOption {
   @Prop() readonly defaultPadding: boolean = true;
   /** Disable selecting option in dropdown */
   @Prop() readonly disabled?: boolean = false;
+  /** Prevents default hover style on mouse hover */
+  @Prop({ reflect: true }) readonly noHover?: boolean = false;
 
   render(): HTMLElement {
     return (
