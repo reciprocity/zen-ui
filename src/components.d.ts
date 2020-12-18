@@ -202,6 +202,10 @@ export namespace Components {
          */
         "focused": boolean;
         /**
+          * Prevents default hover style on mouse hover
+         */
+        "noHover"?: boolean;
+        /**
           * Render item as selected
          */
         "selected": boolean;
@@ -596,6 +600,10 @@ declare namespace LocalJSX {
           * Render item as focused
          */
         "focused"?: boolean;
+        /**
+          * Prevents default hover style on mouse hover
+         */
+        "noHover"?: boolean;
         /**
           * Render item as selected
          */
