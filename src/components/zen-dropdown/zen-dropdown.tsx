@@ -11,6 +11,10 @@ export interface OptionItem {
   label: string;
 }
 
+/**
+ * @slot [default] - Content for dropdown menu
+ */
+
 @Component({
   tag: 'zen-dropdown',
   styleUrl: 'zen-dropdown.scss',
@@ -78,6 +82,11 @@ export class ZenDropdown {
     }
   }
 
+  @Watch('value')
+  async valueChanged(): Promise<void> {
+    this.cloneSelectedToField();
+  }
+
   @Listen('keydown')
   handleKeyDown(ev: KeyboardEvent): void {
     const toggleKeys = ['Space', Key.Enter, Key.ArrowUp, Key.ArrowDown];
@@ -108,6 +117,26 @@ export class ZenDropdown {
         ev.preventDefault();
         break;
     }
+  }
+
+  cloneSelectedToField(): void {
+    // Clear previously copied item from slot[name=field]:
+    const slot = this.hostElement.shadowRoot.querySelector('slot[name=field-private]');
+    const existing = (slot as HTMLSlotElement).assignedNodes()[0] as HTMLElement;
+    if (existing) {
+      existing.parentNode.removeChild(existing);
+    }
+    // Clone selected item and append it to component's host element:
+    // WHY NOT JUST APPENDING IT TO <div class="field">?
+    // - Because .field is defined in our shadow dom and...
+    // - zen-option is defined in host's dome, where it's styles are defined
+    // if we would append it to .field directly it would be in shadow dom
+    // and styles from host's dom can't style it
+    const selected = this.getSelectedOptionElement();
+    if (!selected) return;
+    const copy = selected.cloneNode(true) as HTMLElement;
+    this.hostElement.appendChild(copy);
+    (copy as Element).slot = 'field-private';
   }
 
   getOptionValue(option: HTMLZenOptionElement): OptionValue {
@@ -216,6 +245,12 @@ export class ZenDropdown {
     }
   }
 
+  async connectedCallback(): Promise<void> {
+    await waitNextFrame();
+    await waitNextFrame();
+    this.valueChanged();
+  }
+
   render(): HTMLElement {
     return (
       <Host tabindex={this.disabled ? null : 0} ref={el => (this.div = el)}>
@@ -231,7 +266,7 @@ export class ZenDropdown {
             this.toggleDropdown(true);
           }}
         >
-          {this.value || this.placeholder}
+          {this.value ? <slot name="field-private" /> : this.placeholder}
           <div class="arrow">{renderIcon(faChevronDown)}</div>
         </div>
         <div
