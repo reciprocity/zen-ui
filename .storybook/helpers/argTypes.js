@@ -10,7 +10,7 @@ function getDefaultValue(prop) {
   const type = prop.type.name;
   const def = prop.table.defaultValue.summary;
   return type === 'boolean'
-    ? def.toLowerCase === 'true'
+    ? def.toLowerCase() === 'true'
     : type === 'number'
       ? parseInt(def, 10)
       : cleanStrValue(def);
