@@ -1,6 +1,6 @@
 import { html } from 'lit-html';
 import Readme from './readme.md';
-import { Meta, Description, Story, Canvas, Preview, Props } from '@storybook/addon-docs/blocks';
+import { Meta, Description, Story, Canvas, Props } from '@storybook/addon-docs/blocks';
 import { eventHandles, action } from '../../../.storybook/helpers/custom-action';
 
 import icon from '../../img/reci-icon-g.png';
@@ -84,7 +84,7 @@ export const Template = (attrs) => {
   `
 };
 
-<Preview>
+<Canvas>
   <Story
     name="button"
     args={{
@@ -97,7 +97,7 @@ export const Template = (attrs) => {
   >
     {Template.bind({})}
   </Story>
-</Preview>
+</Canvas>
 
 <Props story="button" />
 
