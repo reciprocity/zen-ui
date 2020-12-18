@@ -1,5 +1,5 @@
 import { Component, Host, h, Prop, State, Event, EventEmitter, Listen, Watch, Element, Method } from '@stencil/core';
-import { MouseEvent, slotPassed, getSlotElement } from '../helpers/helpers';
+import { MouseEvent, getSlotElement } from '../helpers/helpers';
 import { faChevronDown } from '@fortawesome/pro-light-svg-icons';
 import { renderIcon, styles } from '../helpers/fa-icons';
 import { OptionValue } from '../zen-menu-item/zen-option';
@@ -21,7 +21,6 @@ export class ZenDropdown {
   listWrap: HTMLElement = undefined;
   list: HTMLElement = undefined;
   clickHandler = undefined;
-  hasOptionsSlot = false;
 
   @Element() hostElement: HTMLZenDropdownElement;
 
@@ -71,9 +70,7 @@ export class ZenDropdown {
         this.list.scrollTop = 0;
       }
 
-      if (this.hasOptionsSlot) {
-        this.markSelectedSlottedOption(this.value);
-      }
+      this.markSelectedSlottedOption(this.value);
 
       this.appendOptionsOnClickHandlers();
     } else {
@@ -125,9 +122,8 @@ export class ZenDropdown {
 
   markSelectedSlottedOption(value: OptionValue): void {
     // Set attr `selected` to currently selected slotted item:
-    if (!this.hasOptionsSlot) return;
-
     const items = this.getSlottedOptionItems();
+    if (!items.length) return;
     for (let i = 0; i < items.length; i++) {
       items[i].selected = this.getOptionValue(items[i]) === value;
     }
@@ -207,14 +203,10 @@ export class ZenDropdown {
     return y < window.pageYOffset || y + this.menuHeight > window.pageYOffset + window.innerHeight;
   }
 
-  componentWillLoad(): void {
-    this.hasOptionsSlot = slotPassed(this.hostElement, 'options');
-  }
-
   appendOptionsOnClickHandlers(): void {
-    if (!this.hasOptionsSlot) return;
-
     const items = this.getSlottedOptionItems();
+    if (!items.length) return;
+
     for (let i = 0; i < items.length; i++) {
       if (items[i].getAttribute('data-click-mounted')) continue;
       items[i].setAttribute('data-click-mounted', 'true');
