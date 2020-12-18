@@ -33,3 +33,7 @@ export function getSlotElement(host: HTMLElement, slotName: string): HTMLElement
   if (!slot) return undefined;
   return slot.assignedNodes()[0] as HTMLElement;
 }
+
+export function getDefaultSlotContent(host: HTMLElement): Element[] {
+  return (host.shadowRoot.querySelector('slot:not([name])') as HTMLSlotElement).assignedElements();
+}

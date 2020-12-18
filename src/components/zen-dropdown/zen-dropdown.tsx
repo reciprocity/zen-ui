@@ -1,5 +1,5 @@
 import { Component, Host, h, Prop, State, Event, EventEmitter, Listen, Watch, Element, Method } from '@stencil/core';
-import { MouseEvent, getSlotElement } from '../helpers/helpers';
+import { MouseEvent, getDefaultSlotContent } from '../helpers/helpers';
 import { faChevronDown } from '@fortawesome/pro-light-svg-icons';
 import { renderIcon, styles } from '../helpers/fa-icons';
 import { OptionValue } from '../zen-menu-item/zen-option';
@@ -114,10 +114,10 @@ export class ZenDropdown {
     return option.getAttribute('value');
   }
 
-  getSlottedOptionItems(): NodeListOf<HTMLZenOptionElement> | undefined[] {
-    const list = getSlotElement(this.hostElement, 'options');
-    if (!list) return []; // happens when dropdown isn't opened
-    return list.querySelectorAll('zen-option[value]');
+  getSlottedOptionItems(): HTMLZenOptionElement[] | undefined[] {
+    return Array.from(getDefaultSlotContent(this.hostElement))
+      .filter(n => n.nodeName === 'ZEN-OPTION')
+      .map(n => n as HTMLZenOptionElement);
   }
 
   markSelectedSlottedOption(value: OptionValue): void {
@@ -241,7 +241,7 @@ export class ZenDropdown {
         >
           <zen-animate show={this.opened}>
             <div class="list" ref={el => (this.list = el)}>
-              <slot name="options" />
+              <slot />
             </div>
           </zen-animate>
         </div>
