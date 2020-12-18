@@ -14,8 +14,6 @@ export type OptionValue = string | number | undefined;
 export class ZenOption {
   @Element() hostElement: HTMLZenOptionElement;
 
-  /** Text inside the item */
-  @Prop() readonly label: string = 'Item';
   /** Render item as selected */
   @Prop({ reflect: true }) readonly selected: boolean = false;
   /** Render item as focused */
@@ -37,8 +35,8 @@ export class ZenOption {
             disabled: this.disabled,
           }}
         >
-          <slot name="content">
-            <div class="content">{this.label}</div>
+          <slot>
+            <div class="content">{this.value}</div>
           </slot>
         </div>
       </Host>

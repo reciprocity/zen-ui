@@ -202,10 +202,6 @@ export namespace Components {
          */
         "focused": boolean;
         /**
-          * Text inside the item
-         */
-        "label": string;
-        /**
           * Render item as selected
          */
         "selected": boolean;
@@ -600,10 +596,6 @@ declare namespace LocalJSX {
           * Render item as focused
          */
         "focused"?: boolean;
-        /**
-          * Text inside the item
-         */
-        "label"?: string;
         /**
           * Render item as selected
          */

@@ -57,22 +57,22 @@ export const Template = args => html/*html*/ `
     ...="${spread(camelKeysToKebab(args))}"
   >
     <div class="separator">Some custom title</div>
-    <zen-option label="Item 1" value="1"></zen-option>
+    <zen-option value="1">Item 1</zen-option>
     <zen-option default-padding="false" value="2">
-      <div class="content" slot="content">
+      <div class="content">
         <img class="icon" src=${icon} alt="icon" />
         <b>Item 2</b>
         <span style="margin-left: auto" .innerHTML="${litHtmlIcon(faCheck)}"></span>
       </div>
     </zen-option>
-    <zen-option label="Disabled item" value="3" disabled="true"></zen-option>
-    <zen-option label="Item 4" value="4"></zen-option>
-    <zen-option label="Item 5" value="5"></zen-option>
+    <zen-option value="3" disabled="true">Disabled item</zen-option>
+    <zen-option value="4">Item 4</zen-option>
+    <zen-option value="5">Item 5</zen-option>
     <div class="separator">Separator</div>
-    <zen-option label="Item 6" value="6"></zen-option>
-    <zen-option label="Item 7" value="7"></zen-option>
-    <zen-option label="Item 8" value="8"></zen-option>
-    <zen-option label="Item 9" value="9"></zen-option>
+    <zen-option value="6">Item 6</zen-option>
+    <zen-option value="7">Item 7</zen-option>
+    <zen-option value="8">Item 8</zen-option>
+    <zen-option value="9">Item 9</zen-option>
   </zen-dropdown>
   ${action('#dropdown-with-options-slot', customEvents)}
 `
