@@ -98,6 +98,7 @@
   },
   "license": "MIT",
   "dependencies": {
+    "@open-wc/lit-helpers": "~0.3.11",
     "@stencil/core": "~2.3.0",
     "lodash": "~4.17.20"
   },

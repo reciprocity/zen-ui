@@ -12,7 +12,7 @@ const argTypes = {
 };
 
 export default {
-  title: 'Notifications/Zen Tooltip',
+  title: 'Notifications/Tooltip',
   component: 'zen-tooltip',
   argTypes,
   parameters: {

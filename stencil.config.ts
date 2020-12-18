@@ -6,7 +6,7 @@ export const config: Config = {
   outputTargets: [
     {
       type: 'dist',
-      esmLoaderPath: '../loader'
+      esmLoaderPath: '../loader',
     },
     {
       type: 'dist-custom-elements-bundle',
@@ -14,9 +14,11 @@ export const config: Config = {
     {
       type: 'docs-readme',
       footer: '',
-    }
+    },
+    {
+      type: 'docs-json',
+      file: 'stencilDocs.json',
+    },
   ],
-  plugins: [
-    sass()
-  ],
+  plugins: [sass()],
 };
