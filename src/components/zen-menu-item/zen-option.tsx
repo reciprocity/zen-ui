@@ -1,9 +1,5 @@
 import { Component, Host, h, Prop, Element } from '@stencil/core';
 
-/**
- * @slot content - Replace content of item. Padding stays. To remove it set `defaultPadding="false"`
- */
-
 export type OptionValue = string | number | undefined;
 
 @Component({
