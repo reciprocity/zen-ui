@@ -41,6 +41,8 @@ export class ZenDropdown {
   @Prop() readonly borderless = false;
   /** Text in field if nothing selected */
   @Prop() readonly placeholder: string = 'Select something';
+  /** Disable any changes */
+  @Prop() readonly disabled?: boolean = false;
 
   /** Emitted on any selection change */
   @Event() zenChange: EventEmitter<OptionValue>;
@@ -223,13 +225,14 @@ export class ZenDropdown {
 
   render(): HTMLElement {
     return (
-      <Host tabindex="0" ref={el => (this.div = el)}>
+      <Host tabindex={this.disabled ? null : 0} ref={el => (this.div = el)}>
         <style>{styles}</style>
         <div
           class={{
             field: true,
             opened: this.opened,
             borderless: this.borderless,
+            disabled: this.disabled,
           }}
           onClick={() => {
             this.toggleDropdown(true);

@@ -90,6 +90,10 @@ export namespace Components {
          */
         "closeOnSelect": true;
         /**
+          * Disable any changes
+         */
+        "disabled"?: boolean;
+        /**
           * Alignment of field content and menu (if menuWidth set).
          */
         "fieldAlign": Align;
@@ -468,6 +472,10 @@ declare namespace LocalJSX {
           * Close dropdown menu after selecting an item
          */
         "closeOnSelect"?: true;
+        /**
+          * Disable any changes
+         */
+        "disabled"?: boolean;
         /**
           * Alignment of field content and menu (if menuWidth set).
          */

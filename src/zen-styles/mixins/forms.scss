@@ -20,7 +20,7 @@
     @include zenInputFocus;
   }
 
-  &:not(:disabled):hover {
+  &:not(:disabled):not(.disabled):hover {
     border-color: $color-blue-700;
   }
 }
@@ -41,7 +41,9 @@
     color: $color-gray-400;
   }
 
+  &.disabled,
   &:disabled {
+    opacity: 0.5;
     background-color: $color-gray-100;
     pointer-events: none;
     cursor: default;
