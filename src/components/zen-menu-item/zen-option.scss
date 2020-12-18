@@ -17,6 +17,11 @@ $item-ypadding: 0.5rem;
     &:not(.paddingless) {
       padding: $item-ypadding 1rem;
     }
+
+    &.disabled {
+      opacity: 0.5;
+      pointer-events: none;
+    }
   }
 }
 

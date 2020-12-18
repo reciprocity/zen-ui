@@ -194,6 +194,10 @@ export namespace Components {
          */
         "defaultPadding": boolean;
         /**
+          * Disable selecting option in dropdown
+         */
+        "disabled"?: boolean;
+        /**
           * Render item as focused
          */
         "focused": boolean;
@@ -588,6 +592,10 @@ declare namespace LocalJSX {
           * False to enable custom item padding
          */
         "defaultPadding"?: boolean;
+        /**
+          * Disable selecting option in dropdown
+         */
+        "disabled"?: boolean;
         /**
           * Render item as focused
          */

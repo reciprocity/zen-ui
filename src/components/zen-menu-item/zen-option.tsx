@@ -24,11 +24,19 @@ export class ZenOption {
   @Prop({ reflect: true }) readonly value: OptionValue = '';
   /** False to enable custom item padding */
   @Prop() readonly defaultPadding: boolean = true;
+  /** Disable selecting option in dropdown */
+  @Prop() readonly disabled?: boolean = false;
 
   render(): HTMLElement {
     return (
-      <Host>
-        <div class={{ background: true, paddingless: !this.defaultPadding }}>
+      <Host disabled={this.disabled ? 'true' : null}>
+        <div
+          class={{
+            background: true,
+            paddingless: !this.defaultPadding,
+            disabled: this.disabled,
+          }}
+        >
           <slot name="content">
             <div class="content">{this.label}</div>
           </slot>

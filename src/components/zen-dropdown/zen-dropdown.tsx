@@ -116,7 +116,7 @@ export class ZenDropdown {
 
   getSlottedOptionItems(): HTMLZenOptionElement[] | undefined[] {
     return Array.from(getDefaultSlotContent(this.hostElement))
-      .filter(n => n.nodeName === 'ZEN-OPTION')
+      .filter(n => n.nodeName === 'ZEN-OPTION' && !n.getAttribute('disabled'))
       .map(n => n as HTMLZenOptionElement);
   }
 
