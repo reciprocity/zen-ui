@@ -30,7 +30,7 @@ export class ZenDropdown {
   /** Selected option */
   @Prop({ mutable: true }) value: OptionValue = undefined;
   /** Alignment of field content and menu (if menuWidth set). */
-  @Prop() readonly fieldAlign: Align = Align.LEFT;
+  @Prop() readonly fieldAlign: Align = 'left';
   /** Width of menu. Set '100%' to match field width. */
   @Prop() readonly menuWidth: string = '100%';
   /** To determine if there's enough space under field on open */
@@ -40,7 +40,7 @@ export class ZenDropdown {
   /** Don't draw border around field */
   @Prop() readonly borderless = false;
   /** Text in field if nothing selected */
-  @Prop() readonly placeholder = 'Select something';
+  @Prop() readonly placeholder: string = 'Select something';
 
   /** Emitted on any selection change */
   @Event() zenChange: EventEmitter<OptionValue>;
@@ -239,7 +239,7 @@ export class ZenDropdown {
           <div class="arrow">{renderIcon(faChevronDown)}</div>
         </div>
         <div
-          class={{ 'list-wrap': true, 'open-above': this.openAbove(), 'align-right': this.fieldAlign !== Align.LEFT }}
+          class={{ 'list-wrap': true, 'open-above': this.openAbove(), 'align-right': this.fieldAlign !== 'left' }}
           style={{ width: this.menuWidth }}
           ref={el => (this.listWrap = el)}
         >
