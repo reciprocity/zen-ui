@@ -26,65 +26,65 @@ A standard dropdown component
 
 ## Component preview
 
-export const Template = args => {
-  const options = [1, 2, 3, 4, 5, 6, 7, 8, 9].map(n => ({
-    label: `item ${n}`,
-  }));
-  return html/*html*/ `
-    <style>
-      .icon {
-        height: 1rem;
-        margin-right: 0.5rem;
-      }
-      .content {
-        display: flex;
-        align-items: center;
-        padding: 1rem;
-      }
-      zen-option {
-        display: inline-block;
-        max-width: 300px;
-        width: 100%;
-      }
-      .separator {
-        margin-top: 1rem;
-        border-bottom: 1px solid;
-        color: #0078cd;
-        padding: 0 1rem;
-      }
-      ${styles}
-    </style>
-    <zen-dropdown
-      id="dropdown-with-options-slot"
-      class="mb-80"
-      style="max-width: 300px;"
-      ...="${spread(camelKeysToKebab(args))}"
-    >
-      <div slot="options">
-        <div class="separator">Some custom title</div>
-        ${options.map((item, index) =>
-          index !== 1
-            ? html/*html*/ `<zen-option label=${item.label} value=${item.label}></zen-option>`
-            : html/*html*/ `<zen-option default-padding="false" value=${item.label}>
-                <div class="content" slot="content">
-                  <img class="icon" src=${icon} alt="icon" />
-                  <b>${item.label}</b>
-                  <span style="margin-left: auto" .innerHTML="${litHtmlIcon(faCheck)}"></span>
-                </div>
-              </zen-option>`,
-        )}
-      </div>
-    </zen-dropdown>
-    ${action('#dropdown-with-options-slot', customEvents)}
-  `;
-};
+export const Template = args => html/*html*/ `
+  <style>
+    .icon {
+      height: 1rem;
+      margin-right: 0.5rem;
+    }
+    .content {
+      display: flex;
+      align-items: center;
+      padding: 1rem;
+    }
+    zen-option {
+      display: inline-block;
+      max-width: 300px;
+      width: 100%;
+    }
+    .separator {
+      margin-top: 1rem;
+      border-bottom: 1px solid;
+      color: #0078cd;
+      padding: 0 1rem;
+    }
+    ${styles}
+  </style>
+  <zen-dropdown
+    id="dropdown-with-options-slot"
+    class="mb-80"
+    style="max-width: 300px;"
+    ...="${spread(camelKeysToKebab(args))}"
+  >
+    <div slot="options">
+      <div class="separator">Some custom title</div>
+      <zen-option label="Item 1" value="1"></zen-option>
+      <zen-option default-padding="false" value="2">
+        <div class="content" slot="content">
+          <img class="icon" src=${icon} alt="icon" />
+          <b>Item 2</b>
+          <span style="margin-left: auto" .innerHTML="${litHtmlIcon(faCheck)}"></span>
+        </div>
+      </zen-option>
+      <zen-option label="Item 3" value="3"></zen-option>
+      <zen-option label="Item 4" value="4"></zen-option>
+      <zen-option label="Item 5" value="5"></zen-option>
+      <div class="separator">Separator</div>
+      <zen-option label="Item 6" value="6"></zen-option>
+      <zen-option label="Item 7" value="7"></zen-option>
+      <zen-option label="Item 8" value="8"></zen-option>
+      <zen-option label="Item 9" value="9"></zen-option>
+    </div>
+  </zen-dropdown>
+  ${action('#dropdown-with-options-slot', customEvents)}
+`
 
 <Canvas>
   <Story
     name="button"
     args={{
       ...getDefaultArgs(argTypes),
-      value: 'item 2',
+      value: '2',
     }}
   >
     {Template.bind({})}
