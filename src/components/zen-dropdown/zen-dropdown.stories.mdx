@@ -1,8 +1,10 @@
 import { html } from 'lit-html';
+import { spread } from '@open-wc/lit-helpers';
 import Readme from './readme.md';
 import { Meta, Description, Story, Canvas, Props } from '@storybook/addon-docs/blocks';
 import { eventHandles, action } from '../../../.storybook/helpers/custom-action';
 import { getArgTypes, getDefaultArgs } from '../../../.storybook/helpers/argTypes';
+import { camelKeysToKebab } from '../../../.storybook/helpers/utils';
 
 import icon from '../../img/reci-icon-g.png';
 import { faCheck } from '@fortawesome/pro-light-svg-icons';
@@ -56,7 +58,7 @@ export const Template = (args) => {
       }
       ${styles}
     </style>
-    <zen-dropdown id="dropdown-with-options-slot" class="mb-80" style="max-width: 300px;">
+    <zen-dropdown id="dropdown-with-options-slot" class="mb-80" style="max-width: 300px;" ...="${spread(camelKeysToKebab(args))}">
       <div slot="options">
         <div class="separator">Some custom title</div>
         ${options.map((item, index) =>
