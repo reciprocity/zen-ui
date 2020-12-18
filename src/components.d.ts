@@ -104,7 +104,7 @@ export namespace Components {
         /**
           * Text in field if nothing selected
          */
-        "placeholder": "Select something";
+        "placeholder": string;
         /**
           * Close an opened dropdown menu
          */
@@ -487,7 +487,7 @@ declare namespace LocalJSX {
         /**
           * Text in field if nothing selected
          */
-        "placeholder"?: "Select something";
+        "placeholder"?: string;
         /**
           * Selected option
          */
