@@ -18,11 +18,7 @@ const argTypes = getArgTypes(compData);
 argTypes.value.type.name = 'string';
 delete argTypes.value.control;
 
-<Meta
-  title="Forms/Dropdown"
-  component="zen-dropdown"
-  argTypes={argTypes}
-/>
+<Meta title="Forms/Dropdown" component="zen-dropdown" argTypes={argTypes} />
 
 # Dropdown
 
@@ -30,11 +26,11 @@ A standard dropdown component
 
 ## Component preview
 
-export const Template = (args) => {
+export const Template = args => {
   const options = [1, 2, 3, 4, 5, 6, 7, 8, 9].map(n => ({
     label: `item ${n}`,
   }));
-  return html/*html*/`
+  return html/*html*/ `
     <style>
       .icon {
         height: 1rem;
@@ -58,13 +54,18 @@ export const Template = (args) => {
       }
       ${styles}
     </style>
-    <zen-dropdown id="dropdown-with-options-slot" class="mb-80" style="max-width: 300px;" ...="${spread(camelKeysToKebab(args))}">
+    <zen-dropdown
+      id="dropdown-with-options-slot"
+      class="mb-80"
+      style="max-width: 300px;"
+      ...="${spread(camelKeysToKebab(args))}"
+    >
       <div slot="options">
         <div class="separator">Some custom title</div>
         ${options.map((item, index) =>
           index !== 1
-            ? html/*html*/`<zen-option label=${item.label} value=${item.label}></zen-option>`
-            : html/*html*/`<zen-option default-padding="false" value=${item.label}>
+            ? html/*html*/ `<zen-option label=${item.label} value=${item.label}></zen-option>`
+            : html/*html*/ `<zen-option default-padding="false" value=${item.label}>
                 <div class="content" slot="content">
                   <img class="icon" src=${icon} alt="icon" />
                   <b>${item.label}</b>
@@ -75,7 +76,7 @@ export const Template = (args) => {
       </div>
     </zen-dropdown>
     ${action('#dropdown-with-options-slot', customEvents)}
-  `
+  `;
 };
 
 <Canvas>
@@ -83,7 +84,7 @@ export const Template = (args) => {
     name="button"
     args={{
       ...getDefaultArgs(argTypes),
-      value: 'item 2'
+      value: 'item 2',
     }}
   >
     {Template.bind({})}
