@@ -2,6 +2,7 @@ import { html } from 'lit-html';
 import Readme from './readme.md';
 import { Meta, Description, Story, Canvas, Props } from '@storybook/addon-docs/blocks';
 import { eventHandles, action } from '../../../.storybook/helpers/custom-action';
+import { getArgTypes, getDefaultArgs } from '../../../.storybook/helpers/argTypes';
 
 import icon from '../../img/reci-icon-g.png';
 import { faCheck } from '@fortawesome/pro-light-svg-icons';
@@ -10,19 +11,10 @@ import { Align } from '../helpers/types';
 import data from '../../../stencilDocs.json';
 const customEvents = ['zenChange'];
 const events = [...eventHandles(customEvents)];
-const propsArr = data.components.find(n => n.tag === 'zen-dropdown').props;
-const argTypes = {};
-for (let i = 0; i < propsArr.length; i++) {
-  const item = propsArr[i];
-  argTypes[item.name] = {
-    description: item.docs,
-    type: { name: item.type, required: item.required },
-    table: {
-      type: { summary: item.type },
-      defaultValue: { summary: item.default },
-    },
-  };
-}
+const compData = data.components.find(n => n.tag === 'zen-dropdown');
+const argTypes = getArgTypes(compData);
+argTypes.value.type.name = 'string';
+delete argTypes.value.control;
 
 <Meta
   title="Forms/Dropdown"
@@ -36,7 +28,7 @@ A standard dropdown component
 
 ## Component preview
 
-export const Template = (attrs) => {
+export const Template = (args) => {
   const options = [1, 2, 3, 4, 5, 6, 7, 8, 9].map(n => ({
     label: `item ${n}`,
   }));
@@ -88,11 +80,8 @@ export const Template = (attrs) => {
   <Story
     name="button"
     args={{
-      value: 'item 2',
-      closeOnSelect: true,
-      borderless: false,
-      menuWidth: '100%',
-      fieldAlign: 'right',
+      ...getDefaultArgs(argTypes),
+      value: 'item 2'
     }}
   >
     {Template.bind({})}
