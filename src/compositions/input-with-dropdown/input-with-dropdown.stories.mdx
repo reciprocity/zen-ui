@@ -11,7 +11,6 @@ This component **is NOT really a component**. It's actually just a composition o
 ## Component preview
 
 export const Template = ({ menuWidth, fieldAlign }) => {
-  const options = [{ label: 'ZenGRC Administrator' }, { label: 'Manager' }, { label: 'Collaborator' }];
   function onDropdownFocus() {
     document.querySelector('#input1').hasFocus = true;
     setTimeout(() => {
@@ -22,22 +21,21 @@ export const Template = ({ menuWidth, fieldAlign }) => {
   function onDropdownBlur() {
     document.querySelector('#input1').hasFocus = false;
   }
-  return html`<zen-input id="input1" placeholder="Username" class="mb-80">
+  return html/*html*/`<zen-input id="input1" placeholder="Username" class="mb-80">
     <zen-dropdown
       id="dropdown1"
       slot="trailingSlot"
       borderless="true"
       placeholder="choose role"
       style="width: auto;"
-      .options=${options}
       menu-width=${menuWidth}
       field-align=${fieldAlign}
       @focus="${onDropdownFocus}"
       @blur="${onDropdownBlur}"
     >
-      <div slot="options">
-        ${options.map((item, index) => html`<zen-option label=${item.label} value=${item.label}></zen-option>`)}
-      </div>
+      <zen-option value="admin">ZenGRC Administrator</zen-option>
+      <zen-option value="manager">Manager</zen-option>
+      <zen-option value="collaborator">Collaborator</zen-option>
     </zen-dropdown>
   </zen-input>`;
 };
