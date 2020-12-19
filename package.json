@@ -25,6 +25,7 @@
     "stencil:test:watch": "stencil test --spec --watchAll",
     "storybook:start": "start-storybook --docs -p 6006",
     "storybook:build": "build-storybook --docs -o public --quiet",
+    "storybook:theme": "start-storybook --docs -p 6006 --no-manager-cache",
     "styles:start": "webpack --watch --mode=development",
     "styles:build": "webpack --mode=production",
     "lint:check": "eslint --ext .js,.ts,.tsx src/",

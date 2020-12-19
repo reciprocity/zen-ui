@@ -3,14 +3,14 @@ import ReciLogo from '../src/img/infinity-logo-tight_white.svg';
 const { version } = require('../package.json');
 
 export default create({
-  base: 'light',
+  base: 'dark',
 
   colorPrimary: 'hotpink',
-  colorSecondary: '#1b2940',
+  colorSecondary: '#0078cd', // selected lhn item bg, icons
 
   // UI
-  appBg: '#3a537b',
-  appContentBg: '#fff',
+  appBg: '#1e272c', // lhn bg color
+  appContentBg: '#f9f9f9', // preview page bg
   appBorderColor: '#ebeef3',
   appBorderRadius: 2,
 
@@ -19,12 +19,12 @@ export default create({
   fontCode: 'monospace',
 
   // Text colors
-  textColor: '#fff',
+  textColor: '#ffffff', // lhn text
   textInverseColor: '#f00',
 
   // Toolbar default and active colors
   barTextColor: 'rgba(0,0,0,0.5)',
-  barSelectedColor: '#3a537b',
+  barSelectedColor: '#0078cd',
   barBg: '#fff',
 
   // Form colors
