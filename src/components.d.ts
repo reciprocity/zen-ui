@@ -210,7 +210,7 @@ export namespace Components {
          */
         "selected": boolean;
         /**
-          * Value of option if used inside dropdown
+          * Value of option when used inside a dropdown
          */
         "value": OptionValue;
     }
@@ -609,7 +609,7 @@ declare namespace LocalJSX {
          */
         "selected"?: boolean;
         /**
-          * Value of option if used inside dropdown
+          * Value of option when used inside a dropdown
          */
         "value"?: OptionValue;
     }
