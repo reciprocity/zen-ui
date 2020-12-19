@@ -1,0 +1,84 @@
+import { html } from 'lit-html';
+import Readme from './readme.md';
+import { Meta, Description, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
+
+import icon from '../../img/reci-icon-g.png';
+import { faCheck } from '@fortawesome/pro-light-svg-icons';
+import { litHtmlIcon, styles } from '../helpers/fa-icons';
+// const args = {}
+// const argTypes = {}
+
+import { getArgTypesAndArgs, spreadArgs } from '../../../.storybook/helpers/argTypes';
+const { argTypes, args } = getArgTypesAndArgs('zen-option');
+
+<Meta title="Forms/Fragments/Option" component="zen-option" argTypes={argTypes} />
+
+# Zen Option
+
+Option item to be used inside **zen-dropdown** component
+
+## Component previews
+
+#### 1. Customized content
+
+export const Slots = args => html/*html*/`
+  <style>
+    ${styles} .icon {
+      height: 1rem;
+      margin-right: 0.5rem;
+    }
+    .content {
+      display: flex;
+      align-items: center;
+      padding: 1rem;
+    }
+    zen-option {
+      display: inline-block;
+      max-width: 300px;
+      width: 100%;
+    }
+  </style>
+  <zen-option default-padding="false" ...="${spreadArgs(args)}">
+    <div class="content">
+      <img class="icon" src=${icon} alt="icon" />
+      <b>Custom content</b>
+      <span style="margin-left: auto" .innerHTML="${litHtmlIcon(faCheck)}"></span>
+    </div>
+  </zen-option>
+`;
+
+<Canvas>
+  <Story
+    name="slots"
+    args={{
+    }}
+  >
+    {Slots.bind({})}
+  </Story>
+</Canvas>
+
+You can wrap any content within zen-option. Here we've added custom png icon, some bold text and font-awesome icon on the right side.
+
+## Properties
+
+export const Template = args => html/*html*/`
+  <zen-option default-padding="false" ...="${spreadArgs(args)}">
+    Dropdown option
+  </zen-option>
+`;
+
+<Canvas>
+  <Story
+    name="default"
+    args={{
+      ...args
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+<ArgsTable story="default" />
+
+<div class="stencildoc" />
+<Description>{Readme}</Description>
