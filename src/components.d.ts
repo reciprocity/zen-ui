@@ -126,6 +126,10 @@ export namespace Components {
          */
         "disabled": false;
         /**
+          * Focus next control when pressing Enter key
+         */
+        "enterToTab": true;
+        /**
           * Paint focused border
          */
         "hasFocus": boolean;
@@ -512,6 +516,10 @@ declare namespace LocalJSX {
           * Disables input.
          */
         "disabled"?: false;
+        /**
+          * Focus next control when pressing Enter key
+         */
+        "enterToTab"?: true;
         /**
           * Paint focused border
          */

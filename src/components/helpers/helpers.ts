@@ -37,3 +37,11 @@ export function getSlotElement(host: HTMLElement, slotName: string): HTMLElement
 export function getDefaultSlotContent(host: HTMLElement): Element[] {
   return (host.shadowRoot.querySelector('slot:not([name])') as HTMLSlotElement).assignedElements();
 }
+
+export function getNextField(currentInput: HTMLElement): HTMLElement {
+  const allElements = document.querySelectorAll(
+    'input, button, a, area, object, select, textarea, [contenteditable], [tabindex], zen-input, zen-button, zen-a, zen-area, zen-object, zen-select, zen-textarea',
+  );
+  const currentIndex = Array.from(allElements).findIndex(el => currentInput.isEqualNode(el));
+  return allElements[(currentIndex + 1) % allElements.length] as HTMLElement;
+}

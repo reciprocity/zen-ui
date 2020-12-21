@@ -1,4 +1,6 @@
-import { Component, Host, h, Prop, EventEmitter, Event, Element } from '@stencil/core';
+import { Component, Host, h, Prop, EventEmitter, Event, Element, Listen } from '@stencil/core';
+import { Key } from 'ts-key-enum';
+import { getNextField } from '../helpers/helpers';
 
 /**
  * @slot leadingSlot - Slot placed at the left
@@ -24,6 +26,9 @@ export class ZenInput {
   /** Shows invalid styles. */
   @Prop() readonly invalid = false;
 
+  /** Focus next control when pressing Enter key */
+  @Prop() readonly enterToTab = true;
+
   /** The value of the input. */
   @Prop({ mutable: true }) value?: string | number | null = '';
 
@@ -35,6 +40,13 @@ export class ZenInput {
 
   /** Emitted when the input has focus. */
   @Event() zenFocus!: EventEmitter<FocusEvent>;
+
+  @Listen('keydown')
+  handleKeyDown(ev: KeyboardEvent): void {
+    if (ev.key === Key.Enter) {
+      getNextField(this.hostElement).focus();
+    }
+  }
 
   private onInput = (ev: Event) => {
     const input = ev.target as HTMLInputElement | null;
