@@ -1,9 +1,5 @@
 import { Component, Host, h, Prop, Element } from '@stencil/core';
 
-/**
- * @slot content - Replace content of item. Padding stays. To remove it set `defaultPadding="false"`
- */
-
 export type OptionValue = string | number | undefined;
 
 @Component({
@@ -14,8 +10,6 @@ export type OptionValue = string | number | undefined;
 export class ZenOption {
   @Element() hostElement: HTMLZenOptionElement;
 
-  /** Text inside the item */
-  @Prop() readonly label: string = 'Item';
   /** Render item as selected */
   @Prop({ reflect: true }) readonly selected: boolean = false;
   /** Render item as focused */
@@ -24,13 +18,23 @@ export class ZenOption {
   @Prop({ reflect: true }) readonly value: OptionValue = '';
   /** False to enable custom item padding */
   @Prop() readonly defaultPadding: boolean = true;
+  /** Disable selecting option in dropdown */
+  @Prop() readonly disabled?: boolean = false;
+  /** Prevents default hover style on mouse hover */
+  @Prop({ reflect: true }) readonly noHover?: boolean = false;
 
   render(): HTMLElement {
     return (
-      <Host>
-        <div class={{ background: true, paddingless: !this.defaultPadding }}>
-          <slot name="content">
-            <div class="content">{this.label}</div>
+      <Host disabled={this.disabled ? 'true' : null}>
+        <div
+          class={{
+            background: true,
+            paddingless: !this.defaultPadding,
+            disabled: this.disabled,
+          }}
+        >
+          <slot>
+            <div class="content">{this.value}</div>
           </slot>
         </div>
       </Host>

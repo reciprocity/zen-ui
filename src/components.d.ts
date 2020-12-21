@@ -90,6 +90,10 @@ export namespace Components {
          */
         "closeOnSelect": true;
         /**
+          * Disable any changes
+         */
+        "disabled"?: boolean;
+        /**
           * Alignment of field content and menu (if menuWidth set).
          */
         "fieldAlign": Align;
@@ -190,13 +194,17 @@ export namespace Components {
          */
         "defaultPadding": boolean;
         /**
+          * Disable selecting option in dropdown
+         */
+        "disabled"?: boolean;
+        /**
           * Render item as focused
          */
         "focused": boolean;
         /**
-          * Text inside the item
+          * Prevents default hover style on mouse hover
          */
-        "label": string;
+        "noHover"?: boolean;
         /**
           * Render item as selected
          */
@@ -469,6 +477,10 @@ declare namespace LocalJSX {
          */
         "closeOnSelect"?: true;
         /**
+          * Disable any changes
+         */
+        "disabled"?: boolean;
+        /**
           * Alignment of field content and menu (if menuWidth set).
          */
         "fieldAlign"?: Align;
@@ -581,13 +593,17 @@ declare namespace LocalJSX {
          */
         "defaultPadding"?: boolean;
         /**
+          * Disable selecting option in dropdown
+         */
+        "disabled"?: boolean;
+        /**
           * Render item as focused
          */
         "focused"?: boolean;
         /**
-          * Text inside the item
+          * Prevents default hover style on mouse hover
          */
-        "label"?: string;
+        "noHover"?: boolean;
         /**
           * Render item as selected
          */

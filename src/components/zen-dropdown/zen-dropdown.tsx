@@ -1,15 +1,19 @@
 import { Component, Host, h, Prop, State, Event, EventEmitter, Listen, Watch, Element, Method } from '@stencil/core';
-import { MouseEvent, slotPassed, getSlotElement } from '../helpers/helpers';
+import { MouseEvent, getDefaultSlotContent } from '../helpers/helpers';
 import { faChevronDown } from '@fortawesome/pro-light-svg-icons';
 import { renderIcon, styles } from '../helpers/fa-icons';
 import { OptionValue } from '../zen-menu-item/zen-option';
-import { waitNextFrame, getElementPath } from '../helpers/helpers';
+import { waitNextFrame } from '../helpers/helpers';
 import { Key } from 'ts-key-enum';
 import { Align } from '../helpers/types';
 
 export interface OptionItem {
   label: string;
 }
+
+/**
+ * @slot [default] - Content for dropdown menu
+ */
 
 @Component({
   tag: 'zen-dropdown',
@@ -21,7 +25,6 @@ export class ZenDropdown {
   listWrap: HTMLElement = undefined;
   list: HTMLElement = undefined;
   clickHandler = undefined;
-  hasOptionsSlot = false;
 
   @Element() hostElement: HTMLZenDropdownElement;
 
@@ -41,6 +44,8 @@ export class ZenDropdown {
   @Prop() readonly borderless = false;
   /** Text in field if nothing selected */
   @Prop() readonly placeholder: string = 'Select something';
+  /** Disable any changes */
+  @Prop() readonly disabled?: boolean = false;
 
   /** Emitted on any selection change */
   @Event() zenChange: EventEmitter<OptionValue>;
@@ -69,14 +74,17 @@ export class ZenDropdown {
         this.list.scrollTop = 0;
       }
 
-      if (this.hasOptionsSlot) {
-        this.markSelectedSlottedOption(this.value);
-      }
+      this.markSelectedSlottedOption(this.value);
 
       this.appendOptionsOnClickHandlers();
     } else {
       document.removeEventListener('mouseup', this.clickHandler);
     }
+  }
+
+  @Watch('value')
+  async valueChanged(): Promise<void> {
+    this.cloneSelectedToField();
   }
 
   @Listen('keydown')
@@ -111,21 +119,41 @@ export class ZenDropdown {
     }
   }
 
+  cloneSelectedToField(): void {
+    // Clear previously copied item from slot[name=field]:
+    const slot = this.hostElement.shadowRoot.querySelector('slot[name=field-private]');
+    const existing = (slot as HTMLSlotElement).assignedNodes()[0] as HTMLElement;
+    if (existing) {
+      existing.parentNode.removeChild(existing);
+    }
+    // Clone selected item and append it to component's host element:
+    // WHY NOT JUST APPENDING IT TO <div class="field">?
+    // - Because .field is defined in our shadow dom and...
+    // - zen-option is defined in host's dome, where it's styles are defined
+    // if we would append it to .field directly it would be in shadow dom
+    // and styles from host's dom can't style it
+    const selected = this.getSelectedOptionElement();
+    if (!selected) return;
+    const copy = selected.cloneNode(true) as HTMLElement;
+    copy.setAttribute('no-hover', 'true');
+    this.hostElement.appendChild(copy);
+    (copy as Element).slot = 'field-private';
+  }
+
   getOptionValue(option: HTMLZenOptionElement): OptionValue {
     return option.getAttribute('value');
   }
 
-  getSlottedOptionItems(): NodeListOf<HTMLZenOptionElement> | undefined[] {
-    const list = getSlotElement(this.hostElement, 'options');
-    if (!list) return []; // happens when dropdown isn't opened
-    return list.querySelectorAll('zen-option[value]');
+  getSlottedOptionItems(): HTMLZenOptionElement[] | undefined[] {
+    return Array.from(getDefaultSlotContent(this.hostElement))
+      .filter(n => n.nodeName === 'ZEN-OPTION' && !n.getAttribute('disabled'))
+      .map(n => n as HTMLZenOptionElement);
   }
 
   markSelectedSlottedOption(value: OptionValue): void {
     // Set attr `selected` to currently selected slotted item:
-    if (!this.hasOptionsSlot) return;
-
     const items = this.getSlottedOptionItems();
+    if (!items.length) return;
     for (let i = 0; i < items.length; i++) {
       items[i].selected = this.getOptionValue(items[i]) === value;
     }
@@ -186,7 +214,8 @@ export class ZenDropdown {
 
   // Events
   async closeOnClickOut(event: MouseEvent): Promise<void> {
-    const path = getElementPath(event.target as HTMLElement);
+    const path = event.composedPath(); //getElementPath(event.target as HTMLElement);
+
     const clickedInside = path.find(n => n === this.list);
     if (clickedInside) return;
     await waitNextFrame(); // prevent race with click-open
@@ -204,14 +233,10 @@ export class ZenDropdown {
     return y < window.pageYOffset || y + this.menuHeight > window.pageYOffset + window.innerHeight;
   }
 
-  componentWillLoad(): void {
-    this.hasOptionsSlot = slotPassed(this.hostElement, 'options');
-  }
-
   appendOptionsOnClickHandlers(): void {
-    if (!this.hasOptionsSlot) return;
-
     const items = this.getSlottedOptionItems();
+    if (!items.length) return;
+
     for (let i = 0; i < items.length; i++) {
       if (items[i].getAttribute('data-click-mounted')) continue;
       items[i].setAttribute('data-click-mounted', 'true');
@@ -221,21 +246,28 @@ export class ZenDropdown {
     }
   }
 
+  async connectedCallback(): Promise<void> {
+    await waitNextFrame();
+    await waitNextFrame();
+    this.valueChanged();
+  }
+
   render(): HTMLElement {
     return (
-      <Host tabindex="0" ref={el => (this.div = el)}>
+      <Host tabindex={this.disabled ? null : 0} ref={el => (this.div = el)}>
         <style>{styles}</style>
         <div
           class={{
             field: true,
             opened: this.opened,
             borderless: this.borderless,
+            disabled: this.disabled,
           }}
           onClick={() => {
             this.toggleDropdown(true);
           }}
         >
-          {this.value || this.placeholder}
+          {this.value ? <slot name="field-private" /> : this.placeholder}
           <div class="arrow">{renderIcon(faChevronDown)}</div>
         </div>
         <div
@@ -245,7 +277,7 @@ export class ZenDropdown {
         >
           <zen-animate show={this.opened}>
             <div class="list" ref={el => (this.list = el)}>
-              <slot name="options" />
+              <slot />
             </div>
           </zen-animate>
         </div>
