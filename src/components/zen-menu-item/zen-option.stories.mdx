@@ -21,7 +21,7 @@ Option item to be used inside **zen-dropdown** component
 
 #### 1. Customized content
 
-export const Slots = args => html/*html*/`
+export const Slots = args => html/*html*/ `
   <style>
     ${styles} .icon {
       height: 1rem;
@@ -48,11 +48,7 @@ export const Slots = args => html/*html*/`
 `;
 
 <Canvas>
-  <Story
-    name="slots"
-    args={{
-    }}
-  >
+  <Story name="slots" args={{}}>
     {Slots.bind({})}
   </Story>
 </Canvas>
@@ -61,17 +57,15 @@ You can wrap any content within zen-option. Here we've added custom png icon, so
 
 ## Properties
 
-export const Template = args => html/*html*/`
-  <zen-option default-padding="false" ...="${spreadArgs(args)}">
-    Dropdown option
-  </zen-option>
+export const Template = args => html/*html*/ `
+  <zen-option default-padding="false" ...="${spreadArgs(args)}"> Dropdown option </zen-option>
 `;
 
 <Canvas>
   <Story
     name="default"
     args={{
-      ...args
+      ...args,
     }}
   >
     {Template.bind({})}
