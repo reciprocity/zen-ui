@@ -11,6 +11,8 @@ import { getNextField } from '../helpers/helpers';
   shadow: true,
 })
 export class ZenInput {
+  input = null;
+
   @Element() hostElement: HTMLZenInputElement;
 
   /** Paint focused border */
@@ -42,10 +44,11 @@ export class ZenInput {
 
   @Listen('keydown')
   handleKeyDown(ev: KeyboardEvent): void {
-    if (ev.key === 'Enter') {
-      // TODO: replace with ts-key-enum
-      // currently it's impossible due to Cannot find module 'ts-key-enum' in jest
-      getNextField((this.hostElement as unknown) as HTMLElement).focus();
+    // TODO: replace with ts-key-enum
+    // currently it's impossible due to Cannot find module 'ts-key-enum' in jest
+    if (ev.key === 'Enter' && this.enterToTab) {
+      ev.preventDefault();
+      getNextField(this.input).focus();
     }
   }
 
@@ -78,6 +81,7 @@ export class ZenInput {
       <Host class={{ 'has-focus': this.hasFocus, invalid: this.invalid, disabled: this.disabled }}>
         <slot name="leadingSlot"></slot>
         <input
+          ref={el => (this.input = el)}
           type="text"
           placeholder={this.placeholder}
           value={value}
