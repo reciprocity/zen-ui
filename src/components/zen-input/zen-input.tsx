@@ -1,5 +1,4 @@
 import { Component, Host, h, Prop, EventEmitter, Event, Element, Listen } from '@stencil/core';
-import { Key } from 'ts-key-enum';
 import { getNextField } from '../helpers/helpers';
 
 /**
@@ -43,8 +42,10 @@ export class ZenInput {
 
   @Listen('keydown')
   handleKeyDown(ev: KeyboardEvent): void {
-    if (ev.key === Key.Enter) {
-      getNextField(this.hostElement).focus();
+    if (ev.key === 'Enter') {
+      // TODO: replace with ts-key-enum
+      // currently it's impossible due to Cannot find module 'ts-key-enum' in jest
+      getNextField((this.hostElement as unknown) as HTMLElement).focus();
     }
   }
 
