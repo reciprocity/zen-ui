@@ -13,6 +13,8 @@ $item-ypadding: 0.5rem;
 
   .background {
     transition: background-color 0.2s linear;
+    display: flex;
+    align-items: center;
 
     &:not(.paddingless) {
       padding: $item-ypadding 1rem;
