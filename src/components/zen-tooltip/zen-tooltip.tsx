@@ -108,7 +108,7 @@ export class ZenTooltip {
       scrollable: this.maxHeight !== 'none',
     };
     return (
-      <Host style={{ 'max-height': this.maxHeight }} class={{ visible: this.visible, ...classes }} tabindex="1">
+      <Host style={{ 'max-height': this.maxHeight }} class={{ visible: this.visible, ...classes }}>
         <slot>{this.label}</slot>
         <div
           class={{
