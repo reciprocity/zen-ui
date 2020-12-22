@@ -1,121 +1,90 @@
 @import '../../zen-styles/component-helpers.scss';
 
+$arrow_size: 0.3rem;
+
 :host {
   position: absolute;
   max-width: 11rem;
   z-index: $z-index-tooltips;
   display: none;
+
+  pointer-events: none;
+  font-size: $text-sm;
+  padding: 1rem;
+  border-radius: $border-radius-default;
+  line-height: 1rem;
+  text-align: center;
+  font-family: inherit;
+
+  // light - default:
+  color: $color-gray-800;
+  background-color: $color-white;
+  border: 1px solid $color-gray-200;
+  box-shadow: 0 4px 6px 0 rgba($color-black, 0.1);
 }
 
 :host(.visible) {
   display: block;
 }
 
-.tooltip {
-  display: block;
-  position: relative;
-  pointer-events: none;
-  font-size: $text-sm;
-  color: $color-white;
-  padding: 1rem;
-  border-radius: $border-radius-default;
-  line-height: 1rem;
-  text-align: center;
-  font-family: inherit;
-  z-index: $z-index-tooltips;
+.arrow {
+  position: absolute;
+  border-color: $color-gray-200;
 
-  &:before {
-    content: '';
-    position: absolute;
-  }
-
-  &.top:before,
-  &.bottom:before {
-    border-left: 0.25rem solid transparent;
-    border-right: 0.25rem solid transparent;
+  &.top,
+  &.bottom {
+    border-left: $arrow_size solid transparent !important;
+    border-right: $arrow_size solid transparent !important;
     left: 50%;
     transform: translateX(-2px);
   }
 
-  &.top:before {
-    bottom: -0.25rem;
-  }
-
-  &.bottom:before {
-    top: -0.25rem;
-  }
-
-  &.right:before,
-  &.left:before {
+  &.right,
+  &.left {
     top: 50%;
-    border-top: 0.25rem solid transparent;
-    border-bottom: 0.25rem solid transparent;
+    border-top: $arrow_size solid transparent !important;
+    border-bottom: $arrow_size solid transparent !important;
   }
 
-  &.right:before {
-    left: -0.25rem;
+  &.top {
+    border-top: $arrow_size solid $color-gray-200;
+    bottom: -$arrow_size;
   }
 
-  &.left:before {
-    right: -0.25rem;
+  &.bottom {
+    border-bottom: $arrow_size solid $color-gray-200;
+    top: -$arrow_size;
+  }
+
+  &.right {
+    border-right: $arrow_size solid $color-gray-200;
+    left: -$arrow_size;
+  }
+
+  &.left {
+    border-left: $arrow_size solid $color-gray-200;
+    right: -$arrow_size;
   }
 }
 
-.dark {
+:host(.dark) {
   color: $color-white;
   background-color: $color-gray-800;
   border: 1px solid $color-gray-800;
+  box-shadow: none;
 
-  &.top:before {
-    border-top: 0.25rem solid $color-gray-800;
-  }
-  &.bottom:before {
-    border-bottom: 0.25rem solid $color-gray-800;
-  }
-  &.left:before {
-    border-left: 0.25rem solid $color-gray-800;
-  }
-  &.right:before {
-    border-right: 0.25rem solid $color-gray-800;
+  .arrow {
+    border-color: $color-gray-800;
   }
 }
 
-.light {
-  color: $color-gray-800;
-  background-color: $color-white;
-  border: 1px solid $color-gray-200;
-
-  box-shadow: 0 4px 6px 0 rgba($color-gray-200, 0.3);
-
-  &.top:before {
-    border-top: 0.25rem solid $color-gray-200;
-  }
-  &.bottom:before {
-    border-bottom: 0.25rem solid $color-gray-200;
-  }
-  &.left:before {
-    border-left: 0.25rem solid $color-gray-200;
-  }
-  &.right:before {
-    border-right: 0.25rem solid $color-gray-200;
-  }
-}
-
-.error {
+:host(.error) {
   color: $color-white;
   background-color: $color-red-800;
   border: 1px solid $color-red-800;
+  box-shadow: none;
 
-  &.top:before {
-    border-top: 0.25rem solid $color-red-800;
-  }
-  &.bottom:before {
-    border-bottom: 0.25rem solid $color-red-800;
-  }
-  &.left:before {
-    border-left: 0.25rem solid $color-red-800;
-  }
-  &.right:before {
-    border-right: 0.25rem solid $color-red-800;
+  .arrow {
+    border-color: $color-red-800;
   }
 }

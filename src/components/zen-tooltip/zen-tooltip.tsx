@@ -84,14 +84,19 @@ export class ZenTooltip {
   render(): HTMLElement {
     const classes = {
       tooltip: true,
-      [`${this.variant}`]: true,
-      [`${this.position}`]: true,
+      [this.variant]: true,
+      [this.position]: true,
     };
     return (
-      <Host class={{ visible: this.visible }} ref={el => (this.element = el)}>
-        <div class={classes}>
-          <slot>{this.label}</slot>
-        </div>
+      <Host class={{ visible: this.visible, ...classes }} ref={el => (this.element = el)}>
+        <slot>{this.label}</slot>
+        <div
+          class={{
+            arrow: true,
+            [this.position]: true,
+            [this.variant]: true,
+          }}
+        ></div>
       </Host>
     );
   }
