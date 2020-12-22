@@ -1,7 +1,6 @@
 import { html } from 'lit-html';
 import Readme from './readme.md';
 import { Meta, Description, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
-import { Position, TooltipVariant } from '../helpers/helpers';
 
 import icon from '../../img/reci-icon-g.png';
 import { faCheck } from '@fortawesome/pro-light-svg-icons';
@@ -10,10 +9,10 @@ import { litHtmlIcon, styles } from '../helpers/fa-icons';
 import { getArgTypesAndArgs, spreadArgs } from '../../../.storybook/helpers/argTypes';
 const { argTypes, args } = getArgTypesAndArgs('zen-tooltip');
 
-<Meta title="Notifications/Tooltip2" component="zen-tooltip" argTypes={argTypes} />
+<Meta title="Notifications/Tooltip" component="zen-tooltip" argTypes={argTypes} />
 
-export const Template = (args) => {
-  return html/*html*/`
+export const Template = args => {
+  return html/*html*/ `
     <style>
       .wrapper {
         text-align: center;
@@ -29,7 +28,7 @@ export const Template = (args) => {
 };
 
 export const TemplateSlot = () => {
-  return html/*html*/`
+  return html/*html*/ `
     <style>
       .row {
         display: flex;
@@ -70,7 +69,7 @@ export const TemplateSlot = () => {
         color: #b875c4;
       }
     </style>
-    <div style="cursor:pointer; text-align: center; padding-top: 6rem;">
+    <div class="mt-56" style="cursor:pointer; text-align: center">
       <span>kim.anderson@reciprocity.com</span>
       <zen-tooltip
         style="max-width: fit-content;"
@@ -93,7 +92,7 @@ export const TemplateSlot = () => {
 };
 
 export const TemplateVariants = () => {
-  return html/*html*/`
+  return html/*html*/ `
     <style>
       .container {
         display: flex;
@@ -136,24 +135,111 @@ export const TemplateVariants = () => {
   `;
 };
 
+export const Scrollable = () => {
+  return html/*html*/ `
+    <style>
+      .host {
+        max-width: fit-content;
+      }
+      .row {
+        display: flex;
+      }
+      .column {
+        flex-direction: column;
+        text-align: left;
+        margin-right: 0.7rem;
+      }
+      .tooltip-title {
+        font-size: 0.875rem;
+        margin-bottom: 0.2rem;
+        font-weight: bold;
+      }
+      .tooltip-code {
+        font-size: 0.75rem;
+        margin-bottom: 0.2rem;
+      }
+      .tooltip-role {
+        color: #868e96;
+        font-size: 0.625rem;
+        font-weight: bold;
+        line-height: 1rem;
+        text-transform: uppercase;
+        margin: 0;
+      }
+      .profile {
+        min-height: 2rem;
+        min-width: 2rem;
+        max-height: 2rem;
+        max-width: 2rem;
+        border-radius: 50%;
+        position: relative;
+        cursor: pointer;
+        background: #e7e7e7;
+        text-align: center;
+        line-height: 2rem;
+        color: #b875c4;
+      }
+    </style>
+    <div class="mt-64" style="cursor:pointer; text-align: center">
+      <span>Multiple users selected</span>
+      <zen-tooltip class="host" position="top" variant="light" label="Override text" max-height="4rem">
+        <div>
+          <div class="row py-8">
+            <div class="column profile" style="background: #ffdaff">KA</div>
+            <div class="column">
+              <span class="tooltip-title">Kim Anderson</span>
+              <p class="tooltip-code">kim.anderson@reciprocitylabs.com</p>
+              <p class="tooltip-role">administrator</p>
+            </div>
+          </div>
+          <div class="row py-8">
+            <div class="column profile" style="background: #ffdaff">KA</div>
+            <div class="column">
+              <span class="tooltip-title">John Herschel Glenn Jr.</span>
+              <p class="tooltip-code">john.glenn@reciprocitylabs.com</p>
+              <p class="tooltip-role">administrator</p>
+            </div>
+          </div>
+          <div class="row py-8">
+            <div class="column profile" style="background: #ffdaff">KA</div>
+            <div class="column">
+              <span class="tooltip-title">Buzz Aldrin</span>
+              <p class="tooltip-code">buzz.aldrin@reciprocitylabs.com</p>
+              <p class="tooltip-role">reader</p>
+            </div>
+          </div>
+        </div>
+      </zen-tooltip>
+    </div>
+  `;
+};
+
 # Zen Tooltips
 
 ## Component previews
 
 #### 1. Different variants:
 
+Use prop `variant` to style the tooltip.
+
 <Canvas>
-  <Story name="variant" >
-    {TemplateVariants.bind({})}
-  </Story>
+  <Story name="variant">{TemplateVariants.bind({})}</Story>
 </Canvas>
 
 #### 2. Custom content:
 
+Wrap some html content with `<zen-tooltip>` and it will appear inside the tooltip.
+
 <Canvas>
-  <Story name="slot" >
-    {TemplateSlot.bind({})}
-  </Story>
+  <Story name="slot">{TemplateSlot.bind({})}</Story>
+</Canvas>
+
+#### 3. Scrollable tooltip:
+
+Limit tooltip height by setting `max-height` ('4rem' in example below).
+
+<Canvas>
+  <Story name="scrollable">{Scrollable.bind({})}</Story>
 </Canvas>
 
 ## Properties
@@ -167,7 +253,8 @@ export const TemplateVariants = () => {
       variant: 'dark',
       label: 'The Manager can edit and create in the context of the PCI-DSS framework.',
       offset: 10,
-    }}>
+    }}
+  >
     {Template.bind({})}
   </Story>
 </Canvas>
