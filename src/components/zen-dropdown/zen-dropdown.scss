@@ -5,10 +5,14 @@ $border: rgba(#000, 0.1);
 $background: #fff;
 $open-transition: 0.2s;
 
+$field-height: #{1.2rem + 2 * 0.5rem};
+
 :host {
   position: relative;
   display: inline-block;
   width: 100%;
+  height: 1px; // hack for field height=100%
+  min-height: $field-height;
   text-align-last: left;
   outline: none;
   font-size: $text-md;
@@ -24,8 +28,6 @@ $open-transition: 0.2s;
   }
 }
 
-$field-height: #{1.2rem + 2 * 0.5rem};
-
 .field {
   @include zenInput;
   @include zenInputBase;
@@ -33,7 +35,7 @@ $field-height: #{1.2rem + 2 * 0.5rem};
   z-index: 1;
   position: relative;
   border-radius: $input-radius;
-  min-height: $field-height;
+  height: 100%;
   white-space: nowrap;
   overflow: hidden;
   padding-right: 2.2rem;
