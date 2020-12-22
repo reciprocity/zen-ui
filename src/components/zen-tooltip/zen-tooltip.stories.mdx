@@ -1,7 +1,7 @@
 import { html } from 'lit-html';
 import Readme from './readme.md';
 import { Meta, Description, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
-import { Position, Variant } from '../helpers/helpers';
+import { Position, TooltipVariant } from '../helpers/helpers';
 
 import icon from '../../img/reci-icon-g.png';
 import { faCheck } from '@fortawesome/pro-light-svg-icons';
@@ -18,7 +18,7 @@ const { argTypes, args } = getArgTypesAndArgs('zen-tooltip');
 
 #### 1. Customized content
 
-export const Template = ({ position, variant, label }) => {
+export const Template = (args) => {
   return html/*html*/`
     <style>
       .wrapper {
@@ -29,7 +29,7 @@ export const Template = ({ position, variant, label }) => {
     </style>
     <div class="wrapper">
       <zen-button style="display:inline-block" label="Apply changes" variant="secondary"></zen-button>
-      <zen-tooltip position="${position}" variant="${variant}" label="${label}"></zen-tooltip>
+      <zen-tooltip ...="${spreadArgs(args)}"></zen-tooltip>
     </div>
   `;
 };
@@ -148,8 +148,8 @@ export const TemplateVariants = () => {
     name="default"
     args={{
       ...args,
-      position: Position.TOP,
-      variant: Variant.DARK,
+      position: 'top',
+      variant: 'dark',
       label: 'The Manager can edit and create in the context of the PCI-DSS framework.',
       offset: 10,
     }}>

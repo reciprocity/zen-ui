@@ -1,5 +1,5 @@
 import { Component, Host, h, Prop, State } from '@stencil/core';
-import { Position, Variant } from '../helpers/helpers';
+import { Position, TooltipVariant } from '../helpers/helpers';
 
 @Component({
   tag: 'zen-tooltip',
@@ -12,10 +12,10 @@ export class ZenTooltip {
   @State() visible = false;
 
   /** Set tooltip position */
-  @Prop() readonly position?: Position = Position.TOP;
+  @Prop() readonly position?: Position = 'top';
 
   /** Set tooltip variant */
-  @Prop() readonly variant?: Variant = Variant.DARK;
+  @Prop() readonly variant?: TooltipVariant = 'dark';
 
   /** Set tooltip label */
   @Prop() readonly label?: string = '';
@@ -41,19 +41,19 @@ export class ZenTooltip {
     let y = bounds.top - myBounds.top + (bounds.height - myBounds.height) / 2;
 
     switch (this.position) {
-      case Position.LEFT:
+      case 'left':
         x -= (bounds.width + myBounds.width) / 2 + this.offset;
         break;
 
-      case Position.RIGHT:
+      case 'right':
         x += (bounds.width + myBounds.width) / 2 + this.offset;
         break;
 
-      case Position.TOP:
+      case 'top':
         y -= (bounds.height + myBounds.height) / 2 + this.offset;
         break;
 
-      case Position.BOTTOM:
+      case 'bottom':
         y += (bounds.height + myBounds.height) / 2 + this.offset;
         break;
     }

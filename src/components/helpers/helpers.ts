@@ -1,17 +1,8 @@
 import { querySelectorAllDeep } from 'query-selector-shadow-dom';
 
-export enum Position {
-  TOP = 'top',
-  RIGHT = 'right',
-  BOTTOM = 'bottom',
-  LEFT = 'left',
-}
+export type Position = 'top' | 'right' | 'bottom' | 'left';
 
-export enum Variant {
-  DARK = 'dark',
-  LIGHT = 'light',
-  ERROR = 'error',
-}
+export type TooltipVariant = 'dark' | 'light' | 'error';
 
 export interface MouseEvent extends Event {
   path: Node[];
