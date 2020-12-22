@@ -13,14 +13,7 @@ const { argTypes, args } = getArgTypesAndArgs('zen-tooltip');
 
 export const Template = args => {
   return html/*html*/ `
-    <style>
-      .wrapper {
-        text-align: center;
-        margin-top: 8rem;
-        margin-bottom: 8rem;
-      }
-    </style>
-    <div class="wrapper">
+    <div style="text-align: center" class="my-48">
       <zen-button style="display:inline-block" label="Apply changes" variant="secondary"></zen-button>
       <zen-tooltip ...="${spreadArgs(args)}"></zen-tooltip>
     </div>
