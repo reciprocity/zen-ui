@@ -135,3 +135,10 @@ $item-ypadding: 0.5rem;
     transform: translate(0, 100px);
   }
 }
+
+:host([menu-width]:not([menu-width="100%"])) {
+  .list {
+    margin-top: 3px;
+    border-width: 1px;
+  }
+}
