@@ -33,6 +33,9 @@ export class ZenTooltip {
   /** Delay between mouse out and tooltip hide (in ms)  */
   @Prop() readonly hideDelay: number = 0;
 
+  /** Delay between mouse enter and tooltip show (in ms)  */
+  @Prop() readonly showDelay: number = 300;
+
   show(): void {
     this.debounceHide.cancel();
 
@@ -77,10 +80,34 @@ export class ZenTooltip {
     this.visible = false;
   }
 
+  debounceShow = debounce(this.show, this.showDelay);
+
   delay = this.maxHeight != 'none' ? Math.max(this.hideDelay, 200) : this.hideDelay;
   debounceHide = debounce(this.hide, this.delay);
 
   componentDidLoad(): void {
+    let lastPoint: { x: number; y: number } = { x: 0, y: 0 };
+
+    const show = (event?: MouseEvent) => {
+      this.debounceHide.cancel();
+
+      // Show only if mouse hasn't moved too much:
+      if (event) {
+        const dist = Math.sqrt((lastPoint.x - event.x) ^ (2 + (lastPoint.y - event.y)) ^ 2);
+        const moveThreshold = 3;
+        if (dist <= moveThreshold) return;
+
+        lastPoint = { x: event.x, y: event.y };
+      }
+
+      this.debounceShow();
+    };
+
+    const hide = () => {
+      this.debounceShow.cancel();
+      this.debounceHide();
+    };
+
     if (this.alwaysVisible) {
       this.show();
       return;
@@ -88,15 +115,16 @@ export class ZenTooltip {
 
     const tooltip = this.element;
     const previousElement = tooltip.previousElementSibling;
-    if (previousElement) {
-      previousElement.addEventListener('mouseover', () => this.show());
-      previousElement.addEventListener('touchstart', () => this.show());
-      previousElement.addEventListener('mouseout', () => this.debounceHide());
-      tooltip.addEventListener('touchcancel', () => this.debounceHide());
-      tooltip.addEventListener('mouseover', () => this.show());
-      tooltip.addEventListener('touchstart', () => this.show());
-      tooltip.addEventListener('mouseout', () => this.debounceHide());
-      tooltip.addEventListener('touchcancel', () => this.debounceHide());
+    for (const el of [tooltip, previousElement]) {
+      if (!el) continue;
+      el.addEventListener('mousemove', (event: MouseEvent) => show(event));
+      el.addEventListener('touchstart', () => show());
+      el.addEventListener('mouseout', (event: MouseEvent) => {
+        // filter events bubbling from children:
+        if (event.target !== tooltip && event.target !== previousElement) return;
+        hide();
+      });
+      el.addEventListener('touchcancel', () => hide());
     }
   }
 
