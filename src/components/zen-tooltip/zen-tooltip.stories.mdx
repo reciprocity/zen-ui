@@ -12,12 +12,6 @@ const { argTypes, args } = getArgTypesAndArgs('zen-tooltip');
 
 <Meta title="Notifications/Tooltip2" component="zen-tooltip" argTypes={argTypes} />
 
-# Zen Tooltips
-
-## Component previews
-
-#### 1. Customized content
-
 export const Template = (args) => {
   return html/*html*/`
     <style>
@@ -143,6 +137,28 @@ export const TemplateVariants = () => {
   `;
 };
 
+# Zen Tooltips
+
+## Component previews
+
+#### 1. Different variants:
+
+<Canvas>
+  <Story name="variant" >
+    {TemplateVariants.bind({})}
+  </Story>
+</Canvas>
+
+#### 2. Custom content slot:
+
+<Canvas>
+  <Story name="slot" >
+    {TemplateSlot.bind({})}
+  </Story>
+</Canvas>
+
+## Properties
+
 <Canvas>
   <Story
     name="default"
@@ -158,18 +174,6 @@ export const TemplateVariants = () => {
 </Canvas>
 
 <ArgsTable story="default" />
-
-<Canvas>
-  <Story name="slot" >
-    {TemplateSlot.bind({})}
-  </Story>
-</Canvas>
-
-<Canvas>
-  <Story name="variant" >
-    {TemplateVariants.bind({})}
-  </Story>
-</Canvas>
 
 <div class="stencildoc" />
 <Description>{Readme}</Description>
