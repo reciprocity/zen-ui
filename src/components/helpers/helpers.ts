@@ -1,3 +1,5 @@
+import { querySelectorAllDeep } from 'query-selector-shadow-dom';
+
 export enum Position {
   TOP = 'top',
   RIGHT = 'right',
@@ -36,4 +38,17 @@ export function getSlotElement(host: HTMLElement, slotName: string): HTMLElement
 
 export function getDefaultSlotContent(host: HTMLElement): Element[] {
   return (host.shadowRoot.querySelector('slot:not([name])') as HTMLSlotElement).assignedElements();
+}
+
+export function getNextField(currentInput: HTMLElement): HTMLElement {
+  // sort by bounding box, because compareDocumentPosition doesn't work in #shadow:
+  const allElements = Array.from(
+    querySelectorAllDeep('input,button,area,object,select,textarea,[contenteditable],[tabindex]'),
+  ).sort((a: HTMLElement, b: HTMLElement) => {
+    const rA = a.getBoundingClientRect();
+    const rB = b.getBoundingClientRect();
+    return rA.top - rB.top ? rA.top - rB.top : rA.left - rB.left;
+  });
+  const currentIndex = allElements.findIndex((el: HTMLElement) => el === currentInput);
+  return allElements[(currentIndex + 1) % allElements.length] as HTMLElement;
 }

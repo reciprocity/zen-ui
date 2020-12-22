@@ -1,4 +1,6 @@
-import { cloneDeep } from "lodash";
+import stencilDocs from '../../stencilDocs.json';
+import { spread } from '@open-wc/lit-helpers';
+import { camelKeysToKebab } from './utils';
 
 const getPropType = (prop) =>
   prop.type.indexOf('|') > -1 ? 'enum' : prop.type;
@@ -57,4 +59,22 @@ export function getDefaultArgs(argTypes) {
     args[key] = getDefaultValue(argTypes[key]);
   }
   return args;
+}
+
+export function getArgTypesAndArgs(componentName) {
+  const compData = stencilDocs.components.find(n => n.tag === componentName);
+  const argTypes = getArgTypes(compData);
+  return {
+    argTypes,
+    args: getDefaultArgs(argTypes),
+  }
+}
+
+export function spreadArgs(args) {
+  const attrs = camelKeysToKebab(args);
+  for (const key in attrs) {
+    if (!attrs.hasOwnProperty(key)) continue;
+    attrs[key] = attrs[key] === false ? null : attrs[key];
+  }
+  return spread(attrs);
 }

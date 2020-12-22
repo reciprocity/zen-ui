@@ -1,4 +1,5 @@
-import { Component, Host, h, Prop, EventEmitter, Event, Element } from '@stencil/core';
+import { Component, Host, h, Prop, EventEmitter, Event, Element, Listen } from '@stencil/core';
+import { getNextField } from '../helpers/helpers';
 
 /**
  * @slot leadingSlot - Slot placed at the left
@@ -10,6 +11,8 @@ import { Component, Host, h, Prop, EventEmitter, Event, Element } from '@stencil
   shadow: true,
 })
 export class ZenInput {
+  input = null;
+
   @Element() hostElement: HTMLZenInputElement;
 
   /** Paint focused border */
@@ -24,6 +27,9 @@ export class ZenInput {
   /** Shows invalid styles. */
   @Prop() readonly invalid = false;
 
+  /** Focus next control when pressing Enter key */
+  @Prop() readonly enterToTab = true;
+
   /** The value of the input. */
   @Prop({ mutable: true }) value?: string | number | null = '';
 
@@ -35,6 +41,16 @@ export class ZenInput {
 
   /** Emitted when the input has focus. */
   @Event() zenFocus!: EventEmitter<FocusEvent>;
+
+  @Listen('keydown')
+  handleKeyDown(ev: KeyboardEvent): void {
+    // TODO: replace with ts-key-enum
+    // currently it's impossible due to Cannot find module 'ts-key-enum' in jest
+    if (ev.key === 'Enter' && this.enterToTab) {
+      ev.preventDefault();
+      getNextField(this.input).focus();
+    }
+  }
 
   private onInput = (ev: Event) => {
     const input = ev.target as HTMLInputElement | null;
@@ -65,6 +81,7 @@ export class ZenInput {
       <Host class={{ 'has-focus': this.hasFocus, invalid: this.invalid, disabled: this.disabled }}>
         <slot name="leadingSlot"></slot>
         <input
+          ref={el => (this.input = el)}
           type="text"
           placeholder={this.placeholder}
           value={value}

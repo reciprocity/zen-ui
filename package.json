@@ -25,6 +25,7 @@
     "stencil:test:watch": "stencil test --spec --watchAll",
     "storybook:start": "start-storybook --docs -p 6006",
     "storybook:build": "build-storybook --docs -o public --quiet",
+    "storybook:theme": "start-storybook --docs -p 6006 --no-manager-cache",
     "styles:start": "webpack --watch --mode=development",
     "styles:build": "webpack --mode=production",
     "lint:check": "eslint --ext .js,.ts,.tsx src/",
@@ -91,7 +92,6 @@
     "sass-extract-loader": "~1.1.0",
     "sass-loader": "~10.1.0",
     "style-loader": "~2.0.0",
-    "ts-key-enum": "^3.0.4",
     "typescript": "~4.1.2",
     "webpack": "~5.4.0",
     "webpack-cli": "~4.2.0"
@@ -100,7 +100,9 @@
   "dependencies": {
     "@open-wc/lit-helpers": "~0.3.11",
     "@stencil/core": "~2.3.0",
-    "lodash": "~4.17.20"
+    "lodash": "~4.17.20",
+    "query-selector-shadow-dom": "^0.8.0",
+    "ts-key-enum": "^3.0.4"
   },
   "repository": {
     "type": "git",

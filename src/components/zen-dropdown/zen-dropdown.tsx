@@ -84,6 +84,8 @@ export class ZenDropdown {
 
   @Watch('value')
   async valueChanged(): Promise<void> {
+    await waitNextFrame();
+    await waitNextFrame();
     this.cloneSelectedToField();
   }
 
@@ -121,6 +123,8 @@ export class ZenDropdown {
 
   cloneSelectedToField(): void {
     // Clear previously copied item from slot[name=field]:
+    if (!this.value) return;
+
     const slot = this.hostElement.shadowRoot.querySelector('slot[name=field-private]');
     const existing = (slot as HTMLSlotElement).assignedNodes()[0] as HTMLElement;
     if (existing) {
@@ -136,6 +140,8 @@ export class ZenDropdown {
     if (!selected) return;
     const copy = selected.cloneNode(true) as HTMLElement;
     copy.setAttribute('no-hover', 'true');
+    copy.removeAttribute('focused');
+    copy.removeAttribute('selected');
     this.hostElement.appendChild(copy);
     (copy as Element).slot = 'field-private';
   }

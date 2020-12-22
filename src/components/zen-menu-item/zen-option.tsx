@@ -14,7 +14,7 @@ export class ZenOption {
   @Prop({ reflect: true }) readonly selected: boolean = false;
   /** Render item as focused */
   @Prop({ reflect: true }) readonly focused: boolean = false;
-  /** Value of option if used inside dropdown */
+  /** Value of option when used inside a dropdown */
   @Prop({ reflect: true }) readonly value: OptionValue = '';
   /** False to enable custom item padding */
   @Prop() readonly defaultPadding: boolean = true;

@@ -55,7 +55,7 @@ customElements.define('zen-spinner', ZenSpinner);
 ```
 
 ## Folder structure
-`src/components` Stencil src folder. Implementation, tests, and stories for all available Zen UI components.\
+`src/components` Stencil src folder. Implementation, tests, and stories for each component.\
 `src/stories` General stories/guides, not based on an individual Zen UI component.\
 `.storybook` Storybook configuration files.\
 `.circleci` Deployment configuration.\
@@ -90,24 +90,29 @@ To enable highlighting of html inside lit-html tags (html\`...\`), you can use e
 
 ## Components guidelines
 ### Components should behave as default html components
-Components should behave the same way as default html components.
+When building components keep in mind, that it should behave the same way as default html components.
 It means if you have a working default html component, you should only change tag name into zen component and eveything will still work as expected. Eg:
-```
-<select name="cars" id="cars" onchange="myFunction()">
+
+```html
+<select name="cars" id="cars" @change="myFunction()">
   <option value="volvo">Volvo</option>
   <option value="saab">Saab</option>
   <option value="mercedes">Mercedes</option>
   <option value="audi">Audi</option>
 </select>
 ```
-can be changed into zen component by just prepending tag names with `zen-`:
-```
-<zen-select name="cars" id="cars" onchange="myFunction()">
+
+can be changed into zen component by just prepending tag names with `zen-` and
+also prepending native events with `zen`:
+
+```html
+<zen-select name="cars" id="cars" @zenChange="myFunction()">
   <zen-option value="volvo">Volvo</zen-option>
   <zen-option value="saab">Saab</zen-option>
   <zen-option value="mercedes">Mercedes</zen-option>
   <zen-option value="audi">Audi</zen-option>
 </zen-select>
 ```
+
 ### Emit default events
 Emit default events (`click`, `change`, `input`,...) instead making them up

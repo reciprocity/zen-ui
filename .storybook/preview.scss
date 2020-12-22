@@ -30,6 +30,16 @@ h1.sbdocs-h1 {
   color: $color-blue-700;
 }
 
+.sbdocs h3,
+.sbdocs h4 {
+  margin-top: 1em;
+  line-height: 1.2em;
+}
+
+.sbdocs p {
+  margin: 0 auto;
+}
+
 .stencildoc + div {
   code {
     font-size: 0.8rem;
@@ -79,4 +89,9 @@ h1.sbdocs-h1 {
   tr:nth-child(2n - 1) {
       background: rgba(0,0,0,0.02) !important;
     }
+}
+
+// Canvas
+.sbdocs-preview {
+  margin: 0.5rem auto !important;
 }

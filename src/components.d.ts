@@ -126,6 +126,10 @@ export namespace Components {
          */
         "disabled": false;
         /**
+          * Focus next control when pressing Enter key
+         */
+        "enterToTab": true;
+        /**
           * Paint focused border
          */
         "hasFocus": boolean;
@@ -210,7 +214,7 @@ export namespace Components {
          */
         "selected": boolean;
         /**
-          * Value of option if used inside dropdown
+          * Value of option when used inside a dropdown
          */
         "value": OptionValue;
     }
@@ -513,6 +517,10 @@ declare namespace LocalJSX {
          */
         "disabled"?: false;
         /**
+          * Focus next control when pressing Enter key
+         */
+        "enterToTab"?: true;
+        /**
           * Paint focused border
          */
         "hasFocus"?: boolean;
@@ -609,7 +617,7 @@ declare namespace LocalJSX {
          */
         "selected"?: boolean;
         /**
-          * Value of option if used inside dropdown
+          * Value of option when used inside a dropdown
          */
         "value"?: OptionValue;
     }
