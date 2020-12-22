@@ -1,5 +1,6 @@
-import { Component, Host, h, Prop, State } from '@stencil/core';
+import { Component, Host, h, Prop, State, Element } from '@stencil/core';
 import { Position, TooltipVariant } from '../helpers/helpers';
+import debounce from 'lodash/debounce';
 
 @Component({
   tag: 'zen-tooltip',
@@ -7,7 +8,7 @@ import { Position, TooltipVariant } from '../helpers/helpers';
   shadow: true,
 })
 export class ZenTooltip {
-  private element: HTMLElement;
+  @Element() element: HTMLZenTooltipElement;
 
   @State() visible = false;
 
@@ -26,7 +27,17 @@ export class ZenTooltip {
   /** Dont hide tooltip */
   @Prop() readonly alwaysVisible?: boolean = false;
 
+  /** Limit tooltip's height and make content scroll  */
+  @Prop() readonly maxHeight: string = 'none';
+
+  /** Delay between mouse out and tooltip hide (in ms)  */
+  @Prop() readonly hideDelay: number = 0;
+
   show(): void {
+    this.debounceHide.cancel();
+
+    if (this.visible) return;
+
     const previousElement = this.element.previousElementSibling as HTMLElement;
     const bounds = previousElement.getBoundingClientRect();
 
@@ -66,18 +77,26 @@ export class ZenTooltip {
     this.visible = false;
   }
 
+  delay = this.maxHeight != 'none' ? Math.max(this.hideDelay, 200) : this.hideDelay;
+  debounceHide = debounce(this.hide, this.delay);
+
   componentDidLoad(): void {
     if (this.alwaysVisible) {
       this.show();
       return;
     }
 
-    const previousElement = this.element.previousElementSibling;
+    const tooltip = this.element;
+    const previousElement = tooltip.previousElementSibling;
     if (previousElement) {
       previousElement.addEventListener('mouseover', () => this.show());
       previousElement.addEventListener('touchstart', () => this.show());
-      previousElement.addEventListener('mouseout', () => this.hide());
-      previousElement.addEventListener('touchcancel', () => this.hide());
+      previousElement.addEventListener('mouseout', () => this.debounceHide());
+      tooltip.addEventListener('touchcancel', () => this.debounceHide());
+      tooltip.addEventListener('mouseover', () => this.show());
+      tooltip.addEventListener('touchstart', () => this.show());
+      tooltip.addEventListener('mouseout', () => this.debounceHide());
+      tooltip.addEventListener('touchcancel', () => this.debounceHide());
     }
   }
 
@@ -86,9 +105,10 @@ export class ZenTooltip {
       tooltip: true,
       [this.variant]: true,
       [this.position]: true,
+      scrollable: this.maxHeight !== 'none',
     };
     return (
-      <Host class={{ visible: this.visible, ...classes }} ref={el => (this.element = el)}>
+      <Host style={{ 'max-height': this.maxHeight }} class={{ visible: this.visible, ...classes }} tabindex="1">
         <slot>{this.label}</slot>
         <div
           class={{
