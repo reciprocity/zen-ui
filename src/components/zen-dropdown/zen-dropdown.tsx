@@ -13,6 +13,7 @@ export interface OptionItem {
 
 /**
  * @slot [default] - Content for dropdown menu
+ * @slot placeholder - Slot visible in field when nothing is selected
  */
 
 @Component({
@@ -88,9 +89,9 @@ export class ZenDropdown {
     const copied = this.cloneSelectedToField();
 
     if (!copied) {
-    await waitNextFrame();
-    this.cloneSelectedToField();
-  }
+      await waitNextFrame();
+      this.cloneSelectedToField();
+    }
   }
 
   @Listen('keydown')
@@ -279,7 +280,13 @@ export class ZenDropdown {
             this.toggleDropdown(true);
           }}
         >
-          {this.value ? <slot name="field-private" /> : this.placeholder}
+          {this.value ? (
+            <slot name="field-private" />
+          ) : (
+            <slot name="placeholder">
+              <div class="placeholder">{this.placeholder}</div>
+            </slot>
+          )}
           <div class="arrow">{renderIcon(faChevronDown)}</div>
         </div>
         <div
