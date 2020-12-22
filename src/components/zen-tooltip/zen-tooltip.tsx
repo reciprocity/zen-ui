@@ -90,7 +90,7 @@ export class ZenTooltip {
     return (
       <Host class={{ visible: this.visible }} ref={el => (this.element = el)}>
         <div class={classes}>
-          <slot name="label">{this.label}</slot>
+          <slot>{this.label}</slot>
         </div>
       </Host>
     );
