@@ -21,7 +21,7 @@ Option item to be used inside **zen-dropdown** component
 
 #### 1. Customized content
 
-export const Slots = args => html/*html*/ `
+export const Slots = () => html/*html*/ `
   <style>
     ${styles} .icon {
       height: 1rem;
@@ -38,7 +38,7 @@ export const Slots = args => html/*html*/ `
       width: 100%;
     }
   </style>
-  <zen-option default-padding="false" ...="${spreadArgs(args)}">
+  <zen-option default-padding="false">
     <div class="content">
       <img class="icon" src=${icon} alt="icon" />
       <b>Custom content</b>

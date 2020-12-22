@@ -13,6 +13,7 @@ export interface OptionItem {
 
 /**
  * @slot [default] - Content for dropdown menu
+ * @slot placeholder - Slot visible in field when nothing is selected
  */
 
 @Component({
@@ -85,8 +86,12 @@ export class ZenDropdown {
   @Watch('value')
   async valueChanged(): Promise<void> {
     await waitNextFrame();
-    await waitNextFrame();
-    this.cloneSelectedToField();
+    const copied = this.cloneSelectedToField();
+
+    if (!copied) {
+      await waitNextFrame();
+      this.cloneSelectedToField();
+    }
   }
 
   @Listen('keydown')
@@ -121,11 +126,12 @@ export class ZenDropdown {
     }
   }
 
-  cloneSelectedToField(): void {
+  cloneSelectedToField(): boolean {
     // Clear previously copied item from slot[name=field]:
     if (!this.value) return;
 
     const slot = this.hostElement.shadowRoot.querySelector('slot[name=field-private]');
+    if (!slot) return false;
     const existing = (slot as HTMLSlotElement).assignedNodes()[0] as HTMLElement;
     if (existing) {
       existing.parentNode.removeChild(existing);
@@ -137,13 +143,14 @@ export class ZenDropdown {
     // if we would append it to .field directly it would be in shadow dom
     // and styles from host's dom can't style it
     const selected = this.getSelectedOptionElement();
-    if (!selected) return;
+    if (!selected) return true;
     const copy = selected.cloneNode(true) as HTMLElement;
     copy.setAttribute('no-hover', 'true');
     copy.removeAttribute('focused');
     copy.removeAttribute('selected');
     this.hostElement.appendChild(copy);
     (copy as Element).slot = 'field-private';
+    return true;
   }
 
   getOptionValue(option: HTMLZenOptionElement): OptionValue {
@@ -273,7 +280,13 @@ export class ZenDropdown {
             this.toggleDropdown(true);
           }}
         >
-          {this.value ? <slot name="field-private" /> : this.placeholder}
+          {this.value ? (
+            <slot name="field-private" />
+          ) : (
+            <slot name="placeholder">
+              <div class="placeholder">{this.placeholder}</div>
+            </slot>
+          )}
           <div class="arrow">{renderIcon(faChevronDown)}</div>
         </div>
         <div

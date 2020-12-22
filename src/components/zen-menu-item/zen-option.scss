@@ -6,6 +6,7 @@ $item-ypadding: 0.5rem;
 
 :host {
   position: relative;
+  width: 100%;
   box-sizing: border-box;
   font-size: $text-md;
   cursor: pointer;
@@ -13,6 +14,8 @@ $item-ypadding: 0.5rem;
 
   .background {
     transition: background-color 0.2s linear;
+    display: flex;
+    align-items: center;
 
     &:not(.paddingless) {
       padding: $item-ypadding 1rem;
@@ -36,9 +39,4 @@ $item-ypadding: 0.5rem;
   .background {
     background-color: $color-gray-200;
   }
-}
-
-.content {
-  display: flex;
-  align-items: center;
 }

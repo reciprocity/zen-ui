@@ -6,7 +6,9 @@ import { eventHandles, action } from '../../../.storybook/helpers/custom-action'
 import { getArgTypes, getDefaultArgs } from '../../../.storybook/helpers/argTypes';
 import { camelKeysToKebab } from '../../../.storybook/helpers/utils';
 
-import icon from '../../img/reci-icon-g.png';
+import iconGreen from '../../img/reci-icon-g.png';
+import iconRed from '../../img/reci-icon-y.png';
+import iconBlue from '../../img/reci-icon.png';
 import { faCheck } from '@fortawesome/pro-light-svg-icons';
 import { litHtmlIcon, styles } from '../helpers/fa-icons';
 import { Align } from '../helpers/types';
@@ -20,12 +22,6 @@ delete argTypes.value.control;
 
 <Meta title="Forms/Dropdown" component="zen-dropdown" argTypes={argTypes} />
 
-# Dropdown
-
-A standard dropdown component
-
-## Component preview
-
 export const Template = args => html/*html*/ `
   <style>
     .icon {
@@ -36,11 +32,6 @@ export const Template = args => html/*html*/ `
       display: flex;
       align-items: center;
       padding: 1rem;
-    }
-    zen-option {
-      display: inline-block;
-      max-width: 300px;
-      width: 100%;
     }
     .separator {
       margin-top: 1rem;
@@ -60,7 +51,7 @@ export const Template = args => html/*html*/ `
     <zen-option value="1">Item 1</zen-option>
     <zen-option default-padding="false" value="2">
       <div class="content">
-        <img class="icon" src=${icon} alt="icon" />
+        <img class="icon" src=${iconGreen} alt="icon" />
         <b>Item 2</b>
         <span style="margin-left: auto" .innerHTML="${litHtmlIcon(faCheck)}"></span>
       </div>
@@ -69,17 +60,121 @@ export const Template = args => html/*html*/ `
     <zen-option value="4">Item 4</zen-option>
     <zen-option value="5">Item 5</zen-option>
     <div class="separator">Separator</div>
-    <zen-option value="6">Item 6</zen-option>
-    <zen-option value="7">Item 7</zen-option>
+    <zen-option value="6">Item 6 abc</zen-option>
+    <zen-option value="7">Item 7 xyz</zen-option>
     <zen-option value="8">Item 8</zen-option>
     <zen-option value="9">Item 9</zen-option>
   </zen-dropdown>
   ${action('#dropdown-with-options-slot', customEvents)}
 `;
 
+export const CustomIcons = () => html/*html*/ `
+  <style>
+    .icon {
+      height: 1rem;
+      margin-right: 0.5rem;
+    }
+    .content {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      padding: 1rem;
+    }
+    .separator {
+      margin-top: 1rem;
+      border-bottom: 1px solid;
+      color: #0078cd;
+      padding: 0 1rem;
+    }
+    ${styles}
+  </style>
+  <zen-dropdown id="dropdown-with-options-slot" class="mb-80" style="min-height: 3.2rem; max-width: 300px;">
+    <div class="separator">Group 1</div>
+    <zen-option default-padding="false" value="1">
+      <div class="content">
+        <img class="icon" src=${iconGreen} alt="icon" />
+        <b>Item 1</b>
+        <span style="margin-left: auto" .innerHTML="${litHtmlIcon(faCheck)}"></span>
+      </div>
+    </zen-option>
+    <zen-option default-padding="false" value="2">
+      <div class="content">
+        <img class="icon" src=${iconBlue} alt="icon" />
+        <b>Item 2 with a longer label</b>
+        <span style="margin-left: auto" .innerHTML="${litHtmlIcon(faCheck)}"></span>
+      </div>
+    </zen-option>
+    <div class="separator">Group 2</div>
+    <zen-option default-padding="false" value="3">
+      <div class="content">
+        <img class="icon" src=${iconRed} alt="icon" />
+        <b>Item 3</b>
+        <span style="margin-left: auto" .innerHTML="${litHtmlIcon(faCheck)}"></span>
+      </div>
+    </zen-option>
+  </zen-dropdown>
+  ${action('#dropdown-with-options-slot', customEvents)}
+`;
+
+export const InvitePeople = () => {
+  function onDropdownFocus() {
+    document.querySelector('#input1').hasFocus = true;
+    setTimeout(() => {
+      // Should be in timeout, otherwise click would toggle - close it
+      document.querySelector('#dropdown1').toggle(true);
+    }, 100);
+  }
+  function onDropdownBlur() {
+    document.querySelector('#input1').hasFocus = false;
+  }
+  return html/*html*/ `<zen-input id="input1" placeholder="Username" class="mb-72" style="max-width: 500px">
+    <zen-dropdown
+      id="dropdown1"
+      slot="trailingSlot"
+      borderless="true"
+      placeholder="choose role"
+      style="width: auto"
+      menu-width="220px"
+      field-align="right"
+      @focus="${onDropdownFocus}"
+      @blur="${onDropdownBlur}"
+    >
+      <zen-option value="admin">ZenGRC Administrator</zen-option>
+      <zen-option value="manager">Manager</zen-option>
+      <zen-option value="collaborator">Collaborator</zen-option>
+    </zen-dropdown>
+  </zen-input>`;
+};
+
+# Dropdown
+
+A standard dropdown component
+
+## Component examples
+
+### Options with custom content
+
+- Each option has an icon and custom padding.
+- Because option is taller than usually, we have to specify dropdown's height manually, to match the option height.
+
+<Canvas>
+  <Story name="button">{CustomIcons.bind({})}</Story>
+</Canvas>
+
+### Invite people dropdown
+
+A composition of `Input` and a `Dropdown` component. Dropdown is placed inside an input using input's slot `trailingSlot`.
+Click `Show code` for more details.
+
+<Canvas>
+  <Story name="InvitePeople">{InvitePeople.bind({})}</Story>
+</Canvas>
+
+## Properties
+
 <Canvas>
   <Story
-    name="button"
+    name="default"
     args={{
       ...getDefaultArgs(argTypes),
       value: '2',
@@ -89,7 +184,7 @@ export const Template = args => html/*html*/ `
   </Story>
 </Canvas>
 
-<Props story="button" />
+<Props story="default" />
 
 <div class="stencildoc" />
 <Description>{Readme}</Description>
