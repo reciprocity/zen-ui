@@ -1,6 +1,6 @@
 {
   "name": "@reciprocity/zen-ui",
-  "version": "0.0.15",
+  "version": "0.0.17",
   "description": "Zen UI components library",
   "main": "dist/index.cjs.js",
   "module": "dist/custom-elements/index.js",
@@ -17,6 +17,7 @@
   "scripts": {
     "start": "yarn stencil:build && (yarn stencil:watch & yarn storybook:start & yarn styles:start)",
     "build": "yarn stencil:build && yarn storybook:build && yarn styles:build",
+    "npm:publish": "rm -rf dist && rm -rf public && rm -rf loader && rm -rf node_modules && rm yarn.lock && yarn && yarn build && npm version patch && npm publish",
     "test": "stencil test --spec",
     "create-component": "stencil generate",
     "stencil:start": "stencil build --dev --watch --serve",
