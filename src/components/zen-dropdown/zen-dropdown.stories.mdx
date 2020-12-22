@@ -88,11 +88,7 @@ export const CustomIcons = () => html/*html*/ `
     }
     ${styles}
   </style>
-  <zen-dropdown
-    id="dropdown-with-options-slot"
-    class="mb-80"
-    style="min-height: 3.2rem; max-width: 300px;"
-  >
+  <zen-dropdown id="dropdown-with-options-slot" class="mb-80" style="min-height: 3.2rem; max-width: 300px;">
     <div class="separator">Group 1</div>
     <zen-option default-padding="false" value="1">
       <div class="content">
@@ -157,28 +153,21 @@ A standard dropdown component
 ## Component examples
 
 ### Options with custom content
+
 - Each option has an icon and custom padding.
 - Because option is taller than usually, we have to specify dropdown's height manually, to match the option height.
 
 <Canvas>
-  <Story
-    name="button"
-  >
-    {CustomIcons.bind({})}
-  </Story>
+  <Story name="button">{CustomIcons.bind({})}</Story>
 </Canvas>
 
 ### Invite people dropdown
+
 A composition of `Input` and a `Dropdown` component. Dropdown is placed inside an input using input's slot `trailingSlot`.
 Click `Show code` for more details.
 
-
 <Canvas>
-  <Story
-    name="InvitePeople"
-  >
-    {InvitePeople.bind({})}
-  </Story>
+  <Story name="InvitePeople">{InvitePeople.bind({})}</Story>
 </Canvas>
 
 ## Properties

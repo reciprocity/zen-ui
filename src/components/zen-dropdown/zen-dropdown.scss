@@ -136,7 +136,7 @@ $item-ypadding: 0.5rem;
   }
 }
 
-:host([menu-width]:not([menu-width="100%"])) {
+:host([menu-width]:not([menu-width='100%'])) {
   .list {
     margin-top: 3px;
     border-width: 1px;
