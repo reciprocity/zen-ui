@@ -6,6 +6,7 @@ $item-ypadding: 0.5rem;
 
 :host {
   position: relative;
+  width: 100%;
   box-sizing: border-box;
   font-size: $text-md;
   cursor: pointer;
