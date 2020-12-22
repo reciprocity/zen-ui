@@ -1,8 +1,9 @@
 import { newSpecPage } from '@stencil/core/testing';
 import { ZenTooltip } from '../zen-tooltip';
+import { Position, Variant } from '../../helpers/helpers';
 
-describe('zen-tooltip', () => {
-  it('renders', async () => {
+describe('Test default rendering', () => {
+  it('Variant is default dark, position is default top', async () => {
     const page = await newSpecPage({
       components: [ZenTooltip],
       html: `<zen-tooltip></zen-tooltip>`,
@@ -15,5 +16,58 @@ describe('zen-tooltip', () => {
         </mock:shadow-root>
       </zen-tooltip>
     `);
+  });
+});
+
+describe('Test variants and position rendering', () => {
+  const variants = Object.keys(Variant).map(n => Variant[n]);
+  it.each(variants, 'Test variant %s is correctly', variant => {
+    const page = newSpecPage({
+      components: [ZenTooltip],
+      html: `<zen-tooltip variant="${variant}" label="Testing tooltip"></zen-tooltip>`,
+    });
+    expect(page.root).toEqualHtml(`
+        <zen-tooltip>
+          <mock:shadow-root>
+            <div class="tooltip ${variant} top">
+              <slot name="label">Testing tooltip</slot>
+            </div>
+          </mock:shadow-root>
+        </zen-tooltip>
+     `);
+  });
+
+  const positions = Object.keys(Position).map(n => Position[n]);
+  it.each(positions, 'Test each position %s is correct', position => {
+    const page = newSpecPage({
+      components: [ZenTooltip],
+      html: `<zen-tooltip position="${position}" label="Testing tooltip"></zen-tooltip>`,
+    });
+    expect(page.root).toEqualHtml(`
+        <zen-tooltip>
+          <mock:shadow-root>
+            <div class="tooltip dark ${position}">
+              <slot name="label">Testing tooltip</slot>
+            </div>
+          </mock:shadow-root>
+        </zen-tooltip>
+      `);
+  });
+});
+
+describe('Test tooltip functionality', () => {
+  it('Test show tooltip on mouse over', async () => {
+    const page = await newSpecPage({
+      components: [ZenTooltip],
+      html: `<div>Trigger</div><zen-tooltip></zen-tooltip>`,
+    });
+    expect(page.root).not.toHaveClass('visible');
+
+    const event = new Event('mouseover');
+    const target = page.root.previousElementSibling as HTMLElement;
+
+    target.dispatchEvent(event);
+    await page.waitForChanges();
+    expect(page.root).toHaveClass('visible');
   });
 });
