@@ -1,27 +1,25 @@
 import { html } from 'lit-html';
-import markdown from './readme.md';
+import Readme from './readme.md';
+import { Meta, Description, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
 import { Position, Variant } from '../helpers/helpers';
 
-const argTypes = {
-  position: {
-    control: { type: 'select', options: Object.keys(Position).map(n => Position[n]) },
-  },
-  variant: {
-    control: { type: 'select', options: Object.keys(Variant).map(n => Variant[n]) },
-  },
-};
+import icon from '../../img/reci-icon-g.png';
+import { faCheck } from '@fortawesome/pro-light-svg-icons';
+import { litHtmlIcon, styles } from '../helpers/fa-icons';
 
-export default {
-  title: 'Notifications/Tooltip',
-  component: 'zen-tooltip',
-  argTypes,
-  parameters: {
-    notes: { markdown },
-  },
-};
+import { getArgTypesAndArgs, spreadArgs } from '../../../.storybook/helpers/argTypes';
+const { argTypes, args } = getArgTypesAndArgs('zen-tooltip');
 
-const Template = ({ position, variant, label }) => {
-  return html`
+<Meta title="Notifications/Tooltip2" component="zen-tooltip" argTypes={argTypes} />
+
+# Zen Tooltips
+
+## Component previews
+
+#### 1. Customized content
+
+export const Template = ({ position, variant, label }) => {
+  return html/*html*/`
     <style>
       .wrapper {
         text-align: center;
@@ -36,8 +34,8 @@ const Template = ({ position, variant, label }) => {
   `;
 };
 
-const TemplateSlot = () => {
-  return html`
+export const TemplateSlot = () => {
+  return html/*html*/`
     <style>
       .row {
         display: flex;
@@ -100,8 +98,8 @@ const TemplateSlot = () => {
   `;
 };
 
-const TemplateVariants = () => {
-  return html`
+export const TemplateVariants = () => {
+  return html/*html*/`
     <style>
       .container {
         display: flex;
@@ -145,13 +143,33 @@ const TemplateVariants = () => {
   `;
 };
 
-export const Default = Template.bind({});
-Default.args = {
-  position: Position.TOP,
-  variant: Variant.DARK,
-  label: 'The Manager can edit and create in the context of the PCI-DSS framework.',
-  offset: 10,
-};
+<Canvas>
+  <Story
+    name="default"
+    args={{
+      ...args,
+      position: Position.TOP,
+      variant: Variant.DARK,
+      label: 'The Manager can edit and create in the context of the PCI-DSS framework.',
+      offset: 10,
+    }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
 
-export const TooltipWithHTMLContent = TemplateSlot.bind({});
-export const TooltipVariants = TemplateVariants.bind({});
+<ArgsTable story="default" />
+
+<Canvas>
+  <Story name="slot" >
+    {TemplateSlot.bind({})}
+  </Story>
+</Canvas>
+
+<Canvas>
+  <Story name="variant" >
+    {TemplateVariants.bind({})}
+  </Story>
+</Canvas>
+
+<div class="stencildoc" />
+<Description>{Readme}</Description>
