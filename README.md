@@ -106,3 +106,7 @@ also prepending native events with `zen`:
 
 ### Emit default events
 Emit default events (`click`, `change`, `input`,...) instead making them up
+
+## How to use components
+
+For instructions on how to consume this library check `src/stories/getting_started.stories.mdx`
