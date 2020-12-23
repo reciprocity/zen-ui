@@ -30,9 +30,13 @@ h1.sbdocs-h1 {
   color: $color-blue-700;
 }
 
-.sbdocs h3,
-.sbdocs h4 {
+.sbdocs h3 {
   margin-top: 3em;
+  line-height: 1.2em;
+}
+
+.sbdocs h4 {
+  margin-top: 2em;
   line-height: 1.2em;
 }
 

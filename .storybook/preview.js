@@ -21,8 +21,19 @@ export const parameters = {
   controls: { expanded: false },
   options: {
     storySort: {
-      method: '',
-      order: ['Guides', 'Buttons', 'Forms', 'Icons', 'Notifications'],
+      method: 'alphabetical',
+      order: [
+        'Getting started',
+        'Developers',
+        'Changelog',
+        'Guides',
+        [
+          'Colors',
+          'Typography',
+          'Spacing'
+        ],
+        'Buttons', 'Forms', 'Icons', 'Notifications',
+      ],
       locales: '',
     },
   },

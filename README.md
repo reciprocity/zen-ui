@@ -1,58 +1,59 @@
 # ZenUI
-[A collection of UI components](https://zen-ui.zengrc.com/) that are shared across Reciprocity applications.\
+[A collection of UI components](https://zen-ui.zengrc.com/) that are shared across Reciprocity applications.
+
+
 Powered by StencilJS and Storybook.
 
 ## Dev environment setup
 #### Install all required dependencies
+
 ```bash
 yarn
 ```
 
-#### Initial build and run of both Stencil and Storybook in watch mode with HMR
-```
+#### Serve on localhost
+For initial build and serve of both Stencil and Storybook in watch mode with HMR run command below. Storybook should be available on `http://localhost:6006`.
+
+```bash
 yarn start
 ```
-###### Storybook should be available on `http://localhost:6006`.
+
 
 #### To create new Web Components
+To automatically create folder structure for the component, it's internal basic tests, style and documentation along with a basic code structure:
+
 ```bash
 yarn create:component zen-{component-name}
 ```
-###### This will automatically create folder structure for the component, it's internal basic tests, style and documentation along with a basic code structure.
 
-#### To lint-check code
+#### Lint code
+To check lint errors:
+
 ```bash
 yarn lint:check
 ```
 
-#### To format styles with Prettier
+To check and fix autofixable lint errors:
+
+```bash
+yarn lint
+```
+
+#### Format code (using Prettier)
+To check format errors:
+
 ```bash
 yarn format:check
 ```
-###### Both previous commands will ran before the changes are pushed to the repository. (Husky's Pre-Push Hook)
 
-## How to consume the library
-#### Install it
+To check and fix autofixable format errors:
+
 ```bash
-yarn add @reciprocity/zen-ui
+yarn format
 ```
 
-#### Import all components at once
-```js
-import { applyPolyfills, defineCustomElements } from '@reciprocity/zen-ui/loader';
-
-applyPolyfills().then(() => {
-  defineCustomElements();
-});
-```
-
-#### Import components one at a time
-```js
-import { ZenButton, ZenSpinner } from '@reciprocity/zen-ui/dist/custom-elements';
-
-customElements.define('zen-button', ZenButton);
-customElements.define('zen-spinner', ZenSpinner);
-```
+#### Note
+Both `format` and `lint` commands will ran before the changes are pushed to the repository. (Husky's Pre-Push Hook)
 
 ## Folder structure
 `src/components` Stencil src folder. Implementation, tests, and stories for each component.\
@@ -116,3 +117,7 @@ also prepending native events with `zen`:
 
 ### Emit default events
 Emit default events (`click`, `change`, `input`,...) instead making them up
+
+## How to use components
+
+For instructions on how to consume this library check `src/stories/getting_started.stories.mdx`
