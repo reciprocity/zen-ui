@@ -135,7 +135,8 @@ export class ZenTooltip {
     };
 
     if (this.alwaysVisible) {
-      this.show();
+      // Add timeout, so target component is already layed-out correctly:
+      setTimeout(() => this.show(), 100);
       return;
     }
 
