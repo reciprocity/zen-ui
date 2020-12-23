@@ -9,12 +9,11 @@ import { StringifiedJson } from "./stories/components/color-swatch-group/color-s
 import { ButtonVariants } from "./components/zen-button/types";
 import { CheckboxChangeEventDetail } from "./components/zen-checkbox/types";
 import { OptionValue } from "./components/zen-menu-item/zen-option";
-import { Align } from "./components/helpers/types";
+import { Align, Position, TooltipVariant } from "./components/helpers/types";
 import { ZenDismissDuration, ZenVariant } from "./components/zen-notification/zen-notification-helper";
 import { OptionValue as OptionValue1 } from "./components/zen-menu-item/zen-option";
 import { StepEvent, StepItem } from "./components/zen-steps/zen-steps";
 import { StepsFilter } from "./components/zen-steps/types";
-import { Position, Variant } from "./components/helpers/helpers";
 export namespace Components {
     interface ColorSwatch {
         /**
@@ -262,9 +261,17 @@ export namespace Components {
          */
         "alwaysVisible"?: boolean;
         /**
+          * Delay between mouse out and tooltip hide (in ms)
+         */
+        "hideDelay": number;
+        /**
           * Set tooltip label
          */
         "label"?: string;
+        /**
+          * Limit tooltip's height and make content scroll
+         */
+        "maxHeight": string;
         /**
           * Set tooltip offset to target element
          */
@@ -274,9 +281,13 @@ export namespace Components {
          */
         "position"?: Position;
         /**
+          * Delay between mouse enter and tooltip show (in ms)
+         */
+        "showDelay": number;
+        /**
           * Set tooltip variant
          */
-        "variant"?: Variant;
+        "variant"?: TooltipVariant;
     }
 }
 declare global {
@@ -673,9 +684,17 @@ declare namespace LocalJSX {
          */
         "alwaysVisible"?: boolean;
         /**
+          * Delay between mouse out and tooltip hide (in ms)
+         */
+        "hideDelay"?: number;
+        /**
           * Set tooltip label
          */
         "label"?: string;
+        /**
+          * Limit tooltip's height and make content scroll
+         */
+        "maxHeight"?: string;
         /**
           * Set tooltip offset to target element
          */
@@ -685,9 +704,13 @@ declare namespace LocalJSX {
          */
         "position"?: Position;
         /**
+          * Delay between mouse enter and tooltip show (in ms)
+         */
+        "showDelay"?: number;
+        /**
           * Set tooltip variant
          */
-        "variant"?: Variant;
+        "variant"?: TooltipVariant;
     }
     interface IntrinsicElements {
         "color-swatch": ColorSwatch;
