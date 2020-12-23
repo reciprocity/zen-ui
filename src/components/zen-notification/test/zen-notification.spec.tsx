@@ -1,7 +1,8 @@
 import { newSpecPage } from '@stencil/core/testing';
+import { NotificationVariant } from '../../helpers/helpers';
 import { ZenNotification } from '../zen-notification';
 
-describe('zen-notification', () => {
+describe('Test default rendering', () => {
   it('renders', async () => {
     const page = await newSpecPage({
       components: [ZenNotification],
@@ -33,5 +34,19 @@ describe('zen-notification', () => {
         </mock:shadow-root>
       </zen-notification>
     `);
+  });
+});
+
+describe('Test parameters rendering', () => {
+  const variants = Object.keys(NotificationVariant).map(n => NotificationVariant[n]);
+
+  it.each(variants, 'Test variant %s is displayed correctly', async variant => {
+    const page = await newSpecPage({
+      components: [ZenNotification],
+      html: `<zen-notification variant="${variant}" />`,
+    });
+
+    expect(page.root).not.toHaveClass('notification-${variant}');
+
   });
 });

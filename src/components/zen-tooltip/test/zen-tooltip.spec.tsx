@@ -1,6 +1,6 @@
 import { newSpecPage } from '@stencil/core/testing';
 import { ZenTooltip } from '../zen-tooltip';
-import { Position, Variant } from '../../helpers/helpers';
+import { Position, TooltipVariant } from '../../helpers/helpers';
 
 describe('Test default rendering', () => {
   it('Variant is default dark, position is default top', async () => {
@@ -19,9 +19,9 @@ describe('Test default rendering', () => {
   });
 });
 
-describe('Test variants and position rendering', () => {
-  const variants = Object.keys(Variant).map(n => Variant[n]);
-  it.each(variants, 'Test variant %s is correctly', variant => {
+describe('Test parameters rendering', () => {
+  const variants = Object.keys(TooltipVariant).map(n => TooltipVariant[n]);
+  it.each(variants, 'Test variant %s is displayed correctly', variant => {
     const page = newSpecPage({
       components: [ZenTooltip],
       html: `<zen-tooltip variant="${variant}" label="Testing tooltip"></zen-tooltip>`,
@@ -38,7 +38,7 @@ describe('Test variants and position rendering', () => {
   });
 
   const positions = Object.keys(Position).map(n => Position[n]);
-  it.each(positions, 'Test each position %s is correct', position => {
+  it.each(positions, 'Test each position %s is displayed correct', position => {
     const page = newSpecPage({
       components: [ZenTooltip],
       html: `<zen-tooltip position="${position}" label="Testing tooltip"></zen-tooltip>`,
