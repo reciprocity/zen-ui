@@ -1,5 +1,5 @@
 import { Component, Host, h, Prop, State, Event, EventEmitter, Listen, Watch, Element, Method } from '@stencil/core';
-import { MouseEvent, getDefaultSlotContent } from '../helpers/helpers';
+import { getDefaultSlotContent } from '../helpers/helpers';
 import { faChevronDown } from '@fortawesome/pro-light-svg-icons';
 import { renderIcon, styles } from '../helpers/fa-icons';
 import { OptionValue } from '../zen-menu-item/zen-option';

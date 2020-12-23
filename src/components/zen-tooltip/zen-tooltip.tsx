@@ -1,5 +1,5 @@
 import { Component, Host, h, Prop, State, Element } from '@stencil/core';
-import { Position, TooltipVariant } from '../helpers/helpers';
+import { Position, TooltipVariant, Point } from '../helpers/types';
 import debounce from 'lodash/debounce';
 
 @Component({
@@ -86,7 +86,7 @@ export class ZenTooltip {
   debounceHide = debounce(this.hide, this.delay);
 
   componentDidLoad(): void {
-    let lastPoint: { x: number; y: number } = { x: 0, y: 0 };
+    let lastPoint: Point = { x: 0, y: 0 };
 
     const show = (event?: MouseEvent) => {
       this.debounceHide.cancel();

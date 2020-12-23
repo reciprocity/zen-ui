@@ -1,13 +1,5 @@
 import { querySelectorAllDeep } from 'query-selector-shadow-dom';
 
-export type Position = 'top' | 'right' | 'bottom' | 'left';
-
-export type TooltipVariant = 'dark' | 'light' | 'error';
-
-export interface MouseEvent extends Event {
-  path: Node[];
-}
-
 export function waitNextFrame(): Promise<boolean> {
   return new Promise(resolve => {
     window.requestAnimationFrame(() => resolve());
