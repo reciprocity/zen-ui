@@ -1,5 +1,6 @@
 import { Component, Host, h, Prop, State, Element } from '@stencil/core';
-import { Position, TooltipVariant, Point } from '../helpers/types';
+import { Position, TooltipVariant, Point, Rect } from '../helpers/types';
+import { containsRect, oppositePosition } from '../helpers/helpers';
 import debounce from 'lodash/debounce';
 
 @Component({
@@ -11,6 +12,8 @@ export class ZenTooltip {
   @Element() element: HTMLZenTooltipElement;
 
   @State() visible = false;
+
+  @State() realPosition: Position = 'top';
 
   /** Set tooltip position */
   @Prop() readonly position?: Position = 'top';
@@ -36,7 +39,7 @@ export class ZenTooltip {
   /** Delay between mouse enter and tooltip show (in ms)  */
   @Prop() readonly showDelay: number = 300;
 
-  positionTooltip(position?: Position): void {
+  positionTooltip(position?: Position): Rect {
     const previousElement = this.element.previousElementSibling as HTMLElement;
     const bounds = previousElement.getBoundingClientRect();
 
@@ -69,12 +72,33 @@ export class ZenTooltip {
 
     this.element.style.left = `${x}px`;
     this.element.style.top = `${y}px`;
+
+    myBounds.x += x;
+    myBounds.y += y;
+    return myBounds;
+  }
+
+  isTooltipFullyVisible(tooltipRect?: Rect): boolean {
+    const myBounds = tooltipRect || this.element.getBoundingClientRect();
+    const viewBounds = {
+      left: 0,
+      top: 0,
+      width: window.innerWidth,
+      height: window.innerHeight,
+    };
+    return containsRect(viewBounds, myBounds, 10);
   }
 
   show(): void {
     this.debounceHide.cancel();
     if (this.visible) return;
-    this.positionTooltip();
+    const tooltipRect = this.positionTooltip();
+
+    this.realPosition = this.position;
+    if (!this.isTooltipFullyVisible(tooltipRect)) {
+      this.realPosition = oppositePosition(this.position);
+      this.positionTooltip(this.realPosition);
+    }
     this.visible = true;
   }
 
@@ -134,7 +158,7 @@ export class ZenTooltip {
     const classes = {
       tooltip: true,
       [this.variant]: true,
-      [this.position]: true,
+      [this.realPosition]: true,
       scrollable: this.maxHeight !== 'none',
     };
     return (
@@ -143,7 +167,7 @@ export class ZenTooltip {
         <div
           class={{
             arrow: true,
-            [this.position]: true,
+            [this.realPosition]: true,
             [this.variant]: true,
           }}
         ></div>
