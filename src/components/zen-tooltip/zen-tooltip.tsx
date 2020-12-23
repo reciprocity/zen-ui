@@ -95,7 +95,8 @@ export class ZenTooltip {
     const tooltipRect = this.positionTooltip();
 
     this.realPosition = this.position;
-    if (!this.isTooltipFullyVisible(tooltipRect)) {
+    // if it's alwaysVisible we shouldn't change it if it's out of view:
+    if (!this.alwaysVisible && !this.isTooltipFullyVisible(tooltipRect)) {
       this.realPosition = oppositePosition(this.position);
       this.positionTooltip(this.realPosition);
     }
