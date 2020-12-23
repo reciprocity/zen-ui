@@ -2,6 +2,64 @@
 
 # Zen UI
 
+### ZenGRC Components library
+
+This library provides a set of components that should be used in every Zen-GRC micro-frontend app.
+
+<br />
+<br />
+
+## Installing
+
+#### Prereqisits
+
+[Node.js](https://nodejs.org/en/download/package-manager/)<br/>
+[npm](https://www.npmjs.com/get-npm)
+
+#### Install ZenUI npm package
+
+```bash
+yarn add @reciprocity/zen-ui
+```
+
+## Putting components in action
+
+There are two options
+
+1. You can import all components at once
+1. You can import individual components
+
+#### 1. Import all components at once
+
+```js
+import { applyPolyfills, defineCustomElements } from '@reciprocity/zen-ui/loader';
+
+applyPolyfills().then(() => {
+  defineCustomElements();
+});
+```
+
+#### 2. Import components one at a time
+
+```js
+import { ZenButton, ZenSpinner } from '@reciprocity/zen-ui/dist/custom-elements';
+
+customElements.define('zen-button', ZenButton);
+customElements.define('zen-spinner', ZenSpinner);
+```
+
+### Using components
+
+After importing components, just use them as any regular html element:
+
+```html
+<zen-dropdown>
+  <zen-option value="orange">Orange</zen-option>
+  <zen-option value="lemon">Lemon</zen-option>
+  <zen-option value="apple">Apple</zen-option>
+</zen-dropdown>
+```
+
 ## General notes
 
 Notes here apply to all components from Zen UI library.
