@@ -1,5 +1,7 @@
 # ZenUI
-[A collection of UI components](https://zen-ui.zengrc.com/) that are shared across Reciprocity applications.\
+[A collection of UI components](https://zen-ui.zengrc.com/) that are shared across Reciprocity applications.
+
+
 Powered by StencilJS and Storybook.
 
 ## Dev environment setup
@@ -10,13 +12,12 @@ yarn
 ```
 
 #### Serve on localhost
+For initial build and serve of both Stencil and Storybook in watch mode with HMR run command below. Storybook should be available on `http://localhost:6006`.
 
 ```bash
 yarn start
 ```
 
-Initial build and run of both Stencil and Storybook in watch mode with HMR.
-Storybook should be available on `http://localhost:6006`.
 
 #### To create new Web Components
 To automatically create folder structure for the component, it's internal basic tests, style and documentation along with a basic code structure:
@@ -25,7 +26,7 @@ To automatically create folder structure for the component, it's internal basic 
 yarn create:component zen-{component-name}
 ```
 
-#### Linter
+#### Lint code
 To check lint errors:
 
 ```bash
