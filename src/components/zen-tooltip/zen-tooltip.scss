@@ -40,13 +40,12 @@ $arrow_size: 0.3rem;
   &.bottom {
     border-left: $arrow_size solid transparent !important;
     border-right: $arrow_size solid transparent !important;
-    left: 50%;
-    transform: translateX(-2px);
+    left: calc(50% - #{$arrow_size});
   }
 
   &.right,
   &.left {
-    top: 50%;
+    top: calc(50% - #{$arrow_size});
     border-top: $arrow_size solid transparent !important;
     border-bottom: $arrow_size solid transparent !important;
   }
