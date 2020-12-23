@@ -36,15 +36,10 @@ export class ZenTooltip {
   /** Delay between mouse enter and tooltip show (in ms)  */
   @Prop() readonly showDelay: number = 300;
 
-  show(): void {
-    this.debounceHide.cancel();
-
-    if (this.visible) return;
-
+  positionTooltip(position?: Position): void {
     const previousElement = this.element.previousElementSibling as HTMLElement;
     const bounds = previousElement.getBoundingClientRect();
 
-    this.visible = true;
     this.element.style.display = 'block';
     this.element.style.left = '0';
     this.element.style.top = '0';
@@ -54,7 +49,7 @@ export class ZenTooltip {
     let x = bounds.left - myBounds.left + (bounds.width - myBounds.width) / 2;
     let y = bounds.top - myBounds.top + (bounds.height - myBounds.height) / 2;
 
-    switch (this.position) {
+    switch (position || this.position) {
       case 'left':
         x -= (bounds.width + myBounds.width) / 2 + this.offset;
         break;
@@ -74,6 +69,13 @@ export class ZenTooltip {
 
     this.element.style.left = `${x}px`;
     this.element.style.top = `${y}px`;
+  }
+
+  show(): void {
+    this.debounceHide.cancel();
+    if (this.visible) return;
+    this.positionTooltip();
+    this.visible = true;
   }
 
   hide(): void {
