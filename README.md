@@ -8,28 +8,41 @@ Powered by StencilJS and Storybook.
 yarn
 ```
 
-#### Initial build and run of both Stencil and Storybook in watch mode with HMR
+#### Serve on localhost
 ```
 yarn start
 ```
-###### Storybook should be available on `http://localhost:6006`.
+Initial build and run of both Stencil and Storybook in watch mode with HMR.
+Storybook should be available on `http://localhost:6006`.
 
 #### To create new Web Components
+To automatically create folder structure for the component, it's internal basic tests, style and documentation along with a basic code structure:
 ```bash
 yarn create:component zen-{component-name}
 ```
-###### This will automatically create folder structure for the component, it's internal basic tests, style and documentation along with a basic code structure.
 
-#### To lint-check code
+#### Linter
+To check lint errors:
 ```bash
 yarn lint:check
 ```
+To check and fix autofixable lint errors:
+```bash
+yarn lint
+```
 
-#### To format styles with Prettier
+#### Format code (using Prettier)
+To check format errors:
 ```bash
 yarn format:check
 ```
-###### Both previous commands will ran before the changes are pushed to the repository. (Husky's Pre-Push Hook)
+To check and fix autofixable format errors:
+```bash
+yarn format
+```
+
+#### Note
+Both `format` and `lint` commands will ran before the changes are pushed to the repository. (Husky's Pre-Push Hook)
 
 ## How to consume the library
 #### Install it
