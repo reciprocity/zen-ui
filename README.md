@@ -4,39 +4,49 @@ Powered by StencilJS and Storybook.
 
 ## Dev environment setup
 #### Install all required dependencies
+
 ```bash
 yarn
 ```
 
 #### Serve on localhost
-```
+
+```bash
 yarn start
 ```
+
 Initial build and run of both Stencil and Storybook in watch mode with HMR.
 Storybook should be available on `http://localhost:6006`.
 
 #### To create new Web Components
 To automatically create folder structure for the component, it's internal basic tests, style and documentation along with a basic code structure:
+
 ```bash
 yarn create:component zen-{component-name}
 ```
 
 #### Linter
 To check lint errors:
+
 ```bash
 yarn lint:check
 ```
+
 To check and fix autofixable lint errors:
+
 ```bash
 yarn lint
 ```
 
 #### Format code (using Prettier)
 To check format errors:
+
 ```bash
 yarn format:check
 ```
+
 To check and fix autofixable format errors:
+
 ```bash
 yarn format
 ```
