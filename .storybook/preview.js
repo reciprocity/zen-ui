@@ -23,10 +23,11 @@ export const parameters = {
     storySort: {
       method: 'alphabetical',
       order: [
+        'Getting started',
+        'Developers',
+        'Changelog',
         'Guides',
         [
-          'Getting started',
-          'Developers',
           'Colors',
           'Typography',
           'Spacing'
