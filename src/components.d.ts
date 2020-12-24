@@ -6,7 +6,6 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { StringifiedJson } from "./stories/components/color-swatch-group/color-swatch-group";
-import { JsonDocsComponent } from "@stencil/core/internal/stencil-public-docs";
 import { ButtonVariants } from "./components/zen-button/types";
 import { CheckboxChangeEventDetail } from "./components/zen-checkbox/types";
 import { OptionValue } from "./components/zen-menu-item/zen-option";
@@ -40,7 +39,7 @@ export namespace Components {
         /**
           * Data from stencilDocs.json
          */
-        "data": JsonDocsComponent;
+        "docs": string;
     }
     interface TextWithDetails {
     }
@@ -452,7 +451,7 @@ declare namespace LocalJSX {
         /**
           * Data from stencilDocs.json
          */
-        "data"?: JsonDocsComponent;
+        "docs"?: string;
     }
     interface TextWithDetails {
     }

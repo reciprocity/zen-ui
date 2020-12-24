@@ -7,9 +7,9 @@
 
 ## Properties
 
-| Property | Attribute | Description                | Type                | Default     |
-| -------- | --------- | -------------------------- | ------------------- | ----------- |
-| `data`   | --        | Data from stencilDocs.json | `JsonDocsComponent` | `undefined` |
+| Property | Attribute | Description                | Type     | Default     |
+| -------- | --------- | -------------------------- | -------- | ----------- |
+| `docs`   | `docs`    | Data from stencilDocs.json | `string` | `undefined` |
 
 
 ----------------------------------------------
