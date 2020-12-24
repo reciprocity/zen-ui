@@ -2,6 +2,10 @@ import stencilDocs from '../../stencilDocs.json';
 import { spread } from '@open-wc/lit-helpers';
 import { camelKeysToKebab } from './utils';
 
+export function getComponentData(componentName) {
+  return stencilDocs.components.find(n => n.tag === componentName);
+}
+
 const getPropType = (prop) =>
   prop.type.indexOf('|') > -1 ? 'enum' : prop.type;
 
@@ -62,7 +66,7 @@ export function getDefaultArgs(argTypes) {
 }
 
 export function getArgTypesAndArgs(componentName) {
-  const compData = stencilDocs.components.find(n => n.tag === componentName);
+  const compData = getComponentData(componentName);
   const argTypes = getArgTypes(compData);
   return {
     argTypes,

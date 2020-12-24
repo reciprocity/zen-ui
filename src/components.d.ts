@@ -6,6 +6,7 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { StringifiedJson } from "./stories/components/color-swatch-group/color-swatch-group";
+import { JsonDocsComponent } from "@stencil/core/internal/stencil-public-docs";
 import { ButtonVariants } from "./components/zen-button/types";
 import { CheckboxChangeEventDetail } from "./components/zen-checkbox/types";
 import { OptionValue } from "./components/zen-menu-item/zen-option";
@@ -34,6 +35,12 @@ export namespace Components {
           * Array of colors
          */
         "colors": StringifiedJson;
+    }
+    interface DocsTable {
+        /**
+          * Data from stencilDocs.json
+         */
+        "data": JsonDocsComponent;
     }
     interface TextWithDetails {
     }
@@ -303,6 +310,12 @@ declare global {
         prototype: HTMLColorSwatchGroupElement;
         new (): HTMLColorSwatchGroupElement;
     };
+    interface HTMLDocsTableElement extends Components.DocsTable, HTMLStencilElement {
+    }
+    var HTMLDocsTableElement: {
+        prototype: HTMLDocsTableElement;
+        new (): HTMLDocsTableElement;
+    };
     interface HTMLTextWithDetailsElement extends Components.TextWithDetails, HTMLStencilElement {
     }
     var HTMLTextWithDetailsElement: {
@@ -396,6 +409,7 @@ declare global {
     interface HTMLElementTagNameMap {
         "color-swatch": HTMLColorSwatchElement;
         "color-swatch-group": HTMLColorSwatchGroupElement;
+        "docs-table": HTMLDocsTableElement;
         "text-with-details": HTMLTextWithDetailsElement;
         "zen-animate": HTMLZenAnimateElement;
         "zen-button": HTMLZenButtonElement;
@@ -433,6 +447,12 @@ declare namespace LocalJSX {
           * Array of colors
          */
         "colors"?: StringifiedJson;
+    }
+    interface DocsTable {
+        /**
+          * Data from stencilDocs.json
+         */
+        "data"?: JsonDocsComponent;
     }
     interface TextWithDetails {
     }
@@ -715,6 +735,7 @@ declare namespace LocalJSX {
     interface IntrinsicElements {
         "color-swatch": ColorSwatch;
         "color-swatch-group": ColorSwatchGroup;
+        "docs-table": DocsTable;
         "text-with-details": TextWithDetails;
         "zen-animate": ZenAnimate;
         "zen-button": ZenButton;
@@ -738,6 +759,7 @@ declare module "@stencil/core" {
         interface IntrinsicElements {
             "color-swatch": LocalJSX.ColorSwatch & JSXBase.HTMLAttributes<HTMLColorSwatchElement>;
             "color-swatch-group": LocalJSX.ColorSwatchGroup & JSXBase.HTMLAttributes<HTMLColorSwatchGroupElement>;
+            "docs-table": LocalJSX.DocsTable & JSXBase.HTMLAttributes<HTMLDocsTableElement>;
             "text-with-details": LocalJSX.TextWithDetails & JSXBase.HTMLAttributes<HTMLTextWithDetailsElement>;
             "zen-animate": LocalJSX.ZenAnimate & JSXBase.HTMLAttributes<HTMLZenAnimateElement>;
             "zen-button": LocalJSX.ZenButton & JSXBase.HTMLAttributes<HTMLZenButtonElement>;

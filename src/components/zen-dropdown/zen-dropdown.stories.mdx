@@ -3,7 +3,7 @@ import { spread } from '@open-wc/lit-helpers';
 import Readme from './readme.md';
 import { Meta, Description, Story, Canvas, Props } from '@storybook/addon-docs/blocks';
 import { eventHandles, action } from '../../../.storybook/helpers/custom-action';
-import { getArgTypes, getDefaultArgs } from '../../../.storybook/helpers/argTypes';
+import { getArgTypes, getDefaultArgs, getComponentData } from '../../../.storybook/helpers/argTypes';
 import { camelKeysToKebab } from '../../../.storybook/helpers/utils';
 
 import iconGreen from '../../img/reci-icon-g.png';
@@ -186,5 +186,4 @@ Click `Show code` for more details.
 
 <Props story="default" />
 
-<div class="stencildoc" />
-<Description>{Readme}</Description>
+<docs-table data={getComponentData('zen-dropdown')}></docs-table>
