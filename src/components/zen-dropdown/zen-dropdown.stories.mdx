@@ -119,10 +119,7 @@ export const CustomIcons = () => html/*html*/ `
 export const InvitePeople = () => {
   function onDropdownFocus() {
     document.querySelector('#input1').hasFocus = true;
-    setTimeout(() => {
-      // Should be in timeout, otherwise click would toggle - close it
-      document.querySelector('#dropdown1').toggle(true);
-    }, 100);
+    document.querySelector('#dropdown1').toggle(true);
   }
   function onDropdownBlur() {
     document.querySelector('#input1').hasFocus = false;

@@ -267,6 +267,10 @@ export namespace Components {
          */
         "alwaysVisible"?: boolean;
         /**
+          * Pointing arrow - like a cartoon balloon
+         */
+        "hasArrow"?: boolean;
+        /**
           * Delay between mouse out and tooltip hide (in ms)
          */
         "hideDelay": number;
@@ -702,6 +706,10 @@ declare namespace LocalJSX {
           * Dont hide tooltip
          */
         "alwaysVisible"?: boolean;
+        /**
+          * Pointing arrow - like a cartoon balloon
+         */
+        "hasArrow"?: boolean;
         /**
           * Delay between mouse out and tooltip hide (in ms)
          */

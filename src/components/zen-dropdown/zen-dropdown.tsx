@@ -54,9 +54,7 @@ export class ZenDropdown {
   /** Close an opened dropdown menu */
   @Method()
   async toggle(open?: boolean): Promise<void> {
-    if (open === undefined) {
-      open = !this.opened;
-    }
+    if (open === this.opened) return;
     this.opened = open;
   }
 
@@ -66,7 +64,9 @@ export class ZenDropdown {
       if (!this.clickHandler) {
         this.clickHandler = event => this.closeOnClickOut(event);
       }
-      document.addEventListener('mouseup', this.clickHandler);
+      setTimeout(() => {
+        document.addEventListener('mousedown', this.clickHandler);
+      }, 50);
 
       // Reset scroll:
       if (this.list) {
@@ -79,7 +79,7 @@ export class ZenDropdown {
 
       this.appendOptionsOnClickHandlers();
     } else {
-      document.removeEventListener('mouseup', this.clickHandler);
+      document.removeEventListener('mousedown', this.clickHandler);
     }
   }
 
@@ -276,7 +276,7 @@ export class ZenDropdown {
             borderless: this.borderless,
             disabled: this.disabled,
           }}
-          onClick={() => {
+          onMouseDown={() => {
             this.toggleDropdown(true);
           }}
         >
