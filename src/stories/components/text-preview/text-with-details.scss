@@ -1,8 +1,10 @@
 @import './src/zen-styles/colors.scss';
 @import './src/zen-styles/variables.scss';
+@import './src/zen-styles/typography.scss';
 
 :host {
   display: block;
+  color: $color-gray-700;
 }
 
 .element-details {
