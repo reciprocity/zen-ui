@@ -1,3 +1,26 @@
+@import '../../../zen-styles/variables.scss';
+
 :host {
   background-color: #fee;
+}
+
+h2 {
+  margin-top: 2rem !important;
+}
+
+.methods {
+  width: 100%;
+  text-align: left;
+  margin-bottom: 2rem;
+
+  thead th {
+    border-bottom: 1px solid $color-gray-200;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  th,
+  td {
+    padding: 0.25rem 1rem;
+  }
 }
