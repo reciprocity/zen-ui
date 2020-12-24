@@ -1,34 +1,5 @@
-import { renderIcon } from './fa-icons';
-import { faBell, faCheck, faExclamation, faTimes } from '@fortawesome/pro-solid-svg-icons';
 import { querySelectorAllDeep } from 'query-selector-shadow-dom';
 import { Position, Rect } from './types';
-
-export enum Position {
-  TOP = 'top',
-  RIGHT = 'right',
-  BOTTOM = 'bottom',
-  LEFT = 'left',
-}
-
-export enum TooltipVariant {
-  DARK = 'dark',
-  LIGHT = 'light',
-  ERROR = 'error',
-}
-
-export enum NotificationVariant {
-  SUCCESS = 'success',
-  INFO = 'info',
-  WARNING = 'warning',
-  ERROR = 'error',
-}
-
-export enum Duration {
-  NONE = 'none',
-  SHORT = 'short',
-  MEDIUM = 'medium',
-  LONG = 'long',
-}
 
 export interface MouseEvent extends Event {
   path: Node[];
@@ -57,6 +28,7 @@ export function getDefaultSlotContent(host: HTMLElement): Element[] {
   return (host.shadowRoot.querySelector('slot:not([name])') as HTMLSlotElement).assignedElements();
 }
 
+export function getNextField(currentInput: HTMLElement): HTMLElement {
   // sort by bounding box, because compareDocumentPosition doesn't work in #shadow:
   const allElements = Array.from(
     querySelectorAllDeep('input,button,area,object,select,textarea,[contenteditable],[tabindex]'),
@@ -86,41 +58,4 @@ export function oppositePosition(position: Position): Position {
     bottom: 'top',
   };
   return opposites[position] as Position;
-}
-
-export function getIcon(variant: NotificationVariant): HTMLElement {
-  let icon: HTMLElement;
-  switch (variant) {
-    case NotificationVariant.SUCCESS:
-      icon = renderIcon(faCheck);
-      break;
-    case NotificationVariant.INFO:
-      icon = renderIcon(faBell);
-      break;
-    case NotificationVariant.WARNING:
-      icon = renderIcon(faExclamation);
-      break;
-    case NotificationVariant.ERROR:
-      icon = renderIcon(faTimes);
-      break;
-  }
-  return icon;
-}
-
-export function getTimeout(dismissDuration: Duration): number {
-  let duration;
-  switch (dismissDuration) {
-    case Duration.SHORT:
-      duration = 1000;
-      break;
-    case Duration.MEDIUM:
-      duration = 5000;
-      break;
-    case Duration.LONG:
-      duration = 10000;
-      break;
-    default:
-      duration = 0;
-  }
-  return duration;
 }

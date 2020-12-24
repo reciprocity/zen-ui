@@ -1,6 +1,5 @@
 import { html } from 'lit-html';
 import markdown from './readme.md';
-import { Duration, NotificationVariant } from '../helpers/helpers';
 
 const argTypes = {
   variant: {
@@ -78,10 +77,10 @@ const TemplateVariant = () => {
 
 export const Default = Template.bind({});
 Default.args = {
-  variant: NotificationVariant.SUCCESS,
+  variant: 'success',
   heading: 'Success',
   message: 'Settings successfully saved!',
-  dismissDuration: Duration.NONE,
+  dismissDuration: 'none',
   dismiss: false,
 };
 export const NotificationVariants = TemplateVariant.bind({});
