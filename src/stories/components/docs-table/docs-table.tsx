@@ -7,8 +7,14 @@ import { JsonDocsComponent } from '@stencil/core/internal/stencil-public-docs';
   shadow: false,
 })
 export class DocsTable {
+  data: JsonDocsComponent;
+
   /** Data from stencilDocs.json */
-  @Prop() readonly data: JsonDocsComponent;
+  @Prop() readonly docs: string;
+
+  componentWillLoad(): void {
+    this.data = JSON.parse(this.docs);
+  }
 
   render(): HTMLElement {
     return (
