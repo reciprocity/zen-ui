@@ -39,6 +39,9 @@ export class ZenTooltip {
   /** Delay between mouse enter and tooltip show (in ms)  */
   @Prop() readonly showDelay: number = 300;
 
+  /** Pointing arrow - like a cartoon balloon */
+  @Prop() readonly hasArrow?: boolean = true;
+
   positionTooltip(position?: Position): Rect {
     const previousElement = this.element.previousElementSibling as HTMLElement;
     const bounds = previousElement.getBoundingClientRect();

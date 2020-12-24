@@ -32,6 +32,7 @@ $arrow_size: 0.3rem;
   overflow-x: hidden;
 }
 
+:host(:not([has-arrow])),
 :host(.scrollable) {
   & .arrow {
     display: none;
