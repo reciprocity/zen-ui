@@ -1,11 +1,11 @@
 @import './src/zen-styles/colors.scss';
 @import './src/zen-styles/variables.scss';
 
-.text-with-details {
+:host {
   display: block;
+}
 
-  .element-details {
-    color: $color-gray-500;
-    font-size: $text-md;
-  }
+.element-details {
+  color: $color-gray-500;
+  font-size: $text-md;
 }
