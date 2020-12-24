@@ -6,6 +6,7 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { StringifiedJson } from "./stories/components/color-swatch-group/color-swatch-group";
+import { JsonDocsComponent } from "@stencil/core/internal/stencil-public-docs";
 import { ButtonVariants } from "./components/zen-button/types";
 import { CheckboxChangeEventDetail } from "./components/zen-checkbox/types";
 import { OptionValue } from "./components/zen-menu-item/zen-option";
@@ -37,9 +38,9 @@ export namespace Components {
     }
     interface DocsTable {
         /**
-          * Component name (kebab-case)
+          * Data from stencilDocs.json
          */
-        "component": string;
+        "data": JsonDocsComponent;
     }
     interface TextWithDetails {
     }
@@ -449,9 +450,9 @@ declare namespace LocalJSX {
     }
     interface DocsTable {
         /**
-          * Component name (kebab-case)
+          * Data from stencilDocs.json
          */
-        "component"?: string;
+        "data"?: JsonDocsComponent;
     }
     interface TextWithDetails {
     }

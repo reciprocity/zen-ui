@@ -7,9 +7,9 @@
 
 ## Properties
 
-| Property    | Attribute   | Description                 | Type     | Default |
-| ----------- | ----------- | --------------------------- | -------- | ------- |
-| `component` | `component` | Component name (kebab-case) | `string` | `''`    |
+| Property | Attribute | Description                | Type                | Default     |
+| -------- | --------- | -------------------------- | ------------------- | ----------- |
+| `data`   | --        | Data from stencilDocs.json | `JsonDocsComponent` | `undefined` |
 
 
 ----------------------------------------------
