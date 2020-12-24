@@ -1,5 +1,4 @@
 import { Component, Host, h, Prop } from '@stencil/core';
-import { getComponentData } from '../../../../.storybook/helpers/argTypes';
 import { JsonDocsComponent } from '@stencil/core/internal/stencil-public-docs';
 
 @Component({
@@ -8,17 +7,8 @@ import { JsonDocsComponent } from '@stencil/core/internal/stencil-public-docs';
   shadow: false,
 })
 export class DocsTable {
-  data: JsonDocsComponent;
-
-  /** Component name (kebab-case) */
-  @Prop() readonly component: string = '';
-
-  componentWillLoad(): void {
-    this.data = {
-      ...this.data,
-      ...getComponentData(this.component),
-    };
-  }
+  /** Data from stencilDocs.json */
+  @Prop() readonly data: JsonDocsComponent;
 
   render(): HTMLElement {
     return (
