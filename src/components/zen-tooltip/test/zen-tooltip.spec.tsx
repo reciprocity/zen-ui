@@ -8,11 +8,10 @@ describe('zen-tooltip', () => {
       html: `<zen-tooltip></zen-tooltip>`,
     });
     expect(page.root).toEqualHtml(`
-      <zen-tooltip>
+      <zen-tooltip class="dark tooltip top" style="max-height: none;">
         <mock:shadow-root>
-          <div class="tooltip dark top">
-            <slot name="label"></slot>
-          </div>
+          <slot></slot>
+          <div class="arrow dark top"></div>
         </mock:shadow-root>
       </zen-tooltip>
     `);

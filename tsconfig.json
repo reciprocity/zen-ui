@@ -17,6 +17,7 @@
     "jsxFactory": "h",
     "resolveJsonModule": true,
     "esModuleInterop": true,
+    "skipLibCheck": true,
   },
   "include": [
     "src", "types/jsx.d.ts", "./typings.d.ts", "./stencil.config.ts"
