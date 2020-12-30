@@ -21,4 +21,10 @@ export const config: Config = {
     },
   ],
   plugins: [sass()],
+  testing: {
+    transform: {
+      '^.+\\.js?$': 'babel-jest',
+    },
+    transformIgnorePatterns: ['node_modules/(?!query-selector-shadow-dom/)'],
+  },
 };
