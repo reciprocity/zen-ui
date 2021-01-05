@@ -30,34 +30,23 @@ Scaffolds a new component, creating the folder structure with basic code, styles
 yarn create:component zen-{component-name}
 ```
 
-#### Lint code
-To check lint errors:
+#### Linting and Formatting
+Both `lint` and `format` commands will run before the changes are pushed to the repository using a [Husky](https://github.com/typicode/husky) pre-push hook.
 
 ```bash
+# Checks and fixes linting errors
+yarn lint
+# Only checks for linting errors
 yarn lint:check
 ```
 
-To check and fix autofixable lint errors:
-
 ```bash
-yarn lint
-```
-
-#### Format code (using Prettier)
-To check format errors:
-
-```bash
+# Checks and fixes formatting errors
+yarn format
+# Only checks for formatting errors
 yarn format:check
 ```
 
-To check and fix autofixable format errors:
-
-```bash
-yarn format
-```
-
-#### Note
-Both `format` and `lint` commands will ran before the changes are pushed to the repository. (Husky's Pre-Push Hook)
 
 ## Folder structure
 `src/components` Stencil src folder. Implementation, tests, and stories for each component.\
