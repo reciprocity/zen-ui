@@ -7,9 +7,18 @@ import { Component, Host, h, Prop } from '@stencil/core';
 })
 export class DocsTable {
   /** html source code to preview */
-  @Prop() readonly html: string = '<div>Blank</div>';
+  @Prop({ mutable: true }) html = '<zen-button label="My button" variant="primary"></zen-button>';
+
+  onTextareaChange(e: Event): void {
+    this.html = (e.target as HTMLTextAreaElement).value;
+  }
 
   render(): HTMLElement {
-    return <Host class="html-playground">{this.html}</Host>;
+    return (
+      <Host class="html-playground">
+        <div class="preview" innerHTML={this.html}></div>
+        <textarea value={this.html} onChange={e => this.onTextareaChange(e)} />
+      </Host>
+    );
   }
 }
