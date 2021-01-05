@@ -38,6 +38,15 @@ export class DocsTable {
         indent(textarea);
       }
     }
+
+    const ctrl = ev.metaKey || ev.shiftKey || ev.ctrlKey;
+    const apply = (ev.key === Key.Enter && ctrl) || ev.key === Key.Escape || (ev.key === 's' && ctrl);
+    if (apply) {
+      // Apply changes:
+      const textarea = this.hostElement.shadowRoot.querySelector('textarea');
+      textarea.dispatchEvent(new Event('change'));
+      ev.preventDefault();
+    }
   }
 
   componentWillLoad(): void {
