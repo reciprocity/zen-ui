@@ -1,7 +1,14 @@
 # ZenUI
+
 [A collection of UI components](https://zen-ui.zengrc.com/) that are shared across Reciprocity applications.
 
 Powered by [Stencil](https://stenciljs.com/) and [Storybook](https://storybook.js.org/).
+
+## Installation
+
+Before installing, download and install [Node.js](https://nodejs.org/en/). Latest [LTS version](https://nodejs.org/en/about/releases/) is recommended.
+
+It is not necessary to have Docker installed as the project is not containerized.
 
 ## Dev environment setup
 #### Install all required dependencies
