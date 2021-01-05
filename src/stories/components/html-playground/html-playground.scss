@@ -11,6 +11,10 @@
   box-shadow: rgba(0,0,0,0.10) 0 1px 3px 0;
   border: 1px solid #ebeef3;
   margin: 1rem 0;
+  resize: both;
+  overflow: hidden;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 textarea {
