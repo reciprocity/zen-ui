@@ -41,6 +41,16 @@ export namespace Components {
          */
         "docs": string;
     }
+    interface HtmlPlayground {
+        /**
+          * html source code to preview
+         */
+        "html": string;
+        /**
+          * Save current value to local storage and restore it on load
+         */
+        "saveValue": true;
+    }
     interface TextWithDetails {
     }
     interface ZenAnimate {
@@ -319,6 +329,12 @@ declare global {
         prototype: HTMLDocsTableElement;
         new (): HTMLDocsTableElement;
     };
+    interface HTMLHtmlPlaygroundElement extends Components.HtmlPlayground, HTMLStencilElement {
+    }
+    var HTMLHtmlPlaygroundElement: {
+        prototype: HTMLHtmlPlaygroundElement;
+        new (): HTMLHtmlPlaygroundElement;
+    };
     interface HTMLTextWithDetailsElement extends Components.TextWithDetails, HTMLStencilElement {
     }
     var HTMLTextWithDetailsElement: {
@@ -413,6 +429,7 @@ declare global {
         "color-swatch": HTMLColorSwatchElement;
         "color-swatch-group": HTMLColorSwatchGroupElement;
         "docs-table": HTMLDocsTableElement;
+        "html-playground": HTMLHtmlPlaygroundElement;
         "text-with-details": HTMLTextWithDetailsElement;
         "zen-animate": HTMLZenAnimateElement;
         "zen-button": HTMLZenButtonElement;
@@ -456,6 +473,16 @@ declare namespace LocalJSX {
           * Data from stencilDocs.json
          */
         "docs"?: string;
+    }
+    interface HtmlPlayground {
+        /**
+          * html source code to preview
+         */
+        "html"?: string;
+        /**
+          * Save current value to local storage and restore it on load
+         */
+        "saveValue"?: true;
     }
     interface TextWithDetails {
     }
@@ -743,6 +770,7 @@ declare namespace LocalJSX {
         "color-swatch": ColorSwatch;
         "color-swatch-group": ColorSwatchGroup;
         "docs-table": DocsTable;
+        "html-playground": HtmlPlayground;
         "text-with-details": TextWithDetails;
         "zen-animate": ZenAnimate;
         "zen-button": ZenButton;
@@ -767,6 +795,7 @@ declare module "@stencil/core" {
             "color-swatch": LocalJSX.ColorSwatch & JSXBase.HTMLAttributes<HTMLColorSwatchElement>;
             "color-swatch-group": LocalJSX.ColorSwatchGroup & JSXBase.HTMLAttributes<HTMLColorSwatchGroupElement>;
             "docs-table": LocalJSX.DocsTable & JSXBase.HTMLAttributes<HTMLDocsTableElement>;
+            "html-playground": LocalJSX.HtmlPlayground & JSXBase.HTMLAttributes<HTMLHtmlPlaygroundElement>;
             "text-with-details": LocalJSX.TextWithDetails & JSXBase.HTMLAttributes<HTMLTextWithDetailsElement>;
             "zen-animate": LocalJSX.ZenAnimate & JSXBase.HTMLAttributes<HTMLZenAnimateElement>;
             "zen-button": LocalJSX.ZenButton & JSXBase.HTMLAttributes<HTMLZenButtonElement>;
