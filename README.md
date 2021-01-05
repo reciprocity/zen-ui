@@ -65,9 +65,6 @@ All pages/stories are written in [MDX format](https://mdxjs.com/getting-started/
 
 Be sure to get to know it better before altering docs.
 
-## VSCode extensions
-To enable highlighting of html inside lit-html tags (html\`...\`), you can use extension [Comment tagged templates](https://marketplace.visualstudio.com/items?itemName=bierner.comment-tagged-templates) or [lit-plugin](https://marketplace.visualstudio.com/items?itemName=runem.lit-plugin).
-
 ## How to use components
 
 For instructions on how to consume this library check `src/stories/getting_started.stories.mdx`
