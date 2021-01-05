@@ -10,24 +10,22 @@ Before installing, download and install [Node.js](https://nodejs.org/en/). Lates
 
 It is not necessary to have Docker installed as the project is not containerized.
 
-## Dev environment setup
-#### Install all required dependencies
+## Quick start
 
+Install dependencies:
 ```bash
 yarn
 ```
 
-#### Serve on localhost
-For initial build and serve of both Stencil and Storybook in watch mode with HMR run command below. Storybook should be available on `http://localhost:6006`.
-
+Start Stencil compiler and Storybook server (available at `http://localhost:6006`):
 ```bash
+# Runs both in watch mode with HMR
 yarn start
 ```
 
+#### Create new Web Components
 
-#### To create new Web Components
-To automatically create folder structure for the component, it's internal basic tests, style and documentation along with a basic code structure:
-
+Scaffolds a new component, creating the folder structure with basic code, styles, unit tests, and documentation:
 ```bash
 yarn create:component zen-{component-name}
 ```
