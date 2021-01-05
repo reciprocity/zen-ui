@@ -55,3 +55,7 @@ yarn format:check
 ## Using components within your own app
 
 For instructions on how to consume this library check the [Getting Started stories](src/stories/getting_started.stories.mdx).
+
+## Contributing
+
+To contribute, please familiarize yourself with the [Contributing](./docs/contributing.md) doc.
