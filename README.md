@@ -52,6 +52,6 @@ yarn format
 yarn format:check
 ```
 
-## How to use components
+## Using components within your own app
 
-For instructions on how to consume this library check `src/stories/getting_started.stories.mdx`
+For instructions on how to consume this library check the [Getting Started stories](src/stories/getting_started.stories.mdx).
