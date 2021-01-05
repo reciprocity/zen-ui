@@ -1,8 +1,7 @@
 # ZenUI
 [A collection of UI components](https://zen-ui.zengrc.com/) that are shared across Reciprocity applications.
 
-
-Powered by StencilJS and Storybook.
+Powered by [Stencil](https://stenciljs.com/) and [Storybook](https://storybook.js.org/).
 
 ## Dev environment setup
 #### Install all required dependencies
