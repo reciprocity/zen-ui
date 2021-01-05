@@ -1,4 +1,6 @@
-import { Component, Host, h, Prop, Element } from '@stencil/core';
+import { Component, Host, h, Prop, Element, Listen } from '@stencil/core';
+import { Key } from 'ts-key-enum';
+import { indent, unindent } from './helpers';
 
 @Component({
   tag: 'html-playground',
@@ -22,6 +24,19 @@ export class DocsTable {
     this.html = (e.target as HTMLTextAreaElement).value;
     if (this.saveValue && !!window.localStorage) {
       window.localStorage.setItem(this.localStorageKey(), this.html);
+    }
+  }
+
+  @Listen('keydown')
+  handleKeyDown(ev: KeyboardEvent): void {
+    if (ev.key === Key.Tab) {
+      ev.preventDefault();
+      const textarea = this.hostElement.shadowRoot.querySelector('textarea');
+      if (ev.shiftKey) {
+        unindent(textarea);
+      } else {
+        indent(textarea);
+      }
     }
   }
 
