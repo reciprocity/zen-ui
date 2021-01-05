@@ -20,6 +20,7 @@ export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
   controls: { expanded: false },
   options: {
+    enableShortcuts: false,
     storySort: {
       method: 'alphabetical',
       order: [
