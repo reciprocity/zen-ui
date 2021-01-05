@@ -30,6 +30,11 @@ Scaffolds a new component, creating the folder structure with basic code, styles
 yarn create:component zen-{component-name}
 ```
 
+#### Testing
+```bash
+yarn test
+```
+
 #### Linting and Formatting
 Both `lint` and `format` commands will run before the changes are pushed to the repository using a [Husky](https://github.com/typicode/husky) pre-push hook.
 
