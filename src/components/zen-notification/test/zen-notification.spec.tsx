@@ -7,7 +7,8 @@ describe('Test parameters rendering', () => {
       components: [ZenNotification],
       html: `<zen-notification variant="${variant}" />`,
     });
-    expect(page.root.getAttribute('variant')).toEqual(variant);
+    const className = '.notification-' + variant;
+    expect(page.root.shadowRoot.querySelector(className)).not.toBeNull();
   });
 
   it('Test parameters are set correctly', async () => {

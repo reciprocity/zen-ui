@@ -7,16 +7,24 @@ describe('Test parameters rendering', () => {
       components: [ZenTooltip],
       html: `<zen-tooltip variant="${variant}" label="Testing tooltip"></zen-tooltip>`,
     });
-    expect(page.root.getAttribute('variant')).toEqual(variant);
+    expect(page.root.classList.contains(variant)).toBe(true);
   });
 
-  it.each(['top', 'right', 'bottom', 'left'])('Test each position %s is displayed correct', async position => {
-    const page = await newSpecPage({
-      components: [ZenTooltip],
-      html: `<zen-tooltip position="${position}" label="Testing tooltip"></zen-tooltip>`,
-    });
-    expect(page.root.getAttribute('position')).toEqual(position);
-  });
+  it.each(['top', 'right', 'bottom', 'left'])(
+    'Test each position %s is displayed correct',
+    async (position: string, done: any) => {
+      const page = await newSpecPage({
+        components: [ZenTooltip],
+        html: `<div>Trigger</div><zen-tooltip position="${position}" always-visible="true" label="Testing tooltip"></zen-tooltip>`,
+      });
+
+      // We have to wait that tooltip is displayed because of always visible param
+      setTimeout(async () => {
+        expect(page.root.classList.contains(position)).toBe(true);
+        done();
+      }, 101);
+    },
+  );
 });
 
 describe('Test tooltip functionality', () => {
