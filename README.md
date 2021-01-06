@@ -35,6 +35,14 @@ yarn create:component zen-{component-name}
 yarn test
 ```
 
+#### E2E Testing (Puppeteer)
+TODO: **test:e2e can only be run using npm!**
+It does NOT work if you run it using yarn (no tests found)
+Known bug described here: https://github.com/ionic-team/stencil/issues/1609
+```
+npm run test:e2e
+```
+
 #### Linting and Formatting
 Both `lint` and `format` commands will run before the changes are pushed to the repository using a [Husky](https://github.com/typicode/husky) pre-push hook.
 

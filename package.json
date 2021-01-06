@@ -20,6 +20,7 @@
     "npm:publish": "rm -rf dist && rm -rf public && rm -rf loader && rm -rf node_modules && rm yarn.lock && yarn && yarn build && npm version patch && npm publish",
     "test": "stencil test --spec --watchAll --coverage",
     "test:ci": "stencil test --spec --coverage",
+    "test:e2e": "stencil test --e2e",
     "test:report": "open ./coverage/lcov-report/index.html",
     "create-component": "stencil generate",
     "stencil:start": "stencil build --dev --watch --serve",
