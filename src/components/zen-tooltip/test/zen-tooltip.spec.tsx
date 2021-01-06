@@ -2,7 +2,7 @@ import { newSpecPage } from '@stencil/core/testing';
 import { ZenTooltip } from '../zen-tooltip';
 
 describe('Test parameters rendering', () => {
-  it.each(['dark', 'light', 'error'])('Test variant %s is displayed correctly', async variant => {
+  it.each(['dark', 'light', 'error'])('Test that variant %s is applied correctly', async variant => {
     const page = await newSpecPage({
       components: [ZenTooltip],
       html: `<zen-tooltip variant="${variant}" label="Testing tooltip"></zen-tooltip>`,
@@ -11,7 +11,7 @@ describe('Test parameters rendering', () => {
   });
 
   it.each(['top', 'right', 'bottom', 'left'])(
-    'Test each position %s is displayed correct',
+    'Test that position %s is applied correctly',
     async (position: string, done: any) => {
       const page = await newSpecPage({
         components: [ZenTooltip],

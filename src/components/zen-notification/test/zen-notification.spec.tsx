@@ -2,7 +2,7 @@ import { newSpecPage } from '@stencil/core/testing';
 import { ZenNotification } from '../zen-notification';
 
 describe('Test parameters rendering', () => {
-  it.each(['success', 'info', 'warning', 'error'])('Test variant %s is displayed correctly', async variant => {
+  it.each(['success', 'info', 'warning', 'error'])('Test that variant %s is applied correctly', async variant => {
     const page = await newSpecPage({
       components: [ZenNotification],
       html: `<zen-notification variant="${variant}" />`,
@@ -11,7 +11,7 @@ describe('Test parameters rendering', () => {
     expect(page.root.shadowRoot.querySelector(className)).not.toBeNull();
   });
 
-  it('Test parameters are set correctly', async () => {
+  it('Test that parameters are set correctly', async () => {
     const page = await newSpecPage({
       components: [ZenNotification],
       html: `<zen-notification heading="Test Heading" message="Test Message"></zen-notification>`,
