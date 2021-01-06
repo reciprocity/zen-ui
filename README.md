@@ -4,6 +4,8 @@
 
 Powered by [Stencil](https://stenciljs.com/) and [Storybook](https://storybook.js.org/).
 
+[![Coverage Status](https://coveralls.io/repos/github/reciprocity/zen-ui/badge.svg?branch=main)](https://coveralls.io/github/reciprocity/zen-ui?branch=main)
+
 ## Installation
 
 Before installing, download and install [Node.js](https://nodejs.org/en/). Latest [LTS version](https://nodejs.org/en/about/releases/) is recommended.
