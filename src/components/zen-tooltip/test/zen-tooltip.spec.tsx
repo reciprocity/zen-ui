@@ -1,4 +1,5 @@
 import { newSpecPage } from '@stencil/core/testing';
+
 import { ZenTooltip } from '../zen-tooltip';
 
 describe('Test parameters rendering', () => {
@@ -12,7 +13,7 @@ describe('Test parameters rendering', () => {
 
   it.each(['top', 'right', 'bottom', 'left'])(
     'Test that position %s is applied correctly',
-    async (position: string, done: any) => {
+    async (position: string, done: DoneFn) => {
       const page = await newSpecPage({
         components: [ZenTooltip],
         html: `<div>Trigger</div><zen-tooltip position="${position}" always-visible="true" label="Testing tooltip"></zen-tooltip>`,

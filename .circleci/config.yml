@@ -34,6 +34,13 @@ jobs:
       - attach_workspace:
           at: .
       - run: yarn format:ci
+  test:
+    <<: *defaults
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - run: yarn run test:ci
   build:
     <<: *defaults
     steps:
@@ -70,6 +77,9 @@ workflows:
       - format:
           requires:
             - lint
+      - test:
+          requires:
+            - prepare
       - build:
           requires:
             - prepare
@@ -80,4 +90,3 @@ workflows:
             branches:
               only:
                 - main
-
