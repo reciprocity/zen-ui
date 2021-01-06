@@ -17,6 +17,11 @@
   box-sizing: border-box;
 }
 
+.preview-title {
+  font-weight: bold;
+  margin: 2rem 0 0;
+}
+
 textarea {
   min-height: 300px;
   background-color: $color-gray-800;

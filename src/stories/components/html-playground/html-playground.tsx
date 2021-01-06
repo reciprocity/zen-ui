@@ -58,8 +58,9 @@ export class DocsTable {
   render(): HTMLElement {
     return (
       <Host class="html-playground">
-        <div class="preview" innerHTML={this.html}></div>
         <textarea value={this.html} onChange={e => this.onTextareaChange(e)} />
+        <p class="preview-title">Preview</p>
+        <div class="preview" innerHTML={this.html}></div>
       </Host>
     );
   }
