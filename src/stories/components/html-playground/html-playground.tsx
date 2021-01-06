@@ -7,7 +7,7 @@ import { indent, unindent } from './helpers';
   styleUrl: 'html-playground.scss',
   shadow: true,
 })
-export class DocsTable {
+export class HtmlPlayground {
   @Element() hostElement: HTMLHtmlPlaygroundElement;
 
   /** html source code to preview */
