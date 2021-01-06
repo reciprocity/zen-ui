@@ -1,7 +1,8 @@
 import { Component, Host, h, Prop } from '@stencil/core';
 import { renderIcon } from '../helpers/fa-icons';
 import { faTimes } from '@fortawesome/pro-solid-svg-icons';
-import { getIcon, getTimeout, ZenDismissDuration, ZenVariant } from './zen-notification-helper';
+import { Duration, NotificationVariant } from '../helpers/types';
+import { getIcon, getTimeout } from './functions';
 
 @Component({
   tag: 'zen-notification',
@@ -12,7 +13,7 @@ export class ZenNotification {
   div: HTMLElement = undefined;
 
   /** Variant  */
-  @Prop() readonly variant: ZenVariant = ZenVariant.SUCCESS;
+  @Prop() readonly variant: NotificationVariant = 'success';
 
   /** Height */
   @Prop() readonly height: string = '5rem';
@@ -27,7 +28,7 @@ export class ZenNotification {
   @Prop() readonly message: string = '';
 
   /** Hide duration */
-  @Prop() readonly dismissDuration: ZenDismissDuration = ZenDismissDuration.MEDIUM;
+  @Prop() readonly dismissDuration: Duration = 'medium';
 
   /** Can dismiss */
   @Prop() readonly dismiss: boolean = false;
@@ -37,7 +38,7 @@ export class ZenNotification {
   }
 
   componentDidRender(): void {
-    if (this.dismissDuration !== ZenDismissDuration.NONE) {
+    if (this.dismissDuration !== 'none') {
       setTimeout(() => {
         this.close(this.div);
       }, getTimeout(this.dismissDuration));

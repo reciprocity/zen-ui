@@ -1,49 +1,36 @@
 import { renderIcon } from '../helpers/fa-icons';
 import { faBell, faCheck, faExclamation, faTimes } from '@fortawesome/pro-solid-svg-icons';
+import { Duration, NotificationVariant } from '../helpers/types';
 
-export enum ZenVariant {
-  SUCCESS = 'success',
-  INFO = 'info',
-  WARNING = 'warning',
-  ERROR = 'error',
-}
-
-export enum ZenDismissDuration {
-  NONE = 'none',
-  SHORT = 'short',
-  MEDIUM = 'medium',
-  LONG = 'long',
-}
-
-export function getIcon(variant: ZenVariant): HTMLElement {
+export function getIcon(variant: NotificationVariant): HTMLElement {
   let icon: HTMLElement;
   switch (variant) {
-    case ZenVariant.SUCCESS:
+    case 'success':
       icon = renderIcon(faCheck);
       break;
-    case ZenVariant.INFO:
+    case 'info':
       icon = renderIcon(faBell);
       break;
-    case ZenVariant.WARNING:
+    case 'warning':
       icon = renderIcon(faExclamation);
       break;
-    case ZenVariant.ERROR:
+    case 'error':
       icon = renderIcon(faTimes);
       break;
   }
   return icon;
 }
 
-export function getTimeout(dismissDuration: ZenDismissDuration): number {
+export function getTimeout(dismissDuration: Duration): number {
   let duration;
   switch (dismissDuration) {
-    case ZenDismissDuration.SHORT:
+    case 'short':
       duration = 1000;
       break;
-    case ZenDismissDuration.MEDIUM:
+    case 'medium':
       duration = 5000;
       break;
-    case ZenDismissDuration.LONG:
+    case 'long':
       duration = 10000;
       break;
     default:

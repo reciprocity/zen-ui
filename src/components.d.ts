@@ -9,8 +9,7 @@ import { StringifiedJson } from "./stories/components/color-swatch-group/color-s
 import { ButtonVariants } from "./components/zen-button/types";
 import { CheckboxChangeEventDetail } from "./components/zen-checkbox/types";
 import { OptionValue } from "./components/zen-menu-item/zen-option";
-import { Align, Position, TooltipVariant } from "./components/helpers/types";
-import { ZenDismissDuration, ZenVariant } from "./components/zen-notification/zen-notification-helper";
+import { Align, Duration, NotificationVariant, Position, TooltipVariant } from "./components/helpers/types";
 import { OptionValue as OptionValue1 } from "./components/zen-menu-item/zen-option";
 import { StepEvent, StepItem } from "./components/zen-steps/zen-steps";
 import { StepsFilter } from "./components/zen-steps/types";
@@ -175,7 +174,7 @@ export namespace Components {
         /**
           * Hide duration
          */
-        "dismissDuration": ZenDismissDuration;
+        "dismissDuration": Duration;
         /**
           * Title
          */
@@ -191,7 +190,7 @@ export namespace Components {
         /**
           * Variant
          */
-        "variant": ZenVariant;
+        "variant": NotificationVariant;
         /**
           * Width
          */
@@ -607,7 +606,7 @@ declare namespace LocalJSX {
         /**
           * Hide duration
          */
-        "dismissDuration"?: ZenDismissDuration;
+        "dismissDuration"?: Duration;
         /**
           * Title
          */
@@ -623,7 +622,7 @@ declare namespace LocalJSX {
         /**
           * Variant
          */
-        "variant"?: ZenVariant;
+        "variant"?: NotificationVariant;
         /**
           * Width
          */

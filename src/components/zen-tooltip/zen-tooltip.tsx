@@ -123,11 +123,10 @@ export class ZenTooltip {
 
       // Show only if mouse hasn't moved too much:
       if (event) {
-        const dist = Math.sqrt((lastPoint.x - event.x) ^ (2 + (lastPoint.y - event.y)) ^ 2);
+        const dist = Math.sqrt((lastPoint.x - event.clientX) ** 2 + (lastPoint.y - event.clientY) ** 2);
         const moveThreshold = 3;
         if (dist <= moveThreshold) return;
-
-        lastPoint = { x: event.x, y: event.y };
+        lastPoint = { x: event.clientX, y: event.clientY };
       }
 
       this.debounceShow();
@@ -139,6 +138,7 @@ export class ZenTooltip {
     };
 
     if (this.alwaysVisible) {
+      this.realPosition = this.position;
       // Add timeout, so target component is already layed-out correctly:
       setTimeout(() => this.show(), 100);
       return;

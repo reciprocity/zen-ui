@@ -1,6 +1,10 @@
 import { querySelectorAllDeep } from 'query-selector-shadow-dom';
 import { Position, Rect } from './types';
 
+export interface MouseEvent extends Event {
+  path: Node[];
+}
+
 export function waitNextFrame(): Promise<boolean> {
   return new Promise(resolve => {
     window.requestAnimationFrame(() => resolve(true));
