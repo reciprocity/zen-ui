@@ -41,6 +41,17 @@ jobs:
       - attach_workspace:
           at: .
       - run: yarn run test:ci
+      - persist_to_workspace:
+          root: .
+          paths:
+            - coverage
+  coverage:
+    <<: *defaults
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - run: cat coverage/lcov.info | npx coveralls
   build:
     <<: *defaults
     steps:
@@ -80,6 +91,9 @@ workflows:
       - test:
           requires:
             - prepare
+      - coverage:
+          requires:
+            - test
       - build:
           requires:
             - prepare
