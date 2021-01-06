@@ -6,6 +6,9 @@ stencilDocs.json
 stencilDocs.d.ts
 /src/components/**/readme.md
 
+# test coverage
+coverage
+
 *~
 *.sw[mnpcod]
 *.log
