@@ -21,6 +21,7 @@
     "test": "stencil test --spec --watchAll --coverage",
     "test:ci": "stencil test --spec --coverage",
     "test:e2e": "stencil test --e2e",
+    "test:visual": "stencil test --e2e --screenshot",
     "test:report": "open ./coverage/lcov-report/index.html",
     "create-component": "stencil generate",
     "stencil:start": "stencil build --dev --watch --serve",
