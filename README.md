@@ -36,11 +36,15 @@ yarn test
 ```
 
 #### E2E Testing (Puppeteer)
-TODO: **test:e2e can only be run using npm!**
-It does NOT work if you run it using yarn (no tests found)
-Known bug described here: https://github.com/ionic-team/stencil/issues/1609
+**Note:** Be sure to use `yarn run` when running this command. Otherwise you will get `No tests found` error.
 ```
-npm run test:e2e
+yarn run test:e2e
+```
+
+#### Visual regression testing (Puppeteer)
+**Note:** Be sure to use `yarn run` when running this command. Otherwise you will get `No tests found` error.
+```
+yarn run test:visual
 ```
 
 #### Linting and Formatting
