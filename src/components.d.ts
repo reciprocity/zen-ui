@@ -13,6 +13,7 @@ import { Align, Duration, NotificationVariant, Position, TooltipVariant } from "
 import { OptionValue as OptionValue1 } from "./components/zen-menu-item/zen-option";
 import { StepEvent, StepItem } from "./components/zen-steps/zen-steps";
 import { StepsFilter } from "./components/zen-steps/types";
+import { TabItem, TabValue } from "./components/zen-tabs/zen-tabs";
 export namespace Components {
     interface ColorSwatch {
         /**
@@ -252,6 +253,16 @@ export namespace Components {
          */
         "steps": Array<StepItem>;
     }
+    interface ZenTabs {
+        /**
+          * Index of currently selected tab.
+         */
+        "tabs": TabItem[];
+        /**
+          * Index of currently selected tab.
+         */
+        "value": TabValue;
+    }
     interface ZenTextarea {
         /**
           * Makes textarea disabled.
@@ -412,6 +423,12 @@ declare global {
         prototype: HTMLZenStepsElement;
         new (): HTMLZenStepsElement;
     };
+    interface HTMLZenTabsElement extends Components.ZenTabs, HTMLStencilElement {
+    }
+    var HTMLZenTabsElement: {
+        prototype: HTMLZenTabsElement;
+        new (): HTMLZenTabsElement;
+    };
     interface HTMLZenTextareaElement extends Components.ZenTextarea, HTMLStencilElement {
     }
     var HTMLZenTextareaElement: {
@@ -442,6 +459,7 @@ declare global {
         "zen-option": HTMLZenOptionElement;
         "zen-spinner": HTMLZenSpinnerElement;
         "zen-steps": HTMLZenStepsElement;
+        "zen-tabs": HTMLZenTabsElement;
         "zen-textarea": HTMLZenTextareaElement;
         "zen-tooltip": HTMLZenTooltipElement;
     }
@@ -705,6 +723,16 @@ declare namespace LocalJSX {
          */
         "steps"?: Array<StepItem>;
     }
+    interface ZenTabs {
+        /**
+          * Index of currently selected tab.
+         */
+        "tabs"?: TabItem[];
+        /**
+          * Index of currently selected tab.
+         */
+        "value"?: TabValue;
+    }
     interface ZenTextarea {
         /**
           * Makes textarea disabled.
@@ -783,6 +811,7 @@ declare namespace LocalJSX {
         "zen-option": ZenOption;
         "zen-spinner": ZenSpinner;
         "zen-steps": ZenSteps;
+        "zen-tabs": ZenTabs;
         "zen-textarea": ZenTextarea;
         "zen-tooltip": ZenTooltip;
     }
@@ -808,6 +837,7 @@ declare module "@stencil/core" {
             "zen-option": LocalJSX.ZenOption & JSXBase.HTMLAttributes<HTMLZenOptionElement>;
             "zen-spinner": LocalJSX.ZenSpinner & JSXBase.HTMLAttributes<HTMLZenSpinnerElement>;
             "zen-steps": LocalJSX.ZenSteps & JSXBase.HTMLAttributes<HTMLZenStepsElement>;
+            "zen-tabs": LocalJSX.ZenTabs & JSXBase.HTMLAttributes<HTMLZenTabsElement>;
             "zen-textarea": LocalJSX.ZenTextarea & JSXBase.HTMLAttributes<HTMLZenTextareaElement>;
             "zen-tooltip": LocalJSX.ZenTooltip & JSXBase.HTMLAttributes<HTMLZenTooltipElement>;
         }
