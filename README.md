@@ -33,8 +33,15 @@ yarn create:component zen-{component-name}
 ```
 
 #### Testing
+
+To run unit and integration tests in Jest:
 ```bash
 yarn test
+```
+
+To run E2E/integration tests in Cypress:
+```bash
+yarn run test:e2e
 ```
 
 #### Linting and Formatting
