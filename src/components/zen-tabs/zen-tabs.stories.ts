@@ -10,7 +10,10 @@ export default {
 };
 
 const Template = ({ items, value }) => {
-  return html`<zen-tabs .tabs=${items} value=${value} />`;
+  function changed(event) {
+    console.log('changed', event);
+  }
+  return html`<zen-tabs @change=${changed} .tabs=${items} value=${value} />`;
 };
 
 export const Default = Template.bind({});

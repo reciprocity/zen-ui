@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop } from '@stencil/core';
+import { Component, Host, h, Prop, Element } from '@stencil/core';
 
 export interface TabItem {
   label: string;
@@ -7,12 +7,15 @@ export interface TabItem {
 
 export type TabValue = string | number;
 
+
 @Component({
   tag: 'zen-tabs',
   styleUrl: 'zen-tabs.scss',
   shadow: true,
 })
 export class ZenTabs {
+  @Element() hostElement: HTMLZenTabsElement;
+
   /** Index of currently selected tab. */
   @Prop() readonly tabs: TabItem[] = [];
 
@@ -20,15 +23,21 @@ export class ZenTabs {
   @Prop({ mutable: true }) value: TabValue = -1;
 
   tabClicked(event: Event): void {
-    console.log('clicked', event.target);
-    this.value = '';
+    this.value = (event.target as HTMLElement).getAttribute('data-value');
+    this.hostElement.dispatchEvent(new Event('change'));
   }
+
+  isTabActive = (tab: TabItem): boolean => tab.value == this.value;
 
   render(): HTMLElement {
     return (
       <Host>
         {this.tabs.map((tab: TabItem) => (
-          <div class="tab" data-value={tab.value} onClick={e => this.tabClicked(e)}>
+          <div
+            class={{ tab: true, active: this.isTabActive(tab) }}
+            data-value={tab.value}
+            onClick={e => this.tabClicked(e)}
+          >
             {tab.label}
           </div>
         ))}
