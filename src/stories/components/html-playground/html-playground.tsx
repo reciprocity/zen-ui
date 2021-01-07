@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, Element, Listen } from '@stencil/core';
+import { Component, Host, h, Prop, Element, Listen, State } from '@stencil/core';
 import { Key } from 'ts-key-enum';
 import { indent, unindent } from './helpers';
 
@@ -8,7 +8,14 @@ import { indent, unindent } from './helpers';
   shadow: true,
 })
 export class HtmlPlayground {
+  frameworks = [
+    { label: 'Vanilla JS', value: 'js' },
+    { label: 'Vue', value: 'vue' },
+  ];
+
   @Element() hostElement: HTMLHtmlPlaygroundElement;
+
+  @State() selectedFramework: string = this.frameworks[0].value;
 
   /** html source code to preview */
   @Prop({ mutable: true }) html = '<zen-button label="My button" variant="primary"></zen-button>';
@@ -25,6 +32,11 @@ export class HtmlPlayground {
     if (this.saveValue && !!window.localStorage) {
       window.localStorage.setItem(this.localStorageKey(), this.html);
     }
+  }
+
+  onTabClicked(): void {
+    const tabs = this.hostElement.shadowRoot.querySelector('#framework-tabs') as HTMLZenTabsElement;
+    this.selectedFramework = tabs.value.toString();
   }
 
   @Listen('keydown')
@@ -58,6 +70,14 @@ export class HtmlPlayground {
   render(): HTMLElement {
     return (
       <Host class="html-playground">
+        <zen-tabs
+          id="framework-tabs"
+          onChange={() => {
+            this.onTabClicked();
+          }}
+          tabs={this.frameworks}
+          value={this.selectedFramework}
+        />
         <textarea value={this.html} onChange={e => this.onTextareaChange(e)} />
         <p class="preview-title">Preview</p>
         <div class="preview" innerHTML={this.html}></div>
