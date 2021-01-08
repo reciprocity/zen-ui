@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, Element, Listen, State } from '@stencil/core';
+import { Component, Host, h, Prop, Element, Listen, State, Watch } from '@stencil/core';
 import { Key } from 'ts-key-enum';
 import { indent, unindent } from './helpers';
 
@@ -13,6 +13,11 @@ export class HtmlPlayground {
     { label: 'Vue', value: 'vue' },
   ];
 
+  sourceCodes = {
+    js: '',
+    vue: '',
+  };
+
   @Element() hostElement: HTMLHtmlPlaygroundElement;
 
   @State() selectedFramework: string = this.frameworks[0].value;
@@ -23,14 +28,23 @@ export class HtmlPlayground {
   /** Save current value to local storage and restore it on load */
   @Prop() readonly saveValue = true;
 
+  @Watch('selectedFramework')
+  async frameworkChanged(framework: string): Promise<void> {
+    this.html = this.sourceCodes[framework];
+    if (this.saveValue) {
+      window.localStorage.setItem('html-playground-framework', framework);
+    }
+  }
+
   localStorageKey(): string {
     return `html-playground${this.hostElement.id ? '-' + this.hostElement.id : ''}-value`;
   }
 
   onTextareaChange(e: Event): void {
     this.html = (e.target as HTMLTextAreaElement).value;
-    if (this.saveValue && !!window.localStorage) {
-      window.localStorage.setItem(this.localStorageKey(), this.html);
+    this.sourceCodes[this.selectedFramework] = this.html;
+    if (this.saveValue) {
+      window.localStorage.setItem(this.localStorageKey(), JSON.stringify(this.sourceCodes));
     }
   }
 
@@ -62,9 +76,28 @@ export class HtmlPlayground {
   }
 
   componentWillLoad(): void {
-    if (window.localStorage && window.localStorage.getItem(this.localStorageKey())) {
-      this.html = window.localStorage.getItem(this.localStorageKey());
-    }
+    const restoreSelectedFramework = (): void => {
+      const savedFramework = window.localStorage.getItem('html-playground-framework');
+      if (savedFramework) {
+        this.selectedFramework = savedFramework;
+      }
+    };
+
+    const restoreSourceCodes = (): void => {
+      let savedCodes;
+      try {
+        savedCodes = JSON.parse(window.localStorage.getItem(this.localStorageKey()));
+      } catch (err) {
+        // skip
+      }
+      if (savedCodes) {
+        this.sourceCodes = savedCodes;
+      }
+      this.html = this.sourceCodes[this.selectedFramework];
+    };
+
+    restoreSourceCodes();
+    restoreSelectedFramework();
   }
 
   render(): HTMLElement {
@@ -80,7 +113,9 @@ export class HtmlPlayground {
         />
         <textarea value={this.html} onChange={e => this.onTextareaChange(e)} />
         <p class="preview-title">Preview</p>
-        <div class="preview" innerHTML={this.html}></div>
+
+        <div class="preview" innerHTML={this.sourceCodes['js']}></div>
+
       </Host>
     );
   }
