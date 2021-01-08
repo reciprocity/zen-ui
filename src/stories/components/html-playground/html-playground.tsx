@@ -8,6 +8,31 @@ declare global {
   }
 }
 
+const DEFAULTS_SOURCES = () => ({
+  js: /*html*/ `
+    <script>
+      function buttonClicked(event) { console.log('Button clicked', event); }
+    </script>
+    <zen-button
+      label="Click"
+      onClick="buttonClicked()"
+    />`,
+  vue: /*js*/ `{
+    template: \`<zen-button
+      :label="buttonTitle"
+      @click="onClick($event)"
+    />\`,
+    data: () => ({
+      buttonTitle: 'Click',
+    }),
+    methods: {
+      onClick(event) {
+        console.log('Button clicked', event);
+      }
+    }
+  }`,
+});
+
 @Component({
   tag: 'html-playground',
   styleUrl: 'html-playground.scss',
@@ -19,10 +44,7 @@ export class HtmlPlayground {
     { label: 'Vue', value: 'vue' },
   ];
 
-  sourceCodes = {
-    js: '',
-    vue: '',
-  };
+  sourceCodes = DEFAULTS_SOURCES();
 
   vueApp;
 
