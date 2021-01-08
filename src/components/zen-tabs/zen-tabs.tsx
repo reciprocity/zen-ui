@@ -7,7 +7,6 @@ export interface TabItem {
 
 export type TabValue = string | number;
 
-
 @Component({
   tag: 'zen-tabs',
   styleUrl: 'zen-tabs.scss',
