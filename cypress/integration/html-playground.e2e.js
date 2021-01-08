@@ -1,8 +1,6 @@
 /// <reference types="cypress" />
 
-
-// TODO: TEMP move this to global scope
-const url = 'http://localhost:6006';
+import { storybookUrl } from '../constants';
 
 // TODO: TEMP move this to global scope
 /**
@@ -11,7 +9,7 @@ const url = 'http://localhost:6006';
  * @param {string} id  Storybook docs page id
  */
 function toInlineFrameContentUrl(id) {
-  return `${url}/iframe.html?id=${id}&viewMode=docs`;
+  return `${storybookUrl}/iframe.html?id=${id}&viewMode=docs`;
 }
 
 context('HTML Playground', () => {
