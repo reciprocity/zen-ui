@@ -14,28 +14,12 @@ function toInlineFrameContentUrl(id) {
   return `${url}/iframe.html?id=${id}&viewMode=docs`;
 }
 
-
-// TODO: worth discussing is whether Cypress tests scoped to
-//       a single component should be next to the source code
-
 context('HTML Playground', () => {
   const pageId = 'playground--page';
 
   beforeEach(() => {
     cy.visit(toInlineFrameContentUrl(pageId));
   })
-
-  // TODO: this would be the other way of doing it
-  it.skip('should render title', () => {
-    cy.get('#playground--page').click();
-
-    cy.frameLoaded('#storybook-preview-iframe');
-
-    cy.iframe('#storybook-preview-iframe')
-      .find('#html-playground')
-      .should('have.text', 'Html Playground')
-      .matchImageSnapshot('title');
-  });
 
   it('should render title', () => {
     cy
