@@ -5,7 +5,7 @@ import { toInlineFrameContentUrl } from '../utils';
 context('HTML Playground', () => {
   const pageId = 'playground--page';
 
-  beforeEach(() => {
+  before(() => {
     cy.visit(toInlineFrameContentUrl(pageId));
   })
 
