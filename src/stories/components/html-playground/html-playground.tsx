@@ -2,6 +2,12 @@ import { Component, Host, h, Prop, Element, Listen, State, Watch } from '@stenci
 import { Key } from 'ts-key-enum';
 import { indent, unindent } from './helpers';
 
+declare global {
+  interface Window {
+    Vue: any;
+  }
+}
+
 @Component({
   tag: 'html-playground',
   styleUrl: 'html-playground.scss',
@@ -17,6 +23,8 @@ export class HtmlPlayground {
     js: '',
     vue: '',
   };
+
+  vueApp;
 
   @Element() hostElement: HTMLHtmlPlaygroundElement;
 
@@ -45,6 +53,9 @@ export class HtmlPlayground {
     this.sourceCodes[this.selectedFramework] = this.html;
     if (this.saveValue) {
       window.localStorage.setItem(this.localStorageKey(), JSON.stringify(this.sourceCodes));
+    }
+    if (this.selectedFramework === 'vue') {
+      this.updateVue();
     }
   }
 
@@ -100,9 +111,28 @@ export class HtmlPlayground {
     restoreSelectedFramework();
   }
 
+  vueLoaded(): void {
+    this.updateVue();
+  }
+
+  updateVue(): void {
+    if (this.vueApp) {
+      const appRoot = this.vueApp.$el;
+      this.vueApp.$destroy();
+      appRoot.remove();
+    }
+
+    const config = eval(`config=${this.sourceCodes['vue']}`);
+
+    const target = document.createElement('div');
+    this.hostElement.shadowRoot.querySelector('#vue-preview').appendChild(target);
+    this.vueApp = new window.Vue(config).$mount(target);
+  }
+
   render(): HTMLElement {
     return (
       <Host class="html-playground">
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12" onLoad={() => this.vueLoaded()}></script>
         <zen-tabs
           id="framework-tabs"
           onChange={() => {
@@ -116,6 +146,7 @@ export class HtmlPlayground {
 
         <div class="preview" innerHTML={this.sourceCodes['js']}></div>
 
+        <div id="vue-preview" class="preview vue"></div>
       </Host>
     );
   }
