@@ -22,6 +22,7 @@
     "test:ci": "stencil test --spec --coverage",
     "test:report": "open ./coverage/lcov-report/index.html",
     "test:e2e": "cypress open",
+    "test:e2e:run": "cypress run",
     "create-component": "stencil generate",
     "stencil:start": "stencil build --dev --watch --serve",
     "stencil:watch": "stencil build --watch",

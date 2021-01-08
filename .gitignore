@@ -8,6 +8,9 @@ stencilDocs.d.ts
 
 # test coverage
 coverage
+# visual regression testing
+cypress/screenshots
+cypress/snapshots/*/__diff_output__
 
 *~
 *.sw[mnpcod]
