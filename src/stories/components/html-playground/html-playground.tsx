@@ -122,7 +122,31 @@ export class HtmlPlayground {
       appRoot.remove();
     }
 
-    const config = eval(`config=${this.sourceCodes['vue']}`);
+    const errorHtml = /*html*/ `
+      <div
+        :style="{
+          'background-color': '#fcdadd',
+          padding: '1rem',
+          'border-radius': '3px',
+          'font-size': '0.75rem',
+        }"
+      >
+        {{errorDetails}}
+      </div>
+    `;
+
+    let config;
+    try {
+      config = eval(`config=${this.sourceCodes['vue']}`);
+    } catch (error) {
+      console.log(error);
+      config = {
+        template: errorHtml,
+        data: () => ({
+          errorDetails: error,
+        }),
+      };
+    }
 
     const target = document.createElement('div');
     this.hostElement.shadowRoot.querySelector('#vue-preview').appendChild(target);
