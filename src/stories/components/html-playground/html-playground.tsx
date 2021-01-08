@@ -108,31 +108,6 @@ export class HtmlPlayground {
     }
   }
 
-  componentWillLoad(): void {
-    const restoreSelectedFramework = (): void => {
-      const savedFramework = window.localStorage.getItem('html-playground-framework');
-      if (savedFramework) {
-        this.selectedFramework = savedFramework;
-      }
-    };
-
-    const restoreSourceCodes = (): void => {
-      let savedCodes;
-      try {
-        savedCodes = JSON.parse(window.localStorage.getItem(this.localStorageKey()));
-      } catch (err) {
-        // skip
-      }
-      if (savedCodes) {
-        this.sourceCodes = savedCodes;
-      }
-      this.html = this.sourceCodes[this.selectedFramework];
-    };
-
-    restoreSourceCodes();
-    restoreSelectedFramework();
-  }
-
   vueLoaded(): void {
     this.updateVue();
   }
@@ -173,6 +148,31 @@ export class HtmlPlayground {
     const target = document.createElement('div');
     this.hostElement.shadowRoot.querySelector('#vue-preview').appendChild(target);
     this.vueApp = new window.Vue(config).$mount(target);
+  }
+
+  componentWillLoad(): void {
+    const restoreSelectedFramework = (): void => {
+      const savedFramework = window.localStorage.getItem('html-playground-framework');
+      if (savedFramework) {
+        this.selectedFramework = savedFramework;
+      }
+    };
+
+    const restoreSourceCodes = (): void => {
+      let savedCodes;
+      try {
+        savedCodes = JSON.parse(window.localStorage.getItem(this.localStorageKey()));
+      } catch (err) {
+        // skip
+      }
+      if (savedCodes) {
+        this.sourceCodes = savedCodes;
+      }
+      this.html = this.sourceCodes[this.selectedFramework];
+    };
+
+    restoreSourceCodes();
+    restoreSelectedFramework();
   }
 
   render(): HTMLElement {
