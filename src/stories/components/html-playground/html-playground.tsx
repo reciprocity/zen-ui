@@ -52,15 +52,14 @@ export class HtmlPlayground {
 
   @State() selectedFramework: string = this.frameworks[0].value;
 
-  /** html source code to preview */
-  @Prop({ mutable: true }) html = '<zen-button label="My button" variant="primary"></zen-button>';
+  @State() textValue = '';
 
   /** Save current value to local storage and restore it on load */
   @Prop() readonly saveValue = true;
 
   @Watch('selectedFramework')
   async frameworkChanged(framework: string): Promise<void> {
-    this.html = this.sourceCodes[framework];
+    this.textValue = this.sourceCodes[framework];
     if (this.saveValue) {
       window.localStorage.setItem('html-playground-framework', framework);
     }
@@ -71,8 +70,9 @@ export class HtmlPlayground {
   }
 
   onTextareaChange(e: Event): void {
-    this.html = (e.target as HTMLTextAreaElement).value;
-    this.sourceCodes[this.selectedFramework] = this.html;
+    const value = (e.target as HTMLTextAreaElement).value;
+    this.textValue = value;
+    this.sourceCodes[this.selectedFramework] = value;
     if (this.saveValue) {
       window.localStorage.setItem(this.localStorageKey(), JSON.stringify(this.sourceCodes));
     }
@@ -182,7 +182,7 @@ export class HtmlPlayground {
 
     restoreSourceCodes();
     restoreSelectedFramework();
-    this.html = this.sourceCodes[this.selectedFramework];
+    this.textValue = this.sourceCodes[this.selectedFramework];
 
     this.updateVanillaJS();
     if (window.Vue) this.updateVue();
@@ -200,7 +200,7 @@ export class HtmlPlayground {
           tabs={this.frameworks}
           value={this.selectedFramework}
         />
-        <textarea value={this.html} onChange={e => this.onTextareaChange(e)} />
+        <textarea value={this.textValue} onChange={e => this.onTextareaChange(e)} />
         <p class="preview-title">Preview</p>
 
         <div id="vanilla-preview" class={{ preview: true, hidden: this.selectedFramework !== 'js' }} />

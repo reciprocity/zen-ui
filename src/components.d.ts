@@ -43,10 +43,6 @@ export namespace Components {
     }
     interface HtmlPlayground {
         /**
-          * html source code to preview
-         */
-        "html": string;
-        /**
           * Save current value to local storage and restore it on load
          */
         "saveValue": true;
@@ -492,10 +488,6 @@ declare namespace LocalJSX {
         "docs"?: string;
     }
     interface HtmlPlayground {
-        /**
-          * html source code to preview
-         */
-        "html"?: string;
         /**
           * Save current value to local storage and restore it on load
          */
