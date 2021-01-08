@@ -76,8 +76,13 @@ export class HtmlPlayground {
     if (this.saveValue) {
       window.localStorage.setItem(this.localStorageKey(), JSON.stringify(this.sourceCodes));
     }
-    if (this.selectedFramework === 'vue') {
-      this.updateVue();
+    switch (this.selectedFramework) {
+      case 'js':
+        this.updateVanillaJS();
+        break;
+      case 'vue':
+        this.updateVue();
+        break;
     }
   }
 
@@ -150,7 +155,12 @@ export class HtmlPlayground {
     this.vueApp = new window.Vue(config).$mount(target);
   }
 
-  componentWillLoad(): void {
+  updateVanillaJS(): void {
+    const target = this.hostElement.shadowRoot.querySelector('#vanilla-preview');
+    target.innerHTML = this.sourceCodes['js'];
+  }
+
+  componentDidLoad(): void {
     const restoreSelectedFramework = (): void => {
       const savedFramework = window.localStorage.getItem('html-playground-framework');
       if (savedFramework) {
@@ -168,11 +178,14 @@ export class HtmlPlayground {
       if (savedCodes) {
         this.sourceCodes = savedCodes;
       }
-      this.html = this.sourceCodes[this.selectedFramework];
     };
 
     restoreSourceCodes();
     restoreSelectedFramework();
+    this.html = this.sourceCodes[this.selectedFramework];
+
+    this.updateVanillaJS();
+    if (window.Vue) this.updateVue();
   }
 
   render(): HTMLElement {
@@ -190,7 +203,7 @@ export class HtmlPlayground {
         <textarea value={this.html} onChange={e => this.onTextareaChange(e)} />
         <p class="preview-title">Preview</p>
 
-        <div class={{ preview: true, hidden: this.selectedFramework !== 'js' }} innerHTML={this.sourceCodes['js']} />
+        <div id="vanilla-preview" class={{ preview: true, hidden: this.selectedFramework !== 'js' }} />
 
         <div id="vue-preview" class={{ preview: true, hidden: this.selectedFramework !== 'vue' }} />
       </Host>
