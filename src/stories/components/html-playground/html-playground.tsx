@@ -168,9 +168,9 @@ export class HtmlPlayground {
         <textarea value={this.html} onChange={e => this.onTextareaChange(e)} />
         <p class="preview-title">Preview</p>
 
-        <div class="preview" innerHTML={this.sourceCodes['js']}></div>
+        <div class={{ preview: true, hidden: this.selectedFramework !== 'js' }} innerHTML={this.sourceCodes['js']} />
 
-        <div id="vue-preview" class="preview vue"></div>
+        <div id="vue-preview" class={{ preview: true, hidden: this.selectedFramework !== 'vue' }} />
       </Host>
     );
   }
