@@ -46,6 +46,14 @@ export namespace Components {
           * Save current value to local storage and restore it on load
          */
         "saveValue": true;
+        /**
+          * What framework is initally selected
+         */
+        "selectedFramework": string;
+        /**
+          * What framework is initally selected
+         */
+        "sourceCodes": SourceCodes;
     }
     interface TextWithDetails {
     }
@@ -492,6 +500,14 @@ declare namespace LocalJSX {
           * Save current value to local storage and restore it on load
          */
         "saveValue"?: true;
+        /**
+          * What framework is initally selected
+         */
+        "selectedFramework"?: string;
+        /**
+          * What framework is initally selected
+         */
+        "sourceCodes"?: SourceCodes;
     }
     interface TextWithDetails {
     }

@@ -8,25 +8,36 @@ declare global {
   }
 }
 
-const DEFAULTS_SOURCES = () => ({
+interface SourceCodes {
+  js: string;
+  vue: string;
+}
+
+const DEFAULTS_SOURCES = (): SourceCodes => ({
   js: /*html*/ `
     <script>
-      function buttonClicked(event) { console.log('Button clicked', event); }
+      function buttonClicked(event) {
+        event.target.variant = 'secondary';
+        console.log('Button clicked', event);
+      }
     </script>
     <zen-button
       label="Click"
-      onClick="buttonClicked()"
+      onClick="buttonClicked(event)"
     />`,
   vue: /*js*/ `{
     template: \`<zen-button
       :label="buttonTitle"
+      :variant="buttonVariant"
       @click="onClick($event)"
     />\`,
     data: () => ({
       buttonTitle: 'Click',
+      buttonVariant: 'primary',
     }),
     methods: {
       onClick(event) {
+        this.buttonVariant = 'secondary';
         console.log('Button clicked', event);
       }
     }
@@ -44,18 +55,20 @@ export class HtmlPlayground {
     { label: 'Vue', value: 'vue' },
   ];
 
-  sourceCodes = DEFAULTS_SOURCES();
-
   vueApp;
 
   @Element() hostElement: HTMLHtmlPlaygroundElement;
-
-  @State() selectedFramework: string = this.frameworks[0].value;
 
   @State() textValue = '';
 
   /** Save current value to local storage and restore it on load */
   @Prop() readonly saveValue = true;
+
+  /** What framework is initally selected */
+  @Prop({ mutable: true }) selectedFramework: string = this.frameworks[0].value;
+
+  /** What framework is initally selected */
+  @Prop({ mutable: true }) sourceCodes: SourceCodes = DEFAULTS_SOURCES();
 
   @Watch('selectedFramework')
   async frameworkChanged(framework: string): Promise<void> {
@@ -156,8 +169,15 @@ export class HtmlPlayground {
   }
 
   updateVanillaJS(): void {
+    function evalScripts(element: Element): void {
+      // Appended script tags are not evaluated/ran automatically.
+      const scripts = element.querySelectorAll('script');
+      scripts.forEach(script => window.eval(script.innerHTML));
+    }
+
     const target = this.hostElement.shadowRoot.querySelector('#vanilla-preview');
     target.innerHTML = this.sourceCodes['js'];
+    evalScripts(target);
   }
 
   componentDidLoad(): void {
