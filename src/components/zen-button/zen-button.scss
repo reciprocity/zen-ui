@@ -28,14 +28,12 @@
   cursor: default;
 }
 
-span {
-  &.ml {
-    margin-left: 0.5rem;
-  }
+.ml {
+  margin-left: 0.5rem;
+}
 
-  &.mr {
-    margin-right: 0.5rem;
-  }
+.mr {
+  margin-right: 0.5rem;
 }
 
 :host(.btn-primary) {
