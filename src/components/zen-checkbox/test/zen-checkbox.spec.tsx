@@ -11,6 +11,7 @@ describe('zen-checkbox', () => {
       <zen-checkbox>
         <mock:shadow-root>
           <input class="input-control" type="checkbox">
+          <label><slot></slot></label>
         </mock:shadow-root>
       </zen-checkbox>
     `);
@@ -25,6 +26,7 @@ describe('zen-checkbox', () => {
       <zen-checkbox checked="">
         <mock:shadow-root>
           <input checked="" class="input-control" type="checkbox">
+          <label><slot></slot></label>
         </mock:shadow-root>
       </zen-checkbox>
     `);
@@ -39,6 +41,7 @@ describe('zen-checkbox', () => {
       <zen-checkbox disabled="">
         <mock:shadow-root>
           <input class="input-control" type="checkbox" disabled="">
+          <label class="disabled"><slot></slot></label>
         </mock:shadow-root>
       </zen-checkbox>
     `);
@@ -53,6 +56,7 @@ describe('zen-checkbox', () => {
       <zen-checkbox checked="" disabled="">
         <mock:shadow-root>
           <input checked="" class="input-control" type="checkbox" disabled="">
+          <label class="disabled"><slot></slot></label>
         </mock:shadow-root>
       </zen-checkbox>
     `);
@@ -61,16 +65,15 @@ describe('zen-checkbox', () => {
   it('renders checkbox with label', async () => {
     const page = await newSpecPage({
       components: [ZenCheckbox],
-      html: `<zen-checkbox label="This is an example label"></zen-checkbox>`,
+      html: `<zen-checkbox>This is an example label</zen-checkbox>`,
     });
     expect(page.root).toEqualHtml(`
-      <zen-checkbox label="This is an example label">
+      <zen-checkbox>
         <mock:shadow-root>
           <input class="input-control" type="checkbox">
-          <label>
-            This is an example label
-          </label>
+          <label><slot></slot></label>
         </mock:shadow-root>
+        This is an example label
       </zen-checkbox>
     `);
   });
@@ -78,16 +81,15 @@ describe('zen-checkbox', () => {
   it('renders checkbox with label and it is disabled', async () => {
     const page = await newSpecPage({
       components: [ZenCheckbox],
-      html: `<zen-checkbox label="This is an example label" disabled=""></zen-checkbox>`,
+      html: `<zen-checkbox disabled="">This is an example label</zen-checkbox>`,
     });
     expect(page.root).toEqualHtml(`
-      <zen-checkbox label="This is an example label" disabled="">
+      <zen-checkbox disabled="">
         <mock:shadow-root>
           <input class="input-control" type="checkbox" disabled="">
-          <label class="disabled">
-            This is an example label
-          </label>
+          <label class="disabled"><slot></slot></label>
         </mock:shadow-root>
+        This is an example label
       </zen-checkbox>
     `);
   });
@@ -95,19 +97,20 @@ describe('zen-checkbox', () => {
   it('renders checkbox with label and it is required', async () => {
     const page = await newSpecPage({
       components: [ZenCheckbox],
-      html: `<zen-checkbox label="This is an example label" required=""></zen-checkbox>`,
+      html: `<zen-checkbox required="">This is an example label</zen-checkbox>`,
     });
     expect(page.root).toEqualHtml(`
-      <zen-checkbox label="This is an example label" required="">
+      <zen-checkbox required="">
         <mock:shadow-root>
           <input class="input-control" type="checkbox" required="">
           <label>
-            This is an example label
+            <slot></slot>
             <span class="required">
               *
             </span>
           </label>
         </mock:shadow-root>
+        This is an example label
       </zen-checkbox>
     `);
   });

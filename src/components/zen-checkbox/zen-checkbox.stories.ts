@@ -10,7 +10,7 @@ export default {
 };
 
 const Template = ({ label, checked, required, disabled }) => {
-  return html`<zen-checkbox checked=${checked} disabled=${disabled} label=${label} required=${required} />`;
+  return html`<zen-checkbox checked=${checked} disabled=${disabled} required=${required}>${label}</zen-checkbox>`;
 };
 
 export const Default = Template.bind({});
