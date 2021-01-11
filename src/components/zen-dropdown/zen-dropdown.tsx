@@ -280,13 +280,14 @@ export class ZenDropdown {
             this.toggleDropdown(true);
           }}
         >
-          {this.value ? (
+          <div class={{ hidden: !this.value }}>
             <slot name="field-private" />
-          ) : (
+          </div>
+          <div class={{ hidden: !!this.value }}>
             <slot name="placeholder">
               <div class="placeholder">{this.placeholder}</div>
             </slot>
-          )}
+          </div>
           <div class="arrow">{renderIcon(faChevronDown)}</div>
         </div>
         <div
