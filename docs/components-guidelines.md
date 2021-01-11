@@ -27,3 +27,7 @@ also prepending native events with `zen`:
 
 ### Emit default events
 Emit default events (`click`, `change`, `input`,...) instead making them up
+
+### Writing stories
+Template for a new component's story page can be found here:
+`/src/components/zen-spinner/template.stories.mdx.sample`
