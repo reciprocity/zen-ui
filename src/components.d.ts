@@ -238,10 +238,6 @@ export namespace Components {
         "value": OptionValue;
     }
     interface ZenSpinner {
-        /**
-          * Color of the spinner. Accepts any CSS Legal Color Value.
-         */
-        "color": string;
     }
     interface ZenSteps {
         /**
@@ -708,10 +704,6 @@ declare namespace LocalJSX {
         "value"?: OptionValue;
     }
     interface ZenSpinner {
-        /**
-          * Color of the spinner. Accepts any CSS Legal Color Value.
-         */
-        "color"?: string;
     }
     interface ZenSteps {
         /**
