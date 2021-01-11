@@ -22,6 +22,10 @@
   margin: 2rem 0 0;
 }
 
+zen-tabs {
+  margin-bottom: 1rem;
+}
+
 textarea {
   min-height: 300px;
   background-color: $color-gray-800;
@@ -30,4 +34,8 @@ textarea {
   border-radius: 3px;
   resize: vertical;
   padding: 1rem 2rem;
+}
+
+.hidden {
+  display: none;
 }
