@@ -17,7 +17,7 @@ context('HTML Playground', () => {
   it('should render preview area', () => {
     cy
       .get('html-playground')
-      .find('textarea')
+      .find('#vanilla-preview')
       .matchImageSnapshot();
   });
 });
