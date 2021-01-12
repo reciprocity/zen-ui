@@ -1,6 +1,18 @@
 import { addMatchImageSnapshotCommand } from 'cypress-image-snapshot/command';
 
-addMatchImageSnapshotCommand();
+const isInteractiveMode = Cypress.config('isInteractive');
+
+function addMatchImageSnapshotCommandInMode(isInteractiveMode) {
+  if (isInteractiveMode) {
+    Cypress.Commands.add('matchImageSnapshot', () => {
+      cy.log('Skipping snapshot');
+    });
+  } else {
+    addMatchImageSnapshotCommand();
+  }
+}
+
+addMatchImageSnapshotCommandInMode(isInteractiveMode);
 
 /**
  * Visits URL iframe's content of a given Storybook docs page
