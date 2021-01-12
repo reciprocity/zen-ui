@@ -1,4 +1,5 @@
 {
+  "baseUrl": "http://localhost:6006",
   "includeShadowDom": true,
   "video": false
 }
