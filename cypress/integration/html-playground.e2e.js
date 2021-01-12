@@ -1,12 +1,10 @@
 /// <reference types="cypress" />
 
-import { toInlineFrameContentUrl } from '../utils';
-
 context('HTML Playground', () => {
   const pageId = 'playground--page';
 
   before(() => {
-    cy.visit(toInlineFrameContentUrl(pageId));
+    cy.visitStorybookIframe(pageId);
   })
 
   it('should render title', () => {
