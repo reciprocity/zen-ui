@@ -28,6 +28,10 @@ $field-height: #{1.2rem + 2 * 0.5rem};
   }
 }
 
+.hidden {
+  display: none;
+}
+
 .field {
   @include zenInput;
   @include zenInputBase;
