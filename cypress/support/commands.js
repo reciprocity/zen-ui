@@ -8,5 +8,7 @@ addMatchImageSnapshotCommand();
  * @param {string} id  Storybook docs page id
  */
 Cypress.Commands.add('visitStorybookIframe', (id) => {
+  Cypress.log({ name: 'CUSTOM - visitStorybookIframe: ' });
+
   cy.visit(`iframe.html?id=${id}&viewMode=docs`);
 });
