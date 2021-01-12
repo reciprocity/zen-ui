@@ -22,7 +22,7 @@
     "types": ["cypress", "node"]
   },
   "include": [
-    "src", "types/jsx.d.ts", "./typings.d.ts", "./stencil.config.ts"
+    "src", "types/jsx.d.ts", "./typings.d.ts", "./stencil.config.ts", "cypress"
   ],
   "exclude": [
     "node_modules"
