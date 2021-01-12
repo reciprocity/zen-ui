@@ -24,6 +24,7 @@
     "test:e2e": "yarn run test:e2e:interactive",
     "test:e2e:interactive": "cypress open",
     "test:e2e:headless": "cypress run",
+    "test:e2e:update": "CYPRESS_updateSnapshots=true cypress run",
     "create-component": "stencil generate",
     "stencil:start": "stencil build --dev --watch --serve",
     "stencil:watch": "stencil build --watch",
