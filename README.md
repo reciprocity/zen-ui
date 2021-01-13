@@ -67,4 +67,4 @@ For instructions on how to consume this library check the [Getting Started stori
 
 ## Contributing
 
-To contribute, please familiarize yourself with the [Contributing](./docs/contributing.md) doc.
+To contribute, please familiarize yourself with the [Contributing doc](./docs/contributing.md).
