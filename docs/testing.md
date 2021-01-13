@@ -26,6 +26,11 @@ yarn test
 
 ## E2E and visual
 
+First start Storybook:
+```bash
+yarn start
+```
+
 To run E2E and visual tests in Cypress:
 ```bash
 # Runs Cypress in interactive mode, without visual testing
