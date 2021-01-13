@@ -22,7 +22,7 @@
     "test:ci": "stencil test --spec --coverage",
     "test:report": "open ./coverage/lcov-report/index.html",
     "test:e2e": "yarn run test:e2e:interactive",
-    "test:e2e:interactive": "cypress open",
+    "test:e2e:interactive": "cypress open --browser chrome",
     "test:e2e:headless": "docker run -it -v $PWD:/cypress -w /cypress cypress/included:6.2.1 --browser chrome --config baseUrl=http://host.docker.internal:6006",
     "test:e2e:update": "docker run -it -e CYPRESS_updateSnapshots=true -v $PWD:/cypress -w /cypress cypress/included:6.2.1 --browser chrome --config baseUrl=http://host.docker.internal:6006",
     "test:e2e:ci": "cypress run --browser chrome",
