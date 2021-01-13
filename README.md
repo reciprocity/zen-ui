@@ -39,10 +39,12 @@ To run unit and integration tests in Jest:
 yarn test
 ```
 
-To run E2E/integration tests in Cypress:
+To run E2E/visual tests in Cypress:
 ```bash
 yarn run test:e2e
 ```
+
+For more details on testing (including visual testing) check the [Testing doc](./docs/testing.md).
 
 #### Linting and Formatting
 Both `lint` and `format` commands will run before the changes are pushed to the repository using a [Husky](https://github.com/typicode/husky) pre-push hook.
@@ -67,4 +69,4 @@ For instructions on how to consume this library check the [Getting Started stori
 
 ## Contributing
 
-To contribute, please familiarize yourself with the [Contributing](./docs/contributing.md) doc.
+To contribute, please familiarize yourself with the [Contributing doc](./docs/contributing.md).
