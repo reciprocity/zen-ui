@@ -6,16 +6,16 @@ import { Component, Host, h, Prop, EventEmitter, Event } from '@stencil/core';
   shadow: true,
 })
 export class ZenTextarea {
-  /** Makes textarea disabled. */
+  /** Appends attribute disabled. */
   @Prop() readonly disabled = false;
 
-  /** Makes textarea required. */
+  /** Appends attribute required. */
   @Prop() readonly required = false;
 
   /** Placeholder of the textarea. */
   @Prop() readonly placeholder: string = null;
 
-  /** The text of the textarea. */
+  /** Prefilled text content */
   @Prop({ mutable: true }) text?: string | null = '';
 
   /** Emitted when a keyboard input occurred. */
