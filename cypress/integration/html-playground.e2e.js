@@ -12,10 +12,4 @@ describe('HTML Playground', () => {
       .should('have.text', 'Html Playground')
       .matchImageSnapshot();
   });
-
-  it('should render preview area', () => {
-    cy.get('html-playground')
-      .find('textarea')
-      .matchImageSnapshot();
-  });
 });
