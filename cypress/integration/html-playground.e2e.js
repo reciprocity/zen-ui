@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-context('HTML Playground', () => {
+describe('HTML Playground', () => {
   const pageId = 'playground--page';
 
   before(() => {
@@ -8,16 +8,14 @@ context('HTML Playground', () => {
   })
 
   it('should render title', () => {
-    cy
-      .get('#html-playground')
+    cy.get('#html-playground')
       .should('have.text', 'Html Playground')
       .matchImageSnapshot();
   });
 
   it('should render preview area', () => {
-    cy
-      .get('html-playground')
-      .find('#vanilla-preview')
+    cy.get('html-playground')
+      .find('textarea')
       .matchImageSnapshot();
   });
 });

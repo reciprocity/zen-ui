@@ -11,6 +11,9 @@ module.exports = {
     'plugin:@stencil/recommended',
     'plugin:prettier/recommended',
   ],
+  globals: {
+    cy: true
+  },
   env: {
     node: true,
   },

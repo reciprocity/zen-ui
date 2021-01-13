@@ -19,6 +19,7 @@
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
+    "types": ["cypress", "node"]
   },
   "include": [
     "src", "types/jsx.d.ts", "./typings.d.ts", "./stencil.config.ts"
