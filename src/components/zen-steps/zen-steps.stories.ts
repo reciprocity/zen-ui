@@ -1,13 +1,9 @@
 import { html } from 'lit-html';
 import markdown from './readme.md';
-import { StepsFilter } from './types';
 
 const argTypes = {
   activeIndex: {
     control: { type: 'range', min: -1, max: 4, step: 1 },
-  },
-  clickable: {
-    control: { type: 'select', options: Object.keys(StepsFilter).map(n => StepsFilter[n]) },
   },
 };
 
@@ -33,7 +29,7 @@ const Template = ({ steps, activeIndex, clickable }) => {
 export const Default = Template.bind({});
 Default.args = {
   activeIndex: 1,
-  clickable: StepsFilter.Completed,
+  clickable: 'completed',
   steps: JSON.stringify([
     { label: 'Choose framework', completed: true },
     { label: 'Select objectives', completed: true },
