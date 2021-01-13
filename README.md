@@ -44,6 +44,8 @@ To run E2E/visual tests in Cypress:
 yarn run test:e2e
 ```
 
+For more details on testing (including visual testing) check the [Testing doc](./docs/testing.md).
+
 #### Linting and Formatting
 Both `lint` and `format` commands will run before the changes are pushed to the repository using a [Husky](https://github.com/typicode/husky) pre-push hook.
 
