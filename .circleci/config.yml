@@ -47,6 +47,38 @@ jobs:
           root: .
           paths:
             - coverage
+  test-e2e:
+    docker:
+      - image: cypress/included:6.2.1
+        environment:
+          # enable colors in output
+          TERM: xterm
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-cypress-yarn-{{ checksum "yarn.lock" }}
+      - run:
+          name: Install Dependencies
+          command: yarn install --frozen-lockfile
+      - save_cache:
+          key: v1-cypress-yarn-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache  # cache both yarn and cypress
+      - run:
+          name: 'Start Storybook app'
+          command: yarn run stencil:build && yarn run styles:build && yarn run storybook:start
+          background: true
+      - run: npx wait-on http://localhost:6006
+      - run:
+          name: 'Run Cypress tests'
+          command: yarn run test:e2e:ci
+          no_output_timeout: '1m'
+      - store_artifacts:
+          path: /root/project/cypress/screenshots
+      - store_artifacts:
+          path: /root/project/cypress/snapshots
+
   coverage:
     <<: *defaults
     steps:
@@ -93,6 +125,7 @@ workflows:
       - test:
           requires:
             - prepare
+      - test-e2e
       - coverage:
           requires:
             - test
