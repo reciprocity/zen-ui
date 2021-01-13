@@ -1,5 +1,8 @@
 # Testing
 
+# Guidelines
+- In order to reduce flakiness, all tests must always be deterministic!
+  - Meaning when running a tests several times, the outcome must be the same.
 # Types of tests
 - Unit
   - These tests assert against the expected output of a given unit's functionality. Prefer to test pure functions as there is no need to test handle any side effects.
