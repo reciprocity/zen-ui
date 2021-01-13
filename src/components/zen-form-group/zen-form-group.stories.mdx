@@ -5,45 +5,78 @@ import { eventHandles, action } from '../../../.storybook/helpers/custom-action'
 import { getArgTypes, getDefaultArgs, getComponentData, spreadArgs } from '../../../.storybook/helpers/argTypes';
 
 import data from '../../../stencilDocs.json';
-const compData = data.components.find(n => n.tag === 'zen-button');
+const compData = data.components.find(n => n.tag === 'zen-form-group');
 const argTypes = getArgTypes(compData);
 
-<Meta title="Developers/Template" component="zen-button" argTypes={argTypes} />
+<Meta title="Forms/一Fragments/Form Group" component="zen-form-group" argTypes={argTypes} />
 
-export const StoryWithControls = args => html/*html*/ `
-  <zen-button id="button1" ...="${spreadArgs(args)}"> Button 1 </zen-button>
-  ${action('#button1', eventHandles(['click']))}
-`;
+export const StoryWithControls = args => {
+  return html/*html*/ `
+    <zen-form-group ...=${spreadArgs(args)}>
+      <zen-label label="Username" required></zen-label>
+      <zen-input></zen-input>
+      <zen-input-support-text text="This field should be unique"></zen-input-support-text>
+    </zen-form-group>
+  `;
+};
 
-export const Story1 = () => html/*html*/ ` <zen-button id="button1" variant="secondary"> Button 1 </zen-button> `;
+export const StoryLabelAndSupport = () => {
+  return html/*html*/ `
+    <zen-form-group>
+      <zen-label label="Username"></zen-label>
+      <zen-input></zen-input>
+      <zen-input-support-text text="This field should be unique"></zen-input-support-text>
+    </zen-form-group>
+  `;
+};
 
-export const Story2 = () => html/*html*/ ` <zen-button id="button1"> Button 2 </zen-button> `;
+export const StoryWithLabelAndTextarea = () => {
+  return html/*html*/ `
+    <zen-form-group>
+      <zen-label label="Describe yourself"></zen-label>
+      <zen-textarea placeholder="Write here..."></zen-textarea>
+      <zen-input-support-text text="0 of 2500 characters"></zen-input-support-text>
+    </zen-form-group>
+  `;
+};
 
-# Component name
+# Form group
 
-Short description of the component
+Wrapper around input that ensures correct styles and spacings
 
 ## Component previews
 
 <br />
 
-### 1. Title of 1st useful story
-
-- Important point for this story
-- Important point for this story
+### 1. Form group with label, input and support text
 
 <Canvas>
-  <Story name="button">{Story1.bind({})}</Story>
+  <Story
+    name="supportlabel"
+    args={{
+      ...getDefaultArgs(argTypes),
+    }}
+  >
+    {StoryLabelAndSupport.bind({})}
+  </Story>
 </Canvas>
 
-### 2. Title of 2nd useful story
-
-A composition of `Input` and a `Dropdown` component. Dropdown is placed inside an input using input's slot `trailingSlot`.
-Click `Show code` for more details.
+### 2. Form group with textarea
 
 <Canvas>
-  <Story name="story2">{Story2.bind({})}</Story>
+  <Story
+    name="textarea"
+    args={{
+      ...getDefaultArgs(argTypes),
+    }}
+  >
+    {StoryWithLabelAndTextarea.bind({})}
+  </Story>
 </Canvas>
+
+<br />
+
+\* Note that there's also a `Form group preview` in each story of components that support form group (eg. check Input story)
 
 ## Properties
 
@@ -52,8 +85,6 @@ Click `Show code` for more details.
     name="default"
     args={{
       ...getDefaultArgs(argTypes),
-      // override some default values:
-      variant: 'primary',
     }}
   >
     {StoryWithControls.bind({})}
@@ -62,4 +93,4 @@ Click `Show code` for more details.
 
 <ArgsTable story="default" />
 
-<docs-table docs={JSON.stringify(getComponentData('zen-button'))}></docs-table>
+<docs-table docs={JSON.stringify(getComponentData('zen-form-group'))}></docs-table>
