@@ -39,7 +39,7 @@ To run unit and integration tests in Jest:
 yarn test
 ```
 
-To run E2E/integration tests in Cypress:
+To run E2E/visual tests in Cypress:
 ```bash
 yarn run test:e2e
 ```
