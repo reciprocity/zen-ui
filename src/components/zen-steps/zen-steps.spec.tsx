@@ -1,5 +1,6 @@
 import { newSpecPage, SpecPage } from '@stencil/core/testing';
 import { ZenSteps, StepItem } from './zen-steps';
+import { simulateClick } from '../helpers/jest';
 
 const createStepsComponent = async (page: SpecPage, steps: StepItem[]) => {
   const component = page.doc.createElement('zen-steps');
@@ -62,5 +63,21 @@ describe('zen-button', () => {
     (component as HTMLZenStepsElement).activeIndex = 1;
     await page.waitForChanges();
     expect(activeStepLabel(page)).toEqualHtml('Step two');
+  });
+
+  it('Sets selects step on click', async () => {
+    const page = await newSpecPage({
+      components: [ZenSteps],
+      html: `<div></div>`,
+    });
+    const component = await createStepsComponent(page, deafultSteps());
+    (component as HTMLZenStepsElement).activeIndex = 1;
+    await page.waitForChanges();
+    expect(activeStepLabel(page)).toEqualHtml('Step two');
+
+    const firstStep = page.root.shadowRoot.querySelector('.step:not(.active)');
+    simulateClick(firstStep);
+    await page.waitForChanges();
+    expect(activeStepLabel(page)).toEqualHtml('Step one');
   });
 });
