@@ -87,6 +87,10 @@ export namespace Components {
          */
         "disabled": false;
         /**
+          * Label of the checkbox.
+         */
+        "label": string;
+        /**
           * Shows a red asterisk after label.
          */
         "required": false;
@@ -528,6 +532,10 @@ declare namespace LocalJSX {
           * Disables checkbox.
          */
         "disabled"?: false;
+        /**
+          * Label of the checkbox.
+         */
+        "label"?: string;
         /**
           * Emitted when the checked property has changed.
          */
