@@ -9,11 +9,7 @@ export interface StepItem {
   completed: boolean;
 }
 
-enum StepState {
-  Waiting = 'waiting',
-  Completed = 'completed',
-  Active = 'active',
-}
+type StepState = 'waiting' | 'completed' | 'active';
 
 export interface StepEvent {
   index: number;
@@ -30,9 +26,9 @@ export class ZenSteps {
   /** Ordered array of possible steps */
   @Prop({ reflect: true }) readonly steps: Array<StepItem> = [];
   /** Index of currently active step */
-  @Prop({ reflect: true }) readonly activeIndex = 0;
+  @Prop({ reflect: true }) readonly activeIndex: number = 0;
   /** User can click step to go to step */
-  @Prop({ reflect: true }) readonly clickable: StepsFilter = StepsFilter.Completed;
+  @Prop({ reflect: true }) readonly clickable: StepsFilter = 'completed';
 
   @Watch('activeIndex')
   activeIndexChanged(activeIndex: number): void {
@@ -48,16 +44,16 @@ export class ZenSteps {
   }
 
   stepClicked(index: number, step: StepItem): void {
-    if (this.clickable === StepsFilter.None) return;
+    if (this.clickable === 'none') return;
     const stepState = this.getItemState(index);
-    if (this.clickable === StepsFilter.Completed && stepState !== StepState.Completed) return;
+    if (this.clickable === 'completed' && stepState !== 'completed') return;
     this.selectStep(index, step);
   }
 
   getItemState(index: number): StepState {
-    if (index === this.internalActiveIndex) return StepState.Active;
-    if (index < this.internalActiveIndex || this.steps[index].completed) return StepState.Completed;
-    return StepState.Waiting;
+    if (index === this.internalActiveIndex) return 'active';
+    if (index < this.internalActiveIndex || this.steps[index].completed) return 'completed';
+    return 'waiting';
   }
 
   progressWidth(): number {
@@ -92,8 +88,8 @@ export class ZenSteps {
               }}
             >
               <div class="roundle">
-                {this.getItemState(index) === StepState.Active && <div>{index + 1}</div>}
-                {this.getItemState(index) === StepState.Completed && renderIcon(faCheck)}
+                {this.getItemState(index) === 'active' && <div>{index + 1}</div>}
+                {this.getItemState(index) === 'completed' && renderIcon(faCheck)}
               </div>
               <div class="label">{step.label}</div>
             </li>

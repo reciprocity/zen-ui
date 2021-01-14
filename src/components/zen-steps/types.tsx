@@ -1,5 +1,1 @@
-export enum StepsFilter {
-  None = 'none',
-  Completed = 'completed',
-  All = 'all',
-}
+export type StepsFilter = 'none' | 'completed' | 'all';

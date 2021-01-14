@@ -16,7 +16,7 @@ const argTypes = {
 };
 
 export default {
-  title: 'Forms/一Fragments/Zen Label',
+  title: 'Forms/一Fragments/Label',
   component: 'zen-label',
   argTypes,
   parameters: {

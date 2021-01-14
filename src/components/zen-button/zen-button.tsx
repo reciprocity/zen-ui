@@ -19,9 +19,6 @@ export class ZenButton {
   /** Color variant of the button */
   @Prop() readonly variant: ButtonVariants = ButtonVariants.Primary;
 
-  /** Label of the button */
-  @Prop() readonly label = 'Button';
-
   /** If present, will show a spinner */
   @Prop() readonly loading?: boolean = false;
 
@@ -52,9 +49,9 @@ export class ZenButton {
       <Host class={{ btn: true, [`btn-${this.variant}`]: true, disabled: this.disabled }} tabindex={this.tabindex}>
         <slot name="leadingIcon" />
         {this.loading ? <zen-spinner></zen-spinner> : null}
-        {this.label ? (
-          <span class={{ ml: this.leadingIconSlotFulfilled, mr: this.trailingIconSlotFulfilled }}>{this.label}</span>
-        ) : null}
+        <span class={{ ml: this.leadingIconSlotFulfilled, mr: this.trailingIconSlotFulfilled }}>
+          <slot>Button</slot>
+        </span>
         <slot name="trailingIcon" />
       </Host>
     );

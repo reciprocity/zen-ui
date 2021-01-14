@@ -119,7 +119,25 @@ export class DocsTable {
             <h2 class="css-d83bdw">Dependencies</h2>
             <ul>
               {this.data.dependencies.map(dependencyName => (
-                <li>{dependencyName}</li>
+                <code>{dependencyName}</code>
+              ))}
+            </ul>
+          </div>
+        ) : (
+          ''
+        )}
+
+        {this.data.dependents.length ? (
+          <div>
+            <h2 class="css-d83bdw">Used by</h2>
+            <p>
+              List of components that depend on <i>{this.data.tag}</i>
+            </p>
+            <ul>
+              {this.data.dependents.map(dependentName => (
+                <li>
+                  <code>{dependentName}</code>
+                </li>
               ))}
             </ul>
           </div>

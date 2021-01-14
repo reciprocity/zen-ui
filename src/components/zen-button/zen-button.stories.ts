@@ -20,46 +20,47 @@ export default {
   },
 };
 
-const Template = ({ label, variant, loading, disabled }) => {
+const Template = ({ variant, loading, disabled }) => {
   return html`
-    <zen-button label="${label}" variant="${variant}" loading="${loading}" disabled="${disabled}"></zen-button>
+    <zen-button variant="${variant}" loading="${loading}" disabled="${disabled}">Button</zen-button>
     ${action('zen-button', customEvents)}
   `;
 };
 
 const TemplatePrimary = () => {
-  return html` <zen-button style="margin: 10px;" label="Primary button"></zen-button>
-    <zen-button style="margin: 10px;" label="Primary button" disabled></zen-button>
-    <zen-button style="margin: 10px;" label="Primary button" loading></zen-button>`;
+  return html` <zen-button style="margin: 10px;">Primary button</zen-button>
+    <zen-button style="margin: 10px;" disabled>Primary button</zen-button>
+    <zen-button style="margin: 10px;" loading>Primary button</zen-button>`;
 };
 
 const TemplateSecondary = () => {
-  return html` <zen-button style="margin: 10px;" variant="secondary" label="Secondary button"></zen-button>
-    <zen-button style="margin: 10px;" variant="secondary" label="Secondary button" disabled></zen-button>
-    <zen-button style="margin: 10px;" variant="secondary" label="Secondary button" loading></zen-button>`;
+  return html` <zen-button style="margin: 10px;" variant="secondary"> Secondary button </zen-button>
+    <zen-button style="margin: 10px;" variant="secondary" disabled> Secondary button </zen-button>
+    <zen-button style="margin: 10px;" variant="secondary" loading> Secondary button </zen-button>`;
 };
 
 const TemplateTertiary = () => {
-  return html` <zen-button style="margin: 10px;" variant="tertiary" label="Tertiary button"></zen-button>
-    <zen-button style="margin: 10px;" variant="tertiary" label="Tertiary button" disabled></zen-button>
-    <zen-button style="margin: 10px;" variant="tertiary" label="Tertiary button" loading></zen-button>`;
+  return html` <zen-button style="margin: 10px;" variant="tertiary">Tertiary button</zen-button>
+    <zen-button style="margin: 10px;" variant="tertiary" disabled>Tertiary button</zen-button>
+    <zen-button style="margin: 10px;" variant="tertiary" loading>Tertiary button</zen-button>`;
 };
 
 const TemplateDestructive = () => {
-  return html` <zen-button style="margin: 10px;" variant="destructive" label="Destructive button"></zen-button>
-    <zen-button style="margin: 10px;" variant="destructive" label="Destructive button" disabled></zen-button>
-    <zen-button style="margin: 10px;" variant="destructive" label="Destructive button" loading></zen-button>`;
+  return html` <zen-button style="margin: 10px;" variant="destructive">Destructive button</zen-button>
+    <zen-button style="margin: 10px;" variant="destructive" disabled>Destructive button</zen-button>
+    <zen-button style="margin: 10px;" variant="destructive" loading>Destructive button</zen-button>`;
 };
 
 const TemplatePositive = () => {
-  return html` <zen-button style="margin: 10px;" variant="positive" label="Positive button"></zen-button>
-    <zen-button style="margin: 10px;" variant="positive" label="Positive button" disabled></zen-button>
-    <zen-button style="margin: 10px;" variant="positive" label="Positive button" loading></zen-button>`;
+  return html` <zen-button style="margin: 10px;" variant="positive">Positive button</zen-button>
+    <zen-button style="margin: 10px;" variant="positive" disabled>Positive button</zen-button>
+    <zen-button style="margin: 10px;" variant="positive" loading>Positive button</zen-button>`;
 };
 
 const TemplateLeading = () => {
   return html`
-    <zen-button label="Button">
+    <zen-button>
+      Button
       <zen-spinner slot="leadingIcon"></zen-spinner>
     </zen-button>
   `;
@@ -67,7 +68,8 @@ const TemplateLeading = () => {
 
 const TemplateTrailing = () => {
   return html`
-    <zen-button label="Button">
+    <zen-button>
+      Button
       <zen-spinner slot="trailingIcon"></zen-spinner>
     </zen-button>
   `;
@@ -75,7 +77,8 @@ const TemplateTrailing = () => {
 
 const TemplateBoth = () => {
   return html`
-    <zen-button label="Button">
+    <zen-button>
+      Button
       <zen-spinner slot="leadingIcon"></zen-spinner>
       <zen-spinner slot="trailingIcon"></zen-spinner>
     </zen-button>

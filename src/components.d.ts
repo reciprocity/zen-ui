@@ -69,10 +69,6 @@ export namespace Components {
          */
         "disabled"?: boolean;
         /**
-          * Label of the button
-         */
-        "label": "Button";
-        /**
           * If present, will show a spinner
          */
         "loading"?: boolean;
@@ -90,10 +86,6 @@ export namespace Components {
           * Disables checkbox.
          */
         "disabled": false;
-        /**
-          * Label of the checkbox.
-         */
-        "label": string;
         /**
           * Shows a red asterisk after label.
          */
@@ -238,16 +230,12 @@ export namespace Components {
         "value": OptionValue;
     }
     interface ZenSpinner {
-        /**
-          * Color of the spinner. Accepts any CSS Legal Color Value.
-         */
-        "color": string;
     }
     interface ZenSteps {
         /**
           * Index of currently active step
          */
-        "activeIndex": 0;
+        "activeIndex": number;
         /**
           * User can click step to go to step
          */
@@ -523,10 +511,6 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
-          * Label of the button
-         */
-        "label"?: "Button";
-        /**
           * If present, will show a spinner
          */
         "loading"?: boolean;
@@ -544,10 +528,6 @@ declare namespace LocalJSX {
           * Disables checkbox.
          */
         "disabled"?: false;
-        /**
-          * Label of the checkbox.
-         */
-        "label"?: string;
         /**
           * Emitted when the checked property has changed.
          */
@@ -708,16 +688,12 @@ declare namespace LocalJSX {
         "value"?: OptionValue;
     }
     interface ZenSpinner {
-        /**
-          * Color of the spinner. Accepts any CSS Legal Color Value.
-         */
-        "color"?: string;
     }
     interface ZenSteps {
         /**
           * Index of currently active step
          */
-        "activeIndex"?: 0;
+        "activeIndex"?: number;
         /**
           * User can click step to go to step
          */
