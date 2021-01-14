@@ -257,7 +257,7 @@ export namespace Components {
     }
     interface ZenTextarea {
         /**
-          * Makes textarea disabled.
+          * Appends attribute disabled.
          */
         "disabled": false;
         /**
@@ -265,11 +265,11 @@ export namespace Components {
          */
         "placeholder": string;
         /**
-          * Makes textarea required.
+          * Appends attribute required.
          */
         "required": false;
         /**
-          * The text of the textarea.
+          * Prefilled text content
          */
         "text"?: string | null;
     }
@@ -719,7 +719,7 @@ declare namespace LocalJSX {
     }
     interface ZenTextarea {
         /**
-          * Makes textarea disabled.
+          * Appends attribute disabled.
          */
         "disabled"?: false;
         /**
@@ -731,11 +731,11 @@ declare namespace LocalJSX {
          */
         "placeholder"?: string;
         /**
-          * Makes textarea required.
+          * Appends attribute required.
          */
         "required"?: false;
         /**
-          * The text of the textarea.
+          * Prefilled text content
          */
         "text"?: string | null;
     }

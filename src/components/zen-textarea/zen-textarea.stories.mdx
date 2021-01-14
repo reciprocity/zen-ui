@@ -1,0 +1,56 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
+import { html } from 'lit-html';
+import { eventHandles, action } from '../../../.storybook/helpers/custom-action';
+import { getArgTypes, getDefaultArgs, getComponentData, spreadArgs } from '../../../.storybook/helpers/argTypes';
+
+import data from '../../../stencilDocs.json';
+const compData = data.components.find(n => n.tag === 'zen-textarea');
+const argTypes = getArgTypes(compData);
+
+<Meta title="Forms/Textarea" component="zen-textarea" argTypes={argTypes} />
+
+export const StoryWithControls = args => html/*html*/ ` <zen-textarea ...="${spreadArgs(args)}" />
+  ${action('zen-textarea', ['zenInput'])}`;
+
+export const StoryWithLabelAndTextarea = () => {
+  return html/*html*/ `
+    <zen-form-group>
+      <zen-label label="Describe yourself"></zen-label>
+      <zen-textarea placeholder="Your description..."></zen-textarea>
+      <zen-input-support-text text="0 of 2500 characters"></zen-input-support-text>
+    </zen-form-group>
+  `;
+};
+
+# Text area
+
+A standard text area component
+
+## Component previews
+
+<br />
+
+### Textarea inside form group
+
+<Canvas>
+  <Story name="textareaWithinGroup">{StoryWithLabelAndTextarea.bind({})}</Story>
+</Canvas>
+
+## Properties
+
+<Canvas>
+  <Story
+    name="button"
+    args={{
+      ...getDefaultArgs(argTypes),
+      // override some default values:
+      placeholder: 'Enter some text...',
+    }}
+  >
+    {StoryWithControls.bind({})}
+  </Story>
+</Canvas>
+
+<ArgsTable story="button" />
+
+<docs-table docs={JSON.stringify(getComponentData('zen-textarea'))}></docs-table>

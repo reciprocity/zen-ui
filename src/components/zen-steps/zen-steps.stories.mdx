@@ -1,0 +1,55 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
+import { html } from 'lit-html';
+import Readme from './readme.md';
+import { eventHandles, action } from '../../../.storybook/helpers/custom-action';
+import { getArgTypes, getDefaultArgs, getComponentData, spreadArgs } from '../../../.storybook/helpers/argTypes';
+
+import data from '../../../stencilDocs.json';
+const compData = data.components.find(n => n.tag === 'zen-steps');
+const argTypes = getArgTypes(compData);
+
+<Meta title="Navigation/Steps" component="zen-steps" argTypes={argTypes} />
+
+export const StoryWithControls2 = args => html/*html*/ `
+  <zen-steps id="button1" ...="${spreadArgs(args)}"> Button 1 </zen-steps>
+  ${action('#button1', eventHandles(['click']))}
+`;
+
+export const StoryWithControls = args => {
+  let stepsArr;
+  try {
+    stepsArr = JSON.parse(args.steps);
+  } catch (error) {
+    stepsArr = [];
+  }
+  return html/*html*/ ` <zen-steps ...="${spreadArgs(args)}" .steps=${stepsArr} /> `;
+};
+
+# Steps
+
+Visualizes user's progress
+
+## Properties
+
+<Canvas>
+  <Story
+    name="default"
+    args={{
+      ...getDefaultArgs(argTypes),
+      // override some default values:
+      activeIndex: 1,
+      steps: JSON.stringify([
+        { label: 'Choose framework', completed: true },
+        { label: 'Select objectives', completed: true },
+        { label: 'Invite teammates', completed: true },
+        { label: 'Launch' },
+      ]),
+    }}
+  >
+    {StoryWithControls.bind({})}
+  </Story>
+</Canvas>
+
+<ArgsTable story="default" />
+
+<docs-table docs={JSON.stringify(getComponentData('zen-steps'))}></docs-table>
