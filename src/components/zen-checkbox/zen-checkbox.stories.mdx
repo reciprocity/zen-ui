@@ -2,6 +2,7 @@ import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
 import { html } from 'lit-html';
 import Readme from './readme.md';
 import { getArgTypes, getDefaultArgs, getComponentData, spreadArgs } from '../../../.storybook/helpers/argTypes';
+import { eventHandles, action } from '../../../.storybook/helpers/custom-action';
 
 import data from '../../../stencilDocs.json';
 const compData = data.components.find(n => n.tag === 'zen-checkbox');
@@ -9,7 +10,10 @@ const argTypes = getArgTypes(compData);
 
 <Meta title="Forms/Checkbox" component="zen-checkbox" argTypes={argTypes} />
 
-export const StoryWithControls = args => html/*html*/ `<zen-checkbox ...="${spreadArgs(args)}"></zen-checkbox>`;
+export const StoryWithControls = args => html/*html*/ `
+  <zen-checkbox id="story-with-ctrls-element" ...="${spreadArgs(args)}"></zen-checkbox>
+  ${action('#story-with-ctrls-element', ['change', 'click'])}
+`;
 
 # Checkbox
 

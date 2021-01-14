@@ -20,7 +20,7 @@ export function action (compName, eventNames) {
             cancelable: true,
             view: window
           });
-          console.log('${compName}: ${eventName}', event.detail);
+          console.log('${compName}: ${eventName}', event.detail, event);
           // comp.dispatchEvent(evt);
         });
       `).join('')}
