@@ -1,48 +1,91 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
 import { html } from 'lit-html';
 import Readme from './readme.md';
-import { eventHandles, action } from '../../../.storybook/helpers/custom-action';
 import { getArgTypes, getDefaultArgs, getComponentData, spreadArgs } from '../../../.storybook/helpers/argTypes';
 
 import data from '../../../stencilDocs.json';
-const compData = data.components.find(n => n.tag === 'zen-button');
+const compData = data.components.find(n => n.tag === 'zen-input');
 const argTypes = getArgTypes(compData);
 
-<Meta title="Forms/Input" component="zen-button" argTypes={argTypes} />
+<Meta title="Forms/Input" component="zen-input" argTypes={argTypes} />
 
-export const StoryWithControls = args => html/*html*/ `
-  <zen-button id="button1" ...="${spreadArgs(args)}"> Button 1 </zen-button>
-  ${action('#button1', eventHandles(['click']))}
-`;
+export const StoryWithControls = args => html/*html*/ ` <zen-input ...="${spreadArgs(args)}"></zen-input> `;
 
-export const Story1 = () => html/*html*/ ` <zen-button id="button1" variant="secondary"> Button 1 </zen-button> `;
+export const StorySimple = () => html/*html*/ ` <zen-input></zen-input> `;
 
-export const Story2 = () => html/*html*/ ` <zen-button id="button1"> Button 2 </zen-button> `;
+export const StoryInvalid = () => html/*html*/ ` <zen-input invalid></zen-input> `;
 
-# Component name
+export const StoryDisabled = () => html/*html*/ ` <zen-input disabled></zen-input> `;
 
-Short description of the component
+export const StoryWithLeadingSlot = () =>
+  html/*html*/ ` <zen-input><zen-spinner slot="leadingSlot" style="margin: 0 .5rem;" /></zen-input> `;
+
+export const StoryWithTrailingSlot = () =>
+  html/*html*/ ` <zen-input><zen-spinner slot="trailingSlot" style="margin: 0 .5rem;" /></zen-input> `;
+
+export const StoryWithLeadingAndTrailingSlots = () =>
+  html/*html*/ `
+    <zen-input>
+      <zen-spinner slot="leadingSlot" style="margin: 0 .5rem;"></zen-spinner>
+      Leading and Trailing Slots
+      <zen-spinner slot="trailingSlot" style="margin: 0 .5rem;"></zen-spinner>
+    </zen-input>
+  `;
+
+# Input
+
+Form input component with slots capabilities
 
 ## Component previews
 
 <br />
 
-### 1. Title of 1st useful story
+### 1. Default input
 
-- Important point for this story
 - Important point for this story
 
 <Canvas>
-  <Story name="button">{Story1.bind({})}</Story>
+  <Story name="StorySimple">{StorySimple.bind({})}</Story>
 </Canvas>
 
-### 2. Title of 2nd useful story
+### 2. Invalid input
 
-A composition of `Input` and a `Dropdown` component. Dropdown is placed inside an input using input's slot `trailingSlot`.
-Click `Show code` for more details.
+- Important point for this story
 
 <Canvas>
-  <Story name="story2">{Story2.bind({})}</Story>
+  <Story name="StoryInvalid">{StoryInvalid.bind({})}</Story>
+</Canvas>
+
+### 3. Disabled input
+
+- Important point for this story
+
+<Canvas>
+  <Story name="StoryDisabled">{StoryDisabled.bind({})}</Story>
+</Canvas>
+
+### 4. Input with leading slot fulfilled
+
+- Important point for this story
+
+<Canvas>
+  <Story name="StoryWithLeadingSlot">{StoryWithLeadingSlot.bind({})}</Story>
+</Canvas>
+
+### 5. Input with trailing slot fulfilled
+
+- Important point for this story
+
+<Canvas>
+  <Story name="StoryWithTrailingSlot">{StoryWithTrailingSlot.bind({})}</Story>
+</Canvas>
+
+### 6. Input with leading and trailing slots fulfilled
+
+- Important point for this story
+
+<Canvas>
+  <Story name="StoryWithLeadingAndTrailingSlots">{StoryWithLeadingAndTrailingSlots.bind({})}</Story>
 </Canvas>
 
 ## Properties
@@ -52,8 +95,6 @@ Click `Show code` for more details.
     name="default"
     args={{
       ...getDefaultArgs(argTypes),
-      // override some default values:
-      variant: 'primary',
     }}
   >
     {StoryWithControls.bind({})}
@@ -62,4 +103,4 @@ Click `Show code` for more details.
 
 <ArgsTable story="default" />
 
-<docs-table docs={JSON.stringify(getComponentData('zen-button'))}></docs-table>
+<docs-table docs={JSON.stringify(getComponentData('zen-input'))}></docs-table>

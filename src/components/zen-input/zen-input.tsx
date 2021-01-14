@@ -19,7 +19,7 @@ export class ZenInput {
   @Prop({ mutable: true }) hasFocus = false;
 
   /** Placeholder of the input. */
-  @Prop() readonly placeholder: string = null;
+  @Prop() readonly placeholder: string = '';
 
   /** Disables input. */
   @Prop() readonly disabled = false;
@@ -31,7 +31,7 @@ export class ZenInput {
   @Prop() readonly enterToTab = true;
 
   /** The value of the input. */
-  @Prop({ mutable: true }) value?: string | number | null = '';
+  @Prop({ mutable: true }) value?: string = '';
 
   /** Emitted when a keyboard input occurred. */
   @Event() zenInput!: EventEmitter<KeyboardEvent>;
@@ -71,7 +71,7 @@ export class ZenInput {
   };
 
   private getValue(): string {
-    return typeof this.value === 'number' ? this.value.toString() : (this.value || '').toString();
+    return this.value;
   }
 
   render(): HTMLElement {

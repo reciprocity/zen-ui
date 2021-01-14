@@ -155,7 +155,7 @@ export namespace Components {
         /**
           * The value of the input.
          */
-        "value"?: string | number | null;
+        "value"?: string;
     }
     interface ZenInputSupportText {
         /**
@@ -613,7 +613,7 @@ declare namespace LocalJSX {
         /**
           * The value of the input.
          */
-        "value"?: string | number | null;
+        "value"?: string;
     }
     interface ZenInputSupportText {
         /**
