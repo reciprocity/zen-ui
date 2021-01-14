@@ -15,6 +15,7 @@
     "loader/"
   ],
   "scripts": {
+    "foo": "bar",
     "start": "yarn stencil:build && (yarn stencil:watch & yarn storybook:start & yarn styles:start)",
     "build": "yarn stencil:build && yarn storybook:build && yarn styles:build",
     "npm:publish": "rm -rf dist && rm -rf public && rm -rf loader && rm -rf node_modules && rm yarn.lock && yarn && yarn build && npm version patch && npm publish",
