@@ -11,7 +11,7 @@ describe('zen-checkbox', () => {
       <zen-checkbox>
         <mock:shadow-root>
           <input class="input-control" type="checkbox">
-          <label><slot></slot></label>
+          <label></label>
         </mock:shadow-root>
       </zen-checkbox>
     `);
@@ -26,7 +26,7 @@ describe('zen-checkbox', () => {
       <zen-checkbox checked="">
         <mock:shadow-root>
           <input checked="" class="input-control" type="checkbox">
-          <label><slot></slot></label>
+          <label></label>
         </mock:shadow-root>
       </zen-checkbox>
     `);
@@ -41,7 +41,7 @@ describe('zen-checkbox', () => {
       <zen-checkbox disabled="">
         <mock:shadow-root>
           <input class="input-control" type="checkbox" disabled="">
-          <label class="disabled"><slot></slot></label>
+          <label class="disabled"></label>
         </mock:shadow-root>
       </zen-checkbox>
     `);
@@ -56,7 +56,7 @@ describe('zen-checkbox', () => {
       <zen-checkbox checked="" disabled="">
         <mock:shadow-root>
           <input checked="" class="input-control" type="checkbox" disabled="">
-          <label class="disabled"><slot></slot></label>
+          <label class="disabled"></label>
         </mock:shadow-root>
       </zen-checkbox>
     `);
@@ -71,7 +71,7 @@ describe('zen-checkbox', () => {
       <zen-checkbox>
         <mock:shadow-root>
           <input class="input-control" type="checkbox">
-          <label><slot></slot></label>
+          <label></label>
         </mock:shadow-root>
         This is an example label
       </zen-checkbox>
@@ -87,7 +87,7 @@ describe('zen-checkbox', () => {
       <zen-checkbox disabled="">
         <mock:shadow-root>
           <input class="input-control" type="checkbox" disabled="">
-          <label class="disabled"><slot></slot></label>
+          <label class="disabled"></label>
         </mock:shadow-root>
         This is an example label
       </zen-checkbox>
@@ -104,7 +104,7 @@ describe('zen-checkbox', () => {
         <mock:shadow-root>
           <input class="input-control" type="checkbox" required="">
           <label>
-            <slot></slot>
+
             <span class="required">
               *
             </span>
