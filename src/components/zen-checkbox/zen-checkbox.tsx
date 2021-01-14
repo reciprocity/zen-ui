@@ -1,5 +1,4 @@
-import { Component, Host, h, Prop, Event, EventEmitter, Watch } from '@stencil/core';
-import { CheckboxChangeEventDetail } from './types';
+import { Component, Host, h, Prop, Watch, Element } from '@stencil/core';
 
 @Component({
   tag: 'zen-checkbox',
@@ -7,6 +6,8 @@ import { CheckboxChangeEventDetail } from './types';
   shadow: true,
 })
 export class ZenCheckbox {
+  @Element() hostElement: HTMLZenCheckboxElement;
+
   /** Set checked state. */
   @Prop({ mutable: true }) checked = false;
 
@@ -19,14 +20,9 @@ export class ZenCheckbox {
   /** Shows a red asterisk after label. */
   @Prop() readonly required = false;
 
-  /** Emitted when the checked property has changed. */
-  @Event() checkboxChange!: EventEmitter<CheckboxChangeEventDetail>;
-
   @Watch('checked')
-  checkedChanged(isChecked: boolean): void {
-    this.checkboxChange.emit({
-      checked: isChecked,
-    });
+  checkedChanged(): void {
+    this.hostElement.dispatchEvent(new window.Event('change'));
   }
 
   private onClick = (ev: MouseEvent) => {
