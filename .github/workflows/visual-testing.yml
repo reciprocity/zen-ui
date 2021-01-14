@@ -1,0 +1,57 @@
+name: Visual-Testing
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  snapshot-changes:
+    name: Snapshot Changes
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Get added or modified files
+        uses: jitterbit/get-changed-files@v1
+        id: files
+        with:
+          format: 'csv'
+        # Workaround for bug with this action
+        # See: https://github.com/jitterbit/get-changed-files/issues/11#issuecomment-718254652
+        continue-on-error: true
+        env:
+          DEFAULT_BRANCH: main
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Filter changed files
+        id: filtered_files
+        run: |
+          snapshots_path='cypress/snapshots';
+
+          filtered_files=""
+          mapfile -d ',' -t added_modified_files < <(printf '%s,' '${{ steps.files.outputs.added_modified }}')
+          for file in "${added_modified_files[@]}"; do
+            if [[ $file =~ $snapshots_path ]] ; then
+              filtered_files="$filtered_files * $file "
+            fi
+          done
+
+          echo ::set-output name=filtered_files::"$filtered_files"
+
+      - name: Post comment
+        uses: mshick/add-pr-comment@v1
+        if: steps.filtered_files.outputs.filtered_files != ''
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          message: |
+            👀📎
+
+            It looks like this PR contains the following visual testing snapshot changes:
+            ${{ steps.filtered_files.outputs.filtered_files }}
+
+            👉 Review the snapshot diffs <a href="${{ github.event.number }}/files?file-filters%5B%5D=.png">here</a>.
+          allow-repeats: true
