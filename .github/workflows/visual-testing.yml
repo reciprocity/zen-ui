@@ -7,6 +7,24 @@ on:
       - main
 
 jobs:
+  sample-job:
+    runs-on: ubuntu-latest
+    steps:
+        - name: echo-default-env-variables
+          env:
+            GITHUB_CONTEXT: ${{ toJson(github.sha) }}
+          run: |
+              echo "Home: ${HOME}"
+              echo "GITHUB_WORKFLOW: ${GITHUB_WORKFLOW}"
+              echo "GITHUB_ACTIONS: ${GITHUB_ACTIONS}"
+              echo "GITHUB_ACTOR: ${GITHUB_ACTOR}"
+              echo "GITHUB_REPOSITORY: ${GITHUB_REPOSITORY}"
+              echo "GITHUB_EVENT_NAME: ${GITHUB_EVENT_NAME}"
+              echo "GITHUB_WORKSPACE: ${GITHUB_WORKSPACE}"
+              echo "GITHUB_SHA: ${GITHUB_SHA}"
+              echo "GITHUB_REF: ${GITHUB_REF}"
+
+              echo "$GITHUB_CONTEXT"
   snapshot-changes:
     name: Snapshot Changes
     runs-on: ubuntu-latest
@@ -53,5 +71,6 @@ jobs:
             It looks like this PR contains the following visual testing snapshot changes:
             ${{ steps.filtered_files.outputs.filtered_files }}
 
-            👉 Review the snapshot diffs <a href="${{ github.event.number }}/files?file-filters%5B%5D=.png">here</a>.
+            #👉 Review the snapshot diffs <a href="${{ github.event.number }}/files?file-filters%5B%5D=.png&short_path=669d9e0">here</a>.
+            👉 Review the snapshot diffs <a href="${{ github.event.number }}/commits/${{ github.event.pull_request.head.sha }}?file-filters%5B%5D=.png&short_path=669d9e0">here</a>.
           allow-repeats: true
