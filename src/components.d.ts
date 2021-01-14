@@ -235,7 +235,7 @@ export namespace Components {
         /**
           * Index of currently active step
          */
-        "activeIndex": 0;
+        "activeIndex": number;
         /**
           * User can click step to go to step
          */
@@ -693,7 +693,7 @@ declare namespace LocalJSX {
         /**
           * Index of currently active step
          */
-        "activeIndex"?: 0;
+        "activeIndex"?: number;
         /**
           * User can click step to go to step
          */

@@ -26,7 +26,7 @@ export class ZenSteps {
   /** Ordered array of possible steps */
   @Prop({ reflect: true }) readonly steps: Array<StepItem> = [];
   /** Index of currently active step */
-  @Prop({ reflect: true }) readonly activeIndex = 0;
+  @Prop({ reflect: true }) readonly activeIndex: number = 0;
   /** User can click step to go to step */
   @Prop({ reflect: true }) readonly clickable: StepsFilter = 'completed';
 
