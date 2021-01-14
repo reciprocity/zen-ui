@@ -11,9 +11,27 @@ const argTypes = getArgTypes(compData);
 
 export const StoryWithControls = args => html/*html*/ ` <zen-label ...="${spreadArgs(args)}"></zen-label> `;
 
+export const StorySimple = () =>
+  html/*html*/ `
+    <zen-form-group>
+      <zen-label label="Username" required></zen-label>
+      <zen-input></zen-input>
+    </zen-form-group>
+  `;
+
 # Label
 
 Simple label text component that can be used along form components like input, checkbox and radio
+
+## Component previews
+
+<br />
+
+### 1. Input with Label
+
+<Canvas>
+  <Story name="StorySimple">{StorySimple.bind({})}</Story>
+</Canvas>
 
 ## Properties
 
