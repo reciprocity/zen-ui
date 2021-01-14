@@ -7,6 +7,9 @@ import data from '../../../stencilDocs.json';
 const compData = data.components.find(n => n.tag === 'zen-input');
 const argTypes = getArgTypes(compData);
 
+import { litHtmlIcon, styles } from '../helpers/fa-icons';
+import { faUser, faKey } from '@fortawesome/pro-light-svg-icons';
+
 <Meta title="Forms/Input" component="zen-input" argTypes={argTypes} />
 
 export const StoryWithControls = args => html/*html*/ ` <zen-input ...="${spreadArgs(args)}"></zen-input> `;
@@ -18,17 +21,40 @@ export const StoryInvalid = () => html/*html*/ ` <zen-input invalid></zen-input>
 export const StoryDisabled = () => html/*html*/ ` <zen-input disabled></zen-input> `;
 
 export const StoryWithLeadingSlot = () =>
-  html/*html*/ ` <zen-input><zen-spinner slot="leadingSlot" style="margin: 0 .5rem;" /></zen-input> `;
+  html/*html*/ `
+    <zen-input>
+      <i
+        slot="leadingSlot"
+        style="width: 1rem; margin-top: 0.375rem; margin-left: 0.5rem;"
+        .innerHTML="${litHtmlIcon(faUser)}"
+      ></i>
+    </zen-input>
+  `;
 
 export const StoryWithTrailingSlot = () =>
-  html/*html*/ ` <zen-input><zen-spinner slot="trailingSlot" style="margin: 0 .5rem;" /></zen-input> `;
+  html/*html*/ `
+    <zen-input>
+      <i
+        slot="trailingSlot"
+        style="width: 1rem; margin-top: 0.375rem; margin-right: 0.5rem;"
+        .innerHTML="${litHtmlIcon(faKey)}"
+      ></i>
+    </zen-input>
+  `;
 
 export const StoryWithLeadingAndTrailingSlots = () =>
   html/*html*/ `
     <zen-input>
-      <zen-spinner slot="leadingSlot" style="margin: 0 .5rem;"></zen-spinner>
-      Leading and Trailing Slots
-      <zen-spinner slot="trailingSlot" style="margin: 0 .5rem;"></zen-spinner>
+      <i
+        slot="leadingSlot"
+        style="width: 1rem; margin-top: 0.375rem; margin-left: 0.5rem;"
+        .innerHTML="${litHtmlIcon(faUser)}"
+      ></i>
+      <i
+        slot="trailingSlot"
+        style="width: 1rem; margin-top: 0.375rem; margin-right: 0.5rem;"
+        .innerHTML="${litHtmlIcon(faKey)}"
+      ></i>
     </zen-input>
   `;
 

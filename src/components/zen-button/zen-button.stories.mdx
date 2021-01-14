@@ -17,9 +17,11 @@ export const StoryWithControls = args => html/*html*/ ` <zen-button ...="${sprea
 export const StorySimple = () =>
   html/*html*/ `
     <div style="display: flex; justify-content: space-evenly;">
-      <zen-button variant="primary"></zen-button><zen-button variant="secondary"></zen-button
-      ><zen-button variant="tertiary"></zen-button><zen-button variant="positive"></zen-button
-      ><zen-button variant="destructive"></zen-button>
+      <zen-button variant="primary"></zen-button>
+      <zen-button variant="secondary"></zen-button>
+      <zen-button variant="tertiary"></zen-button>
+      <zen-button variant="positive"></zen-button>
+      <zen-button variant="destructive"></zen-button>
     </div>
   `;
 
@@ -36,9 +38,9 @@ export const StoryWithLeadingSlot = () =>
 
 export const StoryWithTrailingSlot = () =>
   html/*html*/ `
-    <zen-button
-      ><i slot="trailingIcon" style="width: 0.625rem;" .innerHTML="${litHtmlIcon(faChevronDown)}"></i
-    ></zen-button>
+    <zen-button>
+      <i slot="trailingIcon" style="width: 0.625rem;" .innerHTML="${litHtmlIcon(faChevronDown)}"></i>
+    </zen-button>
   `;
 
 export const StoryWithLeadingAndTrailingSlots = () =>
