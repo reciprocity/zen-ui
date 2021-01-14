@@ -5,45 +5,29 @@ import { eventHandles, action } from '../../../.storybook/helpers/custom-action'
 import { getArgTypes, getDefaultArgs, getComponentData, spreadArgs } from '../../../.storybook/helpers/argTypes';
 
 import data from '../../../stencilDocs.json';
-const compData = data.components.find(n => n.tag === 'zen-button');
+const compData = data.components.find(n => n.tag === 'zen-steps');
 const argTypes = getArgTypes(compData);
 
-<Meta title="Developers/Template" component="zen-button" argTypes={argTypes} />
+<Meta title="Navigation/Steps" component="zen-steps" argTypes={argTypes} />
 
-export const StoryWithControls = args => html/*html*/ `
-  <zen-button id="button1" ...="${spreadArgs(args)}"> Button 1 </zen-button>
+export const StoryWithControls2 = args => html/*html*/ `
+  <zen-steps id="button1" ...="${spreadArgs(args)}"> Button 1 </zen-steps>
   ${action('#button1', eventHandles(['click']))}
 `;
 
-export const Story1 = () => html/*html*/ ` <zen-button id="button1" variant="secondary"> Button 1 </zen-button> `;
+export const StoryWithControls = args => {
+  let stepsArr;
+  try {
+    stepsArr = JSON.parse(args.steps);
+  } catch (error) {
+    stepsArr = [];
+  }
+  return html/*html*/ ` <zen-steps ...="${spreadArgs(args)}" .steps=${stepsArr} /> `;
+};
 
-export const Story2 = () => html/*html*/ ` <zen-button id="button1"> Button 2 </zen-button> `;
+# Steps
 
-# Component name
-
-Short description of the component
-
-## Component previews
-
-<br />
-
-### 1. Title of 1st useful story
-
-- Important point for this story
-- Important point for this story
-
-<Canvas>
-  <Story name="button">{Story1.bind({})}</Story>
-</Canvas>
-
-### 2. Title of 2nd useful story
-
-A composition of `Input` and a `Dropdown` component. Dropdown is placed inside an input using input's slot `trailingSlot`.
-Click `Show code` for more details.
-
-<Canvas>
-  <Story name="story2">{Story2.bind({})}</Story>
-</Canvas>
+Visualizes user's progress
 
 ## Properties
 
@@ -53,7 +37,13 @@ Click `Show code` for more details.
     args={{
       ...getDefaultArgs(argTypes),
       // override some default values:
-      variant: 'primary',
+      activeIndex: 1,
+      steps: JSON.stringify([
+        { label: 'Choose framework', completed: true },
+        { label: 'Select objectives', completed: true },
+        { label: 'Invite teammates', completed: true },
+        { label: 'Launch' },
+      ]),
     }}
   >
     {StoryWithControls.bind({})}
@@ -62,4 +52,4 @@ Click `Show code` for more details.
 
 <ArgsTable story="default" />
 
-<docs-table docs={JSON.stringify(getComponentData('zen-button'))}></docs-table>
+<docs-table docs={JSON.stringify(getComponentData('zen-steps'))}></docs-table>
