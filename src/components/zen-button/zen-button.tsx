@@ -17,7 +17,7 @@ export class ZenButton {
   @Element() hostElement: HTMLZenButtonElement;
 
   /** Color variant of the button */
-  @Prop() readonly variant: ButtonVariants = ButtonVariants.Primary;
+  @Prop() readonly variant: ButtonVariants = 'primary';
 
   /** If present, will show a spinner */
   @Prop() readonly loading?: boolean = false;

@@ -10,7 +10,9 @@ describe('zen-label', () => {
     expect(page.root).toEqualHtml(`
       <zen-label>
         <mock:shadow-root>
-          <label></label>
+          <label>
+            Label
+          </label>
         </mock:shadow-root>
       </zen-label>
     `);

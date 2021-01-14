@@ -7,7 +7,7 @@ import { Component, h, Host, Prop } from '@stencil/core';
 })
 export class ZenLabel {
   /** Text of the label */
-  @Prop() readonly label: string = null;
+  @Prop() readonly label: string = 'Label';
 
   /** Shows a red asterisk after label */
   @Prop() readonly required = false;

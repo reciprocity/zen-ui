@@ -1,0 +1,122 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
+import { html } from 'lit-html';
+import Readme from './readme.md';
+import { getArgTypes, getDefaultArgs, getComponentData, spreadArgs } from '../../../.storybook/helpers/argTypes';
+
+import data from '../../../stencilDocs.json';
+const compData = data.components.find(n => n.tag === 'zen-button');
+const argTypes = getArgTypes(compData);
+
+import { litHtmlIcon, styles } from '../helpers/fa-icons';
+import { faUser, faChevronDown } from '@fortawesome/pro-light-svg-icons';
+
+<Meta title="Buttons/Button" component="zen-button" argTypes={argTypes} />
+
+export const StoryWithControls = args => html/*html*/ ` <zen-button ...="${spreadArgs(args)}"></zen-button>`;
+
+export const StorySimple = () =>
+  html/*html*/ `
+    <div style="display: flex; justify-content: space-evenly;">
+      <zen-button variant="primary"></zen-button>
+      <zen-button variant="secondary"></zen-button>
+      <zen-button variant="tertiary"></zen-button>
+      <zen-button variant="positive"></zen-button>
+      <zen-button variant="destructive"></zen-button>
+    </div>
+  `;
+
+export const StoryLoading = () => html/*html*/ ` <zen-button loading></zen-button> `;
+
+export const StoryDisabled = () => html/*html*/ ` <zen-button disabled></zen-button> `;
+
+export const StoryWithLeadingSlot = () =>
+  html/*html*/ `
+    <zen-button>
+      <i slot="leadingIcon" style="width: 0.625rem;" .innerHTML="${litHtmlIcon(faUser)}"></i>
+    </zen-button>
+  `;
+
+export const StoryWithTrailingSlot = () =>
+  html/*html*/ `
+    <zen-button>
+      <i slot="trailingIcon" style="width: 0.625rem;" .innerHTML="${litHtmlIcon(faChevronDown)}"></i>
+    </zen-button>
+  `;
+
+export const StoryWithLeadingAndTrailingSlots = () =>
+  html/*html*/ `
+    <zen-button>
+      <i slot="leadingIcon" style="width: 0.625rem;" .innerHTML="${litHtmlIcon(faUser)}"></i>
+      Leading and Trailing Slots
+      <i slot="trailingIcon" style="width: 0.625rem;" .innerHTML="${litHtmlIcon(faChevronDown)}"></i>
+    </zen-button>
+  `;
+
+# Button
+
+Button component with slots capabilities
+
+## Component previews
+
+<br />
+
+### 1. Button variants
+
+<Canvas>
+  <Story name="StorySimple">{StorySimple.bind({})}</Story>
+</Canvas>
+
+### 2. Default loading button
+
+<Canvas>
+  <Story name="StoryLoading">{StoryLoading.bind({})}</Story>
+</Canvas>
+
+### 3. Default disabled button
+
+<Canvas>
+  <Story name="StoryDisabled">{StoryDisabled.bind({})}</Story>
+</Canvas>
+
+### 4. Default button with leading slot fulfilled
+
+- Apply leadingIcon value for the slot attribute in your inner custom HTML
+
+<Canvas>
+  <Story name="StoryWithLeadingSlot">{StoryWithLeadingSlot.bind({})}</Story>
+</Canvas>
+
+### 5. Default button with trailing slot fulfilled
+
+- Apply trailingIcon value for the slot attribute in your inner custom HTML
+
+<Canvas>
+  <Story name="StoryWithTrailingSlot">{StoryWithTrailingSlot.bind({})}</Story>
+</Canvas>
+
+### 6. Default button with leading and trailing slots fulfilled
+
+- Apply leadingIcon and trailingIcon values for the slot attributes in your inner custom HTML
+
+<Canvas>
+  <Story name="StoryWithLeadingAndTrailingSlots">{StoryWithLeadingAndTrailingSlots.bind({})}</Story>
+</Canvas>
+
+## Properties
+
+<Canvas>
+  <Story
+    name="default"
+    args={{
+      ...getDefaultArgs(argTypes),
+      // override some default values:
+      variant: 'primary',
+    }}
+  >
+    {StoryWithControls.bind({})}
+  </Story>
+</Canvas>
+
+<ArgsTable story="default" />
+
+<docs-table docs={JSON.stringify(getComponentData('zen-button'))}></docs-table>

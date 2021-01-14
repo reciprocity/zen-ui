@@ -1,0 +1,33 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
+import { html } from 'lit-html';
+import Readme from './readme.md';
+import { getArgTypes, getDefaultArgs, getComponentData, spreadArgs } from '../../../.storybook/helpers/argTypes';
+
+import data from '../../../stencilDocs.json';
+const compData = data.components.find(n => n.tag === 'zen-label');
+const argTypes = getArgTypes(compData);
+
+<Meta title="Forms/一Fragments/Label" component="zen-label" argTypes={argTypes} />
+
+export const StoryWithControls = args => html/*html*/ ` <zen-label ...="${spreadArgs(args)}"></zen-label> `;
+
+# Label
+
+Simple label text component that can be used along form components like input, checkbox and radio
+
+## Properties
+
+<Canvas>
+  <Story
+    name="default"
+    args={{
+      ...getDefaultArgs(argTypes),
+    }}
+  >
+    {StoryWithControls.bind({})}
+  </Story>
+</Canvas>
+
+<ArgsTable story="default" />
+
+<docs-table docs={JSON.stringify(getComponentData('zen-label'))}></docs-table>

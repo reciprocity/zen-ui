@@ -87,6 +87,10 @@ export namespace Components {
          */
         "disabled": false;
         /**
+          * Label of the checkbox.
+         */
+        "label": string;
+        /**
           * Shows a red asterisk after label.
          */
         "required": false;
@@ -155,7 +159,7 @@ export namespace Components {
         /**
           * The value of the input.
          */
-        "value"?: string | number | null;
+        "value"?: string;
     }
     interface ZenInputSupportText {
         /**
@@ -529,6 +533,10 @@ declare namespace LocalJSX {
          */
         "disabled"?: false;
         /**
+          * Label of the checkbox.
+         */
+        "label"?: string;
+        /**
           * Emitted when the checked property has changed.
          */
         "onCheckboxChange"?: (event: CustomEvent<CheckboxChangeEventDetail>) => void;
@@ -613,7 +621,7 @@ declare namespace LocalJSX {
         /**
           * The value of the input.
          */
-        "value"?: string | number | null;
+        "value"?: string;
     }
     interface ZenInputSupportText {
         /**

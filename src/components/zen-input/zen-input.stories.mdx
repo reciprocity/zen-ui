@@ -1,0 +1,126 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
+import { html } from 'lit-html';
+import Readme from './readme.md';
+import { getArgTypes, getDefaultArgs, getComponentData, spreadArgs } from '../../../.storybook/helpers/argTypes';
+
+import data from '../../../stencilDocs.json';
+const compData = data.components.find(n => n.tag === 'zen-input');
+const argTypes = getArgTypes(compData);
+
+import { litHtmlIcon, styles } from '../helpers/fa-icons';
+import { faUser, faKey } from '@fortawesome/pro-light-svg-icons';
+
+<Meta title="Forms/Input" component="zen-input" argTypes={argTypes} />
+
+export const StoryWithControls = args => html/*html*/ ` <zen-input ...="${spreadArgs(args)}"></zen-input> `;
+
+export const StorySimple = () => html/*html*/ ` <zen-input></zen-input> `;
+
+export const StoryInvalid = () => html/*html*/ ` <zen-input invalid></zen-input> `;
+
+export const StoryDisabled = () => html/*html*/ ` <zen-input disabled></zen-input> `;
+
+export const StoryWithLeadingSlot = () =>
+  html/*html*/ `
+    <zen-input>
+      <i
+        slot="leadingSlot"
+        style="width: 1rem; margin-top: 0.375rem; margin-left: 0.5rem;"
+        .innerHTML="${litHtmlIcon(faUser)}"
+      ></i>
+    </zen-input>
+  `;
+
+export const StoryWithTrailingSlot = () =>
+  html/*html*/ `
+    <zen-input>
+      <i
+        slot="trailingSlot"
+        style="width: 1rem; margin-top: 0.375rem; margin-right: 0.5rem;"
+        .innerHTML="${litHtmlIcon(faKey)}"
+      ></i>
+    </zen-input>
+  `;
+
+export const StoryWithLeadingAndTrailingSlots = () =>
+  html/*html*/ `
+    <zen-input>
+      <i
+        slot="leadingSlot"
+        style="width: 1rem; margin-top: 0.375rem; margin-left: 0.5rem;"
+        .innerHTML="${litHtmlIcon(faUser)}"
+      ></i>
+      <i
+        slot="trailingSlot"
+        style="width: 1rem; margin-top: 0.375rem; margin-right: 0.5rem;"
+        .innerHTML="${litHtmlIcon(faKey)}"
+      ></i>
+    </zen-input>
+  `;
+
+# Input
+
+Form input component with slots capabilities
+
+## Component previews
+
+<br />
+
+### 1. Default input
+
+<Canvas>
+  <Story name="StorySimple">{StorySimple.bind({})}</Story>
+</Canvas>
+
+### 2. Invalid input
+
+<Canvas>
+  <Story name="StoryInvalid">{StoryInvalid.bind({})}</Story>
+</Canvas>
+
+### 3. Disabled input
+
+<Canvas>
+  <Story name="StoryDisabled">{StoryDisabled.bind({})}</Story>
+</Canvas>
+
+### 4. Input with leading slot fulfilled
+
+- Apply leadingSlot value for the slot attribute in your inner custom HTML
+
+<Canvas>
+  <Story name="StoryWithLeadingSlot">{StoryWithLeadingSlot.bind({})}</Story>
+</Canvas>
+
+### 5. Input with trailing slot fulfilled
+
+- Apply trailingSlot value for the slot attribute in your inner custom HTML
+
+<Canvas>
+  <Story name="StoryWithTrailingSlot">{StoryWithTrailingSlot.bind({})}</Story>
+</Canvas>
+
+### 6. Input with leading and trailing slots fulfilled
+
+- Apply leadingSlot and trailingSlot values for the slot attributes in your inner custom HTML
+
+<Canvas>
+  <Story name="StoryWithLeadingAndTrailingSlots">{StoryWithLeadingAndTrailingSlots.bind({})}</Story>
+</Canvas>
+
+## Properties
+
+<Canvas>
+  <Story
+    name="default"
+    args={{
+      ...getDefaultArgs(argTypes),
+    }}
+  >
+    {StoryWithControls.bind({})}
+  </Story>
+</Canvas>
+
+<ArgsTable story="default" />
+
+<docs-table docs={JSON.stringify(getComponentData('zen-input'))}></docs-table>

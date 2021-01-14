@@ -13,8 +13,11 @@ export class ZenCheckbox {
   /** Disables checkbox. */
   @Prop() readonly disabled = false;
 
+  /** Label of the checkbox. */
+  @Prop() readonly label: string = '';
+
   /** Shows a red asterisk after label. */
-  @Prop() readonly required: false;
+  @Prop() readonly required = false;
 
   /** Emitted when the checked property has changed. */
   @Event() checkboxChange!: EventEmitter<CheckboxChangeEventDetail>;
@@ -43,7 +46,7 @@ export class ZenCheckbox {
           required={this.required}
         />
         <label class={{ disabled: this.disabled }}>
-          <slot /> {this.required ? <span class="required">*</span> : null}
+          {this.label} {this.required ? <span class="required">*</span> : null}
         </label>
       </Host>
     );

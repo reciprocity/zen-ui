@@ -1,7 +1,1 @@
-export enum ButtonVariants {
-  Primary = 'primary',
-  Secondary = 'secondary',
-  Tertiary = 'tertiary',
-  Destructive = 'destructive',
-  Positive = 'positive',
-}
+export type ButtonVariants = 'primary' | 'secondary' | 'tertiary' | 'destructive' | 'positive';
