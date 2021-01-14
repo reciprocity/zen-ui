@@ -11,7 +11,7 @@ describe('zen-input', () => {
       <zen-input>
         <mock:shadow-root>
         <slot name="leadingSlot"></slot>
-          <input type="text" value="">
+          <input placeholder="" type="text" value="">
         <slot name="trailingSlot"></slot>
         </mock:shadow-root>
       </zen-input>
@@ -43,7 +43,7 @@ describe('zen-input', () => {
       <zen-input value="Test value">
         <mock:shadow-root>
         <slot name="leadingSlot"></slot>
-          <input type="text" value="Test value">
+          <input placeholder="" type="text" value="Test value">
         <slot name="trailingSlot"></slot>
         </mock:shadow-root>
       </zen-input>
@@ -59,7 +59,7 @@ describe('zen-input', () => {
       <zen-input class="invalid" invalid="">
         <mock:shadow-root>
         <slot name="leadingSlot"></slot>
-          <input type="text" value="">
+          <input placeholder="" type="text" value="">
         <slot name="trailingSlot"></slot>
         </mock:shadow-root>
       </zen-input>
@@ -75,7 +75,7 @@ describe('zen-input', () => {
       <zen-input class="disabled" disabled="">
         <mock:shadow-root>
         <slot name="leadingSlot"></slot>
-          <input disabled="" type="text" value="">
+          <input disabled="" placeholder="" type="text" value="">
         <slot name="trailingSlot"></slot>
         </mock:shadow-root>
       </zen-input>
@@ -91,7 +91,7 @@ describe('zen-input', () => {
       <zen-input>
         <mock:shadow-root>
         <slot name="leadingSlot"></slot>
-          <input type="text" value="">
+          <input placeholder="" type="text" value="">
         <slot name="trailingSlot"></slot>
         </mock:shadow-root>
         <component-example slot="leadingSlot" />
@@ -108,7 +108,7 @@ describe('zen-input', () => {
       <zen-input>
         <mock:shadow-root>
         <slot name="leadingSlot"></slot>
-          <input type="text" value="">
+          <input placeholder="" type="text" value="">
         <slot name="trailingSlot"></slot>
         </mock:shadow-root>
         <component-example slot="trailingSlot" />
@@ -125,7 +125,7 @@ describe('zen-input', () => {
       <zen-input>
         <mock:shadow-root>
         <slot name="leadingSlot"></slot>
-          <input type="text" value="">
+          <input placeholder="" type="text" value="">
         <slot name="trailingSlot"></slot>
         </mock:shadow-root>
         <component-example slot="leadingSlot" />
