@@ -15,34 +15,80 @@ export const StoryWithControls = args => html/*html*/ `
   ${action('#button1', eventHandles(['click']))}
 `;
 
-export const Story1 = () => html/*html*/ ` <zen-button id="button1" variant="secondary"> Button 1 </zen-button> `;
+export const StorySimple = () => html/*html*/ ` <zen-button variant="primary"></zen-button> `;
 
-export const Story2 = () => html/*html*/ ` <zen-button id="button1"> Button 2 </zen-button> `;
+export const StoryLoading = () => html/*html*/ ` <zen-button loading></zen-button> `;
 
-# Component name
+export const StoryDisabled = () => html/*html*/ ` <zen-button disabled></zen-button> `;
 
-Short description of the component
+export const StoryWithLeadingSlot = () => html/*html*/ ` <zen-button> <zen-spinner slot="leadingIcon" /></zen-button> `;
+
+export const StoryWithTrailingSlot = () =>
+  html/*html*/ ` <zen-button><zen-spinner slot="trailingIcon" /></zen-button> `;
+
+export const StoryWithLeadingAndTrailingSlots = () =>
+  html/*html*/ `
+    <zen-button id="button6">
+      <zen-spinner slot="leadingIcon"></zen-spinner>
+      Leading and Trailing Slots
+      <zen-spinner slot="trailingIcon"></zen-spinner>
+    </zen-button>
+  `;
+
+# Button
+
+Button component with slots capabilities
 
 ## Component previews
 
 <br />
 
-### 1. Title of 1st useful story
+### 1. Default button
 
-- Important point for this story
 - Important point for this story
 
 <Canvas>
-  <Story name="button">{Story1.bind({})}</Story>
+  <Story name="StorySimple">{StorySimple.bind({})}</Story>
 </Canvas>
 
-### 2. Title of 2nd useful story
+### 2. Default loading button
 
-A composition of `Input` and a `Dropdown` component. Dropdown is placed inside an input using input's slot `trailingSlot`.
-Click `Show code` for more details.
+- Important point for this story
 
 <Canvas>
-  <Story name="story2">{Story2.bind({})}</Story>
+  <Story name="StoryLoading">{StoryLoading.bind({})}</Story>
+</Canvas>
+
+### 3. Default disabled button
+
+- Important point for this story
+
+<Canvas>
+  <Story name="StoryDisabled">{StoryDisabled.bind({})}</Story>
+</Canvas>
+
+### 4. Default button with leading slot fulfilled
+
+- Important point for this story
+
+<Canvas>
+  <Story name="StoryWithLeadingSlot">{StoryWithLeadingSlot.bind({})}</Story>
+</Canvas>
+
+### 5. Default button with trailing slot fulfilled
+
+- Important point for this story
+
+<Canvas>
+  <Story name="StoryWithTrailingSlot">{StoryWithTrailingSlot.bind({})}</Story>
+</Canvas>
+
+### 6. Default button with leading and trailing slots fulfilled
+
+- Important point for this story
+
+<Canvas>
+  <Story name="StoryWithLeadingAndTrailingSlots">{StoryWithLeadingAndTrailingSlots.bind({})}</Story>
 </Canvas>
 
 ## Properties
