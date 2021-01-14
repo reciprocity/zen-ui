@@ -1,37 +1,52 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
 import { html } from 'lit-html';
 import Readme from './readme.md';
-import { eventHandles, action } from '../../../.storybook/helpers/custom-action';
 import { getArgTypes, getDefaultArgs, getComponentData, spreadArgs } from '../../../.storybook/helpers/argTypes';
 
 import data from '../../../stencilDocs.json';
 const compData = data.components.find(n => n.tag === 'zen-button');
 const argTypes = getArgTypes(compData);
 
+import { litHtmlIcon, styles } from '../helpers/fa-icons';
+import { faUser, faChevronDown } from '@fortawesome/pro-light-svg-icons';
+
 <Meta title="Buttons/Button" component="zen-button" argTypes={argTypes} />
 
-export const StoryWithControls = args => html/*html*/ `
-  <zen-button id="button1" ...="${spreadArgs(args)}"> Button 1 </zen-button>
-  ${action('#button1', eventHandles(['click']))}
-`;
+export const StoryWithControls = args => html/*html*/ ` <zen-button ...="${spreadArgs(args)}"></zen-button>`;
 
-export const StorySimple = () => html/*html*/ ` <zen-button variant="primary"></zen-button> `;
+export const StorySimple = () =>
+  html/*html*/ `
+    <div style="display: flex; justify-content: space-evenly;">
+      <zen-button variant="primary"></zen-button><zen-button variant="secondary"></zen-button
+      ><zen-button variant="tertiary"></zen-button><zen-button variant="positive"></zen-button
+      ><zen-button variant="destructive"></zen-button>
+    </div>
+  `;
 
 export const StoryLoading = () => html/*html*/ ` <zen-button loading></zen-button> `;
 
 export const StoryDisabled = () => html/*html*/ ` <zen-button disabled></zen-button> `;
 
-export const StoryWithLeadingSlot = () => html/*html*/ ` <zen-button> <zen-spinner slot="leadingIcon" /></zen-button> `;
+export const StoryWithLeadingSlot = () =>
+  html/*html*/ `
+    <zen-button>
+      <i slot="leadingIcon" style="width: 0.625rem;" .innerHTML="${litHtmlIcon(faUser)}"></i>
+    </zen-button>
+  `;
 
 export const StoryWithTrailingSlot = () =>
-  html/*html*/ ` <zen-button><zen-spinner slot="trailingIcon" /></zen-button> `;
+  html/*html*/ `
+    <zen-button
+      ><i slot="trailingIcon" style="width: 0.625rem;" .innerHTML="${litHtmlIcon(faChevronDown)}"></i
+    ></zen-button>
+  `;
 
 export const StoryWithLeadingAndTrailingSlots = () =>
   html/*html*/ `
-    <zen-button id="button6">
-      <zen-spinner slot="leadingIcon"></zen-spinner>
+    <zen-button>
+      <i slot="leadingIcon" style="width: 0.625rem;" .innerHTML="${litHtmlIcon(faUser)}"></i>
       Leading and Trailing Slots
-      <zen-spinner slot="trailingIcon"></zen-spinner>
+      <i slot="trailingIcon" style="width: 0.625rem;" .innerHTML="${litHtmlIcon(faChevronDown)}"></i>
     </zen-button>
   `;
 
@@ -43,9 +58,7 @@ Button component with slots capabilities
 
 <br />
 
-### 1. Default button
-
-- Important point for this story
+### 1. Button variants
 
 <Canvas>
   <Story name="StorySimple">{StorySimple.bind({})}</Story>
@@ -53,15 +66,11 @@ Button component with slots capabilities
 
 ### 2. Default loading button
 
-- Important point for this story
-
 <Canvas>
   <Story name="StoryLoading">{StoryLoading.bind({})}</Story>
 </Canvas>
 
 ### 3. Default disabled button
-
-- Important point for this story
 
 <Canvas>
   <Story name="StoryDisabled">{StoryDisabled.bind({})}</Story>
@@ -69,7 +78,7 @@ Button component with slots capabilities
 
 ### 4. Default button with leading slot fulfilled
 
-- Important point for this story
+- Apply leadingSlot value for the slot attribute in your inner custom HTML
 
 <Canvas>
   <Story name="StoryWithLeadingSlot">{StoryWithLeadingSlot.bind({})}</Story>
@@ -77,7 +86,7 @@ Button component with slots capabilities
 
 ### 5. Default button with trailing slot fulfilled
 
-- Important point for this story
+- Apply trailingSlot value for the slot attribute in your inner custom HTML
 
 <Canvas>
   <Story name="StoryWithTrailingSlot">{StoryWithTrailingSlot.bind({})}</Story>
@@ -85,7 +94,7 @@ Button component with slots capabilities
 
 ### 6. Default button with leading and trailing slots fulfilled
 
-- Important point for this story
+- Apply leadingSlot and trailingSlot values for the slot attributes in your inner custom HTML
 
 <Canvas>
   <Story name="StoryWithLeadingAndTrailingSlots">{StoryWithLeadingAndTrailingSlots.bind({})}</Story>
