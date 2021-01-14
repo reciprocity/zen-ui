@@ -2,15 +2,13 @@
 
 describe('Button visual tests', () => {
   const pageId = 'buttons-button--default';
-  const stories = ["story--buttons-button--default", 
-  "story--buttons-button--primary-button-story", 
-  "story--buttons-button--secondary-button-story", 
-  "story--buttons-button--tertiary-button-story", 
-  "story--buttons-button--destructive-button-story", 
-  "story--buttons-button--positive-button-story", 
-  "story--buttons-button--with-leading-slot", 
-  "story--buttons-button--with-trailing-slot", 
-  "story--buttons-button--with-both-slot"];
+  const stories = ["story--buttons-button--story-simple", 
+  "story--buttons-button--story-loading", 
+  "story--buttons-button--story-disabled", 
+  "story--buttons-button--story-with-leading-slot", 
+  "story--buttons-button--story-with-trailing-slot", 
+  "story--buttons-button--story-with-leading-and-trailing-slots", 
+  "story--buttons-button--default-story"];
 
   before(() => {
     cy.visitStorybookIframe(pageId);
