@@ -594,18 +594,6 @@ declare namespace LocalJSX {
          */
         "invalid"?: false;
         /**
-          * Emitted when the input loses focus.
-         */
-        "onZenBlur"?: (event: CustomEvent<FocusEvent>) => void;
-        /**
-          * Emitted when the input has focus.
-         */
-        "onZenFocus"?: (event: CustomEvent<FocusEvent>) => void;
-        /**
-          * Emitted when a keyboard input occurred.
-         */
-        "onZenInput"?: (event: CustomEvent<KeyboardEvent>) => void;
-        /**
           * Placeholder of the input.
          */
         "placeholder"?: string;
