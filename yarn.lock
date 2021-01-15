@@ -13523,11 +13523,6 @@ ts-essentials@^2.0.3:
   resolved "https://registry.yarnpkg.com/ts-essentials/-/ts-essentials-2.0.12.tgz#c9303f3d74f75fa7528c3d49b80e089ab09d8745"
   integrity sha512-3IVX4nI6B5cc31/GFFE+i8ey/N2eA0CZDbo6n0yrz0zDX8ZJ8djmU1p+XRz7G3is0F3bB3pu2pAroFdAWQKU3w==
 
-ts-key-enum@^3.0.4:
-  version "3.0.6"
-  resolved "https://registry.yarnpkg.com/ts-key-enum/-/ts-key-enum-3.0.6.tgz#a32d936f2e34b30ab0b8536a2a858555baa59465"
-  integrity sha512-0oZmN7IBKH5B4bvmaKXOoVrddRleG2WOSVuX8hTg1EO1GigmE3yeZLogzcr8GpCsz3lP46INqaZ4gnN+gZSUWQ==
-
 ts-pnp@^1.1.6:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/ts-pnp/-/ts-pnp-1.2.0.tgz#a500ad084b0798f1c3071af391e65912c86bca92"
