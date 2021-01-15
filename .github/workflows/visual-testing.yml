@@ -35,7 +35,7 @@ jobs:
           mapfile -d ',' -t added_modified_files < <(printf '%s,' '${{ steps.files.outputs.added_modified }}')
           for file in "${added_modified_files[@]}"; do
             if [[ $file =~ $snapshots_path ]] ; then
-              filtered_files="$filtered_files * $file "
+              filtered_files="$filtered_files $file<br/>"
             fi
           done
 
@@ -53,5 +53,5 @@ jobs:
             It looks like this PR contains the following visual testing snapshot changes:
             ${{ steps.filtered_files.outputs.filtered_files }}
 
-            👉 Review the snapshot diffs <a href="${{ github.event.number }}/files?file-filters%5B%5D=.png&short_path=669d9e0">here</a>.
+            👉 Review the snapshot diffs <a href="${{ github.event.number }}/files?file-filters%5B%5D=.png">here</a> (<a href="https://bit.ly/3sqsntG">instructions</a>).
           allow-repeats: true
