@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, State, Event, EventEmitter, Watch } from '@stencil/core';
+import { Component, Host, h, Prop, State, Watch, Element } from '@stencil/core';
 import { faCheck } from '@fortawesome/pro-light-svg-icons';
 import { renderIcon, styles } from '../helpers/fa-icons';
 import { StepsFilter } from './types';
@@ -22,6 +22,8 @@ export interface StepEvent {
   shadow: true,
 })
 export class ZenSteps {
+  @Element() hostElement: HTMLZenStepsElement;
+
   @State() internalActiveIndex: number;
   /** Ordered array of possible steps */
   @Prop({ reflect: true }) readonly steps: Array<StepItem> = [];
@@ -36,18 +38,16 @@ export class ZenSteps {
   }
 
   /** User clicked a step */
-  @Event() selected: EventEmitter<StepEvent>;
-
-  selectStep(index: number, step: StepItem): void {
+  selectStep(index: number): void {
     this.internalActiveIndex = index;
-    this.selected.emit({ index, step });
+    this.hostElement.dispatchEvent(new window.Event('change'));
   }
 
-  stepClicked(index: number, step: StepItem): void {
+  stepClicked(index: number): void {
     if (this.clickable === 'none') return;
     const stepState = this.getItemState(index);
     if (this.clickable === 'completed' && stepState !== 'completed') return;
-    this.selectStep(index, step);
+    this.selectStep(index);
   }
 
   getItemState(index: number): StepState {
@@ -84,7 +84,7 @@ export class ZenSteps {
             <li
               class={`step ${this.getItemState(index)}`}
               onClick={() => {
-                this.stepClicked(index, step);
+                this.stepClicked(index);
               }}
             >
               <div class="roundle">

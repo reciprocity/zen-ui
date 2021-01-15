@@ -10,7 +10,7 @@ import { ButtonVariants } from "./components/zen-button/types";
 import { OptionValue } from "./components/zen-menu-item/zen-option";
 import { Align, Duration, NotificationVariant, Position, TooltipVariant } from "./components/helpers/types";
 import { OptionValue as OptionValue1 } from "./components/zen-menu-item/zen-option";
-import { StepEvent, StepItem } from "./components/zen-steps/zen-steps";
+import { StepItem } from "./components/zen-steps/zen-steps";
 import { StepsFilter } from "./components/zen-steps/types";
 import { TabItem, TabValue } from "./components/zen-tabs/zen-tabs";
 export namespace Components {
@@ -686,10 +686,6 @@ declare namespace LocalJSX {
          */
         "clickable"?: StepsFilter;
         /**
-          * User clicked a step
-         */
-        "onSelected"?: (event: CustomEvent<StepEvent>) => void;
-        /**
           * Ordered array of possible steps
          */
         "steps"?: Array<StepItem>;
@@ -709,10 +705,6 @@ declare namespace LocalJSX {
           * Appends attribute disabled.
          */
         "disabled"?: false;
-        /**
-          * Emitted when a keyboard input occurred.
-         */
-        "onZenInput"?: (event: CustomEvent<KeyboardEvent>) => void;
         /**
           * Placeholder of the textarea.
          */
