@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, EventEmitter, Event } from '@stencil/core';
+import { Component, Host, h, Prop, Element } from '@stencil/core';
 
 @Component({
   tag: 'zen-textarea',
@@ -6,6 +6,8 @@ import { Component, Host, h, Prop, EventEmitter, Event } from '@stencil/core';
   shadow: true,
 })
 export class ZenTextarea {
+  @Element() hostElement: HTMLZenTextareaElement;
+
   /** Appends attribute disabled. */
   @Prop() readonly disabled = false;
 
@@ -18,15 +20,16 @@ export class ZenTextarea {
   /** Prefilled text content */
   @Prop({ mutable: true }) text?: string | null = '';
 
-  /** Emitted when a keyboard input occurred. */
-  @Event() zenInput!: EventEmitter<KeyboardEvent>;
-
   private onInput = (ev: Event) => {
     const input = ev.target as HTMLTextAreaElement | null;
     if (input) {
       this.text = input.value || '';
     }
-    this.zenInput.emit(ev as KeyboardEvent);
+  };
+
+  private onChange = () => {
+    // change event should be forwarded, because it's not composed:
+    this.hostElement.dispatchEvent(new window.Event('change'));
   };
 
   render(): HTMLElement {
@@ -39,6 +42,7 @@ export class ZenTextarea {
           disabled={this.disabled}
           required={this.required}
           onInput={this.onInput}
+          onChange={this.onChange}
         >
           {text}
         </textarea>

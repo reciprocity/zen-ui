@@ -1,5 +1,5 @@
 import { Component, Host, h, Prop } from '@stencil/core';
-import { JsonDocsComponent } from '@stencil/core/internal/stencil-public-docs';
+import { JsonDocsComponent, JsonDocsEvent } from '@stencil/core/internal/stencil-public-docs';
 
 @Component({
   tag: 'docs-table',
@@ -12,8 +12,25 @@ export class DocsTable {
   /** Data from stencilDocs.json */
   @Prop() readonly docs: string;
 
+  docTagToCustomEvent(docTag): JsonDocsEvent {
+    const params = docTag.text.split('|');
+    return {
+      event: (params[0] || '').trim(),
+      bubbles: true,
+      cancelable: true,
+      composed: true,
+      docs: (params[1] || '').trim(),
+      docsTags: [],
+      detail: '',
+    };
+  }
+
   componentWillLoad(): void {
     this.data = JSON.parse(this.docs);
+    const customEvents = this.data.docsTags
+      ? this.data.docsTags.filter(n => n.name === 'event').map(n => this.docTagToCustomEvent(n))
+      : [];
+    this.data.events = this.data.events.concat(customEvents);
   }
 
   render(): HTMLElement {

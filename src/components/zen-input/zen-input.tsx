@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, EventEmitter, Event, Element, Listen } from '@stencil/core';
+import { Component, Host, h, Prop, Element, Listen } from '@stencil/core';
 import { getNextField } from '../helpers/helpers';
 
 /**
@@ -33,15 +33,6 @@ export class ZenInput {
   /** The value of the input. */
   @Prop({ mutable: true }) value?: string = '';
 
-  /** Emitted when a keyboard input occurred. */
-  @Event() zenInput!: EventEmitter<KeyboardEvent>;
-
-  /** Emitted when the input loses focus. */
-  @Event() zenBlur!: EventEmitter<FocusEvent>;
-
-  /** Emitted when the input has focus. */
-  @Event() zenFocus!: EventEmitter<FocusEvent>;
-
   @Listen('keydown')
   handleKeyDown(ev: KeyboardEvent): void {
     // TODO: replace with ts-key-enum
@@ -57,17 +48,19 @@ export class ZenInput {
     if (input) {
       this.value = input.value || '';
     }
-    this.zenInput.emit(ev as KeyboardEvent);
   };
 
-  private onBlur = (ev: FocusEvent) => {
+  private onChange = () => {
+    // change event should be forwarded, because it's not composed:
+    this.hostElement.dispatchEvent(new window.Event('change'));
+  };
+
+  private onBlur = () => {
     this.hasFocus = false;
-    this.zenBlur.emit(ev);
   };
 
-  private onFocus = (ev: FocusEvent) => {
+  private onFocus = () => {
     this.hasFocus = true;
-    this.zenFocus.emit(ev);
   };
 
   private getValue(): string {
@@ -89,6 +82,7 @@ export class ZenInput {
           onBlur={this.onBlur}
           onFocus={this.onFocus}
           onInput={this.onInput}
+          onChange={this.onChange}
         />
         <slot name="trailingSlot"></slot>
       </Host>

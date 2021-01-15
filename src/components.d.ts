@@ -7,11 +7,10 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { StringifiedJson } from "./stories/components/color-swatch-group/color-swatch-group";
 import { ButtonVariants } from "./components/zen-button/types";
-import { CheckboxChangeEventDetail } from "./components/zen-checkbox/types";
 import { OptionValue } from "./components/zen-menu-item/zen-option";
 import { Align, Duration, NotificationVariant, Position, TooltipVariant } from "./components/helpers/types";
 import { OptionValue as OptionValue1 } from "./components/zen-menu-item/zen-option";
-import { StepEvent, StepItem } from "./components/zen-steps/zen-steps";
+import { StepItem } from "./components/zen-steps/zen-steps";
 import { StepsFilter } from "./components/zen-steps/types";
 import { TabItem, TabValue } from "./components/zen-tabs/zen-tabs";
 export namespace Components {
@@ -537,10 +536,6 @@ declare namespace LocalJSX {
          */
         "label"?: string;
         /**
-          * Emitted when the checked property has changed.
-         */
-        "onCheckboxChange"?: (event: CustomEvent<CheckboxChangeEventDetail>) => void;
-        /**
           * Shows a red asterisk after label.
          */
         "required"?: false;
@@ -571,10 +566,6 @@ declare namespace LocalJSX {
          */
         "menuWidth"?: string;
         /**
-          * Emitted on any selection change
-         */
-        "onZenChange"?: (event: CustomEvent<OptionValue>) => void;
-        /**
           * Text in field if nothing selected
          */
         "placeholder"?: string;
@@ -602,18 +593,6 @@ declare namespace LocalJSX {
           * Shows invalid styles.
          */
         "invalid"?: false;
-        /**
-          * Emitted when the input loses focus.
-         */
-        "onZenBlur"?: (event: CustomEvent<FocusEvent>) => void;
-        /**
-          * Emitted when the input has focus.
-         */
-        "onZenFocus"?: (event: CustomEvent<FocusEvent>) => void;
-        /**
-          * Emitted when a keyboard input occurred.
-         */
-        "onZenInput"?: (event: CustomEvent<KeyboardEvent>) => void;
         /**
           * Placeholder of the input.
          */
@@ -707,10 +686,6 @@ declare namespace LocalJSX {
          */
         "clickable"?: StepsFilter;
         /**
-          * User clicked a step
-         */
-        "onSelected"?: (event: CustomEvent<StepEvent>) => void;
-        /**
           * Ordered array of possible steps
          */
         "steps"?: Array<StepItem>;
@@ -730,10 +705,6 @@ declare namespace LocalJSX {
           * Appends attribute disabled.
          */
         "disabled"?: false;
-        /**
-          * Emitted when a keyboard input occurred.
-         */
-        "onZenInput"?: (event: CustomEvent<KeyboardEvent>) => void;
         /**
           * Placeholder of the textarea.
          */
