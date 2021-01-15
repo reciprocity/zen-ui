@@ -2,6 +2,22 @@
 
 # Changelog
 
+## 0.0.20
+
+xx.1.2020<br/><br/>
+
+#### Breaking changes
+
+1. **Events prefixed by `zen-`** were changed **into native events**.<br/>Eg. `zen-change` is now `change`.<br/>This affects the following components:
+   - **`zen-checkbox`**
+   - **`zen-dropdown`**
+   - **`zen-input`**
+   - **`zen-textarea`**
+   - **`zen-steps`**
+1. zen-spinner: **Prop `color` removed**. To set custom color: `<zen-spinner style="color: #f00">`
+1. zen-button: **Prop `label` removed**. To set button label: `<zen-button>Click here</zen-button>`
+1. zen-checkbox: **Prop `label` removed**. To set checkbox label: `<zen-checkbox>Checkbox label</zen-checkbox>`
+
 ## 0.0.19
 
 24.12.2020<br/><br/>
@@ -44,11 +60,3 @@
 
 1. Dropdown: prevent closing dropdown on scrolling using the scrollbar
 1. Dropdown: The height of the field should follow the height of `<zen-dropdown>` tag
-
-## 0.0.18
-
-#### Breaking changes
-
-1. zen-spinner: **Prop `color` removed**. To set custom color: `<zen-spinner style="color: #f00">`
-1. zen-button: **Prop `label` removed**. To set button label: `<zen-button>Click here</zen-button>`
-1. zen-checkbox: **Prop `label` removed**. To set checkbox label: `<zen-checkbox>Checkbox label</zen-checkbox>`
