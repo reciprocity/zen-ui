@@ -1,5 +1,10 @@
 import { Component, Host, h, Prop, Watch, Element } from '@stencil/core';
 
+/**
+ * @event change | Called whenever checkbox value changes
+ * @event click | Called when checkbox value changes due to user action
+ */
+
 @Component({
   tag: 'zen-checkbox',
   styleUrl: 'zen-checkbox.scss',
