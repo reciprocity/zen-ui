@@ -1,6 +1,7 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
 import { html } from 'lit-html';
 import Readme from './readme.md';
+import { action } from '../../../.storybook/helpers/custom-action';
 import { getArgTypes, getDefaultArgs, getComponentData, spreadArgs } from '../../../.storybook/helpers/argTypes';
 
 import data from '../../../stencilDocs.json';
@@ -12,7 +13,10 @@ import { faUser, faKey } from '@fortawesome/pro-light-svg-icons';
 
 <Meta title="Forms/Input" component="zen-input" argTypes={argTypes} />
 
-export const StoryWithControls = args => html/*html*/ ` <zen-input ...="${spreadArgs(args)}"></zen-input> `;
+export const StoryWithControls = args => html/*html*/ `
+  <zen-input id="input1" ...="${spreadArgs(args)}"></zen-input>
+  ${action('#input1', ['blur', 'focus', 'input', 'change'])}
+`;
 
 export const StorySimple = () => html/*html*/ ` <zen-input></zen-input> `;
 
