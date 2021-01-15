@@ -566,10 +566,6 @@ declare namespace LocalJSX {
          */
         "menuWidth"?: string;
         /**
-          * Emitted on any selection change
-         */
-        "onZenChange"?: (event: CustomEvent<OptionValue>) => void;
-        /**
           * Text in field if nothing selected
          */
         "placeholder"?: string;

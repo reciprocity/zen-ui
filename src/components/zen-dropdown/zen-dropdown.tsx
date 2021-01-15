@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, State, Event, EventEmitter, Listen, Watch, Element, Method } from '@stencil/core';
+import { Component, Host, h, Prop, State, Listen, Watch, Element, Method } from '@stencil/core';
 import { getDefaultSlotContent } from '../helpers/helpers';
 import { faChevronDown } from '@fortawesome/pro-light-svg-icons';
 import { renderIcon, styles } from '../helpers/fa-icons';
@@ -14,6 +14,7 @@ export interface OptionItem {
 /**
  * @slot [default] - Content for dropdown menu
  * @slot placeholder - Slot visible in field when nothing is selected
+ * @event change | Called on any selection change
  */
 
 @Component({
@@ -47,9 +48,6 @@ export class ZenDropdown {
   @Prop() readonly placeholder: string = 'Select something';
   /** Disable any changes */
   @Prop() readonly disabled?: boolean = false;
-
-  /** Emitted on any selection change */
-  @Event() zenChange: EventEmitter<OptionValue>;
 
   /** Close an opened dropdown menu */
   @Method()
@@ -183,7 +181,7 @@ export class ZenDropdown {
     if (this.closeOnSelect) {
       this.opened = false;
     }
-    this.zenChange.emit(value);
+    this.hostElement.dispatchEvent(new window.Event('change'));
   }
 
   toggleDropdown(open?: boolean): void {

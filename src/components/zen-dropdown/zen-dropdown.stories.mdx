@@ -2,7 +2,7 @@ import { html } from 'lit-html';
 import { spread } from '@open-wc/lit-helpers';
 import Readme from './readme.md';
 import { Meta, Description, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
-import { eventHandles, action } from '../../../.storybook/helpers/custom-action';
+import { action } from '../../../.storybook/helpers/custom-action';
 import { getArgTypes, getDefaultArgs, getComponentData } from '../../../.storybook/helpers/argTypes';
 import { camelKeysToKebab } from '../../../.storybook/helpers/utils';
 
@@ -13,8 +13,6 @@ import { faCheck } from '@fortawesome/pro-light-svg-icons';
 import { litHtmlIcon, styles } from '../helpers/fa-icons';
 import { Align } from '../helpers/types';
 import data from '../../../stencilDocs.json';
-const customEvents = ['zenChange'];
-const events = [...eventHandles(customEvents)];
 const compData = data.components.find(n => n.tag === 'zen-dropdown');
 const argTypes = getArgTypes(compData);
 argTypes.value.type.name = 'string';
@@ -41,12 +39,7 @@ export const Template = args => html/*html*/ `
     }
     ${styles}
   </style>
-  <zen-dropdown
-    id="dropdown-with-options-slot"
-    class="mb-80"
-    style="max-width: 300px;"
-    ...="${spread(camelKeysToKebab(args))}"
-  >
+  <zen-dropdown id="dropdown-controls" class="mb-80" style="max-width: 300px;" ...="${spread(camelKeysToKebab(args))}">
     <div class="separator">Some custom title</div>
     <zen-option value="1">Item 1</zen-option>
     <zen-option default-padding="false" value="2">
@@ -65,7 +58,7 @@ export const Template = args => html/*html*/ `
     <zen-option value="8">Item 8</zen-option>
     <zen-option value="9">Item 9</zen-option>
   </zen-dropdown>
-  ${action('#dropdown-with-options-slot', customEvents)}
+  ${action('#dropdown-controls', ['change'])}
 `;
 
 export const CustomIcons = () => html/*html*/ `
@@ -113,7 +106,7 @@ export const CustomIcons = () => html/*html*/ `
       </div>
     </zen-option>
   </zen-dropdown>
-  ${action('#dropdown-with-options-slot', customEvents)}
+  ${action('#dropdown-with-options-slot', ['change'])}
 `;
 
 export const InvitePeople = () => {
