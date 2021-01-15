@@ -1,6 +1,6 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
 import { html } from 'lit-html';
-import { eventHandles, action } from '../../../.storybook/helpers/custom-action';
+import { action } from '../../../.storybook/helpers/custom-action';
 import { getArgTypes, getDefaultArgs, getComponentData, spreadArgs } from '../../../.storybook/helpers/argTypes';
 
 import data from '../../../stencilDocs.json';
@@ -9,8 +9,10 @@ const argTypes = getArgTypes(compData);
 
 <Meta title="Forms/Textarea" component="zen-textarea" argTypes={argTypes} />
 
-export const StoryWithControls = args => html/*html*/ ` <zen-textarea ...="${spreadArgs(args)}" />
-  ${action('zen-textarea', ['zenInput'])}`;
+export const StoryWithControls = args => html/*html*/ `
+  <zen-textarea id="textarea1" ...="${spreadArgs(args)}" />
+  ${action('#textarea1', ['blur', 'focus', 'input', 'change'])}
+`;
 
 export const StoryWithLabelAndTextarea = () => {
   return html/*html*/ `
