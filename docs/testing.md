@@ -36,11 +36,25 @@ yarn start
 
 To run E2E and visual tests in Cypress:
 ```bash
-# Runs Cypress in interactive mode, without visual testing
+
+# Open Cypress in interactive mode
+yarn test:e2e:interactive
+
+# Runs all Cypress tests (visual + functional) in headless mode
+yarn run test:e2e:headless
+
+# Runs test in interactive mode, without visual testing
 yarn run test:e2e
 
-# Runs Cypress in headless mode, with visual testing
-yarn run test:e2e:headless
-# Runs Cypress in headless mode and updates snapshots for visual testing
-yarn run test:e2e:update
+# Runs visual tests in headless Chrome
+yarn run test:vrt
+
+# Update snapshots for visual testing
+yarn run test:vrt:update
+
+# Run visual tests only for one component
+yarn test:e2e:headless --spec "cypress/integration/visual/checkbox.e2e.js"
+
+# Update snapshots for visual tests for only one component
+yarn test:e2e:update --spec "cypress/integration/visual/checkbox.e2e.js"
 ```
