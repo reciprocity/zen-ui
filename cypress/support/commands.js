@@ -31,8 +31,8 @@ Cypress.Commands.add('visitStorybookIframe', (id) => {
  * Compares number of stories found on the page with the
  * number of tests created
  *
- * @param {string} stories  Array of stories set for testing
- * @param {string} skipedStories  Array of skiped stories
+ * @param {Array<string>} stories  Array of stories set for testing
+ * @param {Array<string>} skipedStories  Array of skiped stories
  */
 Cypress.Commands.add ('verifyAllStoriesHaveVRT', (stories, skipedStories =[]) => {
   Cypress.log({ name: 'CUSTOM - verifyAllStoriesHaveVRT: ' });
