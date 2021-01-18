@@ -26,3 +26,21 @@ Cypress.Commands.add('visitStorybookIframe', (id) => {
 
   cy.visit(`iframe.html?id=${id}&viewMode=docs`);
 });
+
+/**
+ * Compares number of stories found on the page with the
+ * number of tests created
+ *
+ * @param {string} stories  Array of stories set for testing
+ */
+Cypress.Commands.add ('verifyAllStoriesHaveVRT', (stories, skipedStories =[]) => {
+  Cypress.log({ name: 'CUSTOM - verifyAllStoriesHaveVRT: ' });
+  cy.get('[id^=story--]').each((selector) => {
+    let selectors =[];
+    selectors.push(selector);
+  }).then((selectors) => {
+    expect(selectors.length).to.equal(stories.length + skipedStories.length)
+  });
+});
+
+
