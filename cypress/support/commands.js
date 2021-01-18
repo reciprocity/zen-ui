@@ -32,6 +32,7 @@ Cypress.Commands.add('visitStorybookIframe', (id) => {
  * number of tests created
  *
  * @param {string} stories  Array of stories set for testing
+ * @param {string} skipedStories  Array of skiped stories
  */
 Cypress.Commands.add ('verifyAllStoriesHaveVRT', (stories, skipedStories =[]) => {
   Cypress.log({ name: 'CUSTOM - verifyAllStoriesHaveVRT: ' });
