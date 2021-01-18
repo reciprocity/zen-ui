@@ -16,11 +16,26 @@ export const StoryWithControls = args => html/*html*/ ` <zen-button ...="${sprea
 export const StorySimple = () =>
   html/*html*/ `
     <div style="display: flex; justify-content: space-evenly;">
-      <zen-button variant="primary"></zen-button>
-      <zen-button variant="secondary"></zen-button>
-      <zen-button variant="tertiary"></zen-button>
-      <zen-button variant="positive"></zen-button>
-      <zen-button variant="destructive"></zen-button>
+      <div style="display: flex; flex-direction: column; align-items: center;">
+        <zen-button variant="primary"></zen-button>
+        <span style="margin-top: 0.5rem;">Primary</span>
+      </div>
+      <div style="display: flex; flex-direction: column; align-items: center;">
+        <zen-button variant="secondary"></zen-button>
+        <span style="margin-top: 0.5rem;">Secondary</span>
+      </div>
+      <div style="display: flex; flex-direction: column; align-items: center;">
+        <zen-button variant="tertiary"></zen-button>
+        <span style="margin-top: 0.5rem;">Tertiary</span>
+      </div>
+      <div style="display: flex; flex-direction: column; align-items: center;">
+        <zen-button variant="positive"></zen-button>
+        <span style="margin-top: 0.5rem;">Positive</span>
+      </div>
+      <div style="display: flex; flex-direction: column; align-items: center;">
+        <zen-button variant="destructive"></zen-button>
+        <span style="margin-top: 0.5rem;">Destructive</span>
+      </div>
     </div>
   `;
 
@@ -32,12 +47,14 @@ export const StoryWithLeadingSlot = () =>
   html/*html*/ `
     <zen-button>
       <i slot="leadingIcon" style="width: 0.625rem;" .innerHTML="${litHtmlIcon(faUser)}"></i>
+      Leading Slot
     </zen-button>
   `;
 
 export const StoryWithTrailingSlot = () =>
   html/*html*/ `
     <zen-button>
+      Trailing Slot
       <i slot="trailingIcon" style="width: 0.625rem;" .innerHTML="${litHtmlIcon(faChevronDown)}"></i>
     </zen-button>
   `;
