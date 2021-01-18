@@ -43,29 +43,33 @@ export const StoryLoading = () => html/*html*/ ` <zen-button loading></zen-butto
 
 export const StoryDisabled = () => html/*html*/ ` <zen-button disabled></zen-button> `;
 
-export const StoryWithLeadingSlot = () =>
+export const StoryWithIcons = () =>
   html/*html*/ `
-    <zen-button>
-      <i slot="leadingIcon" style="width: 0.625rem;" .innerHTML="${litHtmlIcon(faUser)}"></i>
-      Leading Slot
-    </zen-button>
-  `;
-
-export const StoryWithTrailingSlot = () =>
-  html/*html*/ `
-    <zen-button>
-      Trailing Slot
-      <i slot="trailingIcon" style="width: 0.625rem;" .innerHTML="${litHtmlIcon(faChevronDown)}"></i>
-    </zen-button>
-  `;
-
-export const StoryWithLeadingAndTrailingSlots = () =>
-  html/*html*/ `
-    <zen-button>
-      <i slot="leadingIcon" style="width: 0.625rem;" .innerHTML="${litHtmlIcon(faUser)}"></i>
-      Leading and Trailing Slots
-      <i slot="trailingIcon" style="width: 0.625rem;" .innerHTML="${litHtmlIcon(faChevronDown)}"></i>
-    </zen-button>
+    <div style="display: flex; justify-content: space-evenly;">
+      <div style="display: flex; flex-direction: column; align-items: center;">
+        <zen-button>
+          <i slot="leadingIcon" style="width: 0.625rem;" .innerHTML="${litHtmlIcon(faUser)}"></i>
+          Leading Slot
+        </zen-button>
+        <span style="margin-top: 0.5rem;">Leading Slot</span>
+      </div>
+      <div style="display: flex; flex-direction: column; align-items: center;">
+        <zen-button>
+          Trailing Slot
+          <i slot="trailingIcon" style="width: 0.625rem;" .innerHTML="${litHtmlIcon(faChevronDown)}"></i>
+        </zen-button>
+        <span style="margin-top: 0.5rem;">Trailing Slot</span>
+      </div>
+      <div style="display: flex; flex-direction: column; align-items: center;">
+        <zen-button>
+          <i slot="leadingIcon" style="width: 0.625rem;" .innerHTML="${litHtmlIcon(faUser)}"></i>
+          Leading and Trailing Slots
+          <i slot="trailingIcon" style="width: 0.625rem;" .innerHTML="${litHtmlIcon(faChevronDown)}"></i>
+        </zen-button>
+        <span style="margin-top: 0.5rem;">Leading and Trailing Slots</span>
+      </div>
+      </div>
+    </div>
   `;
 
 # Button
@@ -94,28 +98,12 @@ Button component with slots capabilities
   <Story name="StoryDisabled">{StoryDisabled.bind({})}</Story>
 </Canvas>
 
-### 4. Default button with leading slot fulfilled
+### 4. With Icons
 
-- Apply leadingIcon value for the slot attribute in your inner custom HTML
-
-<Canvas>
-  <Story name="StoryWithLeadingSlot">{StoryWithLeadingSlot.bind({})}</Story>
-</Canvas>
-
-### 5. Default button with trailing slot fulfilled
-
-- Apply trailingIcon value for the slot attribute in your inner custom HTML
+- Apply leadingIcon and trailingIcon value for the slot attribute in your inner custom HTML
 
 <Canvas>
-  <Story name="StoryWithTrailingSlot">{StoryWithTrailingSlot.bind({})}</Story>
-</Canvas>
-
-### 6. Default button with leading and trailing slots fulfilled
-
-- Apply leadingIcon and trailingIcon values for the slot attributes in your inner custom HTML
-
-<Canvas>
-  <Story name="StoryWithLeadingAndTrailingSlots">{StoryWithLeadingAndTrailingSlots.bind({})}</Story>
+  <Story name="StoryWithLeadingSlot">{StoryWithIcons.bind({})}</Story>
 </Canvas>
 
 ## Properties
