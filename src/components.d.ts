@@ -204,6 +204,10 @@ export namespace Components {
         "value"?: string;
     }
     interface ZenModal {
+        /**
+          * Set to true to show and false to hide modal
+         */
+        "show": boolean;
     }
     interface ZenNotification {
         /**
@@ -806,6 +810,10 @@ declare namespace LocalJSX {
         "value"?: string;
     }
     interface ZenModal {
+        /**
+          * Set to true to show and false to hide modal
+         */
+        "show"?: boolean;
     }
     interface ZenNotification {
         /**
