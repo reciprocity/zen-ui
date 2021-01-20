@@ -58,4 +58,23 @@ describe('zen-button variants rendering', () => {
     expect(page.root.querySelector('[slot="leadingIcon"]')).toBeTruthy();
     expect(page.root.querySelector('[slot="trailingIcon"]')).toBeTruthy();
   });
+
+  it('triggers click event on onKeyDown Enter key', async () => {
+    const page = await newSpecPage({
+      components: [ZenButton],
+      html: `<zen-button></zen-button>`,
+    });
+
+    const keyupSpy = jest.fn();
+    const clickSpy = jest.fn();
+
+    page.root.addEventListener('keyup', keyupSpy);
+    page.root.addEventListener('click', clickSpy);
+    page.root.dispatchEvent(new KeyboardEvent('keyup', { code: 'Enter' }));
+
+    await page.waitForChanges();
+
+    expect(keyupSpy).toHaveBeenCalled();
+    expect(clickSpy).toHaveBeenCalled();
+  });
 });
