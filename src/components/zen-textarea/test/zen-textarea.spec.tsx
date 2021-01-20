@@ -41,4 +41,34 @@ describe('zen-textarea', () => {
     });
     expect(page.root.shadowRoot.querySelector('textarea').getAttribute('required')).toBe('');
   });
+
+  it('changes value prop in onInput', async () => {
+    const page = await newSpecPage({
+      components: [ZenTextarea],
+      html: `<zen-textarea></zen-textarea>`,
+    });
+
+    const inputElement = page.root.shadowRoot.querySelector('textarea');
+    inputElement.value = 'My input content';
+    inputElement.dispatchEvent(new Event('input'));
+
+    await page.waitForChanges();
+
+    expect(page.rootInstance.text).toBe('My input content');
+  });
+
+  it('changes value prop in onChange', async () => {
+    const page = await newSpecPage({
+      components: [ZenTextarea],
+      html: `<zen-textarea></zen-textarea>`,
+    });
+
+    const inputElement = page.root.shadowRoot.querySelector('textarea');
+    inputElement.value = 'My changed content';
+    inputElement.dispatchEvent(new Event('change'));
+
+    await page.waitForChanges();
+
+    expect(page.rootInstance.text).toBe('My changed content');
+  });
 });
