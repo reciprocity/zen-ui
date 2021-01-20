@@ -9,7 +9,30 @@ const argTypes = getArgTypes(compData);
 <Meta title="POC/Modal" component="zen-modal" argTypes={argTypes} />
 
 export const StoryWithControls = args => {
-  return html/*html*/ ` <zen-modal ...="${spreadArgs(args)}"></zen-modal> `;
+  function showModal1() {
+    // close first to enable infinite loop:
+    document.querySelector('#modal1').show = false;
+    document.querySelector('#modal1').show = true;
+  }
+  function showModal2() {
+    document.querySelector('#modal2').show = false;
+    document.querySelector('#modal2').show = true;
+  }
+  return html/*html*/ `
+    <zen-modal id="modal1" ...="${spreadArgs(args)}">
+      <p><b>Modal 1</b></p>
+      <p>This is my modal window 1</p>
+      <zen-input></zen-input>
+      <zen-button @click="${showModal2}">Show Modal 2</zen-button>
+    </zen-modal>
+    <zen-modal id="modal2" ...="${spreadArgs(args)}">
+      <p><b>Modal 2</b></p>
+      <p>Image too large!</p>
+      <zen-button @click="${showModal1}">Show Modal 1</zen-button>
+    </zen-modal>
+    <zen-button @click="${showModal1}">Show Modal 1</zen-button>
+    <zen-button @click="${showModal2}">Show Modal 2</zen-button>
+  `;
 };
 
 # Modal
