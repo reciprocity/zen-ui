@@ -203,6 +203,8 @@ export namespace Components {
          */
         "value"?: string;
     }
+    interface ZenModal {
+    }
     interface ZenNotification {
         /**
           * Can dismiss
@@ -503,6 +505,12 @@ declare global {
         prototype: HTMLZenInputElement;
         new (): HTMLZenInputElement;
     };
+    interface HTMLZenModalElement extends Components.ZenModal, HTMLStencilElement {
+    }
+    var HTMLZenModalElement: {
+        prototype: HTMLZenModalElement;
+        new (): HTMLZenModalElement;
+    };
     interface HTMLZenNotificationElement extends Components.ZenNotification, HTMLStencilElement {
     }
     var HTMLZenNotificationElement: {
@@ -596,6 +604,7 @@ declare global {
         "zen-form-group": HTMLZenFormGroupElement;
         "zen-icon": HTMLZenIconElement;
         "zen-input": HTMLZenInputElement;
+        "zen-modal": HTMLZenModalElement;
         "zen-notification": HTMLZenNotificationElement;
         "zen-option": HTMLZenOptionElement;
         "zen-progress-tracker": HTMLZenProgressTrackerElement;
@@ -795,6 +804,8 @@ declare namespace LocalJSX {
           * The value of the input.
          */
         "value"?: string;
+    }
+    interface ZenModal {
     }
     interface ZenNotification {
         /**
@@ -1025,6 +1036,7 @@ declare namespace LocalJSX {
         "zen-form-group": ZenFormGroup;
         "zen-icon": ZenIcon;
         "zen-input": ZenInput;
+        "zen-modal": ZenModal;
         "zen-notification": ZenNotification;
         "zen-option": ZenOption;
         "zen-progress-tracker": ZenProgressTracker;
@@ -1058,6 +1070,7 @@ declare module "@stencil/core" {
             "zen-form-group": LocalJSX.ZenFormGroup & JSXBase.HTMLAttributes<HTMLZenFormGroupElement>;
             "zen-icon": LocalJSX.ZenIcon & JSXBase.HTMLAttributes<HTMLZenIconElement>;
             "zen-input": LocalJSX.ZenInput & JSXBase.HTMLAttributes<HTMLZenInputElement>;
+            "zen-modal": LocalJSX.ZenModal & JSXBase.HTMLAttributes<HTMLZenModalElement>;
             "zen-notification": LocalJSX.ZenNotification & JSXBase.HTMLAttributes<HTMLZenNotificationElement>;
             "zen-option": LocalJSX.ZenOption & JSXBase.HTMLAttributes<HTMLZenOptionElement>;
             "zen-progress-tracker": LocalJSX.ZenProgressTracker & JSXBase.HTMLAttributes<HTMLZenProgressTrackerElement>;

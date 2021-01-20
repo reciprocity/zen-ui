@@ -1,0 +1,34 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
+import { html } from 'lit-html';
+import { getArgTypes, getDefaultArgs, getComponentData, spreadArgs } from '../../../.storybook/helpers/argTypes';
+
+import data from '../../../stencilDocs.json';
+const compData = data.components.find(n => n.tag === 'zen-modal');
+const argTypes = getArgTypes(compData);
+
+<Meta title="POC/Modal" component="zen-modal" argTypes={argTypes} />
+
+export const StoryWithControls = args => {
+  return html/*html*/ ` <zen-modal ...="${spreadArgs(args)}"></zen-modal> `;
+};
+
+# Modal
+
+Standard modal window
+
+## Properties
+
+<Canvas>
+  <Story
+    name="default"
+    args={{
+      ...getDefaultArgs(argTypes),
+    }}
+  >
+    {StoryWithControls.bind({})}
+  </Story>
+</Canvas>
+
+<ArgsTable story="default" />
+
+<docs-table docs={JSON.stringify(getComponentData('zen-modal'))}></docs-table>
