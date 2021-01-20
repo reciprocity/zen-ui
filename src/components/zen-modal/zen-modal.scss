@@ -12,9 +12,11 @@ $padding-x: 3.2rem;
   display: flex;
   align-items: center;
   justify-content: center;
+  pointer-events: none;
 }
 
-.dimmer {
+:host([topmost]) .dimmer {
+  pointer-events: all;
   position: absolute;
   top: 0;
   left: 0;
@@ -24,6 +26,7 @@ $padding-x: 3.2rem;
 }
 
 .window {
+  pointer-events: all;
   position: relative;
   background-color: $color-white;
   border-radius: 3px;
@@ -37,4 +40,6 @@ $padding-x: 3.2rem;
 .buttons {
   padding: 0.8rem $padding-x;
   border-top: 1px solid $color-gray-200;
+  display: flex;
+  justify-content: flex-end;
 }
