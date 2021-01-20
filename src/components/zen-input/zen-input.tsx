@@ -50,7 +50,11 @@ export class ZenInput {
     }
   };
 
-  private onChange = () => {
+  private onChange = (ev: Event) => {
+    const input = ev.target as HTMLInputElement | null;
+    if (input) {
+      this.value = input.value || '';
+    }
     // change event should be forwarded, because it's not composed:
     this.hostElement.dispatchEvent(new window.Event('change'));
   };
