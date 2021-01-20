@@ -1,6 +1,5 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
 import { html } from 'lit-html';
-import Readme from './readme.md';
 import { getArgTypes, getDefaultArgs, getComponentData, spreadArgs } from '../../../.storybook/helpers/argTypes';
 
 import data from '../../../stencilDocs.json';
@@ -10,11 +9,29 @@ const argTypes = getArgTypes(compData);
 <Meta title="Forms/一Fragments/Input Support Text" component="zen-input-support-text" argTypes={argTypes} />
 
 export const StoryWithControls = args =>
-  html/*html*/ ` <zen-input-support-text ...="${spreadArgs(args)}"></zen-input-support-text> `;
+  html/*html*/ `<zen-input-support-text ...="${spreadArgs(args)}"></zen-input-support-text>`;
+
+export const StorySimple = () =>
+  html/*html*/ `
+    <zen-form-group>
+      <zen-input placeholder="Username"></zen-input>
+      <zen-input-support-text text="The username should be unique"></zen-input-support-text>
+    </zen-form-group>
+  `;
 
 # Input Support Text
 
 Simple input support text component that can be used to show useful information about the input
+
+## Component previews
+
+<br />
+
+### 1. Input with Support Text
+
+<Canvas>
+  <Story name="StorySimple">{StorySimple.bind({})}</Story>
+</Canvas>
 
 ## Properties
 

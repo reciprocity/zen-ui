@@ -85,7 +85,7 @@ describe('zen-button', () => {
   it('renders with leadingIcon slot fulfilled', async () => {
     const page = await newSpecPage({
       components: [ZenButton],
-      html: `<zen-button><zen-spinner slot="leadingIcon"></zen-spinner></zen-button>`,
+      html: `<zen-button>Button<zen-spinner slot="leadingIcon"></zen-spinner></zen-button>`,
     });
     expect(page.root).toEqualHtml(`
       <zen-button class="btn btn-primary" tabindex="0">
@@ -94,6 +94,7 @@ describe('zen-button', () => {
           <span class="ml"><slot>Button</slot></span>
           <slot name="trailingIcon"></slot>
         </mock:shadow-root>
+        Button
         <zen-spinner slot="leadingIcon"></zen-spinner>
       </zen-button>
     `);
@@ -102,7 +103,7 @@ describe('zen-button', () => {
   it('renders with trailingIcon slot fulfilled', async () => {
     const page = await newSpecPage({
       components: [ZenButton],
-      html: `<zen-button><zen-spinner slot="trailingIcon"></zen-spinner></zen-button>`,
+      html: `<zen-button>Button<zen-spinner slot="trailingIcon"></zen-spinner></zen-button>`,
     });
     expect(page.root).toEqualHtml(`
       <zen-button class="btn btn-primary" tabindex="0">
@@ -111,6 +112,7 @@ describe('zen-button', () => {
           <span class="mr"><slot>Button</slot></span>
           <slot name="trailingIcon"></slot>
         </mock:shadow-root>
+        Button
         <zen-spinner slot="trailingIcon"></zen-spinner>
       </zen-button>
     `);
@@ -119,7 +121,7 @@ describe('zen-button', () => {
   it('renders with leadingIcon and trailingIcon slot fulfilled', async () => {
     const page = await newSpecPage({
       components: [ZenButton],
-      html: `<zen-button><zen-spinner slot="leadingIcon"></zen-spinner><zen-spinner slot="trailingIcon"></zen-spinner></zen-button>`,
+      html: `<zen-button>Button<zen-spinner slot="leadingIcon"></zen-spinner><zen-spinner slot="trailingIcon"></zen-spinner></zen-button>`,
     });
     expect(page.root).toEqualHtml(`
       <zen-button class="btn btn-primary" tabindex="0">
@@ -128,6 +130,7 @@ describe('zen-button', () => {
             <span class="ml mr"><slot>Button</slot></span>
             <slot name="trailingIcon"></slot>
         </mock:shadow-root>
+        Button
         <zen-spinner slot="leadingIcon"></zen-spinner>
         <zen-spinner slot="trailingIcon"></zen-spinner>
       </zen-button>
