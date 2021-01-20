@@ -11,7 +11,12 @@ export class ZenModal {
       <Host>
         <div class="dimmer"></div>
         <div class="window">
-          <slot>Content</slot>
+          <div class="content">
+            <slot>Content</slot>
+          </div>
+          <div class="buttons">
+            <zen-button>Close</zen-button>
+          </div>
         </div>
       </Host>
     );
