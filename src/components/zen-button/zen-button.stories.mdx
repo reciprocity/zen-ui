@@ -11,37 +11,37 @@ import { faUser, faChevronDown } from '@fortawesome/pro-light-svg-icons';
 
 <Meta title="Buttons/Button" component="zen-button" argTypes={argTypes} />
 
-export const StoryWithControls = args => html/*html*/ ` <zen-button ...="${spreadArgs(args)}"></zen-button>`;
+export const StoryWithControls = args => html/*html*/ ` <zen-button ...="${spreadArgs(args)}">Button</zen-button>`;
 
 export const StorySimple = () =>
   html/*html*/ `
     <div style="display: flex; justify-content: space-evenly;">
       <div style="display: flex; flex-direction: column; align-items: center;">
-        <zen-button variant="primary"></zen-button>
+        <zen-button variant="primary">Button</zen-button>
         <span style="margin-top: 0.5rem;">Primary</span>
       </div>
       <div style="display: flex; flex-direction: column; align-items: center;">
-        <zen-button variant="secondary"></zen-button>
+        <zen-button variant="secondary">Button</zen-button>
         <span style="margin-top: 0.5rem;">Secondary</span>
       </div>
       <div style="display: flex; flex-direction: column; align-items: center;">
-        <zen-button variant="tertiary"></zen-button>
+        <zen-button variant="tertiary">Button</zen-button>
         <span style="margin-top: 0.5rem;">Tertiary</span>
       </div>
       <div style="display: flex; flex-direction: column; align-items: center;">
-        <zen-button variant="positive"></zen-button>
+        <zen-button variant="positive">Button</zen-button>
         <span style="margin-top: 0.5rem;">Positive</span>
       </div>
       <div style="display: flex; flex-direction: column; align-items: center;">
-        <zen-button variant="destructive"></zen-button>
+        <zen-button variant="destructive">Button</zen-button>
         <span style="margin-top: 0.5rem;">Destructive</span>
       </div>
     </div>
   `;
 
-export const StoryLoading = () => html/*html*/ ` <zen-button loading></zen-button> `;
+export const StoryLoading = () => html/*html*/ ` <zen-button loading>Button</zen-button> `;
 
-export const StoryDisabled = () => html/*html*/ ` <zen-button disabled></zen-button> `;
+export const StoryDisabled = () => html/*html*/ ` <zen-button disabled>Button</zen-button> `;
 
 export const StoryWithIcons = () =>
   html/*html*/ `
@@ -68,6 +68,17 @@ export const StoryWithIcons = () =>
         </zen-button>
         <span style="margin-top: 0.5rem;">Leading and Trailing Slots</span>
       </div>
+      <div style="display: flex; flex-direction: column; align-items: center;">
+        <zen-button>
+          <i slot="leadingIcon" style="width: 0.625rem;" .innerHTML="${litHtmlIcon(faUser)}"></i>
+        </zen-button>
+        <span style="margin-top: 0.5rem;">Just icon on Leading Slot</span>
+      </div>
+      <div style="display: flex; flex-direction: column; align-items: center;">
+        <zen-button>
+          <i slot="trailingIcon" style="width: 0.625rem;" .innerHTML="${litHtmlIcon(faUser)}"></i>
+        </zen-button>
+        <span style="margin-top: 0.5rem;">Just icon on Trailing Slot</span>
       </div>
     </div>
   `;

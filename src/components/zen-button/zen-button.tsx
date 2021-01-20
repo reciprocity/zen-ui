@@ -2,8 +2,8 @@ import { Component, Host, h, Prop, Element, State, Watch, Listen } from '@stenci
 import { ButtonVariants } from './types';
 
 /**
- * @slot leadingIcon - Slot for the icon at the left
- * @slot trailingIcon - Slot for the icon at the right
+ * @slot leadingIcon - Slot for the icon on the left
+ * @slot trailingIcon - Slot for the icon on the right
  */
 @Component({
   tag: 'zen-button',
@@ -34,8 +34,10 @@ export class ZenButton {
   }
 
   componentWillLoad(): void {
-    this.leadingIconSlotFulfilled = !!this.hostElement.querySelector('[slot="leadingIcon"]');
-    this.trailingIconSlotFulfilled = !!this.hostElement.querySelector('[slot="trailingIcon"]');
+    this.leadingIconSlotFulfilled =
+      !!this.hostElement.querySelector('[slot="leadingIcon"]') && this.hostElement.textContent.trim() != '';
+    this.trailingIconSlotFulfilled =
+      !!this.hostElement.querySelector('[slot="trailingIcon"]') && this.hostElement.textContent.trim() != '';
     this.disabledChanged(this.disabled);
   }
 
