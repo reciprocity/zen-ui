@@ -1,7 +1,30 @@
-:host {
+@import '../../zen-styles/variables.scss';
 
+:host {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  min-height: 100vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-p {
-  background-color: #f00;
+.dimmer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(#000, 0.3);
+}
+
+.window {
+  position: relative;
+  background-color: $color-white;
+  padding: 3.2rem;
+  border-radius: 3px;
+  box-shadow: 2px 6px 30px rgba(#000, 0.2);
 }

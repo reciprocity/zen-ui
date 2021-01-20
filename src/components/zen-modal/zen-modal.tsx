@@ -9,7 +9,10 @@ export class ZenModal {
   render(): HTMLElement {
     return (
       <Host>
-        <p>Modal</p>
+        <div class="dimmer"></div>
+        <div class="window">
+          <slot>Content</slot>
+        </div>
       </Host>
     );
   }
