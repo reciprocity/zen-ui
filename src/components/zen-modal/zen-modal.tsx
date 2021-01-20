@@ -1,6 +1,17 @@
 import { Component, Prop, Host, h, Watch, Element } from '@stencil/core';
 import { modalsService } from './zen-modals-service';
 
+declare global {
+  interface Window {
+    ZenModalsService: any;
+  }
+}
+
+// All apps should use the same singletone!
+if (!window.ZenModalsService) {
+  window.ZenModalsService = modalsService;
+}
+
 @Component({
   tag: 'zen-modal',
   styleUrl: 'zen-modal.scss',
@@ -15,9 +26,9 @@ export class ZenModal {
   @Watch('show')
   async showChanged(show: boolean): Promise<void> {
     if (show) {
-      modalsService.makeTopmost(this.hostElement);
+      window.ZenModalsService.makeTopmost(this.hostElement);
     } else {
-      modalsService.modalClosed(this.hostElement);
+      window.ZenModalsService.modalClosed(this.hostElement);
     }
   }
 
