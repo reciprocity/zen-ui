@@ -25,7 +25,9 @@ export function getSlotElement(host: HTMLElement, slotName: string): HTMLElement
 }
 
 export function getDefaultSlotContent(host: HTMLElement): Element[] {
-  return (host.shadowRoot.querySelector('slot:not([name])') as HTMLSlotElement).assignedElements();
+  const slot = host.shadowRoot.querySelector('slot:not([name])') as HTMLSlotElement;
+  if (!slot.assignedElements) return [];
+  return slot.assignedElements();
 }
 
 export function getNextField(currentInput: HTMLElement): HTMLElement {
