@@ -1,5 +1,7 @@
 @import '../../zen-styles/variables.scss';
 
+$padding-x: 3.2rem;
+
 :host {
   position: fixed;
   top: 0;
@@ -24,7 +26,15 @@
 .window {
   position: relative;
   background-color: $color-white;
-  padding: 3.2rem;
   border-radius: 3px;
   box-shadow: 2px 6px 30px rgba(#000, 0.2);
+}
+
+.content {
+  padding: 1.6rem $padding-x;
+}
+
+.buttons {
+  padding: 0.8rem $padding-x;
+  border-top: 1px solid $color-gray-200;
 }
