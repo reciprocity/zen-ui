@@ -1,3 +1,6 @@
+import { SpecPage } from '@stencil/core/testing';
+import kebabCase from 'lodash/kebabCase';
+
 type ClientPoint = { clientX: number; clientY: number };
 
 const defaultPoint = () => ({ clientX: 0, clientY: 0 });
@@ -19,4 +22,14 @@ export function htmlToElement(html: string): Element[] {
   const template = document.createElement('template');
   template.innerHTML = html.trim();
   return Array.from(template.content.children);
+}
+
+export async function propReflectsInAttributes(page: SpecPage, props: Record<string, unknown>): Promise<boolean> {
+  // Use this helper to test if all supported props are reflected in attributes
+  for (const [key, value] of Object.entries(props)) {
+    page.rootInstance[key] = value;
+    await page.waitForChanges();
+    if (page.root.getAttribute(kebabCase(key)) === null) return false;
+  }
+  return true;
 }
