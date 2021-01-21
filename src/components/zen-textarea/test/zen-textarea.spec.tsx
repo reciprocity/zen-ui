@@ -2,75 +2,73 @@ import { newSpecPage } from '@stencil/core/testing';
 import { ZenTextarea } from '../zen-textarea';
 
 describe('zen-textarea', () => {
-  it('renders', async () => {
+  it('should render with shadow dom', async () => {
     const page = await newSpecPage({
       components: [ZenTextarea],
       html: `<zen-textarea></zen-textarea>`,
     });
-    expect(page.root).toEqualHtml(`
-      <zen-textarea>
-        <mock:shadow-root><textarea class="input-control"></textarea>
-      </zen-textarea>
-    `);
+    expect(page.root.shadowRoot).toBeTruthy();
   });
 
-  it('renders with custom cols and rows', async () => {
+  it('should render with placeholder', async () => {
     const page = await newSpecPage({
       components: [ZenTextarea],
-      html: `<zen-textarea cols="50" rows="15"></zen-textarea>`,
+      html: `<zen-textarea placeholder="Something here"></zen-textarea>`,
     });
-    expect(page.root).toEqualHtml(`
-      <zen-textarea cols="50" rows="15">
-        <mock:shadow-root><textarea class="input-control"></textarea>
-      </zen-textarea>
-    `);
+    expect(page.root.shadowRoot.querySelector('textarea').getAttribute('placeholder')).toBe('Something here');
   });
 
-  it('renders with some custom value', async () => {
+  it('should render with text inside', async () => {
     const page = await newSpecPage({
       components: [ZenTextarea],
-      html: `<zen-textarea value="Something to test"></zen-textarea>`,
+      html: `<zen-textarea>Hello world!</zen-textarea>`,
     });
-    expect(page.root).toEqualHtml(`
-      <zen-textarea value="Something to test">
-        <mock:shadow-root><textarea class="input-control"></textarea>
-      </zen-textarea>
-    `);
+    expect(page.root.innerText).toBe('Hello world!');
   });
 
-  it('renders default with disabled property', async () => {
+  it('should render with disabled property', async () => {
     const page = await newSpecPage({
       components: [ZenTextarea],
       html: `<zen-textarea disabled></zen-textarea>`,
     });
-    expect(page.root).toEqualHtml(`
-      <zen-textarea disabled="">
-        <mock:shadow-root><textarea class="input-control" disabled=""></textarea>
-      </zen-textarea>
-    `);
+    expect(page.root.shadowRoot.querySelector('textarea').getAttribute('disabled')).toBe('');
   });
 
-  it('renders default with required property', async () => {
+  it('should render with required property', async () => {
     const page = await newSpecPage({
       components: [ZenTextarea],
       html: `<zen-textarea required></zen-textarea>`,
     });
-    expect(page.root).toEqualHtml(`
-      <zen-textarea required="">
-        <mock:shadow-root><textarea class="input-control" required=""></textarea>
-      </zen-textarea>
-    `);
+    expect(page.root.shadowRoot.querySelector('textarea').getAttribute('required')).toBe('');
   });
 
-  it('renders default with all custom properties', async () => {
+  it('changes value prop in onInput', async () => {
     const page = await newSpecPage({
       components: [ZenTextarea],
-      html: `<zen-textarea disabled required value="Some custom value" rows="22" cols="44"></zen-textarea>`,
+      html: `<zen-textarea></zen-textarea>`,
     });
-    expect(page.root).toEqualHtml(`
-      <zen-textarea disabled="" required="" value="Some custom value" rows="22" cols="44">
-        <mock:shadow-root><textarea class="input-control" disabled="" required=""></textarea>
-      </zen-textarea>
-    `);
+
+    const inputElement = page.root.shadowRoot.querySelector('textarea');
+    inputElement.value = 'My input content';
+    inputElement.dispatchEvent(new Event('input'));
+
+    await page.waitForChanges();
+
+    expect(page.rootInstance.text).toBe('My input content');
+  });
+
+  it('changes value prop in onChange', async () => {
+    const page = await newSpecPage({
+      components: [ZenTextarea],
+      html: `<zen-textarea></zen-textarea>`,
+    });
+
+    const inputElement = page.root.shadowRoot.querySelector('textarea');
+    inputElement.value = 'My changed content';
+    inputElement.dispatchEvent(new Event('change'));
+
+    await page.waitForChanges();
+
+    expect(page.rootInstance.text).toBe('My changed content');
   });
 });

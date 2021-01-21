@@ -2,116 +2,62 @@ import { newSpecPage } from '@stencil/core/testing';
 import { ZenCheckbox } from '../zen-checkbox';
 
 describe('zen-checkbox', () => {
-  it('renders', async () => {
+  it('should render with shadow dom', async () => {
     const page = await newSpecPage({
       components: [ZenCheckbox],
       html: `<zen-checkbox></zen-checkbox>`,
     });
-    expect(page.root).toEqualHtml(`
-      <zen-checkbox>
-        <mock:shadow-root>
-          <input class="input-control" type="checkbox">
-          <label></label>
-        </mock:shadow-root>
-      </zen-checkbox>
-    `);
+    expect(page.root.shadowRoot).toBeTruthy();
   });
 
-  it('renders checked checkbox', async () => {
+  it('should render with disabled, required and checked props in', async () => {
+    const page = await newSpecPage({
+      components: [ZenCheckbox],
+      html: `<zen-checkbox checked disabled required></zen-checkbox>`,
+    });
+    expect(page.root.getAttribute('disabled')).toBe('');
+    expect(page.root.getAttribute('required')).toBe('');
+    expect(page.root.getAttribute('checked')).toBe('');
+  });
+
+  it('should render with label', async () => {
+    const page = await newSpecPage({
+      components: [ZenCheckbox],
+      html: `<zen-checkbox label="This is an example label"></zen-checkbox>`,
+    });
+    expect(page.root.shadowRoot.querySelector('label')).toBeTruthy();
+    expect(page.root.shadowRoot.querySelector('label').innerText).toBe('This is an example label ');
+  });
+
+  it('checks', async () => {
+    const page = await newSpecPage({
+      components: [ZenCheckbox],
+      html: `<zen-checkbox></zen-checkbox>`,
+      supportsShadowDom: true,
+    });
+    page.root.click();
+    await page.waitForChanges();
+    expect(page.root.shadowRoot.querySelector('input').getAttribute('checked')).toBe('');
+  });
+
+  it('unchecks', async () => {
     const page = await newSpecPage({
       components: [ZenCheckbox],
       html: `<zen-checkbox checked></zen-checkbox>`,
     });
-    expect(page.root).toEqualHtml(`
-      <zen-checkbox checked="">
-        <mock:shadow-root>
-          <input checked="" class="input-control" type="checkbox">
-          <label></label>
-        </mock:shadow-root>
-      </zen-checkbox>
-    `);
+    page.root.click();
+    await page.waitForChanges();
+    expect(page.root.shadowRoot.querySelector('input').getAttribute('checked')).toBeFalsy();
   });
 
-  it('renders disabled checkbox', async () => {
+  it('tries to check/uncheck when disabled', async () => {
     const page = await newSpecPage({
       components: [ZenCheckbox],
-      html: `<zen-checkbox disabled></zen-checkbox>`,
+      html: `<zen-checkbox></zen-checkbox>`,
+      supportsShadowDom: true,
     });
-    expect(page.root).toEqualHtml(`
-      <zen-checkbox disabled="">
-        <mock:shadow-root>
-          <input class="input-control" type="checkbox" disabled="">
-          <label class="disabled"></label>
-        </mock:shadow-root>
-      </zen-checkbox>
-    `);
-  });
-
-  it('renders disabled and checked checkbox', async () => {
-    const page = await newSpecPage({
-      components: [ZenCheckbox],
-      html: `<zen-checkbox checked disabled></zen-checkbox>`,
-    });
-    expect(page.root).toEqualHtml(`
-      <zen-checkbox checked="" disabled="">
-        <mock:shadow-root>
-          <input checked="" class="input-control" type="checkbox" disabled="">
-          <label class="disabled"></label>
-        </mock:shadow-root>
-      </zen-checkbox>
-    `);
-  });
-
-  it('renders checkbox with label', async () => {
-    const page = await newSpecPage({
-      components: [ZenCheckbox],
-      html: `<zen-checkbox>This is an example label</zen-checkbox>`,
-    });
-    expect(page.root).toEqualHtml(`
-      <zen-checkbox>
-        <mock:shadow-root>
-          <input class="input-control" type="checkbox">
-          <label></label>
-        </mock:shadow-root>
-        This is an example label
-      </zen-checkbox>
-    `);
-  });
-
-  it('renders checkbox with label and it is disabled', async () => {
-    const page = await newSpecPage({
-      components: [ZenCheckbox],
-      html: `<zen-checkbox disabled="">This is an example label</zen-checkbox>`,
-    });
-    expect(page.root).toEqualHtml(`
-      <zen-checkbox disabled="">
-        <mock:shadow-root>
-          <input class="input-control" type="checkbox" disabled="">
-          <label class="disabled"></label>
-        </mock:shadow-root>
-        This is an example label
-      </zen-checkbox>
-    `);
-  });
-
-  it('renders checkbox with label and it is required', async () => {
-    const page = await newSpecPage({
-      components: [ZenCheckbox],
-      html: `<zen-checkbox required="">This is an example label</zen-checkbox>`,
-    });
-    expect(page.root).toEqualHtml(`
-      <zen-checkbox required="">
-        <mock:shadow-root>
-          <input class="input-control" type="checkbox" required="">
-          <label>
-
-            <span class="required">
-              *
-            </span>
-          </label>
-        </mock:shadow-root>
-        This is an example label
-      </zen-checkbox>
-    `);
+    page.root.click();
+    await page.waitForChanges();
+    expect(page.root.shadowRoot.querySelector('input').getAttribute('checked')).toBeFalsy();
   });
 });

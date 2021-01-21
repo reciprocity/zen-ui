@@ -1,172 +1,44 @@
 import { newSpecPage } from '@stencil/core/testing';
 import { ZenButton } from '../zen-button';
 
-describe('zen-button', () => {
-  it('renders', async () => {
+describe('zen-button variants rendering', () => {
+  it('should render with shadow dom', async () => {
     const page = await newSpecPage({
       components: [ZenButton],
       html: `<zen-button></zen-button>`,
     });
-    expect(page.root).toEqualHtml(`
-      <zen-button class="btn btn-primary" tabindex="0">
-        <mock:shadow-root>
-          <slot name="leadingIcon"></slot>
-          <span><slot>Button</slot></span>
-          <slot name="trailingIcon"></slot>
-        </mock:shadow-root>
-      </zen-button>
-    `);
+    expect(page.root.shadowRoot).toBeTruthy();
   });
 
-  it('renders secondary button', async () => {
-    const page = await newSpecPage({
-      components: [ZenButton],
-      html: `<zen-button variant="secondary"></zen-button>`,
-    });
-    expect(page.root).toEqualHtml(`
-      <zen-button variant="secondary" class="btn btn-secondary" tabindex="0">
-        <mock:shadow-root>
-          <slot name="leadingIcon"></slot>
-          <span><slot>Button</slot></span>
-          <slot name="trailingIcon"></slot>
-        </mock:shadow-root>
-      </zen-button>
-    `);
-  });
+  it.each(['primary', 'secondary', 'tertiary', 'positive', 'destructive'])(
+    'renders %s button with loading and disabled props',
+    async variant => {
+      const page = await newSpecPage({
+        components: [ZenButton],
+        html: `<zen-button variant="${variant}" loading disabled></zen-button>`,
+      });
+      expect(page.root.classList.contains(`btn-${variant}`)).toBe(true);
+      expect(page.root.classList.contains('disabled')).toBe(true);
+      expect(page.root.shadowRoot.querySelector('zen-spinner')).toBeTruthy();
+    },
+  );
 
-  it('renders tertiary button', async () => {
+  it('triggers click event on onKeyDown Enter key', async () => {
     const page = await newSpecPage({
       components: [ZenButton],
-      html: `<zen-button variant="tertiary"></zen-button>`,
+      html: `<zen-button></zen-button>`,
     });
-    expect(page.root).toEqualHtml(`
-      <zen-button variant="tertiary" class="btn btn-tertiary" tabindex="0">
-        <mock:shadow-root>
-          <slot name="leadingIcon"></slot>
-          <span><slot>Button</slot></span>
-          <slot name="trailingIcon"></slot>
-        </mock:shadow-root>
-      </zen-button>
-    `);
-  });
 
-  it('renders destructive button', async () => {
-    const page = await newSpecPage({
-      components: [ZenButton],
-      html: `<zen-button variant="destructive"></zen-button>`,
-    });
-    expect(page.root).toEqualHtml(`
-      <zen-button variant="destructive" class="btn btn-destructive" tabindex="0">
-        <mock:shadow-root>
-          <slot name="leadingIcon"></slot>
-          <span><slot>Button</slot></span>
-          <slot name="trailingIcon"></slot>
-        </mock:shadow-root>
-      </zen-button>
-    `);
-  });
+    const keyupSpy = jest.fn();
+    const clickSpy = jest.fn();
 
-  it('renders positive button', async () => {
-    const page = await newSpecPage({
-      components: [ZenButton],
-      html: `<zen-button variant="positive"></zen-button>`,
-    });
-    expect(page.root).toEqualHtml(`
-      <zen-button variant="positive" class="btn btn-positive" tabindex="0">
-        <mock:shadow-root>
-          <slot name="leadingIcon"></slot>
-          <span><slot>Button</slot></span>
-          <slot name="trailingIcon"></slot>
-        </mock:shadow-root>
-      </zen-button>
-    `);
-  });
+    page.root.addEventListener('keyup', keyupSpy);
+    page.root.addEventListener('click', clickSpy);
+    page.root.dispatchEvent(new KeyboardEvent('keyup', { code: 'Enter' }));
 
-  it('renders with leadingIcon slot fulfilled', async () => {
-    const page = await newSpecPage({
-      components: [ZenButton],
-      html: `<zen-button>Button<zen-spinner slot="leadingIcon"></zen-spinner></zen-button>`,
-    });
-    expect(page.root).toEqualHtml(`
-      <zen-button class="btn btn-primary" tabindex="0">
-        <mock:shadow-root>
-          <slot name="leadingIcon"></slot>
-          <span class="ml"><slot>Button</slot></span>
-          <slot name="trailingIcon"></slot>
-        </mock:shadow-root>
-        Button
-        <zen-spinner slot="leadingIcon"></zen-spinner>
-      </zen-button>
-    `);
-  });
+    await page.waitForChanges();
 
-  it('renders with trailingIcon slot fulfilled', async () => {
-    const page = await newSpecPage({
-      components: [ZenButton],
-      html: `<zen-button>Button<zen-spinner slot="trailingIcon"></zen-spinner></zen-button>`,
-    });
-    expect(page.root).toEqualHtml(`
-      <zen-button class="btn btn-primary" tabindex="0">
-        <mock:shadow-root>
-          <slot name="leadingIcon"></slot>
-          <span class="mr"><slot>Button</slot></span>
-          <slot name="trailingIcon"></slot>
-        </mock:shadow-root>
-        Button
-        <zen-spinner slot="trailingIcon"></zen-spinner>
-      </zen-button>
-    `);
-  });
-
-  it('renders with leadingIcon and trailingIcon slot fulfilled', async () => {
-    const page = await newSpecPage({
-      components: [ZenButton],
-      html: `<zen-button>Button<zen-spinner slot="leadingIcon"></zen-spinner><zen-spinner slot="trailingIcon"></zen-spinner></zen-button>`,
-    });
-    expect(page.root).toEqualHtml(`
-      <zen-button class="btn btn-primary" tabindex="0">
-        <mock:shadow-root>
-            <slot name="leadingIcon"></slot>
-            <span class="ml mr"><slot>Button</slot></span>
-            <slot name="trailingIcon"></slot>
-        </mock:shadow-root>
-        Button
-        <zen-spinner slot="leadingIcon"></zen-spinner>
-        <zen-spinner slot="trailingIcon"></zen-spinner>
-      </zen-button>
-    `);
-  });
-
-  it('renders with loading state', async () => {
-    const page = await newSpecPage({
-      components: [ZenButton],
-      html: `<zen-button disabled></zen-button>`,
-    });
-    expect(page.root).toEqualHtml(`
-      <zen-button class="btn btn-primary disabled" disabled="" tabindex="-1">
-        <mock:shadow-root>
-            <slot name="leadingIcon"></slot>
-            <span><slot>Button</slot></span>
-            <slot name="trailingIcon"></slot>
-        </mock:shadow-root>
-      </zen-button>
-    `);
-  });
-
-  it('renders with disabled state', async () => {
-    const page = await newSpecPage({
-      components: [ZenButton],
-      html: `<zen-button loading></zen-button>`,
-    });
-    expect(page.root).toEqualHtml(`
-      <zen-button class="btn btn-primary" loading="" tabindex="0">
-        <mock:shadow-root>
-            <slot name="leadingIcon"></slot>
-            <zen-spinner></zen-spinner>
-            <span><slot>Button</slot></span>
-            <slot name="trailingIcon"></slot>
-        </mock:shadow-root>
-      </zen-button>
-    `);
+    expect(keyupSpy).toHaveBeenCalled();
+    expect(clickSpy).toHaveBeenCalled();
   });
 });
