@@ -29,7 +29,7 @@ yarn start
 
 Scaffolds a new component, creating the folder structure with basic code, styles, unit tests, and documentation:
 ```bash
-yarn create:component zen-{component-name}
+yarn create-component zen-{component-name}
 ```
 
 #### Testing
