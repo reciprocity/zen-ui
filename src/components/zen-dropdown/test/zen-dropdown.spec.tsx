@@ -1,5 +1,5 @@
 import { newSpecPage, SpecPage } from '@stencil/core/testing';
-import { simulateMouse, htmlToElement } from '../../helpers/jest';
+import { simulateMouse, htmlToElement, simulateKey } from '../../helpers/jest';
 
 let options: NodeListOf<HTMLZenOptionElement> | undefined[] = [];
 
@@ -85,5 +85,26 @@ describe('Opened dropdown', () => {
     await page.waitForChanges();
     await page.waitForChanges();
     expect(dropdown.shadowRoot.querySelector('.field')).not.toHaveClass('opened');
+  });
+
+  it('moves focus to next item on arrow-down click', async () => {
+    simulateKey('ArrowDown', dropdown);
+    await page.waitForChanges();
+    expect(options[0].getAttribute('focused')).toEqual('true');
+    expect(options[1].getAttribute('focused')).toEqual(null);
+    simulateKey('ArrowDown', dropdown);
+    await page.waitForChanges();
+    expect(options[0].getAttribute('focused')).toEqual(null);
+    expect(options[1].getAttribute('focused')).toEqual('true');
+  });
+
+  it('selects element with Enter key', async () => {
+    simulateKey('ArrowDown', dropdown);
+    await page.waitForChanges();
+    simulateKey('ArrowDown', dropdown);
+    await page.waitForChanges();
+    simulateKey('Enter', dropdown);
+    await page.waitForChanges();
+    expect(dropdown.value).toEqual('reader');
   });
 });

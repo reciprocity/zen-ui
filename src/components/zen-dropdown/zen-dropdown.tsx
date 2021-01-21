@@ -120,9 +120,9 @@ export class ZenDropdown {
     // Clear previously copied item from slot[name=field]:
     if (!this.value) return;
 
-    const slot = this.hostElement.shadowRoot.querySelector('slot[name=field-private]');
+    const slot = this.hostElement.shadowRoot.querySelector('slot[name=field-private]') as HTMLSlotElement;
     if (!slot) return;
-    const existing = (slot as HTMLSlotElement).assignedNodes()[0] as HTMLElement;
+    const existing = slot.assignedNodes ? (slot.assignedNodes()[0] as HTMLElement) : false;
     if (existing) {
       existing.parentNode.removeChild(existing);
     }

@@ -7,6 +7,11 @@ export const simulateMouse = (event: string, target: Element, point: ClientPoint
   target.dispatchEvent(mouseEvent);
 };
 
+export const simulateKey = (key: string, target: Element): void => {
+  const event = new KeyboardEvent('keydown', { key: key });
+  target.dispatchEvent(event);
+};
+
 export const simulateClick = (target: Element, point: ClientPoint | undefined = undefined): void =>
   simulateMouse('click', target, point);
 
