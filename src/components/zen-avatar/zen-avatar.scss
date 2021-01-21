@@ -5,13 +5,13 @@
   position: relative;
 }
 
-:host(.medium){
+:host(.medium) {
   @include round-icon(24px);
 
   font-size: 0.6rem;
 }
 
-:host(.large){
+:host(.large) {
   @include round-icon(32px);
 
   font-size: 0.8rem;

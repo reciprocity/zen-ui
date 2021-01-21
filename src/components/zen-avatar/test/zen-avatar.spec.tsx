@@ -8,9 +8,10 @@ describe('zen-avatar', () => {
       html: `<zen-avatar></zen-avatar>`,
     });
     expect(page.root).toEqualHtml(`
-      <zen-avatar>
+      <zen-avatar class="large" style="background: #abd2f5; color: #00528c;">
         <mock:shadow-root>
-          <slot></slot>
+          <img class="hidden large" src="">
+          <div class="label"></div>
         </mock:shadow-root>
       </zen-avatar>
     `);
