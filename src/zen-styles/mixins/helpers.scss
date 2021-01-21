@@ -7,3 +7,13 @@
   user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome, Edge, Opera and Firefox */
 }
+
+@mixin round-icon($size, $padding: null) {
+  margin: $padding;
+  min-height: $size;
+  min-width: $size;
+  max-height: $size;
+  max-width: $size;
+  border-radius: 50%;
+  position: relative;
+}

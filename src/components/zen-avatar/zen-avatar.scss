@@ -1,0 +1,45 @@
+@import '../../zen-styles/component-helpers.scss';
+
+:host {
+  display: block;
+  position: relative;
+}
+
+:host(.medium){
+  @include round-icon(24px);
+
+  font-size: 0.6rem;
+}
+
+:host(.large){
+  @include round-icon(32px);
+
+  font-size: 0.8rem;
+}
+
+.hidden {
+  display: none;
+}
+
+.medium {
+  @include round-icon(24px);
+
+  font-size: 0.6rem;
+  object-fit: cover;
+}
+
+.large {
+  @include round-icon(32px);
+
+  font-size: 0.8rem;
+  object-fit: cover;
+}
+
+.label {
+  color: inherit;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}

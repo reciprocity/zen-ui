@@ -11,6 +11,8 @@ export type Duration = 'none' | 'short' | 'medium' | 'long';
 
 export type TextSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
+export type AvatarSize = 'medium' | 'large';
+
 // Others:
 export type Point = { x: number; y: number };
 

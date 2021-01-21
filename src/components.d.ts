@@ -6,9 +6,9 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { StringifiedJson } from "./stories/components/color-swatch-group/color-swatch-group";
+import { Align, AvatarSize, Duration, NotificationVariant, Position, TooltipVariant } from "./components/helpers/types";
 import { ButtonVariants } from "./components/zen-button/types";
 import { OptionValue } from "./components/zen-menu-item/zen-option";
-import { Align, Duration, NotificationVariant, Position, TextSize, TooltipVariant } from "./components/helpers/types";
 import { OptionValue as OptionValue1 } from "./components/zen-menu-item/zen-option";
 import { StepItem } from "./components/zen-steps/zen-steps";
 import { StepsFilter } from "./components/zen-steps/types";
@@ -61,6 +61,28 @@ export namespace Components {
           * Prop that will show the slot
          */
         "show": boolean;
+    }
+    interface ZenAvatar {
+        /**
+          * Background color
+         */
+        "background": string;
+        /**
+          * Font color
+         */
+        "color": string;
+        /**
+          * Image URL
+         */
+        "imageUrl": string;
+        /**
+          * Name Initials
+         */
+        "label": string;
+        /**
+          * Avatar size
+         */
+        "size": AvatarSize;
     }
     interface ZenButton {
         /**
@@ -414,6 +436,12 @@ declare global {
         prototype: HTMLZenAnimateElement;
         new (): HTMLZenAnimateElement;
     };
+    interface HTMLZenAvatarElement extends Components.ZenAvatar, HTMLStencilElement {
+    }
+    var HTMLZenAvatarElement: {
+        prototype: HTMLZenAvatarElement;
+        new (): HTMLZenAvatarElement;
+    };
     interface HTMLZenButtonElement extends Components.ZenButton, HTMLStencilElement {
     }
     var HTMLZenButtonElement: {
@@ -535,6 +563,7 @@ declare global {
         "html-playground": HTMLHtmlPlaygroundElement;
         "text-with-details": HTMLTextWithDetailsElement;
         "zen-animate": HTMLZenAnimateElement;
+        "zen-avatar": HTMLZenAvatarElement;
         "zen-button": HTMLZenButtonElement;
         "zen-checkbox": HTMLZenCheckboxElement;
         "zen-dropdown": HTMLZenDropdownElement;
@@ -604,6 +633,28 @@ declare namespace LocalJSX {
           * Prop that will show the slot
          */
         "show"?: boolean;
+    }
+    interface ZenAvatar {
+        /**
+          * Background color
+         */
+        "background"?: string;
+        /**
+          * Font color
+         */
+        "color"?: string;
+        /**
+          * Image URL
+         */
+        "imageUrl"?: string;
+        /**
+          * Name Initials
+         */
+        "label"?: string;
+        /**
+          * Avatar size
+         */
+        "size"?: AvatarSize;
     }
     interface ZenButton {
         /**
@@ -922,6 +973,7 @@ declare namespace LocalJSX {
         "html-playground": HtmlPlayground;
         "text-with-details": TextWithDetails;
         "zen-animate": ZenAnimate;
+        "zen-avatar": ZenAvatar;
         "zen-button": ZenButton;
         "zen-checkbox": ZenCheckbox;
         "zen-dropdown": ZenDropdown;
@@ -953,6 +1005,7 @@ declare module "@stencil/core" {
             "html-playground": LocalJSX.HtmlPlayground & JSXBase.HTMLAttributes<HTMLHtmlPlaygroundElement>;
             "text-with-details": LocalJSX.TextWithDetails & JSXBase.HTMLAttributes<HTMLTextWithDetailsElement>;
             "zen-animate": LocalJSX.ZenAnimate & JSXBase.HTMLAttributes<HTMLZenAnimateElement>;
+            "zen-avatar": LocalJSX.ZenAvatar & JSXBase.HTMLAttributes<HTMLZenAvatarElement>;
             "zen-button": LocalJSX.ZenButton & JSXBase.HTMLAttributes<HTMLZenButtonElement>;
             "zen-checkbox": LocalJSX.ZenCheckbox & JSXBase.HTMLAttributes<HTMLZenCheckboxElement>;
             "zen-dropdown": LocalJSX.ZenDropdown & JSXBase.HTMLAttributes<HTMLZenDropdownElement>;
