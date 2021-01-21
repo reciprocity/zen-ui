@@ -57,3 +57,7 @@ export function oppositePosition(position: Position): Position {
   };
   return opposites[position] as Position;
 }
+
+export function getComposedPath(event: MouseEvent): EventTarget[] {
+  return event.composedPath();
+}
