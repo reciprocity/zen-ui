@@ -1,5 +1,5 @@
 import { Component, Host, h, Prop } from '@stencil/core';
-import { TextSize } from '../helpers/types';
+import { TextSize, Align } from '../helpers/types';
 
 @Component({
   tag: 'zen-text',
@@ -33,6 +33,15 @@ export class ZenText {
 
   /** Underlined */
   @Prop({ reflect: true }) readonly underline = false;
+
+  /** Underlined */
+  @Prop({ reflect: true }) readonly align: Align = 'left';
+
+  /** truncate */
+  @Prop({ reflect: true }) readonly truncate = false;
+
+  /** pale */
+  @Prop({ reflect: true }) readonly pale = false;
 
   render(): HTMLElement {
     return (

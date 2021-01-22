@@ -34,27 +34,27 @@
 
 //--------------------------------------------
 :host([heading][size=xs]) {
-  font-size: bold;
+  font-weight: bold;
   font-size: $heading-xs;
 }
 
 :host([heading][size=sm]) {
-  font-size: bold;
+  font-weight: bold;
   font-size: $heading-sm;
 }
 
 :host([heading][size=md]) {
-  font-size: bold;
+  font-weight: bold;
   font-size: $heading-md;
 }
 
 :host([heading][size=lg]) {
-  font-size: bold;
+  font-weight: bold;
   font-size: $heading-lg;
 }
 
 :host([heading][size=xl]) {
-  font-size: bold;
+  font-weight: bold;
   font-size: $heading-xl;
 }
 
@@ -81,4 +81,22 @@
 
 :host([underline]) {
   text-decoration: underline;
+}
+
+:host([align=right]) {
+  text-align: right;
+}
+
+:host([align=center]) {
+  text-align: center;
+}
+
+:host([truncate]) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+:host([pale]) {
+  color: $color-gray-400;
 }

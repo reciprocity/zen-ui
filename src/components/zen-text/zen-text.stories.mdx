@@ -9,7 +9,7 @@ const argTypes = getArgTypes(compData);
 <Meta title="Typography/Text" component="zen-text" argTypes={argTypes} />
 
 export const StoryWithControls = args => {
-  return html/*html*/ `<zen-text ...="${spreadArgs(args)}">h1 I love Zen UI</zen-text> `;
+  return html/*html*/ `<zen-text ...="${spreadArgs(args)}">Sample text of Zen-text component</zen-text> `;
 };
 
 export const StorySizes = () => html/*html*/ `
@@ -29,16 +29,22 @@ export const StoryHeadings = () => html/*html*/ `
 `;
 
 export const StoryProps = () => html/*html*/ `
-  <zen-text size="md" uppercase>uppercase</zen-text>
-  <zen-text size="md" lowercase>lowercase</zen-text>
-  <zen-text size="md" bold>bold</zen-text>
-  <zen-text size="md" italic>italic</zen-text>
-  <zen-text size="md" strikethrough>strikethrough</zen-text>
-  <zen-text size="md" underline>underline</zen-text>
-  <zen-text size="md" bold italic underline>combination of props</zen-text>
-  <zen-text size="md" inline bold>inline</zen-text>
-  <zen-text size="md" inline italic>inline</zen-text>
-  <zen-text size="md" inline uppercase>inline</zen-text>
+  <zen-text uppercase>uppercase</zen-text>
+  <zen-text uppercase>uppercase</zen-text>
+  <zen-text bold>bold</zen-text>
+  <zen-text pale>pale</zen-text>
+  <zen-text italic>italic</zen-text>
+  <zen-text strikethrough>strikethrough</zen-text>
+  <zen-text underline>underline</zen-text>
+  <zen-text style="max-width: 200px" align="right">align right</zen-text>
+  <zen-text style="max-width: 200px" align="center">align center</zen-text>
+  <zen-text bold italic>combination of props</zen-text>
+  <zen-text style="max-width: 200px" truncate>
+    truncate of some very large text
+  </zen-text>
+  <zen-text inline bold>inline</zen-text>
+  <zen-text inline italic>inline</zen-text>
+  <zen-text inline uppercase>inline</zen-text>
 `;
 
 # Text
