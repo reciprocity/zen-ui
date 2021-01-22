@@ -10,6 +10,9 @@ export class ZenText {
   /** Font size */
   @Prop({ reflect: true }) readonly size: TextSize = 'md';
 
+  /** Apply heading styles */
+  @Prop({ reflect: true }) readonly heading = false;
+
   render(): HTMLElement {
     return (
       <Host>

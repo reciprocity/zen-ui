@@ -2,7 +2,8 @@
 
 :host {
   display: block;
-  margin-bottom: 1em;
+  margin-top: 0.1em;
+  margin-bottom: 0.25em;
 }
 
 :host([size=xs]) {
@@ -24,4 +25,28 @@
 :host([size=xl]) {
   font-size: $text-xl;
 }
+
+:host([heading][size=xs]) {
+  font-size: bold;
+  font-size: $heading-xs;
+}
+
+:host([heading][size=sm]) {
+  font-size: bold;
+  font-size: $heading-sm;
+}
+
+:host([heading][size=md]) {
+  font-size: bold;
+  font-size: $heading-md;
+}
+
+:host([heading][size=lg]) {
+  font-size: bold;
+  font-size: $heading-lg;
+}
+
+:host([heading][size=xl]) {
+  font-size: bold;
+  font-size: $heading-xl;
 }

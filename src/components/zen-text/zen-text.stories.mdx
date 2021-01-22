@@ -20,6 +20,13 @@ export const StorySizes = () => html/*html*/ `
   <zen-text size="xs">xs I love Zen UI</zen-text>
 `;
 
+export const StoryHeadings = () => html/*html*/ `
+  <zen-text size="xl" heading>xl I love Zen UI</zen-text>
+  <zen-text size="lg" heading>lg I love Zen UI</zen-text>
+  <zen-text size="md" heading>md I love Zen UI</zen-text>
+  <zen-text size="sm" heading>sm I love Zen UI</zen-text>
+  <zen-text size="xs" heading>xs I love Zen UI</zen-text>
+`;
 
 # Text
 
@@ -33,6 +40,14 @@ Standard text element (equivalent to `<p>`, `<h1>`, `<h2>`, `<h3>` and similar)
 
 <Canvas>
   <Story name="sizes">{StorySizes.bind({})}</Story>
+</Canvas>
+
+### 2. Headings
+
+Use combination of `size` and `heading` to render titles
+
+<Canvas>
+  <Story name="headings">{StoryHeadings.bind({})}</Story>
 </Canvas>
 
 ## Properties
