@@ -9,12 +9,31 @@ const argTypes = getArgTypes(compData);
 <Meta title="Typography/Text" component="zen-text" argTypes={argTypes} />
 
 export const StoryWithControls = args => {
-  return html/*html*/ ` <zen-text ...="${spreadArgs(args)}">h1 I love Zen UI</zen-text> `;
+  return html/*html*/ `<zen-text ...="${spreadArgs(args)}">h1 I love Zen UI</zen-text> `;
 };
+
+export const StorySizes = () => html/*html*/ `
+  <zen-text size="xl">xl I love Zen UI</zen-text>
+  <zen-text size="lg">lg I love Zen UI</zen-text>
+  <zen-text size="md">md I love Zen UI</zen-text>
+  <zen-text size="sm">sm I love Zen UI</zen-text>
+  <zen-text size="xs">xs I love Zen UI</zen-text>
+`;
+
 
 # Text
 
-<p>{'Standard text element (equivalent to <p>, <h1>, <h2>, <h3>,...)'}</p>
+Standard text element (equivalent to `<p>`, `<h1>`, `<h2>`, `<h3>` and similar)
+
+## Component previews
+
+<br />
+
+### 1. All possible sizes
+
+<Canvas>
+  <Story name="sizes">{StorySizes.bind({})}</Story>
+</Canvas>
 
 ## Properties
 

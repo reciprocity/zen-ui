@@ -1,2 +1,27 @@
+@import '../../zen-styles/variables.scss';
+
 :host {
+  display: block;
+  margin-bottom: 1em;
+}
+
+:host([size=xs]) {
+  font-size: $text-xs;
+}
+
+:host([size=sm]) {
+  font-size: $text-sm;
+}
+
+:host([size=md]) {
+  font-size: $text-md;
+}
+
+:host([size=lg]) {
+  font-size: $text-lg;
+}
+
+:host([size=xl]) {
+  font-size: $text-xl;
+}
 }
