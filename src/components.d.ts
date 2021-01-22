@@ -258,6 +258,8 @@ export namespace Components {
          */
         "value": TabValue;
     }
+    interface ZenText {
+    }
     interface ZenTextarea {
         /**
           * Appends attribute disabled.
@@ -424,6 +426,12 @@ declare global {
         prototype: HTMLZenTabsElement;
         new (): HTMLZenTabsElement;
     };
+    interface HTMLZenTextElement extends Components.ZenText, HTMLStencilElement {
+    }
+    var HTMLZenTextElement: {
+        prototype: HTMLZenTextElement;
+        new (): HTMLZenTextElement;
+    };
     interface HTMLZenTextareaElement extends Components.ZenTextarea, HTMLStencilElement {
     }
     var HTMLZenTextareaElement: {
@@ -455,6 +463,7 @@ declare global {
         "zen-spinner": HTMLZenSpinnerElement;
         "zen-steps": HTMLZenStepsElement;
         "zen-tabs": HTMLZenTabsElement;
+        "zen-text": HTMLZenTextElement;
         "zen-textarea": HTMLZenTextareaElement;
         "zen-tooltip": HTMLZenTooltipElement;
     }
@@ -700,6 +709,8 @@ declare namespace LocalJSX {
          */
         "value"?: TabValue;
     }
+    interface ZenText {
+    }
     interface ZenTextarea {
         /**
           * Appends attribute disabled.
@@ -775,6 +786,7 @@ declare namespace LocalJSX {
         "zen-spinner": ZenSpinner;
         "zen-steps": ZenSteps;
         "zen-tabs": ZenTabs;
+        "zen-text": ZenText;
         "zen-textarea": ZenTextarea;
         "zen-tooltip": ZenTooltip;
     }
@@ -801,6 +813,7 @@ declare module "@stencil/core" {
             "zen-spinner": LocalJSX.ZenSpinner & JSXBase.HTMLAttributes<HTMLZenSpinnerElement>;
             "zen-steps": LocalJSX.ZenSteps & JSXBase.HTMLAttributes<HTMLZenStepsElement>;
             "zen-tabs": LocalJSX.ZenTabs & JSXBase.HTMLAttributes<HTMLZenTabsElement>;
+            "zen-text": LocalJSX.ZenText & JSXBase.HTMLAttributes<HTMLZenTextElement>;
             "zen-textarea": LocalJSX.ZenTextarea & JSXBase.HTMLAttributes<HTMLZenTextareaElement>;
             "zen-tooltip": LocalJSX.ZenTooltip & JSXBase.HTMLAttributes<HTMLZenTooltipElement>;
         }
