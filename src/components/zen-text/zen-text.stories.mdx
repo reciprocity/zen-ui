@@ -28,6 +28,19 @@ export const StoryHeadings = () => html/*html*/ `
   <zen-text size="xs" heading>xs I love Zen UI</zen-text>
 `;
 
+export const StoryProps = () => html/*html*/ `
+  <zen-text size="md" uppercase>uppercase</zen-text>
+  <zen-text size="md" lowercase>lowercase</zen-text>
+  <zen-text size="md" bold>bold</zen-text>
+  <zen-text size="md" italic>italic</zen-text>
+  <zen-text size="md" strikethrough>strikethrough</zen-text>
+  <zen-text size="md" underline>underline</zen-text>
+  <zen-text size="md" bold italic underline>combination of props</zen-text>
+  <zen-text size="md" inline bold>inline</zen-text>
+  <zen-text size="md" inline italic>inline</zen-text>
+  <zen-text size="md" inline uppercase>inline</zen-text>
+`;
+
 # Text
 
 Standard text element (equivalent to `<p>`, `<h1>`, `<h2>`, `<h3>` and similar)
@@ -48,6 +61,14 @@ Use combination of `size` and `heading` to render titles
 
 <Canvas>
   <Story name="headings">{StoryHeadings.bind({})}</Story>
+</Canvas>
+
+### 3. Styling properties
+
+You can always style content slot, but with these props you can do it even faster.
+
+<Canvas>
+  <Story name="props">{StoryProps.bind({})}</Story>
 </Canvas>
 
 ## Properties
