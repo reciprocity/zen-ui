@@ -8,7 +8,7 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { StringifiedJson } from "./stories/components/color-swatch-group/color-swatch-group";
 import { ButtonVariants } from "./components/zen-button/types";
 import { OptionValue } from "./components/zen-menu-item/zen-option";
-import { Align, Duration, NotificationVariant, Position, TooltipVariant } from "./components/helpers/types";
+import { Align, Duration, NotificationVariant, Position, TextSize, TooltipVariant } from "./components/helpers/types";
 import { OptionValue as OptionValue1 } from "./components/zen-menu-item/zen-option";
 import { StepItem } from "./components/zen-steps/zen-steps";
 import { StepsFilter } from "./components/zen-steps/types";
@@ -259,6 +259,54 @@ export namespace Components {
         "value": TabValue;
     }
     interface ZenText {
+        /**
+          * Underlined
+         */
+        "align": Align;
+        /**
+          * Render bold text
+         */
+        "bold": false;
+        /**
+          * Apply heading styles
+         */
+        "heading": false;
+        /**
+          * Layout as inlined
+         */
+        "inline": false;
+        /**
+          * Render italic text
+         */
+        "italic": false;
+        /**
+          * Convert casing to lowercase
+         */
+        "lowercase": false;
+        /**
+          * pale
+         */
+        "pale": false;
+        /**
+          * Font size
+         */
+        "size": TextSize;
+        /**
+          * Strikethrough
+         */
+        "strikethrough": false;
+        /**
+          * truncate
+         */
+        "truncate": false;
+        /**
+          * Underlined
+         */
+        "underline": false;
+        /**
+          * Convert casing to uppercase
+         */
+        "uppercase": false;
     }
     interface ZenTextarea {
         /**
@@ -710,6 +758,54 @@ declare namespace LocalJSX {
         "value"?: TabValue;
     }
     interface ZenText {
+        /**
+          * Underlined
+         */
+        "align"?: Align;
+        /**
+          * Render bold text
+         */
+        "bold"?: false;
+        /**
+          * Apply heading styles
+         */
+        "heading"?: false;
+        /**
+          * Layout as inlined
+         */
+        "inline"?: false;
+        /**
+          * Render italic text
+         */
+        "italic"?: false;
+        /**
+          * Convert casing to lowercase
+         */
+        "lowercase"?: false;
+        /**
+          * pale
+         */
+        "pale"?: false;
+        /**
+          * Font size
+         */
+        "size"?: TextSize;
+        /**
+          * Strikethrough
+         */
+        "strikethrough"?: false;
+        /**
+          * truncate
+         */
+        "truncate"?: false;
+        /**
+          * Underlined
+         */
+        "underline"?: false;
+        /**
+          * Convert casing to uppercase
+         */
+        "uppercase"?: false;
     }
     interface ZenTextarea {
         /**
