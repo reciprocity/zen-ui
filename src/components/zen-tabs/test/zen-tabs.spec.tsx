@@ -1,19 +1,6 @@
 import { newSpecPage, SpecPage } from '@stencil/core/testing';
-// import { propReflectsInAttributes } from '../../helpers/jest';
 
 import { ZenTabs } from '../zen-tabs';
-
-describe('Zen-Tabs', () => {
-  it('renders', async () => {
-    const page = await newSpecPage({
-      components: [ZenTabs],
-      html: `<zen-tabs />`,
-    });
-    expect(page.root).toEqualHtml(`<zen-tabs>
-      <mock:shadow-root></mock:shadow-root>
-    </zen-tabs>`);
-  });
-});
 
 describe('Zen-Tabs with items', () => {
   let page: SpecPage;

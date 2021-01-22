@@ -4,22 +4,6 @@ import { propReflectsInAttributes } from '../../helpers/jest';
 import { ZenOption } from '../zen-option';
 
 describe('Zen-option', () => {
-  it('renders', async () => {
-    const page = await newSpecPage({
-      components: [ZenOption],
-      html: `<zen-option value="Graham" />`,
-    });
-    expect(page.root).toEqualHtml(`<zen-option value="Graham">
-      <mock:shadow-root>
-        <div class="background">
-          <slot>
-            <div class="content">Graham</div>
-          </slot>
-        </div>
-      </mock:shadow-root>
-    </zen-option>`);
-  });
-
   it('reflects all props', async () => {
     const page = await newSpecPage({
       components: [ZenOption],
