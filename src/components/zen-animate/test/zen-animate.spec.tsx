@@ -1,6 +1,8 @@
 import { newSpecPage } from '@stencil/core/testing';
 import { htmlToElement } from '../../helpers/jest';
 
+jest.useFakeTimers();
+
 const fakeSlot = htmlToElement('<div></div>')[0];
 
 import * as helpers from '../../helpers/helpers';
@@ -23,5 +25,17 @@ describe('zen-animate', () => {
       <h1>Slot</h1>
     </zen-animate>
     `);
+  });
+
+  it('does shows when prop changed', async () => {
+    const page = await newSpecPage({
+      components: [ZenAnimate],
+      html: `<zen-animate><h1>Slot</h1></zen-animate>`,
+    });
+    await page.waitForChanges();
+    expect(page.root.shadowRoot.querySelector('slot')).toBeFalsy();
+    page.rootInstance.show = true;
+    await page.waitForChanges();
+    expect(page.root.shadowRoot.querySelector('slot')).toBeTruthy();
   });
 });
