@@ -1,5 +1,4 @@
 import { Component, Host, h, Prop, Element, Listen, State, Watch } from '@stencil/core';
-import { Key } from 'ts-key-enum';
 import { indent, unindent } from './helpers';
 
 declare global {
@@ -106,7 +105,7 @@ export class HtmlPlayground {
 
   @Listen('keydown')
   handleKeyDown(ev: KeyboardEvent): void {
-    if (ev.key === Key.Tab) {
+    if (ev.key === 'Tab') {
       ev.preventDefault();
       const textarea = this.hostElement.shadowRoot.querySelector('textarea');
       if (ev.shiftKey) {
@@ -117,7 +116,7 @@ export class HtmlPlayground {
     }
 
     const ctrl = ev.metaKey || ev.shiftKey || ev.ctrlKey;
-    const apply = (ev.key === Key.Enter && ctrl) || ev.key === Key.Escape || (ev.key === 's' && ctrl);
+    const apply = (ev.key === 'Enter' && ctrl) || ev.key === 'Escape' || (ev.key === 's' && ctrl);
     if (apply) {
       // Apply changes:
       const textarea = this.hostElement.shadowRoot.querySelector('textarea');

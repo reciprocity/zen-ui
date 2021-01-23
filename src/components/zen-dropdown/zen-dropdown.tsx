@@ -1,10 +1,8 @@
 import { Component, Host, h, Prop, State, Listen, Watch, Element, Method } from '@stencil/core';
-import { getDefaultSlotContent } from '../helpers/helpers';
+import { getDefaultSlotContent, waitNextFrame, getComposedPath } from '../helpers/helpers';
 import { faChevronDown } from '@fortawesome/pro-light-svg-icons';
 import { renderIcon, styles } from '../helpers/fa-icons';
 import { OptionValue } from '../zen-menu-item/zen-option';
-import { waitNextFrame } from '../helpers/helpers';
-import { Key } from 'ts-key-enum';
 import { Align } from '../helpers/types';
 
 export interface OptionItem {
@@ -88,7 +86,7 @@ export class ZenDropdown {
 
   @Listen('keydown')
   handleKeyDown(ev: KeyboardEvent): void {
-    const toggleKeys = ['Space', Key.Enter, Key.ArrowUp, Key.ArrowDown];
+    const toggleKeys = ['Space', 'Enter', 'ArrowUp', 'ArrowDown'];
 
     if (!this.opened && toggleKeys.includes(ev.key)) {
       this.toggleDropdown();
@@ -97,17 +95,17 @@ export class ZenDropdown {
     }
 
     switch (ev.key) {
-      case Key.ArrowDown:
+      case 'ArrowDown':
         this.moveFocusedOption('forward');
         ev.preventDefault();
         break;
 
-      case Key.ArrowUp:
+      case 'ArrowUp':
         this.moveFocusedOption('backward');
         ev.preventDefault();
         break;
 
-      case Key.Enter:
+      case 'Enter':
       case 'Space':
         const focused = this.getFocusedOption();
         if (focused) {
@@ -122,9 +120,9 @@ export class ZenDropdown {
     // Clear previously copied item from slot[name=field]:
     if (!this.value) return;
 
-    const slot = this.hostElement.shadowRoot.querySelector('slot[name=field-private]');
+    const slot = this.hostElement.shadowRoot.querySelector('slot[name=field-private]') as HTMLSlotElement;
     if (!slot) return;
-    const existing = (slot as HTMLSlotElement).assignedNodes()[0] as HTMLElement;
+    const existing = slot.assignedNodes ? (slot.assignedNodes()[0] as HTMLElement) : false;
     if (existing) {
       existing.parentNode.removeChild(existing);
     }
@@ -219,8 +217,7 @@ export class ZenDropdown {
 
   // Events
   async closeOnClickOut(event: MouseEvent): Promise<void> {
-    const path = event.composedPath(); //getElementPath(event.target as HTMLElement);
-
+    const path = getComposedPath(event);
     const clickedInside = path.find(n => n === this.list);
     if (clickedInside) return;
     await waitNextFrame(); // prevent race with click-open

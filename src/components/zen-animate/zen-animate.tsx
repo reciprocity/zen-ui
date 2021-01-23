@@ -1,13 +1,14 @@
-import { Component, h, Prop, Watch, State } from '@stencil/core';
-import { waitNextFrame } from '../helpers/helpers';
+import { Component, h, Prop, Watch, State, Element } from '@stencil/core';
+import { waitNextFrame, getSlotElement } from '../helpers/helpers';
 
 @Component({
   tag: 'zen-animate',
   shadow: true,
 })
 export class ZenAnimate {
-  div: HTMLElement = undefined;
   hideTimer = undefined;
+
+  @Element() hostElement: HTMLZenAnimateElement;
 
   @State() doShow = false;
 
@@ -23,8 +24,7 @@ export class ZenAnimate {
   }
 
   async componentDidRender(): Promise<void> {
-    const parent = this.div.querySelector('slot');
-    const slot = parent && (parent.assignedNodes()[0] as HTMLElement);
+    const slot = getSlotElement(this.hostElement);
     if (!slot) return;
 
     slot.setAttribute('animate', this.show ? 'in-start' : 'out-start');
@@ -43,6 +43,6 @@ export class ZenAnimate {
   }
 
   render(): HTMLElement {
-    return <div ref={el => (this.div = el)}>{this.doShow ? <slot /> : ''}</div>;
+    return <div>{this.doShow ? <slot /> : ''}</div>;
   }
 }

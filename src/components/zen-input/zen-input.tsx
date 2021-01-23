@@ -35,8 +35,6 @@ export class ZenInput {
 
   @Listen('keydown')
   handleKeyDown(ev: KeyboardEvent): void {
-    // TODO: replace with ts-key-enum
-    // currently it's impossible due to Cannot find module 'ts-key-enum' in jest
     if (ev.key === 'Enter' && this.enterToTab) {
       ev.preventDefault();
       getNextField(this.input).focus();

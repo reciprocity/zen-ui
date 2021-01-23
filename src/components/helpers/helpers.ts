@@ -1,10 +1,6 @@
 import { querySelectorAllDeep } from 'query-selector-shadow-dom';
 import { Position, Rect } from './types';
 
-export interface MouseEvent extends Event {
-  path: Node[];
-}
-
 export function waitNextFrame(): Promise<boolean> {
   return new Promise(resolve => {
     window.requestAnimationFrame(() => resolve(true));
@@ -16,7 +12,7 @@ export function slotPassed(host: HTMLElement, slotName: string): boolean {
   return !!host.querySelector(selector);
 }
 
-export function getSlotElement(host: HTMLElement, slotName: string): HTMLElement | undefined {
+export function getSlotElement(host: HTMLElement, slotName?: string): HTMLElement | undefined {
   // Note: Don't use this function to determine if slot was passed by consumer!
   const selector = slotName ? `slot[name="${slotName}"]` : 'slot';
   const slot = host.shadowRoot.querySelector(selector) as HTMLSlotElement;
@@ -25,7 +21,9 @@ export function getSlotElement(host: HTMLElement, slotName: string): HTMLElement
 }
 
 export function getDefaultSlotContent(host: HTMLElement): Element[] {
-  return (host.shadowRoot.querySelector('slot:not([name])') as HTMLSlotElement).assignedElements();
+  const slot = host.shadowRoot.querySelector('slot:not([name])') as HTMLSlotElement;
+  if (!slot.assignedElements) return [];
+  return slot.assignedElements();
 }
 
 export function getNextField(currentInput: HTMLElement): HTMLElement {
@@ -58,4 +56,8 @@ export function oppositePosition(position: Position): Position {
     bottom: 'top',
   };
   return opposites[position] as Position;
+}
+
+export function getComposedPath(event: MouseEvent): EventTarget[] {
+  return event.composedPath();
 }
