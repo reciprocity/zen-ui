@@ -76,13 +76,13 @@ export namespace Components {
          */
         "imageUrl": string;
         /**
-          * Name Initials
-         */
-        "label": string;
-        /**
           * Avatar size
          */
         "size": AvatarSize;
+        /**
+          * Name Initials
+         */
+        "userName": string;
     }
     interface ZenButton {
         /**
@@ -648,13 +648,13 @@ declare namespace LocalJSX {
          */
         "imageUrl"?: string;
         /**
-          * Name Initials
-         */
-        "label"?: string;
-        /**
           * Avatar size
          */
         "size"?: AvatarSize;
+        /**
+          * Name Initials
+         */
+        "userName"?: string;
     }
     interface ZenButton {
         /**
