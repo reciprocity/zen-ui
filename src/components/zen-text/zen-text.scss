@@ -1,0 +1,105 @@
+@import '../../zen-styles/variables.scss';
+
+:host {
+  display: block;
+  line-height: 1.2em;
+  color: $color-gray-700;
+}
+
+:host([inline]) {
+  display: inline-block;
+}
+
+//--------------------------------------------
+:host([size='xs']) {
+  font-size: $text-xs;
+}
+
+:host([size='sm']) {
+  font-size: $text-sm;
+}
+
+:host([size='md']) {
+  font-size: $text-md;
+}
+
+:host([size='lg']) {
+  font-size: $text-lg;
+}
+
+:host([size='xl']) {
+  font-size: $text-xl;
+}
+
+//--------------------------------------------
+:host([heading][size='xs']) {
+  font-weight: bold;
+  font-size: $heading-xs;
+}
+
+:host([heading][size='sm']) {
+  font-weight: bold;
+  font-size: $heading-sm;
+}
+
+:host([heading][size='md']) {
+  font-weight: bold;
+  font-size: $heading-md;
+}
+
+:host([heading][size='lg']) {
+  font-weight: bold;
+  font-size: $heading-lg;
+}
+
+:host([heading][size='xl']) {
+  font-weight: bold;
+  font-size: $heading-xl;
+}
+
+//--------------------------------------------
+:host([bold]) {
+  font-weight: bold;
+}
+
+:host([italic]) {
+  font-style: italic;
+}
+
+:host([uppercase]) {
+  text-transform: uppercase;
+}
+
+:host([lowercase]) {
+  text-transform: lowercase;
+}
+
+:host([strikethrough]) {
+  text-decoration: line-through;
+}
+
+:host([underline]) {
+  text-decoration: underline;
+}
+
+:host([align='right']) {
+  text-align: right;
+}
+
+:host([align='center']) {
+  text-align: center;
+}
+
+:host([truncate]) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+:host([pale]) {
+  color: $color-gray-400;
+}
+
+:host([disabled]) {
+  color: $color-gray-200;
+}

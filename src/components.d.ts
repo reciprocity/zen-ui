@@ -8,7 +8,7 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { StringifiedJson } from "./stories/components/color-swatch-group/color-swatch-group";
 import { ButtonVariants } from "./components/zen-button/types";
 import { OptionValue } from "./components/zen-menu-item/zen-option";
-import { Align, Duration, NotificationVariant, Position, TooltipVariant } from "./components/helpers/types";
+import { Align, Duration, NotificationVariant, Position, TextSize, TooltipVariant } from "./components/helpers/types";
 import { OptionValue as OptionValue1 } from "./components/zen-menu-item/zen-option";
 import { StepItem } from "./components/zen-steps/zen-steps";
 import { StepsFilter } from "./components/zen-steps/types";
@@ -258,6 +258,60 @@ export namespace Components {
          */
         "value": TabValue;
     }
+    interface ZenText {
+        /**
+          * Align content to left, right, center (text-align)
+         */
+        "align": Align;
+        /**
+          * Render bold text
+         */
+        "bold": false;
+        /**
+          * Disabled
+         */
+        "disabled": false;
+        /**
+          * Apply heading styles
+         */
+        "heading": false;
+        /**
+          * Layout as inlined
+         */
+        "inline": false;
+        /**
+          * Render italic text
+         */
+        "italic": false;
+        /**
+          * Convert casing to lowercase
+         */
+        "lowercase": false;
+        /**
+          * Show text as gray. Useful for disabled things
+         */
+        "pale": false;
+        /**
+          * Font size
+         */
+        "size": TextSize;
+        /**
+          * Strikethrough
+         */
+        "strikethrough": false;
+        /**
+          * Truncate
+         */
+        "truncate": false;
+        /**
+          * Underlined
+         */
+        "underline": false;
+        /**
+          * Convert casing to uppercase
+         */
+        "uppercase": false;
+    }
     interface ZenTextarea {
         /**
           * Appends attribute disabled.
@@ -424,6 +478,12 @@ declare global {
         prototype: HTMLZenTabsElement;
         new (): HTMLZenTabsElement;
     };
+    interface HTMLZenTextElement extends Components.ZenText, HTMLStencilElement {
+    }
+    var HTMLZenTextElement: {
+        prototype: HTMLZenTextElement;
+        new (): HTMLZenTextElement;
+    };
     interface HTMLZenTextareaElement extends Components.ZenTextarea, HTMLStencilElement {
     }
     var HTMLZenTextareaElement: {
@@ -455,6 +515,7 @@ declare global {
         "zen-spinner": HTMLZenSpinnerElement;
         "zen-steps": HTMLZenStepsElement;
         "zen-tabs": HTMLZenTabsElement;
+        "zen-text": HTMLZenTextElement;
         "zen-textarea": HTMLZenTextareaElement;
         "zen-tooltip": HTMLZenTooltipElement;
     }
@@ -700,6 +761,60 @@ declare namespace LocalJSX {
          */
         "value"?: TabValue;
     }
+    interface ZenText {
+        /**
+          * Align content to left, right, center (text-align)
+         */
+        "align"?: Align;
+        /**
+          * Render bold text
+         */
+        "bold"?: false;
+        /**
+          * Disabled
+         */
+        "disabled"?: false;
+        /**
+          * Apply heading styles
+         */
+        "heading"?: false;
+        /**
+          * Layout as inlined
+         */
+        "inline"?: false;
+        /**
+          * Render italic text
+         */
+        "italic"?: false;
+        /**
+          * Convert casing to lowercase
+         */
+        "lowercase"?: false;
+        /**
+          * Show text as gray. Useful for disabled things
+         */
+        "pale"?: false;
+        /**
+          * Font size
+         */
+        "size"?: TextSize;
+        /**
+          * Strikethrough
+         */
+        "strikethrough"?: false;
+        /**
+          * Truncate
+         */
+        "truncate"?: false;
+        /**
+          * Underlined
+         */
+        "underline"?: false;
+        /**
+          * Convert casing to uppercase
+         */
+        "uppercase"?: false;
+    }
     interface ZenTextarea {
         /**
           * Appends attribute disabled.
@@ -775,6 +890,7 @@ declare namespace LocalJSX {
         "zen-spinner": ZenSpinner;
         "zen-steps": ZenSteps;
         "zen-tabs": ZenTabs;
+        "zen-text": ZenText;
         "zen-textarea": ZenTextarea;
         "zen-tooltip": ZenTooltip;
     }
@@ -801,6 +917,7 @@ declare module "@stencil/core" {
             "zen-spinner": LocalJSX.ZenSpinner & JSXBase.HTMLAttributes<HTMLZenSpinnerElement>;
             "zen-steps": LocalJSX.ZenSteps & JSXBase.HTMLAttributes<HTMLZenStepsElement>;
             "zen-tabs": LocalJSX.ZenTabs & JSXBase.HTMLAttributes<HTMLZenTabsElement>;
+            "zen-text": LocalJSX.ZenText & JSXBase.HTMLAttributes<HTMLZenTextElement>;
             "zen-textarea": LocalJSX.ZenTextarea & JSXBase.HTMLAttributes<HTMLZenTextareaElement>;
             "zen-tooltip": LocalJSX.ZenTooltip & JSXBase.HTMLAttributes<HTMLZenTooltipElement>;
         }
