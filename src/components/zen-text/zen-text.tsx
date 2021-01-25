@@ -34,13 +34,13 @@ export class ZenText {
   /** Underlined */
   @Prop({ reflect: true }) readonly underline = false;
 
-  /** Underlined */
+  /** Align content to left, right, center (text-align) */
   @Prop({ reflect: true }) readonly align: Align = 'left';
 
-  /** truncate */
+  /** Truncate */
   @Prop({ reflect: true }) readonly truncate = false;
 
-  /** pale */
+  /** Show text as gray. Useful for disabled things */
   @Prop({ reflect: true }) readonly pale = false;
 
   /** Disabled */

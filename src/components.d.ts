@@ -260,13 +260,17 @@ export namespace Components {
     }
     interface ZenText {
         /**
-          * Underlined
+          * Align content to left, right, center (text-align)
          */
         "align": Align;
         /**
           * Render bold text
          */
         "bold": false;
+        /**
+          * Disabled
+         */
+        "disabled": false;
         /**
           * Apply heading styles
          */
@@ -284,7 +288,7 @@ export namespace Components {
          */
         "lowercase": false;
         /**
-          * pale
+          * Show text as gray. Useful for disabled things
          */
         "pale": false;
         /**
@@ -296,7 +300,7 @@ export namespace Components {
          */
         "strikethrough": false;
         /**
-          * truncate
+          * Truncate
          */
         "truncate": false;
         /**
@@ -759,13 +763,17 @@ declare namespace LocalJSX {
     }
     interface ZenText {
         /**
-          * Underlined
+          * Align content to left, right, center (text-align)
          */
         "align"?: Align;
         /**
           * Render bold text
          */
         "bold"?: false;
+        /**
+          * Disabled
+         */
+        "disabled"?: false;
         /**
           * Apply heading styles
          */
@@ -783,7 +791,7 @@ declare namespace LocalJSX {
          */
         "lowercase"?: false;
         /**
-          * pale
+          * Show text as gray. Useful for disabled things
          */
         "pale"?: false;
         /**
@@ -795,7 +803,7 @@ declare namespace LocalJSX {
          */
         "strikethrough"?: false;
         /**
-          * truncate
+          * Truncate
          */
         "truncate"?: false;
         /**
