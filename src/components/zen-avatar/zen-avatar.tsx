@@ -17,20 +17,32 @@ export class ZenAvatar {
   @Prop() readonly color: string = '#00528c';
 
   /** Name Initials  */
-  @Prop() readonly label: string = '';
+  @Prop() readonly userName: string = '';
 
   /** Avatar size   */
-  @Prop() readonly size: AvatarSize = 'large';
+  @Prop({ reflect: true }) readonly size: AvatarSize = 'md';
 
   hasImage(): boolean {
     return this.imageUrl != '';
   }
 
+  getUserInitials() {
+    let initials = '';
+    if (this.userName) {
+      initials = this.userName
+        .match(/(\b([A-Z]|[a-z]))/g)
+        .join('')
+        .substring(0, 2)
+        .toUpperCase();
+    }
+    return initials;
+  }
+
   render() {
     return (
-      <Host style={{ background: this.background, color: this.color }} class={this.size}>
-        <img class={{ hidden: !this.hasImage(), [this.size]: true }} src={this.imageUrl} />
-        <div class={{ hidden: this.hasImage(), label: true }}>{this.label}</div>
+      <Host style={{ background: this.background, color: this.color }}>
+        <img class={{ hidden: !this.hasImage() }} src={this.imageUrl} />
+        <div class={{ hidden: this.hasImage(), initials: true }}>{this.getUserInitials()}</div>
       </Host>
     );
   }

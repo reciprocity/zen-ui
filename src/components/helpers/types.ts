@@ -9,9 +9,9 @@ export type NotificationVariant = 'success' | 'info' | 'warning' | 'error';
 
 export type Duration = 'none' | 'short' | 'medium' | 'long';
 
-export type TextSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+export type AvatarSize = 'sm' | 'md' | 'lg';
 
-export type AvatarSize = 'medium' | 'large';
+export type TextSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
 // Others:
 export type Point = { x: number; y: number };
