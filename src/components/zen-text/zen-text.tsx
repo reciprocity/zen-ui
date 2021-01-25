@@ -43,6 +43,9 @@ export class ZenText {
   /** pale */
   @Prop({ reflect: true }) readonly pale = false;
 
+  /** Disabled */
+  @Prop({ reflect: true }) readonly disabled = false;
+
   render(): HTMLElement {
     return (
       <Host>

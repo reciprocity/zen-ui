@@ -99,3 +99,7 @@
 :host([pale]) {
   color: $color-gray-400;
 }
+
+:host([disabled]) {
+  color: $color-gray-200;
+}
