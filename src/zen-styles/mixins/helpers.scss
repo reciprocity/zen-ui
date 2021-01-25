@@ -10,10 +10,8 @@
 
 @mixin round-icon($size, $padding: null) {
   margin: $padding;
-  min-height: $size;
-  min-width: $size;
-  max-height: $size;
-  max-width: $size;
+  height: $size;
+  width: $size;
   border-radius: 50%;
   position: relative;
 }

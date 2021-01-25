@@ -6,17 +6,20 @@
   border: 1px solid $color-white;
 }
 
-:host([size=sm]), :host([size=sm]) > img {
+:host([size='sm']),
+:host([size='sm']) > img {
   @include round-icon(24px);
   font-size: 0.5rem;
 }
 
-:host([size=md]), :host([size=md]) > img {
+:host([size='md']),
+:host([size='md']) > img {
   @include round-icon(32px);
   font-size: 0.8rem;
 }
 
-:host([size=lg]), :host([size=lg]) > img {
+:host([size='lg']),
+:host([size='lg']) > img {
   @include round-icon(40px);
   font-size: 1rem;
 }
