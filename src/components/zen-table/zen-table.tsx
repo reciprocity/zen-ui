@@ -2,7 +2,7 @@ import { Component, Host, h } from '@stencil/core';
 
 @Component({
   tag: 'zen-table',
-  styleUrl: 'zen-table.css',
+  styleUrl: 'zen-table.scss',
   shadow: true,
 })
 export class ZenTable {
