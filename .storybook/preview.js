@@ -29,10 +29,14 @@ export const parameters = {
         'Guides',
         [
           'Colors',
-          'Typography',
           'Spacing'
         ],
-        'Buttons', 'Forms', 'Icons', 'Notifications',
+        'Typography',
+        'Buttons',
+        'Forms',
+        'Icons',
+        'Navigation',
+        'Notifications',
       ],
       locales: '',
     },
