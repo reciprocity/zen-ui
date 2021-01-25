@@ -67,9 +67,7 @@ export const Story1 = () => {
 };
 
 export const StoryWithControls = args => html/*html*/ `
-  <zen-table id="table1" ...="${spreadArgs(args)}">
-    TODO: TEMP content
-  </zen-table>
+  <zen-table id="table1" ...="${spreadArgs(args)}"> TODO: TEMP content </zen-table>
   ${action('#table1', eventHandles(['click']))}
 `;
 

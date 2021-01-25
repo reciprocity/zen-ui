@@ -6,7 +6,7 @@ import { Component, Host, h } from '@stencil/core';
   shadow: true,
 })
 export class ZenTable {
-  render() {
+  render(): HTMLElement {
     return (
       <Host>
         <table class="table">
