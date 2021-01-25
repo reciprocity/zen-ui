@@ -9,9 +9,7 @@ export class ZenTableCell {
   render(): HTMLElement {
     return (
       <Host>
-        <td>
-          <slot></slot>
-        </td>
+        <slot></slot>
       </Host>
     );
   }

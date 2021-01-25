@@ -1,7 +1,4 @@
 :host {
-  display: contents;
-}
-
-.table {
+  display: table;
   width: 100%;
 }

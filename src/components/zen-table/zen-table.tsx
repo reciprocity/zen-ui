@@ -9,14 +9,12 @@ export class ZenTable {
   render(): HTMLElement {
     return (
       <Host>
-        <table class="table">
-          <thead>
-            <slot name="header"></slot>
-          </thead>
-          <tbody>
-            <slot></slot>
-          </tbody>
-        </table>
+        <thead>
+          <slot name="header"></slot>
+        </thead>
+        <tbody>
+          <slot></slot>
+        </tbody>
       </Host>
     );
   }
