@@ -6,7 +6,7 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { StringifiedJson } from "./stories/components/color-swatch-group/color-swatch-group";
-import { Align, AvatarSize, Duration, NotificationVariant, Position, TooltipVariant } from "./components/helpers/types";
+import { Align, AvatarSize, Duration, NotificationVariant, Position, TextSize, TooltipVariant } from "./components/helpers/types";
 import { ButtonVariants } from "./components/zen-button/types";
 import { OptionValue } from "./components/zen-menu-item/zen-option";
 import { OptionValue as OptionValue1 } from "./components/zen-menu-item/zen-option";
@@ -80,7 +80,7 @@ export namespace Components {
          */
         "size": AvatarSize;
         /**
-          * Name Initials
+          * Name and Surname
          */
         "userName": string;
     }
@@ -652,7 +652,7 @@ declare namespace LocalJSX {
          */
         "size"?: AvatarSize;
         /**
-          * Name Initials
+          * Name and Surname
          */
         "userName"?: string;
     }

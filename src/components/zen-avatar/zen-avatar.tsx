@@ -16,7 +16,7 @@ export class ZenAvatar {
   /** Font color  */
   @Prop() readonly color: string = '#00528c';
 
-  /** Name Initials  */
+  /** Name and Surname  */
   @Prop() readonly userName: string = '';
 
   /** Avatar size   */
@@ -26,7 +26,7 @@ export class ZenAvatar {
     return this.imageUrl != '';
   }
 
-  getUserInitials() {
+  getUserInitials(): string {
     let initials = '';
     if (this.userName) {
       initials = this.userName

@@ -8,10 +8,10 @@ describe('zen-avatar', () => {
       html: `<zen-avatar></zen-avatar>`,
     });
     expect(page.root).toEqualHtml(`
-      <zen-avatar class="large" style="background: #abd2f5; color: #00528c;">
+      <zen-avatar size="md" style="background: #abd2f5; color: #00528c;">
         <mock:shadow-root>
-          <img class="hidden large" src="">
-          <div class="label"></div>
+          <img class="hidden" src="">
+          <div class="initials"></div>
         </mock:shadow-root>
       </zen-avatar>
     `);
@@ -19,18 +19,10 @@ describe('zen-avatar', () => {
 });
 
 describe('Test parameters rendering', () => {
-  it.each(['medium', 'large'])('Test that size %s is applied correctly', async size => {
-    const page = await newSpecPage({
-      components: [ZenAvatar],
-      html: `<zen-avatar size="${size}" label="MP"></zen-avatar>`,
-    });
-    expect(page.root.classList.contains(size)).toBe(true);
-  });
-
   it('Test that image is hidden and label is displayed', async () => {
     const page = await newSpecPage({
       components: [ZenAvatar],
-      html: `<zen-avatar label="MP"></zen-avatar>`,
+      html: `<zen-avatar user-name="Mihael Palfi"></zen-avatar>`,
     });
     expect(page.root.shadowRoot.querySelector('div').textContent).toEqual('MP');
     expect(page.root.shadowRoot.querySelector('img').classList.contains('hidden')).toBe(true);
