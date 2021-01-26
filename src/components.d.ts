@@ -317,27 +317,27 @@ export namespace Components {
         /**
           * Render bold text
          */
-        "bold": false;
+        "bold": boolean;
         /**
           * Disabled
          */
-        "disabled": false;
+        "disabled": boolean;
         /**
           * Layout as inlined
          */
-        "inline": false;
+        "inline": boolean;
         /**
           * Render italic text
          */
-        "italic": false;
+        "italic": boolean;
         /**
           * Convert casing to lowercase
          */
-        "lowercase": false;
+        "lowercase": boolean;
         /**
           * Show text as gray. Useful for disabled things
          */
-        "pale": false;
+        "pale": boolean;
         /**
           * Shows a red asterisk at the end
          */
@@ -349,19 +349,19 @@ export namespace Components {
         /**
           * Strikethrough
          */
-        "strikethrough": false;
+        "strikethrough": boolean;
         /**
           * Truncate
          */
-        "truncate": false;
+        "truncate": boolean;
         /**
           * Underlined
          */
-        "underline": false;
+        "underline": boolean;
         /**
           * Convert casing to uppercase
          */
-        "uppercase": false;
+        "uppercase": boolean;
         /**
           * Apply heading styles
          */
@@ -923,27 +923,27 @@ declare namespace LocalJSX {
         /**
           * Render bold text
          */
-        "bold"?: false;
+        "bold"?: boolean;
         /**
           * Disabled
          */
-        "disabled"?: false;
+        "disabled"?: boolean;
         /**
           * Layout as inlined
          */
-        "inline"?: false;
+        "inline"?: boolean;
         /**
           * Render italic text
          */
-        "italic"?: false;
+        "italic"?: boolean;
         /**
           * Convert casing to lowercase
          */
-        "lowercase"?: false;
+        "lowercase"?: boolean;
         /**
           * Show text as gray. Useful for disabled things
          */
-        "pale"?: false;
+        "pale"?: boolean;
         /**
           * Shows a red asterisk at the end
          */
@@ -955,19 +955,19 @@ declare namespace LocalJSX {
         /**
           * Strikethrough
          */
-        "strikethrough"?: false;
+        "strikethrough"?: boolean;
         /**
           * Truncate
          */
-        "truncate"?: false;
+        "truncate"?: boolean;
         /**
           * Underlined
          */
-        "underline"?: false;
+        "underline"?: boolean;
         /**
           * Convert casing to uppercase
          */
-        "uppercase"?: false;
+        "uppercase"?: boolean;
         /**
           * Apply heading styles
          */
