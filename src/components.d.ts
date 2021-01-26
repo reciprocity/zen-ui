@@ -88,6 +88,12 @@ export namespace Components {
          */
         "userName": string;
     }
+    interface ZenAvatarGroup {
+        /**
+          * Users data set
+         */
+        "data": Record<string, any>;
+    }
     interface ZenButton {
         /**
           * If present, button will be disabled
@@ -456,6 +462,12 @@ declare global {
         prototype: HTMLZenAvatarElement;
         new (): HTMLZenAvatarElement;
     };
+    interface HTMLZenAvatarGroupElement extends Components.ZenAvatarGroup, HTMLStencilElement {
+    }
+    var HTMLZenAvatarGroupElement: {
+        prototype: HTMLZenAvatarGroupElement;
+        new (): HTMLZenAvatarGroupElement;
+    };
     interface HTMLZenButtonElement extends Components.ZenButton, HTMLStencilElement {
     }
     var HTMLZenButtonElement: {
@@ -584,6 +596,7 @@ declare global {
         "text-with-details": HTMLTextWithDetailsElement;
         "zen-animate": HTMLZenAnimateElement;
         "zen-avatar": HTMLZenAvatarElement;
+        "zen-avatar-group": HTMLZenAvatarGroupElement;
         "zen-button": HTMLZenButtonElement;
         "zen-checkbox": HTMLZenCheckboxElement;
         "zen-dropdown": HTMLZenDropdownElement;
@@ -680,6 +693,12 @@ declare namespace LocalJSX {
           * Name and Surname
          */
         "userName"?: string;
+    }
+    interface ZenAvatarGroup {
+        /**
+          * Users data set
+         */
+        "data"?: Record<string, any>;
     }
     interface ZenButton {
         /**
@@ -1009,6 +1028,7 @@ declare namespace LocalJSX {
         "text-with-details": TextWithDetails;
         "zen-animate": ZenAnimate;
         "zen-avatar": ZenAvatar;
+        "zen-avatar-group": ZenAvatarGroup;
         "zen-button": ZenButton;
         "zen-checkbox": ZenCheckbox;
         "zen-dropdown": ZenDropdown;
@@ -1042,6 +1062,7 @@ declare module "@stencil/core" {
             "text-with-details": LocalJSX.TextWithDetails & JSXBase.HTMLAttributes<HTMLTextWithDetailsElement>;
             "zen-animate": LocalJSX.ZenAnimate & JSXBase.HTMLAttributes<HTMLZenAnimateElement>;
             "zen-avatar": LocalJSX.ZenAvatar & JSXBase.HTMLAttributes<HTMLZenAvatarElement>;
+            "zen-avatar-group": LocalJSX.ZenAvatarGroup & JSXBase.HTMLAttributes<HTMLZenAvatarGroupElement>;
             "zen-button": LocalJSX.ZenButton & JSXBase.HTMLAttributes<HTMLZenButtonElement>;
             "zen-checkbox": LocalJSX.ZenCheckbox & JSXBase.HTMLAttributes<HTMLZenCheckboxElement>;
             "zen-dropdown": LocalJSX.ZenDropdown & JSXBase.HTMLAttributes<HTMLZenDropdownElement>;
