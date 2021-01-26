@@ -20,7 +20,7 @@ export class TextWithDetails {
   componentDidLoad(): void {
     setTimeout(() => {
       this.renderDetails(this.hostElement.previousElementSibling);
-    }, 100);
+    }, 1);
   }
 
   render(): HTMLElement {
