@@ -124,7 +124,62 @@ export const Story2 = () => {
 };
 
 export const StoryWithControls = args => html/*html*/ `
-  <zen-table id="table1" ...="${spreadArgs(args)}"> TODO: TEMP content </zen-table>
+  <zen-table id="table2" ...="${spreadArgs(args)}">
+    <zen-table-row slot="header">
+      <zen-table-header-cell>Title 1</zen-table-header-cell>
+      <zen-table-header-cell>Title 2</zen-table-header-cell>
+      <zen-table-header-cell>Title 3</zen-table-header-cell>
+      <zen-table-header-cell>Title 4</zen-table-header-cell>
+    </zen-table-row>
+    <zen-table-row>
+      <zen-table-cell>Row 1, Cell 1</zen-table-cell>
+      <zen-table-cell>Row 1, Cell 2</zen-table-cell>
+      <zen-table-cell>Row 1, Cell 3</zen-table-cell>
+      <zen-table-cell>Row 1, Cell 4</zen-table-cell>
+    </zen-table-row>
+    <zen-table-row>
+      <zen-table-cell>Row 2, Cell 1</zen-table-cell>
+      <zen-table-cell>Row 2, Cell 2</zen-table-cell>
+      <zen-table-cell>Row 2, Cell 3</zen-table-cell>
+      <zen-table-cell>Row 2, Cell 4</zen-table-cell>
+    </zen-table-row>
+    <zen-table-row>
+      <zen-table-cell>Row 3, Cell 1</zen-table-cell>
+      <zen-table-cell>Row 3, Cell 2</zen-table-cell>
+      <zen-table-cell>Row 3, Cell 3</zen-table-cell>
+      <zen-table-cell>Row 3, Cell 4</zen-table-cell>
+    </zen-table-row>
+    <zen-table-row>
+      <zen-table-cell>Row 4, Cell 1</zen-table-cell>
+      <zen-table-cell>Row 4, Cell 2</zen-table-cell>
+      <zen-table-cell>Row 4, Cell 3</zen-table-cell>
+      <zen-table-cell>Row 4, Cell 4</zen-table-cell>
+    </zen-table-row>
+    <zen-table-row>
+      <zen-table-cell>Row 5, Cell 1</zen-table-cell>
+      <zen-table-cell>Row 5, Cell 2</zen-table-cell>
+      <zen-table-cell>Row 5, Cell 3</zen-table-cell>
+      <zen-table-cell>Row 5, Cell 4</zen-table-cell>
+    </zen-table-row>
+    <zen-table-row>
+      <zen-table-cell>Row 6, Cell 1</zen-table-cell>
+      <zen-table-cell>Row 6, Cell 2</zen-table-cell>
+      <zen-table-cell>Row 6, Cell 3</zen-table-cell>
+      <zen-table-cell>Row 6, Cell 4</zen-table-cell>
+    </zen-table-row>
+    <zen-table-row>
+      <zen-table-cell>Row 7, Cell 1</zen-table-cell>
+      <zen-table-cell>Row 7, Cell 2</zen-table-cell>
+      <zen-table-cell>Row 7, Cell 3</zen-table-cell>
+      <zen-table-cell>Row 7, Cell 4</zen-table-cell>
+    </zen-table-row>
+    <zen-table-row>
+      <zen-table-cell>Row 8, Cell 1</zen-table-cell>
+      <zen-table-cell>Row 8, Cell 2</zen-table-cell>
+      <zen-table-cell>Row 8, Cell 3</zen-table-cell>
+      <zen-table-cell>Row 8, Cell 4</zen-table-cell>
+    </zen-table-row>
+  </zen-table>
   ${action('#table1', eventHandles(['click']))}
 `;
 
