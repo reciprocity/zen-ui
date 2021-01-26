@@ -1,4 +1,4 @@
-import { h, Component, Host, Prop } from '@stencil/core';
+import { h, Component, Host } from '@stencil/core';
 
 @Component({
   tag: 'zen-table',
@@ -6,16 +6,9 @@ import { h, Component, Host, Prop } from '@stencil/core';
   shadow: true,
 })
 export class ZenTable {
-  /** Expands table to fill full available width */
-  @Prop() readonly fullWidth: boolean = false;
-
   render(): HTMLElement {
     return (
-      <Host
-        class={{
-          'full-width': this.fullWidth,
-        }}
-      >
+      <Host>
         <div class="header">
           <slot name="header"></slot>
         </div>

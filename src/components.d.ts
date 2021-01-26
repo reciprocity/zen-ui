@@ -249,10 +249,6 @@ export namespace Components {
         "steps": Array<StepItem>;
     }
     interface ZenTable {
-        /**
-          * Expands table to fill full available width
-         */
-        "fullWidth": boolean;
     }
     interface ZenTableCell {
     }
@@ -792,10 +788,6 @@ declare namespace LocalJSX {
         "steps"?: Array<StepItem>;
     }
     interface ZenTable {
-        /**
-          * Expands table to fill full available width
-         */
-        "fullWidth"?: boolean;
     }
     interface ZenTableCell {
     }

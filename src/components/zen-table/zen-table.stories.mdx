@@ -66,63 +66,6 @@ export const Story1 = () => {
   `;
 };
 
-export const Story2 = () => {
-  return html/*html*/ `
-    <zen-table id="table1" full-width>
-      <zen-table-row slot="header">
-        <zen-table-header-cell>Title 1</zen-table-header-cell>
-        <zen-table-header-cell>Title 2</zen-table-header-cell>
-        <zen-table-header-cell>Title 3</zen-table-header-cell>
-        <zen-table-header-cell>Title 4</zen-table-header-cell>
-        <zen-table-header-cell>Title 5</zen-table-header-cell>
-        <zen-table-header-cell>Title 6</zen-table-header-cell>
-        <zen-table-header-cell>Title 7</zen-table-header-cell>
-        <zen-table-header-cell>Title 8</zen-table-header-cell>
-      </zen-table-row>
-      <zen-table-row>
-        <zen-table-cell>Row 1, Cell 1</zen-table-cell>
-        <zen-table-cell>Row 1, Cell 2</zen-table-cell>
-        <zen-table-cell>Row 1, Cell 3</zen-table-cell>
-        <zen-table-cell>Row 1, Cell 4</zen-table-cell>
-        <zen-table-cell>Row 1, Cell 5</zen-table-cell>
-        <zen-table-cell>Row 1, Cell 6</zen-table-cell>
-        <zen-table-cell>Row 1, Cell 7</zen-table-cell>
-        <zen-table-cell>Row 1, Cell 8</zen-table-cell>
-      </zen-table-row>
-      <zen-table-row>
-        <zen-table-cell>Row 2, Cell 1</zen-table-cell>
-        <zen-table-cell>Row 2, Cell 2</zen-table-cell>
-        <zen-table-cell>Row 2, Cell 3</zen-table-cell>
-        <zen-table-cell>Row 2, Cell 4</zen-table-cell>
-        <zen-table-cell>Row 2, Cell 5</zen-table-cell>
-        <zen-table-cell>Row 2, Cell 6</zen-table-cell>
-        <zen-table-cell>Row 2, Cell 7</zen-table-cell>
-        <zen-table-cell>Row 2, Cell 8</zen-table-cell>
-      </zen-table-row>
-      <zen-table-row>
-        <zen-table-cell>Row 3, Cell 1</zen-table-cell>
-        <zen-table-cell>Row 3, Cell 2</zen-table-cell>
-        <zen-table-cell>Row 3, Cell 3</zen-table-cell>
-        <zen-table-cell>Row 3, Cell 4</zen-table-cell>
-        <zen-table-cell>Row 3, Cell 5</zen-table-cell>
-        <zen-table-cell>Row 3, Cell 6</zen-table-cell>
-        <zen-table-cell>Row 3, Cell 7</zen-table-cell>
-        <zen-table-cell>Row 3, Cell 8</zen-table-cell>
-      </zen-table-row>
-      <zen-table-row>
-        <zen-table-cell>Row 4, Cell 1</zen-table-cell>
-        <zen-table-cell>Row 4, Cell 2</zen-table-cell>
-        <zen-table-cell>Row 4, Cell 3</zen-table-cell>
-        <zen-table-cell>Row 4, Cell 4</zen-table-cell>
-        <zen-table-cell>Row 4, Cell 5</zen-table-cell>
-        <zen-table-cell>Row 4, Cell 6</zen-table-cell>
-        <zen-table-cell>Row 4, Cell 7</zen-table-cell>
-        <zen-table-cell>Row 4, Cell 8</zen-table-cell>
-      </zen-table-row>
-    </zen-table>
-  `;
-};
-
 export const StoryWithControls = args => html/*html*/ `
   <zen-table id="table2" ...="${spreadArgs(args)}">
     <zen-table-row slot="header">
@@ -197,14 +140,6 @@ A composition of `ZenTable` component and fragment `ZenTableRow`, `ZenTableHeade
 
 <Canvas>
   <Story name="story1">{Story1.bind({})}</Story>
-</Canvas>
-
-### 2. Full width table
-
-Using the `full-width` attribute.
-
-<Canvas>
-  <Story name="story2">{Story2.bind({})}</Story>
 </Canvas>
 
 ## Properties
