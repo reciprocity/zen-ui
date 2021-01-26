@@ -54,6 +54,9 @@ input.input-control {
   &:checked {
     background-color: $color-blue-700;
     border: 2px solid $color-blue-700;
+    &:disabled {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='9' viewBox='0 0 12 9'%3E%3Cpath d='M10.2188 0.445312L4.05469 6.63281L1.78125 4.35938C1.73438 4.29688 1.67188 4.26562 1.59375 4.26562C1.51562 4.26562 1.44531 4.29688 1.38281 4.35938L0.726562 5.01562C0.664062 5.07812 0.632812 5.14844 0.632812 5.22656C0.632812 5.30469 0.664062 5.36719 0.726562 5.41406L3.84375 8.55469C3.90625 8.60156 3.97656 8.625 4.05469 8.625C4.13281 8.625 4.19531 8.60156 4.24219 8.55469L11.2734 1.52344C11.3359 1.46094 11.3672 1.39062 11.3672 1.3125C11.3672 1.23438 11.3359 1.17188 11.2734 1.125L10.6172 0.445312C10.5547 0.398438 10.4844 0.375 10.4062 0.375C10.3281 0.375 10.2656 0.398438 10.2188 0.445312Z' fill='lightgrey'/%3E%3C/svg%3E");
+    }
   }
 
   &:hover {
@@ -71,5 +74,10 @@ input.input-control {
 
   &:invalid {
     box-shadow: 0 0 0 2px $color-red-300;
+  }
+
+  &:disabled {
+    border: 1px solid $color-gray-200;
+    background-color: $color-gray-100;
   }
 }
