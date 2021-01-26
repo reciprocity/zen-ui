@@ -1,6 +1,6 @@
 @import '../../zen-styles/variables.scss';
 
-$padding-x: 3.2rem;
+$padding-x: 1.6rem;
 
 :host {
   position: fixed;
@@ -31,6 +31,20 @@ $padding-x: 3.2rem;
   background-color: $color-white;
   border-radius: 3px;
   box-shadow: 2px 6px 30px rgba(#000, 0.2);
+  min-width: 500px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  padding: 1rem $padding-x;
+}
+
+.x-button {
+  margin-left: auto;
+  font-size: $text-xl;
+  cursor: pointer;
+  color: $color-gray-300;
 }
 
 .content {

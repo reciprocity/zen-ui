@@ -20,9 +20,12 @@ export const StoryWithControls = args => {
   }
   return html/*html*/ `
     <zen-modal id="modal1" ...="${spreadArgs(args)}">
-      <p><b>Modal 1</b></p>
-      <p>This is my modal window 1</p>
+      <zen-text>This is a modal window editor example.</zen-text>
+      <zen-form-group>
+        <zen-label label="Username" required></zen-label>
       <zen-input></zen-input>
+        <zen-input-support-text text="This field should be unique"></zen-input-support-text>
+      </zen-form-group>
       <zen-button @click="${showModal2}">Show Modal 2</zen-button>
     </zen-modal>
     <zen-modal id="modal2" ...="${spreadArgs(args)}">
