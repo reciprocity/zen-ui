@@ -31,6 +31,10 @@
   font-size: $text-xl;
 }
 
+:host([size='2xl']) {
+  font-size: $text-2xl;
+}
+
 //--------------------------------------------
 
 :host([variant='heading'][size='xs']) {
