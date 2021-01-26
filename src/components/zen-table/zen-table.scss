@@ -3,9 +3,12 @@
 :host {
   border-collapse: collapse;
   display: table;
-  width: 100%;
 
   font-size: $text-md;
+}
+
+:host(.full-width) {
+  width: 100%;
 }
 
 .header {
