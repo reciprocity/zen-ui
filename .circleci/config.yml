@@ -10,7 +10,7 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-          - v1-yarn-{{ checksum "yarn.lock" }}
+            - v1-yarn-{{ checksum "yarn.lock" }}
       - run:
           name: Install Dependencies
           command: yarn install --frozen-lockfile
@@ -64,10 +64,10 @@ jobs:
       - save_cache:
           key: v1-cypress-yarn-{{ checksum "yarn.lock" }}
           paths:
-            - ~/.cache  # cache both yarn and cypress
+            - ~/.cache # cache both yarn and cypress
       - run:
           name: 'Start Storybook app'
-          command: yarn run stencil:build && yarn run styles:build && yarn run storybook:start
+          command: yarn run stencil:build && yarn run storybook:start
           background: true
       - run: npx wait-on http://localhost:6006
       - run:
