@@ -8,7 +8,8 @@
                                   supported by Chrome, Edge, Opera and Firefox */
 }
 
-@mixin round-icon($size, $padding: null) {
+@mixin round-icon-wrapper($size, $padding: null, $bgColor: null) {
+  background: $bgColor;
   margin: $padding;
   height: $size;
   width: $size;

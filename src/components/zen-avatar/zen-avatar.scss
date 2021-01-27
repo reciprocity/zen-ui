@@ -8,19 +8,19 @@
 
 :host([size='sm']),
 :host([size='sm']) > img {
-  @include round-icon(24px);
+  @include round-icon-wrapper(24px);
   font-size: 0.5rem;
 }
 
 :host([size='md']),
 :host([size='md']) > img {
-  @include round-icon(32px);
+  @include round-icon-wrapper(32px);
   font-size: 0.8rem;
 }
 
 :host([size='lg']),
 :host([size='lg']) > img {
-  @include round-icon(40px);
+  @include round-icon-wrapper(40px);
   font-size: 1rem;
 }
 
