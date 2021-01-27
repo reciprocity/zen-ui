@@ -1,0 +1,160 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
+import { html } from 'lit-html';
+import { eventHandles, action } from '../../../.storybook/helpers/custom-action';
+import { getArgTypes, getDefaultArgs, getComponentData, spreadArgs } from '../../../.storybook/helpers/argTypes';
+
+import data from '../../../stencilDocs.json';
+const compData = data.components.find(n => n.tag === 'zen-table');
+const argTypes = getArgTypes(compData);
+
+<Meta title="In progress/Tables/Table" component="zen-table" argTypes={argTypes} />
+
+export const Story1 = () => {
+  return html/*html*/ `
+    <zen-table id="table1">
+      <zen-table-row slot="header">
+        <zen-table-header-cell>Title 1</zen-table-header-cell>
+        <zen-table-header-cell>Title 2</zen-table-header-cell>
+        <zen-table-header-cell>Title 3</zen-table-header-cell>
+        <zen-table-header-cell>Title 4</zen-table-header-cell>
+        <zen-table-header-cell>Title 5</zen-table-header-cell>
+        <zen-table-header-cell>Title 6</zen-table-header-cell>
+        <zen-table-header-cell>Title 7</zen-table-header-cell>
+        <zen-table-header-cell>Title 8</zen-table-header-cell>
+      </zen-table-row>
+      <zen-table-row>
+        <zen-table-cell>Row 1, Cell 1</zen-table-cell>
+        <zen-table-cell>Row 1, Cell 2</zen-table-cell>
+        <zen-table-cell>Row 1, Cell 3</zen-table-cell>
+        <zen-table-cell>Row 1, Cell 4</zen-table-cell>
+        <zen-table-cell>Row 1, Cell 5</zen-table-cell>
+        <zen-table-cell>Row 1, Cell 6</zen-table-cell>
+        <zen-table-cell>Row 1, Cell 7</zen-table-cell>
+        <zen-table-cell>Row 1, Cell 8</zen-table-cell>
+      </zen-table-row>
+      <zen-table-row>
+        <zen-table-cell>Row 2, Cell 1</zen-table-cell>
+        <zen-table-cell>Row 2, Cell 2</zen-table-cell>
+        <zen-table-cell>Row 2, Cell 3</zen-table-cell>
+        <zen-table-cell>Row 2, Cell 4</zen-table-cell>
+        <zen-table-cell>Row 2, Cell 5</zen-table-cell>
+        <zen-table-cell>Row 2, Cell 6</zen-table-cell>
+        <zen-table-cell>Row 2, Cell 7</zen-table-cell>
+        <zen-table-cell>Row 2, Cell 8</zen-table-cell>
+      </zen-table-row>
+      <zen-table-row>
+        <zen-table-cell>Row 3, Cell 1</zen-table-cell>
+        <zen-table-cell>Row 3, Cell 2</zen-table-cell>
+        <zen-table-cell>Row 3, Cell 3</zen-table-cell>
+        <zen-table-cell>Row 3, Cell 4</zen-table-cell>
+        <zen-table-cell>Row 3, Cell 5</zen-table-cell>
+        <zen-table-cell>Row 3, Cell 6</zen-table-cell>
+        <zen-table-cell>Row 3, Cell 7</zen-table-cell>
+        <zen-table-cell>Row 3, Cell 8</zen-table-cell>
+      </zen-table-row>
+      <zen-table-row>
+        <zen-table-cell>Row 4, Cell 1</zen-table-cell>
+        <zen-table-cell>Row 4, Cell 2</zen-table-cell>
+        <zen-table-cell>Row 4, Cell 3</zen-table-cell>
+        <zen-table-cell>Row 4, Cell 4</zen-table-cell>
+        <zen-table-cell>Row 4, Cell 5</zen-table-cell>
+        <zen-table-cell>Row 4, Cell 6</zen-table-cell>
+        <zen-table-cell>Row 4, Cell 7</zen-table-cell>
+        <zen-table-cell>Row 4, Cell 8</zen-table-cell>
+      </zen-table-row>
+    </zen-table>
+  `;
+};
+
+export const StoryWithControls = args => html/*html*/ `
+  <zen-table id="table2" ...="${spreadArgs(args)}">
+    <zen-table-row slot="header">
+      <zen-table-header-cell>Title 1</zen-table-header-cell>
+      <zen-table-header-cell>Title 2</zen-table-header-cell>
+      <zen-table-header-cell>Title 3</zen-table-header-cell>
+      <zen-table-header-cell>Title 4</zen-table-header-cell>
+    </zen-table-row>
+    <zen-table-row>
+      <zen-table-cell>Row 1, Cell 1</zen-table-cell>
+      <zen-table-cell>Row 1, Cell 2</zen-table-cell>
+      <zen-table-cell>Row 1, Cell 3</zen-table-cell>
+      <zen-table-cell>Row 1, Cell 4</zen-table-cell>
+    </zen-table-row>
+    <zen-table-row>
+      <zen-table-cell>Row 2, Cell 1</zen-table-cell>
+      <zen-table-cell>Row 2, Cell 2</zen-table-cell>
+      <zen-table-cell>Row 2, Cell 3</zen-table-cell>
+      <zen-table-cell>Row 2, Cell 4</zen-table-cell>
+    </zen-table-row>
+    <zen-table-row>
+      <zen-table-cell>Row 3, Cell 1</zen-table-cell>
+      <zen-table-cell>Row 3, Cell 2</zen-table-cell>
+      <zen-table-cell>Row 3, Cell 3</zen-table-cell>
+      <zen-table-cell>Row 3, Cell 4</zen-table-cell>
+    </zen-table-row>
+    <zen-table-row>
+      <zen-table-cell>Row 4, Cell 1</zen-table-cell>
+      <zen-table-cell>Row 4, Cell 2</zen-table-cell>
+      <zen-table-cell>Row 4, Cell 3</zen-table-cell>
+      <zen-table-cell>Row 4, Cell 4</zen-table-cell>
+    </zen-table-row>
+    <zen-table-row>
+      <zen-table-cell>Row 5, Cell 1</zen-table-cell>
+      <zen-table-cell>Row 5, Cell 2</zen-table-cell>
+      <zen-table-cell>Row 5, Cell 3</zen-table-cell>
+      <zen-table-cell>Row 5, Cell 4</zen-table-cell>
+    </zen-table-row>
+    <zen-table-row>
+      <zen-table-cell>Row 6, Cell 1</zen-table-cell>
+      <zen-table-cell>Row 6, Cell 2</zen-table-cell>
+      <zen-table-cell>Row 6, Cell 3</zen-table-cell>
+      <zen-table-cell>Row 6, Cell 4</zen-table-cell>
+    </zen-table-row>
+    <zen-table-row>
+      <zen-table-cell>Row 7, Cell 1</zen-table-cell>
+      <zen-table-cell>Row 7, Cell 2</zen-table-cell>
+      <zen-table-cell>Row 7, Cell 3</zen-table-cell>
+      <zen-table-cell>Row 7, Cell 4</zen-table-cell>
+    </zen-table-row>
+    <zen-table-row>
+      <zen-table-cell>Row 8, Cell 1</zen-table-cell>
+      <zen-table-cell>Row 8, Cell 2</zen-table-cell>
+      <zen-table-cell>Row 8, Cell 3</zen-table-cell>
+      <zen-table-cell>Row 8, Cell 4</zen-table-cell>
+    </zen-table-row>
+  </zen-table>
+  ${action('#table1', eventHandles(['click']))}
+`;
+
+# ZenTable
+
+Arrange data into rows and columns.
+
+## Component previews
+
+<br />
+
+### 1. Table with fragment components
+
+A composition of `ZenTable` component and fragment `ZenTableRow`, `ZenTableHeaderCell`, and `ZenTableCell` components.
+
+<Canvas>
+  <Story name="story1">{Story1.bind({})}</Story>
+</Canvas>
+
+## Properties
+
+<Canvas>
+  <Story
+    name="default"
+    args={{
+      ...getDefaultArgs(argTypes),
+    }}
+  >
+    {StoryWithControls.bind({})}
+  </Story>
+</Canvas>
+
+<ArgsTable story="default" />
+
+<docs-table docs={JSON.stringify(getComponentData('zen-table'))}></docs-table>

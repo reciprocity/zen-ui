@@ -248,6 +248,14 @@ export namespace Components {
          */
         "steps": Array<StepItem>;
     }
+    interface ZenTable {
+    }
+    interface ZenTableCell {
+    }
+    interface ZenTableHeaderCell {
+    }
+    interface ZenTableRow {
+    }
     interface ZenTabs {
         /**
           * Index of currently selected tab.
@@ -472,6 +480,30 @@ declare global {
         prototype: HTMLZenStepsElement;
         new (): HTMLZenStepsElement;
     };
+    interface HTMLZenTableElement extends Components.ZenTable, HTMLStencilElement {
+    }
+    var HTMLZenTableElement: {
+        prototype: HTMLZenTableElement;
+        new (): HTMLZenTableElement;
+    };
+    interface HTMLZenTableCellElement extends Components.ZenTableCell, HTMLStencilElement {
+    }
+    var HTMLZenTableCellElement: {
+        prototype: HTMLZenTableCellElement;
+        new (): HTMLZenTableCellElement;
+    };
+    interface HTMLZenTableHeaderCellElement extends Components.ZenTableHeaderCell, HTMLStencilElement {
+    }
+    var HTMLZenTableHeaderCellElement: {
+        prototype: HTMLZenTableHeaderCellElement;
+        new (): HTMLZenTableHeaderCellElement;
+    };
+    interface HTMLZenTableRowElement extends Components.ZenTableRow, HTMLStencilElement {
+    }
+    var HTMLZenTableRowElement: {
+        prototype: HTMLZenTableRowElement;
+        new (): HTMLZenTableRowElement;
+    };
     interface HTMLZenTabsElement extends Components.ZenTabs, HTMLStencilElement {
     }
     var HTMLZenTabsElement: {
@@ -514,6 +546,10 @@ declare global {
         "zen-option": HTMLZenOptionElement;
         "zen-spinner": HTMLZenSpinnerElement;
         "zen-steps": HTMLZenStepsElement;
+        "zen-table": HTMLZenTableElement;
+        "zen-table-cell": HTMLZenTableCellElement;
+        "zen-table-header-cell": HTMLZenTableHeaderCellElement;
+        "zen-table-row": HTMLZenTableRowElement;
         "zen-tabs": HTMLZenTabsElement;
         "zen-text": HTMLZenTextElement;
         "zen-textarea": HTMLZenTextareaElement;
@@ -751,6 +787,14 @@ declare namespace LocalJSX {
          */
         "steps"?: Array<StepItem>;
     }
+    interface ZenTable {
+    }
+    interface ZenTableCell {
+    }
+    interface ZenTableHeaderCell {
+    }
+    interface ZenTableRow {
+    }
     interface ZenTabs {
         /**
           * Index of currently selected tab.
@@ -889,6 +933,10 @@ declare namespace LocalJSX {
         "zen-option": ZenOption;
         "zen-spinner": ZenSpinner;
         "zen-steps": ZenSteps;
+        "zen-table": ZenTable;
+        "zen-table-cell": ZenTableCell;
+        "zen-table-header-cell": ZenTableHeaderCell;
+        "zen-table-row": ZenTableRow;
         "zen-tabs": ZenTabs;
         "zen-text": ZenText;
         "zen-textarea": ZenTextarea;
@@ -916,6 +964,10 @@ declare module "@stencil/core" {
             "zen-option": LocalJSX.ZenOption & JSXBase.HTMLAttributes<HTMLZenOptionElement>;
             "zen-spinner": LocalJSX.ZenSpinner & JSXBase.HTMLAttributes<HTMLZenSpinnerElement>;
             "zen-steps": LocalJSX.ZenSteps & JSXBase.HTMLAttributes<HTMLZenStepsElement>;
+            "zen-table": LocalJSX.ZenTable & JSXBase.HTMLAttributes<HTMLZenTableElement>;
+            "zen-table-cell": LocalJSX.ZenTableCell & JSXBase.HTMLAttributes<HTMLZenTableCellElement>;
+            "zen-table-header-cell": LocalJSX.ZenTableHeaderCell & JSXBase.HTMLAttributes<HTMLZenTableHeaderCellElement>;
+            "zen-table-row": LocalJSX.ZenTableRow & JSXBase.HTMLAttributes<HTMLZenTableRowElement>;
             "zen-tabs": LocalJSX.ZenTabs & JSXBase.HTMLAttributes<HTMLZenTabsElement>;
             "zen-text": LocalJSX.ZenText & JSXBase.HTMLAttributes<HTMLZenTextElement>;
             "zen-textarea": LocalJSX.ZenTextarea & JSXBase.HTMLAttributes<HTMLZenTextareaElement>;

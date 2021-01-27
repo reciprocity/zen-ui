@@ -1,0 +1,8 @@
+@import '../../zen-styles/component-helpers.scss';
+
+:host {
+  display: table-cell;
+  padding: 1.25rem 0;
+
+  border-bottom: 1px solid $color-gray-200;
+}

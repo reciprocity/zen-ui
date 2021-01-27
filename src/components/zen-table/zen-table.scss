@@ -1,0 +1,17 @@
+@import '../../zen-styles/component-helpers.scss';
+
+:host {
+  border-collapse: collapse;
+  display: table;
+  width: 100%;
+
+  font-size: $text-md;
+}
+
+.header {
+  display: table-header-group;
+}
+
+.body {
+  display: table-row-group;
+}
