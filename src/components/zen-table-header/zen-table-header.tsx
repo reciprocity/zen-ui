@@ -26,7 +26,7 @@ export class ZenTableHeader {
     }
   }
 
-  render(): HTMLElement {
+  render(): HTMLTableRowElement {
     return (
       <Host>
         <slot></slot>

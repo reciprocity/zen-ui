@@ -9,7 +9,7 @@ export class ZenTableHeaderCell {
   /** Remains fixed at the top of the table during vertical scrolling */
   @Prop() readonly sticky = false;
 
-  render(): HTMLElement {
+  render(): HTMLTableHeaderCellElement {
     return (
       <Host class={{ sticky: this.sticky }}>
         <slot></slot>
