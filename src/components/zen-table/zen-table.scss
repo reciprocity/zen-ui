@@ -1,17 +1,15 @@
 @import '../../zen-styles/component-helpers.scss';
 
 :host {
-  border-collapse: collapse;
+  /**
+   * Necessary to have 'separate' instead of 'collapse' for sticky
+   * header to contain the bottom border without having to resort
+   * to using box-shadow workaround.
+   */
+  border-collapse: separate;
+  border-spacing: 0;
   display: table;
   width: 100%;
 
   font-size: $text-md;
-}
-
-.header {
-  display: table-header-group;
-}
-
-.body {
-  display: table-row-group;
 }

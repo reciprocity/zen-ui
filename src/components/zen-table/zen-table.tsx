@@ -9,12 +9,7 @@ export class ZenTable {
   render(): HTMLElement {
     return (
       <Host>
-        <div class="header">
-          <slot name="header"></slot>
-        </div>
-        <div class="body">
-          <slot></slot>
-        </div>
+        <slot></slot>
       </Host>
     );
   }
