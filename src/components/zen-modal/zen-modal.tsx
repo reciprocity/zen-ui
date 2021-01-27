@@ -1,15 +1,17 @@
 import { Component, Prop, Host, h, Watch, Element, Event, EventEmitter } from '@stencil/core';
 import { modalsService } from './zen-modals-service';
 
+/**
+ * @slot header - Put custom content in header
+ * @slot buttons - Standard buttons in the footer
+ * @slot footer - In case you need a totally customized footer design
+ */
+
 @Component({
   tag: 'zen-modal',
   styleUrl: 'zen-modal.scss',
   shadow: true,
 })
-
-/**
- * @slot header - Put custom content in header
- */
 export class ZenModal {
   @Element() hostElement: HTMLZenModalElement;
 
@@ -55,13 +57,15 @@ export class ZenModal {
               <div class="content">
                 <slot>Zen-ui Modal</slot>
               </div>
-              <div class="footer">
-                <slot name="buttons">
-                  <div class="buttons-row">
-                    <zen-button onClick={() => this.onCancelClicked()}>Cancel</zen-button>
-                  </div>
-                </slot>
-              </div>
+              <slot name="footer">
+                <div class="footer">
+                  <slot name="buttons">
+                    <div class="buttons-row">
+                      <zen-button onClick={() => this.onCancelClicked()}>Cancel</zen-button>
+                    </div>
+                  </slot>
+                </div>
+              </slot>
             </div>
           </div>
         ) : (
