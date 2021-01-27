@@ -14,10 +14,10 @@ export class ZenModal {
   @Element() hostElement: HTMLZenModalElement;
 
   /** Set to true to show and false to hide modal */
-  @Prop({ mutable: true }) show = false;
+  @Prop({ reflect: true }) readonly show = false;
 
   /** Set to true to show and false to hide modal */
-  @Prop() readonly label: string = 'Testing label';
+  @Prop() readonly label: string = 'Zen-UI modal window';
 
   /** Top-right X button clicked */
   @Event() cancelClicked: EventEmitter<undefined>;
@@ -29,10 +29,6 @@ export class ZenModal {
     } else {
       modalsService.modalClosed(this.hostElement);
     }
-  }
-
-  closeIt(): void {
-    this.show = false;
   }
 
   onCancelClicked(): void {
@@ -59,8 +55,12 @@ export class ZenModal {
               <div class="content">
                 <slot>Zen-ui Modal</slot>
               </div>
-              <div class="buttons">
-                <zen-button onClick={() => this.closeIt()}>Close</zen-button>
+              <div class="footer">
+                <slot name="buttons">
+                  <div class="buttons-row">
+                    <zen-button onClick={() => this.onCancelClicked()}>Cancel</zen-button>
+                  </div>
+                </slot>
               </div>
             </div>
           </div>
