@@ -40,37 +40,33 @@ export class ZenModal {
   render(): HTMLElement {
     return (
       <Host>
-        {this.show ? (
-          <div>
-            <div class="dimmer"></div>
-            <div class="window">
-              <div class="header">
-                <slot name="header">
-                  <zen-text class="title" size="2xl">
-                    {this.label}
-                  </zen-text>
-                  <div class="x-button" onClick={() => this.onCancelClicked()}>
-                    x
-                  </div>
-                </slot>
-              </div>
-              <div class="content">
-                <slot>Zen-ui Modal</slot>
-              </div>
-              <slot name="footer">
-                <div class="footer">
-                  <slot name="buttons">
-                    <div class="buttons-row">
-                      <zen-button onClick={() => this.onCancelClicked()}>Cancel</zen-button>
-                    </div>
-                  </slot>
+        <zen-animate show={this.show}>
+          <div class="dimmer"></div>
+          <div class="window">
+            <div class="header">
+              <slot name="header">
+                <zen-text class="title" size="2xl">
+                  {this.label}
+                </zen-text>
+                <div class="x-button" onClick={() => this.onCancelClicked()}>
+                  x
                 </div>
               </slot>
             </div>
+            <div class="content">
+              <slot>Zen-ui Modal</slot>
+            </div>
+            <slot name="footer">
+              <div class="footer">
+                <slot name="buttons">
+                  <div class="buttons-row">
+                    <zen-button onClick={() => this.onCancelClicked()}>Cancel</zen-button>
+                  </div>
+                </slot>
+              </div>
+            </slot>
           </div>
-        ) : (
-          ''
-        )}
+        </zen-animate>
       </Host>
     );
   }

@@ -22,7 +22,7 @@ export function getSlotElement(host: HTMLElement, slotName?: string): HTMLElemen
 
 export function getDefaultSlotContent(host: HTMLElement): Element[] {
   const slot = host.shadowRoot.querySelector('slot:not([name])') as HTMLSlotElement;
-  if (!slot.assignedElements) return [];
+  if (!slot || !slot.assignedElements) return [];
   return slot.assignedElements();
 }
 

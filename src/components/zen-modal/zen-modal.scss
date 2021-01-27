@@ -1,6 +1,7 @@
 @import '../../zen-styles/variables.scss';
 
 $padding-x: 1.6rem;
+$show-time: 0.3s;
 
 :host {
   position: fixed;
@@ -25,6 +26,9 @@ $padding-x: 1.6rem;
   background-color: rgba(#000, 0.3);
 }
 
+.dimmer {
+  transition: color $show-time linear;
+}
 .window {
   pointer-events: all;
   position: relative;
@@ -32,6 +36,13 @@ $padding-x: 1.6rem;
   border-radius: 3px;
   box-shadow: 2px 6px 30px rgba(#000, 0.2);
   min-width: 500px;
+  transition: transform $show-time, opacity $show-time;
+
+  &[animate='out-end'],
+  &[animate='in-start'] {
+    opacity: 0;
+    transform: translate(0, -50px);
+  }
 }
 
 .header {
