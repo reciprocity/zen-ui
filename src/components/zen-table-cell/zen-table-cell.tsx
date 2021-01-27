@@ -1,4 +1,4 @@
-import { Component, Host, h } from '@stencil/core';
+import { h, Component, Host } from '@stencil/core';
 
 @Component({
   tag: 'zen-table-cell',
