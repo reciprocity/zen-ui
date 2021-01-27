@@ -19,6 +19,9 @@ export class ZenAvatar {
   /** Name and Surname  */
   @Prop() readonly userName: string = '';
 
+  /** Email  */
+  @Prop() readonly email: string = '';
+
   /** Avatar size   */
   @Prop({ reflect: true }) readonly size: AvatarSize = 'md';
 
@@ -29,11 +32,19 @@ export class ZenAvatar {
   getUserInitials(): string {
     let initials = '';
     if (this.userName) {
-      initials = this.userName
-        .match(/(\b([A-Z]|[a-z]))/g)
-        .join('')
-        .substring(0, 2)
-        .toUpperCase();
+      if (/\s/.test(this.userName)) {
+        // Get initials from name and surname
+        initials = this.userName
+          .match(/(\b([A-Z]|[a-z]))/g)
+          .join('')
+          .substring(0, 2)
+          .toUpperCase();
+      } else {
+        // Get initials oly from name
+        initials = this.userName.substring(0, 2).toUpperCase();
+      }
+    } else {
+      initials = this.email.substring(0, 2).toUpperCase();
     }
     return initials;
   }

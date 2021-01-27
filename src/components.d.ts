@@ -72,6 +72,10 @@ export namespace Components {
          */
         "color": string;
         /**
+          * Email
+         */
+        "email": string;
+        /**
           * Image URL
          */
         "imageUrl": string;
@@ -643,6 +647,10 @@ declare namespace LocalJSX {
           * Font color
          */
         "color"?: string;
+        /**
+          * Email
+         */
+        "email"?: string;
         /**
           * Image URL
          */
