@@ -14,9 +14,19 @@ export const StoryWithControls = args => html/*html*/ ` <zen-avatar ...="${sprea
 
 export const StoryAvatarVariants = () =>
   html/*html*/ `
-    <div style="display: flex; justify-content: space-evenly;">
-      <zen-avatar user-name="Mike Anderson"></zen-avatar>
-      <zen-avatar image-url="${avatar}"></zen-avatar>
+    <div style="font-size:12px; display: flex; justify-content: space-evenly;">
+      <div style="display: flex; flex-direction: column; align-items: center;">
+        <zen-avatar user-name="Mike Anderson"></zen-avatar>
+        <span>Initials from user name</span>
+      </div>
+      <div style="display: flex; flex-direction: column; align-items: center;">
+        <zen-avatar email="mike.anderson@reciprocity.com"></zen-avatar>
+        <span>Initials from email</span>
+      </div>
+      <div style="display: flex; flex-direction: column; align-items: center;">
+        <zen-avatar image-url="${avatar}"></zen-avatar>
+        <span>Content from image url</span>
+      </div>
     </div>
   `;
 
