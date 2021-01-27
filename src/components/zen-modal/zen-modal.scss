@@ -45,6 +45,8 @@ $padding-x: 1.6rem;
   font-size: $text-xl;
   cursor: pointer;
   color: $color-gray-300;
+  @include noselect;
+  padding: 0.2rem 1rem;
 }
 
 .content {

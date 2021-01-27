@@ -1,4 +1,4 @@
-import { Component, Prop, Host, h, Watch, Element } from '@stencil/core';
+import { Component, Prop, Host, h, Watch, Element, Event, EventEmitter } from '@stencil/core';
 import { modalsService } from './zen-modals-service';
 
 @Component({
@@ -19,6 +19,9 @@ export class ZenModal {
   /** Set to true to show and false to hide modal */
   @Prop() readonly label: string = 'Testing label';
 
+  /** Top-right X button clicked */
+  @Event() cancelClicked: EventEmitter<undefined>;
+
   @Watch('show')
   async showChanged(show: boolean): Promise<void> {
     if (show) {
@@ -30,6 +33,10 @@ export class ZenModal {
 
   closeIt(): void {
     this.show = false;
+  }
+
+  onCancelClicked(): void {
+    this.cancelClicked.emit();
   }
 
   render(): HTMLElement {
@@ -44,7 +51,9 @@ export class ZenModal {
                   <zen-text class="title" size="2xl">
                     {this.label}
                   </zen-text>
-                  <div class="x-button">x</div>
+                  <div class="x-button" onClick={() => this.onCancelClicked()}>
+                    x
+                  </div>
                 </slot>
               </div>
               <div class="content">
