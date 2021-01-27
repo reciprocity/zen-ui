@@ -16,19 +16,23 @@ $show-time: 0.3s;
   pointer-events: none;
 }
 
-:host([topmost]) .dimmer {
+.dimmer {
   pointer-events: all;
   position: absolute;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(#000, 0.3);
+  background-image: radial-gradient(rgb(0 0 0 / 40%), rgb(0 0 0 / 60%));
+  opacity: 1;
+  transition: opacity $show-time linear;
+
+  &[animate='out-end'],
+  &[animate='in-start'] {
+    opacity: 0;
+  }
 }
 
-.dimmer {
-  transition: color $show-time linear;
-}
 .window {
   pointer-events: all;
   position: relative;
@@ -36,12 +40,16 @@ $show-time: 0.3s;
   border-radius: 3px;
   box-shadow: 2px 6px 30px rgba(#000, 0.2);
   min-width: 500px;
-  transition: transform $show-time, opacity $show-time;
+  max-width: 1000px; // todo: remove this when we get size definitions from designers
+  transition: transform $show-time, opacity $show-time ease-out;
 
-  &[animate='out-end'],
   &[animate='in-start'] {
     opacity: 0;
-    transform: translate(0, -50px);
+    transform: translate(0, 30px);
+  }
+  &[animate='out-end'] {
+    opacity: 0;
+    transform: translate(0, -30px);
   }
 }
 

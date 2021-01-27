@@ -61,3 +61,11 @@ export function oppositePosition(position: Position): Position {
 export function getComposedPath(event: MouseEvent): EventTarget[] {
   return event.composedPath();
 }
+
+export function toggleAttribute(element: Element, attribute: string, value: string): void {
+  if (value) {
+    element.setAttribute(attribute, value);
+  } else {
+    element.removeAttribute(attribute);
+  }
+}
