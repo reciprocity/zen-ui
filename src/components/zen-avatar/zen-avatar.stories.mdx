@@ -1,0 +1,78 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
+import { html } from 'lit-html';
+import { getArgTypes, getDefaultArgs, getComponentData, spreadArgs } from '../../../.storybook/helpers/argTypes';
+import avatar from '../../img/avatar.jpg';
+import data from '../../../stencilDocs.json';
+const compData = data.components.find(n => n.tag === 'zen-avatar');
+const argTypes = getArgTypes(compData);
+argTypes['background'].control = 'color';
+argTypes['color'].control = 'color';
+
+<Meta title="Icons/Avatar" component="zen-avatar" argTypes={argTypes} />
+
+export const StoryWithControls = args => html/*html*/ ` <zen-avatar ...="${spreadArgs(args)}"></zen-avatar>`;
+
+export const StoryAvatarVariants = () =>
+  html/*html*/ `
+    <div style="font-size:12px; display: flex; justify-content: space-evenly;">
+      <div style="display: flex; flex-direction: column; align-items: center;">
+        <zen-avatar user-name="Mike Anderson"></zen-avatar>
+        <span>Initials from user name</span>
+      </div>
+      <div style="display: flex; flex-direction: column; align-items: center;">
+        <zen-avatar email="mike.anderson@reciprocity.com"></zen-avatar>
+        <span>Initials from email</span>
+      </div>
+      <div style="display: flex; flex-direction: column; align-items: center;">
+        <zen-avatar image-url="${avatar}"></zen-avatar>
+        <span>Content from image url</span>
+      </div>
+    </div>
+  `;
+
+export const StoryAvatarSizes = () =>
+  html/*html*/ `
+    <div style="display: flex; justify-content: space-evenly;">
+      <zen-avatar user-name="Niki Franklin" background="#FFEED2" color="#A26900" size="sm"></zen-avatar>
+      <zen-avatar user-name="Mike Anderson" background="#FADBFF" color="#643A6B" size="md"></zen-avatar>
+      <zen-avatar user-name="Frank Money" color="" size="lg"></zen-avatar>
+    </div>
+  `;
+
+# Profile icon
+
+Avatar component
+
+## Component previews
+
+<br />
+
+### 1. Avatar variants
+
+<Canvas>
+  <Story name="StoryAvatarVariants">{StoryAvatarVariants.bind({})}</Story>
+</Canvas>
+
+### 2. Avatar sizes
+
+<Canvas>
+  <Story name="StoryAvatarSizes">{StoryAvatarSizes.bind({})}</Story>
+</Canvas>
+
+## Properties
+
+<Canvas>
+  <Story
+    name="default"
+    args={{
+      ...getDefaultArgs(argTypes),
+      userName: 'Mike Anderson',
+    }}
+  >
+    {StoryWithControls.bind({})}
+  </Story>
+</Canvas>
+
+<ArgsTable story="default" />
+
+<docs-table docs={JSON.stringify(getComponentData('zen-avatar'))}></docs-table>

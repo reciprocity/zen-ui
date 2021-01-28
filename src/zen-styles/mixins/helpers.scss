@@ -7,3 +7,12 @@
   user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome, Edge, Opera and Firefox */
 }
+
+@mixin round-icon-wrapper($size, $padding: null, $bgColor: null) {
+  background: $bgColor;
+  margin: $padding;
+  height: $size;
+  width: $size;
+  border-radius: 50%;
+  position: relative;
+}
