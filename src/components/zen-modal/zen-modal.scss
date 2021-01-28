@@ -72,8 +72,17 @@ $show-time: 0.3s;
   padding: 1.6rem $padding-x;
 }
 
+.buttons-row,
 ::slotted([slot="buttons"]) {
   display: flex;
+}
+
+zen-button {
+  min-width: 4.8rem;
+}
+
+.ml-4 {
+  margin-left: 0.4rem !important;
 }
 
 .footer {

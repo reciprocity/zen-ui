@@ -21,8 +21,11 @@ export class ZenModal {
   /** Set to true to show and false to hide the modal */
   @Prop() readonly label: string = 'Zen-UI modal window';
 
-  /** Top-right X button or default Ok button clicked */
+  /** Top-right X button or default cancel button clicked */
   @Event() cancelClicked: EventEmitter<undefined>;
+
+  /** Default Ok button clicked */
+  @Event() okClicked: EventEmitter<undefined>;
 
   @Watch('show')
   async showChanged(show: boolean): Promise<void> {
@@ -35,6 +38,10 @@ export class ZenModal {
 
   onCancelClicked(): void {
     this.cancelClicked.emit();
+  }
+
+  onOkClicked(): void {
+    this.okClicked.emit();
   }
 
   render(): HTMLElement {
@@ -60,7 +67,12 @@ export class ZenModal {
               <div class="footer">
                 <slot name="buttons">
                   <div class="buttons-row">
-                    <zen-button onClick={() => this.onCancelClicked()}>Ok</zen-button>
+                    <zen-button variant="secondary" onClick={() => this.onCancelClicked()}>
+                      Cancel
+                    </zen-button>
+                    <zen-button class="ml-4" onClick={() => this.onOkClicked()}>
+                      Ok
+                    </zen-button>
                   </div>
                 </slot>
               </div>

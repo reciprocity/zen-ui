@@ -1,5 +1,6 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
 import { html } from 'lit-html';
+import { action } from '../../../.storybook/helpers/custom-action';
 import { getArgTypes, getDefaultArgs, getComponentData, spreadArgs } from '../../../.storybook/helpers/argTypes';
 
 import data from '../../../stencilDocs.json';
@@ -14,9 +15,15 @@ export const StoryWithControls = args => {
   }
   return html/*html*/ `
     <zen-button @click="${showModal}">Show Editor</zen-button>
-    <zen-modal id="modal1" @cancelClicked="${e => {e.target.show = false}}" ...="${spreadArgs(args)}">
+    <zen-modal
+      id="modal1"
+      @cancelClicked="${e => {e.target.show = false}}"
+      @okClicked="${e => {e.target.show = false}}"
+      ...="${spreadArgs(args)}"
+    >
       <zen-text>Nec morbi ullamcorper tellus metus porta habitasse praesent dolor, ipsum netus rhoncus sit velit auctor vestibulum, hac eleifend elit euismod congue risus facilisi. Tortor ornare curabitur consectetur egestas vestibulum hendrerit fringilla leo dictum risus erat, in vehicula mauris euismod magnis ullamcorper nullam iaculis aliquam pharetra.</zen-text>
     </zen-modal>
+    ${action('#modal1', ['cancelClicked', 'okClicked'])}
 `};
 
 export const StoryMultipleModals = () => {
@@ -37,7 +44,7 @@ export const StoryMultipleModals = () => {
       <zen-button @click="${showEditor}">Show Editor</zen-button>
       <zen-button @click="${showConfirm}" class="ml-4">Show Confirmation</zen-button>
     </div>
-    <zen-modal id="editor" label="Risk score editor" @cancelClicked="${closeEditor}">
+    <zen-modal id="editor" label="Risk score editor">
       <zen-text>This is a modal window editor example.</zen-text>
       <zen-form-group>
         <zen-label label="Username" required></zen-label>
@@ -50,7 +57,7 @@ export const StoryMultipleModals = () => {
         <zen-button @click="${closeEditor}" class="ml-4">Accept</zen-button>
       </div>
     </zen-modal>
-    <zen-modal id="confirm" label="Confirmation" @cancelClicked="${e => {e.target.show = false}}">
+    <zen-modal id="confirm" label="Confirmation" @cancelClicked="${e => {e.target.show = false}}" @okClicked="${e => {e.target.show = false}}">
       <p>Are you sure?!</p>
       <zen-button @click="${showEditor}" variant="secondary">Show Editor</zen-button>
     </zen-modal>
