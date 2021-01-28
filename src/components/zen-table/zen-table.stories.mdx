@@ -12,7 +12,7 @@ const argTypes = getArgTypes(compData);
 export const Story1 = () => {
   return html/*html*/ `
     <zen-table id="table1">
-      <zen-table-row slot="header">
+      <zen-table-header>
         <zen-table-header-cell>Title 1</zen-table-header-cell>
         <zen-table-header-cell>Title 2</zen-table-header-cell>
         <zen-table-header-cell>Title 3</zen-table-header-cell>
@@ -21,7 +21,7 @@ export const Story1 = () => {
         <zen-table-header-cell>Title 6</zen-table-header-cell>
         <zen-table-header-cell>Title 7</zen-table-header-cell>
         <zen-table-header-cell>Title 8</zen-table-header-cell>
-      </zen-table-row>
+      </zen-table-header>
       <zen-table-row>
         <zen-table-cell>Row 1, Cell 1</zen-table-cell>
         <zen-table-cell>Row 1, Cell 2</zen-table-cell>
@@ -66,14 +66,133 @@ export const Story1 = () => {
   `;
 };
 
+export const Story2 = () => {
+  return html/*html*/ `
+    <!-- Necessary for demonstrating sticky header -->
+    <div style="height: 300px; overflow: scroll;">
+      <zen-table id="table2">
+        <zen-table-header sticky>
+          <zen-table-header-cell>Title 1</zen-table-header-cell>
+          <zen-table-header-cell>Title 2</zen-table-header-cell>
+          <zen-table-header-cell>Title 3</zen-table-header-cell>
+          <zen-table-header-cell>Title 4</zen-table-header-cell>
+        </zen-table-header>
+        <zen-table-row>
+          <zen-table-cell>Row 1, Cell 1</zen-table-cell>
+          <zen-table-cell>Row 1, Cell 2</zen-table-cell>
+          <zen-table-cell>Row 1, Cell 3</zen-table-cell>
+          <zen-table-cell>Row 1, Cell 4</zen-table-cell>
+        </zen-table-row>
+        <zen-table-row>
+          <zen-table-cell>Row 2, Cell 1</zen-table-cell>
+          <zen-table-cell>Row 2, Cell 2</zen-table-cell>
+          <zen-table-cell>Row 2, Cell 3</zen-table-cell>
+          <zen-table-cell>Row 2, Cell 4</zen-table-cell>
+        </zen-table-row>
+        <zen-table-row>
+          <zen-table-cell>Row 3, Cell 1</zen-table-cell>
+          <zen-table-cell>Row 3, Cell 2</zen-table-cell>
+          <zen-table-cell>Row 3, Cell 3</zen-table-cell>
+          <zen-table-cell>Row 3, Cell 4</zen-table-cell>
+        </zen-table-row>
+        <zen-table-row>
+          <zen-table-cell>Row 4, Cell 1</zen-table-cell>
+          <zen-table-cell>Row 4, Cell 2</zen-table-cell>
+          <zen-table-cell>Row 4, Cell 3</zen-table-cell>
+          <zen-table-cell>Row 4, Cell 4</zen-table-cell>
+        </zen-table-row>
+        <zen-table-row>
+          <zen-table-cell>Row 5, Cell 1</zen-table-cell>
+          <zen-table-cell>Row 5, Cell 2</zen-table-cell>
+          <zen-table-cell>Row 5, Cell 3</zen-table-cell>
+          <zen-table-cell>Row 5, Cell 4</zen-table-cell>
+        </zen-table-row>
+        <zen-table-row>
+          <zen-table-cell>Row 6, Cell 1</zen-table-cell>
+          <zen-table-cell>Row 6, Cell 2</zen-table-cell>
+          <zen-table-cell>Row 6, Cell 3</zen-table-cell>
+          <zen-table-cell>Row 6, Cell 4</zen-table-cell>
+        </zen-table-row>
+        <zen-table-row>
+          <zen-table-cell>Row 7, Cell 1</zen-table-cell>
+          <zen-table-cell>Row 7, Cell 2</zen-table-cell>
+          <zen-table-cell>Row 7, Cell 3</zen-table-cell>
+          <zen-table-cell>Row 7, Cell 4</zen-table-cell>
+        </zen-table-row>
+        <zen-table-row>
+          <zen-table-cell>Row 8, Cell 1</zen-table-cell>
+          <zen-table-cell>Row 8, Cell 2</zen-table-cell>
+          <zen-table-cell>Row 8, Cell 3</zen-table-cell>
+          <zen-table-cell>Row 8, Cell 4</zen-table-cell>
+        </zen-table-row>
+      </zen-table>
+    </div>
+  `;
+};
+
+export const Story3 = () => {
+  return html/*html*/ `
+    <zen-table id="table3">
+      <zen-table-row>
+        <zen-table-cell>Row 1, Cell 1</zen-table-cell>
+        <zen-table-cell>Row 1, Cell 2</zen-table-cell>
+        <zen-table-cell>Row 1, Cell 3</zen-table-cell>
+        <zen-table-cell>Row 1, Cell 4</zen-table-cell>
+      </zen-table-row>
+      <zen-table-row>
+        <zen-table-cell>Row 2, Cell 1</zen-table-cell>
+        <zen-table-cell>Row 2, Cell 2</zen-table-cell>
+        <zen-table-cell>Row 2, Cell 3</zen-table-cell>
+        <zen-table-cell>Row 2, Cell 4</zen-table-cell>
+      </zen-table-row>
+      <zen-table-row>
+        <zen-table-cell>Row 3, Cell 1</zen-table-cell>
+        <zen-table-cell>Row 3, Cell 2</zen-table-cell>
+        <zen-table-cell>Row 3, Cell 3</zen-table-cell>
+        <zen-table-cell>Row 3, Cell 4</zen-table-cell>
+      </zen-table-row>
+      <zen-table-row>
+        <zen-table-cell>Row 4, Cell 1</zen-table-cell>
+        <zen-table-cell>Row 4, Cell 2</zen-table-cell>
+        <zen-table-cell>Row 4, Cell 3</zen-table-cell>
+        <zen-table-cell>Row 4, Cell 4</zen-table-cell>
+      </zen-table-row>
+      <zen-table-row>
+        <zen-table-cell>Row 5, Cell 1</zen-table-cell>
+        <zen-table-cell>Row 5, Cell 2</zen-table-cell>
+        <zen-table-cell>Row 5, Cell 3</zen-table-cell>
+        <zen-table-cell>Row 5, Cell 4</zen-table-cell>
+      </zen-table-row>
+      <zen-table-row>
+        <zen-table-cell>Row 6, Cell 1</zen-table-cell>
+        <zen-table-cell>Row 6, Cell 2</zen-table-cell>
+        <zen-table-cell>Row 6, Cell 3</zen-table-cell>
+        <zen-table-cell>Row 6, Cell 4</zen-table-cell>
+      </zen-table-row>
+      <zen-table-row>
+        <zen-table-cell>Row 7, Cell 1</zen-table-cell>
+        <zen-table-cell>Row 7, Cell 2</zen-table-cell>
+        <zen-table-cell>Row 7, Cell 3</zen-table-cell>
+        <zen-table-cell>Row 7, Cell 4</zen-table-cell>
+      </zen-table-row>
+      <zen-table-row>
+        <zen-table-cell>Row 8, Cell 1</zen-table-cell>
+        <zen-table-cell>Row 8, Cell 2</zen-table-cell>
+        <zen-table-cell>Row 8, Cell 3</zen-table-cell>
+        <zen-table-cell>Row 8, Cell 4</zen-table-cell>
+      </zen-table-row>
+    </zen-table>
+  `;
+};
+
 export const StoryWithControls = args => html/*html*/ `
   <zen-table id="table2" ...="${spreadArgs(args)}">
-    <zen-table-row slot="header">
+    <zen-table-header>
       <zen-table-header-cell>Title 1</zen-table-header-cell>
       <zen-table-header-cell>Title 2</zen-table-header-cell>
       <zen-table-header-cell>Title 3</zen-table-header-cell>
       <zen-table-header-cell>Title 4</zen-table-header-cell>
-    </zen-table-row>
+    </zen-table-header>
     <zen-table-row>
       <zen-table-cell>Row 1, Cell 1</zen-table-cell>
       <zen-table-cell>Row 1, Cell 2</zen-table-cell>
@@ -140,6 +259,22 @@ A composition of `ZenTable` component and fragment `ZenTableRow`, `ZenTableHeade
 
 <Canvas>
   <Story name="story1">{Story1.bind({})}</Story>
+</Canvas>
+
+### 2. Table with sticky header
+
+`ZenTable` component with sticky header.
+
+<Canvas>
+  <Story name="story2">{Story2.bind({})}</Story>
+</Canvas>
+
+### 3. Table without header
+
+`ZenTable` component without a header.
+
+<Canvas>
+  <Story name="story3">{Story3.bind({})}</Story>
 </Canvas>
 
 ## Properties

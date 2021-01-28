@@ -278,7 +278,17 @@ export namespace Components {
     }
     interface ZenTableCell {
     }
+    interface ZenTableHeader {
+        /**
+          * Remains fixed at the top of the table during vertical scrolling
+         */
+        "sticky": false;
+    }
     interface ZenTableHeaderCell {
+        /**
+          * Remains fixed at the top of the table during vertical scrolling
+         */
+        "sticky": false;
     }
     interface ZenTableRow {
     }
@@ -524,6 +534,12 @@ declare global {
         prototype: HTMLZenTableCellElement;
         new (): HTMLZenTableCellElement;
     };
+    interface HTMLZenTableHeaderElement extends Components.ZenTableHeader, HTMLStencilElement {
+    }
+    var HTMLZenTableHeaderElement: {
+        prototype: HTMLZenTableHeaderElement;
+        new (): HTMLZenTableHeaderElement;
+    };
     interface HTMLZenTableHeaderCellElement extends Components.ZenTableHeaderCell, HTMLStencilElement {
     }
     var HTMLZenTableHeaderCellElement: {
@@ -581,6 +597,7 @@ declare global {
         "zen-steps": HTMLZenStepsElement;
         "zen-table": HTMLZenTableElement;
         "zen-table-cell": HTMLZenTableCellElement;
+        "zen-table-header": HTMLZenTableHeaderElement;
         "zen-table-header-cell": HTMLZenTableHeaderCellElement;
         "zen-table-row": HTMLZenTableRowElement;
         "zen-tabs": HTMLZenTabsElement;
@@ -850,7 +867,17 @@ declare namespace LocalJSX {
     }
     interface ZenTableCell {
     }
+    interface ZenTableHeader {
+        /**
+          * Remains fixed at the top of the table during vertical scrolling
+         */
+        "sticky"?: false;
+    }
     interface ZenTableHeaderCell {
+        /**
+          * Remains fixed at the top of the table during vertical scrolling
+         */
+        "sticky"?: false;
     }
     interface ZenTableRow {
     }
@@ -995,6 +1022,7 @@ declare namespace LocalJSX {
         "zen-steps": ZenSteps;
         "zen-table": ZenTable;
         "zen-table-cell": ZenTableCell;
+        "zen-table-header": ZenTableHeader;
         "zen-table-header-cell": ZenTableHeaderCell;
         "zen-table-row": ZenTableRow;
         "zen-tabs": ZenTabs;
@@ -1027,6 +1055,7 @@ declare module "@stencil/core" {
             "zen-steps": LocalJSX.ZenSteps & JSXBase.HTMLAttributes<HTMLZenStepsElement>;
             "zen-table": LocalJSX.ZenTable & JSXBase.HTMLAttributes<HTMLZenTableElement>;
             "zen-table-cell": LocalJSX.ZenTableCell & JSXBase.HTMLAttributes<HTMLZenTableCellElement>;
+            "zen-table-header": LocalJSX.ZenTableHeader & JSXBase.HTMLAttributes<HTMLZenTableHeaderElement>;
             "zen-table-header-cell": LocalJSX.ZenTableHeaderCell & JSXBase.HTMLAttributes<HTMLZenTableHeaderCellElement>;
             "zen-table-row": LocalJSX.ZenTableRow & JSXBase.HTMLAttributes<HTMLZenTableRowElement>;
             "zen-tabs": LocalJSX.ZenTabs & JSXBase.HTMLAttributes<HTMLZenTabsElement>;

@@ -1,7 +1,7 @@
 // import { newSpecPage } from '@stencil/core/testing';
-// import { ZenTableHeaderCell } from '../zen-table-header-cell';
+// import { ZenTableHeader } from '../zen-table-header';
 
-describe('zen-table-header-cell', () => {
+describe('zen-table-header', () => {
   it('renders', async () => {
     // TODO:
   });

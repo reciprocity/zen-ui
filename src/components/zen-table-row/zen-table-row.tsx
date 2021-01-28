@@ -1,4 +1,4 @@
-import { Component, Host, h } from '@stencil/core';
+import { h, Component, Host } from '@stencil/core';
 
 @Component({
   tag: 'zen-table-row',
@@ -6,7 +6,7 @@ import { Component, Host, h } from '@stencil/core';
   shadow: true,
 })
 export class ZenTableRow {
-  render(): HTMLElement {
+  render(): HTMLTableRowElement {
     return (
       <Host>
         <slot></slot>

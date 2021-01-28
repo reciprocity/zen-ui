@@ -6,15 +6,10 @@ import { h, Component, Host } from '@stencil/core';
   shadow: true,
 })
 export class ZenTable {
-  render(): HTMLElement {
+  render(): HTMLTableElement {
     return (
       <Host>
-        <div class="header">
-          <slot name="header"></slot>
-        </div>
-        <div class="body">
-          <slot></slot>
-        </div>
+        <slot></slot>
       </Host>
     );
   }

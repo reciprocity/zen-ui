@@ -4,7 +4,13 @@
   display: table-cell;
   padding: 0.5rem 0;
 
+  background: $color-white;
   border-bottom: 2px solid $color-gray-200;
   font-weight: bold;
   text-align: left;
+}
+
+:host(.sticky) {
+  position: sticky;
+  top: 0;
 }

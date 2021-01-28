@@ -1,4 +1,4 @@
-import { Component, Host, h } from '@stencil/core';
+import { h, Component, Host, Prop } from '@stencil/core';
 
 @Component({
   tag: 'zen-table-header-cell',
@@ -6,9 +6,12 @@ import { Component, Host, h } from '@stencil/core';
   shadow: true,
 })
 export class ZenTableHeaderCell {
-  render(): HTMLElement {
+  /** Remains fixed at the top of the table during vertical scrolling */
+  @Prop() readonly sticky = false;
+
+  render(): HTMLTableHeaderCellElement {
     return (
-      <Host>
+      <Host class={{ sticky: this.sticky }}>
         <slot></slot>
       </Host>
     );
