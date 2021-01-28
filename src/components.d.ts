@@ -90,9 +90,9 @@ export namespace Components {
     }
     interface ZenAvatarGroup {
         /**
-          * Users data set
+          * Max avatars shown
          */
-        "data": Record<string, any>;
+        "max": number;
     }
     interface ZenButton {
         /**
@@ -696,9 +696,9 @@ declare namespace LocalJSX {
     }
     interface ZenAvatarGroup {
         /**
-          * Users data set
+          * Max avatars shown
          */
-        "data"?: Record<string, any>;
+        "max"?: number;
     }
     interface ZenButton {
         /**
