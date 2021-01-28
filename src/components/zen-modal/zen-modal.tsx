@@ -21,6 +21,9 @@ export class ZenModal {
   /** Set to true to show and false to hide the modal */
   @Prop() readonly label: string = 'Zen-UI modal window';
 
+  /** Should modal have default cancel buttons? */
+  @Prop() readonly hideCancel: boolean = false;
+
   /** Top-right X button or default cancel button clicked */
   @Event() cancelClicked: EventEmitter<undefined>;
 
@@ -55,9 +58,13 @@ export class ZenModal {
                 <zen-text class="title" size="2xl">
                   {this.label}
                 </zen-text>
-                <div class="x-button" onClick={() => this.onCancelClicked()}>
-                  x
-                </div>
+                {!this.hideCancel ? (
+                  <div class="x-button" onClick={() => this.onCancelClicked()}>
+                    x
+                  </div>
+                ) : (
+                  ''
+                )}
               </slot>
             </div>
             <div class="content">
@@ -67,9 +74,13 @@ export class ZenModal {
               <div class="footer">
                 <slot name="buttons">
                   <div class="buttons-row">
-                    <zen-button variant="secondary" onClick={() => this.onCancelClicked()}>
-                      Cancel
-                    </zen-button>
+                    {!this.hideCancel ? (
+                      <zen-button variant="secondary" onClick={() => this.onCancelClicked()}>
+                        Cancel
+                      </zen-button>
+                    ) : (
+                      ''
+                    )}
                     <zen-button class="ml-4" onClick={() => this.onOkClicked()}>
                       Ok
                     </zen-button>
