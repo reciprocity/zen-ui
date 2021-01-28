@@ -9,7 +9,7 @@ export type NotificationVariant = 'success' | 'info' | 'warning' | 'error';
 
 export type Duration = 'none' | 'short' | 'medium' | 'long';
 
-export type AvatarSize = 'sm' | 'md' | 'lg';
+export type AvatarIconSize = 'sm' | 'md' | 'lg';
 
 export type TextSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
