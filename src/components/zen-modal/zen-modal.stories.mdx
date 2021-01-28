@@ -19,7 +19,7 @@ export const StoryWithControls = args => {
       id="modal1"
       @cancelClicked="${e => {e.target.show = false}}"
       @okClicked="${e => {e.target.show = false}}"
-      ...="${spreadArgs(args)}"
+      ...="${spreadArgs(args, argTypes)}"
     >
       <zen-text>Nec morbi ullamcorper tellus metus porta habitasse praesent dolor, ipsum netus rhoncus sit velit auctor vestibulum, hac eleifend elit euismod congue risus facilisi. Tortor ornare curabitur consectetur egestas vestibulum hendrerit fringilla leo dictum risus erat, in vehicula mauris euismod magnis ullamcorper nullam iaculis aliquam pharetra.</zen-text>
     </zen-modal>
