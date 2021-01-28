@@ -64,6 +64,18 @@ export namespace Components {
     }
     interface ZenAvatar {
         /**
+          * Users
+         */
+        "user": Record<string, any>;
+    }
+    interface ZenAvatarGroup {
+        /**
+          * Max avatars shown
+         */
+        "max": number;
+    }
+    interface ZenAvatarIcon {
+        /**
           * Background color
          */
         "background": string;
@@ -88,11 +100,11 @@ export namespace Components {
          */
         "userName": string;
     }
-    interface ZenAvatarGroup {
+    interface ZenAvatarTooltip {
         /**
-          * Max avatars shown
+          * Users
          */
-        "max": number;
+        "user": Record<string, any>;
     }
     interface ZenButton {
         /**
@@ -468,6 +480,18 @@ declare global {
         prototype: HTMLZenAvatarGroupElement;
         new (): HTMLZenAvatarGroupElement;
     };
+    interface HTMLZenAvatarIconElement extends Components.ZenAvatarIcon, HTMLStencilElement {
+    }
+    var HTMLZenAvatarIconElement: {
+        prototype: HTMLZenAvatarIconElement;
+        new (): HTMLZenAvatarIconElement;
+    };
+    interface HTMLZenAvatarTooltipElement extends Components.ZenAvatarTooltip, HTMLStencilElement {
+    }
+    var HTMLZenAvatarTooltipElement: {
+        prototype: HTMLZenAvatarTooltipElement;
+        new (): HTMLZenAvatarTooltipElement;
+    };
     interface HTMLZenButtonElement extends Components.ZenButton, HTMLStencilElement {
     }
     var HTMLZenButtonElement: {
@@ -597,6 +621,8 @@ declare global {
         "zen-animate": HTMLZenAnimateElement;
         "zen-avatar": HTMLZenAvatarElement;
         "zen-avatar-group": HTMLZenAvatarGroupElement;
+        "zen-avatar-icon": HTMLZenAvatarIconElement;
+        "zen-avatar-tooltip": HTMLZenAvatarTooltipElement;
         "zen-button": HTMLZenButtonElement;
         "zen-checkbox": HTMLZenCheckboxElement;
         "zen-dropdown": HTMLZenDropdownElement;
@@ -670,6 +696,18 @@ declare namespace LocalJSX {
     }
     interface ZenAvatar {
         /**
+          * Users
+         */
+        "user"?: Record<string, any>;
+    }
+    interface ZenAvatarGroup {
+        /**
+          * Max avatars shown
+         */
+        "max"?: number;
+    }
+    interface ZenAvatarIcon {
+        /**
           * Background color
          */
         "background"?: string;
@@ -694,11 +732,11 @@ declare namespace LocalJSX {
          */
         "userName"?: string;
     }
-    interface ZenAvatarGroup {
+    interface ZenAvatarTooltip {
         /**
-          * Max avatars shown
+          * Users
          */
-        "max"?: number;
+        "user"?: Record<string, any>;
     }
     interface ZenButton {
         /**
@@ -1029,6 +1067,8 @@ declare namespace LocalJSX {
         "zen-animate": ZenAnimate;
         "zen-avatar": ZenAvatar;
         "zen-avatar-group": ZenAvatarGroup;
+        "zen-avatar-icon": ZenAvatarIcon;
+        "zen-avatar-tooltip": ZenAvatarTooltip;
         "zen-button": ZenButton;
         "zen-checkbox": ZenCheckbox;
         "zen-dropdown": ZenDropdown;
@@ -1063,6 +1103,8 @@ declare module "@stencil/core" {
             "zen-animate": LocalJSX.ZenAnimate & JSXBase.HTMLAttributes<HTMLZenAnimateElement>;
             "zen-avatar": LocalJSX.ZenAvatar & JSXBase.HTMLAttributes<HTMLZenAvatarElement>;
             "zen-avatar-group": LocalJSX.ZenAvatarGroup & JSXBase.HTMLAttributes<HTMLZenAvatarGroupElement>;
+            "zen-avatar-icon": LocalJSX.ZenAvatarIcon & JSXBase.HTMLAttributes<HTMLZenAvatarIconElement>;
+            "zen-avatar-tooltip": LocalJSX.ZenAvatarTooltip & JSXBase.HTMLAttributes<HTMLZenAvatarTooltipElement>;
             "zen-button": LocalJSX.ZenButton & JSXBase.HTMLAttributes<HTMLZenButtonElement>;
             "zen-checkbox": LocalJSX.ZenCheckbox & JSXBase.HTMLAttributes<HTMLZenCheckboxElement>;
             "zen-dropdown": LocalJSX.ZenDropdown & JSXBase.HTMLAttributes<HTMLZenDropdownElement>;

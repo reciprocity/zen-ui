@@ -1,0 +1,50 @@
+@import '../../zen-styles/component-helpers.scss';
+
+:host {
+  display: block;
+  position: relative;
+  border: 1px solid $color-white;
+  cursor: default;
+}
+
+:host(.animation) {
+  transition: transform 0.3s;
+}
+
+:host(.animation:hover) {
+  transform: translateY(-5px);
+}
+
+:host([size='sm']),
+:host([size='sm']) > img {
+  @include noselect();
+  @include round-icon-wrapper(24px);
+  font-size: 0.5rem;
+}
+
+:host([size='md']),
+:host([size='md']) > img {
+  @include noselect();
+  @include round-icon-wrapper(32px);
+  font-size: 0.8rem;
+}
+
+:host([size='lg']),
+:host([size='lg']) > img {
+  @include noselect();
+  @include round-icon-wrapper(40px);
+  font-size: 1rem;
+}
+
+.hidden {
+  display: none;
+}
+
+.initials {
+  color: inherit;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}

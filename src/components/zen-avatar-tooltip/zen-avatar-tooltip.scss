@@ -1,0 +1,42 @@
+:host {
+  display: block;
+}
+
+.row {
+  display: flex;
+}
+.column {
+  flex-direction: column;
+  text-align: left;
+  margin-right: 0.7rem;
+}
+.tooltip-title {
+  font-size: 0.875rem;
+  margin-bottom: 0.2rem;
+  font-weight: bold;
+}
+.tooltip-code {
+  font-size: 0.75rem;
+  margin-bottom: 0.2rem;
+}
+.tooltip-role {
+  color: #868e96;
+  font-size: 0.625rem;
+  font-weight: bold;
+  line-height: 1rem;
+  text-transform: uppercase;
+  margin: 0;
+}
+.profile {
+  min-height: 2rem;
+  min-width: 2rem;
+  max-height: 2rem;
+  max-width: 2rem;
+  border-radius: 50%;
+  position: relative;
+  cursor: pointer;
+  background: #ffdaff;
+  text-align: center;
+  line-height: 2rem;
+  color: #b875c4;
+}
