@@ -22,6 +22,12 @@ p.css-15n5lxj {
   background: #fff;
 }
 
+.css-1rg7lyq,
+.css-i3ss66 {
+  // Canvas to preview Stories
+  height: auto !important;
+}
+
 h1.sbdocs-h1 {
   font-size: 2rem;
 }
@@ -57,7 +63,7 @@ h1.sbdocs-h1 {
 
   h2 {
     color: $color-blue-700;
-    border-top: 1px solid rgba(0,0,0,.1);
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
   }
 
   h3 code {
@@ -76,9 +82,14 @@ h1.sbdocs-h1 {
     margin-top: 1rem !important;
   }
 
-  #depends-on { display: none; }
+  #depends-on {
+    display: none;
+  }
 
-  #graph, #graph + pre { display: none; }
+  #graph,
+  #graph + pre {
+    display: none;
+  }
 }
 
 .docblock-argstable-body {
@@ -89,13 +100,13 @@ h1.sbdocs-h1 {
   }
 
   tr {
-    background: rgba(0,0,0,0.05) !important;
+    background: rgba(0, 0, 0, 0.05) !important;
     border: none !important;
   }
 
   tr:nth-child(2n - 1) {
-      background: rgba(0,0,0,0.02) !important;
-    }
+    background: rgba(0, 0, 0, 0.02) !important;
+  }
 }
 
 // Canvas

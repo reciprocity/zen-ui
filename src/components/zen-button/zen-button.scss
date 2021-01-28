@@ -4,6 +4,7 @@
 :host {
   display: flex;
   width: fit-content;
+  width: -moz-fit-content;
   position: relative;
   color: $color-gray-700;
   justify-content: center;
