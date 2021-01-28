@@ -160,6 +160,12 @@ export namespace Components {
     }
     interface ZenFormGroup {
     }
+    interface ZenIcon {
+        /**
+          * Size of the icon.
+         */
+        "size": string;
+    }
     interface ZenInput {
         /**
           * Disables input.
@@ -468,6 +474,12 @@ declare global {
         prototype: HTMLZenFormGroupElement;
         new (): HTMLZenFormGroupElement;
     };
+    interface HTMLZenIconElement extends Components.ZenIcon, HTMLStencilElement {
+    }
+    var HTMLZenIconElement: {
+        prototype: HTMLZenIconElement;
+        new (): HTMLZenIconElement;
+    };
     interface HTMLZenInputElement extends Components.ZenInput, HTMLStencilElement {
     }
     var HTMLZenInputElement: {
@@ -564,6 +576,7 @@ declare global {
         "zen-checkbox": HTMLZenCheckboxElement;
         "zen-dropdown": HTMLZenDropdownElement;
         "zen-form-group": HTMLZenFormGroupElement;
+        "zen-icon": HTMLZenIconElement;
         "zen-input": HTMLZenInputElement;
         "zen-notification": HTMLZenNotificationElement;
         "zen-option": HTMLZenOptionElement;
@@ -722,6 +735,12 @@ declare namespace LocalJSX {
         "value"?: OptionValue;
     }
     interface ZenFormGroup {
+    }
+    interface ZenIcon {
+        /**
+          * Size of the icon.
+         */
+        "size"?: string;
     }
     interface ZenInput {
         /**
@@ -975,6 +994,7 @@ declare namespace LocalJSX {
         "zen-checkbox": ZenCheckbox;
         "zen-dropdown": ZenDropdown;
         "zen-form-group": ZenFormGroup;
+        "zen-icon": ZenIcon;
         "zen-input": ZenInput;
         "zen-notification": ZenNotification;
         "zen-option": ZenOption;
@@ -1006,6 +1026,7 @@ declare module "@stencil/core" {
             "zen-checkbox": LocalJSX.ZenCheckbox & JSXBase.HTMLAttributes<HTMLZenCheckboxElement>;
             "zen-dropdown": LocalJSX.ZenDropdown & JSXBase.HTMLAttributes<HTMLZenDropdownElement>;
             "zen-form-group": LocalJSX.ZenFormGroup & JSXBase.HTMLAttributes<HTMLZenFormGroupElement>;
+            "zen-icon": LocalJSX.ZenIcon & JSXBase.HTMLAttributes<HTMLZenIconElement>;
             "zen-input": LocalJSX.ZenInput & JSXBase.HTMLAttributes<HTMLZenInputElement>;
             "zen-notification": LocalJSX.ZenNotification & JSXBase.HTMLAttributes<HTMLZenNotificationElement>;
             "zen-option": LocalJSX.ZenOption & JSXBase.HTMLAttributes<HTMLZenOptionElement>;
