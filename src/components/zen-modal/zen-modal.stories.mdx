@@ -6,7 +6,7 @@ import data from '../../../stencilDocs.json';
 const compData = data.components.find(n => n.tag === 'zen-modal');
 const argTypes = getArgTypes(compData);
 
-<Meta title="POC/Modal" component="zen-modal" argTypes={argTypes} />
+<Meta title="Notifications/Modal window" component="zen-modal" argTypes={argTypes} />
 
 export const StoryWithControls = args => {
   function showModal() {
@@ -32,9 +32,6 @@ export const StoryMultipleModals = () => {
   function closeEditor() {
     document.querySelector('#editor').show = false;
   }
-  function closeConfirm() {
-    document.querySelector('#confirm').show = false;
-  }
   return html/*html*/ `
     <div style="display: flex; flex-direction: row;">
       <zen-button @click="${showEditor}">Show Editor</zen-button>
@@ -53,7 +50,7 @@ export const StoryMultipleModals = () => {
         <zen-button @click="${closeEditor}" class="ml-4">Accept</zen-button>
       </div>
     </zen-modal>
-    <zen-modal id="confirm" label="Confirmation" @cancelClicked="${closeConfirm}">
+    <zen-modal id="confirm" label="Confirmation" @cancelClicked="${e => {e.target.show = false}}">
       <p>Are you sure?!</p>
       <zen-button @click="${showEditor}" variant="secondary">Show Editor</zen-button>
     </zen-modal>
