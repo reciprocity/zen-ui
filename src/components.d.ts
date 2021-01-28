@@ -205,9 +205,17 @@ export namespace Components {
     }
     interface ZenModal {
         /**
+          * Should modal have default cancel buttons?
+         */
+        "hideCancel": boolean;
+        /**
+          * Set to true to show and false to hide the modal
+         */
+        "label": string;
+        /**
           * Set to true to show and false to hide modal
          */
-        "show": boolean;
+        "show": false;
     }
     interface ZenNotification {
         /**
@@ -811,9 +819,25 @@ declare namespace LocalJSX {
     }
     interface ZenModal {
         /**
+          * Should modal have default cancel buttons?
+         */
+        "hideCancel"?: boolean;
+        /**
+          * Set to true to show and false to hide the modal
+         */
+        "label"?: string;
+        /**
+          * Top-right X button or default cancel button clicked
+         */
+        "onCancelClicked"?: (event: CustomEvent<undefined>) => void;
+        /**
+          * Default Ok button clicked
+         */
+        "onOkClicked"?: (event: CustomEvent<undefined>) => void;
+        /**
           * Set to true to show and false to hide modal
          */
-        "show"?: boolean;
+        "show"?: false;
     }
     interface ZenNotification {
         /**
