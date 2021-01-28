@@ -30,7 +30,7 @@ export class ZenAvatarGroup {
     let counter = 0;
 
     this.children.forEach(avatar => {
-      avatar.style.marginRight = '-10px';
+      avatar.style.marginRight = '-8px';
       avatar.classList.add('animation');
 
       if (colors.length > counter) {

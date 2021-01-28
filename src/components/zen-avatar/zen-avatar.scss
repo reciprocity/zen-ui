@@ -7,6 +7,14 @@
   cursor: default;
 }
 
+:host(.animation) {
+  transition: transform 0.3s;
+}
+
+:host(.animation:hover) {
+  transform: translateY(-5px);
+}
+
 :host([size='sm']),
 :host([size='sm']) > img {
   @include noselect();
