@@ -5,22 +5,22 @@ import { getArgTypes, getDefaultArgs, getComponentData, spreadArgs } from '../..
 import { waitForElement } from '../../../.storybook/helpers/utils';
 
 import data from '../../../stencilDocs.json';
-const compData = data.components.find(n => n.tag === 'zen-steps');
+const compData = data.components.find(n => n.tag === 'zen-progress-tracker');
 const argTypes = getArgTypes(compData);
 
-<Meta title="Navigation/Steps" component="zen-steps" argTypes={argTypes} />
+<Meta title="Navigation/Progress tracker" component="zen-progress-tracker" argTypes={argTypes} />
 
 export const StoryWithControls = args => {
-  waitForElement('#steps1', element => {
+  waitForElement('#progress-tracker', element => {
     element.steps = args.steps;
   });
   return html/*html*/ `
-    <zen-steps id="steps1" ...="${spreadArgs(args)}" />
-    ${action('#steps1', ['blur', 'focus', 'click', 'change'])}
+    <zen-progress-tracker id="progress-tracker" ...="${spreadArgs(args)}" />
+    ${action('#progress-tracker', ['blur', 'focus', 'click', 'change'])}
   `;
 };
 
-# Steps
+# Progress tracker
 
 Visualizes user's progress
 
@@ -47,4 +47,4 @@ Visualizes user's progress
 
 <ArgsTable story="default" />
 
-<docs-table docs={JSON.stringify(getComponentData('zen-steps'))}></docs-table>
+<docs-table docs={JSON.stringify(getComponentData('zen-progress-tracker'))}></docs-table>

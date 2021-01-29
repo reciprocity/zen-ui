@@ -17,12 +17,12 @@ export interface StepEvent {
 }
 
 @Component({
-  tag: 'zen-steps',
-  styleUrl: 'zen-steps.scss',
+  tag: 'zen-progress-tracker',
+  styleUrl: 'zen-progress-tracker.scss',
   shadow: true,
 })
-export class ZenSteps {
-  @Element() hostElement: HTMLZenStepsElement;
+export class ZenProgressTracker {
+  @Element() hostElement: HTMLZenProgressTrackerElement;
 
   @State() internalActiveIndex: number;
   /** Ordered array of possible steps */
@@ -74,7 +74,7 @@ export class ZenSteps {
 
   render(): HTMLElement {
     return (
-      <Host class="zen-steps">
+      <Host class="zen-progress-tracker">
         <style>{styles}</style>
         <div class="progressbar">
           <div class="progress" style={{ transform: `scaleX(${this.progressWidth()})` }}></div>
