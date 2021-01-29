@@ -1,10 +1,10 @@
 /// <reference types="cypress" />
 import {createVisualTests} from '../../support/utils/visualTesting';
 
-describe('Steps visual tests', () => {
+describe('Progress tracker visual tests', () => {
 
-  const pageId = 'navigation-steps--default-story';
-  const stories = ["story--navigation-steps--default-story"];
+  const pageId = 'navigation-progress-tracker--default-story';
+  const stories = ["story--navigation-progress-tracker--default-story"];
 
   before(() => {
     cy.visitStorybookIframe(pageId);
