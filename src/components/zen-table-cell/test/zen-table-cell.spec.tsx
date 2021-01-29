@@ -8,14 +8,6 @@ describe('zen-table-cell', () => {
       html: `<zen-table-cell>Content</zen-table-cell>`,
     });
 
-    expect(page.root).toEqualHtml(`
-      <zen-table-cell>
-        <mock:shadow-root>
-          <slot>
-          </slot>
-        </mock:shadow-root>
-        Content
-      </zen-table-cell>
-    `);
+    expect(page.root.innerHTML).toEqual('Content');
   });
 });
