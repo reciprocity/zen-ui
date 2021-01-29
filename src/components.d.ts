@@ -10,7 +10,7 @@ import { Align, AvatarIconSize, Duration, NotificationVariant, Position, TextSiz
 import { ButtonVariants } from "./components/zen-button/types";
 import { OptionValue } from "./components/zen-menu-item/zen-option";
 import { OptionValue as OptionValue1 } from "./components/zen-menu-item/zen-option";
-import { StepItem } from "./components/zen-steps/zen-steps";
+import { StepItem } from "./components/zen-steps/zen-progress-tracker";
 import { StepsFilter } from "./components/zen-steps/types";
 import { TabItem, TabValue } from "./components/zen-tabs/zen-tabs";
 export namespace Components {
