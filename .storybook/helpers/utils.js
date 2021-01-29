@@ -15,7 +15,7 @@ export function camelKeysToKebab(object) {
   return obj;
 }
 
-export function waitForObject(selector, callback) {
+export function waitForElement(selector, callback) {
   function afterRender() {
     const element = document.querySelector(selector);
     if (!element) return;
