@@ -17,14 +17,24 @@ export const StoryWithControls = args => {
     <zen-button @click="${showModal}">Show Editor</zen-button>
     <zen-modal
       id="modal1"
-      @cancelClicked="${e => {e.target.show = false}}"
-      @okClicked="${e => {e.target.show = false}}"
+      @cancelClicked="${e => {
+        e.target.show = false;
+      }}"
+      @okClicked="${e => {
+        e.target.show = false;
+      }}"
       ...="${spreadArgs(args, argTypes)}"
     >
-      <zen-text>Nec morbi ullamcorper tellus metus porta habitasse praesent dolor, ipsum netus rhoncus sit velit auctor vestibulum, hac eleifend elit euismod congue risus facilisi. Tortor ornare curabitur consectetur egestas vestibulum hendrerit fringilla leo dictum risus erat, in vehicula mauris euismod magnis ullamcorper nullam iaculis aliquam pharetra.</zen-text>
+      <zen-text
+        >Nec morbi ullamcorper tellus metus porta habitasse praesent dolor, ipsum netus rhoncus sit velit auctor
+        vestibulum, hac eleifend elit euismod congue risus facilisi. Tortor ornare curabitur consectetur egestas
+        vestibulum hendrerit fringilla leo dictum risus erat, in vehicula mauris euismod magnis ullamcorper nullam
+        iaculis aliquam pharetra.</zen-text
+      >
     </zen-modal>
     ${action('#modal1', ['cancelClicked', 'okClicked'])}
-`};
+  `;
+};
 
 export const StoryMultipleModals = () => {
   function showEditor() {
@@ -57,7 +67,16 @@ export const StoryMultipleModals = () => {
         <zen-button @click="${closeEditor}" class="ml-4">Accept</zen-button>
       </div>
     </zen-modal>
-    <zen-modal id="confirm" label="Confirmation" @cancelClicked="${e => {e.target.show = false}}" @okClicked="${e => {e.target.show = false}}">
+    <zen-modal
+      id="confirm"
+      label="Confirmation"
+      @cancelClicked="${e => {
+        e.target.show = false;
+      }}"
+      @okClicked="${e => {
+        e.target.show = false;
+      }}"
+    >
       <p>Are you sure?!</p>
       <zen-button @click="${showEditor}" variant="secondary">Show Editor</zen-button>
     </zen-modal>
@@ -87,7 +106,7 @@ Modals can be stacked. Last one showed will be the top-most.
     name="default"
     args={{
       ...getDefaultArgs(argTypes),
-      label: 'My modal window'
+      label: 'My modal window',
     }}
   >
     {StoryWithControls.bind({})}

@@ -73,7 +73,7 @@ $show-time: 0.3s;
 }
 
 .buttons-row,
-::slotted([slot="buttons"]) {
+::slotted([slot='buttons']) {
   display: flex;
 }
 
