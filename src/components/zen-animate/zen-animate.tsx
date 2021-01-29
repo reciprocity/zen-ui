@@ -50,7 +50,7 @@ export class ZenAnimate {
 
       this.hideTimer = setTimeout(() => {
         this.doShow = false;
-      }, transition);
+      }, transition || 10);
     }
   }
 
