@@ -14,3 +14,15 @@ export function camelKeysToKebab(object) {
   }
   return obj;
 }
+
+export function waitForObject(selector, callback) {
+  function afterRender() {
+    const element = document.querySelector(selector);
+    if (!element) return;
+    observer.disconnect();
+    callback(element);
+  }
+
+  const observer = new MutationObserver(afterRender);
+  observer.observe(document.body, { subtree: true, childList: true });
+}
