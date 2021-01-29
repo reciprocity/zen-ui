@@ -17,12 +17,6 @@ export const StoryWithControls = args => html/*html*/ `
   ${action('#input1', ['blur', 'focus', 'input', 'change'])}
 `;
 
-export const StorySimple = () => html/*html*/ ` <zen-input style="max-width: 300px"></zen-input> `;
-
-export const StoryInvalid = () => html/*html*/ ` <zen-input style="max-width: 300px" bar invalid></zen-input> `;
-
-export const StoryDisabled = () => html/*html*/ ` <zen-input style="max-width: 300px" disabled></zen-input> `;
-
 export const StoryWithLeadingSlot = () =>
   html/*html*/ `
     <zen-input style="max-width: 300px">
@@ -70,25 +64,7 @@ Form input component with slots capabilities
 
 <br />
 
-### 1. Default input
-
-<Canvas>
-  <Story name="StorySimple">{StorySimple.bind({})}</Story>
-</Canvas>
-
-### 2. Invalid input
-
-<Canvas>
-  <Story name="StoryInvalid">{StoryInvalid.bind({})}</Story>
-</Canvas>
-
-### 3. Disabled input
-
-<Canvas>
-  <Story name="StoryDisabled">{StoryDisabled.bind({})}</Story>
-</Canvas>
-
-### 4. Input with leading slot fulfilled
+### 1. Input with leading slot fulfilled
 
 - Apply leadingSlot value for the slot attribute in your inner custom HTML
 
@@ -96,7 +72,7 @@ Form input component with slots capabilities
   <Story name="StoryWithLeadingSlot">{StoryWithLeadingSlot.bind({})}</Story>
 </Canvas>
 
-### 5. Search bar - Input with trailing slot fulfilled
+### 2. Search bar - Input with trailing slot fulfilled
 
 - Apply trailingSlot value for the slot attribute in your inner custom HTML
 
@@ -104,7 +80,7 @@ Form input component with slots capabilities
   <Story name="StoryWithTrailingSlot">{StoryWithTrailingSlot.bind({})}</Story>
 </Canvas>
 
-### 6. Input with leading and trailing slots fulfilled
+### 3. Input with leading and trailing slots fulfilled
 
 - Apply leadingSlot and trailingSlot values for the slot attributes in your inner custom HTML
 
