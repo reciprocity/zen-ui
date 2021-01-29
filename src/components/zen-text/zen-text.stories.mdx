@@ -70,6 +70,14 @@ export const StoryProps = () => html/*html*/ `
   <zen-text inline uppercase>inline</zen-text>
 `;
 
+export const StoryLabel = () => html/*html*/ `
+  <zen-form-group>
+    <zen-text variant="label" required>Username</zen-text>
+    <zen-input></zen-input>
+    <zen-input-support-text text="This field should be unique"></zen-input-support-text>
+  </zen-form-group>
+`;
+
 # Text
 
 Standard text element (equivalent to `<p>`, `<h1>`, `<h2>`, `<h3>` and similar)
@@ -92,7 +100,16 @@ Use combination of `size` and variant `heading` to render headings
   <Story name="headings">{StoryHeadings.bind({})}</Story>
 </Canvas>
 
-### 3. Styling properties
+### 3. Form Label and Support text
+
+Use variant `label` to render form label text.<br/>
+*Note that `label` supports only one size, so property `size` has no effect!
+
+<Canvas>
+  <Story name="label">{StoryLabel.bind({})}</Story>
+</Canvas>
+
+### 4. Styling properties
 
 You can always style content slot, but with these props you can do it even faster.
 
