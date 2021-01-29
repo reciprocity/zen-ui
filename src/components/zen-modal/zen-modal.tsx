@@ -81,7 +81,7 @@ export class ZenModal {
                     ) : (
                       ''
                     )}
-                    <zen-button class="ml-4" onClick={() => this.onOkClicked()}>
+                    <zen-button class="btn-ok ml-4" onClick={() => this.onOkClicked()}>
                       Ok
                     </zen-button>
                   </div>
