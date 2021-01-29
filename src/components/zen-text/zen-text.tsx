@@ -46,10 +46,14 @@ export class ZenText {
   /** Disabled */
   @Prop({ reflect: true }) readonly disabled = false;
 
+  /** Shows a red asterisk at the end */
+  @Prop({ reflect: true }) readonly required = false;
+
   render(): HTMLElement {
     return (
       <Host>
         <slot />
+        {this.required ? <span class="required">*</span> : null}
       </Host>
     );
   }
