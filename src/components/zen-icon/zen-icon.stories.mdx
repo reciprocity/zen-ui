@@ -11,40 +11,28 @@ import { faUser, faChevronDown } from '@fortawesome/pro-light-svg-icons';
 
 <Meta title="Icons/Icon" component="zen-icon" argTypes={argTypes} />
 
-export const StoryWithControls = args =>
-  html/*html*/ ` <zen-icon .innerHTML="${litHtmlIcon(faUser)}" ...="${spreadArgs(args)}"></zen-icon>`;
+export const StoryDefault = () => html/*html*/ ` <zen-icon></zen-icon> `;
 
-export const StorySimple = () =>
-  html/*html*/ `
-    <zen-icon .innerHTML="${litHtmlIcon(faUser)}"></zen-icon>
-    <zen-icon .innerHTML="${litHtmlIcon(faUser)}" size="lg"></zen-icon>
-  `;
+export const StoryLarge = () => html/*html*/ ` <zen-icon size="lg"></zen-icon> `;
 
 # Icon
 
-Icon component wrapper
+Icon component box
 
 ## Component previews
 
 <br />
 
-### 1. Icon
+### 1. Icon default
 
 <Canvas>
-  <Story name="StorySimple">{StorySimple.bind({})}</Story>
+  <Story name="StoryDefault">{StoryDefault.bind({})}</Story>
 </Canvas>
 
-## Properties
+### 2. Icon large
 
 <Canvas>
-  <Story
-    name="default"
-    args={{
-      ...getDefaultArgs(argTypes),
-    }}
-  >
-    {StoryWithControls.bind({})}
-  </Story>
+  <Story name="StoryLarge">{StoryLarge.bind({})}</Story>
 </Canvas>
 
 <ArgsTable story="default" />
