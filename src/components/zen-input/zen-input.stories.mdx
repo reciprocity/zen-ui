@@ -8,27 +8,27 @@ const compData = data.components.find(n => n.tag === 'zen-input');
 const argTypes = getArgTypes(compData);
 
 import { litHtmlIcon, styles } from '../helpers/fa-icons';
-import { faUser, faKey } from '@fortawesome/pro-light-svg-icons';
+import { faUser, faKey, faSearch } from '@fortawesome/pro-light-svg-icons';
 
 <Meta title="Forms/Input" component="zen-input" argTypes={argTypes} />
 
 export const StoryWithControls = args => html/*html*/ `
-  <zen-input id="input1" ...="${spreadArgs(args)}"></zen-input>
+  <zen-input id="input1" style="max-width: 300px" ...="${spreadArgs(args)}"></zen-input>
   ${action('#input1', ['blur', 'focus', 'input', 'change'])}
 `;
 
-export const StorySimple = () => html/*html*/ ` <zen-input></zen-input> `;
+export const StorySimple = () => html/*html*/ ` <zen-input style="max-width: 300px"></zen-input> `;
 
-export const StoryInvalid = () => html/*html*/ ` <zen-input invalid></zen-input> `;
+export const StoryInvalid = () => html/*html*/ ` <zen-input style="max-width: 300px" bar invalid></zen-input> `;
 
-export const StoryDisabled = () => html/*html*/ ` <zen-input disabled></zen-input> `;
+export const StoryDisabled = () => html/*html*/ ` <zen-input style="max-width: 300px" disabled></zen-input> `;
 
 export const StoryWithLeadingSlot = () =>
   html/*html*/ `
-    <zen-input>
+    <zen-input style="max-width: 300px">
       <i
         slot="leadingSlot"
-        style="width: 1rem; margin-top: 0.375rem; margin-left: 0.5rem;"
+        style="width: 1rem; height: 1rem; margin-left: 0.5rem;"
         .innerHTML="${litHtmlIcon(faUser)}"
       ></i>
     </zen-input>
@@ -36,26 +36,27 @@ export const StoryWithLeadingSlot = () =>
 
 export const StoryWithTrailingSlot = () =>
   html/*html*/ `
-    <zen-input>
+    <zen-input style="max-width: 300px; cursor:pointer" placeholder="Search...">
       <i
         slot="trailingSlot"
-        style="width: 1rem; margin-top: 0.375rem; margin-right: 0.5rem;"
-        .innerHTML="${litHtmlIcon(faKey)}"
+        style="width: 1rem; height: 1rem; margin-right: 0.5rem;"
+        @click="${() => alert('Search!')}"
+        .innerHTML="${litHtmlIcon(faSearch)}"
       ></i>
     </zen-input>
   `;
 
 export const StoryWithLeadingAndTrailingSlots = () =>
   html/*html*/ `
-    <zen-input>
+    <zen-input style="max-width: 300px">
       <i
         slot="leadingSlot"
-        style="width: 1rem; margin-top: 0.375rem; margin-left: 0.5rem;"
+        style="width: 1rem; height: 1rem; margin-left: 0.5rem;"
         .innerHTML="${litHtmlIcon(faUser)}"
       ></i>
       <i
         slot="trailingSlot"
-        style="width: 1rem; margin-top: 0.375rem; margin-right: 0.5rem;"
+        style="width: 1rem; height: 1rem; margin-right: 0.5rem;"
         .innerHTML="${litHtmlIcon(faKey)}"
       ></i>
     </zen-input>
@@ -95,7 +96,7 @@ Form input component with slots capabilities
   <Story name="StoryWithLeadingSlot">{StoryWithLeadingSlot.bind({})}</Story>
 </Canvas>
 
-### 5. Input with trailing slot fulfilled
+### 5. Search bar - Input with trailing slot fulfilled
 
 - Apply trailingSlot value for the slot attribute in your inner custom HTML
 
