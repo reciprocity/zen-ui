@@ -1,7 +1,6 @@
+import { IconDefinition } from '@fortawesome/pro-light-svg-icons';
 import { Component, Host, h, Prop, Element } from '@stencil/core';
-
 import { renderIcon } from '../helpers/fa-icons';
-import { IconDefinition } from '@fortawesome/fontawesome-common-types';
 
 @Component({
   tag: 'zen-icon',
@@ -15,9 +14,9 @@ export class ZenIcon {
   @Prop() readonly size: string = '';
 
   /** Icon to be rendered. */
-  @Prop() readonly icon: IconDefinition;
+  @Prop() readonly icon: IconDefinition = null;
 
   render(): HTMLElement {
-    return <Host class={{ lg: this.size === 'lg' }}>{renderIcon(this.icon)}</Host>;
+    return <Host class={{ lg: this.size === 'lg' }}>{this.icon ? renderIcon(this.icon) : null}</Host>;
   }
 }

@@ -9,6 +9,7 @@ import { StringifiedJson } from "./stories/components/color-swatch-group/color-s
 import { Align, AvatarIconSize, Duration, NotificationVariant, Position, TextSize, TextVariant, TooltipVariant } from "./components/helpers/types";
 import { ButtonVariants } from "./components/zen-button/types";
 import { OptionValue } from "./components/zen-menu-item/zen-option";
+import { IconDefinition } from "@fortawesome/pro-light-svg-icons";
 import { OptionValue as OptionValue1 } from "./components/zen-menu-item/zen-option";
 import { StepItem } from "./components/zen-progress-tracker/zen-progress-tracker";
 import { StepsFilter } from "./components/zen-progress-tracker/types";
@@ -161,6 +162,10 @@ export namespace Components {
     interface ZenFormGroup {
     }
     interface ZenIcon {
+        /**
+          * Icon to be rendered.
+         */
+        "icon": IconDefinition;
         /**
           * Size of the icon.
          */
@@ -737,6 +742,10 @@ declare namespace LocalJSX {
     interface ZenFormGroup {
     }
     interface ZenIcon {
+        /**
+          * Icon to be rendered.
+         */
+        "icon"?: IconDefinition;
         /**
           * Size of the icon.
          */

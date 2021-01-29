@@ -1,40 +1,42 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
 import { html } from 'lit-html';
 import { getArgTypes, getDefaultArgs, getComponentData, spreadArgs } from '../../../.storybook/helpers/argTypes';
+import { waitForElement } from '../../../.storybook/helpers/utils';
 
 import data from '../../../stencilDocs.json';
 const compData = data.components.find(n => n.tag === 'zen-icon');
 const argTypes = getArgTypes(compData);
 
 import { litHtmlIcon, styles } from '../helpers/fa-icons';
-import { faUser, faChevronDown } from '@fortawesome/pro-light-svg-icons';
+import { faUser } from '@fortawesome/pro-light-svg-icons';
 
 <Meta title="Icons/Icon" component="zen-icon" argTypes={argTypes} />
 
-export const StoryDefault = () => html/*html*/ ` <zen-icon></zen-icon> `;
-
-export const StoryLarge = () => html/*html*/ ` <zen-icon size="lg"></zen-icon> `;
+export const StorySimple = args => {
+  waitForElement('#zen-icon-element', element => {
+    element.icon = args.icon;
+  });
+  return html/*html*/ ` <zen-icon id="zen-icon-element" ...="${spreadArgs(args)}"></zen-icon> `;
+};
 
 # Icon
 
-Icon component box
+Icon component wrapper
 
 ## Component previews
 
 <br />
 
-### 1. Icon default
+### 1. Icon
 
 <Canvas>
-  <Story name="StoryDefault">{StoryDefault.bind({})}</Story>
+  <Story
+    name="StorySimple"
+    args={{
+      ...getDefaultArgs(argTypes),
+      icon: faUser,
+    }}
+  >
+    {StorySimple.bind({})}
+  </Story>
 </Canvas>
-
-### 2. Icon large
-
-<Canvas>
-  <Story name="StoryLarge">{StoryLarge.bind({})}</Story>
-</Canvas>
-
-<ArgsTable story="default" />
-
-<docs-table docs={JSON.stringify(getComponentData('zen-label'))}></docs-table>
