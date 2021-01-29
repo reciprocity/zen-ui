@@ -60,10 +60,18 @@
 
 //--------------------------------------------
 
+:host([variant='label']),
 :host([variant='label'][size]) {
   font-size: $text-md; // label has only 1 possible size!
   font-weight: 700;
   margin-bottom: 0.5rem;
+}
+
+:host([variant='support']),
+:host([variant='support'][size]) {
+  font-size: $text-sm; // support has only 1 possible size!
+  color: $color-gray-600;
+  margin-top: 0.5rem;
 }
 
 :host([bold]) {
