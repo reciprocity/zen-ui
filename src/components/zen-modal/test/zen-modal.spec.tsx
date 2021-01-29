@@ -29,15 +29,15 @@ describe('zen-modal', () => {
   });
 
   it('emmits Cancel event', async () => {
-    testClickEvent(page, '.x-button', 'cancelClicked');
+    await testClickEvent(page, '.x-button', 'cancelClicked');
   });
 
   it('emmits Cancel event with default Cancel button', async () => {
-    testClickEvent(page, '.buttons-row .secondary', 'cancelClicked');
+    await testClickEvent(page, '.buttons-row .btn-cancel', 'cancelClicked');
   });
 
   it('emmits OK event with default OK button', async () => {
-    testClickEvent(page, '.buttons-row .btn-ok', 'okClicked');
+    await testClickEvent(page, '.buttons-row .btn-ok', 'okClicked');
   });
 
   it('calls makeTopmost on show', async () => {

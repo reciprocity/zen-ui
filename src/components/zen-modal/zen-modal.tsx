@@ -75,7 +75,7 @@ export class ZenModal {
                 <slot name="buttons">
                   <div class="buttons-row">
                     {!this.hideCancel ? (
-                      <zen-button variant="secondary" onClick={() => this.onCancelClicked()}>
+                      <zen-button class="btn-cancel" variant="secondary" onClick={() => this.onCancelClicked()}>
                         Cancel
                       </zen-button>
                     ) : (
