@@ -15,7 +15,7 @@ export const StoryWithControls = args => {
     <zen-form-group ...=${spreadArgs(args)}>
       <zen-text variant="label" required>Username</zen-text>
       <zen-input></zen-input>
-      <zen-input-support-text text="This field should be unique"></zen-input-support-text>
+      <zen-text variant="support">This field should be unique</zen-text>
     </zen-form-group>
   `;
 };
@@ -25,7 +25,7 @@ export const StoryLabelAndSupport = () => {
     <zen-form-group>
       <zen-text variant="label">Username</zen-text>
       <zen-input></zen-input>
-      <zen-input-support-text text="This field should be unique"></zen-input-support-text>
+      <zen-text variant="support">This field should be unique</zen-text>
     </zen-form-group>
   `;
 };
@@ -35,7 +35,8 @@ export const StoryWithLabelAndTextarea = () => {
     <zen-form-group>
       <zen-text variant="label">Describe yourself</zen-text>
       <zen-textarea placeholder="Write here..."></zen-textarea>
-      <zen-input-support-text text="0 of 2500 characters"></zen-input-support-text>
+      <zen-text variant="support">0 of 2500 characters</zen-text>
+    </zen-form-group>
     </zen-form-group>
   `;
 };
