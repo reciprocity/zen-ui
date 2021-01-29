@@ -2,9 +2,9 @@ import { Component, Prop, Host, h, Watch, Element, Event, EventEmitter } from '@
 import { modalsService } from './zen-modals-service';
 
 /**
- * @slot header - Put custom content in header
+ * @slot header - Totally custom header
  * @slot buttons - Standard buttons in the footer
- * @slot footer - In case you need a totally customized footer design
+ * @slot footer - Totally custom footer
  */
 
 @Component({
@@ -15,19 +15,19 @@ import { modalsService } from './zen-modals-service';
 export class ZenModal {
   @Element() hostElement: HTMLZenModalElement;
 
-  /** Set to true to show and false to hide modal */
+  /** Set `true` to show and `false` to hide modal */
   @Prop({ reflect: true }) readonly show = false;
 
-  /** Set to true to show and false to hide the modal */
+  /** Modal title (irrelevant if slot `header` passed) */
   @Prop() readonly label: string = 'Zen-UI modal window';
 
-  /** Should modal have default cancel buttons? */
+  /** Hide default top-right X and default Cancel button */
   @Prop() readonly hideCancel: boolean = false;
 
-  /** Top-right X button or default cancel button clicked */
+  /** Top-right X button or default Cancel button clicked */
   @Event() cancelClicked: EventEmitter<undefined>;
 
-  /** Default Ok button clicked */
+  /** Default Ok button clicked (irrelevant if slot `buttons` passed) */
   @Event() okClicked: EventEmitter<undefined>;
 
   @Watch('show')
