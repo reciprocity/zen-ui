@@ -2,6 +2,7 @@ import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
 import { html } from 'lit-html';
 import { action } from '../../../.storybook/helpers/custom-action';
 import { getArgTypes, getDefaultArgs, getComponentData, spreadArgs } from '../../../.storybook/helpers/argTypes';
+import { waitForElement } from '../../../.storybook/helpers/utils';
 
 import data from '../../../stencilDocs.json';
 const compData = data.components.find(n => n.tag === 'zen-steps');
@@ -10,14 +11,11 @@ const argTypes = getArgTypes(compData);
 <Meta title="Navigation/Steps" component="zen-steps" argTypes={argTypes} />
 
 export const StoryWithControls = args => {
-  let stepsArr;
-  try {
-    stepsArr = JSON.parse(args.steps);
-  } catch (error) {
-    stepsArr = [];
-  }
+  waitForElement('#steps1', element => {
+    element.steps = args.steps;
+  });
   return html/*html*/ `
-    <zen-steps id="steps1" ...="${spreadArgs(args)}" .steps=${stepsArr} />
+    <zen-steps id="steps1" ...="${spreadArgs(args)}" />
     ${action('#steps1', ['blur', 'focus', 'click', 'change'])}
   `;
 };
@@ -35,12 +33,12 @@ Visualizes user's progress
       ...getDefaultArgs(argTypes),
       // override some default values:
       activeIndex: 1,
-      steps: JSON.stringify([
+      steps: [
         { label: 'Choose framework', completed: true },
         { label: 'Select objectives', completed: true },
         { label: 'Invite teammates', completed: true },
         { label: 'Launch' },
-      ]),
+      ],
     }}
   >
     {StoryWithControls.bind({})}
