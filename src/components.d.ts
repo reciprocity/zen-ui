@@ -6,7 +6,7 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { StringifiedJson } from "./stories/components/color-swatch-group/color-swatch-group";
-import { Align, AvatarIconSize, Duration, NotificationVariant, Position, TextSize, TooltipVariant } from "./components/helpers/types";
+import { Align, AvatarIconSize, Duration, NotificationVariant, Position, TextSize, TextVariant, TooltipVariant } from "./components/helpers/types";
 import { ButtonVariants } from "./components/zen-button/types";
 import { OptionValue } from "./components/zen-menu-item/zen-option";
 import { OptionValue as OptionValue1 } from "./components/zen-menu-item/zen-option";
@@ -186,22 +186,6 @@ export namespace Components {
          */
         "value"?: string;
     }
-    interface ZenInputSupportText {
-        /**
-          * Supporting text
-         */
-        "text": string;
-    }
-    interface ZenLabel {
-        /**
-          * Text of the label
-         */
-        "label": string;
-        /**
-          * Shows a red asterisk after label
-         */
-        "required": false;
-    }
     interface ZenNotification {
         /**
           * Can dismiss
@@ -316,10 +300,6 @@ export namespace Components {
          */
         "disabled": false;
         /**
-          * Apply heading styles
-         */
-        "heading": false;
-        /**
           * Layout as inlined
          */
         "inline": false;
@@ -335,6 +315,10 @@ export namespace Components {
           * Show text as gray. Useful for disabled things
          */
         "pale": false;
+        /**
+          * Shows a red asterisk at the end
+         */
+        "required": false;
         /**
           * Font size
          */
@@ -355,6 +339,10 @@ export namespace Components {
           * Convert casing to uppercase
          */
         "uppercase": false;
+        /**
+          * Apply heading styles
+         */
+        "variant": TextVariant;
     }
     interface ZenTextarea {
         /**
@@ -486,18 +474,6 @@ declare global {
         prototype: HTMLZenInputElement;
         new (): HTMLZenInputElement;
     };
-    interface HTMLZenInputSupportTextElement extends Components.ZenInputSupportText, HTMLStencilElement {
-    }
-    var HTMLZenInputSupportTextElement: {
-        prototype: HTMLZenInputSupportTextElement;
-        new (): HTMLZenInputSupportTextElement;
-    };
-    interface HTMLZenLabelElement extends Components.ZenLabel, HTMLStencilElement {
-    }
-    var HTMLZenLabelElement: {
-        prototype: HTMLZenLabelElement;
-        new (): HTMLZenLabelElement;
-    };
     interface HTMLZenNotificationElement extends Components.ZenNotification, HTMLStencilElement {
     }
     var HTMLZenNotificationElement: {
@@ -589,8 +565,6 @@ declare global {
         "zen-dropdown": HTMLZenDropdownElement;
         "zen-form-group": HTMLZenFormGroupElement;
         "zen-input": HTMLZenInputElement;
-        "zen-input-support-text": HTMLZenInputSupportTextElement;
-        "zen-label": HTMLZenLabelElement;
         "zen-notification": HTMLZenNotificationElement;
         "zen-option": HTMLZenOptionElement;
         "zen-spinner": HTMLZenSpinnerElement;
@@ -775,22 +749,6 @@ declare namespace LocalJSX {
          */
         "value"?: string;
     }
-    interface ZenInputSupportText {
-        /**
-          * Supporting text
-         */
-        "text"?: string;
-    }
-    interface ZenLabel {
-        /**
-          * Text of the label
-         */
-        "label"?: string;
-        /**
-          * Shows a red asterisk after label
-         */
-        "required"?: false;
-    }
     interface ZenNotification {
         /**
           * Can dismiss
@@ -905,10 +863,6 @@ declare namespace LocalJSX {
          */
         "disabled"?: false;
         /**
-          * Apply heading styles
-         */
-        "heading"?: false;
-        /**
           * Layout as inlined
          */
         "inline"?: false;
@@ -924,6 +878,10 @@ declare namespace LocalJSX {
           * Show text as gray. Useful for disabled things
          */
         "pale"?: false;
+        /**
+          * Shows a red asterisk at the end
+         */
+        "required"?: false;
         /**
           * Font size
          */
@@ -944,6 +902,10 @@ declare namespace LocalJSX {
           * Convert casing to uppercase
          */
         "uppercase"?: false;
+        /**
+          * Apply heading styles
+         */
+        "variant"?: TextVariant;
     }
     interface ZenTextarea {
         /**
@@ -1014,8 +976,6 @@ declare namespace LocalJSX {
         "zen-dropdown": ZenDropdown;
         "zen-form-group": ZenFormGroup;
         "zen-input": ZenInput;
-        "zen-input-support-text": ZenInputSupportText;
-        "zen-label": ZenLabel;
         "zen-notification": ZenNotification;
         "zen-option": ZenOption;
         "zen-spinner": ZenSpinner;
@@ -1047,8 +1007,6 @@ declare module "@stencil/core" {
             "zen-dropdown": LocalJSX.ZenDropdown & JSXBase.HTMLAttributes<HTMLZenDropdownElement>;
             "zen-form-group": LocalJSX.ZenFormGroup & JSXBase.HTMLAttributes<HTMLZenFormGroupElement>;
             "zen-input": LocalJSX.ZenInput & JSXBase.HTMLAttributes<HTMLZenInputElement>;
-            "zen-input-support-text": LocalJSX.ZenInputSupportText & JSXBase.HTMLAttributes<HTMLZenInputSupportTextElement>;
-            "zen-label": LocalJSX.ZenLabel & JSXBase.HTMLAttributes<HTMLZenLabelElement>;
             "zen-notification": LocalJSX.ZenNotification & JSXBase.HTMLAttributes<HTMLZenNotificationElement>;
             "zen-option": LocalJSX.ZenOption & JSXBase.HTMLAttributes<HTMLZenOptionElement>;
             "zen-spinner": LocalJSX.ZenSpinner & JSXBase.HTMLAttributes<HTMLZenSpinnerElement>;

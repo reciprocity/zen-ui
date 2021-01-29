@@ -6,6 +6,7 @@ describe('Text visual tests', () => {
   const pageId = 'typography-text--default';
   const stories = ["story--typography-text--sizes",
   "story--typography-text--headings",
+  "story--typography-text--label",
   "story--typography-text--props",
   "story--typography-text--default-story"];
 

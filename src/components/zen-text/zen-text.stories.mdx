@@ -26,22 +26,24 @@ export const StorySizes = () => html/*html*/ `
 `;
 
 export const StoryHeadings = () => html/*html*/ `
-  <zen-text size="xl" heading>xl I love Zen UI</zen-text>
+  <zen-text size="xl" variant="heading">xl I love Zen UI</zen-text>
   <text-with-details></text-with-details>
-  <zen-text size="lg" heading>lg I love Zen UI</zen-text>
+  <zen-text size="lg" variant="heading">lg I love Zen UI</zen-text>
   <text-with-details></text-with-details>
-  <zen-text size="md" heading>md I love Zen UI</zen-text>
+  <zen-text size="md" variant="heading">md I love Zen UI</zen-text>
   <text-with-details></text-with-details>
-  <zen-text size="sm" heading>sm I love Zen UI</zen-text>
+  <zen-text size="sm" variant="heading">sm I love Zen UI</zen-text>
   <text-with-details></text-with-details>
-  <zen-text size="xs" heading>xs I love Zen UI</zen-text>
+  <zen-text size="xs" variant="heading">xs I love Zen UI</zen-text>
   <text-with-details></text-with-details>
 `;
 
 export const StoryProps = () => html/*html*/ `
-  <zen-text uppercase>uppercase</zen-text>
+  <zen-text required>Required</zen-text>
   <div style="margin-top: 0.5rem"></div>
-  <zen-text uppercase>uppercase</zen-text>
+  <zen-text uppercase>UpperCase</zen-text>
+  <div style="margin-top: 0.5rem"></div>
+  <zen-text lowercase>LowerCase</zen-text>
   <div style="margin-top: 0.5rem"></div>
   <zen-text bold>bold</zen-text>
   <div style="margin-top: 0.5rem"></div>
@@ -68,6 +70,14 @@ export const StoryProps = () => html/*html*/ `
   <zen-text inline uppercase>inline</zen-text>
 `;
 
+export const StoryLabel = () => html/*html*/ `
+  <zen-form-group>
+    <zen-text variant="label" required>Username</zen-text>
+    <zen-input></zen-input>
+    <zen-text variant="support">This field should be unique</zen-text>
+  </zen-form-group>
+`;
+
 # Text
 
 Standard text element (equivalent to `<p>`, `<h1>`, `<h2>`, `<h3>` and similar)
@@ -84,13 +94,22 @@ Standard text element (equivalent to `<p>`, `<h1>`, `<h2>`, `<h3>` and similar)
 
 ### 2. Headings
 
-Use combination of `size` and `heading` to render titles
+Use combination of `size` and variant `heading` to render headings
 
 <Canvas>
   <Story name="headings">{StoryHeadings.bind({})}</Story>
 </Canvas>
 
-### 3. Styling properties
+### 3. Form Label and Support text
+
+Use variant `label` to render form label text.<br/>
+\*Note that `label` supports only one size, so property `size` has no effect!
+
+<Canvas>
+  <Story name="label">{StoryLabel.bind({})}</Story>
+</Canvas>
+
+### 4. Styling properties
 
 You can always style content slot, but with these props you can do it even faster.
 

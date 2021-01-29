@@ -13,9 +13,9 @@ const argTypes = getArgTypes(compData);
 export const StoryWithControls = args => {
   return html/*html*/ `
     <zen-form-group ...=${spreadArgs(args)}>
-      <zen-label label="Username" required></zen-label>
+      <zen-text variant="label" required>Username</zen-text>
       <zen-input></zen-input>
-      <zen-input-support-text text="This field should be unique"></zen-input-support-text>
+      <zen-text variant="support">This field should be unique</zen-text>
     </zen-form-group>
   `;
 };
@@ -23,9 +23,9 @@ export const StoryWithControls = args => {
 export const StoryLabelAndSupport = () => {
   return html/*html*/ `
     <zen-form-group>
-      <zen-label label="Username"></zen-label>
+      <zen-text variant="label">Username</zen-text>
       <zen-input></zen-input>
-      <zen-input-support-text text="This field should be unique"></zen-input-support-text>
+      <zen-text variant="support">This field should be unique</zen-text>
     </zen-form-group>
   `;
 };
@@ -33,9 +33,10 @@ export const StoryLabelAndSupport = () => {
 export const StoryWithLabelAndTextarea = () => {
   return html/*html*/ `
     <zen-form-group>
-      <zen-label label="Describe yourself"></zen-label>
+      <zen-text variant="label">Describe yourself</zen-text>
       <zen-textarea placeholder="Write here..."></zen-textarea>
-      <zen-input-support-text text="0 of 2500 characters"></zen-input-support-text>
+      <zen-text variant="support">0 of 2500 characters</zen-text>
+    </zen-form-group>
     </zen-form-group>
   `;
 };
@@ -48,7 +49,7 @@ Wrapper around input that ensures correct styles and spacings
 
 <br />
 
-### 1. Form group with label, input and support text
+### 1. Form group with text variant `label`, input and text variant `support`
 
 <Canvas>
   <Story
