@@ -32,27 +32,27 @@
 }
 
 //--------------------------------------------
-:host([heading][size='xs']) {
+:host([variant='heading'][size='xs']) {
   font-weight: bold;
   font-size: $heading-xs;
 }
 
-:host([heading][size='sm']) {
+:host([variant='heading'][size='sm']) {
   font-weight: bold;
   font-size: $heading-sm;
 }
 
-:host([heading][size='md']) {
+:host([variant='heading'][size='md']) {
   font-weight: bold;
   font-size: $heading-md;
 }
 
-:host([heading][size='lg']) {
+:host([variant='heading'][size='lg']) {
   font-weight: bold;
   font-size: $heading-lg;
 }
 
-:host([heading][size='xl']) {
+:host([variant='heading'][size='xl']) {
   font-weight: bold;
   font-size: $heading-xl;
 }
