@@ -8,15 +8,7 @@ describe('zen-table-header', () => {
       html: `<zen-table-header>Content</zen-header-header>`,
     });
 
-    expect(page.root).toEqualHtml(`
-      <zen-table-header>
-        <mock:shadow-root>
-          <slot>
-          </slot>
-        </mock:shadow-root>
-        Content
-      </zen-table-header>
-    `);
+    expect(page.root.innerHTML).toEqual('Content');
   });
 
   it('applies `sticky` attribute to child elements if `sticky` prop is set', async () => {
@@ -31,16 +23,11 @@ describe('zen-table-header', () => {
       `,
     });
 
-    expect(page.root).toEqualHtml(`
-      <zen-table-header sticky="">
-        <mock:shadow-root>
-          <slot>
-          </slot>
-        </mock:shadow-root>
-        <div sticky></div>
-        <div sticky></div>
-        <div sticky></div>
-      </zen-table-header>
-    `);
+    const isPropSetOnEveryChildElement = page.root
+      .querySelectorAll('div')
+      .map(div => div.hasAttribute('sticky'))
+      .every(value => value === true);
+
+    expect(isPropSetOnEveryChildElement).toEqual(true);
   });
 });
