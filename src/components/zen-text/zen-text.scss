@@ -32,6 +32,7 @@
 }
 
 //--------------------------------------------
+
 :host([variant='heading'][size='xs']) {
   font-weight: bold;
   font-size: $heading-xs;
@@ -58,6 +59,13 @@
 }
 
 //--------------------------------------------
+
+:host([variant='label'][size]) {
+  font-size: $text-md; // label has only 1 possible size!
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
 :host([bold]) {
   font-weight: bold;
 }
