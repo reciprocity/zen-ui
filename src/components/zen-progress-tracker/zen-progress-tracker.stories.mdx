@@ -11,12 +11,12 @@ const argTypes = getArgTypes(compData);
 <Meta title="Navigation/Progress tracker" component="zen-progress-tracker" argTypes={argTypes} />
 
 export const StoryWithControls = args => {
-  waitForElement('#ptogress-tracker', element => {
+  waitForElement('#progress-tracker', element => {
     element.steps = args.steps;
   });
   return html/*html*/ `
-    <zen-progress-tracker id="ptogress-tracker" ...="${spreadArgs(args)}" />
-    ${action('#ptogress-tracker', ['blur', 'focus', 'click', 'change'])}
+    <zen-progress-tracker id="progress-tracker" ...="${spreadArgs(args)}" />
+    ${action('#progress-tracker', ['blur', 'focus', 'click', 'change'])}
   `;
 };
 
