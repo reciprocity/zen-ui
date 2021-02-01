@@ -4,11 +4,3 @@
   font-family: inherit;
   margin: 0.75rem 0;
 }
-
-:host(::slotted(:not(:nth-last-child))) {
-  margin-bottom: 0.5rem;
-}
-
-::slotted {
-  color: red;
-}
