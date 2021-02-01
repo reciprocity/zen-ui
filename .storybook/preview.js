@@ -24,14 +24,14 @@ export const parameters = {
       method: 'alphabetical',
       order: [
         'Getting started',
-        'Developers',
         'Changelog',
+        'Developers',
         'Guides',
         [
           'Colors',
-          'Spacing'
         ],
         'Typography',
+        'Layout',
         'Buttons',
         'Forms',
         'Icons',
