@@ -1,5 +1,6 @@
 :host {
   display: block;
+  box-sizing: border-box;
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -27,8 +28,30 @@ $paddings: (
 );
 
 @each $key, $value in $paddings {
-  :host([padding='#{$key}']) {
+  :host(.padding-#{$key}) {
     padding: #{$value};
+  }
+}
+
+@each $key, $value in $paddings {
+  :host(.padding-x-#{$key}) {
+    padding-left: #{$value};
+    padding-right: #{$value};
+  }
+}
+
+@each $key, $value in $paddings {
+  :host(.padding-y-#{$key}) {
+    padding-top: #{$value};
+    padding-bottom: #{$value};
+  }
+}
+
+@each $side in [ 'top', 'right', 'bottom', 'left' ] {
+  @each $key, $value in $paddings {
+    :host(.padding-#{$side}-#{$key}) {
+      padding-#{$side}: #{$value};
+    }
   }
 }
 

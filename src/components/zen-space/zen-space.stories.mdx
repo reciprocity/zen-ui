@@ -21,6 +21,14 @@ const css = /*css*/ `
     min-width: 0;
     min-height: 250px;
   }
+  .story {
+    margin: 0.5rem;
+    flex: 1 0 0;
+    min-width: 300px;
+  }
+  .story zen-space {
+    min-width: 0;
+  }
   .item {
     width: auto;
     background-color: #82bcf1;
@@ -61,7 +69,6 @@ export const StorySpacing = () => {
   const column1 = ['none', 'xs', 'sm'];
   const column2 = ['md', 'lg', 'xl'];
   return html/*html*/`
-    <style>${css}</style>
     <div class="row">
       <div class="col">
         ${column1.map(size => html/*html*/`
@@ -149,6 +156,24 @@ export const StoryColumnAlign = () => {
   `;
 };
 
+export const StoryPadding = () => {
+  const values = ['lg', 'sm lg', 'sm sm xl lg'];
+  return html/*html*/`
+    <div class="row">
+      ${values.map(padding => html/*html*/`
+        <div class="story">
+          <p class="info">padding: <b>"${padding}"</b></p>
+          <zen-space padding="${padding}" horizontal-align="stretch" vertical-align="stretch">
+              <div class="item">Item 1</div>
+              <div class="item">Item 2</div>
+              <div class="item">Item 3</div>
+            </zen-space>
+        </div>
+      `)}
+    </div>
+  `;
+};
+
 export const StoryWithControls = args => {
   return html/*html*/ `
     <style>${css}</style>
@@ -163,14 +188,14 @@ export const StoryWithControls = args => {
 
 # Space
 
-Spacing component for quick and standradize elements layouting.<br/>
+Spacing component for quick and standradized elements layouting.<br/>
 Under the hood it uses <code>flex-box</code>.
 
 ## Component previews
 
 <br />
 
-### 1. Spacing
+### 1. Items spacing
 
 - Use different values for prop `spacing` to determine space between the items
 
@@ -182,7 +207,7 @@ Under the hood it uses <code>flex-box</code>.
   </Story>
 </Canvas>
 
-### 2. Row items alignment
+### 2. Align content of row
 
 - Use props `vertical-align` and `horizontal-align` to align items
 
@@ -194,7 +219,7 @@ Under the hood it uses <code>flex-box</code>.
   </Story>
 </Canvas>
 
-### 3. Column items alignment
+### 3. Align content of column
 
 - To align items vertically (column) set attr `vertical`
 - Use props `vertical-align` and `horizontal-align` to align items
@@ -204,6 +229,19 @@ Under the hood it uses <code>flex-box</code>.
     name="alignsColumn"
   >
     {StoryColumnAlign.bind({})}
+  </Story>
+</Canvas>
+
+### 4. Inner padding - Shorthand Property
+
+- To shorten the code, it is possible to specify all the padding in one property.
+- Same as you can do with normal `padding` and `margin` css properties.
+
+<Canvas>
+  <Story
+    name="paddings"
+  >
+    {StoryPadding.bind({})}
   </Story>
 </Canvas>
 
