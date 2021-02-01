@@ -32,6 +32,46 @@ $paddings: (
   }
 }
 
+// Row align ------------------------------------
+
+$aligns: (
+  'start': 'flex-start',
+  'end': 'flex-end',
+  'center': 'center',
+  'baseline': 'baseline',
+  'stretch': 'stretch',
+);
+
+@each $key, $value in $aligns {
+  :host(:not([vertical])[vertical-align='#{$key}']) {
+    align-items: #{$value};
+  }
+}
+
+@each $key, $value in $aligns {
+  :host(:not([vertical])[horizontal-align='#{$key}']) {
+    justify-content: #{$value};
+  }
+}
+
+// Column align ---------------------------------
+
+@each $key, $value in $aligns {
+  :host([vertical-align='#{$key}']) {
+    justify-content: #{$value};
+  }
+}
+
+@each $key, $value in $aligns {
+  :host([horizontal-align='#{$key}']) {
+    align-items: #{$value};
+  }
+}
+
+:host([vertical][vertical-align='stretch']) ::slotted(*),
+:host(:not([vertical])[horizontal-align='stretch']) ::slotted(*) {
+  flex-grow: 1;
+}
 
 // Spacing --------------------------------------
 

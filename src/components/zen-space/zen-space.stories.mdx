@@ -86,6 +86,69 @@ export const StorySpacing = () => {
     </div>
   `;
 };
+
+export const StoryRowAlign = () => {
+  const aligns = ['start', 'end', 'center', 'baseline', 'stretch'];
+  return html/*html*/`
+    <div class="row">
+      <div class="col">
+        ${aligns.map(align => html/*html*/`
+            <p class="info">vertical-align: <b>${align}</b></p>
+            <zen-space vertical-align="${align}" horizontal-align="center" padding="sm">
+              <div class="item">Item</div>
+              <div class="item tall slim">Tall</div>
+              <div class="item short">Short</div>
+              <div class="item tall">Giant</div>
+            </zen-space>
+        `)}
+      </div>
+      <div class="col">
+        ${aligns.map(align => html/*html*/`
+            <p class="info">horizontal-align: <b>${align}</b></p>
+            <zen-space horizontal-align="${align}" padding="sm">
+              <div class="item">Item</div>
+              <div class="item tall slim">Tall</div>
+              <div class="item short">Short</div>
+              <div class="item tall">Giant</div>
+            </zen-space>
+        `)}
+      </div>
+    </div>
+  `;
+};
+
+export const StoryColumnAlign = () => {
+  const aligns = ['start', 'end', 'center', 'baseline', 'stretch'];
+  return html/*html*/`
+    <div class="row">
+      ${aligns.map(align => html/*html*/`
+        <div class="col tall">
+          <p class="info">vertical-align:<br/><b>${align}</b></p>
+          <zen-space vertical vertical-align="${align}" horizontal-align="center" padding="sm">
+            <div class="item">Item</div>
+            <div class="item tall slim">Tall</div>
+            <div class="item short">Short</div>
+            <div class="item tall">Giant</div>
+          </zen-space>
+        </div>
+      `)}
+    </div>
+    <div class="row">
+      ${aligns.map(align => html/*html*/`
+        <div class="col tall">
+          <p class="info">horizontal-align:<br/><b>${align}</b></p>
+          <zen-space vertical horizontal-align="${align}" padding="sm">
+            <div class="item">Item</div>
+            <div class="item tall slim">Tall</div>
+            <div class="item short">Short</div>
+            <div class="item tall">Giant</div>
+          </zen-space>
+        </div>
+      `)}
+    </div>
+  `;
+};
+
 export const StoryWithControls = args => {
   return html/*html*/ `
     <style>${css}</style>
@@ -116,6 +179,31 @@ Under the hood it uses <code>flex-box</code>.
     name="sizes"
   >
     {StorySpacing.bind({})}
+  </Story>
+</Canvas>
+
+### 2. Row items alignment
+
+- Use props `vertical-align` and `horizontal-align` to align items
+
+<Canvas>
+  <Story
+    name="aligns"
+  >
+    {StoryRowAlign.bind({})}
+  </Story>
+</Canvas>
+
+### 3. Column items alignment
+
+- To align items vertically (column) set attr `vertical`
+- Use props `vertical-align` and `horizontal-align` to align items
+
+<Canvas>
+  <Story
+    name="alignsColumn"
+  >
+    {StoryColumnAlign.bind({})}
   </Story>
 </Canvas>
 

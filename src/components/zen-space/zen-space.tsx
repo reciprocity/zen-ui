@@ -1,6 +1,8 @@
 import { Component, Host, h, Prop } from '@stencil/core';
 import { Size, None } from '../helpers/types';
 
+type FlexAlign = 'start' | 'end' | 'center' | 'baseline' | 'stretch';
+
 @Component({
   tag: 'zen-space',
   styleUrl: 'zen-space.scss',
@@ -9,6 +11,12 @@ import { Size, None } from '../helpers/types';
 export class ZenSpace {
   /** Is it row or column? */
   @Prop({ reflect: true }) readonly vertical: boolean = false;
+
+  /** Horizontal align of items */
+  @Prop({ reflect: true }) readonly verticalAlign: FlexAlign = 'center';
+
+  /** Vertical align of items */
+  @Prop({ reflect: true }) readonly horizontalAlign: FlexAlign = 'start';
 
   /** Spacing between items */
   @Prop({ reflect: true }) readonly spacing: Size | None = 'sm';
