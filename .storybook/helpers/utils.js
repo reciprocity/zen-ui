@@ -1,6 +1,6 @@
-import { cloneDeep } from "lodash";
+import { cloneDeep } from 'lodash';
 
-export const camelToKebab = (str) => str.replace(/[A-Z]/g, "-$&").toLowerCase();
+export const camelToKebab = str => str.replace(/[A-Z]/g, '-$&').toLowerCase();
 
 export function camelKeysToKebab(object) {
   const obj = cloneDeep(object);

@@ -1,7 +1,6 @@
 import { Component, Host, h, Prop, State, Listen, Watch, Element, Method } from '@stencil/core';
 import { getDefaultSlotContent, waitNextFrame, getComposedPath } from '../helpers/helpers';
 import { faChevronDown } from '@fortawesome/pro-light-svg-icons';
-import { renderIcon, styles } from '../helpers/fa-icons';
 import { OptionValue } from '../zen-menu-item/zen-option';
 import { Align } from '../helpers/types';
 
@@ -257,7 +256,6 @@ export class ZenDropdown {
   render(): HTMLElement {
     return (
       <Host tabindex={this.disabled ? null : 0} ref={el => (this.div = el)}>
-        <style>{styles}</style>
         <div
           class={{
             field: true,
@@ -277,7 +275,9 @@ export class ZenDropdown {
               <div class="placeholder">{this.placeholder}</div>
             </slot>
           </div>
-          <div class="arrow">{renderIcon(faChevronDown)}</div>
+          <div class="arrow">
+            <zen-icon icon={faChevronDown}></zen-icon>
+          </div>
         </div>
         <div
           class={{ 'list-wrap': true, 'open-above': this.openAbove(), 'align-right': this.fieldAlign !== 'left' }}

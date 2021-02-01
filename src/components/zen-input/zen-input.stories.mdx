@@ -2,6 +2,7 @@ import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
 import { html } from 'lit-html';
 import { action } from '../../../.storybook/helpers/custom-action';
 import { getArgTypes, getDefaultArgs, getComponentData, spreadArgs } from '../../../.storybook/helpers/argTypes';
+import { waitForElement } from '../../../.storybook/helpers/utils';
 
 import data from '../../../stencilDocs.json';
 const compData = data.components.find(n => n.tag === 'zen-input');
@@ -27,6 +28,7 @@ export const StoryWithLeadingSlot = () =>
       ></i>
     </zen-input>
   `;
+};
 
 export const StoryWithTrailingSlot = () =>
   html/*html*/ `
@@ -55,6 +57,7 @@ export const StoryWithLeadingAndTrailingSlots = () =>
       ></i>
     </zen-input>
   `;
+};
 
 # Input
 
@@ -69,7 +72,15 @@ Form input component with slots capabilities
 - Apply leadingSlot value for the slot attribute in your inner custom HTML
 
 <Canvas>
-  <Story name="StoryWithLeadingSlot">{StoryWithLeadingSlot.bind({})}</Story>
+  <Story
+    name="StoryWithLeadingSlot"
+    args={{
+      ...getDefaultArgs(argTypes),
+      icon: faUser,
+    }}
+  >
+    {StoryWithLeadingSlot.bind({})}
+  </Story>
 </Canvas>
 
 ### 2. Search bar - Input with trailing slot fulfilled
@@ -77,7 +88,15 @@ Form input component with slots capabilities
 - Apply trailingSlot value for the slot attribute in your inner custom HTML
 
 <Canvas>
-  <Story name="StoryWithTrailingSlot">{StoryWithTrailingSlot.bind({})}</Story>
+  <Story
+    name="StoryWithTrailingSlot"
+    args={{
+      ...getDefaultArgs(argTypes),
+      icon: faUser,
+    }}
+  >
+    {StoryWithTrailingSlot.bind({})}
+  </Story>
 </Canvas>
 
 ### 3. Input with leading and trailing slots fulfilled
@@ -85,7 +104,15 @@ Form input component with slots capabilities
 - Apply leadingSlot and trailingSlot values for the slot attributes in your inner custom HTML
 
 <Canvas>
-  <Story name="StoryWithLeadingAndTrailingSlots">{StoryWithLeadingAndTrailingSlots.bind({})}</Story>
+  <Story
+    name="StoryWithLeadingAndTrailingSlots"
+    args={{
+      ...getDefaultArgs(argTypes),
+      icon: faUser,
+    }}
+  >
+    {StoryWithLeadingAndTrailingSlots.bind({})}
+  </Story>
 </Canvas>
 
 ## Properties

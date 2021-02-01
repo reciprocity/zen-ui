@@ -1,6 +1,5 @@
 import { Component, Host, h, Prop, State, Watch, Element } from '@stencil/core';
 import { faCheck } from '@fortawesome/pro-light-svg-icons';
-import { renderIcon, styles } from '../helpers/fa-icons';
 import { StepsFilter } from './types';
 import cloneDeep from 'lodash/cloneDeep';
 
@@ -74,8 +73,7 @@ export class ZenProgressTracker {
 
   render(): HTMLElement {
     return (
-      <Host class="zen-progress-tracker">
-        <style>{styles}</style>
+      <Host class="zen-steps">
         <div class="progressbar">
           <div class="progress" style={{ transform: `scaleX(${this.progressWidth()})` }}></div>
         </div>
@@ -89,7 +87,7 @@ export class ZenProgressTracker {
             >
               <div class="roundle">
                 {this.getItemState(index) === 'active' && <div>{index + 1}</div>}
-                {this.getItemState(index) === 'completed' && renderIcon(faCheck)}
+                {this.getItemState(index) === 'completed' && <zen-icon icon={faCheck}></zen-icon>}
               </div>
               <div class="label">{step.label}</div>
             </li>
