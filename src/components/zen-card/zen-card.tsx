@@ -1,4 +1,4 @@
-import { h, Component, Host } from '@stencil/core';
+import { h, Component, Host, Prop } from '@stencil/core';
 
 @Component({
   tag: 'zen-card',
@@ -6,9 +6,12 @@ import { h, Component, Host } from '@stencil/core';
   shadow: true,
 })
 export class ZenCard {
+  /** Disables card. */
+  @Prop() readonly disabled = false;
+
   render(): HTMLElement {
     return (
-      <Host>
+      <Host class={{ disabled: this.disabled }}>
         <slot></slot>
       </Host>
     );

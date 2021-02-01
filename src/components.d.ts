@@ -103,6 +103,10 @@ export namespace Components {
         "variant": ButtonVariants;
     }
     interface ZenCard {
+        /**
+          * Disables card.
+         */
+        "disabled": false;
     }
     interface ZenCheckbox {
         /**
@@ -679,6 +683,10 @@ declare namespace LocalJSX {
         "variant"?: ButtonVariants;
     }
     interface ZenCard {
+        /**
+          * Disables card.
+         */
+        "disabled"?: false;
     }
     interface ZenCheckbox {
         /**
