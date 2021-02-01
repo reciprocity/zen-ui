@@ -12,6 +12,10 @@ export class ZenSpace {
 
   /** Spacing between items */
   @Prop({ reflect: true }) readonly spacing: Size | None = 'sm';
+
+  /** Inner spacing of container */
+  @Prop({ reflect: true }) readonly padding: Size | None | string = 'sm';
+
   render(): HTMLElement {
     return (
       <Host>

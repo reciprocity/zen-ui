@@ -10,6 +10,27 @@
 :host([vertical]) {
   flex-direction: column;
 }
+
+// Padding --------------------------------------
+
+$paddings: (
+  'none': 0,
+  'xs': 1px,
+  'sm': 0.25rem,
+  'md': 0.5rem,
+  'lg': 1rem,
+  'xl': 2rem,
+);
+
+@each $key, $value in $paddings {
+  :host([padding='#{$key}']) {
+    padding: #{$value};
+  }
+}
+
+
+// Spacing --------------------------------------
+
 $spacings: (
   'none': 0,
   'xs': 1px,
