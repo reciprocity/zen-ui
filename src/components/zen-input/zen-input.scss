@@ -5,6 +5,7 @@
   @include zenInputBorder;
   @include zenInputBase;
   display: flex;
+  align-items: center;
   font-size: $text-md;
 }
 
