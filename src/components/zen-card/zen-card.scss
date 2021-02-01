@@ -3,7 +3,8 @@
 :host {
   display: block;
 
-  border: 1px solid #ced4da;
+  border: 1px solid $color-gray-200;
+  border-radius: 2px;
   cursor: pointer;
   transition: box-shadow $transition-visibility;
 }
