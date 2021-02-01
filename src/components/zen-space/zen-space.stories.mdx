@@ -1,21 +1,65 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
 import { html } from 'lit-html';
 import { getArgTypes, getDefaultArgs, getComponentData, spreadArgs } from '../../../.storybook/helpers/argTypes';
+const css = /*css*/ `
+  zen-space {
+    min-width: 300px;
+    max-width: 600px;
+    border: 1px dashed #adb5bd;
+    border-radius: 2px;
+  }
+  zen-space.with-controls,
+  zen-space[vertical] {
+    min-width: 0;
+    min-height: 250px;
+  }
+  .item {
+    width: auto;
+    background-color: #82bcf1;
+    color: #fff;
+    border-radius: 3px;
+    padding: 0.2rem 1rem;
+    font-size: 0.875rem;
+  }
+  .item.tall {
+    background-color: #959ea8;
+    padding-top: 0.5rem;
+    padding-bottom: 1.5rem;
+  }
+  .item.slim {
+    background-color: #0078cd;
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
+  }
+  .item.short {
+    padding-top:0;
+    padding-bottom:0;
+    background-color: #abd2f5;
+  }
+`
 
 import data from '../../../stencilDocs.json';
 const compData = data.components.find(n => n.tag === 'zen-space');
 const argTypes = getArgTypes(compData);
 
-<Meta title="Helpers/Space" component="zen-space" argTypes={argTypes} />
+<Meta title="Layout/Space" component="zen-space" argTypes={argTypes} />
 
 export const StoryWithControls = args => {
-  return html/*html*/ ` <zen-space ...="${spreadArgs(args)}"></zen-space> `;
+  return html/*html*/ `
+    <style>${css}</style>
+    <zen-space class="with-controls" ...="${spreadArgs(args)}">
+      <div class="item">Item</div>
+      <div class="item tall slim">Tall</div>
+      <div class="item short">Short</div>
+      <div class="item tall">Giant</div>
+    </zen-space>
+  `;
 };
 
 # Space
 
-Spacing component for quick and standradize elements layouting.
-Under the hood it uses flex-box.
+Spacing component for quick and standradize elements layouting.<br/>
+Under the hood it uses <code>flex-box</code>.
 
 ## Component previews
 

@@ -1,4 +1,4 @@
-import { Component, Host, h } from '@stencil/core';
+import { Component, Host, h, Prop } from '@stencil/core';
 
 @Component({
   tag: 'zen-space',
@@ -6,7 +6,15 @@ import { Component, Host, h } from '@stencil/core';
   shadow: true,
 })
 export class ZenSpace {
+  /** Is it row or column? */
+  @Prop({ reflect: true }) readonly vertical: boolean = false;
   render(): HTMLElement {
-    return <Host>space</Host>;
+    return (
+      <Host>
+        <slot>
+          <p>zen-space should not be empty</p>
+        </slot>
+      </Host>
+    );
   }
 }
