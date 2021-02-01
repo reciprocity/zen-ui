@@ -1,6 +1,7 @@
 import { IconDefinition } from '@fortawesome/pro-light-svg-icons';
 import { Component, Host, h, Prop, Element } from '@stencil/core';
 import { renderIcon } from '../helpers/fa-icons';
+import { IconSizes } from './types';
 
 @Component({
   tag: 'zen-icon',
@@ -11,7 +12,7 @@ export class ZenIcon {
   @Element() hostElement: HTMLZenIconElement;
 
   /** Size of the icon. */
-  @Prop() readonly size: string = '';
+  @Prop() readonly size: IconSizes = 'md';
 
   /** Icon to be rendered. */
   @Prop() readonly icon: IconDefinition = null;

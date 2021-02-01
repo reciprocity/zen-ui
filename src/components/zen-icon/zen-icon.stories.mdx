@@ -11,7 +11,7 @@ import { faUser } from '@fortawesome/pro-light-svg-icons';
 
 <Meta title="Icons/Icon" component="zen-icon" argTypes={argTypes} />
 
-export const StorySimple = args => {
+export const StoryDefault = args => {
   waitForElement('#zen-icon-element', element => {
     element.icon = args.icon;
   });
@@ -26,16 +26,20 @@ Icon component wrapper
 
 <br />
 
-### 1. Icon
+## Properties
 
 <Canvas>
   <Story
-    name="StorySimple"
+    name="default"
     args={{
       ...getDefaultArgs(argTypes),
       icon: faUser,
     }}
   >
-    {StorySimple.bind({})}
+    {StoryDefault.bind({})}
   </Story>
 </Canvas>
+
+<ArgsTable story="default" />
+
+<docs-table docs={JSON.stringify(getComponentData('zen-icon'))}></docs-table>
