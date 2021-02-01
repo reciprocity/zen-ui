@@ -1,0 +1,13 @@
+@import '../../zen-styles/component-helpers.scss';
+
+:host {
+  display: block;
+
+  border: 1px solid #ced4da;
+  cursor: pointer;
+  transition: box-shadow $transition-visibility;
+}
+
+:host(:hover) {
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
