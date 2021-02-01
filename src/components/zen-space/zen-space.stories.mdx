@@ -2,6 +2,14 @@ import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
 import { html } from 'lit-html';
 import { getArgTypes, getDefaultArgs, getComponentData, spreadArgs } from '../../../.storybook/helpers/argTypes';
 const css = /*css*/ `
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .col {
+    margin: 1rem;
+    flex: 1 0 0;
+  }
   zen-space {
     min-width: 300px;
     max-width: 600px;
@@ -36,6 +44,11 @@ const css = /*css*/ `
     padding-bottom:0;
     background-color: #abd2f5;
   }
+  p.info {
+    font-size: 0.875rem;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+  }
 `
 
 import data from '../../../stencilDocs.json';
@@ -44,6 +57,35 @@ const argTypes = getArgTypes(compData);
 
 <Meta title="Layout/Space" component="zen-space" argTypes={argTypes} />
 
+export const StorySpacing = () => {
+  const column1 = ['none', 'xs', 'sm'];
+  const column2 = ['md', 'lg', 'xl'];
+  return html/*html*/`
+    <style>${css}</style>
+    <div class="row">
+      <div class="col">
+        ${column1.map(size => html/*html*/`
+            <p class="info">spacing: <b>${size}</b></p>
+            <zen-space spacing="${size}" padding="sm">
+              <div class="item">Item 1</div>
+              <div class="item">Item 2</div>
+              <div class="item">Item 3</div>
+            </zen-space>
+        `)}
+      </div>
+      <div class="col">
+        ${column2.map(size => html/*html*/`
+            <p class="info">spacing: <b>${size}</b></p>
+            <zen-space spacing="${size}" padding="sm">
+              <div class="item">Item 1</div>
+              <div class="item">Item 2</div>
+              <div class="item">Item 3</div>
+            </zen-space>
+        `)}
+      </div>
+    </div>
+  `;
+};
 export const StoryWithControls = args => {
   return html/*html*/ `
     <style>${css}</style>
@@ -65,9 +107,17 @@ Under the hood it uses <code>flex-box</code>.
 
 <br />
 
-### 1. Story 1
+### 1. Spacing
 
-- Bla bla
+- Use different values for prop `spacing` to determine space between the items
+
+<Canvas>
+  <Story
+    name="sizes"
+  >
+    {StorySpacing.bind({})}
+  </Story>
+</Canvas>
 
 ## Properties
 

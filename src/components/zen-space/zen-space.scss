@@ -10,3 +10,24 @@
 :host([vertical]) {
   flex-direction: column;
 }
+$spacings: (
+  'none': 0,
+  'xs': 1px,
+  'sm': 0.25rem,
+  'md': 0.5rem,
+  'lg': 1rem,
+  'xl': 2rem,
+);
+
+@each $key, $value in $spacings {
+  :host([spacing='#{$key}']) ::slotted(*:not(:first-child)) {
+    margin-left: #{$value};
+  }
+}
+
+@each $key, $value in $spacings {
+  :host([spacing='#{$key}'][vertical]) ::slotted(*:not(:first-child)) {
+    margin-left: 0;
+    margin-top: #{$value};
+  }
+}
