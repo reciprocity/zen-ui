@@ -1,6 +1,5 @@
 import { Config } from '@stencil/core';
 import { sass } from '@stencil/sass';
-import { inlineSvg } from 'stencil-inline-svg';
 
 export const config: Config = {
   namespace: 'zen-ui',
@@ -21,7 +20,7 @@ export const config: Config = {
       file: 'stencilDocs.json',
     },
   ],
-  plugins: [sass(), inlineSvg()],
+  plugins: [sass()],
   testing: {
     transform: {
       '^.+\\.js?$': 'babel-jest',

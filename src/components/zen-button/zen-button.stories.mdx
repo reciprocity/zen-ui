@@ -7,7 +7,7 @@ import data from '../../../stencilDocs.json';
 const compData = data.components.find(n => n.tag === 'zen-button');
 const argTypes = getArgTypes(compData);
 
-import { faChevronDown } from '@fortawesome/pro-light-svg-icons';
+import { faChevronDown, faUser } from '@fortawesome/pro-light-svg-icons';
 
 <Meta title="Buttons/Button" component="zen-button" argTypes={argTypes} />
 
@@ -43,11 +43,14 @@ export const StoryLoading = () => html/*html*/ ` <zen-button loading>Button</zen
 
 export const StoryDisabled = () => html/*html*/ ` <zen-button disabled>Button</zen-button> `;
 
-export const StoryWithIcons = args => {
-  ['#icon1', '#icon2', '#icon3', '#icon4', '#icon5'].forEach(id => {
+export const StoryWithIcons = () => {
+  ['#icon1', '#icon2', '#icon4', '#icon5'].forEach(id => {
     waitForElement(id, element => {
-      element.icon = args.icon;
+      element.icon = faChevronDown;
     });
+  });
+  waitForElement('#icon3', element => {
+    element.icon = faUser;
   });
   return html/*html*/ `
     <div style="display: flex; justify-content: space-evenly;">
@@ -109,15 +112,7 @@ Button component with slots capabilities
 - Apply leadingIcon and trailingIcon values for the slot attributes in your inner custom HTML
 
 <Canvas>
-  <Story
-    name="StoryWithIcons"
-    args={{
-      ...getDefaultArgs(argTypes),
-      icon: faChevronDown,
-    }}
-  >
-    {StoryWithIcons.bind({})}
-  </Story>
+  <Story name="StoryWithIcons">{StoryWithIcons.bind({})}</Story>
 </Canvas>
 
 ## Properties

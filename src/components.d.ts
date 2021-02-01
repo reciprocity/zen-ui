@@ -6,10 +6,9 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { StringifiedJson } from "./stories/components/color-swatch-group/color-swatch-group";
-import { Align, AvatarIconSize, Duration, NotificationVariant, Position, TextSize, TextVariant, TooltipVariant } from "./components/helpers/types";
+import { Align, AvatarIconSize, Duration, IconSizes, NotificationVariant, Position, TextSize, TextVariant, TooltipVariant } from "./components/helpers/types";
 import { ButtonVariants } from "./components/zen-button/types";
 import { OptionValue } from "./components/zen-menu-item/zen-option";
-import { IconSizes } from "./components/zen-icon/types";
 import { IconDefinition } from "@fortawesome/pro-light-svg-icons";
 import { OptionValue as OptionValue1 } from "./components/zen-menu-item/zen-option";
 import { StepItem } from "./components/zen-progress-tracker/zen-progress-tracker";
@@ -164,7 +163,7 @@ export namespace Components {
     }
     interface ZenIcon {
         /**
-          * Icon to be rendered.
+          * Icon data (js file) imported from Font Awesome SVG package.
          */
         "icon": IconDefinition;
         /**
@@ -744,7 +743,7 @@ declare namespace LocalJSX {
     }
     interface ZenIcon {
         /**
-          * Icon to be rendered.
+          * Icon data (js file) imported from Font Awesome SVG package.
          */
         "icon"?: IconDefinition;
         /**

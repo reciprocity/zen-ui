@@ -11,14 +11,6 @@ describe('zen-icon', () => {
     expect(page.root.shadowRoot).toBeTruthy();
   });
 
-  it('should apply the large class', async () => {
-    const page = await newSpecPage({
-      components: [ZenIcon],
-      html: `<zen-icon size="lg"></zen-icon>`,
-    });
-    expect(page.root.classList.contains('lg')).toBe(true);
-  });
-
   it('should render empty box', async () => {
     const page = await newSpecPage({
       components: [ZenIcon],
