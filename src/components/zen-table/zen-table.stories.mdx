@@ -7,7 +7,7 @@ import data from '../../../stencilDocs.json';
 const compData = data.components.find(n => n.tag === 'zen-table');
 const argTypes = getArgTypes(compData);
 
-<Meta title="In progress/Tables/Table" component="zen-table" argTypes={argTypes} />
+<Meta title="Tables/Table" component="zen-table" argTypes={argTypes} />
 
 export const Story1 = () => {
   return html/*html*/ `
@@ -258,7 +258,7 @@ Arrange data into rows and columns.
 A composition of `ZenTable` component and fragment `ZenTableRow`, `ZenTableHeaderCell`, and `ZenTableCell` components.
 
 <Canvas>
-  <Story name="story1">{Story1.bind({})}</Story>
+  <Story name="with-fragments">{Story1.bind({})}</Story>
 </Canvas>
 
 ### 2. Table with sticky header
@@ -266,7 +266,7 @@ A composition of `ZenTable` component and fragment `ZenTableRow`, `ZenTableHeade
 `ZenTable` component with sticky header.
 
 <Canvas>
-  <Story name="story2">{Story2.bind({})}</Story>
+  <Story name="sticky-header">{Story2.bind({})}</Story>
 </Canvas>
 
 ### 3. Table without header
@@ -274,7 +274,7 @@ A composition of `ZenTable` component and fragment `ZenTableRow`, `ZenTableHeade
 `ZenTable` component without a header.
 
 <Canvas>
-  <Story name="story3">{Story3.bind({})}</Story>
+  <Story name="no-header">{Story3.bind({})}</Story>
 </Canvas>
 
 ## Properties
