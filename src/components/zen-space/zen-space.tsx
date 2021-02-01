@@ -16,6 +16,9 @@ export class ZenSpace {
   /** Inner spacing of container */
   @Prop({ reflect: true }) readonly padding: Size | None | string = 'sm';
 
+  /** Break row/column if content doesn't fit */
+  @Prop({ reflect: true }) readonly noWrap: boolean = false;
+
   render(): HTMLElement {
     return (
       <Host>

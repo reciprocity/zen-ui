@@ -11,6 +11,10 @@
   flex-direction: column;
 }
 
+:host(:not([no-wrap])) {
+  flex-wrap: wrap;
+}
+
 // Padding --------------------------------------
 
 $paddings: (
