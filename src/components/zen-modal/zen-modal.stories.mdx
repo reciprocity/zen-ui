@@ -54,7 +54,7 @@ export const StoryMultipleModals = () => {
       <zen-button @click="${showEditor}">Show Editor</zen-button>
       <zen-button @click="${showConfirm}" class="ml-4">Show Confirmation</zen-button>
     </div>
-    <zen-modal id="editor" label="Risk score editor">
+    <zen-modal id="editor" label="Risk score editor" @cancel="${closeEditor}">
       <zen-text>This is a modal window editor example.</zen-text>
       <zen-form-group>
         <zen-label label="Username" required></zen-label>
