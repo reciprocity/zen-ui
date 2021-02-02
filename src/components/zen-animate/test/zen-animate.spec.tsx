@@ -48,12 +48,11 @@ describe('zen-animate', () => {
     });
     await page.waitForChanges();
     expect(page.root.shadowRoot.querySelector('slot')).toBeFalsy();
-    // Show it:
+
     page.rootInstance.show = true;
     await page.waitForChanges();
     expect(page.root.shadowRoot.querySelector('slot')).toBeTruthy();
 
-    // Hide it:
     page.rootInstance.show = false;
     await page.waitForChanges();
     // After transition end doShow is set to false which hides the slot:
