@@ -1,0 +1,53 @@
+@import '../../zen-styles/variables.scss';
+
+:host([disabled]) {
+  opacity: 0.5;
+  pointer-events: none;
+  cursor: default;
+}
+
+span {
+  &.switch {
+    display: inline-flex;
+    flex-shrink: 0;
+    justify-content: flex-start;
+    box-sizing: content-box;
+    cursor: pointer;
+    border-radius: 9999px;
+    transition: all 120ms ease 0s;
+    background: $color-gray-300;
+    width: 2rem;
+    height: 1rem;
+    outline: none;
+
+    &:focus {
+      box-shadow: $color-blue-300 0px 0px 0px 2px;
+    }
+
+    &:hover {
+      background: $color-gray-400;
+    }
+
+    &.checked {
+      background: $color-blue-700;
+
+      &:hover {
+        background: $color-blue-800;
+      }
+    }
+  }
+
+  &.slider {
+    background: $color-white;
+    transition: transform 250ms ease 0s;
+    border-radius: 9999px;
+    transform: translateX(0rem);
+    width: 0.75rem;
+    height: 0.75rem;
+    margin: 2px;
+
+    &.checked {
+      transform: translateX(1rem);
+    }
+  }
+}

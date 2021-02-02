@@ -442,6 +442,14 @@ export namespace Components {
         "text"?: string | null;
     }
     interface ZenToggle {
+        /**
+          * Set checked state.
+         */
+        "checked": boolean;
+        /**
+          * Set disabled state.
+         */
+        "disabled": false;
     }
     interface ZenTooltip {
         /**
@@ -1149,6 +1157,14 @@ declare namespace LocalJSX {
         "text"?: string | null;
     }
     interface ZenToggle {
+        /**
+          * Set checked state.
+         */
+        "checked"?: boolean;
+        /**
+          * Set disabled state.
+         */
+        "disabled"?: false;
     }
     interface ZenTooltip {
         /**
