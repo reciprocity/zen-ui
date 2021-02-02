@@ -275,7 +275,7 @@ export namespace Components {
     }
     interface ZenSpace {
         /**
-          * Vertical align of items
+          * Horizontal align of items
          */
         "horizontalAlign": FlexAlign;
         /**
@@ -295,7 +295,7 @@ export namespace Components {
          */
         "vertical": boolean;
         /**
-          * Horizontal align of items
+          * Vertical align of items
          */
         "verticalAlign": FlexAlign;
     }
@@ -901,7 +901,7 @@ declare namespace LocalJSX {
     }
     interface ZenSpace {
         /**
-          * Vertical align of items
+          * Horizontal align of items
          */
         "horizontalAlign"?: FlexAlign;
         /**
@@ -921,7 +921,7 @@ declare namespace LocalJSX {
          */
         "vertical"?: boolean;
         /**
-          * Horizontal align of items
+          * Vertical align of items
          */
         "verticalAlign"?: FlexAlign;
     }

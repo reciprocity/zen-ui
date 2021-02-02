@@ -14,10 +14,10 @@ export class ZenSpace {
   /** Is it row or column? */
   @Prop({ reflect: true }) readonly vertical: boolean = false;
 
-  /** Horizontal align of items */
+  /** Vertical align of items */
   @Prop({ reflect: true }) readonly verticalAlign: FlexAlign = 'center';
 
-  /** Vertical align of items */
+  /** Horizontal align of items */
   @Prop({ reflect: true }) readonly horizontalAlign: FlexAlign = 'start';
 
   /** Spacing between items */
