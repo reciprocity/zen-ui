@@ -43,7 +43,7 @@ describe('zen-modal', () => {
   it('calls makeTopmost on show', async () => {
     page.root.show = true;
     await page.waitForChanges();
-    expect(modalsService.makeTopmost).toHaveBeenCalled();
+    expect(modalsService.makeTopmost).toHaveBeenCalledTimes(2);
   });
 
   it('calls modalClosed on close', async () => {
@@ -51,6 +51,6 @@ describe('zen-modal', () => {
     await page.waitForChanges();
     page.root.show = false;
     await page.waitForChanges();
-    expect(modalsService.modalClosed).toHaveBeenCalled();
+    expect(modalsService.modalClosed).toHaveBeenCalledTimes(1);
   });
 });
