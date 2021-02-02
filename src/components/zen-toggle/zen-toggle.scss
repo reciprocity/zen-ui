@@ -2,6 +2,7 @@
 
 :host {
   display: flex;
+  width: fit-content;
 }
 
 :host([disabled]) {
@@ -17,8 +18,8 @@ span {
     justify-content: flex-start;
     box-sizing: content-box;
     cursor: pointer;
-    border-radius: 9999px;
-    transition: all 120ms ease 0s;
+    border-radius: 1rem;
+    transition: all 0.2s ease 0s;
     background: $color-gray-300;
     width: 2rem;
     height: 1rem;
@@ -43,8 +44,8 @@ span {
 
   &.slider {
     background: $color-white;
-    transition: transform 250ms ease 0s;
-    border-radius: 9999px;
+    transition: transform 0.2s ease 0s;
+    border-radius: 1rem;
     transform: translateX(0rem);
     width: 0.75rem;
     height: 0.75rem;
