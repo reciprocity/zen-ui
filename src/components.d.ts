@@ -829,11 +829,11 @@ declare namespace LocalJSX {
         /**
           * Top-right X button or default Cancel button clicked
          */
-        "onCancel"?: (event: CustomEvent<undefined>) => void;
+        "onCancel"?: (event: CustomEvent<void>) => void;
         /**
           * Default Ok button clicked (irrelevant if slot `buttons` passed)
          */
-        "onOk"?: (event: CustomEvent<undefined>) => void;
+        "onOk"?: (event: CustomEvent<void>) => void;
         /**
           * Set `true` to show and `false` to hide modal
          */

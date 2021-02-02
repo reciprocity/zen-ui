@@ -25,10 +25,10 @@ export class ZenModal {
   @Prop() readonly hideCancel: boolean = false;
 
   /** Top-right X button or default Cancel button clicked */
-  @Event() cancel: EventEmitter<undefined>;
+  @Event() cancel: EventEmitter<void>;
 
   /** Default Ok button clicked (irrelevant if slot `buttons` passed) */
-  @Event() ok: EventEmitter<undefined>;
+  @Event() ok: EventEmitter<void>;
 
   @Watch('show')
   async showChanged(show: boolean): Promise<void> {
