@@ -47,6 +47,12 @@ export class ZenModal {
     this.ok.emit();
   }
 
+  async componentDidRender(): Promise<void> {
+    if (this.show) {
+      this.showChanged(true);
+    }
+  }
+
   render(): HTMLElement {
     return (
       <Host>
