@@ -34,10 +34,12 @@ export class ZenToggle {
   };
 
   private onKeyDown = (ev: KeyboardEvent) => {
-    ev.preventDefault();
+    if (this.disabled) return;
     const toggleKeys = ['Space', 'Enter'];
-    if (this.disabled || !toggleKeys.includes(ev.code)) return;
-    this.checked = !this.checked;
+    if (toggleKeys.includes(ev.code)) {
+      ev.preventDefault();
+      this.checked = !this.checked;
+    }
   };
 
   componentWillLoad(): void {
