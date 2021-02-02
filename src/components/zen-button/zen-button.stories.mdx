@@ -1,13 +1,13 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
 import { html } from 'lit-html';
 import { getArgTypes, getDefaultArgs, getComponentData, spreadArgs } from '../../../.storybook/helpers/argTypes';
+import { waitForElement } from '../../../.storybook/helpers/utils';
 
 import data from '../../../stencilDocs.json';
 const compData = data.components.find(n => n.tag === 'zen-button');
 const argTypes = getArgTypes(compData);
 
-import { litHtmlIcon, styles } from '../helpers/fa-icons';
-import { faUser, faChevronDown } from '@fortawesome/pro-light-svg-icons';
+import { faChevronDown, faUser } from '@fortawesome/pro-light-svg-icons';
 
 <Meta title="Buttons/Button" component="zen-button" argTypes={argTypes} />
 
@@ -43,39 +43,43 @@ export const StoryLoading = () => html/*html*/ ` <zen-button loading>Button</zen
 
 export const StoryDisabled = () => html/*html*/ ` <zen-button disabled>Button</zen-button> `;
 
-export const StoryWithIcons = () =>
-  html/*html*/ `
+export const StoryWithIcons = () => {
+  ['#icon1', '#icon2', '#icon4', '#icon5'].forEach(id => {
+    waitForElement(id, element => {
+      element.icon = faChevronDown;
+    });
+  });
+  waitForElement('#icon3', element => {
+    element.icon = faUser;
+  });
+  return html/*html*/ `
     <div style="display: flex; justify-content: space-evenly;">
       <div style="display: flex; flex-direction: column; align-items: center;">
         <zen-button>
-          <i slot="leadingIcon" style="width: 0.625rem;" .innerHTML="${litHtmlIcon(faUser)}"></i>
+          <zen-icon slot="leadingIcon" id="icon1"></zen-icon>
           Leading Slot
         </zen-button>
         <span style="margin-top: 0.5rem;">Leading Slot</span>
       </div>
       <div style="display: flex; flex-direction: column; align-items: center;">
-        <zen-button>
-          Trailing Slot
-          <i slot="trailingIcon" style="width: 0.625rem;" .innerHTML="${litHtmlIcon(faChevronDown)}"></i>
-        </zen-button>
+        <zen-button> Trailing Slot<zen-icon slot="trailingIcon" id="icon2"></zen-icon> </zen-button>
         <span style="margin-top: 0.5rem;">Trailing Slot</span>
       </div>
       <div style="display: flex; flex-direction: column; align-items: center;">
         <zen-button>
-          <i slot="leadingIcon" style="width: 0.625rem;" .innerHTML="${litHtmlIcon(faUser)}"></i>
+          <zen-icon slot="leadingIcon" id="icon3"></zen-icon>
           Leading and Trailing Slots
-          <i slot="trailingIcon" style="width: 0.625rem;" .innerHTML="${litHtmlIcon(faChevronDown)}"></i>
+          <zen-icon slot="trailingIcon" id="icon4"></zen-icon>
         </zen-button>
         <span style="margin-top: 0.5rem;">Leading and Trailing Slots</span>
       </div>
       <div style="display: flex; flex-direction: column; align-items: center;">
-        <zen-button>
-          <i slot="leadingIcon" style="width: 0.625rem;" .innerHTML="${litHtmlIcon(faUser)}"></i>
-        </zen-button>
+        <zen-button> <zen-icon slot="leadingIcon" id="icon5"></zen-icon></zen-button>
         <span style="margin-top: 0.5rem;">Just icon</span>
       </div>
     </div>
   `;
+};
 
 # Button
 
@@ -108,7 +112,7 @@ Button component with slots capabilities
 - Apply leadingIcon and trailingIcon values for the slot attributes in your inner custom HTML
 
 <Canvas>
-  <Story name="StoryWithLeadingSlot">{StoryWithIcons.bind({})}</Story>
+  <Story name="StoryWithIcons">{StoryWithIcons.bind({})}</Story>
 </Canvas>
 
 ## Properties

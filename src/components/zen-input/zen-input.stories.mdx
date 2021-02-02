@@ -2,6 +2,7 @@ import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
 import { html } from 'lit-html';
 import { action } from '../../../.storybook/helpers/custom-action';
 import { getArgTypes, getDefaultArgs, getComponentData, spreadArgs } from '../../../.storybook/helpers/argTypes';
+import { waitForElement } from '../../../.storybook/helpers/utils';
 
 import data from '../../../stencilDocs.json';
 const compData = data.components.find(n => n.tag === 'zen-input');
@@ -17,44 +18,47 @@ export const StoryWithControls = args => html/*html*/ `
   ${action('#input1', ['blur', 'focus', 'input', 'change'])}
 `;
 
-export const StoryWithLeadingSlot = () =>
-  html/*html*/ `
+export const StoryWithLeadingSlot = () => {
+  waitForElement('#user-icon', element => {
+    element.icon = faUser;
+  });
+  return html/*html*/ `
     <zen-input style="max-width: 300px">
-      <i
-        slot="leadingSlot"
-        style="width: 1rem; height: 1rem; margin-left: 0.5rem;"
-        .innerHTML="${litHtmlIcon(faUser)}"
-      ></i>
+      <zen-icon id="user-icon" slot="leadingSlot" style="margin-left: 0.5rem;"></zen-icon>
     </zen-input>
   `;
+};
 
-export const StoryWithTrailingSlot = () =>
-  html/*html*/ `
+export const StoryWithTrailingSlot = () => {
+  waitForElement('#search-icon', element => {
+    element.icon = faSearch;
+  });
+  return html/*html*/ `
     <zen-input style="max-width: 300px; cursor:pointer" placeholder="Search...">
-      <i
+      <zen-icon
+        id="search-icon"
         slot="trailingSlot"
-        style="width: 1rem; height: 1rem; margin-right: 0.5rem;"
+        style="margin-right: 0.5rem;"
         @click="${() => alert('Search!')}"
-        .innerHTML="${litHtmlIcon(faSearch)}"
-      ></i>
+      ></zen-icon>
     </zen-input>
   `;
+};
 
-export const StoryWithLeadingAndTrailingSlots = () =>
-  html/*html*/ `
+export const StoryWithLeadingAndTrailingSlots = () => {
+  waitForElement('#user-icon2', element => {
+    element.icon = faUser;
+  });
+  waitForElement('#key-icon', element => {
+    element.icon = faKey;
+  });
+  return html/*html*/ `
     <zen-input style="max-width: 300px">
-      <i
-        slot="leadingSlot"
-        style="width: 1rem; height: 1rem; margin-left: 0.5rem;"
-        .innerHTML="${litHtmlIcon(faUser)}"
-      ></i>
-      <i
-        slot="trailingSlot"
-        style="width: 1rem; height: 1rem; margin-right: 0.5rem;"
-        .innerHTML="${litHtmlIcon(faKey)}"
-      ></i>
+      <zen-icon id="user-icon2" slot="leadingSlot" style="margin-left: 0.5rem;"></zen-icon>
+      <zen-icon id="key-icon" slot="trailingSlot" style="margin-right: 0.5rem;"></zen-icon>
     </zen-input>
   `;
+};
 
 # Input
 

@@ -3,13 +3,13 @@ import { spread } from '@open-wc/lit-helpers';
 import { Meta, Description, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
 import { action } from '../../../.storybook/helpers/custom-action';
 import { getArgTypes, getDefaultArgs, getComponentData } from '../../../.storybook/helpers/argTypes';
-import { camelKeysToKebab } from '../../../.storybook/helpers/utils';
+import { camelKeysToKebab, waitForElement } from '../../../.storybook/helpers/utils';
 
 import iconGreen from '../../img/reci-icon-g.png';
 import iconRed from '../../img/reci-icon-y.png';
 import iconBlue from '../../img/reci-icon.png';
 import { faCheck } from '@fortawesome/pro-light-svg-icons';
-import { litHtmlIcon, styles } from '../helpers/fa-icons';
+
 import { Align } from '../helpers/types';
 import data from '../../../stencilDocs.json';
 const compData = data.components.find(n => n.tag === 'zen-dropdown');
@@ -19,94 +19,109 @@ delete argTypes.value.control;
 
 <Meta title="Forms/Dropdown" component="zen-dropdown" argTypes={argTypes} />
 
-export const Template = args => html/*html*/ `
-  <style>
-    .icon {
-      height: 1rem;
-      margin-right: 0.5rem;
-    }
-    .content {
-      display: flex;
-      align-items: center;
-      padding: 1rem;
-    }
-    .separator {
-      margin-top: 1rem;
-      border-bottom: 1px solid;
-      color: #0078cd;
-      padding: 0 1rem;
-    }
-    ${styles}
-  </style>
-  <zen-dropdown id="dropdown-controls" class="mb-80" style="max-width: 300px;" ...="${spread(camelKeysToKebab(args))}">
-    <div class="separator">Some custom title</div>
-    <zen-option value="1">Item 1</zen-option>
-    <zen-option default-padding="false" value="2">
-      <div class="content">
-        <img class="icon" src=${iconGreen} alt="icon" />
-        <b>Item 2</b>
-        <span style="margin-left: auto" .innerHTML="${litHtmlIcon(faCheck)}"></span>
-      </div>
-    </zen-option>
-    <zen-option value="3" disabled="true">Disabled item</zen-option>
-    <zen-option value="4">Item 4</zen-option>
-    <zen-option value="5">Item 5</zen-option>
-    <div class="separator">Separator</div>
-    <zen-option value="6">Item 6 abc</zen-option>
-    <zen-option value="7">Item 7 xyz</zen-option>
-    <zen-option value="8">Item 8</zen-option>
-    <zen-option value="9">Item 9</zen-option>
-  </zen-dropdown>
-  ${action('#dropdown-controls', ['change'])}
-`;
+export const Template = args => {
+  waitForElement('#icon1', element => {
+    element.icon = args.icon;
+  });
+  return html/*html*/ `
+    <style>
+      .icon {
+        height: 1rem;
+        margin-right: 0.5rem;
+      }
+      .content {
+        display: flex;
+        align-items: center;
+        padding: 1rem;
+      }
+      .separator {
+        margin-top: 1rem;
+        border-bottom: 1px solid;
+        color: #0078cd;
+        padding: 0 1rem;
+      }
+    </style>
+    <zen-dropdown
+      id="dropdown-controls"
+      class="mb-80"
+      style="max-width: 300px;"
+      ...="${spread(camelKeysToKebab(args))}"
+    >
+      <div class="separator">Some custom title</div>
+      <zen-option value="1">Item 1</zen-option>
+      <zen-option default-padding="false" value="2">
+        <div class="content">
+          <img class="icon" src=${iconGreen} alt="icon" />
+          <b>Item 2</b>
+          <span style="margin-left: auto"><zen-icon id="icon1"></zen-icon></span>
+        </div>
+      </zen-option>
+      <zen-option value="3" disabled="true">Disabled item</zen-option>
+      <zen-option value="4">Item 4</zen-option>
+      <zen-option value="5">Item 5</zen-option>
+      <div class="separator">Separator</div>
+      <zen-option value="6">Item 6 abc</zen-option>
+      <zen-option value="7">Item 7 xyz</zen-option>
+      <zen-option value="8">Item 8</zen-option>
+      <zen-option value="9">Item 9</zen-option>
+    </zen-dropdown>
+    ${action('#dropdown-controls', ['change'])}
+  `;
+};
 
-export const CustomIcons = () => html/*html*/ `
-  <style>
-    .icon {
-      height: 1rem;
-      margin-right: 0.5rem;
-    }
-    .content {
-      width: 100%;
-      display: flex;
-      align-items: center;
-      padding: 1rem;
-    }
-    .separator {
-      margin-top: 1rem;
-      border-bottom: 1px solid;
-      color: #0078cd;
-      padding: 0 1rem;
-    }
-    ${styles}
-  </style>
-  <zen-dropdown id="dropdown-with-options-slot" class="mb-80" style="min-height: 3.2rem; max-width: 300px;">
-    <div class="separator">Group 1</div>
-    <zen-option default-padding="false" value="1">
-      <div class="content">
-        <img class="icon" src=${iconGreen} alt="icon" />
-        <b>Item 1</b>
-        <span style="margin-left: auto" .innerHTML="${litHtmlIcon(faCheck)}"></span>
-      </div>
-    </zen-option>
-    <zen-option default-padding="false" value="2">
-      <div class="content">
-        <img class="icon" src=${iconBlue} alt="icon" />
-        <b>Item 2 with a longer label</b>
-        <span style="margin-left: auto" .innerHTML="${litHtmlIcon(faCheck)}"></span>
-      </div>
-    </zen-option>
-    <div class="separator">Group 2</div>
-    <zen-option default-padding="false" value="3">
-      <div class="content">
-        <img class="icon" src=${iconRed} alt="icon" />
-        <b>Item 3</b>
-        <span style="margin-left: auto" .innerHTML="${litHtmlIcon(faCheck)}"></span>
-      </div>
-    </zen-option>
-  </zen-dropdown>
-  ${action('#dropdown-with-options-slot', ['change'])}
-`;
+export const CustomIcons = args => {
+  ['#icon2', '#icon3', '#icon4'].forEach(id => {
+    waitForElement(id, element => {
+      element.icon = args.icon;
+    });
+  });
+  return html/*html*/ `
+    <style>
+      .icon {
+        height: 1rem;
+        margin-right: 0.5rem;
+      }
+      .content {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        padding: 1rem;
+      }
+      .separator {
+        margin-top: 1rem;
+        border-bottom: 1px solid;
+        color: #0078cd;
+        padding: 0 1rem;
+      }
+    </style>
+    <zen-dropdown id="dropdown-with-options-slot" class="mb-80" style="min-height: 3.2rem; max-width: 300px;">
+      <div class="separator">Group 1</div>
+      <zen-option default-padding="false" value="1">
+        <div class="content">
+          <img class="icon" src=${iconGreen} alt="icon" />
+          <b>Item 1</b>
+          <span style="margin-left: auto"><zen-icon id="icon2"></zen-icon></span>
+        </div>
+      </zen-option>
+      <zen-option default-padding="false" value="2">
+        <div class="content">
+          <img class="icon" src=${iconBlue} alt="icon" />
+          <b>Item 2 with a longer label</b>
+          <span style="margin-left: auto"><zen-icon id="icon3"></zen-icon></span>
+        </div>
+      </zen-option>
+      <div class="separator">Group 2</div>
+      <zen-option default-padding="false" value="3">
+        <div class="content">
+          <img class="icon" src=${iconRed} alt="icon" />
+          <b>Item 3</b>
+          <span style="margin-left: auto"><zen-icon id="icon4"></zen-icon></span>
+        </div>
+      </zen-option>
+    </zen-dropdown>
+    ${action('#dropdown-with-options-slot', ['change'])}
+  `;
+};
 
 export const InvitePeople = () => {
   function onDropdownFocus() {
@@ -149,7 +164,15 @@ A standard dropdown component
 - Because option is taller than usually, we have to specify dropdown's height manually, to match the option height.
 
 <Canvas>
-  <Story name="button">{CustomIcons.bind({})}</Story>
+  <Story
+    name="button"
+    args={{
+      ...getDefaultArgs(argTypes),
+      icon: faCheck,
+    }}
+  >
+    {CustomIcons.bind({})}
+  </Story>
 </Canvas>
 
 ### 2. Invite people dropdown
@@ -169,6 +192,7 @@ Click `Show code` for more details.
     args={{
       ...getDefaultArgs(argTypes),
       value: '2',
+      icon: faCheck,
     }}
   >
     {Template.bind({})}

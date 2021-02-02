@@ -6,9 +6,10 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { StringifiedJson } from "./stories/components/color-swatch-group/color-swatch-group";
-import { Align, AvatarIconSize, Duration, NotificationVariant, Position, TextSize, TextVariant, TooltipVariant } from "./components/helpers/types";
+import { Align, AvatarIconSize, Duration, IconSizes, NotificationVariant, Position, TextSize, TextVariant, TooltipVariant } from "./components/helpers/types";
 import { ButtonVariants } from "./components/zen-button/types";
 import { OptionValue } from "./components/zen-menu-item/zen-option";
+import { IconDefinition } from "@fortawesome/pro-light-svg-icons";
 import { OptionValue as OptionValue1 } from "./components/zen-menu-item/zen-option";
 import { StepItem } from "./components/zen-progress-tracker/zen-progress-tracker";
 import { StepsFilter } from "./components/zen-progress-tracker/types";
@@ -165,6 +166,16 @@ export namespace Components {
         "value": OptionValue;
     }
     interface ZenFormGroup {
+    }
+    interface ZenIcon {
+        /**
+          * Icon data (js file) imported from Font Awesome SVG package.
+         */
+        "icon": IconDefinition;
+        /**
+          * Size of the icon.
+         */
+        "size": IconSizes;
     }
     interface ZenInput {
         /**
@@ -480,6 +491,12 @@ declare global {
         prototype: HTMLZenFormGroupElement;
         new (): HTMLZenFormGroupElement;
     };
+    interface HTMLZenIconElement extends Components.ZenIcon, HTMLStencilElement {
+    }
+    var HTMLZenIconElement: {
+        prototype: HTMLZenIconElement;
+        new (): HTMLZenIconElement;
+    };
     interface HTMLZenInputElement extends Components.ZenInput, HTMLStencilElement {
     }
     var HTMLZenInputElement: {
@@ -577,6 +594,7 @@ declare global {
         "zen-checkbox": HTMLZenCheckboxElement;
         "zen-dropdown": HTMLZenDropdownElement;
         "zen-form-group": HTMLZenFormGroupElement;
+        "zen-icon": HTMLZenIconElement;
         "zen-input": HTMLZenInputElement;
         "zen-notification": HTMLZenNotificationElement;
         "zen-option": HTMLZenOptionElement;
@@ -741,6 +759,16 @@ declare namespace LocalJSX {
         "value"?: OptionValue;
     }
     interface ZenFormGroup {
+    }
+    interface ZenIcon {
+        /**
+          * Icon data (js file) imported from Font Awesome SVG package.
+         */
+        "icon"?: IconDefinition;
+        /**
+          * Size of the icon.
+         */
+        "size"?: IconSizes;
     }
     interface ZenInput {
         /**
@@ -995,6 +1023,7 @@ declare namespace LocalJSX {
         "zen-checkbox": ZenCheckbox;
         "zen-dropdown": ZenDropdown;
         "zen-form-group": ZenFormGroup;
+        "zen-icon": ZenIcon;
         "zen-input": ZenInput;
         "zen-notification": ZenNotification;
         "zen-option": ZenOption;
@@ -1027,6 +1056,7 @@ declare module "@stencil/core" {
             "zen-checkbox": LocalJSX.ZenCheckbox & JSXBase.HTMLAttributes<HTMLZenCheckboxElement>;
             "zen-dropdown": LocalJSX.ZenDropdown & JSXBase.HTMLAttributes<HTMLZenDropdownElement>;
             "zen-form-group": LocalJSX.ZenFormGroup & JSXBase.HTMLAttributes<HTMLZenFormGroupElement>;
+            "zen-icon": LocalJSX.ZenIcon & JSXBase.HTMLAttributes<HTMLZenIconElement>;
             "zen-input": LocalJSX.ZenInput & JSXBase.HTMLAttributes<HTMLZenInputElement>;
             "zen-notification": LocalJSX.ZenNotification & JSXBase.HTMLAttributes<HTMLZenNotificationElement>;
             "zen-option": LocalJSX.ZenOption & JSXBase.HTMLAttributes<HTMLZenOptionElement>;

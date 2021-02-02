@@ -1,13 +1,11 @@
 import { html } from 'lit-html';
 import { Meta, Description, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
+import { waitForElement } from '../../../.storybook/helpers/utils';
 
 import icon from '../../img/reci-icon-g.png';
 import { faCheck } from '@fortawesome/pro-light-svg-icons';
-import { litHtmlIcon, styles } from '../helpers/fa-icons';
-// const args = {}
-// const argTypes = {}
 
-import { getArgTypesAndArgs, spreadArgs } from '../../../.storybook/helpers/argTypes';
+import { getDefaultArgs, getArgTypesAndArgs, spreadArgs } from '../../../.storybook/helpers/argTypes';
 const { argTypes, args } = getArgTypesAndArgs('zen-option');
 
 <Meta title="Forms/zFragments/Dropdown option" component="zen-option" argTypes={argTypes} />
@@ -20,9 +18,13 @@ Option item to be used inside **zen-dropdown** component
 
 #### 1. Customized content
 
-export const Slots = () => html/*html*/ `
+export const Slots = args => {
+  waitForElement('#icon1', element => {
+    element.icon = args.icon;
+  });
+  return html/*html*/ `
   <style>
-    ${styles} .icon {
+    .icon {
       height: 1rem;
       margin-right: 0.5rem;
     }
@@ -30,6 +32,7 @@ export const Slots = () => html/*html*/ `
       display: flex;
       align-items: center;
       padding: 1rem;
+      width: 100%;
     }
     zen-option {
       display: inline-block;
@@ -41,13 +44,20 @@ export const Slots = () => html/*html*/ `
     <div class="content">
       <img class="icon" src=${icon} alt="icon" />
       <b>Custom content</b>
-      <span style="margin-left: auto" .innerHTML="${litHtmlIcon(faCheck)}"></span>
+      <span style="margin-left: auto"><zen-icon id="icon1"></span>
     </div>
   </zen-option>
 `;
+};
 
 <Canvas>
-  <Story name="slots" args={{}}>
+  <Story
+    name="slots"
+    args={{
+      ...getDefaultArgs(argTypes),
+      icon: faCheck,
+    }}
+  >
     {Slots.bind({})}
   </Story>
 </Canvas>

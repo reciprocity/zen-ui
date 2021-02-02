@@ -15,6 +15,8 @@ export type AvatarIconSize = 'sm' | 'md' | 'lg';
 
 export type TextSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
+export type IconSizes = 'md' | 'lg';
+
 // Others:
 export type Point = { x: number; y: number };
 
