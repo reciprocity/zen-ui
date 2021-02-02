@@ -1,5 +1,9 @@
 @import '../../zen-styles/variables.scss';
 
+:host {
+  display: flex;
+}
+
 :host([disabled]) {
   opacity: 0.5;
   pointer-events: none;

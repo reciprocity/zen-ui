@@ -8,11 +8,52 @@ const argTypes = getArgTypes(compData);
 
 <Meta title="Forms/Toggle" component="zen-toggle" argTypes={argTypes} />
 
+export const StoryWithVariants = args =>
+  html/*html*/ `
+    <div>
+      <zen-form-group>
+        <zen-text variant="label">Unchecked</zen-text>
+        <zen-toggle></zen-toggle>
+      </zen-form-group>
+      <zen-form-group>
+        <zen-text variant="label">Checked</zen-text>
+        <zen-toggle checked></zen-toggle>
+      </zen-form-group>
+      <zen-form-group>
+        <zen-text variant="label">Disabled unchecked</zen-text>
+        <zen-toggle disabled></zen-toggle>
+      </zen-form-group>
+      <zen-form-group>
+        <zen-text variant="label">Disabled checked</zen-text>
+        <zen-toggle disabled checked></zen-toggle>
+      </zen-form-group>
+    </div>
+  `;
+
 export const StoryWithControls = args => html/*html*/ ` <zen-toggle ...="${spreadArgs(args)}"></zen-toggle> `;
 
 # Toggle
 
 Simple toggle component
+
+<br />
+
+## Component previews
+
+<br />
+
+### Toggle variants
+
+<Canvas>
+  <Story
+    name="variants"
+    args={{
+      ...getDefaultArgs(argTypes),
+    }}
+  >
+    {StoryWithVariants.bind({})}
+  </Story>
+</Canvas>
 
 ## Properties
 
