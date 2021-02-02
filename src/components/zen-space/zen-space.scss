@@ -62,6 +62,9 @@ $aligns: (
   'center': 'center',
   'baseline': 'baseline',
   'stretch': 'stretch',
+  'space-between': 'space-between',
+  'space-around': 'space-around',
+  'space-evenly': 'space-evenly',
 );
 
 @each $key, $value in $aligns {

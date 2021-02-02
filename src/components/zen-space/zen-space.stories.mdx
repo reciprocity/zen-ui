@@ -10,6 +10,10 @@ const css = /*css*/ `
     margin: 1rem;
     flex: 1 0 0;
   }
+  .col.tall {
+    margin: 1rem 0.5rem;
+    flex: 1 0 0;
+  }
   zen-space {
     min-width: 300px;
     max-width: 600px;
@@ -59,7 +63,10 @@ const css = /*css*/ `
     padding-left: 1rem;
     font-size: 0.875rem;
     margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.25rem;
+  }
+  p.info.two-rows {
+    height: 2.4em;
   }
 `;
 
@@ -78,7 +85,7 @@ export const StorySpacing = () => {
         ${column1.map(
           size => html/*html*/ `
             <p class="info"><b>${size}</b></p>
-            <zen-space spacing="${size}" padding="sm">
+            <zen-space spacing="${size}" padding="xs">
               <div class="item">Item 1</div>
               <div class="item">Item 2</div>
               <div class="item">Item 3</div>
@@ -90,7 +97,7 @@ export const StorySpacing = () => {
         ${column2.map(
           size => html/*html*/ `
             <p class="info"><b>${size}</b></p>
-            <zen-space spacing="${size}" padding="sm">
+            <zen-space spacing="${size}" padding="xs">
               <div class="item">Item 1</div>
               <div class="item">Item 2</div>
               <div class="item">Item 3</div>
@@ -103,15 +110,16 @@ export const StorySpacing = () => {
 };
 
 export const StoryRowAlign = () => {
-  const aligns = ['start', 'end', 'center', 'baseline', 'stretch'];
+  const aligns1 = ['start', 'end', 'center', 'baseline', 'stretch'];
+  const aligns2 = ['start', 'end', 'center', 'baseline', 'stretch', 'space-between', 'space-around', 'space-evenly'];
   return html/*html*/ `
     <div class="row">
       <div class="col">
         <p>vertical-align</p>
-        ${aligns.map(
+        ${aligns1.map(
           align => html/*html*/ `
             <p class="info"><b>${align}</b></p>
-            <zen-space vertical-align="${align}" horizontal-align="center" padding="sm">
+            <zen-space vertical-align="${align}" horizontal-align="center" padding="xs">
               <div class="item">Item</div>
               <div class="item tall slim">Tall</div>
               <div class="item short">Short</div>
@@ -122,10 +130,10 @@ export const StoryRowAlign = () => {
       </div>
       <div class="col">
         <p>horizontal-align</p>
-        ${aligns.map(
+        ${aligns2.map(
           align => html/*html*/ `
             <p class="info"><b>${align}</b></p>
-            <zen-space horizontal-align="${align}" padding="sm">
+            <zen-space horizontal-align="${align}" padding="xs">
               <div class="item">Item</div>
               <div class="item tall slim">Tall</div>
               <div class="item short">Short</div>
@@ -139,15 +147,16 @@ export const StoryRowAlign = () => {
 };
 
 export const StoryColumnAlign = () => {
-  const aligns = ['start', 'end', 'center', 'baseline', 'stretch'];
+  const aligns1 = ['start', 'end', 'center', 'baseline', 'stretch', 'space-between', 'space-around', 'space-evenly'];
+  const aligns2 = ['start', 'end', 'center', 'baseline', 'stretch'];
   return html/*html*/ `
     <p>vertical-align</p>
     <div class="row">
-      ${aligns.map(
+      ${aligns1.map(
         align => html/*html*/ `
           <div class="col tall">
-            <p class="info"><b>${align}</b></p>
-            <zen-space vertical vertical-align="${align}" horizontal-align="center" padding="sm">
+            <p class="info two-rows"><b>${align}</b></p>
+            <zen-space vertical vertical-align="${align}" horizontal-align="center" padding="xs">
               <div class="item">Item</div>
               <div class="item tall slim">Tall</div>
               <div class="item short">Short</div>
@@ -159,11 +168,11 @@ export const StoryColumnAlign = () => {
     </div>
     <p>horizontal-align</p>
     <div class="row">
-      ${aligns.map(
+      ${aligns2.map(
         align => html/*html*/ `
           <div class="col tall">
             <p class="info"><b>${align}</b></p>
-            <zen-space vertical horizontal-align="${align}" padding="sm">
+            <zen-space vertical horizontal-align="${align}" padding="xs">
               <div class="item">Item</div>
               <div class="item tall slim">Tall</div>
               <div class="item short">Short</div>

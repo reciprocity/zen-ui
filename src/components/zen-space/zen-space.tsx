@@ -1,7 +1,15 @@
 import { Component, Host, h, Prop, Watch, State } from '@stencil/core';
 import { Size, None } from '../helpers/types';
 
-type FlexAlign = 'start' | 'end' | 'center' | 'baseline' | 'stretch';
+type FlexAlign =
+  | 'start'
+  | 'end'
+  | 'center'
+  | 'baseline'
+  | 'stretch'
+  | 'space-between'
+  | 'space-around'
+  | 'space-evenly';
 
 @Component({
   tag: 'zen-space',
