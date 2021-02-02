@@ -17,10 +17,10 @@ export const StoryWithControls = args => {
     <zen-button @click="${showModal}">Show Editor</zen-button>
     <zen-modal
       id="modal1"
-      @cancelClicked="${e => {
+      @cancel="${e => {
         e.target.show = false;
       }}"
-      @okClicked="${e => {
+      @ok="${e => {
         e.target.show = false;
       }}"
       ...="${spreadArgs(args, argTypes)}"
@@ -32,7 +32,7 @@ export const StoryWithControls = args => {
         iaculis aliquam pharetra.</zen-text
       >
     </zen-modal>
-    ${action('#modal1', ['cancelClicked', 'okClicked'])}
+    ${action('#modal1', ['cancel', 'ok'])}
   `;
 };
 
@@ -70,10 +70,10 @@ export const StoryMultipleModals = () => {
     <zen-modal
       id="confirm"
       label="Confirmation"
-      @cancelClicked="${e => {
+      @cancel="${e => {
         e.target.show = false;
       }}"
-      @okClicked="${e => {
+      @ok="${e => {
         e.target.show = false;
       }}"
     >
