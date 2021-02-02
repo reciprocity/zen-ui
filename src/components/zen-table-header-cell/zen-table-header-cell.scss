@@ -14,3 +14,15 @@
   position: sticky;
   top: 0;
 }
+
+:host:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 100%;
+}
+
+:host:after {
+  bottom: -2px;
+  border-bottom: 2px solid $color-gray-200;
+}
