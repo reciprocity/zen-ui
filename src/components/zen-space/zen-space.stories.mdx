@@ -61,7 +61,7 @@ const css = /*css*/ `
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
   }
-`
+`;
 
 import data from '../../../stencilDocs.json';
 const compData = data.components.find(n => n.tag === 'zen-space');
@@ -72,27 +72,31 @@ const argTypes = getArgTypes(compData);
 export const StorySpacing = () => {
   const column1 = ['none', 'xs', 'sm'];
   const column2 = ['md', 'lg', 'xl'];
-  return html/*html*/`
+  return html/*html*/ `
     <div class="row">
       <div class="col">
-        ${column1.map(size => html/*html*/`
+        ${column1.map(
+          size => html/*html*/ `
             <p class="info"><b>${size}</b></p>
             <zen-space spacing="${size}" padding="sm">
               <div class="item">Item 1</div>
               <div class="item">Item 2</div>
               <div class="item">Item 3</div>
             </zen-space>
-        `)}
+          `,
+        )}
       </div>
       <div class="col">
-        ${column2.map(size => html/*html*/`
+        ${column2.map(
+          size => html/*html*/ `
             <p class="info"><b>${size}</b></p>
             <zen-space spacing="${size}" padding="sm">
               <div class="item">Item 1</div>
               <div class="item">Item 2</div>
               <div class="item">Item 3</div>
             </zen-space>
-        `)}
+          `,
+        )}
       </div>
     </div>
   `;
@@ -100,11 +104,12 @@ export const StorySpacing = () => {
 
 export const StoryRowAlign = () => {
   const aligns = ['start', 'end', 'center', 'baseline', 'stretch'];
-  return html/*html*/`
+  return html/*html*/ `
     <div class="row">
       <div class="col">
         <p>vertical-align</p>
-        ${aligns.map(align => html/*html*/`
+        ${aligns.map(
+          align => html/*html*/ `
             <p class="info"><b>${align}</b></p>
             <zen-space vertical-align="${align}" horizontal-align="center" padding="sm">
               <div class="item">Item</div>
@@ -112,11 +117,13 @@ export const StoryRowAlign = () => {
               <div class="item short">Short</div>
               <div class="item tall">Giant</div>
             </zen-space>
-        `)}
+          `,
+        )}
       </div>
       <div class="col">
         <p>horizontal-align</p>
-        ${aligns.map(align => html/*html*/`
+        ${aligns.map(
+          align => html/*html*/ `
             <p class="info"><b>${align}</b></p>
             <zen-space horizontal-align="${align}" padding="sm">
               <div class="item">Item</div>
@@ -124,7 +131,8 @@ export const StoryRowAlign = () => {
               <div class="item short">Short</div>
               <div class="item tall">Giant</div>
             </zen-space>
-        `)}
+          `,
+        )}
       </div>
     </div>
   `;
@@ -132,59 +140,67 @@ export const StoryRowAlign = () => {
 
 export const StoryColumnAlign = () => {
   const aligns = ['start', 'end', 'center', 'baseline', 'stretch'];
-  return html/*html*/`
+  return html/*html*/ `
     <p>vertical-align</p>
     <div class="row">
-      ${aligns.map(align => html/*html*/`
-        <div class="col tall">
-          <p class="info"><b>${align}</b></p>
-          <zen-space vertical vertical-align="${align}" horizontal-align="center" padding="sm">
-            <div class="item">Item</div>
-            <div class="item tall slim">Tall</div>
-            <div class="item short">Short</div>
-            <div class="item tall">Giant</div>
-          </zen-space>
-        </div>
-      `)}
+      ${aligns.map(
+        align => html/*html*/ `
+          <div class="col tall">
+            <p class="info"><b>${align}</b></p>
+            <zen-space vertical vertical-align="${align}" horizontal-align="center" padding="sm">
+              <div class="item">Item</div>
+              <div class="item tall slim">Tall</div>
+              <div class="item short">Short</div>
+              <div class="item tall">Giant</div>
+            </zen-space>
+          </div>
+        `,
+      )}
     </div>
     <p>horizontal-align</p>
     <div class="row">
-      ${aligns.map(align => html/*html*/`
-        <div class="col tall">
-          <p class="info"><b>${align}</b></p>
-          <zen-space vertical horizontal-align="${align}" padding="sm">
-            <div class="item">Item</div>
-            <div class="item tall slim">Tall</div>
-            <div class="item short">Short</div>
-            <div class="item tall">Giant</div>
-          </zen-space>
-        </div>
-      `)}
+      ${aligns.map(
+        align => html/*html*/ `
+          <div class="col tall">
+            <p class="info"><b>${align}</b></p>
+            <zen-space vertical horizontal-align="${align}" padding="sm">
+              <div class="item">Item</div>
+              <div class="item tall slim">Tall</div>
+              <div class="item short">Short</div>
+              <div class="item tall">Giant</div>
+            </zen-space>
+          </div>
+        `,
+      )}
     </div>
   `;
 };
 
 export const StoryPadding = () => {
   const values = ['lg', 'sm lg', 'sm sm xl lg'];
-  return html/*html*/`
+  return html/*html*/ `
     <div class="row">
-      ${values.map(padding => html/*html*/`
-        <div class="story">
-          <p class="info"><b>"${padding}"</b></p>
-          <zen-space padding="${padding}" horizontal-align="stretch" vertical-align="stretch">
+      ${values.map(
+        padding => html/*html*/ `
+          <div class="story">
+            <p class="info"><b>"${padding}"</b></p>
+            <zen-space padding="${padding}" horizontal-align="stretch" vertical-align="stretch">
               <div class="item">Item 1</div>
               <div class="item">Item 2</div>
               <div class="item">Item 3</div>
             </zen-space>
-        </div>
-      `)}
+          </div>
+        `,
+      )}
     </div>
   `;
 };
 
 export const StoryWithControls = args => {
   return html/*html*/ `
-    <style>${css}</style>
+    <style>
+      ${css}
+    </style>
     <zen-space class="with-controls" ...="${spreadArgs(args)}">
       <div class="item">Item</div>
       <div class="item tall slim">Tall</div>
@@ -208,11 +224,7 @@ Under the hood it uses <code>flex-box</code>.
 - Use different values for prop `spacing` to determine space between the items
 
 <Canvas>
-  <Story
-    name="sizes"
-  >
-    {StorySpacing.bind({})}
-  </Story>
+  <Story name="sizes">{StorySpacing.bind({})}</Story>
 </Canvas>
 
 ### 2. Align content of row
@@ -220,11 +232,7 @@ Under the hood it uses <code>flex-box</code>.
 - Use props `vertical-align` and `horizontal-align` to align items
 
 <Canvas>
-  <Story
-    name="aligns"
-  >
-    {StoryRowAlign.bind({})}
-  </Story>
+  <Story name="aligns">{StoryRowAlign.bind({})}</Story>
 </Canvas>
 
 ### 3. Align content of column
@@ -233,11 +241,7 @@ Under the hood it uses <code>flex-box</code>.
 - Use props `vertical-align` and `horizontal-align` to align items
 
 <Canvas>
-  <Story
-    name="alignsColumn"
-  >
-    {StoryColumnAlign.bind({})}
-  </Story>
+  <Story name="alignsColumn">{StoryColumnAlign.bind({})}</Story>
 </Canvas>
 
 ### 4. Inner padding - Shorthand Property
@@ -246,11 +250,7 @@ Under the hood it uses <code>flex-box</code>.
 - Same as you can do with normal `padding` and `margin` css properties.
 
 <Canvas>
-  <Story
-    name="paddings"
-  >
-    {StoryPadding.bind({})}
-  </Story>
+  <Story name="paddings">{StoryPadding.bind({})}</Story>
 </Canvas>
 
 ## Properties
