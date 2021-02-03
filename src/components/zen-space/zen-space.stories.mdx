@@ -24,6 +24,9 @@ const css = /*css*/ `
     margin: 0 0.5rem 1.5rem;
     width: 300px;
   }
+  .story.wide {
+    width: calc(50% - 2 * 0.5rem);
+  }
   .story.tall {
     width: 100px;
   }
@@ -49,6 +52,9 @@ const css = /*css*/ `
     background-color: #0078cd;
     padding-left: 0.25rem;
     padding-right: 0.25rem;
+  }
+  .item.dark {
+    background-color: #0078cd;
   }
   .item.short {
     padding-top:0;
@@ -201,6 +207,46 @@ export const StoryWithControls = args => {
   `;
 };
 
+export const StoryCustomItems = args => {
+  return html/*html*/ `
+    <div class="row">
+      <div class="story wide">
+        <p>align-right</p>
+        <zen-space padding="xs">
+          <div class="item">Item 1</div>
+          <div class="item">Item 2</div>
+          <div class="item dark" space-before>space-before</div>
+        </zen-space>
+      </div>
+      <div class="story wide">
+        <p>space-after + space-before</p>
+        <zen-space padding="xs">
+          <div class="item">Item 1</div>
+          <div class="item dark" space-before>space-before</div>
+          <div class="item dark" space-after>space-after</div>
+          <div class="item">Item 2</div>
+        </zen-space>
+      </div>
+      <div class="story wide">
+        <p>fill</p>
+        <zen-space padding="xs">
+          <div class="item">Item 1</div>
+          <div class="item dark" fill>fill</div>
+          <div class="item">Item 3</div>
+        </zen-space>
+      </div>
+      <div class="story wide">
+        <p>fill-lg</p>
+        <zen-space padding="xs">
+          <div class="item dark" fill>fill</div>
+          <div class="item dark" fill-lg>fill-lg</div>
+          <div class="item dark" fill>fill</div>
+        </zen-space>
+      </div>
+    </div>
+  `;
+};
+
 # Space
 
 Spacing component for quick and standradized elements layouting.<br/>
@@ -223,11 +269,13 @@ Under the hood it uses <code>flex-box</code>.
 - Use props `vertical-align` and `horizontal-align` to align items
 
 **Vertical align:**
+
 <Canvas>
   <Story name="alignsVert">{StoryRowAlignVert.bind({})}</Story>
 </Canvas>
 
 **Horizontal align:**
+
 <Canvas>
   <Story name="alignsHorz">{StoryRowAlignHorz.bind({})}</Story>
 </Canvas>
@@ -238,11 +286,13 @@ Under the hood it uses <code>flex-box</code>.
 - Use props `vertical-align` and `horizontal-align` to align items
 
 **Vertical align:**
+
 <Canvas>
   <Story name="alignsColumnVert">{StoryColumnAlignVert.bind({})}</Story>
 </Canvas>
 
 **Horizontal align:**
+
 <Canvas>
   <Story name="alignsColumnHorz">{StoryColumnAlignHorz.bind({})}</Story>
 </Canvas>
@@ -254,6 +304,20 @@ Under the hood it uses <code>flex-box</code>.
 
 <Canvas>
   <Story name="paddings">{StoryPadding.bind({})}</Story>
+</Canvas>
+
+### 4. Special children props
+
+- Direct children inside `zen-space` supports a few special attributes, that enables special layouts:
+
+  - `space-before` Space before item _(margin-left: auto)_
+  - `space-after` Space after item _(margin-right: auto)_
+  - `fill` Fill remaining space with item _(flex-grow: 1)_
+  - `fill-lg` Take more 2x as much remaining space _(flex-grow: 2)_
+  - `fill-xl` Take more 4x as much remaining space _(flex-grow: 4)_
+
+<Canvas>
+  <Story name="children">{StoryCustomItems.bind({})}</Story>
 </Canvas>
 
 ## Properties
