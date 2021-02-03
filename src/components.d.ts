@@ -203,6 +203,20 @@ export namespace Components {
          */
         "value"?: string;
     }
+    interface ZenModal {
+        /**
+          * Hide default top-right X and default Cancel button
+         */
+        "hideCancel": boolean;
+        /**
+          * Modal title (irrelevant if slot `header` passed)
+         */
+        "label": string;
+        /**
+          * Set `true` to show and `false` to hide modal
+         */
+        "show": false;
+    }
     interface ZenNotification {
         /**
           * Can dismiss
@@ -311,27 +325,27 @@ export namespace Components {
         /**
           * Render bold text
          */
-        "bold": false;
+        "bold": boolean;
         /**
           * Disabled
          */
-        "disabled": false;
+        "disabled": boolean;
         /**
           * Layout as inlined
          */
-        "inline": false;
+        "inline": boolean;
         /**
           * Render italic text
          */
-        "italic": false;
+        "italic": boolean;
         /**
           * Convert casing to lowercase
          */
-        "lowercase": false;
+        "lowercase": boolean;
         /**
           * Show text as gray. Useful for disabled things
          */
-        "pale": false;
+        "pale": boolean;
         /**
           * Shows a red asterisk at the end
          */
@@ -343,19 +357,19 @@ export namespace Components {
         /**
           * Strikethrough
          */
-        "strikethrough": false;
+        "strikethrough": boolean;
         /**
           * Truncate
          */
-        "truncate": false;
+        "truncate": boolean;
         /**
           * Underlined
          */
-        "underline": false;
+        "underline": boolean;
         /**
           * Convert casing to uppercase
          */
-        "uppercase": false;
+        "uppercase": boolean;
         /**
           * Apply heading styles
          */
@@ -503,6 +517,12 @@ declare global {
         prototype: HTMLZenInputElement;
         new (): HTMLZenInputElement;
     };
+    interface HTMLZenModalElement extends Components.ZenModal, HTMLStencilElement {
+    }
+    var HTMLZenModalElement: {
+        prototype: HTMLZenModalElement;
+        new (): HTMLZenModalElement;
+    };
     interface HTMLZenNotificationElement extends Components.ZenNotification, HTMLStencilElement {
     }
     var HTMLZenNotificationElement: {
@@ -596,6 +616,7 @@ declare global {
         "zen-form-group": HTMLZenFormGroupElement;
         "zen-icon": HTMLZenIconElement;
         "zen-input": HTMLZenInputElement;
+        "zen-modal": HTMLZenModalElement;
         "zen-notification": HTMLZenNotificationElement;
         "zen-option": HTMLZenOptionElement;
         "zen-progress-tracker": HTMLZenProgressTrackerElement;
@@ -796,6 +817,28 @@ declare namespace LocalJSX {
          */
         "value"?: string;
     }
+    interface ZenModal {
+        /**
+          * Hide default top-right X and default Cancel button
+         */
+        "hideCancel"?: boolean;
+        /**
+          * Modal title (irrelevant if slot `header` passed)
+         */
+        "label"?: string;
+        /**
+          * Top-right X button or default Cancel button clicked
+         */
+        "onCancel"?: (event: CustomEvent<void>) => void;
+        /**
+          * Default Ok button clicked (irrelevant if slot `buttons` passed)
+         */
+        "onOk"?: (event: CustomEvent<void>) => void;
+        /**
+          * Set `true` to show and `false` to hide modal
+         */
+        "show"?: false;
+    }
     interface ZenNotification {
         /**
           * Can dismiss
@@ -904,27 +947,27 @@ declare namespace LocalJSX {
         /**
           * Render bold text
          */
-        "bold"?: false;
+        "bold"?: boolean;
         /**
           * Disabled
          */
-        "disabled"?: false;
+        "disabled"?: boolean;
         /**
           * Layout as inlined
          */
-        "inline"?: false;
+        "inline"?: boolean;
         /**
           * Render italic text
          */
-        "italic"?: false;
+        "italic"?: boolean;
         /**
           * Convert casing to lowercase
          */
-        "lowercase"?: false;
+        "lowercase"?: boolean;
         /**
           * Show text as gray. Useful for disabled things
          */
-        "pale"?: false;
+        "pale"?: boolean;
         /**
           * Shows a red asterisk at the end
          */
@@ -936,19 +979,19 @@ declare namespace LocalJSX {
         /**
           * Strikethrough
          */
-        "strikethrough"?: false;
+        "strikethrough"?: boolean;
         /**
           * Truncate
          */
-        "truncate"?: false;
+        "truncate"?: boolean;
         /**
           * Underlined
          */
-        "underline"?: false;
+        "underline"?: boolean;
         /**
           * Convert casing to uppercase
          */
-        "uppercase"?: false;
+        "uppercase"?: boolean;
         /**
           * Apply heading styles
          */
@@ -1025,6 +1068,7 @@ declare namespace LocalJSX {
         "zen-form-group": ZenFormGroup;
         "zen-icon": ZenIcon;
         "zen-input": ZenInput;
+        "zen-modal": ZenModal;
         "zen-notification": ZenNotification;
         "zen-option": ZenOption;
         "zen-progress-tracker": ZenProgressTracker;
@@ -1058,6 +1102,7 @@ declare module "@stencil/core" {
             "zen-form-group": LocalJSX.ZenFormGroup & JSXBase.HTMLAttributes<HTMLZenFormGroupElement>;
             "zen-icon": LocalJSX.ZenIcon & JSXBase.HTMLAttributes<HTMLZenIconElement>;
             "zen-input": LocalJSX.ZenInput & JSXBase.HTMLAttributes<HTMLZenInputElement>;
+            "zen-modal": LocalJSX.ZenModal & JSXBase.HTMLAttributes<HTMLZenModalElement>;
             "zen-notification": LocalJSX.ZenNotification & JSXBase.HTMLAttributes<HTMLZenNotificationElement>;
             "zen-option": LocalJSX.ZenOption & JSXBase.HTMLAttributes<HTMLZenOptionElement>;
             "zen-progress-tracker": LocalJSX.ZenProgressTracker & JSXBase.HTMLAttributes<HTMLZenProgressTrackerElement>;

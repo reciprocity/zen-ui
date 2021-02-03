@@ -13,7 +13,7 @@ export type Duration = 'none' | 'short' | 'medium' | 'long';
 
 export type AvatarIconSize = 'sm' | 'md' | 'lg';
 
-export type TextSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+export type TextSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';
 
 export type IconSizes = 'md' | 'lg';
 

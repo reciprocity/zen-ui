@@ -14,37 +14,37 @@ export class ZenText {
   @Prop({ reflect: true }) readonly variant: TextVariant = null;
 
   /** Render bold text */
-  @Prop({ reflect: true }) readonly bold = false;
+  @Prop({ reflect: true }) readonly bold: boolean = false;
 
   /** Render italic text */
-  @Prop({ reflect: true }) readonly italic = false;
+  @Prop({ reflect: true }) readonly italic: boolean = false;
 
   /** Convert casing to uppercase */
-  @Prop({ reflect: true }) readonly uppercase = false;
+  @Prop({ reflect: true }) readonly uppercase: boolean = false;
 
   /** Convert casing to lowercase */
-  @Prop({ reflect: true }) readonly lowercase = false;
+  @Prop({ reflect: true }) readonly lowercase: boolean = false;
 
   /** Layout as inlined */
-  @Prop({ reflect: true }) readonly inline = false;
+  @Prop({ reflect: true }) readonly inline: boolean = false;
 
   /** Strikethrough */
-  @Prop({ reflect: true }) readonly strikethrough = false;
+  @Prop({ reflect: true }) readonly strikethrough: boolean = false;
 
   /** Underlined */
-  @Prop({ reflect: true }) readonly underline = false;
+  @Prop({ reflect: true }) readonly underline: boolean = false;
 
   /** Align content to left, right, center (text-align) */
   @Prop({ reflect: true }) readonly align: Align = 'left';
 
   /** Truncate */
-  @Prop({ reflect: true }) readonly truncate = false;
+  @Prop({ reflect: true }) readonly truncate: boolean = false;
 
   /** Show text as gray. Useful for disabled things */
-  @Prop({ reflect: true }) readonly pale = false;
+  @Prop({ reflect: true }) readonly pale: boolean = false;
 
   /** Disabled */
-  @Prop({ reflect: true }) readonly disabled = false;
+  @Prop({ reflect: true }) readonly disabled: boolean = false;
 
   /** Shows a red asterisk at the end */
   @Prop({ reflect: true }) readonly required = false;

@@ -1,0 +1,93 @@
+@import '../../zen-styles/variables.scss';
+
+$padding-x: 1.6rem;
+$show-time: 0.3s;
+
+:host {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  min-height: 100vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.dimmer {
+  pointer-events: all;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-image: radial-gradient(rgb(0 0 0 / 40%), rgb(0 0 0 / 60%));
+  opacity: 1;
+  transition: opacity $show-time linear;
+
+  &[animate='out-end'],
+  &[animate='in-start'] {
+    opacity: 0;
+  }
+}
+
+.window {
+  pointer-events: all;
+  position: relative;
+  background-color: $color-white;
+  border-radius: 3px;
+  box-shadow: 2px 6px 30px rgba(#000, 0.2);
+  min-width: 500px;
+  max-width: 1000px; // todo: remove this when we get size definitions from designers
+  transition: transform $show-time, opacity $show-time ease-out;
+
+  &[animate='in-start'] {
+    opacity: 0;
+    transform: translate(0, 30px);
+  }
+  &[animate='out-end'] {
+    opacity: 0;
+    transform: translate(0, -30px);
+  }
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  padding: 1rem 0 1rem $padding-x;
+}
+
+.x-button {
+  margin-left: auto;
+  font-size: $text-xl;
+  cursor: pointer;
+  color: $color-gray-300;
+  @include noselect;
+  padding: 0.2rem 1rem;
+}
+
+.content {
+  padding: 1.6rem $padding-x;
+}
+
+.buttons-row,
+::slotted([slot='buttons']) {
+  display: flex;
+}
+
+zen-button {
+  min-width: 4.8rem;
+}
+
+.ml-4 {
+  margin-left: 0.4rem !important;
+}
+
+.footer {
+  padding: 0.8rem $padding-x;
+  border-top: 1px solid $color-gray-200;
+  display: flex;
+  justify-content: flex-end;
+}

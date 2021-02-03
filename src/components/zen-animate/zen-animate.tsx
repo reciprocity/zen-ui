@@ -1,5 +1,5 @@
 import { Component, h, Prop, Watch, State, Element } from '@stencil/core';
-import { waitNextFrame, getSlotElement } from '../helpers/helpers';
+import { waitNextFrame, getDefaultSlotContent } from '../helpers/helpers';
 
 @Component({
   tag: 'zen-animate',
@@ -24,21 +24,33 @@ export class ZenAnimate {
   }
 
   async componentDidRender(): Promise<void> {
-    const slot = getSlotElement(this.hostElement);
-    if (!slot) return;
+    let slot = getDefaultSlotContent(this.hostElement);
 
-    slot.setAttribute('animate', this.show ? 'in-start' : 'out-start');
+    if (!slot.length && this.show) {
+      this.doShow = true;
+      await waitNextFrame();
+      slot = getDefaultSlotContent(this.hostElement);
+    }
+
+    if (!slot.length) return;
+
+    slot.forEach(element => {
+      element.setAttribute('animate', this.show ? 'in-start' : 'out-start');
+    });
 
     await waitNextFrame();
 
-    slot.setAttribute('animate', this.show ? 'in-end' : 'out-end');
+    slot.forEach(element => {
+      element.setAttribute('animate', this.show ? 'in-end' : 'out-end');
+    });
 
     if (!this.show) {
       // Remove element with delay, so transition finishes first:
-      const transition = parseFloat(getComputedStyle(slot)['transitionDuration']) * 1000;
+      const transition = parseFloat(getComputedStyle(slot[0])['transitionDuration']) * 1000;
+
       this.hideTimer = setTimeout(() => {
         this.doShow = false;
-      }, transition);
+      }, transition || 10);
     }
   }
 

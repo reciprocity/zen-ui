@@ -1,7 +1,7 @@
 import stencilDocs from '../../stencilDocs.json';
 import { spread } from '@open-wc/lit-helpers';
 import { camelKeysToKebab } from './utils';
-import { camelCase } from 'lodash';
+import camelCase from 'lodash/camelCase';
 
 export function getComponentData(componentName) {
   return stencilDocs.components.find(n => n.tag === componentName);

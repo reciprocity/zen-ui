@@ -22,7 +22,7 @@ export function getSlotElement(host: HTMLElement, slotName?: string): HTMLElemen
 
 export function getDefaultSlotContent(host: HTMLElement): Element[] {
   const slot = host.shadowRoot.querySelector('slot:not([name])') as HTMLSlotElement;
-  if (!slot.assignedElements) return [];
+  if (!slot || !slot.assignedElements) return [];
   return slot.assignedElements();
 }
 
@@ -60,4 +60,12 @@ export function oppositePosition(position: Position): Position {
 
 export function getComposedPath(event: MouseEvent): EventTarget[] {
   return event.composedPath();
+}
+
+export function toggleAttribute(element: Element, attribute: string, value: string): void {
+  if (value) {
+    element.setAttribute(attribute, value);
+  } else {
+    element.removeAttribute(attribute);
+  }
 }
