@@ -6,7 +6,7 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { StringifiedJson } from "./stories/components/color-swatch-group/color-swatch-group";
-import { Align, AvatarIconSize, Duration, IconSizes, NotificationVariant, Position, TextSize, TextVariant, TooltipVariant } from "./components/helpers/types";
+import { Align, AvatarIconSize, Duration, IconSizes, None, NotificationVariant, Position, Size, TextSize, TextVariant, TooltipVariant } from "./components/helpers/types";
 import { ButtonVariants } from "./components/zen-button/types";
 import { OptionValue } from "./components/zen-menu-item/zen-option";
 import { IconDefinition } from "@fortawesome/pro-light-svg-icons";
@@ -287,6 +287,32 @@ export namespace Components {
          */
         "steps": Array<StepItem>;
     }
+    interface ZenSpace {
+        /**
+          * Horizontal align of items
+         */
+        "horizontalAlign": FlexAlign;
+        /**
+          * Break row/column if content doesn't fit
+         */
+        "noWrap": boolean;
+        /**
+          * Inner spacing of container
+         */
+        "padding": Size | None | string;
+        /**
+          * Spacing between items
+         */
+        "spacing": Size | None;
+        /**
+          * Is it row or column?
+         */
+        "vertical": boolean;
+        /**
+          * Vertical align of items
+         */
+        "verticalAlign": FlexAlign;
+    }
     interface ZenSpinner {
     }
     interface ZenTable {
@@ -541,6 +567,12 @@ declare global {
         prototype: HTMLZenProgressTrackerElement;
         new (): HTMLZenProgressTrackerElement;
     };
+    interface HTMLZenSpaceElement extends Components.ZenSpace, HTMLStencilElement {
+    }
+    var HTMLZenSpaceElement: {
+        prototype: HTMLZenSpaceElement;
+        new (): HTMLZenSpaceElement;
+    };
     interface HTMLZenSpinnerElement extends Components.ZenSpinner, HTMLStencilElement {
     }
     var HTMLZenSpinnerElement: {
@@ -620,6 +652,7 @@ declare global {
         "zen-notification": HTMLZenNotificationElement;
         "zen-option": HTMLZenOptionElement;
         "zen-progress-tracker": HTMLZenProgressTrackerElement;
+        "zen-space": HTMLZenSpaceElement;
         "zen-spinner": HTMLZenSpinnerElement;
         "zen-table": HTMLZenTableElement;
         "zen-table-cell": HTMLZenTableCellElement;
@@ -909,6 +942,32 @@ declare namespace LocalJSX {
          */
         "steps"?: Array<StepItem>;
     }
+    interface ZenSpace {
+        /**
+          * Horizontal align of items
+         */
+        "horizontalAlign"?: FlexAlign;
+        /**
+          * Break row/column if content doesn't fit
+         */
+        "noWrap"?: boolean;
+        /**
+          * Inner spacing of container
+         */
+        "padding"?: Size | None | string;
+        /**
+          * Spacing between items
+         */
+        "spacing"?: Size | None;
+        /**
+          * Is it row or column?
+         */
+        "vertical"?: boolean;
+        /**
+          * Vertical align of items
+         */
+        "verticalAlign"?: FlexAlign;
+    }
     interface ZenSpinner {
     }
     interface ZenTable {
@@ -1072,6 +1131,7 @@ declare namespace LocalJSX {
         "zen-notification": ZenNotification;
         "zen-option": ZenOption;
         "zen-progress-tracker": ZenProgressTracker;
+        "zen-space": ZenSpace;
         "zen-spinner": ZenSpinner;
         "zen-table": ZenTable;
         "zen-table-cell": ZenTableCell;
@@ -1106,6 +1166,7 @@ declare module "@stencil/core" {
             "zen-notification": LocalJSX.ZenNotification & JSXBase.HTMLAttributes<HTMLZenNotificationElement>;
             "zen-option": LocalJSX.ZenOption & JSXBase.HTMLAttributes<HTMLZenOptionElement>;
             "zen-progress-tracker": LocalJSX.ZenProgressTracker & JSXBase.HTMLAttributes<HTMLZenProgressTrackerElement>;
+            "zen-space": LocalJSX.ZenSpace & JSXBase.HTMLAttributes<HTMLZenSpaceElement>;
             "zen-spinner": LocalJSX.ZenSpinner & JSXBase.HTMLAttributes<HTMLZenSpinnerElement>;
             "zen-table": LocalJSX.ZenTable & JSXBase.HTMLAttributes<HTMLZenTableElement>;
             "zen-table-cell": LocalJSX.ZenTableCell & JSXBase.HTMLAttributes<HTMLZenTableCellElement>;
