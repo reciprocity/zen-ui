@@ -8,13 +8,35 @@ const argTypes = getArgTypes(compData);
 
 <Meta title="Forms/Radio" component="zen-radio" argTypes={argTypes} />
 
+export const StoryRadiosGroup = () => {
+  return html/*html*/ `
+    <zen-radio group="options1">Option 1</zen-radio>
+    <zen-radio group="options1">Option 2</zen-radio>
+    <zen-radio group="options1">Option 3</zen-radio>
+  `;
+};
+
 export const StoryWithControls = args => {
-  return html/*html*/ ` <zen-radio ...="${spreadArgs(args, argTypes)}"></zen-radio> `;
+  return html/*html*/ `
+    <zen-radio ...="${spreadArgs(args, argTypes)}">Option 1</zen-radio>
+  `;
 };
 
 # Radio
 
 Standard radio input component
+
+## Component previews
+
+<br />
+
+### 1. Group of radios
+
+- Todo...
+
+<Canvas>
+  <Story name="button">{StoryRadiosGroup.bind({})}</Story>
+</Canvas>
 
 ## Properties
 
