@@ -8,16 +8,16 @@ const argTypes = getArgTypes(compData);
 
 <Meta title="Avatar/Avatar Tooltips" component="zen-avatar-tooltip" argTypes={argTypes} />
 
-export const user =  [
-    {
-      userName: 'Mike Anderson',
-      email: 'mike.anderson@reciprocitylabs.com',
-      color: '#00528C',
-      background: '#D5E9FA',
-    }
-]
+export const user = [
+  {
+    userName: 'Mike Anderson',
+    email: 'mike.anderson@reciprocitylabs.com',
+    color: '#00528C',
+    background: '#D5E9FA',
+  },
+];
 
-export const users =  [
+export const users = [
   {
     userName: 'Mike Anderson',
     email: 'mike.anderson@reciprocitylabs.com',
@@ -53,17 +53,17 @@ export const users =  [
     color: '#00528C',
     background: '#D5E9FA',
   },
-]
+];
 
 export const StoryWithControls = args => {
   waitForElement('#avatar-tooltip-control', element => {
     element.users = user;
   });
-  return html/*html*/`
+  return html/*html*/ `
     <div class="my-48" style="font-size:12px; display: flex; justify-content: space-evenly;">
-        <div style="display: flex; flex-direction: column; align-items: center;">
-            <zen-avatar-tooltip id="avatar-tooltip-control" ...="${spreadArgs(args)}" />
-        </div>
+      <div style="display: flex; flex-direction: column; align-items: center;">
+        <zen-avatar-tooltip id="avatar-tooltip-control" ...="${spreadArgs(args)}" />
+      </div>
     </div>
   `;
 };
@@ -72,27 +72,27 @@ export const StoryAvatarWithTooltip = () => {
   waitForElement('#avatar-tooltip', element => {
     element.users = user;
   });
-  return html/*html*/`
+  return html/*html*/ `
     <div class="my-48" style="font-size:12px; display: flex; justify-content: space-evenly;">
       <div style="display: flex; flex-direction: column; align-items: center;">
         <zen-avatar-tooltip id="avatar-tooltip" />
       </div>
     </div>
   `;
-}
+};
 
 export const StoryAvatarWithTooltipMultipleUsers = () => {
   waitForElement('#avatar-tooltip-multi', element => {
     element.users = users;
   });
-  return html/*html*/`
+  return html/*html*/ `
     <div style="font-size:12px; display: flex; justify-content: space-evenly; margin-top:230px; height: 300px;">
       <div style="display: flex; flex-direction: column; align-items: center;">
         <zen-avatar-tooltip id="avatar-tooltip-multi" />
       </div>
     </div>
   `;
-}
+};
 
 # Profile icon with tooltip
 
@@ -121,7 +121,7 @@ Avatar tooltip
     name="default"
     args={{
       ...getDefaultArgs(argTypes),
-      users : {user}
+      users: { user },
     }}
   >
     {StoryWithControls.bind({})}

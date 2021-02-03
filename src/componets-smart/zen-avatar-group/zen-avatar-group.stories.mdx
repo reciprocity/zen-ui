@@ -8,7 +8,7 @@ const argTypes = getArgTypes(compData);
 
 <Meta title="Smart/Avatar Group" component="zen-avatar-group" argTypes={argTypes} />
 
-export const users =  [
+export const users = [
   {
     userName: 'Mike Anderson',
     email: 'mike.anderson@reciprocitylabs.com',
@@ -65,18 +65,19 @@ export const users =  [
     color: '#1B422E',
     background: '#D8F2E3',
   },
-]
+];
 
 export const StoryWithControls = args => {
   waitForElement('#avatar-group-control', element => {
     element.users = users;
   });
-  return html/*html*/`
-    <div style="font-size:12px; display: flex; justify-content: space-evenly; margin-top:230px; height: 300px;">
-        <div style="display: flex; flex-direction: column; align-items: center;">
-            <zen-avatar-group id="avatar-group-control" ...="${spreadArgs(args)}" />
-        </div>
-    </div>`;
+  return html/*html*/ ` <div
+    style="font-size:12px; display: flex; justify-content: space-evenly; margin-top:230px; height: 300px;"
+  >
+    <div style="display: flex; flex-direction: column; align-items: center;">
+      <zen-avatar-group id="avatar-group-control" ...="${spreadArgs(args)}" />
+    </div>
+  </div>`;
 };
 
 export const StoryAvatarGroup = () => {
@@ -90,8 +91,7 @@ export const StoryAvatarGroup = () => {
       </div>
     </div>
   `;
-}
-
+};
 
 # Profile Icons Group
 
@@ -114,7 +114,7 @@ Avatar Group component
     name="default"
     args={{
       ...getDefaultArgs(argTypes),
-      users : {users}
+      users: { users },
     }}
   >
     {StoryWithControls.bind({})}
