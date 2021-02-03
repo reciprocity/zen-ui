@@ -1,0 +1,8 @@
+:host {
+  display: block;
+}
+
+:host(.container) {
+  display: flex;
+  align-items: center;
+}
