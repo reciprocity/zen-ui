@@ -5,9 +5,12 @@ describe('Button visual tests', () => {
 
   const pageId = 'layout-space';
   const stories = ['story--layout-space--sizes',
-    'story--layout-space--aligns',
-    'story--layout-space--aligns-column',
+    'story--layout-space--aligns-vert',
+    'story--layout-space--aligns-horz',
+    'story--layout-space--aligns-column-vert',
+    'story--layout-space--aligns-column-horz',
     'story--layout-space--paddings',
+    'story--layout-space--children',
     'story--layout-space--default-story',
   ]
 
