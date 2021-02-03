@@ -307,6 +307,8 @@ export namespace Components {
          */
         "steps": Array<StepItem>;
     }
+    interface ZenRadio {
+    }
     interface ZenSpace {
         /**
           * Horizontal align of items
@@ -621,6 +623,12 @@ declare global {
         prototype: HTMLZenProgressTrackerElement;
         new (): HTMLZenProgressTrackerElement;
     };
+    interface HTMLZenRadioElement extends Components.ZenRadio, HTMLStencilElement {
+    }
+    var HTMLZenRadioElement: {
+        prototype: HTMLZenRadioElement;
+        new (): HTMLZenRadioElement;
+    };
     interface HTMLZenSpaceElement extends Components.ZenSpace, HTMLStencilElement {
     }
     var HTMLZenSpaceElement: {
@@ -716,6 +724,7 @@ declare global {
         "zen-notification": HTMLZenNotificationElement;
         "zen-option": HTMLZenOptionElement;
         "zen-progress-tracker": HTMLZenProgressTrackerElement;
+        "zen-radio": HTMLZenRadioElement;
         "zen-space": HTMLZenSpaceElement;
         "zen-spinner": HTMLZenSpinnerElement;
         "zen-table": HTMLZenTableElement;
@@ -1027,6 +1036,8 @@ declare namespace LocalJSX {
          */
         "steps"?: Array<StepItem>;
     }
+    interface ZenRadio {
+    }
     interface ZenSpace {
         /**
           * Horizontal align of items
@@ -1230,6 +1241,7 @@ declare namespace LocalJSX {
         "zen-notification": ZenNotification;
         "zen-option": ZenOption;
         "zen-progress-tracker": ZenProgressTracker;
+        "zen-radio": ZenRadio;
         "zen-space": ZenSpace;
         "zen-spinner": ZenSpinner;
         "zen-table": ZenTable;
@@ -1270,6 +1282,7 @@ declare module "@stencil/core" {
             "zen-notification": LocalJSX.ZenNotification & JSXBase.HTMLAttributes<HTMLZenNotificationElement>;
             "zen-option": LocalJSX.ZenOption & JSXBase.HTMLAttributes<HTMLZenOptionElement>;
             "zen-progress-tracker": LocalJSX.ZenProgressTracker & JSXBase.HTMLAttributes<HTMLZenProgressTrackerElement>;
+            "zen-radio": LocalJSX.ZenRadio & JSXBase.HTMLAttributes<HTMLZenRadioElement>;
             "zen-space": LocalJSX.ZenSpace & JSXBase.HTMLAttributes<HTMLZenSpaceElement>;
             "zen-spinner": LocalJSX.ZenSpinner & JSXBase.HTMLAttributes<HTMLZenSpinnerElement>;
             "zen-table": LocalJSX.ZenTable & JSXBase.HTMLAttributes<HTMLZenTableElement>;
