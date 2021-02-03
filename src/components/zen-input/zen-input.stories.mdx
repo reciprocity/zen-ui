@@ -14,7 +14,7 @@ import { faUser, faKey, faSearch } from '@fortawesome/pro-light-svg-icons';
 <Meta title="Forms/Input" component="zen-input" argTypes={argTypes} />
 
 export const StoryWithControls = args => html/*html*/ `
-  <zen-input id="input1" style="max-width: 300px" ...="${spreadArgs(args)}"></zen-input>
+  <zen-input id="input1" style="max-width: 300px" ...="${spreadArgs(args, argTypes)}"></zen-input>
   ${action('#input1', ['blur', 'focus', 'input', 'change'])}
 `;
 
