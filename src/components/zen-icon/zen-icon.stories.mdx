@@ -15,7 +15,7 @@ export const StoryDefault = args => {
   waitForElement('#zen-icon-element', element => {
     element.icon = args.icon;
   });
-  return html/*html*/ ` <zen-icon id="zen-icon-element" ...="${spreadArgs(args)}"></zen-icon> `;
+  return html/*html*/ ` <zen-icon id="zen-icon-element" ...="${spreadArgs(args, argTypes)}"></zen-icon> `;
 };
 
 # Icon

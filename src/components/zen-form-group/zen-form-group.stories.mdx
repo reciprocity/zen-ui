@@ -12,7 +12,7 @@ const argTypes = getArgTypes(compData);
 
 export const StoryWithControls = args => {
   return html/*html*/ `
-    <zen-form-group ...=${spreadArgs(args)}>
+    <zen-form-group ...=${spreadArgs(args, argTypes)}>
       <zen-text variant="label" required>Username</zen-text>
       <zen-input></zen-input>
       <zen-text variant="support">This field should be unique</zen-text>

@@ -27,7 +27,7 @@ export const Story2 = () => {
 };
 
 export const StoryWithControls = args => html/*html*/ `
-  <zen-card id="card0" ...="${spreadArgs(args)}">
+  <zen-card id="card0" ...="${spreadArgs(args, argTypes)}">
     <div style="padding: 1rem;">Content</div>
   </zen-card>
   ${action('#card1', eventHandles(['click']))}

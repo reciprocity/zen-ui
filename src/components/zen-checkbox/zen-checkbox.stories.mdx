@@ -10,7 +10,7 @@ const argTypes = getArgTypes(compData);
 <Meta title="Forms/Checkbox" component="zen-checkbox" argTypes={argTypes} />
 
 export const StoryWithControls = args => html/*html*/ `
-  <zen-checkbox id="story-with-ctrls-element" ...="${spreadArgs(args)}"></zen-checkbox>
+  <zen-checkbox id="story-with-ctrls-element" ...="${spreadArgs(args, argTypes)}"></zen-checkbox>
   ${action('#story-with-ctrls-element', ['change', 'click'])}
 `;
 

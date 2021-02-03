@@ -1,6 +1,7 @@
 import stencilDocs from '../../stencilDocs.json';
 import { spread } from '@open-wc/lit-helpers';
 import { camelKeysToKebab } from './utils';
+import { camelCase } from 'lodash';
 
 export function getComponentData(componentName) {
   return stencilDocs.components.find(n => n.tag === componentName);
@@ -74,11 +75,16 @@ export function getArgTypesAndArgs(componentName) {
   }
 }
 
-export function spreadArgs(args) {
+export function spreadArgs(args, argTypes) {
+  const isTrueByDefault = (prop) => {
+    return argTypes[camelCase(prop)] && argTypes[camelCase(prop)].defaultValue === true;
+  }
+
+  if (!argTypes) throw('argTypes.js: spreadArgs missing argTypes param');
   const attrs = camelKeysToKebab(args);
   for (const key in attrs) {
     if (!attrs.hasOwnProperty(key)) continue;
-    attrs[key] = attrs[key] === false ? null : attrs[key];
+    attrs[key] = attrs[key] === false && !isTrueByDefault(key) ? null : attrs[key];
   }
   return spread(attrs);
 }

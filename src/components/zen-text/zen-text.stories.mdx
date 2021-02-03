@@ -9,7 +9,7 @@ const argTypes = getArgTypes(compData);
 <Meta title="Typography/Text" component="zen-text" argTypes={argTypes} />
 
 export const StoryWithControls = args => {
-  return html/*html*/ `<zen-text ...="${spreadArgs(args)}">Sample text of Zen-text component</zen-text> `;
+  return html/*html*/ `<zen-text ...="${spreadArgs(args, argTypes)}">Sample text of Zen-text component</zen-text> `;
 };
 
 export const StorySizes = () => html/*html*/ `

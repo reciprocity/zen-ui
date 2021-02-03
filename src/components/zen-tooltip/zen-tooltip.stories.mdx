@@ -10,7 +10,7 @@ export const Template = args => {
   return html/*html*/ `
     <div style="text-align: center" class="my-48">
       <zen-button style="display:inline-block" label="Apply changes" variant="secondary"></zen-button>
-      <zen-tooltip ...="${spreadArgs(args)}"></zen-tooltip>
+      <zen-tooltip ...="${spreadArgs(args, argTypes)}"></zen-tooltip>
     </div>
   `;
 };
