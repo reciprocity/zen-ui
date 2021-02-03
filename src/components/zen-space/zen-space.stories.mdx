@@ -4,21 +4,16 @@ import { getArgTypes, getDefaultArgs, getComponentData, spreadArgs } from '../..
 const css = /*css*/ `
   .row {
     display: flex;
+    justify-content: start;
+    align-items: start;
     flex-wrap: wrap;
   }
   .col {
-    margin: 1rem;
-    flex: 1 0 0;
-  }
-  .col.tall {
-    margin: 1rem 0.5rem;
     flex: 1 0 0;
   }
   zen-space {
-    min-width: 300px;
-    max-width: 600px;
     border: 1px dashed #adb5bd;
-    border-radius: 2px;
+    border-radius: 3px;
   }
   zen-space.with-controls,
   zen-space[vertical] {
@@ -26,19 +21,23 @@ const css = /*css*/ `
     min-height: 250px;
   }
   .story {
-    margin: 0.5rem;
-    flex: 1 0 0;
-    min-width: 300px;
+    margin: 0 0.5rem 1.5rem;
+    width: 300px;
   }
-  .story zen-space {
-    min-width: 0;
+  .story.tall {
+    width: 100px;
+  }
+  p {
+    font-weight: bold;
+    font-size: 0.8rem;
+    padding-bottom: 0.25rem;
   }
   .item {
     width: auto;
     background-color: #82bcf1;
     color: #fff;
     border-radius: 3px;
-    padding: 0.2rem 1rem;
+    padding: 0.2rem 0.5rem;
     font-size: 0.875rem;
   }
   .item.tall {
@@ -56,18 +55,6 @@ const css = /*css*/ `
     padding-bottom:0;
     background-color: #abd2f5;
   }
-  p {
-    font-size: 0.875rem;
-  }
-  p.info {
-    padding-left: 1rem;
-    font-size: 0.875rem;
-    margin-top: 0.5rem;
-    margin-bottom: 0.25rem;
-  }
-  p.info.two-rows {
-    height: 2.4em;
-  }
 `;
 
 import data from '../../../stencilDocs.json';
@@ -77,85 +64,75 @@ const argTypes = getArgTypes(compData);
 <Meta title="Layout/Space" component="zen-space" argTypes={argTypes} />
 
 export const StorySpacing = () => {
-  const column1 = ['none', 'xs', 'sm'];
-  const column2 = ['md', 'lg', 'xl'];
+  const spacings = ['none', 'xs', 'sm', 'md', 'lg', 'xl'];
   return html/*html*/ `
     <div class="row">
-      <div class="col">
-        ${column1.map(
-          size => html/*html*/ `
-            <p class="info"><b>${size}</b></p>
+      ${spacings.map(
+        size => html/*html*/ `
+          <div class="story">
+            <p>${size}</p>
             <zen-space spacing="${size}" padding="xs">
-              <div class="item">Item 1</div>
-              <div class="item">Item 2</div>
-              <div class="item">Item 3</div>
+              <div class="item">Item</div>
+              <div class="item">Item</div>
+              <div class="item">Item</div>
             </zen-space>
-          `,
-        )}
-      </div>
-      <div class="col">
-        ${column2.map(
-          size => html/*html*/ `
-            <p class="info"><b>${size}</b></p>
-            <zen-space spacing="${size}" padding="xs">
-              <div class="item">Item 1</div>
-              <div class="item">Item 2</div>
-              <div class="item">Item 3</div>
-            </zen-space>
-          `,
-        )}
-      </div>
+          </div>
+        `,
+      )}
     </div>
   `;
 };
 
-export const StoryRowAlign = () => {
-  const aligns1 = ['start', 'end', 'center', 'baseline', 'stretch'];
-  const aligns2 = ['start', 'end', 'center', 'baseline', 'stretch', 'space-between', 'space-around', 'space-evenly'];
+export const StoryRowAlignVert = () => {
+  const values = ['start', 'end', 'center', 'baseline', 'stretch'];
   return html/*html*/ `
     <div class="row">
-      <div class="col">
-        <p>vertical-align</p>
-        ${aligns1.map(
-          align => html/*html*/ `
-            <p class="info"><b>${align}</b></p>
+      ${values.map(
+        align => html/*html*/ `
+          <div class="story">
+            <p>${align}</p>
             <zen-space vertical-align="${align}" horizontal-align="center" padding="xs">
               <div class="item">Item</div>
-              <div class="item tall slim">Tall</div>
-              <div class="item short">Short</div>
-              <div class="item tall">Giant</div>
+              <div class="item tall slim">Item</div>
+              <div class="item short">Item</div>
+              <div class="item tall">Item</div>
             </zen-space>
-          `,
-        )}
-      </div>
-      <div class="col">
-        <p>horizontal-align</p>
-        ${aligns2.map(
-          align => html/*html*/ `
-            <p class="info"><b>${align}</b></p>
-            <zen-space horizontal-align="${align}" padding="xs">
-              <div class="item">Item</div>
-              <div class="item tall slim">Tall</div>
-              <div class="item short">Short</div>
-              <div class="item tall">Giant</div>
-            </zen-space>
-          `,
-        )}
-      </div>
+          </div>
+        `,
+      )}
     </div>
   `;
 };
 
-export const StoryColumnAlign = () => {
-  const aligns1 = ['start', 'end', 'center', 'baseline', 'stretch', 'space-between', 'space-around', 'space-evenly'];
-  const aligns2 = ['start', 'end', 'center', 'baseline', 'stretch'];
+export const StoryRowAlignHorz = () => {
+  const values = ['start', 'end', 'center', 'baseline', 'stretch', 'space-between', 'space-around', 'space-evenly'];
   return html/*html*/ `
-    <p>vertical-align</p>
     <div class="row">
-      ${aligns1.map(
+      ${values.map(
         align => html/*html*/ `
-          <div class="col tall">
-            <p class="info two-rows"><b>${align}</b></p>
+          <div class="story">
+            <p>${align}</p>
+            <zen-space horizontal-align="${align}" padding="xs">
+              <div class="item">Item</div>
+              <div class="item tall slim">Item</div>
+              <div class="item short">Item</div>
+              <div class="item tall">Item</div>
+            </zen-space>
+          </div>
+        `,
+      )}
+    </div>
+  `;
+};
+
+export const StoryColumnAlignVert = () => {
+  const values = ['start', 'end', 'center', 'baseline', 'stretch', 'space-between', 'space-around', 'space-evenly'];
+  return html/*html*/ `
+    <div class="row">
+      ${values.map(
+        align => html/*html*/ `
+          <div class="story tall">
+            <p class="info">${align}</p>
             <zen-space vertical vertical-align="${align}" horizontal-align="center" padding="xs">
               <div class="item">Item</div>
               <div class="item tall slim">Tall</div>
@@ -166,12 +143,17 @@ export const StoryColumnAlign = () => {
         `,
       )}
     </div>
-    <p>horizontal-align</p>
+  `;
+};
+
+export const StoryColumnAlignHorz = () => {
+  const values = ['start', 'end', 'center', 'baseline', 'stretch'];
+  return html/*html*/ `
     <div class="row">
-      ${aligns2.map(
+      ${values.map(
         align => html/*html*/ `
-          <div class="col tall">
-            <p class="info"><b>${align}</b></p>
+          <div class="story tall">
+            <p>${align}</p>
             <zen-space vertical horizontal-align="${align}" padding="xs">
               <div class="item">Item</div>
               <div class="item tall slim">Tall</div>
@@ -192,7 +174,7 @@ export const StoryPadding = () => {
       ${values.map(
         padding => html/*html*/ `
           <div class="story">
-            <p class="info"><b>"${padding}"</b></p>
+            <p>"${padding}"</p>
             <zen-space padding="${padding}" horizontal-align="stretch" vertical-align="stretch">
               <div class="item">Item 1</div>
               <div class="item">Item 2</div>
@@ -236,21 +218,33 @@ Under the hood it uses <code>flex-box</code>.
   <Story name="sizes">{StorySpacing.bind({})}</Story>
 </Canvas>
 
-### 2. Align content of row
+### 2. Align content of ROW
 
 - Use props `vertical-align` and `horizontal-align` to align items
 
+**Vertical align:**
 <Canvas>
-  <Story name="aligns">{StoryRowAlign.bind({})}</Story>
+  <Story name="alignsVert">{StoryRowAlignVert.bind({})}</Story>
 </Canvas>
 
-### 3. Align content of column
+**Horizontal align:**
+<Canvas>
+  <Story name="alignsHorz">{StoryRowAlignHorz.bind({})}</Story>
+</Canvas>
+
+### 3. Align content of COLUMN
 
 - To align items vertically (column) set attr `vertical`
 - Use props `vertical-align` and `horizontal-align` to align items
 
+**Vertical align:**
 <Canvas>
-  <Story name="alignsColumn">{StoryColumnAlign.bind({})}</Story>
+  <Story name="alignsColumnVert">{StoryColumnAlignVert.bind({})}</Story>
+</Canvas>
+
+**Horizontal align:**
+<Canvas>
+  <Story name="alignsColumnHorz">{StoryColumnAlignHorz.bind({})}</Story>
 </Canvas>
 
 ### 4. Inner padding - Shorthand Property
