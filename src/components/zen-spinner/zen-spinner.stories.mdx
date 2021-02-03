@@ -9,7 +9,7 @@ const argTypes = getArgTypes(compData);
 <Meta title="Icons/Spinner" component="zen-spinner" argTypes={argTypes} />
 
 export const StoryWithControls = args => {
-  return html/*html*/ ` <zen-spinner ...="${spreadArgs(args)}"></zen-spinner> `;
+  return html/*html*/ ` <zen-spinner ...="${spreadArgs(args, argTypes)}"></zen-spinner> `;
 };
 
 export const StoryColors = () => {

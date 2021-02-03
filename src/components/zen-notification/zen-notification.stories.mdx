@@ -8,7 +8,7 @@ const argTypes = getArgTypes(compData);
 
 <Meta title="Notifications/Notification" component="zen-notification" argTypes={argTypes} />
 
-export const StoryWithControls = args => html/*html*/ ` <zen-notification ...="${spreadArgs(args)}" /> `;
+export const StoryWithControls = args => html/*html*/ ` <zen-notification ...="${spreadArgs(args, argTypes)}" /> `;
 
 export const StoryVariants = () => html/*html*/ ` <div>
     <zen-notification

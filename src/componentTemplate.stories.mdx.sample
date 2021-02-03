@@ -10,7 +10,7 @@ const argTypes = getArgTypes(compData);
 <Meta title="Developers/Template" component="zen-button" argTypes={argTypes} />
 
 export const StoryWithControls = args => html/*html*/ `
-  <zen-button id="button1" ...="${spreadArgs(args)}"> Button 1 </zen-button>
+  <zen-button id="button1" ...="${spreadArgs(args, argTypes)}"> Button 1 </zen-button>
   ${action('#button1', eventHandles(['click']))}
 `;
 

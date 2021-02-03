@@ -10,7 +10,8 @@ argTypes['color'].control = 'color';
 
 <Meta title="Icons/Avatar Icon" component="zen-avatar-icon" argTypes={argTypes} />
 
-export const StoryWithControls = args => html/*html*/ ` <zen-avatar-icon ...="${spreadArgs(args)}"></zen-avatar-icon>`;
+export const StoryWithControls = args =>
+  html/*html*/ ` <zen-avatar-icon ...="${spreadArgs(args, argTypes)}"></zen-avatar-icon>`;
 
 export const StoryAvatarVariants = () =>
   html/*html*/ `

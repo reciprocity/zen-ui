@@ -10,7 +10,7 @@ const argTypes = getArgTypes(compData);
 <Meta title="Forms/Textarea" component="zen-textarea" argTypes={argTypes} />
 
 export const StoryWithControls = args => html/*html*/ `
-  <zen-textarea id="textarea1" ...="${spreadArgs(args)}" />
+  <zen-textarea id="textarea1" ...="${spreadArgs(args, argTypes)}" />
   ${action('#textarea1', ['blur', 'focus', 'input', 'change'])}
 `;
 
