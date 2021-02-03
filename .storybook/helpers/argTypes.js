@@ -77,9 +77,10 @@ export function getArgTypesAndArgs(componentName) {
 
 export function spreadArgs(args, argTypes) {
   const isTrueByDefault = (prop) => {
-    return argTypes && argTypes[camelCase(prop)] && argTypes[camelCase(prop)].defaultValue === true;
+    return argTypes[camelCase(prop)] && argTypes[camelCase(prop)].defaultValue === true;
   }
 
+  if (!argTypes) throw('argTypes.js: spreadArgs missing argTypes param');
   const attrs = camelKeysToKebab(args);
   for (const key in attrs) {
     if (!attrs.hasOwnProperty(key)) continue;
