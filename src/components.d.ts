@@ -127,6 +127,8 @@ export namespace Components {
          */
         "required": false;
     }
+    interface ZenDivider {
+    }
     interface ZenDropdown {
         /**
           * Don't draw border around field
@@ -519,6 +521,12 @@ declare global {
         prototype: HTMLZenCheckboxElement;
         new (): HTMLZenCheckboxElement;
     };
+    interface HTMLZenDividerElement extends Components.ZenDivider, HTMLStencilElement {
+    }
+    var HTMLZenDividerElement: {
+        prototype: HTMLZenDividerElement;
+        new (): HTMLZenDividerElement;
+    };
     interface HTMLZenDropdownElement extends Components.ZenDropdown, HTMLStencilElement {
     }
     var HTMLZenDropdownElement: {
@@ -644,6 +652,7 @@ declare global {
         "zen-button": HTMLZenButtonElement;
         "zen-card": HTMLZenCardElement;
         "zen-checkbox": HTMLZenCheckboxElement;
+        "zen-divider": HTMLZenDividerElement;
         "zen-dropdown": HTMLZenDropdownElement;
         "zen-form-group": HTMLZenFormGroupElement;
         "zen-icon": HTMLZenIconElement;
@@ -777,6 +786,8 @@ declare namespace LocalJSX {
           * Shows a red asterisk after label.
          */
         "required"?: false;
+    }
+    interface ZenDivider {
     }
     interface ZenDropdown {
         /**
@@ -1123,6 +1134,7 @@ declare namespace LocalJSX {
         "zen-button": ZenButton;
         "zen-card": ZenCard;
         "zen-checkbox": ZenCheckbox;
+        "zen-divider": ZenDivider;
         "zen-dropdown": ZenDropdown;
         "zen-form-group": ZenFormGroup;
         "zen-icon": ZenIcon;
@@ -1158,6 +1170,7 @@ declare module "@stencil/core" {
             "zen-button": LocalJSX.ZenButton & JSXBase.HTMLAttributes<HTMLZenButtonElement>;
             "zen-card": LocalJSX.ZenCard & JSXBase.HTMLAttributes<HTMLZenCardElement>;
             "zen-checkbox": LocalJSX.ZenCheckbox & JSXBase.HTMLAttributes<HTMLZenCheckboxElement>;
+            "zen-divider": LocalJSX.ZenDivider & JSXBase.HTMLAttributes<HTMLZenDividerElement>;
             "zen-dropdown": LocalJSX.ZenDropdown & JSXBase.HTMLAttributes<HTMLZenDropdownElement>;
             "zen-form-group": LocalJSX.ZenFormGroup & JSXBase.HTMLAttributes<HTMLZenFormGroupElement>;
             "zen-icon": LocalJSX.ZenIcon & JSXBase.HTMLAttributes<HTMLZenIconElement>;
