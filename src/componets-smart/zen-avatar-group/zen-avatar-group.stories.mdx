@@ -6,7 +6,7 @@ import { waitForElement } from '../../../.storybook/helpers/utils';
 const compData = data.components.find(n => n.tag === 'zen-avatar-group');
 const argTypes = getArgTypes(compData);
 
-<Meta title="Smart/Avatar Group" component="zen-avatar-group" argTypes={argTypes} />
+<Meta title="In progress/Avatar Group" component="zen-avatar-group" argTypes={argTypes} />
 
 export const users = [
   {
@@ -75,7 +75,7 @@ export const StoryWithControls = args => {
     style="font-size:12px; display: flex; justify-content: space-evenly; margin-top:230px; height: 300px;"
   >
     <div style="display: flex; flex-direction: column; align-items: center;">
-      <zen-avatar-group id="avatar-group-control" ...="${spreadArgs(args)}" />
+      <zen-avatar-group id="avatar-group-control" ...="${spreadArgs(args, argTypes)}" />
     </div>
   </div>`;
 };

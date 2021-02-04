@@ -3,10 +3,10 @@ import { html } from 'lit-html';
 import { getArgTypes, getDefaultArgs, getComponentData, spreadArgs } from '../../../.storybook/helpers/argTypes';
 import data from '../../../stencilDocs.json';
 import { waitForElement } from '../../../.storybook/helpers/utils';
-const compData = data.components.find(n => n.tag === 'zen-avatar-tooltip');
+const compData = data.components.find(n => n.tag === 'zen-avatar');
 const argTypes = getArgTypes(compData);
 
-<Meta title="Avatar/Avatar Tooltips" component="zen-avatar-tooltip" argTypes={argTypes} />
+<Meta title="Icons/Avatar" component="zen-avatar" argTypes={argTypes} />
 
 export const user = [
   {
@@ -56,39 +56,39 @@ export const users = [
 ];
 
 export const StoryWithControls = args => {
-  waitForElement('#avatar-tooltip-control', element => {
+  waitForElement('#avatar-control', element => {
     element.users = user;
   });
   return html/*html*/ `
     <div class="my-48" style="font-size:12px; display: flex; justify-content: space-evenly;">
       <div style="display: flex; flex-direction: column; align-items: center;">
-        <zen-avatar-tooltip id="avatar-tooltip-control" ...="${spreadArgs(args)}" />
+        <zen-avatar id="avatar-control" ...="${spreadArgs(args, argTypes)}" />
       </div>
     </div>
   `;
 };
 
-export const StoryAvatarWithTooltip = () => {
-  waitForElement('#avatar-tooltip', element => {
+export const StoryAvatar = () => {
+  waitForElement('#avatar', element => {
     element.users = user;
   });
   return html/*html*/ `
     <div class="my-48" style="font-size:12px; display: flex; justify-content: space-evenly;">
       <div style="display: flex; flex-direction: column; align-items: center;">
-        <zen-avatar-tooltip id="avatar-tooltip" />
+        <zen-avatar id="avatar" />
       </div>
     </div>
   `;
 };
 
-export const StoryAvatarWithTooltipMultipleUsers = () => {
-  waitForElement('#avatar-tooltip-multi', element => {
+export const StoryAvatarMultipleUsers = () => {
+  waitForElement('#avatar-multi', element => {
     element.users = users;
   });
   return html/*html*/ `
     <div style="font-size:12px; display: flex; justify-content: space-evenly; margin-top:230px; height: 300px;">
       <div style="display: flex; flex-direction: column; align-items: center;">
-        <zen-avatar-tooltip id="avatar-tooltip-multi" />
+        <zen-avatar id="avatar-multi" />
       </div>
     </div>
   `;
@@ -96,7 +96,7 @@ export const StoryAvatarWithTooltipMultipleUsers = () => {
 
 # Profile icon with tooltip
 
-Avatar tooltip
+Avatar component
 
 ## Component previews
 
@@ -105,13 +105,13 @@ Avatar tooltip
 ### 1. Avatar with tooltip
 
 <Canvas>
-  <Story name="StoryAvatarWithTooltip">{StoryAvatarWithTooltip.bind({})}</Story>
+  <Story name="StoryAvatar">{StoryAvatar.bind({})}</Story>
 </Canvas>
 
-### 2. Avatar tooltip with multiple users
+### 2. Avatar with multiple users
 
 <Canvas>
-  <Story name="StoryAvatarWithTooltipMultipleUsers">{StoryAvatarWithTooltipMultipleUsers.bind({})}</Story>
+  <Story name="StoryAvatarMultipleUsers">{StoryAvatarMultipleUsers.bind({})}</Story>
 </Canvas>
 
 ## Properties
@@ -130,4 +130,4 @@ Avatar tooltip
 
 <ArgsTable story="default" />
 
-<docs-table docs={JSON.stringify(getComponentData('zen-avatar-tooltip'))}></docs-table>
+<docs-table docs={JSON.stringify(getComponentData('zen-avatar'))}></docs-table>

@@ -63,6 +63,16 @@ export namespace Components {
          */
         "show": boolean;
     }
+    interface ZenAvatar {
+        /**
+          * Show icon animation
+         */
+        "showAnimation": boolean;
+        /**
+          * Users
+         */
+        "users": Avatar[];
+    }
     interface ZenAvatarGroup {
         /**
           * User to display
@@ -98,16 +108,6 @@ export namespace Components {
           * Name and Surname
          */
         "userName": string;
-    }
-    interface ZenAvatarTooltip {
-        /**
-          * Show icon animation
-         */
-        "showAnimation": boolean;
-        /**
-          * Users
-         */
-        "users": Avatar[];
     }
     interface ZenButton {
         /**
@@ -517,6 +517,12 @@ declare global {
         prototype: HTMLZenAnimateElement;
         new (): HTMLZenAnimateElement;
     };
+    interface HTMLZenAvatarElement extends Components.ZenAvatar, HTMLStencilElement {
+    }
+    var HTMLZenAvatarElement: {
+        prototype: HTMLZenAvatarElement;
+        new (): HTMLZenAvatarElement;
+    };
     interface HTMLZenAvatarGroupElement extends Components.ZenAvatarGroup, HTMLStencilElement {
     }
     var HTMLZenAvatarGroupElement: {
@@ -528,12 +534,6 @@ declare global {
     var HTMLZenAvatarIconElement: {
         prototype: HTMLZenAvatarIconElement;
         new (): HTMLZenAvatarIconElement;
-    };
-    interface HTMLZenAvatarTooltipElement extends Components.ZenAvatarTooltip, HTMLStencilElement {
-    }
-    var HTMLZenAvatarTooltipElement: {
-        prototype: HTMLZenAvatarTooltipElement;
-        new (): HTMLZenAvatarTooltipElement;
     };
     interface HTMLZenButtonElement extends Components.ZenButton, HTMLStencilElement {
     }
@@ -680,9 +680,9 @@ declare global {
         "html-playground": HTMLHtmlPlaygroundElement;
         "text-with-details": HTMLTextWithDetailsElement;
         "zen-animate": HTMLZenAnimateElement;
+        "zen-avatar": HTMLZenAvatarElement;
         "zen-avatar-group": HTMLZenAvatarGroupElement;
         "zen-avatar-icon": HTMLZenAvatarIconElement;
-        "zen-avatar-tooltip": HTMLZenAvatarTooltipElement;
         "zen-button": HTMLZenButtonElement;
         "zen-card": HTMLZenCardElement;
         "zen-checkbox": HTMLZenCheckboxElement;
@@ -757,6 +757,16 @@ declare namespace LocalJSX {
          */
         "show"?: boolean;
     }
+    interface ZenAvatar {
+        /**
+          * Show icon animation
+         */
+        "showAnimation"?: boolean;
+        /**
+          * Users
+         */
+        "users"?: Avatar[];
+    }
     interface ZenAvatarGroup {
         /**
           * User to display
@@ -792,16 +802,6 @@ declare namespace LocalJSX {
           * Name and Surname
          */
         "userName"?: string;
-    }
-    interface ZenAvatarTooltip {
-        /**
-          * Show icon animation
-         */
-        "showAnimation"?: boolean;
-        /**
-          * Users
-         */
-        "users"?: Avatar[];
     }
     interface ZenButton {
         /**
@@ -1184,9 +1184,9 @@ declare namespace LocalJSX {
         "html-playground": HtmlPlayground;
         "text-with-details": TextWithDetails;
         "zen-animate": ZenAnimate;
+        "zen-avatar": ZenAvatar;
         "zen-avatar-group": ZenAvatarGroup;
         "zen-avatar-icon": ZenAvatarIcon;
-        "zen-avatar-tooltip": ZenAvatarTooltip;
         "zen-button": ZenButton;
         "zen-card": ZenCard;
         "zen-checkbox": ZenCheckbox;
@@ -1222,9 +1222,9 @@ declare module "@stencil/core" {
             "html-playground": LocalJSX.HtmlPlayground & JSXBase.HTMLAttributes<HTMLHtmlPlaygroundElement>;
             "text-with-details": LocalJSX.TextWithDetails & JSXBase.HTMLAttributes<HTMLTextWithDetailsElement>;
             "zen-animate": LocalJSX.ZenAnimate & JSXBase.HTMLAttributes<HTMLZenAnimateElement>;
+            "zen-avatar": LocalJSX.ZenAvatar & JSXBase.HTMLAttributes<HTMLZenAvatarElement>;
             "zen-avatar-group": LocalJSX.ZenAvatarGroup & JSXBase.HTMLAttributes<HTMLZenAvatarGroupElement>;
             "zen-avatar-icon": LocalJSX.ZenAvatarIcon & JSXBase.HTMLAttributes<HTMLZenAvatarIconElement>;
-            "zen-avatar-tooltip": LocalJSX.ZenAvatarTooltip & JSXBase.HTMLAttributes<HTMLZenAvatarTooltipElement>;
             "zen-button": LocalJSX.ZenButton & JSXBase.HTMLAttributes<HTMLZenButtonElement>;
             "zen-card": LocalJSX.ZenCard & JSXBase.HTMLAttributes<HTMLZenCardElement>;
             "zen-checkbox": LocalJSX.ZenCheckbox & JSXBase.HTMLAttributes<HTMLZenCheckboxElement>;

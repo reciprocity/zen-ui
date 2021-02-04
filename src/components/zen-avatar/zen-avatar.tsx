@@ -2,11 +2,11 @@ import { Component, Host, h, Prop } from '@stencil/core';
 import { Avatar } from '../helpers/types';
 
 @Component({
-  tag: 'zen-avatar-tooltip',
-  styleUrl: 'zen-avatar-tooltip.scss',
+  tag: 'zen-avatar',
+  styleUrl: 'zen-avatar.scss',
   shadow: true,
 })
-export class ZenAvatarTooltip {
+export class ZenAvatar {
   /** Users  */
   @Prop() readonly users: Avatar[] = [];
 

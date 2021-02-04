@@ -27,9 +27,9 @@ export class ZenAvatarGroup {
     return (
       <Host class="container">
         {this.shownUsers().map(user => (
-          <zen-avatar-tooltip users={[user]} show-animation={this.users.length > 1} />
+          <zen-avatar users={[user]} show-animation={this.users.length > 1} />
         ))}
-        {this.hiddenUsers().length > 0 ? <zen-avatar-tooltip users={this.hiddenUsers()} show-animation="true" /> : null}
+        {this.hiddenUsers().length > 0 ? <zen-avatar users={this.hiddenUsers()} show-animation="true" /> : null}
       </Host>
     );
   }
