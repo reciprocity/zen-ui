@@ -9,11 +9,15 @@ const argTypes = getArgTypes(compData);
 <Meta title="Forms/Radio" component="zen-radio" argTypes={argTypes} />
 
 export const StoryRadiosGroup = () => {
+  function select(value) {
+    document.querySelector(`zen-radio[value='${value}']`).checked = true;
+  }
   return html/*html*/ `
-    <zen-radio group="options1">Option 1</zen-radio>
-    <zen-radio group="options1">Option 2</zen-radio>
-    <zen-radio group="options1">Option 3</zen-radio>
-    <zen-radio group="options2">Option A</zen-radio>
+    <zen-radio group="options1" value="1">Option 1</zen-radio>
+    <zen-radio group="options1" value="2">Option 2</zen-radio>
+    <zen-radio group="options1" value="3">Option 3</zen-radio>
+    <zen-radio group="options2" value="a">Option A</zen-radio>
+    <zen-button @click="${() => select('1')}">Check 1</zen-button>
   `;
 };
 
