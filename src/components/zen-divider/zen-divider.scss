@@ -1,0 +1,8 @@
+@import '../../zen-styles/component-helpers.scss';
+
+:host {
+  display: block;
+
+  border-top: 1px solid $color-gray-200;
+  margin: 0.5em 0;
+}
