@@ -1,0 +1,73 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
+import { html } from 'lit-html';
+import { getArgTypes, getDefaultArgs, getComponentData, spreadArgs } from '../../../.storybook/helpers/argTypes';
+
+import data from '../../../stencilDocs.json';
+const compData = data.components.find(n => n.tag === 'zen-toggle');
+const argTypes = getArgTypes(compData);
+
+<Meta title="Forms/Toggle" component="zen-toggle" argTypes={argTypes} />
+
+export const StoryWithVariants = args =>
+  html/*html*/ `
+    <div>
+      <zen-form-group>
+        <zen-text variant="label">Unchecked</zen-text>
+        <zen-toggle></zen-toggle>
+      </zen-form-group>
+      <zen-form-group>
+        <zen-text variant="label">Checked</zen-text>
+        <zen-toggle checked></zen-toggle>
+      </zen-form-group>
+      <zen-form-group>
+        <zen-text variant="label">Disabled unchecked</zen-text>
+        <zen-toggle disabled></zen-toggle>
+      </zen-form-group>
+      <zen-form-group>
+        <zen-text variant="label">Disabled checked</zen-text>
+        <zen-toggle disabled checked></zen-toggle>
+      </zen-form-group>
+    </div>
+  `;
+
+export const StoryWithControls = args => html/*html*/ ` <zen-toggle ...="${spreadArgs(args, argTypes)}"></zen-toggle> `;
+
+# Toggle
+
+Simple toggle component
+
+<br />
+
+## Component previews
+
+<br />
+
+### Toggle variants
+
+<Canvas>
+  <Story
+    name="variants"
+    args={{
+      ...getDefaultArgs(argTypes),
+    }}
+  >
+    {StoryWithVariants.bind({})}
+  </Story>
+</Canvas>
+
+## Properties
+
+<Canvas>
+  <Story
+    name="default"
+    args={{
+      ...getDefaultArgs(argTypes),
+    }}
+  >
+    {StoryWithControls.bind({})}
+  </Story>
+</Canvas>
+
+<ArgsTable story="default" />
+
+<docs-table docs={JSON.stringify(getComponentData('zen-toggle'))}></docs-table>

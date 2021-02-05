@@ -441,6 +441,16 @@ export namespace Components {
          */
         "text"?: string | null;
     }
+    interface ZenToggle {
+        /**
+          * Set checked state.
+         */
+        "checked": boolean;
+        /**
+          * Set disabled state.
+         */
+        "disabled": false;
+    }
     interface ZenTooltip {
         /**
           * Dont hide tooltip
@@ -667,6 +677,12 @@ declare global {
         prototype: HTMLZenTextareaElement;
         new (): HTMLZenTextareaElement;
     };
+    interface HTMLZenToggleElement extends Components.ZenToggle, HTMLStencilElement {
+    }
+    var HTMLZenToggleElement: {
+        prototype: HTMLZenToggleElement;
+        new (): HTMLZenToggleElement;
+    };
     interface HTMLZenTooltipElement extends Components.ZenTooltip, HTMLStencilElement {
     }
     var HTMLZenTooltipElement: {
@@ -705,6 +721,7 @@ declare global {
         "zen-tabs": HTMLZenTabsElement;
         "zen-text": HTMLZenTextElement;
         "zen-textarea": HTMLZenTextareaElement;
+        "zen-toggle": HTMLZenToggleElement;
         "zen-tooltip": HTMLZenTooltipElement;
     }
 }
@@ -1139,6 +1156,16 @@ declare namespace LocalJSX {
          */
         "text"?: string | null;
     }
+    interface ZenToggle {
+        /**
+          * Set checked state.
+         */
+        "checked"?: boolean;
+        /**
+          * Set disabled state.
+         */
+        "disabled"?: false;
+    }
     interface ZenTooltip {
         /**
           * Dont hide tooltip
@@ -1209,6 +1236,7 @@ declare namespace LocalJSX {
         "zen-tabs": ZenTabs;
         "zen-text": ZenText;
         "zen-textarea": ZenTextarea;
+        "zen-toggle": ZenToggle;
         "zen-tooltip": ZenTooltip;
     }
 }
@@ -1247,6 +1275,7 @@ declare module "@stencil/core" {
             "zen-tabs": LocalJSX.ZenTabs & JSXBase.HTMLAttributes<HTMLZenTabsElement>;
             "zen-text": LocalJSX.ZenText & JSXBase.HTMLAttributes<HTMLZenTextElement>;
             "zen-textarea": LocalJSX.ZenTextarea & JSXBase.HTMLAttributes<HTMLZenTextareaElement>;
+            "zen-toggle": LocalJSX.ZenToggle & JSXBase.HTMLAttributes<HTMLZenToggleElement>;
             "zen-tooltip": LocalJSX.ZenTooltip & JSXBase.HTMLAttributes<HTMLZenTooltipElement>;
         }
     }
