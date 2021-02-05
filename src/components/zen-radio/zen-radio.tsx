@@ -115,6 +115,7 @@ export class ZenRadio {
     return (
       <Host>
         <input type="radio" class="input-control" id="radio" name={this.group} onClick={() => this.onClick()} />
+        <div class="radiomark" />
         <label htmlFor="radio">
           <slot />
         </label>

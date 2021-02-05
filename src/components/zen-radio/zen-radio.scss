@@ -1,4 +1,57 @@
+@import '../../zen-styles/variables.scss';
+@import '../../zen-styles/mixins/forms.scss';
+
 :host {
   display: flex;
-  align-items: baseline;
+  align-items: center;
+}
+
+.radiomark {
+  box-sizing: border-box;
+  width: 1rem;
+  height: 1rem;
+  border: 1px solid $color-blue-700;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 0.5rem;
+
+  transition: box-shadow $transition-element-bump;
+}
+
+input {
+  position: absolute;
+  transform: scale(0);
+}
+
+input + .radiomark:after {
+  content: '';
+  width: 0.625rem;
+  height: 0.625rem;
+  background-color: $color-blue-700;
+  border-radius: 50%;
+
+  transition: opacity $transition-element-bump, transform $transition-element-bump;
+  opacity: 0;
+  transform: scale(0.5);
+}
+
+input:checked + .radiomark:after {
+  opacity: 1;
+  transform: scale(1);
+}
+
+input:focus + .radiomark {
+  box-shadow: 0 0 0 2px $color-blue-300;
+}
+
+:host(:hover) {
+  .radiomark {
+    border-color: $color-blue-800;
+  }
+
+  .radiomark:after {
+    background-color: $color-blue-800;
+  }
 }
