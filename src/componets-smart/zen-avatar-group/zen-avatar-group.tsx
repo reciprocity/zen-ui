@@ -76,7 +76,7 @@ export class ZenAvatarGroup {
 
   render(): HTMLElement {
     return (
-      <Host class="container">
+      <Host>
         {this.shownUsers().map(user => (
           <zen-avatar users={[user]} animation={this.users.length > 1} />
         ))}

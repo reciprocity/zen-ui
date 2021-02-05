@@ -17,17 +17,33 @@ export class ZenAvatar {
     return this.users[0] ? this.users[0][property] : '';
   }
 
+  getUserName(): string {
+    return this.users.length == 1 ? this.getUserValue('userName') : '+' + this.users.length;
+  }
+
+  getEmail(): string {
+    return this.getUserValue('email');
+  }
+
+  getBackground(): string {
+    return this.users.length == 1 ? this.getUserValue('background') : '#CED4DA';
+  }
+
+  getColor(): string {
+    return this.users.length == 1 ? this.getUserValue('color') : '#3E464C';
+  }
+
   render(): HTMLElement {
     return (
       <Host>
         <zen-avatar-icon
           class="avatar-icon"
-          user-name={this.users.length == 1 ? this.getUserValue('userName') : '+' + this.users.length}
-          email={this.getUserValue('email')}
-          background={this.users.length == 1 ? this.getUserValue('background') : '#CED4DA'}
-          color={this.users.length == 1 ? this.getUserValue('color') : '#3E464C'}
+          user-name={this.getUserName()}
+          email={this.getEmail()}
+          background={this.getBackground()}
+          color={this.getColor()}
         />
-        <zen-tooltip class="column" variant="light" show-delay="0" max-height={this.users.length > 4 ? '200px' : null}>
+        <zen-tooltip variant="light" show-delay="0" max-height={this.users.length > 4 ? '200px' : null}>
           {this.users.map((user, index) => (
             <div>
               <div class="row">
