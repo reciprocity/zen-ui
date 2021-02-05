@@ -6,7 +6,7 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { StringifiedJson } from "./stories/components/color-swatch-group/color-swatch-group";
-import { Align, Avatar, AvatarIconSize, Duration, IconSizes, None, NotificationVariant, Position, Size, TextSize, TextVariant, TooltipVariant } from "./components/helpers/types";
+import { Align, Avatar, AvatarData, AvatarIconSize, Duration, IconSizes, None, NotificationVariant, Position, Size, TextSize, TextVariant, TooltipVariant } from "./components/helpers/types";
 import { ButtonVariants } from "./components/zen-button/types";
 import { OptionValue } from "./components/zen-menu-item/zen-option";
 import { IconDefinition } from "@fortawesome/pro-light-svg-icons";
@@ -67,19 +67,19 @@ export namespace Components {
         /**
           * Show icon animation
          */
-        "showAnimation": boolean;
+        "animation": boolean;
         /**
           * Users
          */
-        "users": Avatar[];
+        "users": AvatarData[];
     }
     interface ZenAvatarGroup {
         /**
-          * User to display
+          * Max number of users to display
          */
         "displayMax": number;
         /**
-          * Users
+          * Array of user's data
          */
         "users": Avatar[];
     }
@@ -761,19 +761,19 @@ declare namespace LocalJSX {
         /**
           * Show icon animation
          */
-        "showAnimation"?: boolean;
+        "animation"?: boolean;
         /**
           * Users
          */
-        "users"?: Avatar[];
+        "users"?: AvatarData[];
     }
     interface ZenAvatarGroup {
         /**
-          * User to display
+          * Max number of users to display
          */
         "displayMax"?: number;
         /**
-          * Users
+          * Array of user's data
          */
         "users"?: Avatar[];
     }
