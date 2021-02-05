@@ -4,21 +4,20 @@
   display: block;
 }
 
-.main-avatar-icon {
-  margin-right: -8px;
-}
-
-.animation {
-  transition: transform 0.3s;
+:host([animation]) zen-avatar-icon {
+  transition: $transition-avatar;
 
   &:hover {
     transform: translateY(-5px);
   }
 }
 
-.tooltip {
-  max-height: 200px !important;
-  overflow: auto;
+zen-tooltip {
+  max-width: fit-content;
+}
+
+.avatar-icon {
+  margin-right: -8px;
 }
 
 .row {
