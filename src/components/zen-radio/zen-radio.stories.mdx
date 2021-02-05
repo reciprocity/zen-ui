@@ -12,19 +12,23 @@ export const StoryRadiosGroup = () => {
   function select(value) {
     document.querySelector(`zen-radio[value='${value}']`).checked = true;
   }
+  function changed(event) {
+    document.querySelector('#selected-radio').textContent = event.target.selected;
+  }
   return html/*html*/ `
-    <zen-radio group="options1" value="1">Option 1</zen-radio>
+    <zen-radio group="options1" value="1" @change="${changed}">Option 1</zen-radio>
     <zen-radio group="options1" value="2">Option 2</zen-radio>
     <zen-radio group="options1" value="3">Option 3</zen-radio>
     <zen-radio group="options2" value="a">Option A</zen-radio>
     <zen-button @click="${() => select('1')}">Check 1</zen-button>
+    <p>
+      Selected: <b><span id="selected-radio"></span></b>
+    </p>
   `;
 };
 
 export const StoryWithControls = args => {
-  return html/*html*/ `
-    <zen-radio ...="${spreadArgs(args, argTypes)}">Option 1</zen-radio>
-  `;
+  return html/*html*/ ` <zen-radio ...="${spreadArgs(args, argTypes)}">Option 1</zen-radio> `;
 };
 
 # Radio

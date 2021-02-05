@@ -2,6 +2,10 @@ import { Component, Host, h, Prop, Element, Listen, Watch, Method } from '@stenc
 import { querySelectorAllDeep } from 'query-selector-shadow-dom';
 import last from 'lodash/last';
 
+/**
+ * @event change | Called each time radio.selected changes
+ */
+
 @Component({
   tag: 'zen-radio',
   styleUrl: 'zen-radio.scss',
@@ -16,7 +20,10 @@ export class ZenRadio {
   /** Value of this radio option */
   @Prop() readonly value: string = '';
 
-  /** Shows a red asterisk after label. */
+  /** Value of selected radio in this group */
+  @Prop() readonly selected: string = '';
+
+  /** Shows a red asterisk after label */
   @Prop() readonly required = false;
 
   /** Group id to which this radio belongs */
@@ -24,19 +31,39 @@ export class ZenRadio {
 
   @Watch('checked')
   async checkedChanged(checked: boolean): Promise<void> {
+    const deselectElements = radios => {
+      radios.forEach((radio: HTMLInputElement) => {
+        if (!radio.checked) return;
+        radio.checked = false;
+      });
+    };
+
+    function updateResultAttrs(radios: HTMLZenRadioElement[], selected: string): void {
+      radios.forEach((element: HTMLZenRadioElement) => {
+        element.selected = selected;
+      });
+    }
+
+    function dispatchChangeEvents(radios: HTMLZenRadioElement[]): void {
+      radios.forEach((element: HTMLZenRadioElement) => {
+        element.dispatchEvent(new window.Event('change'));
+      });
+    }
+
+    // Trigger this procedure just once - just for cheched radio:
     this.radioInput().checked = checked;
 
     if (!checked) return;
 
     // Since we're in a shadow dom, we have to manually deselect all other
     //   radios of the same group:
-    const radios = querySelectorAllDeep(`zen-radio[group=${this.group}]`);
-    Array.from(radios)
-      .filter(n => n !== this.hostElement)
-      .forEach((radio: HTMLInputElement) => {
-        if (!radio.checked) return;
-        radio.checked = false;
-      });
+    const radios = this.elementsInSameGroup();
+    const others = radios.filter(n => n !== this.hostElement);
+
+    deselectElements(others);
+    updateResultAttrs(radios, this.value);
+    this.checked = checked;
+    dispatchChangeEvents(radios);
   }
 
   /** Focus radio programatically */
@@ -56,18 +83,21 @@ export class ZenRadio {
     return this.hostElement.shadowRoot.querySelector('input[type=radio]');
   }
 
+  elementsInSameGroup(): HTMLZenRadioElement[] {
+    return this.group
+      ? (Array.from(querySelectorAllDeep(`zen-radio[group=${this.group}]`)) as HTMLZenRadioElement[])
+      : [this.hostElement];
+  }
+
   onClick(): void {
-    // Since we're in a shadow dom, we have to manually deselect all other
-    //   radios of the same group:
     this.checked = true;
-    this.hostElement.dispatchEvent(new window.Event('change'));
   }
 
   @Listen('keydown')
   handleKeyDown(event: KeyboardEvent): void {
     // Since we're in a shadow dom, arrow up/down doesn't work to move
     //   amoung the options, so we have to do it manually:
-    const radios = Array.from(querySelectorAllDeep(`zen-radio[group=${this.group}]`) as HTMLZenRadioElement[]);
+    const radios = this.elementsInSameGroup();
     const index = radios.findIndex(radio => radio === this.hostElement);
     if (['ArrowUp', 'ArrowDown'].includes(event.key)) {
       const forward = event.key === 'ArrowDown';
