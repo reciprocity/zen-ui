@@ -6,7 +6,7 @@
 }
 
 :host([disabled]) {
-  opacity: 0.5;
+  opacity: 0.25;
   pointer-events: none;
   cursor: default;
 }
@@ -19,7 +19,7 @@ span {
     box-sizing: content-box;
     cursor: pointer;
     border-radius: 1rem;
-    transition: all 0.2s ease 0s;
+    transition: background $transition-color, box-shadow $transition-color;
     background: $color-gray-300;
     width: 2rem;
     height: 1rem;
@@ -44,7 +44,7 @@ span {
 
   &.slider {
     background: $color-white;
-    transition: transform 0.2s ease 0s;
+    transition: transform $transition-micro-move;
     border-radius: 1rem;
     transform: translateX(0rem);
     width: 0.75rem;
