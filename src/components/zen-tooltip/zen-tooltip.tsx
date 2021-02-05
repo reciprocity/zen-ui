@@ -112,7 +112,7 @@ export class ZenTooltip {
 
   debounceShow = debounce(this.show, this.showDelay);
 
-  delay = this.maxHeight != 'none' ? Math.max(this.hideDelay, 200) : this.hideDelay;
+  delay = this.maxHeight != 'none' ? Math.max(this.hideDelay, 150) : this.hideDelay;
   debounceHide = debounce(this.hide, this.delay);
 
   componentDidLoad(): void {

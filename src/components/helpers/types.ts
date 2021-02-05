@@ -30,3 +30,19 @@ export type Rect = {
   width: number;
   height: number;
 };
+
+export interface Avatar {
+  userName?: string;
+  email?: string;
+  imageUrl?: string;
+}
+
+export interface AvatarData extends Avatar {
+  background?: string;
+  color?: string;
+}
+
+export interface AvatarColor {
+  background?: string;
+  color?: string;
+}

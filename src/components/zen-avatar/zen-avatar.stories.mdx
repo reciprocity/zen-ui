@@ -1,0 +1,133 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
+import { html } from 'lit-html';
+import { getArgTypes, getDefaultArgs, getComponentData, spreadArgs } from '../../../.storybook/helpers/argTypes';
+import data from '../../../stencilDocs.json';
+import { waitForElement } from '../../../.storybook/helpers/utils';
+const compData = data.components.find(n => n.tag === 'zen-avatar');
+const argTypes = getArgTypes(compData);
+
+<Meta title="Icons/Avatar" component="zen-avatar" argTypes={argTypes} />
+
+export const user = [
+  {
+    userName: 'Mike Anderson',
+    email: 'mike.anderson@reciprocitylabs.com',
+    color: '#00528C',
+    background: '#D5E9FA',
+  },
+];
+
+export const users = [
+  {
+    userName: 'Mike Anderson',
+    email: 'mike.anderson@reciprocitylabs.com',
+    imageUrl: '',
+    color: '#00528C',
+    background: '#D5E9FA',
+  },
+  {
+    userName: 'Frank Sinatra',
+    email: 'frank.sinatra@reciprocitylabs.com',
+    imageUrl: '',
+    color: '#643A6B',
+    background: '#FADBFF',
+  },
+  {
+    userName: 'Alex Godunov',
+    email: 'alex.godunov@reciprocitylabs.com',
+    imageUrl: '',
+    color: '#A26900',
+    background: '#FFEED2',
+  },
+  {
+    userName: 'Jill Franklin',
+    email: 'jill.franklin@reciprocitylabs.com',
+    imageUrl: '',
+    color: '#1B422E',
+    background: '#D8F2E3',
+  },
+  {
+    userName: 'Mark Gray',
+    email: 'mark.gray@reciprocitylabs.com',
+    imageUrl: '',
+    color: '#00528C',
+    background: '#D5E9FA',
+  },
+];
+
+export const StoryWithControls = args => {
+  waitForElement('#avatar-control', element => {
+    element.users = user;
+  });
+  return html/*html*/ `
+    <div class="my-48" style="font-size:12px; display: flex; justify-content: space-evenly;">
+      <div style="display: flex; flex-direction: column; align-items: center;">
+        <zen-avatar id="avatar-control" ...="${spreadArgs(args, argTypes)}" />
+      </div>
+    </div>
+  `;
+};
+
+export const StoryAvatar = () => {
+  waitForElement('#avatar', element => {
+    element.users = user;
+  });
+  return html/*html*/ `
+    <div class="my-48" style="font-size:12px; display: flex; justify-content: space-evenly;">
+      <div style="display: flex; flex-direction: column; align-items: center;">
+        <zen-avatar id="avatar" />
+      </div>
+    </div>
+  `;
+};
+
+export const StoryAvatarMultipleUsers = () => {
+  waitForElement('#avatar-multi', element => {
+    element.users = users;
+  });
+  return html/*html*/ `
+    <div style="font-size:12px; display: flex; justify-content: space-evenly; margin-top:230px; height: 300px;">
+      <div style="display: flex; flex-direction: column; align-items: center;">
+        <zen-avatar id="avatar-multi" />
+      </div>
+    </div>
+  `;
+};
+
+# Profile icon with tooltip
+
+Avatar component
+
+## Component previews
+
+<br />
+
+### 1. Avatar with tooltip
+
+<Canvas>
+  <Story name="StoryAvatar">{StoryAvatar.bind({})}</Story>
+</Canvas>
+
+### 2. Avatar with multiple users
+
+<Canvas>
+  <Story name="StoryAvatarMultipleUsers">{StoryAvatarMultipleUsers.bind({})}</Story>
+</Canvas>
+
+## Properties
+
+<Canvas>
+  <Story
+    name="default"
+    args={{
+      ...getDefaultArgs(argTypes),
+      users: { user },
+    }}
+  >
+    {StoryWithControls.bind({})}
+  </Story>
+</Canvas>
+
+<ArgsTable story="default" />
+
+<docs-table docs={JSON.stringify(getComponentData('zen-avatar'))}></docs-table>

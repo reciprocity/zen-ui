@@ -1,0 +1,54 @@
+@import '../../zen-styles/component-helpers.scss';
+
+:host {
+  display: block;
+}
+
+:host([animation]) zen-avatar-icon {
+  transition: $transition-avatar;
+
+  &:hover {
+    transform: translateY(-5px);
+  }
+}
+
+zen-tooltip {
+  max-width: fit-content;
+}
+
+.avatar-icon {
+  margin-right: -8px;
+}
+
+.row {
+  display: flex;
+}
+
+.column {
+  flex-direction: column;
+  text-align: left;
+}
+
+.avatar {
+  margin-right: 5px;
+}
+
+.title {
+  font-size: 0.875rem;
+  font-weight: bold;
+}
+
+.email {
+  font-size: 0.75rem;
+  color: $color-gray-700;
+}
+
+.hidden {
+  display: none;
+}
+
+.splitter {
+  border-bottom: 1px solid $color-gray-100;
+  padding: 0.6rem 0.3rem 0;
+  margin: 0 0.3rem 0.6rem;
+}
