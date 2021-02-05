@@ -111,6 +111,11 @@ export class ZenRadio {
     }
   }
 
+  componentDidLoad(): void {
+    if (!this.checked) return;
+    this.checkedChanged(this.checked);
+  }
+
   render(): HTMLElement {
     return (
       <Host>
