@@ -53,6 +53,7 @@ jobs:
         environment:
           # enable colors in output
           TERM: xterm
+    parallelism: 5
     steps:
       - checkout
       - restore_cache:
