@@ -60,6 +60,25 @@ export const StoryWithLeadingAndTrailingSlots = () => {
   `;
 };
 
+export const StoryFormGroup = args =>
+  html/*html*/ `
+    <zen-form-group>
+      <zen-space vertical spacing="md">
+        <zen-space vertical>
+          <zen-text variant="label">Username</zen-text>
+          <zen-input></zen-input>
+        </zen-space>
+        <zen-space vertical>
+          <zen-text variant="label">Password</zen-text>
+          <zen-input></zen-input>
+        </zen-space>
+        <zen-space>
+          <zen-button>Log In</zen-button>
+        </zen-space>
+      </zen-space>
+    </zen-form-group>
+  `;
+
 # Input
 
 Form input component with slots capabilities
@@ -90,6 +109,14 @@ Form input component with slots capabilities
 
 <Canvas>
   <Story name="StoryWithLeadingAndTrailingSlots">{StoryWithLeadingAndTrailingSlots.bind({})}</Story>
+</Canvas>
+
+### 2. In a Form Group
+
+- Apply trailingSlot value for the slot attribute in your inner custom HTML
+
+<Canvas>
+  <Story name="StoryFormGroup">{StoryFormGroup.bind({})}</Story>
 </Canvas>
 
 ## Properties
