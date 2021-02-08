@@ -150,6 +150,36 @@ export const InvitePeople = () => {
   </zen-input>`;
 };
 
+export const StoryFormGroup = () =>
+  html/*html*/ `
+    <zen-form-group>
+      <zen-space vertical spacing="md">
+        <zen-space vertical>
+          <zen-text variant="label">Name</zen-text>
+          <zen-input></zen-input>
+        </zen-space>
+        <zen-space vertical>
+          <zen-text variant="label">Lastname</zen-text>
+          <zen-input></zen-input>
+        </zen-space>
+        <zen-space vertical>
+          <zen-text variant="label">Select country</zen-text>
+          <zen-dropdown>
+            <zen-option value="Argentina">Argentina</zen-option>
+            <zen-option value="Slovenia">Slovenia</zen-option>
+            <zen-option value="United States">United States</zen-option>
+          </zen-dropdown>
+        </zen-space>
+        <zen-space vertical>
+          <zen-textarea placeholder="Describe yourself"></zen-textarea>
+        </zen-space>
+        <zen-space vertical>
+          <zen-button>Save</zen-button>
+        </zen-space>
+      </zen-space>
+    </zen-form-group>
+  `;
+
 # Dropdown
 
 A standard dropdown component
@@ -182,6 +212,12 @@ Click `Show code` for more details.
 
 <Canvas>
   <Story name="InvitePeople">{InvitePeople.bind({})}</Story>
+</Canvas>
+
+### 3. In a Form Group
+
+<Canvas>
+  <Story name="StoryFormGroup">{StoryFormGroup.bind({})}</Story>
 </Canvas>
 
 ## Properties

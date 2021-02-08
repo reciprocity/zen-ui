@@ -82,6 +82,23 @@ export const StoryWithIcons = () => {
   `;
 };
 
+export const StoryFormGroup = args =>
+  html/*html*/ `
+    <zen-form-group>
+      <zen-space vertical spacing="md">
+        <zen-text>Username</zen-text>
+        <zen-input></zen-input>
+        <zen-text>Password</zen-text>
+        <zen-input></zen-input>
+        <zen-checkbox label="Remember me"></zen-checkbox>
+        <zen-space spacing="md" padding="none">
+          <zen-button>Log In</zen-button>
+          <zen-button variant="secondary">Register</zen-button>
+        </zen-space>
+      </zen-space>
+    </zen-form-group>
+  `;
+
 # Button
 
 Button component with slots capabilities
@@ -114,6 +131,12 @@ Button component with slots capabilities
 
 <Canvas>
   <Story name="StoryWithIcons">{StoryWithIcons.bind({})}</Story>
+</Canvas>
+
+### 4. In a Form Group
+
+<Canvas>
+  <Story name="StoryFormGroup">{StoryFormGroup.bind({})}</Story>
 </Canvas>
 
 ## Properties

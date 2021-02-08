@@ -8,6 +8,7 @@ describe('Button visual tests', () => {
     'story--buttons-button--story-loading',
     'story--buttons-button--story-disabled',
     'story--buttons-button--story-with-icons',
+    'story--buttons-button--story-form-group',
     'story--buttons-button--default-story',
   ];
 

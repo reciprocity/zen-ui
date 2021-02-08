@@ -9,6 +9,18 @@ const argTypes = getArgTypes(compData);
 
 <Meta title="Forms/Checkbox" component="zen-checkbox" argTypes={argTypes} />
 
+export const StoryFormGroup = args =>
+  html/*html*/ `
+    <zen-form-group>
+      <zen-space vertical spacing="md">
+        <zen-text size="lg" bold>Pizza toppings</zen-text>
+        <zen-checkbox label="Pepperoni"></zen-checkbox>
+        <zen-checkbox label="Black olives"></zen-checkbox>
+        <zen-checkbox label="Veggies"></zen-checkbox>
+      </zen-space>
+    </zen-form-group>
+  `;
+
 export const StoryWithControls = args => html/*html*/ `
   <zen-checkbox id="story-with-ctrls-element" ...="${spreadArgs(args, argTypes)}"></zen-checkbox>
   ${action('#story-with-ctrls-element', ['change', 'click'])}
@@ -17,6 +29,16 @@ export const StoryWithControls = args => html/*html*/ `
 # Checkbox
 
 Simple checkbox component with label and required properties
+
+## Component previews
+
+<br />
+
+### 1. In a Form Group
+
+<Canvas>
+  <Story name="StoryFormGroup">{StoryFormGroup.bind({})}</Story>
+</Canvas>
 
 ## Properties
 
