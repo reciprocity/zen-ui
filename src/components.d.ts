@@ -308,6 +308,30 @@ export namespace Components {
         "steps": Array<StepItem>;
     }
     interface ZenRadio {
+        /**
+          * Check/uncheck radio
+         */
+        "checked": boolean;
+        /**
+          * Group id to which this radio belongs
+         */
+        "group": string;
+        /**
+          * Shows a red asterisk after label
+         */
+        "required": false;
+        /**
+          * Value of selected radio in this group
+         */
+        "selected": string;
+        /**
+          * Focus radio programatically
+         */
+        "setFocus": (focus?: boolean) => Promise<void>;
+        /**
+          * Value of this radio option
+         */
+        "value": string;
     }
     interface ZenSpace {
         /**
@@ -1037,6 +1061,26 @@ declare namespace LocalJSX {
         "steps"?: Array<StepItem>;
     }
     interface ZenRadio {
+        /**
+          * Check/uncheck radio
+         */
+        "checked"?: boolean;
+        /**
+          * Group id to which this radio belongs
+         */
+        "group"?: string;
+        /**
+          * Shows a red asterisk after label
+         */
+        "required"?: false;
+        /**
+          * Value of selected radio in this group
+         */
+        "selected"?: string;
+        /**
+          * Value of this radio option
+         */
+        "value"?: string;
     }
     interface ZenSpace {
         /**
