@@ -18,7 +18,7 @@ export class ZenNotification {
   /** Height */
   @Prop() readonly height: string = '5rem';
 
-  /** Width */
+  /** Width (min width 10rem) */
   @Prop() readonly width: string = '25rem';
 
   /** Title */

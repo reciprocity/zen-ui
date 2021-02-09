@@ -25,6 +25,7 @@
   border: 1px solid transparent;
   border-radius: $border-radius-default;
   animation: fadeIn 1s;
+  min-width: 10rem;
 
   &.notification-success {
     @include variant($color-green-700, $color-green-100);

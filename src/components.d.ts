@@ -271,7 +271,7 @@ export namespace Components {
          */
         "variant": NotificationVariant;
         /**
-          * Width
+          * Width (min width 10rem)
          */
         "width": string;
     }
@@ -999,7 +999,7 @@ declare namespace LocalJSX {
          */
         "variant"?: NotificationVariant;
         /**
-          * Width
+          * Width (min width 10rem)
          */
         "width"?: string;
     }
