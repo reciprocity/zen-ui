@@ -171,7 +171,7 @@ export class ZenTooltip {
         <slot>{this.label}</slot>
         <div
           class={{
-            arrow: true,
+            arrow: this.hasArrow,
             [this.realPosition]: true,
             [this.variant]: true,
           }}
