@@ -1,0 +1,79 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
+import { html } from 'lit-html';
+
+import { getArgTypes, getDefaultArgs, getComponentData, spreadArgs } from '../../../.storybook/helpers/argTypes';
+
+import data from '../../../stencilDocs.json';
+const compData = data.components.find(n => n.tag === 'zen-breadcrumbs');
+const argTypes = getArgTypes(compData);
+
+<Meta title="Navigation/Breadcrumbs" component="zen-breadcrumbs" argTypes={argTypes} />
+
+export const StoryLinks = args => {
+  return html/*html*/ `
+    <zen-breadcrumbs>
+      <a href="https://www.google.com">Any</a>
+      <a href="https://www.bing.com">Place</a>
+      <a href="https://www.yahoo.com">You</a>
+      <a href="https://www.duckduckgo.com">Want</a>
+    </zen-breadcrumbs>
+  `;
+};
+
+export const StoryLinksAndText = args => {
+  return html/*html*/ `
+    <zen-breadcrumbs>
+      <a href="./">ZenUI</a>
+      <div>Navigation</div>
+      <a href="?path=/docs/navigation-breadcrumbs">Breadcrumbs</a>
+    </zen-breadcrumbs>
+  `;
+};
+
+export const StoryWithControls = args => {
+  return html/*html*/ `
+    <zen-breadcrumbs ...="${spreadArgs(args, argTypes)}">
+      <a href="https://www.google.com">Any</a>
+      <a href="https://www.bing.com">Place</a>
+      <a href="https://www.yahoo.com">You</a>
+      <a href="https://www.duckduckgo.com">Want</a>
+    </zen-breadcrumbs>
+  `;
+};
+
+# Breadcrumbs
+
+Indicate and aid in navigation with a breadcrumb trail.
+
+## Component previews
+
+<br />
+
+### 1. Breadcrumbs with link elements
+
+<Canvas>
+  <Story name="links">{StoryLinks.bind({})}</Story>
+</Canvas>
+
+### 2. Breadcrumbs with div and link elements
+
+<Canvas>
+  <Story name="links-and-text">{StoryLinksAndText.bind({})}</Story>
+</Canvas>
+
+## Properties
+
+<Canvas>
+  <Story
+    name="default"
+    args={{
+      ...getDefaultArgs(argTypes),
+    }}
+  >
+    {StoryWithControls.bind({})}
+  </Story>
+</Canvas>
+
+<ArgsTable story="default" />
+
+<docs-table docs={JSON.stringify(getComponentData('zen-breadcrumbs'))}></docs-table>

@@ -109,6 +109,12 @@ export namespace Components {
          */
         "userName": string;
     }
+    interface ZenBreadcrumbs {
+        /**
+          * The separator string
+         */
+        "separator": string;
+    }
     interface ZenButton {
         /**
           * If present, button will be disabled
@@ -545,6 +551,12 @@ declare global {
         prototype: HTMLZenAvatarIconElement;
         new (): HTMLZenAvatarIconElement;
     };
+    interface HTMLZenBreadcrumbsElement extends Components.ZenBreadcrumbs, HTMLStencilElement {
+    }
+    var HTMLZenBreadcrumbsElement: {
+        prototype: HTMLZenBreadcrumbsElement;
+        new (): HTMLZenBreadcrumbsElement;
+    };
     interface HTMLZenButtonElement extends Components.ZenButton, HTMLStencilElement {
     }
     var HTMLZenButtonElement: {
@@ -699,6 +711,7 @@ declare global {
         "zen-avatar": HTMLZenAvatarElement;
         "zen-avatar-group": HTMLZenAvatarGroupElement;
         "zen-avatar-icon": HTMLZenAvatarIconElement;
+        "zen-breadcrumbs": HTMLZenBreadcrumbsElement;
         "zen-button": HTMLZenButtonElement;
         "zen-card": HTMLZenCardElement;
         "zen-checkbox": HTMLZenCheckboxElement;
@@ -819,6 +832,12 @@ declare namespace LocalJSX {
           * Name and Surname
          */
         "userName"?: string;
+    }
+    interface ZenBreadcrumbs {
+        /**
+          * The separator string
+         */
+        "separator"?: string;
     }
     interface ZenButton {
         /**
@@ -1214,6 +1233,7 @@ declare namespace LocalJSX {
         "zen-avatar": ZenAvatar;
         "zen-avatar-group": ZenAvatarGroup;
         "zen-avatar-icon": ZenAvatarIcon;
+        "zen-breadcrumbs": ZenBreadcrumbs;
         "zen-button": ZenButton;
         "zen-card": ZenCard;
         "zen-checkbox": ZenCheckbox;
@@ -1253,6 +1273,7 @@ declare module "@stencil/core" {
             "zen-avatar": LocalJSX.ZenAvatar & JSXBase.HTMLAttributes<HTMLZenAvatarElement>;
             "zen-avatar-group": LocalJSX.ZenAvatarGroup & JSXBase.HTMLAttributes<HTMLZenAvatarGroupElement>;
             "zen-avatar-icon": LocalJSX.ZenAvatarIcon & JSXBase.HTMLAttributes<HTMLZenAvatarIconElement>;
+            "zen-breadcrumbs": LocalJSX.ZenBreadcrumbs & JSXBase.HTMLAttributes<HTMLZenBreadcrumbsElement>;
             "zen-button": LocalJSX.ZenButton & JSXBase.HTMLAttributes<HTMLZenButtonElement>;
             "zen-card": LocalJSX.ZenCard & JSXBase.HTMLAttributes<HTMLZenCardElement>;
             "zen-checkbox": LocalJSX.ZenCheckbox & JSXBase.HTMLAttributes<HTMLZenCheckboxElement>;
