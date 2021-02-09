@@ -40,7 +40,7 @@ export class ZenTooltip {
   @Prop() readonly showDelay: number = 300;
 
   /** Pointing arrow - like a cartoon balloon */
-  @Prop() readonly hasArrow?: boolean = true;
+  @Prop({ reflect: true }) readonly hasArrow?: boolean = true;
 
   positionTooltip(position?: Position): Rect {
     const previousElement = this.element.previousElementSibling as HTMLElement;
@@ -171,7 +171,7 @@ export class ZenTooltip {
         <slot>{this.label}</slot>
         <div
           class={{
-            arrow: true,
+            arrow: this.hasArrow,
             [this.realPosition]: true,
             [this.variant]: true,
           }}
