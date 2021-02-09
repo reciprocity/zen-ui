@@ -25,7 +25,7 @@
     "test:e2e:interactive": "cypress open --browser chrome",
     "test:e2e:headless": "docker run -it -v $PWD:/cypress -w /cypress cypress/included:6.2.1 --headless --browser chrome --config baseUrl=http://host.docker.internal:6006",
     "test:e2e:update": "docker run -it -e CYPRESS_updateSnapshots=true -v $PWD:/cypress -w /cypress cypress/included:6.2.1 --headless --browser chrome --config baseUrl=http://host.docker.internal:6006",
-    "test:e2e:ci": "cypress run --headless --browser chrome",
+    "test:e2e:ci": "cypress run --headless --browser chrome --record --parallel",
     "test:vrt": "yarn run test:e2e:headless --spec 'cypress/integration/visual/**'",
     "test:vrt:update": "yarn test:e2e:update --spec 'cypress/integration/visual/**'",
     "create-component": "stencil generate",
