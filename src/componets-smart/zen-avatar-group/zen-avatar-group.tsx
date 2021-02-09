@@ -18,7 +18,7 @@ export class ZenAvatarGroup {
 
     let index = -1;
     return users.map(user => {
-      index < colors.length - 1 ? index++ : (index = 0);
+      index = index < colors.length - 1 ? index + 1 : 0;
 
       return {
         userName: user.userName,
@@ -31,14 +31,12 @@ export class ZenAvatarGroup {
   }
 
   shownUsers(): AvatarData[] {
-    const users = this.users.slice();
-    const shownUsers = users.splice(0, this.displayMax);
+    const shownUsers = this.users.slice(0, this.displayMax);
     return this.getUserData(shownUsers);
   }
 
   hiddenUsers(): AvatarData[] {
-    const users = this.users.slice();
-    const hiddenUsers = users.splice(this.displayMax, this.users.length);
+    const hiddenUsers = this.users.slice(this.displayMax, this.users.length);
     return this.getUserData(hiddenUsers);
   }
 
