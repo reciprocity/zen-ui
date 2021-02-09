@@ -36,20 +36,28 @@ export const StoryRadiosGroup = () => {
 };
 
 export const StoryButtonControl = () => {
-  function select(value) {
-    document.querySelector(`#button-radios zen-radio[value='${value}']`).checked = true;
+  function changed(event) {
+    console.log('changed');
+  }
+  function select(item, value) {
+    document.querySelector(`#button-radios zen-radio[value='${item}']`).checked = value;
+  }
+  function clear(value) {
+    document.querySelector(`#button-radios zen-radio`).selected = '';
   }
   return html/*html*/ `
     <zen-form-group id="button-radios">
       <zen-text variant="label">First group</zen-text>
       <zen-space vertical padding="none">
-        <zen-radio group="third" value="1">Option 1</zen-radio>
+        <zen-radio group="third" value="1" @change="${changed}">Option 1</zen-radio>
         <zen-radio group="third" value="2">Option 2</zen-radio>
+        <zen-radio group="third" value="3">Option 3</zen-radio>
       <zen-space>
     </zen-form-group>
     <zen-space>
-      <zen-button @click="${() => select('1')}">Check 1</zen-button>
-      <zen-button @click="${() => select('2')}">Check 2</zen-button>
+      <zen-button @click="${() => select('1', true)}">Check 1</zen-button>
+      <zen-button @click="${() => select('3', true)}">Check 3</zen-button>
+      <zen-button @click="${() => clear('')}">Clear</zen-button>
   `;
 };
 
@@ -75,7 +83,8 @@ Standard radio input component
 
 ### 2. Select programatically
 
-- Set selected option by setting prop `checked`
+- Set selected option by either setting prop `checked` or prop `selected`.
+- Also check console log, to see when `changed` event is sent.
 
 <Canvas>
   <Story name="buttonControl">{StoryButtonControl.bind({})}</Story>

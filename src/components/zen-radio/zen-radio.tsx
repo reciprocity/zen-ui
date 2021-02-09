@@ -1,6 +1,7 @@
 import { Component, Host, h, Prop, Element, Listen, Watch, Method } from '@stencil/core';
 import { querySelectorAllDeep } from 'query-selector-shadow-dom';
 import last from 'lodash/last';
+import { toggleAttribute } from '../helpers/helpers';
 
 /**
  * @event change | Called each time radio.selected changes
@@ -15,7 +16,7 @@ export class ZenRadio {
   @Element() hostElement: HTMLZenRadioElement;
 
   /** Check/uncheck radio */
-  @Prop({ mutable: true, reflect: true }) checked = false;
+  @Prop({ reflect: true }) readonly checked: boolean = false;
 
   /** Value of this radio option */
   @Prop() readonly value: string = '';
@@ -31,39 +32,50 @@ export class ZenRadio {
 
   @Watch('checked')
   async checkedChanged(checked: boolean): Promise<void> {
-    const deselectElements = radios => {
-      radios.forEach((radio: HTMLInputElement) => {
-        if (!radio.checked) return;
-        radio.checked = false;
+    this.setSelected(checked ? this.value : '');
+  }
+
+  @Watch('selected')
+  async selectedChanged(selected: string): Promise<void> {
+    this.setSelected(selected);
+  }
+
+  setSelected(selected: string): void {
+    const dispatchChangeEvents = (): void => {
+      this.elementsInSameGroup().forEach((element: HTMLZenRadioElement) => {
+        element.dispatchEvent(new window.Event('change'));
       });
     };
 
-    function updateResultAttrs(radios: HTMLZenRadioElement[], selected: string): void {
-      radios.forEach((element: HTMLZenRadioElement) => {
-        element.selected = selected;
+    const setUpdating = (toggle = false): void => {
+      const elements = this.elementsInSameGroup();
+      elements.forEach((element: HTMLZenRadioElement) => {
+        toggleAttribute(element, 'updating-group', toggle ? 'true' : '');
       });
-    }
+    };
 
-    function dispatchChangeEvents(radios: HTMLZenRadioElement[]): void {
-      radios.forEach((element: HTMLZenRadioElement) => {
-        element.dispatchEvent(new window.Event('change'));
-      });
-    }
+    const isUpdating = (): boolean => {
+      return !!this.hostElement.getAttribute('updating-group');
+    };
 
-    // Trigger this procedure just once - just for cheched radio:
-    this.radioInput().checked = checked;
+    const updateElement = (element: HTMLZenRadioElement, selected: string): void => {
+      const radio = element.shadowRoot.querySelector('input[type=radio]') as HTMLInputElement;
+      if (!radio) return;
+      radio.checked = element.value === selected;
+      element.checked = element.value === selected;
+      element.selected = selected;
+    };
 
-    if (!checked) return;
+    if (isUpdating()) return; // Only first element should update group!
 
-    // Since we're in a shadow dom, we have to manually deselect all other
-    //   radios of the same group:
-    const radios = this.elementsInSameGroup();
-    const others = radios.filter(n => n !== this.hostElement);
+    setUpdating(true); // Lock it
 
-    deselectElements(others);
-    updateResultAttrs(radios, this.value);
-    this.checked = checked;
-    dispatchChangeEvents(radios);
+    this.elementsInSameGroup().forEach((element: HTMLZenRadioElement) => {
+      updateElement(element, selected);
+    });
+    dispatchChangeEvents();
+
+    setUpdating(false); // Unlock
   }
 
   /** Focus radio programatically */
@@ -90,7 +102,7 @@ export class ZenRadio {
   }
 
   onClick(): void {
-    this.checked = true;
+    this.setSelected(this.value);
   }
 
   @Listen('keydown')
