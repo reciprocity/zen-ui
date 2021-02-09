@@ -15,12 +15,6 @@ export class ZenNotification {
   /** Variant  */
   @Prop() readonly variant: NotificationVariant = 'success';
 
-  /** Height */
-  @Prop() readonly height: string = '5rem';
-
-  /** Width */
-  @Prop() readonly width: string = '25rem';
-
   /** Title */
   @Prop() readonly heading: string = '';
 
@@ -47,6 +41,7 @@ export class ZenNotification {
 
   render(): HTMLElement {
     const classes = {
+      show: true,
       notification: true,
       [`notification-${this.variant}`]: true,
     };
@@ -63,7 +58,7 @@ export class ZenNotification {
 
     return (
       <Host class="show" ref={el => (this.div = el)}>
-        <div class={classes} style={{ width: this.width, 'min-height': this.height }}>
+        <div class={classes}>
           <div
             class={close}
             onClick={() => {

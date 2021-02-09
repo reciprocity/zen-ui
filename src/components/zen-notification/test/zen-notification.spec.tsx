@@ -20,4 +20,13 @@ describe('Test parameters rendering', () => {
     expect(page.root.shadowRoot.querySelector('.title').textContent).toEqual('Test Heading');
     expect(page.root.shadowRoot.querySelector('.message').textContent).toEqual('Test Message');
   });
+
+  it('Test that notification can be dismissed', async () => {
+    const page = await newSpecPage({
+      components: [ZenNotification],
+      html: `<zen-notification heading="Test Heading" message="Test Message"></zen-notification>`,
+    });
+
+    expect(page.root.shadowRoot.querySelector('.close')).not.toBeNull();
+  });
 });
