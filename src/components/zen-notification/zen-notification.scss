@@ -1,6 +1,12 @@
 @import '../../zen-styles/component-helpers.scss';
 @import './mixins.scss';
 
+:host {
+  display: block;
+  width: 90vw;
+  max-width: 376px;
+}
+
 .show {
   visibility: visible;
 }
@@ -9,23 +15,13 @@
   visibility: hidden;
 }
 
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
 .notification {
+  box-sizing: border-box;
+  min-height: 128px;
   position: relative;
   padding: 1.3rem 1.3rem;
-  margin-bottom: 2rem;
   border: 1px solid transparent;
   border-radius: $border-radius-default;
-  animation: fadeIn 1s;
-  min-width: 10rem;
 
   &.notification-success {
     @include variant($color-green-700, $color-green-100);

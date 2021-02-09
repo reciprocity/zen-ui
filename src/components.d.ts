@@ -259,10 +259,6 @@ export namespace Components {
          */
         "heading": string;
         /**
-          * Height
-         */
-        "height": string;
-        /**
           * Message
          */
         "message": string;
@@ -270,10 +266,6 @@ export namespace Components {
           * Variant
          */
         "variant": NotificationVariant;
-        /**
-          * Width (min width 10rem)
-         */
-        "width": string;
     }
     interface ZenOption {
         /**
@@ -987,10 +979,6 @@ declare namespace LocalJSX {
          */
         "heading"?: string;
         /**
-          * Height
-         */
-        "height"?: string;
-        /**
           * Message
          */
         "message"?: string;
@@ -998,10 +986,6 @@ declare namespace LocalJSX {
           * Variant
          */
         "variant"?: NotificationVariant;
-        /**
-          * Width (min width 10rem)
-         */
-        "width"?: string;
     }
     interface ZenOption {
         /**

@@ -10,7 +10,7 @@ const argTypes = getArgTypes(compData);
 
 export const StoryWithControls = args => html/*html*/ ` <zen-notification ...="${spreadArgs(args, argTypes)}" /> `;
 
-export const StoryVariants = () => html/*html*/ ` <div>
+export const StoryVariants = () => html/*html*/ ` <div style="padding-bottom: 20px">
     <zen-notification
       variant="success"
       heading="Success"
@@ -19,7 +19,7 @@ export const StoryVariants = () => html/*html*/ ` <div>
       dismiss="true"
     />
   </div>
-  <div>
+  <div style="padding-bottom: 20px">
     <zen-notification
       variant="info"
       heading="Info"
@@ -28,7 +28,7 @@ export const StoryVariants = () => html/*html*/ ` <div>
       dismiss="true"
     />
   </div>
-  <div>
+  <div style="padding-bottom: 20px">
     <zen-notification
       variant="warning"
       heading="Warning"
