@@ -14,22 +14,19 @@ export class ZenAvatarGroup {
   @Prop() readonly displayMax: number = 4;
 
   getUserData(users: Avatar[]): AvatarData[] {
-    const colors = this.getColors();
+    const colors = this.colors();
 
     let index = -1;
     return users.map(user => {
-      if (index < colors.length - 1) {
-        index++;
-        return {
-          userName: user.userName,
-          email: user.email,
-          imageUrl: user.imageUrl,
-          color: colors[index].color,
-          background: colors[index].background,
-        };
-      } else {
-        index = 0;
-      }
+      index < colors.length - 1 ? index++ : (index = 0);
+
+      return {
+        userName: user.userName,
+        email: user.email,
+        imageUrl: user.imageUrl,
+        color: colors[index].color,
+        background: colors[index].background,
+      };
     });
   }
 
@@ -41,11 +38,11 @@ export class ZenAvatarGroup {
 
   hiddenUsers(): AvatarData[] {
     const users = this.users.slice();
-    const hiddenUsers = users.splice(this.displayMax, users.length);
+    const hiddenUsers = users.splice(this.displayMax, this.users.length);
     return this.getUserData(hiddenUsers);
   }
 
-  getColors(): AvatarColor[] {
+  colors(): AvatarColor[] {
     return [
       {
         color: '#00528C',
@@ -68,10 +65,6 @@ export class ZenAvatarGroup {
         background: '#FCDADD',
       },
     ];
-  }
-
-  getIconColor(index: number): AvatarColor {
-    return this.getColors()[index];
   }
 
   render(): HTMLElement {
