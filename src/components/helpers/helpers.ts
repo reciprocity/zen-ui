@@ -69,3 +69,8 @@ export function toggleAttribute(element: Element, attribute: string, value: stri
     element.removeAttribute(attribute);
   }
 }
+
+export function applyPrefix(componentName: string, parentElement: Element): string {
+  const parentTagPrefix = `${parentElement.tagName.split('-')[0]}-`;
+  return `${parentTagPrefix}${componentName}`;
+}
