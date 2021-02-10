@@ -60,3 +60,14 @@ input:focus + .radiomark {
     background-color: $color-blue-800;
   }
 }
+
+:host([disabled]) {
+  .radiomark {
+    border-color: $color-gray-200;
+    background-color: $color-gray-100;
+  }
+
+  .radiomark:after {
+    background-color: $color-gray-200;
+  }
+}

@@ -313,6 +313,10 @@ export namespace Components {
          */
         "checked": boolean;
         /**
+          * Radio can't be selected (but you can still set `checked=true`)
+         */
+        "disabled": false;
+        /**
           * Group id to which this radio belongs
          */
         "group": string;
@@ -1065,6 +1069,10 @@ declare namespace LocalJSX {
           * Check/uncheck radio
          */
         "checked"?: boolean;
+        /**
+          * Radio can't be selected (but you can still set `checked=true`)
+         */
+        "disabled"?: false;
         /**
           * Group id to which this radio belongs
          */

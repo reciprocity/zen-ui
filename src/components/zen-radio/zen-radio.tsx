@@ -27,6 +27,9 @@ export class ZenRadio {
   /** Shows a red asterisk after label */
   @Prop() readonly required = false;
 
+  /** Radio can't be selected (but you can still set `checked=true`) */
+  @Prop() readonly disabled = false;
+
   /** Group id to which this radio belongs */
   @Prop({ reflect: true }) readonly group: string = '';
 
@@ -95,14 +98,15 @@ export class ZenRadio {
     return this.hostElement.shadowRoot.querySelector('input[type=radio]');
   }
 
-  elementsInSameGroup(): HTMLZenRadioElement[] {
-    return this.group
-      ? (Array.from(querySelectorAllDeep(`zen-radio[group=${this.group}]`)) as HTMLZenRadioElement[])
-      : [this.hostElement];
+  elementsInSameGroup(onlyEnabled?: boolean): HTMLZenRadioElement[] {
+    const selector = `zen-radio[group=${this.group}]${onlyEnabled ? ':not([disabled])' : ''}`;
+    return this.group ? (Array.from(querySelectorAllDeep(selector)) as HTMLZenRadioElement[]) : [this.hostElement];
   }
 
   onClick(event: Event): void {
+    if (this.disabled) return;
     this.setSelected(this.value);
+    this.radioInput().focus();
     event.preventDefault();
   }
 
@@ -110,7 +114,7 @@ export class ZenRadio {
   handleKeyDown(event: KeyboardEvent): void {
     // Since we're in a shadow dom, arrow up/down doesn't work to move
     //   amoung the options, so we have to do it manually:
-    const radios = this.elementsInSameGroup();
+    const radios = this.elementsInSameGroup(true);
     const index = radios.findIndex(radio => radio === this.hostElement);
     if (['ArrowUp', 'ArrowDown'].includes(event.key)) {
       const forward = event.key === 'ArrowDown';
@@ -132,7 +136,14 @@ export class ZenRadio {
   render(): HTMLElement {
     return (
       <Host onClick={e => this.onClick(e)}>
-        <input type="radio" class="input-control" id="radio" name={this.group} onClick={e => this.onClick(e)} />
+        <input
+          type="radio"
+          class="input-control"
+          id="radio"
+          name={this.group}
+          onClick={e => this.onClick(e)}
+          disabled={this.disabled}
+        />
         <div class="radiomark" />
         <label htmlFor="radio">
           <slot />
