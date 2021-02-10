@@ -26,6 +26,12 @@ describe('Radio', () => {
       `,
     });
     radios = Array.from(page.doc.querySelectorAll('zen-radio'));
+
+    /** Mock Input Elements focus and blur function */
+    for (const element of radios) {
+      radioInput(element).focus = jest.fn();
+      radioInput(element).blur = jest.fn();
+    }
   });
 
   it('renders radios', async () => {
