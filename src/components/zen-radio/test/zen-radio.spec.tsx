@@ -15,6 +15,7 @@ const radioInput = (element: HTMLZenRadioElement) => element.shadowRoot.querySel
 
 describe('Radio', () => {
   let page: SpecPage;
+  const inputBlur = jest.fn();
 
   beforeEach(async () => {
     page = await newSpecPage({
@@ -30,7 +31,7 @@ describe('Radio', () => {
     /** Mock Input Elements focus and blur function */
     for (const element of radios) {
       radioInput(element).focus = jest.fn();
-      radioInput(element).blur = jest.fn();
+      radioInput(element).blur = inputBlur;
     }
   });
 
@@ -135,5 +136,23 @@ describe('Radio', () => {
     simulateKey('ArrowDown', radios[2]);
     await page.waitForChanges();
     expect(radios[2].selected).toEqual('0');
+  });
+
+  it('setFocus(false) calls blur', async () => {
+    radios[2].setFocus(false);
+    await page.waitForChanges();
+    expect(inputBlur).toHaveBeenCalledTimes(1);
+  });
+
+  it('clicking element selects it', async () => {
+    radios[0].checked = true;
+    await page.waitForChanges();
+    expect(radios[0].checked).toEqual(true);
+    expect(radios[2].checked).toEqual(false);
+
+    radios[2].click();
+    await page.waitForChanges();
+    expect(radios[2].checked).toEqual(true);
+    expect(radios[0].checked).toEqual(false);
   });
 });
