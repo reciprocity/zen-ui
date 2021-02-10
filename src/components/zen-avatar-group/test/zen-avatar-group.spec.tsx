@@ -1,9 +1,9 @@
 import { newSpecPage } from '@stencil/core/testing';
 
-import { ZenAvatarIcon } from '../../../components/zen-avatar-icon/zen-avatar-icon';
-import { ZenAvatar } from '../../../components/zen-avatar/zen-avatar';
+import { ZenAvatarIcon } from '../../zen-avatar-icon/zen-avatar-icon';
+import { ZenAvatar } from '../../zen-avatar/zen-avatar';
 import { ZenAvatarGroup } from '../zen-avatar-group';
-import { ZenTooltip } from '../../../components/zen-tooltip/zen-tooltip';
+import { ZenTooltip } from '../../zen-tooltip/zen-tooltip';
 
 export const user = [
   {
