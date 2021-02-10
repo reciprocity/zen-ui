@@ -18,7 +18,7 @@ describe('Test parameters rendering', () => {
     });
 
     expect(page.root.shadowRoot.querySelector('.title').textContent).toEqual('Test Heading');
-    expect(page.root.shadowRoot.querySelector('.message').textContent).toEqual('Test Message');
+    expect(page.root.shadowRoot.querySelector('.content').textContent).toEqual('Test Message');
   });
 
   it('Test that notification can be dismissed', async () => {
