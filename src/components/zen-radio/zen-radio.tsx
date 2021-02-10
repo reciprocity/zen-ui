@@ -101,8 +101,9 @@ export class ZenRadio {
       : [this.hostElement];
   }
 
-  onClick(): void {
+  onClick(event: Event): void {
     this.setSelected(this.value);
+    event.preventDefault();
   }
 
   @Listen('keydown')
@@ -130,8 +131,8 @@ export class ZenRadio {
 
   render(): HTMLElement {
     return (
-      <Host>
-        <input type="radio" class="input-control" id="radio" name={this.group} onClick={() => this.onClick()} />
+      <Host onClick={e => this.onClick(e)}>
+        <input type="radio" class="input-control" id="radio" name={this.group} onClick={e => this.onClick(e)} />
         <div class="radiomark" />
         <label htmlFor="radio">
           <slot />
