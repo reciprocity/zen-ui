@@ -1,21 +1,26 @@
-import { renderIcon } from '../helpers/fa-icons';
-import { faInfoCircle, faCheckCircle, faExclamationTriangle, faTimesHexagon } from '@fortawesome/pro-light-svg-icons';
+import {
+  faInfoCircle,
+  faCheckCircle,
+  faExclamationTriangle,
+  faTimesHexagon,
+  IconDefinition,
+} from '@fortawesome/pro-light-svg-icons';
 import { Duration, NotificationVariant } from '../helpers/types';
 
-export function getIcon(variant: NotificationVariant): HTMLElement {
-  let icon: HTMLElement;
+export function getIcon(variant: NotificationVariant): IconDefinition {
+  let icon: IconDefinition;
   switch (variant) {
     case 'success':
-      icon = renderIcon(faCheckCircle);
+      icon = faCheckCircle;
       break;
     case 'info':
-      icon = renderIcon(faInfoCircle);
+      icon = faInfoCircle;
       break;
     case 'warning':
-      icon = renderIcon(faExclamationTriangle);
+      icon = faExclamationTriangle;
       break;
     case 'error':
-      icon = renderIcon(faTimesHexagon);
+      icon = faTimesHexagon;
       break;
   }
   return icon;
