@@ -13,7 +13,7 @@ import { ZenRadio } from '../zen-radio';
 
 const radioInput = (element: HTMLZenRadioElement) => element.shadowRoot.querySelector('input');
 
-describe('Radio', () => {
+describe('zen-radio', () => {
   let page: SpecPage;
   const inputBlur = jest.fn();
 
@@ -35,18 +35,18 @@ describe('Radio', () => {
     }
   });
 
-  it('renders radios', async () => {
+  it('should render radios', async () => {
     expect(radios.length).toEqual(3);
   });
 
-  it('checks input', async () => {
+  it('should check input', async () => {
     expect(radioInput(radios[0]).checked).toEqual(false);
     radios[0].checked = true;
     await page.waitForChanges();
     expect(radioInput(radios[0]).checked).toEqual(true);
   });
 
-  it('unchecks input when other radio selected', async () => {
+  it('should uncheck input when other radio selected', async () => {
     expect(radioInput(radios[0]).checked).toEqual(false);
     radios[0].checked = true;
     await page.waitForChanges();
@@ -57,7 +57,7 @@ describe('Radio', () => {
     expect(radioInput(radios[1]).checked).toEqual(true);
   });
 
-  it('deselects all on setting empty "selected" prop', async () => {
+  it('should deselect all on setting empty "selected" prop', async () => {
     radios[2].checked = true;
     await page.waitForChanges();
     expect(radioInput(radios[2]).checked).toEqual(true);
@@ -66,7 +66,7 @@ describe('Radio', () => {
     expect([radios[0], radios[1], radios[2]].every(el => !el.checked)).toBeTruthy();
   });
 
-  it('deselects all on setting invalid "selected" prop', async () => {
+  it('should deselect all on setting invalid "selected" prop', async () => {
     radios[2].checked = true;
     await page.waitForChanges();
     expect(radioInput(radios[2]).checked).toEqual(true);
@@ -76,7 +76,7 @@ describe('Radio', () => {
     expect([radios[0], radios[1], radios[2]].every(el => !el.checked)).toBeTruthy();
   });
 
-  it('emits "change" event on change', async () => {
+  it('should emit "change" event on change', async () => {
     const eventSpy = jest.fn();
     radios[2].addEventListener('change', eventSpy);
 
@@ -85,7 +85,7 @@ describe('Radio', () => {
     expect(eventSpy).toHaveBeenCalledTimes(1);
   });
 
-  it('emits "change" event on item from same group change', async () => {
+  it('should emit "change" event on item from same group change', async () => {
     const eventSpy = jest.fn();
     radios[2].addEventListener('change', eventSpy);
 
@@ -94,7 +94,7 @@ describe('Radio', () => {
     expect(eventSpy).toHaveBeenCalledTimes(1);
   });
 
-  it('updates prop "selected" on item from same group change', async () => {
+  it('should update prop "selected" on item from same group change', async () => {
     radios[2].checked = true;
     await page.waitForChanges();
     expect(radios[2].selected).toEqual('2');
@@ -103,7 +103,7 @@ describe('Radio', () => {
     expect(radios[2].selected).toEqual('0');
   });
 
-  it('selects next item on key "down"', async () => {
+  it('should select next item on key "down"', async () => {
     radios[1].checked = true;
     await page.waitForChanges();
     expect(radios[2].selected).toEqual('1');
@@ -113,7 +113,7 @@ describe('Radio', () => {
     expect(radios[2].selected).toEqual('2');
   });
 
-  it('selects previous item on key "up"', async () => {
+  it('should select previous item on key "up"', async () => {
     radios[1].checked = true;
     await page.waitForChanges();
     expect(radios[2].selected).toEqual('1');
@@ -123,25 +123,25 @@ describe('Radio', () => {
     expect(radios[2].selected).toEqual('0');
   });
 
-  it('selects last on key "up" on first item', async () => {
+  it('should select last on key "up" on first item', async () => {
     simulateKey('ArrowUp', radios[0]);
     await page.waitForChanges();
     expect(radios[0].selected).toEqual('2');
   });
 
-  it('selects first on key "down" on last item', async () => {
+  it('should select first on key "down" on last item', async () => {
     simulateKey('ArrowDown', radios[2]);
     await page.waitForChanges();
     expect(radios[2].selected).toEqual('0');
   });
 
-  it('setFocus(false) calls blur', async () => {
+  it('should call blue on setFocus(false)', async () => {
     radios[2].setFocus(false);
     await page.waitForChanges();
     expect(inputBlur).toHaveBeenCalledTimes(1);
   });
 
-  it('clicking element selects it', async () => {
+  it('should select element on being clicked', async () => {
     radios[0].checked = true;
     await page.waitForChanges();
     expect(radios[0].checked).toEqual(true);

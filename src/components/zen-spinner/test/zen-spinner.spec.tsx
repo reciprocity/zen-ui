@@ -10,7 +10,7 @@ describe('zen-spinner', () => {
     expect(page.root.shadowRoot).toBeTruthy();
   });
 
-  it('renders', async () => {
+  it('should render', async () => {
     const page = await newSpecPage({
       components: [ZenSpinner],
       html: `<zen-spinner></zen-spinner>`,

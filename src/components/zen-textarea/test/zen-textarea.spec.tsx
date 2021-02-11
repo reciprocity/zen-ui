@@ -42,7 +42,7 @@ describe('zen-textarea', () => {
     expect(page.root.shadowRoot.querySelector('textarea').getAttribute('required')).toBe('');
   });
 
-  it('changes value prop in onInput', async () => {
+  it('should change value prop in onInput', async () => {
     const page = await newSpecPage({
       components: [ZenTextarea],
       html: `<zen-textarea></zen-textarea>`,
@@ -57,7 +57,7 @@ describe('zen-textarea', () => {
     expect(page.rootInstance.text).toBe('My input content');
   });
 
-  it('changes value prop in onChange', async () => {
+  it('should change value prop in onChange', async () => {
     const page = await newSpecPage({
       components: [ZenTextarea],
       html: `<zen-textarea></zen-textarea>`,

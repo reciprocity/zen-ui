@@ -10,7 +10,7 @@ describe('zen-space', () => {
     expect(page.root.shadowRoot).toBeTruthy();
   });
 
-  it('correctly parses padding shorthands', async () => {
+  it('should correctly parse padding shorthands', async () => {
     const page = await newSpecPage({
       components: [ZenSpace],
       html: `<zen-space padding="xs sm"></zen-space>`,

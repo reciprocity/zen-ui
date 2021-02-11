@@ -10,7 +10,7 @@ describe('zen-toggle', () => {
     expect(page.root.shadowRoot).toBeTruthy();
   });
 
-  it('toggles on enter and spacebar keys', async () => {
+  it('should toggle on enter and spacebar keys', async () => {
     const page = await newSpecPage({
       components: [ZenToggle],
       html: `<zen-toggle></zen-toggle>`,
@@ -34,7 +34,7 @@ describe('zen-toggle', () => {
     expect(changeSpy).toHaveBeenCalled();
   });
 
-  it('toggles on click', async () => {
+  it('should toggle on click', async () => {
     const page = await newSpecPage({
       components: [ZenToggle],
       html: `<zen-toggle></zen-toggle>`,
@@ -58,7 +58,7 @@ describe('zen-toggle', () => {
     expect(changeSpy).toHaveBeenCalled();
   });
 
-  it('denies toggle on disabled', async () => {
+  it('should deny toggle on disabled', async () => {
     const page = await newSpecPage({
       components: [ZenToggle],
       html: `<zen-toggle disabled></zen-toggle>`,
@@ -85,7 +85,7 @@ describe('zen-toggle', () => {
     expect(page.rootInstance.checked).toBe(false);
   });
 
-  it('denies toggle when not allowed key is triggered', async () => {
+  it('should deny toggle when not allowed key is triggered', async () => {
     const page = await newSpecPage({
       components: [ZenToggle],
       html: `<zen-toggle></zen-toggle>`,
@@ -99,7 +99,7 @@ describe('zen-toggle', () => {
     expect(page.rootInstance.checked).toBe(false);
   });
 
-  it('denies focus on disabled', async () => {
+  it('should deny focus on disabled', async () => {
     const page = await newSpecPage({
       components: [ZenToggle],
       html: `<zen-toggle disabled></zen-toggle>`,

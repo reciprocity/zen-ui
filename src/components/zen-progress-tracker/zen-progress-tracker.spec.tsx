@@ -19,8 +19,8 @@ const stepsCount = (page: SpecPage): number => page.root.shadowRoot.querySelecto
 
 const activeStepLabel = (page: SpecPage): string => page.root.shadowRoot.querySelector('.step.active .label').innerHTML;
 
-describe('zen-button', () => {
-  it('renders', async () => {
+describe('zen-progress-tracker', () => {
+  it('should render', async () => {
     const page = await newSpecPage({
       components: [ZenProgressTracker],
       html: `<zen-progress-tracker></zen-progress-tracker>`,
@@ -32,7 +32,7 @@ describe('zen-button', () => {
       <ul class="steps"></ul>`);
   });
 
-  it('Renders steps', async () => {
+  it('should render steps', async () => {
     const page = await newSpecPage({
       components: [ZenProgressTracker],
       html: `<div></div>`,
@@ -50,7 +50,7 @@ describe('zen-button', () => {
       </ul>`);
   });
 
-  it('Sets active step', async () => {
+  it('should set active step', async () => {
     const page = await newSpecPage({
       components: [ZenProgressTracker],
       html: `<div></div>`,
@@ -65,7 +65,7 @@ describe('zen-button', () => {
     expect(activeStepLabel(page)).toEqualHtml('Step two');
   });
 
-  it('Sets selects step on click', async () => {
+  it('should select step on click', async () => {
     const page = await newSpecPage({
       components: [ZenProgressTracker],
       html: `<div></div>`,

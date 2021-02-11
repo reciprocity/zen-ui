@@ -2,7 +2,7 @@ import { newSpecPage } from '@stencil/core/testing';
 import { ZenTable } from '../zen-table';
 
 describe('zen-table', () => {
-  it('renders', async () => {
+  it('should render', async () => {
     const page = await newSpecPage({
       components: [ZenTable],
       html: `<zen-table>Content</zen-table>`,

@@ -10,7 +10,7 @@ describe('zen-checkbox', () => {
     expect(page.root.shadowRoot).toBeTruthy();
   });
 
-  it('should render with disabled, required and checked props in', async () => {
+  it('should render with disabled, required, and checked props in', async () => {
     const page = await newSpecPage({
       components: [ZenCheckbox],
       html: `<zen-checkbox checked disabled required></zen-checkbox>`,
@@ -29,7 +29,7 @@ describe('zen-checkbox', () => {
     expect(page.root.shadowRoot.querySelector('label').innerText).toBe('This is an example label ');
   });
 
-  it('checks', async () => {
+  it('should check on click', async () => {
     const page = await newSpecPage({
       components: [ZenCheckbox],
       html: `<zen-checkbox></zen-checkbox>`,
@@ -40,7 +40,7 @@ describe('zen-checkbox', () => {
     expect(page.root.shadowRoot.querySelector('input').getAttribute('checked')).toBe('');
   });
 
-  it('unchecks', async () => {
+  it('should uncheck on click', async () => {
     const page = await newSpecPage({
       components: [ZenCheckbox],
       html: `<zen-checkbox checked></zen-checkbox>`,
@@ -50,7 +50,7 @@ describe('zen-checkbox', () => {
     expect(page.root.shadowRoot.querySelector('input').getAttribute('checked')).toBeFalsy();
   });
 
-  it('tries to check/uncheck when disabled', async () => {
+  it('should not get toggled when disabled', async () => {
     const page = await newSpecPage({
       components: [ZenCheckbox],
       html: `<zen-checkbox></zen-checkbox>`,
