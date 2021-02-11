@@ -2,7 +2,7 @@ import '@storybook/addon-console';
 import { setConsoleOptions } from '@storybook/addon-console';
 import styles from './preview.scss';
 import zenDocsTheme from './zenDocsTheme';
-import { registerZenComponents } from '../src/components/helpers/helpers';
+import { defineCustomElements } from '../dist/esm/loader';
 
 import React from 'react';
 
@@ -57,4 +57,4 @@ setConsoleOptions({
   panelExclude: [...panelExclude, /deprecated/],
 });
 
-registerZenComponents('sb');
+defineCustomElements(window, { transformTagName: tagName => `sb-${tagName}` });

@@ -1,6 +1,5 @@
 import { querySelectorAllDeep } from 'query-selector-shadow-dom';
 import { Position, Rect } from './types';
-import { defineCustomElements } from '../../../dist/esm/loader';
 
 export function waitNextFrame(): Promise<boolean> {
   return new Promise(resolve => {
@@ -72,11 +71,7 @@ export function toggleAttribute(element: Element, attribute: string, value: stri
 }
 
 export function applyPrefix(componentName: string, parentElement: Element): string {
-  const parentTagPrefix = `${parentElement.tagName.split('-')[0]}-`.toLowerCase();
-  return `${parentTagPrefix}${componentName}`;
-}
-
-export function registerZenComponents(prefix: string): void {
-  const pf = prefix === '' ? '' : `${prefix}-`;
-  defineCustomElements(window, { transformTagName: (tagName: string) => `${pf}${tagName}` });
+  const parentPrefix = parentElement.tagName.split('-')[0].toLowerCase();
+  const sanitizedPrefix = parentPrefix !== 'zen' ? `${parentPrefix}-` : '';
+  return `${sanitizedPrefix}${componentName}`;
 }
