@@ -1,4 +1,5 @@
 @import '../../zen-styles/variables.scss';
+@import '../../zen-styles/shadows.scss';
 @import '../../zen-styles/mixins/forms.scss';
 
 :host {
@@ -14,13 +15,13 @@
 }
 
 :host(.has-focus) {
-  box-shadow: 0 0 0 2px $color-blue-300;
+  box-shadow: $shadow-focus;
   border-color: $color-blue-700;
   outline: none;
 }
 
 :host(.invalid) {
-  box-shadow: 0 0 0 2px $color-red-300;
+  box-shadow: $shadow-invalid;
   border: 1px solid $color-red-700;
 }
 

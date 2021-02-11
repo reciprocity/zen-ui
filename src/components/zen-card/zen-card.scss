@@ -1,4 +1,5 @@
 @import '../../zen-styles/component-helpers.scss';
+@import '../../zen-styles/shadows.scss';
 
 :host {
   display: block;
@@ -10,7 +11,7 @@
 }
 
 :host(:hover) {
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  box-shadow: $shadow-drop-200;
 }
 
 :host([disabled]) {
