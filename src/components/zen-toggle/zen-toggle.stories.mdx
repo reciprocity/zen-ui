@@ -11,26 +11,27 @@ const argTypes = getArgTypes(compData);
 export const StoryWithVariants = args =>
   html/*html*/ `
     <div>
-      <zen-form-group>
-        <zen-text variant="label">Unchecked</zen-text>
-        <zen-toggle></zen-toggle>
-      </zen-form-group>
-      <zen-form-group>
-        <zen-text variant="label">Checked</zen-text>
-        <zen-toggle checked></zen-toggle>
-      </zen-form-group>
-      <zen-form-group>
-        <zen-text variant="label">Disabled unchecked</zen-text>
-        <zen-toggle disabled></zen-toggle>
-      </zen-form-group>
-      <zen-form-group>
-        <zen-text variant="label">Disabled checked</zen-text>
-        <zen-toggle disabled checked></zen-toggle>
-      </zen-form-group>
+      <sb-zen-form-group>
+        <sb-zen-text variant="label">Unchecked</sb-zen-text>
+        <sb-zen-toggle></sb-zen-toggle>
+      </sb-zen-form-group>
+      <sb-zen-form-group>
+        <sb-zen-text variant="label">Checked</sb-zen-text>
+        <sb-zen-toggle checked></sb-zen-toggle>
+      </sb-zen-form-group>
+      <sb-zen-form-group>
+        <sb-zen-text variant="label">Disabled unchecked</sb-zen-text>
+        <sb-zen-toggle disabled></sb-zen-toggle>
+      </sb-zen-form-group>
+      <sb-zen-form-group>
+        <sb-zen-text variant="label">Disabled checked</sb-zen-text>
+        <sb-zen-toggle disabled checked></sb-zen-toggle>
+      </sb-zen-form-group>
     </div>
   `;
 
-export const StoryWithControls = args => html/*html*/ ` <zen-toggle ...="${spreadArgs(args, argTypes)}"></zen-toggle> `;
+export const StoryWithControls = args =>
+  html/*html*/ ` <sb-zen-toggle ...="${spreadArgs(args, argTypes)}"></sb-zen-toggle> `;
 
 # Toggle
 
