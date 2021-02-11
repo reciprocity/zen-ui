@@ -11,21 +11,21 @@ argTypes['color'].control = 'color';
 <Meta title="Icons/Avatar Icon" component="zen-avatar-icon" argTypes={argTypes} />
 
 export const StoryWithControls = args =>
-  html/*html*/ ` <zen-avatar-icon ...="${spreadArgs(args, argTypes)}"></zen-avatar-icon>`;
+  html/*html*/ ` <sb-zen-avatar-icon ...="${spreadArgs(args, argTypes)}"></sb-zen-avatar-icon>`;
 
 export const StoryAvatarVariants = () =>
   html/*html*/ `
     <div style="font-size:12px; display: flex; justify-content: space-evenly;">
       <div style="display: flex; flex-direction: column; align-items: center;">
-        <zen-avatar-icon user-name="Mike Anderson"></zen-avatar>
+        <sb-zen-avatar-icon user-name="Mike Anderson"></sb-zen-avatar>
         <span>Initials from user name</span>
       </div>
       <div style="display: flex; flex-direction: column; align-items: center;">
-        <zen-avatar-icon email="mike.anderson@reciprocity.com"></zen-avatar-icon>
+        <sb-zen-avatar-icon email="mike.anderson@reciprocity.com"></sb-zen-avatar-icon>
         <span>Initials from email</span>
       </div>
       <div style="display: flex; flex-direction: column; align-items: center;">
-        <zen-avatar-icon image-url="${avatar}"></zen-avatar-icon>
+        <sb-zen-avatar-icon image-url="${avatar}"></sb-zen-avatar-icon>
         <span>Content from image url</span>
       </div>
     </div>
@@ -34,9 +34,9 @@ export const StoryAvatarVariants = () =>
 export const StoryAvatarSizes = () =>
   html/*html*/ `
     <div style="display: flex; justify-content: space-evenly;">
-      <zen-avatar-icon user-name="Niki Franklin" background="#FFEED2" color="#A26900" size="sm"></zen-avatar-icon>
-      <zen-avatar-icon user-name="Mike Anderson" background="#FADBFF" color="#643A6B" size="md"></zen-avatar-icon>
-      <zen-avatar-icon user-name="Frank Money" color="" size="lg"></zen-avatar-icon>
+      <sb-zen-avatar-icon user-name="Niki Franklin" background="#FFEED2" color="#A26900" size="sm"></sb-zen-avatar-icon>
+      <sb-zen-avatar-icon user-name="Mike Anderson" background="#FADBFF" color="#643A6B" size="md"></sb-zen-avatar-icon>
+      <sb-zen-avatar-icon user-name="Frank Money" color="" size="lg"></sb-zen-avatar-icon>
     </div>
   `;
 
