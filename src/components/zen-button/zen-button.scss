@@ -88,11 +88,3 @@
 :host(.btn-destructive) {
   @include button-variant($color-white, $color-red-700, $color-red-700, $color-red-800, $color-red-300, $color-red-900);
 }
-
-zen-spinner {
-  position: absolute;
-  left: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
-}
