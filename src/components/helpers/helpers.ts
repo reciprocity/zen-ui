@@ -72,10 +72,11 @@ export function toggleAttribute(element: Element, attribute: string, value: stri
 }
 
 export function applyPrefix(componentName: string, parentElement: Element): string {
-  const parentTagPrefix = `${parentElement.tagName.split('-')[0]}-`;
+  const parentTagPrefix = `${parentElement.tagName.split('-')[0]}-`.toLowerCase();
   return `${parentTagPrefix}${componentName}`;
 }
 
-export function registerZenComponents(scope: Window, prefix: string): void {
-  defineCustomElements(scope, { transformTagName: (tagName: string) => `${prefix}-${tagName}` });
+export function registerZenComponents(prefix: string): void {
+  const pf = prefix === '' ? '' : `${prefix}-`;
+  defineCustomElements(window, { transformTagName: (tagName: string) => `${pf}${tagName}` });
 }
