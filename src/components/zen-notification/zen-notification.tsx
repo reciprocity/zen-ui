@@ -1,8 +1,7 @@
 import { Component, Host, h, Prop } from '@stencil/core';
-import { renderIcon } from '../helpers/fa-icons';
 import { faTimes } from '@fortawesome/pro-light-svg-icons';
 import { Duration, NotificationVariant } from '../helpers/types';
-import { getIcon, getTimeout } from './functions';
+import { getIcon, getTimeout } from './helpers';
 
 @Component({
   tag: 'zen-notification',
@@ -17,9 +16,6 @@ export class ZenNotification {
 
   /** Title */
   @Prop() readonly heading: string = '';
-
-  /** Message */
-  @Prop() readonly message: string = '';
 
   /** Hide duration */
   @Prop() readonly dismissDuration: Duration = 'medium';
@@ -70,13 +66,15 @@ export class ZenNotification {
               this.close(this.div);
             }}
           >
-            {renderIcon(faTimes)}
+            <zen-icon icon={faTimes}></zen-icon>
           </div>
           <div class="row">
-            <div class={icon}>{getIcon(this.variant)}</div>
+            <zen-icon class={icon} icon={getIcon(this.variant)}></zen-icon>
             <div class={title}>{this.heading}</div>
           </div>
-          <div class="content">{this.message}</div>
+          <div class="content">
+            <slot />
+          </div>
         </div>
       </Host>
     );
