@@ -1,4 +1,5 @@
-import { Component, Host, h, Prop } from '@stencil/core';
+import { Component, Host, h, Prop, Element } from '@stencil/core';
+import { applyPrefix } from '../helpers/helpers';
 import { Avatar, AvatarColor, AvatarData } from '../helpers/types';
 
 @Component({
@@ -7,6 +8,8 @@ import { Avatar, AvatarColor, AvatarData } from '../helpers/types';
   shadow: true,
 })
 export class ZenAvatarGroup {
+  @Element() hostElement: HTMLZenAvatarGroupElement;
+
   /** Array of user's data  */
   @Prop() readonly users: Avatar[] = [];
 
@@ -66,12 +69,13 @@ export class ZenAvatarGroup {
   }
 
   render(): HTMLElement {
+    const ZenAvatar = applyPrefix('zen-avatar', this.hostElement);
     return (
       <Host>
         {this.shownUsers().map(user => (
-          <zen-avatar users={[user]} animation={this.users.length > 1} />
+          <ZenAvatar users={[user]} animation={this.users.length > 1} />
         ))}
-        {this.hiddenUsers().length > 0 ? <zen-avatar users={this.hiddenUsers()} animation={false} /> : null}
+        {this.hiddenUsers().length > 0 ? <ZenAvatar users={this.hiddenUsers()} animation={true} /> : null}
       </Host>
     );
   }
