@@ -289,6 +289,8 @@ export namespace Components {
          */
         "value": OptionValue;
     }
+    interface ZenPopover {
+    }
     interface ZenProgressTracker {
         /**
           * Index of currently active step
@@ -641,6 +643,12 @@ declare global {
         prototype: HTMLZenOptionElement;
         new (): HTMLZenOptionElement;
     };
+    interface HTMLZenPopoverElement extends Components.ZenPopover, HTMLStencilElement {
+    }
+    var HTMLZenPopoverElement: {
+        prototype: HTMLZenPopoverElement;
+        new (): HTMLZenPopoverElement;
+    };
     interface HTMLZenProgressTrackerElement extends Components.ZenProgressTracker, HTMLStencilElement {
     }
     var HTMLZenProgressTrackerElement: {
@@ -747,6 +755,7 @@ declare global {
         "zen-modal": HTMLZenModalElement;
         "zen-notification": HTMLZenNotificationElement;
         "zen-option": HTMLZenOptionElement;
+        "zen-popover": HTMLZenPopoverElement;
         "zen-progress-tracker": HTMLZenProgressTrackerElement;
         "zen-radio": HTMLZenRadioElement;
         "zen-space": HTMLZenSpaceElement;
@@ -1042,6 +1051,8 @@ declare namespace LocalJSX {
          */
         "value"?: OptionValue;
     }
+    interface ZenPopover {
+    }
     interface ZenProgressTracker {
         /**
           * Index of currently active step
@@ -1284,6 +1295,7 @@ declare namespace LocalJSX {
         "zen-modal": ZenModal;
         "zen-notification": ZenNotification;
         "zen-option": ZenOption;
+        "zen-popover": ZenPopover;
         "zen-progress-tracker": ZenProgressTracker;
         "zen-radio": ZenRadio;
         "zen-space": ZenSpace;
@@ -1325,6 +1337,7 @@ declare module "@stencil/core" {
             "zen-modal": LocalJSX.ZenModal & JSXBase.HTMLAttributes<HTMLZenModalElement>;
             "zen-notification": LocalJSX.ZenNotification & JSXBase.HTMLAttributes<HTMLZenNotificationElement>;
             "zen-option": LocalJSX.ZenOption & JSXBase.HTMLAttributes<HTMLZenOptionElement>;
+            "zen-popover": LocalJSX.ZenPopover & JSXBase.HTMLAttributes<HTMLZenPopoverElement>;
             "zen-progress-tracker": LocalJSX.ZenProgressTracker & JSXBase.HTMLAttributes<HTMLZenProgressTrackerElement>;
             "zen-radio": LocalJSX.ZenRadio & JSXBase.HTMLAttributes<HTMLZenRadioElement>;
             "zen-space": LocalJSX.ZenSpace & JSXBase.HTMLAttributes<HTMLZenSpaceElement>;
