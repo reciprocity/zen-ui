@@ -41,30 +41,30 @@ export const Template = args => {
         padding: 0 1rem;
       }
     </style>
-    <zen-dropdown
+    <sb-zen-dropdown
       id="dropdown-controls"
       class="mb-80"
       style="max-width: 300px;"
       ...="${spread(camelKeysToKebab(args))}"
     >
       <div class="separator">Some custom title</div>
-      <zen-option value="1">Item 1</zen-option>
-      <zen-option default-padding="false" value="2">
+      <sb-zen-option value="1">Item 1</sb-zen-option>
+      <sb-zen-option default-padding="false" value="2">
         <div class="content">
           <img class="icon" src=${iconGreen} alt="icon" />
           <b>Item 2</b>
-          <span style="margin-left: auto"><zen-icon id="icon1"></zen-icon></span>
+          <span style="margin-left: auto"><sb-zen-icon id="icon1"></sb-zen-icon></span>
         </div>
-      </zen-option>
-      <zen-option value="3" disabled="true">Disabled item</zen-option>
-      <zen-option value="4">Item 4</zen-option>
-      <zen-option value="5">Item 5</zen-option>
+      </sb-zen-option>
+      <sb-zen-option value="3" disabled="true">Disabled item</sb-zen-option>
+      <sb-zen-option value="4">Item 4</sb-zen-option>
+      <sb-zen-option value="5">Item 5</sb-zen-option>
       <div class="separator">Separator</div>
-      <zen-option value="6">Item 6 abc</zen-option>
-      <zen-option value="7">Item 7 xyz</zen-option>
-      <zen-option value="8">Item 8</zen-option>
-      <zen-option value="9">Item 9</zen-option>
-    </zen-dropdown>
+      <sb-zen-option value="6">Item 6 abc</sb-zen-option>
+      <sb-zen-option value="7">Item 7 xyz</sb-zen-option>
+      <sb-zen-option value="8">Item 8</sb-zen-option>
+      <sb-zen-option value="9">Item 9</sb-zen-option>
+    </sb-zen-dropdown>
     ${action('#dropdown-controls', ['change'])}
   `;
 };
@@ -94,31 +94,31 @@ export const CustomIcons = args => {
         padding: 0 1rem;
       }
     </style>
-    <zen-dropdown id="dropdown-with-options-slot" class="mb-80" style="min-height: 3.2rem; max-width: 300px;">
+    <sb-zen-dropdown id="dropdown-with-options-slot" class="mb-80" style="min-height: 3.2rem; max-width: 300px;">
       <div class="separator">Group 1</div>
-      <zen-option default-padding="false" value="1">
+      <sb-zen-option default-padding="false" value="1">
         <div class="content">
           <img class="icon" src=${iconGreen} alt="icon" />
           <b>Item 1</b>
-          <span style="margin-left: auto"><zen-icon id="icon2"></zen-icon></span>
+          <span style="margin-left: auto"><sb-zen-icon id="icon2"></sb-zen-icon></span>
         </div>
-      </zen-option>
-      <zen-option default-padding="false" value="2">
+      </sb-zen-option>
+      <sb-zen-option default-padding="false" value="2">
         <div class="content">
           <img class="icon" src=${iconBlue} alt="icon" />
           <b>Item 2 with a longer label</b>
-          <span style="margin-left: auto"><zen-icon id="icon3"></zen-icon></span>
+          <span style="margin-left: auto"><sb-zen-icon id="icon3"></sb-zen-icon></span>
         </div>
-      </zen-option>
+      </sb-zen-option>
       <div class="separator">Group 2</div>
-      <zen-option default-padding="false" value="3">
+      <sb-zen-option default-padding="false" value="3">
         <div class="content">
           <img class="icon" src=${iconRed} alt="icon" />
           <b>Item 3</b>
-          <span style="margin-left: auto"><zen-icon id="icon4"></zen-icon></span>
+          <span style="margin-left: auto"><sb-zen-icon id="icon4"></sb-zen-icon></span>
         </div>
-      </zen-option>
-    </zen-dropdown>
+      </sb-zen-option>
+    </sb-zen-dropdown>
     ${action('#dropdown-with-options-slot', ['change'])}
   `;
 };
@@ -131,8 +131,8 @@ export const InvitePeople = () => {
   function onDropdownBlur() {
     document.querySelector('#input1').hasFocus = false;
   }
-  return html/*html*/ `<zen-input id="input1" placeholder="Username" class="mb-72" style="max-width: 500px">
-    <zen-dropdown
+  return html/*html*/ `<sb-zen-input id="input1" placeholder="Username" class="mb-72" style="max-width: 500px">
+    <sb-zen-dropdown
       id="dropdown1"
       slot="trailingSlot"
       borderless="true"
@@ -143,41 +143,41 @@ export const InvitePeople = () => {
       @focus="${onDropdownFocus}"
       @blur="${onDropdownBlur}"
     >
-      <zen-option value="admin">ZenGRC Administrator</zen-option>
-      <zen-option value="manager">Manager</zen-option>
-      <zen-option value="collaborator">Collaborator</zen-option>
-    </zen-dropdown>
-  </zen-input>`;
+      <sb-zen-option value="admin">ZenGRC Administrator</sb-zen-option>
+      <sb-zen-option value="manager">Manager</sb-zen-option>
+      <sb-zen-option value="collaborator">Collaborator</sb-zen-option>
+    </sb-zen-dropdown>
+  </sb-zen-input>`;
 };
 
 export const StoryFormGroup = () =>
   html/*html*/ `
-    <zen-form-group>
-      <zen-space vertical spacing="md">
-        <zen-space vertical>
-          <zen-text variant="label">Name</zen-text>
-          <zen-input></zen-input>
-        </zen-space>
-        <zen-space vertical>
-          <zen-text variant="label">Lastname</zen-text>
-          <zen-input></zen-input>
-        </zen-space>
-        <zen-space vertical>
-          <zen-text variant="label">Select country</zen-text>
-          <zen-dropdown>
-            <zen-option value="Argentina">Argentina</zen-option>
-            <zen-option value="Slovenia">Slovenia</zen-option>
-            <zen-option value="United States">United States</zen-option>
-          </zen-dropdown>
-        </zen-space>
-        <zen-space vertical>
-          <zen-textarea placeholder="Describe yourself"></zen-textarea>
-        </zen-space>
-        <zen-space vertical>
-          <zen-button>Save</zen-button>
-        </zen-space>
-      </zen-space>
-    </zen-form-group>
+    <sb-zen-form-group>
+      <sb-zen-space vertical spacing="md">
+        <sb-zen-space vertical>
+          <sb-zen-text variant="label">Name</sb-zen-text>
+          <sb-zen-input></sb-zen-input>
+        </sb-zen-space>
+        <sb-zen-space vertical>
+          <sb-zen-text variant="label">Lastname</sb-zen-text>
+          <sb-zen-input></sb-zen-input>
+        </sb-zen-space>
+        <sb-zen-space vertical>
+          <sb-zen-text variant="label">Select country</sb-zen-text>
+          <sb-zen-dropdown>
+            <sb-zen-option value="Argentina">Argentina</sb-zen-option>
+            <sb-zen-option value="Slovenia">Slovenia</sb-zen-option>
+            <sb-zen-option value="United States">United States</sb-zen-option>
+          </sb-zen-dropdown>
+        </sb-zen-space>
+        <sb-zen-space vertical>
+          <sb-zen-textarea placeholder="Describe yourself"></sb-zen-textarea>
+        </sb-zen-space>
+        <sb-zen-space vertical>
+          <sb-zen-button>Save</sb-zen-button>
+        </sb-zen-space>
+      </sb-zen-space>
+    </sb-zen-form-group>
   `;
 
 # Dropdown
