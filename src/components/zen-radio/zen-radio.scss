@@ -71,3 +71,7 @@ input:focus + .radiomark {
     background-color: $color-gray-200;
   }
 }
+
+span.required {
+  color: $color-red-700;
+}
