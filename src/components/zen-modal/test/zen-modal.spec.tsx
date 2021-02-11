@@ -28,25 +28,25 @@ describe('zen-modal', () => {
     expect(page.root.shadowRoot).toBeTruthy();
   });
 
-  it('emmits Cancel event', async () => {
+  it('should emit cancel event', async () => {
     await testClickEvent(page, '.x-button', 'cancel');
   });
 
-  it('emmits Cancel event with default Cancel button', async () => {
+  it('should emit cancel event with default cancel button', async () => {
     await testClickEvent(page, '.buttons-row .btn-cancel', 'cancel');
   });
 
-  it('emmits OK event with default OK button', async () => {
+  it('should emit ok event with default ok button', async () => {
     await testClickEvent(page, '.buttons-row .btn-ok', 'ok');
   });
 
-  it('calls makeTopmost on show', async () => {
+  it('should call makeTopmost on show', async () => {
     page.root.show = true;
     await page.waitForChanges();
     expect(modalsService.makeTopmost).toHaveBeenCalledTimes(2);
   });
 
-  it('calls modalClosed on close', async () => {
+  it('should call modalClosed on close', async () => {
     page.root.show = true;
     await page.waitForChanges();
     page.root.show = false;

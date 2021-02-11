@@ -1,7 +1,7 @@
 import { newE2EPage } from '@stencil/core/testing';
 
 describe('zen-tooltip', () => {
-  it('renders', async () => {
+  it('should render', async () => {
     const page = await newE2EPage();
     await page.setContent('<zen-tooltip></zen-tooltip>');
 

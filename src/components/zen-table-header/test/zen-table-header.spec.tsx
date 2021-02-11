@@ -2,7 +2,7 @@ import { newSpecPage } from '@stencil/core/testing';
 import { ZenTableHeader } from '../zen-table-header';
 
 describe('zen-table-header', () => {
-  it('renders', async () => {
+  it('should render', async () => {
     const page = await newSpecPage({
       components: [ZenTableHeader],
       html: `<zen-table-header>Content</zen-header-header>`,
@@ -11,7 +11,7 @@ describe('zen-table-header', () => {
     expect(page.root.innerHTML).toEqual('Content');
   });
 
-  it('applies `sticky` attribute to child elements if `sticky` prop is set', async () => {
+  it('should apply `sticky` attribute to child elements if `sticky` prop is set', async () => {
     const page = await newSpecPage({
       components: [ZenTableHeader],
       html: `

@@ -13,7 +13,7 @@ helpers.waitNextFrame = jest.fn(() => new Promise(resolve => resolve(true)));
 import { ZenAnimate } from '../zen-animate';
 
 describe('zen-animate', () => {
-  it('renders', async () => {
+  it('should render', async () => {
     const page = await newSpecPage({
       components: [ZenAnimate],
       html: `<zen-animate><h1>Slot</h1></zen-animate>`,
@@ -29,7 +29,7 @@ describe('zen-animate', () => {
     `);
   });
 
-  it('does shows when prop changed', async () => {
+  it('should show on prop change', async () => {
     const page = await newSpecPage({
       components: [ZenAnimate],
       html: `<zen-animate><h1>Slot</h1></zen-animate>`,
@@ -41,7 +41,7 @@ describe('zen-animate', () => {
     expect(page.root.shadowRoot.querySelector('slot')).toBeTruthy();
   });
 
-  it('hides after close transition', async () => {
+  it('should hide after close transition', async () => {
     const page = await newSpecPage({
       components: [ZenAnimate],
       html: `<zen-animate><h1>Slot</h1></zen-animate>`,

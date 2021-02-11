@@ -49,8 +49,8 @@ export const users = [
   },
 ];
 
-describe('Test avatar', () => {
-  it(' avatar icon and tooltip are rendered', async () => {
+describe('zen-avatar', () => {
+  it('should render avatar icon and tooltip', async () => {
     const page = await newSpecPage({
       components: [ZenAvatar, ZenAvatarIcon],
       html: `<zen-avatar />`,
@@ -60,23 +60,25 @@ describe('Test avatar', () => {
     expect(page.root.shadowRoot.querySelector('zen-tooltip')).toBeTruthy();
   });
 
-  it('count of one rendered avatar icons is correct', async () => {
+  it('should render single avatar icon', async () => {
     const page = await newSpecPage({
       components: [ZenAvatar, ZenAvatarIcon],
       html: `<zen-avatar />`,
     });
     page.root.users = user;
     await page.waitForChanges();
-    expect(page.root.shadowRoot.querySelectorAll('zen-avatar-icon').length).toEqual(2);
+    const expectedAvatarIcons = 2; // 1 + 1 since tooltip includes one avatar icon as well
+    expect(page.root.shadowRoot.querySelectorAll('zen-avatar-icon').length).toEqual(expectedAvatarIcons);
   });
 
-  it('count of multiple rendered avatar icons is correct', async () => {
+  it('should render multiple avatar icons', async () => {
     const page = await newSpecPage({
       components: [ZenAvatar, ZenAvatarIcon],
       html: `<zen-avatar />`,
     });
     page.root.users = users;
     await page.waitForChanges();
-    expect(page.root.shadowRoot.querySelectorAll('zen-avatar-icon').length).toEqual(6);
+    const expectedAvatarIcons = 6; // 5 + 1 since tooltip includes one avatar icon as well
+    expect(page.root.shadowRoot.querySelectorAll('zen-avatar-icon').length).toEqual(expectedAvatarIcons);
   });
 });

@@ -13,7 +13,7 @@ helpers.waitNextFrame = jest.fn(() => new Promise(resolve => resolve(true)));
 
 import { ZenDropdown } from '../zen-dropdown';
 
-describe('Opened zen-dropdown', () => {
+describe('zen-dropdown', () => {
   let page: SpecPage;
   let dropdown: Element;
   let field: Element;
@@ -38,18 +38,18 @@ describe('Opened zen-dropdown', () => {
     jest.advanceTimersByTime(100);
   });
 
-  it('opens on click', async () => {
+  it('should open on click', async () => {
     expect(dropdown.shadowRoot.querySelector('.field')).toHaveClass('opened');
   });
 
-  it('closes on click outside dropdown', async () => {
+  it('should close on click outside of dropdown', async () => {
     simulateMouse('mousedown', global.document);
     await page.waitForChanges();
     await page.waitForChanges();
     expect(dropdown.shadowRoot.querySelector('.field')).not.toHaveClass('opened');
   });
 
-  it('moves focus to next item on arrow-down click', async () => {
+  it('should move focus to next item on arrow-down click', async () => {
     simulateKey('ArrowDown', dropdown);
     await page.waitForChanges();
     expect(options[0].getAttribute('focused')).toEqual('true');
@@ -60,7 +60,7 @@ describe('Opened zen-dropdown', () => {
     expect(options[1].getAttribute('focused')).toEqual('true');
   });
 
-  it('selects element with Enter key', async () => {
+  it('should select element with Enter key', async () => {
     simulateKey('ArrowDown', dropdown);
     await page.waitForChanges();
     simulateKey('ArrowDown', dropdown);

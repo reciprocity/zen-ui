@@ -41,8 +41,8 @@ export const users = [
   },
 ];
 
-describe('Test avatar group', () => {
-  it(' avatar is rendered', async () => {
+describe('zen-avatar-group', () => {
+  it('should render avatar', async () => {
     const page = await newSpecPage({
       components: [ZenAvatarGroup, ZenTooltip, ZenAvatar, ZenAvatarIcon],
       html: `<zen-avatar-group  />`,
@@ -52,7 +52,7 @@ describe('Test avatar group', () => {
     expect(page.root.shadowRoot.querySelector('zen-avatar')).toBeTruthy();
   });
 
-  it(' avatars are rendered correctly', async () => {
+  it('should correctly render avatars', async () => {
     const page = await newSpecPage({
       components: [ZenAvatarGroup, ZenTooltip, ZenAvatar, ZenAvatarIcon],
       html: `<zen-avatar-group display-max="3"  />`,
@@ -65,7 +65,7 @@ describe('Test avatar group', () => {
     ).toEqual(2);
   });
 
-  it(' all avatars icons are shown', async () => {
+  it('should show all avatars icons', async () => {
     const page = await newSpecPage({
       components: [ZenAvatarGroup, ZenTooltip, ZenAvatar, ZenAvatarIcon],
       html: `<zen-avatar-group display-max="5"  />`,

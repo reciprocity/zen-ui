@@ -1,7 +1,7 @@
 import { newSpecPage } from '@stencil/core/testing';
 import { ZenButton } from '../zen-button';
 
-describe('zen-button variants rendering', () => {
+describe('zen-button', () => {
   it('should render with shadow dom', async () => {
     const page = await newSpecPage({
       components: [ZenButton],
@@ -11,7 +11,7 @@ describe('zen-button variants rendering', () => {
   });
 
   it.each(['primary', 'secondary', 'tertiary', 'positive', 'destructive'])(
-    'renders %s button with loading and disabled props',
+    'should render button (variant: %s) with loading and disabled props',
     async variant => {
       const page = await newSpecPage({
         components: [ZenButton],
@@ -23,7 +23,7 @@ describe('zen-button variants rendering', () => {
     },
   );
 
-  it('triggers click event on onKeyDown Enter key', async () => {
+  it('should trigger click event on onKeyDown Enter key', async () => {
     const page = await newSpecPage({
       components: [ZenButton],
       html: `<zen-button></zen-button>`,

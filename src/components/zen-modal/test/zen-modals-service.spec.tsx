@@ -26,7 +26,7 @@ describe('zen-modal-service', () => {
     modal2 = page.doc.querySelector('#modal2');
   });
 
-  it('promotes modal to topmost', async () => {
+  it('should promore modal to topmost', async () => {
     modalsService.makeTopmost(modal1);
     modalsService.makeTopmost(modal2);
     expect(modalsService.modals.length).toEqual(2);
@@ -35,13 +35,13 @@ describe('zen-modal-service', () => {
     expect(modal1.getAttribute('topmost')).toBeFalsy();
   });
 
-  it('increases lastZIndex', async () => {
+  it('should increase lastZIndex', async () => {
     modalsService.makeTopmost(modal1);
     modalsService.makeTopmost(modal2);
     expect(modalsService.lastZIndex).toEqual(102);
   });
 
-  it('on close promotes previous modal to topmost', async () => {
+  it('should promote previous modal to topmost on close', async () => {
     modalsService.makeTopmost(modal1);
     modalsService.makeTopmost(modal2);
     expect(modal2.getAttribute('topmost')).toEqual('true');

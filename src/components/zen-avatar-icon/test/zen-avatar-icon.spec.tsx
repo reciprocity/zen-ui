@@ -2,7 +2,7 @@ import { newSpecPage } from '@stencil/core/testing';
 import { ZenAvatarIcon } from '../zen-avatar-icon';
 
 describe('zen-avatar-icon', () => {
-  it('renders', async () => {
+  it('should render', async () => {
     const page = await newSpecPage({
       components: [ZenAvatarIcon],
       html: `<zen-avatar-icon></zen-avatar-icon>`,
@@ -16,10 +16,8 @@ describe('zen-avatar-icon', () => {
       </zen-avatar-icon>
     `);
   });
-});
 
-describe('Test parameters rendering', () => {
-  it('image is hidden and label is displayed', async () => {
+  it('should hide image and show label', async () => {
     const page = await newSpecPage({
       components: [ZenAvatarIcon],
       html: `<zen-avatar-icon user-name="Mike Anderson"></zen-avatar-icon>`,
@@ -28,7 +26,7 @@ describe('Test parameters rendering', () => {
     expect(page.root.shadowRoot.querySelector('div').classList.contains('hidden')).toBe(false);
   });
 
-  it('image is shown and label hidden', async () => {
+  it('should show image and hide label', async () => {
     const page = await newSpecPage({
       components: [ZenAvatarIcon],
       html: `<zen-avatar-icon image-url="img.jpg"></zen-avatar-icon>`,
@@ -38,7 +36,7 @@ describe('Test parameters rendering', () => {
     expect(page.root.shadowRoot.querySelector('div').classList.contains('hidden')).toBe(true);
   });
 
-  it('username initials are displayed correctly', async () => {
+  it('should correctly display initials if has first and last name', async () => {
     const page = await newSpecPage({
       components: [ZenAvatarIcon],
       html: `<zen-avatar-icon user-name="Mike Anderson"></zen-avatar-icon>`,
@@ -46,7 +44,7 @@ describe('Test parameters rendering', () => {
     expect(page.root.shadowRoot.querySelector('div').textContent).toEqual('MA');
   });
 
-  it('username initials are displayed correctly', async () => {
+  it('should correctly display initials if has first, last, and middle name', async () => {
     const page = await newSpecPage({
       components: [ZenAvatarIcon],
       html: `<zen-avatar-icon user-name="Mike Anderson Johnson"></zen-avatar-icon>`,
@@ -54,7 +52,7 @@ describe('Test parameters rendering', () => {
     expect(page.root.shadowRoot.querySelector('div').textContent).toEqual('MA');
   });
 
-  it('username with only name, initials are displayed correctly', async () => {
+  it('should correctly display initials if has only first name', async () => {
     const page = await newSpecPage({
       components: [ZenAvatarIcon],
       html: `<zen-avatar-icon user-name="Shelley"></zen-avatar-icon>`,
@@ -62,7 +60,7 @@ describe('Test parameters rendering', () => {
     expect(page.root.shadowRoot.querySelector('div').textContent).toEqual('SH');
   });
 
-  it('email initials are displayed correctly', async () => {
+  it('should correctly display initials for email', async () => {
     const page = await newSpecPage({
       components: [ZenAvatarIcon],
       html: `<zen-avatar-icon email="kelly.bush@reciprocity.com"></zen-avatar-icon>`,

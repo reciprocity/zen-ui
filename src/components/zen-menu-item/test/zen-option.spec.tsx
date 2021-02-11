@@ -3,8 +3,8 @@ import { propReflectsInAttributes } from '../../helpers/jest';
 
 import { ZenOption } from '../zen-option';
 
-describe('Zen-option', () => {
-  it('reflects all props', async () => {
+describe('zen-option', () => {
+  it('should reflect all props', async () => {
     const page = await newSpecPage({
       components: [ZenOption],
       html: `<zen-option />`,
@@ -19,7 +19,7 @@ describe('Zen-option', () => {
     expect(await propReflectsInAttributes(page, props)).toBeTruthy();
   });
 
-  it('appends disabled class', async () => {
+  it('should append disabled class', async () => {
     const page = await newSpecPage({
       components: [ZenOption],
       html: `<zen-option />`,

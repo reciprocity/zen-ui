@@ -2,8 +2,8 @@ import { newSpecPage } from '@stencil/core/testing';
 
 import { ZenTooltip } from '../zen-tooltip';
 
-describe('Test parameters rendering', () => {
-  it.each(['dark', 'light', 'error'])('Test that variant %s is applied correctly', async variant => {
+describe('zen-tooltip', () => {
+  it.each(['dark', 'light', 'error'])('should correctly apply variant (variant: %s)', async variant => {
     const page = await newSpecPage({
       components: [ZenTooltip],
       html: `<zen-tooltip variant="${variant}" label="Testing tooltip"></zen-tooltip>`,
@@ -12,7 +12,7 @@ describe('Test parameters rendering', () => {
   });
 
   it.each(['top', 'right', 'bottom', 'left'])(
-    'Test that position %s is applied correctly',
+    'should correctly apply position (position: %s)',
     async (position: string, done: DoneFn) => {
       const page = await newSpecPage({
         components: [ZenTooltip],
@@ -26,10 +26,8 @@ describe('Test parameters rendering', () => {
       }, 101);
     },
   );
-});
 
-describe('Test tooltip functionality', () => {
-  it('Test show tooltip on mouse over', async done => {
+  it('should show tooltip on mouse over', async done => {
     const page = await newSpecPage({
       components: [ZenTooltip],
       html: `<div>Trigger</div><zen-tooltip label="test" show-delay="0"></zen-tooltip>`,

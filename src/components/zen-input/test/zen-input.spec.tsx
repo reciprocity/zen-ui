@@ -10,7 +10,7 @@ describe('zen-input', () => {
     expect(page.root.shadowRoot).toBeTruthy();
   });
 
-  it('renders with placeholder', async () => {
+  it('should render with placeholder', async () => {
     const page = await newSpecPage({
       components: [ZenInput],
       html: `<zen-input placeholder="Test placeholder"></zen-input>`,
@@ -18,7 +18,7 @@ describe('zen-input', () => {
     expect(page.root);
   });
 
-  it('renders with value', async () => {
+  it('should render with value', async () => {
     const page = await newSpecPage({
       components: [ZenInput],
       html: `<zen-input value="Test value"></zen-input>`,
@@ -26,7 +26,7 @@ describe('zen-input', () => {
     expect(page.root.shadowRoot.querySelector('input').getAttribute('value')).toBe('Test value');
   });
 
-  it('renders as invalid', async () => {
+  it('should render as invalid', async () => {
     const page = await newSpecPage({
       components: [ZenInput],
       html: `<zen-input invalid></zen-input>`,
@@ -34,7 +34,7 @@ describe('zen-input', () => {
     expect(page.root.classList.contains('invalid')).toBe(true);
   });
 
-  it('renders as disabled', async () => {
+  it('should render as disabled', async () => {
     const page = await newSpecPage({
       components: [ZenInput],
       html: `<zen-input disabled></zen-input>`,
@@ -43,7 +43,7 @@ describe('zen-input', () => {
     expect(page.root.shadowRoot.querySelector('input').getAttribute('disabled')).toBe('');
   });
 
-  it('renders fulfilling leadingSlot', async () => {
+  it('should render fulfilling leadingSlot', async () => {
     const page = await newSpecPage({
       components: [ZenInput],
       html: `<zen-input><component-example slot="leadingSlot" /></zen-input>`,
@@ -51,7 +51,7 @@ describe('zen-input', () => {
     expect(page.root.querySelector('[slot="leadingSlot"]')).toBeTruthy();
   });
 
-  it('renders fulfilling trailingSlot', async () => {
+  it('should render fulfilling trailingSlot', async () => {
     const page = await newSpecPage({
       components: [ZenInput],
       html: `<zen-input><component-example slot="trailingSlot" /></zen-input>`,
@@ -59,7 +59,7 @@ describe('zen-input', () => {
     expect(page.root.querySelector('[slot="trailingSlot"]')).toBeTruthy();
   });
 
-  it('renders fulfilling leadingSlot and trailingSlot', async () => {
+  it('should render fulfilling leadingSlot and trailingSlot', async () => {
     const page = await newSpecPage({
       components: [ZenInput],
       html: `<zen-input><component-example slot="leadingSlot" /><component-example slot="trailingSlot" /></zen-input>`,
@@ -68,7 +68,7 @@ describe('zen-input', () => {
     expect(page.root.querySelector('[slot="trailingSlot"]')).toBeTruthy();
   });
 
-  it('applies focus in onFocus', async () => {
+  it('should apply focus in onFocus', async () => {
     const page = await newSpecPage({
       components: [ZenInput],
       html: `<zen-input></zen-input>`,
@@ -82,7 +82,7 @@ describe('zen-input', () => {
     expect(page.root.classList.contains('has-focus')).toBe(true);
   });
 
-  it('removes focus in onBlur', async () => {
+  it('should remove focus in onBlur', async () => {
     const page = await newSpecPage({
       components: [ZenInput],
       html: `<zen-input></zen-input>`,
@@ -96,7 +96,7 @@ describe('zen-input', () => {
     expect(page.root.classList.contains('has-focus')).toBe(false);
   });
 
-  it('changes value prop in onInput', async () => {
+  it('should change value prop in onInput', async () => {
     const page = await newSpecPage({
       components: [ZenInput],
       html: `<zen-input></zen-input>`,
@@ -111,7 +111,7 @@ describe('zen-input', () => {
     expect(page.rootInstance.value).toBe('My input content');
   });
 
-  it('changes value prop in onChange', async () => {
+  it('should change value prop in onChange', async () => {
     const page = await newSpecPage({
       components: [ZenInput],
       html: `<zen-input></zen-input>`,
@@ -126,7 +126,7 @@ describe('zen-input', () => {
     expect(page.rootInstance.value).toBe('My changed content');
   });
 
-  it('changes focus in onKeyDown Enter key', async () => {
+  it('should change focus in onKeyDown Enter key', async () => {
     const page = await newSpecPage({
       components: [ZenInput],
       html: `<zen-input></zen-input>`,
