@@ -39,6 +39,6 @@ export const Template = args => <div {...args} />;
   }}
 >
   {groupSwatches.map(group => (
-    <color-swatch-group key={group.name} colors={JSON.stringify(group.colors)}></color-swatch-group>
+    <sb-color-swatch-group key={group.name} colors={JSON.stringify(group.colors)}></sb-color-swatch-group>
   ))}
 </div>

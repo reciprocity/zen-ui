@@ -1,4 +1,5 @@
-import { Component, Host, h, Prop, Watch } from '@stencil/core';
+import { Component, Host, h, Prop, Watch, Element } from '@stencil/core';
+import { applyPrefix } from 'src/components/helpers/helpers';
 
 export interface ColorSwatchItem {
   hex: string;
@@ -14,7 +15,10 @@ export type StringifiedJson = string;
   shadow: false,
 })
 export class ColorSwatchGroup {
+  @Element() hostElement: HTMLColorSwatchGroupElement;
+
   private _colors: ColorSwatchItem[];
+
   /** Array of colors */
   @Prop() readonly colors: StringifiedJson = '[]';
 
@@ -28,15 +32,16 @@ export class ColorSwatchGroup {
   }
 
   render(): HTMLElement {
+    const ColorSwatch = applyPrefix('color-swatch', this.hostElement);
     return (
       <Host class="color-swatch-group">
         {this._colors.map(color => (
-          <color-swatch
+          <ColorSwatch
             key={color.varName}
             var-name={color.varName}
             color={color.hex}
             is-bright-color={color.isBrightColor}
-          ></color-swatch>
+          ></ColorSwatch>
         ))}
       </Host>
     );
