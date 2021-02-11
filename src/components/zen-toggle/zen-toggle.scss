@@ -1,4 +1,5 @@
 @import '../../zen-styles/variables.scss';
+@import '../../zen-styles/shadows.scss';
 
 :host {
   display: flex;
@@ -26,7 +27,7 @@ span {
     outline: none;
 
     &:focus {
-      box-shadow: $color-blue-300 0px 0px 0px 2px;
+      box-shadow: $shadow-focus;
     }
 
     &:hover {

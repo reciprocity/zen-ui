@@ -20,7 +20,7 @@ $arrow_size: 0.3rem;
   color: $color-gray-800;
   background-color: $color-white;
   border: 1px solid $color-gray-200;
-  box-shadow: 0 4px 6px 0 rgba($color-black, 0.1);
+  box-shadow: $shadow-drop-200;
 }
 
 :host(.visible) {
