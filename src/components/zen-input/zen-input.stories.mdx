@@ -14,7 +14,7 @@ import { faUser, faKey, faSearch } from '@fortawesome/pro-light-svg-icons';
 <Meta title="Forms/Input" component="zen-input" argTypes={argTypes} />
 
 export const StoryWithControls = args => html/*html*/ `
-  <zen-input id="input1" style="max-width: 300px" ...="${spreadArgs(args, argTypes)}"></zen-input>
+  <sb-zen-input id="input1" style="max-width: 300px" ...="${spreadArgs(args, argTypes)}"></sb-zen-input>
   ${action('#input1', ['blur', 'focus', 'input', 'change'])}
 `;
 
@@ -23,9 +23,9 @@ export const StoryWithLeadingSlot = () => {
     element.icon = faUser;
   });
   return html/*html*/ `
-    <zen-input style="max-width: 300px">
-      <zen-icon id="user-icon" slot="leadingSlot" style="margin-left: 0.5rem;"></zen-icon>
-    </zen-input>
+    <sb-zen-input style="max-width: 300px">
+      <sb-zen-icon id="user-icon" slot="leadingSlot" style="margin-left: 0.5rem;"></sb-zen-icon>
+    </sb-zen-input>
   `;
 };
 
@@ -34,14 +34,14 @@ export const StoryWithTrailingSlot = () => {
     element.icon = faSearch;
   });
   return html/*html*/ `
-    <zen-input style="max-width: 300px; cursor:pointer" placeholder="Search...">
-      <zen-icon
+    <sb-zen-input style="max-width: 300px; cursor:pointer" placeholder="Search...">
+      <sb-zen-icon
         id="search-icon"
         slot="trailingSlot"
         style="margin-right: 0.5rem;"
         @click="${() => alert('Search!')}"
-      ></zen-icon>
-    </zen-input>
+      ></sb-zen-icon>
+    </sb-zen-input>
   `;
 };
 
@@ -53,30 +53,30 @@ export const StoryWithLeadingAndTrailingSlots = () => {
     element.icon = faKey;
   });
   return html/*html*/ `
-    <zen-input style="max-width: 300px">
-      <zen-icon id="user-icon2" slot="leadingSlot" style="margin-left: 0.5rem;"></zen-icon>
-      <zen-icon id="key-icon" slot="trailingSlot" style="margin-right: 0.5rem;"></zen-icon>
-    </zen-input>
+    <sb-zen-input style="max-width: 300px">
+      <sb-zen-icon id="user-icon2" slot="leadingSlot" style="margin-left: 0.5rem;"></sb-zen-icon>
+      <sb-zen-icon id="key-icon" slot="trailingSlot" style="margin-right: 0.5rem;"></sb-zen-icon>
+    </sb-zen-input>
   `;
 };
 
 export const StoryFormGroup = args =>
   html/*html*/ `
-    <zen-form-group>
-      <zen-space vertical spacing="md">
-        <zen-space vertical>
-          <zen-text variant="label">Username</zen-text>
-          <zen-input></zen-input>
-        </zen-space>
-        <zen-space vertical>
-          <zen-text variant="label">Password</zen-text>
-          <zen-input></zen-input>
-        </zen-space>
-        <zen-space>
-          <zen-button>Log In</zen-button>
-        </zen-space>
-      </zen-space>
-    </zen-form-group>
+    <sb-zen-form-group>
+      <sb-zen-space vertical spacing="md">
+        <sb-zen-space vertical>
+          <sb-zen-text variant="label">Username</sb-zen-text>
+          <sb-zen-input></sb-zen-input>
+        </sb-zen-space>
+        <sb-zen-space vertical>
+          <sb-zen-text variant="label">Password</sb-zen-text>
+          <sb-zen-input></sb-zen-input>
+        </sb-zen-space>
+        <sb-zen-space>
+          <sb-zen-button>Log In</sb-zen-button>
+        </sb-zen-space>
+      </sb-zen-space>
+    </sb-zen-form-group>
   `;
 
 # Input
