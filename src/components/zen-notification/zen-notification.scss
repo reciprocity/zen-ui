@@ -18,7 +18,7 @@
   box-sizing: border-box;
   min-height: 128px;
   position: relative;
-  padding: 1rem 1rem;
+  padding: 1.1rem 1.1rem;
   box-shadow: 0 1px 2px rgba(62, 70, 76, 0.25), 0 2px 8px rgba(62, 70, 76, 0.2);
   border-radius: 0.1rem;
   background: $color-white;
@@ -42,7 +42,7 @@
 
 .close {
   position: absolute;
-  top: 0.8rem;
+  top: 0.9rem;
   right: 0.9rem;
   width: 0.6rem;
   margin: 0.3rem;
@@ -60,6 +60,7 @@
 .title {
   font-size: $text-md;
   font-weight: bold;
+  margin-bottom: 1px;
 
   &.title-success {
     color: $color-green-700;
@@ -80,15 +81,13 @@
 
 .icon {
   margin-right: 0.5rem;
-  width: 16px;
+  align-self: center;
 
   &.icon-success {
-    margin-top: 0.1rem;
     color: $color-green-700;
   }
 
   &.icon-info {
-    margin-top: 0.1rem;
     color: $color-gray-400;
   }
 
@@ -113,5 +112,6 @@
 
 .content {
   padding-top: 0.4rem;
-  font-size: $text-sm;
+  font-size: $text-md;
+  line-height: 1.25rem;
 }
