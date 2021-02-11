@@ -11,6 +11,7 @@ import { ButtonVariants } from "./components/zen-button/types";
 import { OptionValue } from "./components/zen-menu-item/zen-option";
 import { IconDefinition } from "@fortawesome/pro-light-svg-icons";
 import { OptionValue as OptionValue1 } from "./components/zen-menu-item/zen-option";
+import { Placement } from "@popperjs/core";
 import { StepItem } from "./components/zen-progress-tracker/zen-progress-tracker";
 import { StepsFilter } from "./components/zen-progress-tracker/types";
 import { TabItem, TabValue } from "./components/zen-tabs/zen-tabs";
@@ -290,6 +291,10 @@ export namespace Components {
         "value": OptionValue;
     }
     interface ZenPopover {
+        /**
+          * Placement
+         */
+        "placement": Placement;
     }
     interface ZenProgressTracker {
         /**
@@ -1052,6 +1057,10 @@ declare namespace LocalJSX {
         "value"?: OptionValue;
     }
     interface ZenPopover {
+        /**
+          * Placement
+         */
+        "placement"?: Placement;
     }
     interface ZenProgressTracker {
         /**

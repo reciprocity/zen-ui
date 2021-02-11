@@ -1,5 +1,5 @@
-import { Component, Host, h, Element } from '@stencil/core';
-import tippy from 'tippy.js';
+import { Component, Host, h, Element, Prop } from '@stencil/core';
+import { createPopper, Placement } from '@popperjs/core';
 import { getDefaultSlotContent, getSlotElement } from '../helpers/helpers';
 
 @Component({
@@ -10,20 +10,40 @@ import { getDefaultSlotContent, getSlotElement } from '../helpers/helpers';
 export class ZenPopover {
   @Element() element: HTMLZenPopoverElement;
 
+  /** Placement */
+  @Prop() readonly placement: Placement = 'auto';
+
   componentDidLoad() {
     const target = getSlotElement(this.element, 'target');
-    const slot = getDefaultSlotContent(this.element)[0];
+    const content = getDefaultSlotContent(this.element)[0] as HTMLElement;
 
-    tippy(target, {
-      content: slot,
-      placement: 'bottom-end',
-      hideOnClick: true,
-      interactive: true,
-      interactiveDebounce: 40000,
+    createPopper(target, content, {
+      placement: this.placement,
+      modifiers: [
+        {
+          name: 'offset',
+          options: {
+            offset: [0, 8],
+          },
+        },
+      ],
     });
 
-    console.log(slot);
-    console.log(target);
+    target.addEventListener('click', () => {
+      this.show(content);
+    });
+
+    content.addEventListener('mouseleave', () => {
+      this.hide(content);
+    });
+  }
+
+  show(element: HTMLElement): void {
+    element.style.display = 'block';
+  }
+
+  hide(element: HTMLElement): void {
+    element.style.display = 'none';
   }
 
   render(): HTMLElement {

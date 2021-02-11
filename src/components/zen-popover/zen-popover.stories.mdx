@@ -1,12 +1,11 @@
 import { html } from 'lit-html';
 import { Meta, Description, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
-import {faTimes, faTrashAlt, faPlus, faFilter } from '@fortawesome/pro-light-svg-icons';
+import { faTimes, faTrashAlt, faPlus, faFilter, faCheck } from '@fortawesome/pro-light-svg-icons';
 import { waitForElement } from '../../../.storybook/helpers/utils';
 import { getArgTypesAndArgs, getDefaultArgs, getComponentData, spreadArgs } from '../../../.storybook/helpers/argTypes';
 const { argTypes } = getArgTypesAndArgs('zen-popover');
 
 <Meta title="In progress/Popover" component="zen-popover" argTypes={argTypes} />
-
 
 export const Template = args => {
   return html/*html*/ `
@@ -30,6 +29,9 @@ export const StoryFilters = args => {
   waitForElement('#cross', element => {
     element.icon = faTimes;
   });
+  waitForElement('#check', element => {
+    element.icon = faCheck;
+  });
   waitForElement('#trash', element => {
     element.icon = faTrashAlt;
   });
@@ -47,18 +49,18 @@ export const StoryFilters = args => {
   });
   return html/*html*/ `
     <div style="height:500px; width:100%; vertical-align: top;">
-        <zen-popover ...="${spreadArgs(args, argTypes)}">
+        <zen-popover placement="bottom-end" ...="${spreadArgs(args, argTypes)}">
             <zen-button variant="primary" slot="target">
                 <zen-icon slot="leadingIcon" id="filter" style="height:14px; align-self:center;"></zen-icon>
                 Filter
             </zen-button>
-            <zen-card style="display:inline-table; background: white;">
+            <zen-card style="background: white;">
                 <zen-space horizontal-align="start" padding="lg">
                   <zen-text size="xs" variant="heading">Filters</zen-text>
                 </zen-space>
                 <zen-space no-wrap="true" spacing="md" padding="lg">
                     <!-- query row button -->
-                    <zen-icon id="cross"></zen-icon>
+                    <zen-icon id="check" style="color:#34835B"></zen-icon>
                     <!-- attribute name -->
                     <zen-dropdown placeholder="Attribute/mapping" style="width: 192px;">
                       <zen-option value="1">Title</zen-option>
@@ -74,11 +76,15 @@ export const StoryFilters = args => {
                       <zen-option value="4">Does not Equal</zen-option>
                     </zen-dropdown>
                     <!-- value -->
-                    <zen-input style="width: 192px;"></zen-input>
+                    <zen-input style="width: 192px;height: 35px;"></zen-input>
                     <!-- add group filter -->
-                    <zen-icon id="plus"></zen-icon>
+                    <zen-button variant="tertiary">
+                        <zen-icon id="plus" slot="leadingIcon"></zen-icon>
+                    </zen-button>
                     <!-- remove filter -->
-                    <zen-icon id="trash"></zen-icon>
+                    <zen-button variant="tertiary">
+                        <zen-icon id="trash" slot="leadingIcon"></zen-icon>
+                    </zen-button>
                 </zen-space>
                 <zen-space no-wrap="true" spacing="md" padding="lg">
                     <!-- query row button -->
@@ -98,11 +104,15 @@ export const StoryFilters = args => {
                       <zen-option value="4">Does not Equal</zen-option>
                     </zen-dropdown>
                     <!-- value -->
-                    <zen-input disabled="true"  style="width: 192px;"></zen-input>
+                    <zen-input disabled="true" style="width: 192px;height: 35px;"></zen-input>
                     <!-- add group filter -->
-                    <zen-icon id="plus2"></zen-icon>
+                    <zen-button variant="tertiary">
+                        <zen-icon id="plus2" slot="leadingIcon"></zen-icon>
+                    </zen-button>
                     <!-- remove filter -->
-                    <zen-icon id="trash2"></zen-icon>
+                    <zen-button variant="tertiary">
+                        <zen-icon id="trash2" slot="leadingIcon"></zen-icon>
+                    </zen-button>
                 </zen-space>
                 <zen-space padding="lg">
                   <zen-button variant="secondary">
