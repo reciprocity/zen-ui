@@ -1,4 +1,5 @@
 import { Component, Prop, Host, h, Watch, Element, Event, EventEmitter } from '@stencil/core';
+import { applyPrefix } from '../helpers/helpers';
 import { modalsService } from './zen-modals-service';
 
 /**
@@ -54,16 +55,19 @@ export class ZenModal {
   }
 
   render(): HTMLElement {
+    const ZenAnimate = applyPrefix('zen-animate', this.hostElement);
+    const ZenButton = applyPrefix('zen-button', this.hostElement);
+    const ZenText = applyPrefix('zen-text', this.hostElement);
     return (
       <Host>
-        <zen-animate show={this.show}>
+        <ZenAnimate show={this.show}>
           <div class="dimmer"></div>
           <div class="window">
             <div class="header">
               <slot name="header">
-                <zen-text class="title" size="2xl">
+                <ZenText class="title" size="2xl">
                   {this.label}
-                </zen-text>
+                </ZenText>
                 {!this.hideCancel ? (
                   <div class="x-button" onClick={() => this.onCancelClicked()}>
                     x
@@ -81,21 +85,21 @@ export class ZenModal {
                 <slot name="buttons">
                   <div class="buttons-row">
                     {!this.hideCancel ? (
-                      <zen-button class="btn-cancel" variant="secondary" onClick={() => this.onCancelClicked()}>
+                      <ZenButton class="btn-cancel" variant="secondary" onClick={() => this.onCancelClicked()}>
                         Cancel
-                      </zen-button>
+                      </ZenButton>
                     ) : (
                       ''
                     )}
-                    <zen-button class="btn-ok ml-4" onClick={() => this.onOkClicked()}>
+                    <ZenButton class="btn-ok ml-4" onClick={() => this.onOkClicked()}>
                       Ok
-                    </zen-button>
+                    </ZenButton>
                   </div>
                 </slot>
               </div>
             </slot>
           </div>
-        </zen-animate>
+        </ZenAnimate>
       </Host>
     );
   }
