@@ -1,0 +1,109 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
+import { html } from 'lit-html';
+import { getArgTypes, getDefaultArgs, getComponentData, spreadArgs } from '../../../.storybook/helpers/argTypes';
+
+import data from '../../../stencilDocs.json';
+const compData = data.components.find(n => n.tag === 'zen-radio');
+const argTypes = getArgTypes(compData);
+
+<Meta title="Forms/Radio" component="zen-radio" argTypes={argTypes} />
+
+export const StoryRadiosGroup = () => {
+  function changed(event) {
+    document.querySelector('#selected-radio').textContent = event.target.selected;
+  }
+  return html/*html*/ `
+    <zen-form-group>
+      <zen-text variant="label">Group 1</zen-text>
+      <zen-space vertical padding="none">
+        <zen-radio group="first" value="1" @change="${changed}">Option 1</zen-radio>
+        <zen-radio group="first" value="2">Option 2</zen-radio>
+        <zen-radio group="first" value="3">Option 3</zen-radio>
+        <zen-radio group="first" value="4" checked disabled>Option 4</zen-radio>
+      </zen-space>
+      <zen-divider></zen-divider>
+      <zen-text size="md">
+        Selected: <b><span id="selected-radio"></span></b>
+      </zen-text>
+    </zen-form-group>
+    <zen-form-group>
+      <zen-text variant="label">Group 2</zen-text>
+      <zen-space vertical padding="none">
+        <zen-radio group="second" value="a">Option A</zen-radio>
+        <zen-radio group="second" checked value="b">Prechecked B</zen-radio>
+      </zen-space>
+    </zen-form-group>
+  `;
+};
+
+export const StoryButtonControl = () => {
+  function changed(event) {
+    console.log('changed');
+  }
+  function select(item, value) {
+    document.querySelector(`#button-radios zen-radio[value='${item}']`).checked = value;
+  }
+  function clear(value) {
+    document.querySelector(`#button-radios zen-radio`).selected = '';
+  }
+  return html/*html*/ `
+    <zen-form-group id="button-radios">
+      <zen-text variant="label">First group</zen-text>
+      <zen-space vertical padding="none">
+        <zen-radio group="third" value="1" @change="${changed}">Option 1</zen-radio>
+        <zen-radio group="third" value="2">Option 2</zen-radio>
+        <zen-radio group="third" value="3">Option 3</zen-radio>
+      <zen-space>
+    </zen-form-group>
+    <zen-space>
+      <zen-button @click="${() => select('1', true)}">Check 1</zen-button>
+      <zen-button @click="${() => select('3', true)}">Check 3</zen-button>
+      <zen-button @click="${() => clear('')}">Clear</zen-button>
+  `;
+};
+
+export const StoryWithControls = args => {
+  return html/*html*/ ` <zen-radio ...="${spreadArgs(args, argTypes)}">Option 1</zen-radio> `;
+};
+
+# Radio
+
+Standard radio input component
+
+## Component previews
+
+<br />
+
+### 1. Groups
+
+- Use prop `group` to define a group of radio buttons
+
+<Canvas>
+  <Story name="button">{StoryRadiosGroup.bind({})}</Story>
+</Canvas>
+
+### 2. Select programatically
+
+- Set selected option by either setting prop `checked` or prop `selected`.
+- Also check console log, to see when `changed` event is sent.
+
+<Canvas>
+  <Story name="buttonControl">{StoryButtonControl.bind({})}</Story>
+</Canvas>
+
+## Properties
+
+<Canvas>
+  <Story
+    name="default"
+    args={{
+      ...getDefaultArgs(argTypes),
+    }}
+  >
+    {StoryWithControls.bind({})}
+  </Story>
+</Canvas>
+
+<ArgsTable story="default" />
+
+<docs-table docs={JSON.stringify(getComponentData('zen-radio'))}></docs-table>

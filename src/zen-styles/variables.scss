@@ -81,7 +81,8 @@ $spacers: map-merge(
 // Transitions
 $transition-visibility: 0.2s linear;
 $transition-color: 0.2s linear;
-$transition-element-bump: 0.1s ease-out;
+$transition-color-fast: 0.15s linear;
+$transition-element-bump: 0.15s ease-out;
 $transition-avatar: transform 0.3s;
 $transition-micro-move: 0.2s ease 0s;
 
