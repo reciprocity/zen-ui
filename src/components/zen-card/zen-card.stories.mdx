@@ -12,24 +12,24 @@ const argTypes = getArgTypes(compData);
 
 export const Story1 = () => {
   return html/*html*/ `
-    <zen-card id="card1">
+    <sb-zen-card id="card1">
       <div style="padding: 1rem;">Content</div>
-    </zen-card>
+    </sb-zen-card>
   `;
 };
 
 export const Story2 = () => {
   return html/*html*/ `
-    <zen-card id="card2" disabled>
+    <sb-zen-card id="card2" disabled>
       <div style="padding: 1rem;">Disabled content</div>
-    </zen-card>
+    </sb-zen-card>
   `;
 };
 
 export const StoryWithControls = args => html/*html*/ `
-  <zen-card id="card0" ...="${spreadArgs(args, argTypes)}">
+  <sb-zen-card id="card0" ...="${spreadArgs(args, argTypes)}">
     <div style="padding: 1rem;">Content</div>
-  </zen-card>
+  </sb-zen-card>
   ${action('#card1', eventHandles(['click']))}
 `;
 
