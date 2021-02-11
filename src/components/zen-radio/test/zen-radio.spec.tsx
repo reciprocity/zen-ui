@@ -70,7 +70,8 @@ describe('Radio', () => {
     radios[2].checked = true;
     await page.waitForChanges();
     expect(radioInput(radios[2]).checked).toEqual(true);
-    radios[0].selected = 'gfdbc8';
+    const unexistingValue = 'gfdbc8';
+    radios[0].selected = unexistingValue;
     await page.waitForChanges();
     expect([radios[0], radios[1], radios[2]].every(el => !el.checked)).toBeTruthy();
   });
