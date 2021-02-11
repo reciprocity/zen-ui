@@ -112,7 +112,8 @@ export class ZenTooltip {
 
   debounceShow = debounce(this.show, this.showDelay);
 
-  delay = this.maxHeight != 'none' ? Math.max(this.hideDelay, 150) : this.hideDelay;
+  minDelay = this.maxHeight === 'none' ? 150 : 20; // should be async!
+  delay = Math.max(this.hideDelay, this.minDelay);
   debounceHide = debounce(this.hide, this.delay);
 
   componentDidLoad(): void {
@@ -150,9 +151,7 @@ export class ZenTooltip {
       if (!el) continue;
       el.addEventListener('mousemove', (event: MouseEvent) => show(event));
       el.addEventListener('touchstart', () => show());
-      el.addEventListener('mouseout', (event: MouseEvent) => {
-        // filter events bubbling from children:
-        if (event.target !== tooltip && event.target !== previousElement) return;
+      el.addEventListener('mouseout', () => {
         hide();
       });
       el.addEventListener('touchcancel', () => hide());
