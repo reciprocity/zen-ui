@@ -1,6 +1,6 @@
 import { querySelectorAllDeep } from 'query-selector-shadow-dom';
 import { Position, Rect } from './types';
-import { defineCustomElements } from '../../../dist/esm';
+import { defineCustomElements } from '../../../dist/esm/loader';
 
 export function waitNextFrame(): Promise<boolean> {
   return new Promise(resolve => {
