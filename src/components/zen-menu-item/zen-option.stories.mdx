@@ -23,31 +23,31 @@ export const Slots = args => {
     element.icon = args.icon;
   });
   return html/*html*/ `
-  <style>
-    .icon {
-      height: 1rem;
-      margin-right: 0.5rem;
-    }
-    .content {
-      display: flex;
-      align-items: center;
-      padding: 1rem;
-      width: 100%;
-    }
-    zen-option {
-      display: inline-block;
-      max-width: 300px;
-      width: 100%;
-    }
-  </style>
-  <zen-option default-padding="false">
-    <div class="content">
-      <img class="icon" src=${icon} alt="icon" />
-      <b>Custom content</b>
-      <span style="margin-left: auto"><zen-icon id="icon1"></span>
-    </div>
-  </zen-option>
-`;
+    <style>
+      .icon {
+        height: 1rem;
+        margin-right: 0.5rem;
+      }
+      .content {
+        display: flex;
+        align-items: center;
+        padding: 1rem;
+        width: 100%;
+      }
+      sb-zen-option {
+        display: inline-block;
+        max-width: 300px;
+        width: 100%;
+      }
+    </style>
+    <sb-zen-option default-padding="false">
+      <div class="content">
+        <img class="icon" src=${icon} alt="icon" />
+        <b>Custom content</b>
+        <span style="margin-left: auto"><sb-zen-icon id="icon1"></sb-zen-icon></span>
+      </div>
+    </sb-zen-option>
+  `;
 };
 
 <Canvas>
@@ -67,7 +67,7 @@ You can wrap any content within zen-option. Here we've added custom png icon, so
 ## Properties
 
 export const Template = args => html/*html*/ `
-  <zen-option default-padding="false" ...="${spreadArgs(args, argTypes)}"> Dropdown option </zen-option>
+  <sb-zen-option default-padding="false" ...="${spreadArgs(args, argTypes)}"> Dropdown option </sb-zen-option>
 `;
 
 <Canvas>
