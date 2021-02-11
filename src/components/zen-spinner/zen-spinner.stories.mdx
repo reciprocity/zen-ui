@@ -9,16 +9,16 @@ const argTypes = getArgTypes(compData);
 <Meta title="Icons/Spinner" component="zen-spinner" argTypes={argTypes} />
 
 export const StoryWithControls = args => {
-  return html/*html*/ ` <zen-spinner ...="${spreadArgs(args, argTypes)}"></zen-spinner> `;
+  return html/*html*/ ` <sb-zen-spinner ...="${spreadArgs(args, argTypes)}"></sb-zen-spinner> `;
 };
 
 export const StoryColors = () => {
   return html/*html*/ `
     <div style="display: flex">
-      <zen-spinner style="color: blue"></zen-spinner>
-      <zen-spinner class="ml-12" style="color: #34835b"></zen-spinner>
-      <zen-spinner class="ml-12" style="color: rgb(219, 52, 68)"></zen-spinner>
-      <zen-spinner class="ml-12" style="color: hsl(38, 100%, 56%)"></zen-spinner>
+      <sb-zen-spinner style="color: blue"></sb-zen-spinner>
+      <sb-zen-spinner class="ml-12" style="color: #34835b"></sb-zen-spinner>
+      <sb-zen-spinner class="ml-12" style="color: rgb(219, 52, 68)"></sb-zen-spinner>
+      <sb-zen-spinner class="ml-12" style="color: hsl(38, 100%, 56%)"></sb-zen-spinner>
     </div>
   `;
 };
