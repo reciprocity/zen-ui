@@ -63,9 +63,7 @@ describe('Radio', () => {
     expect(radioInput(radios[2]).checked).toEqual(true);
     radios[0].selected = '';
     await page.waitForChanges();
-    for (const element of [radios[0], radios[1], radios[2]]) {
-      expect(element.checked).toEqual(false);
-    }
+    expect([radios[0], radios[1], radios[2]].every(el => !el.checked)).toBeTruthy();
   });
 
   it('deselects all on setting invalid "selected" prop', async () => {
@@ -74,9 +72,7 @@ describe('Radio', () => {
     expect(radioInput(radios[2]).checked).toEqual(true);
     radios[0].selected = 'gfdbc8';
     await page.waitForChanges();
-    for (const element of [radios[0], radios[1], radios[2]]) {
-      expect(element.checked).toEqual(false);
-    }
+    expect([radios[0], radios[1], radios[2]].every(el => !el.checked)).toBeTruthy();
   });
 
   it('emits "change" event on change', async () => {
