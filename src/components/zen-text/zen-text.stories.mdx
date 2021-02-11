@@ -9,74 +9,76 @@ const argTypes = getArgTypes(compData);
 <Meta title="Typography/Text" component="zen-text" argTypes={argTypes} />
 
 export const StoryWithControls = args => {
-  return html/*html*/ `<zen-text ...="${spreadArgs(args, argTypes)}">Sample text of Zen-text component</zen-text> `;
+  return html/*html*/ `<sb-zen-text ...="${spreadArgs(args, argTypes)}"
+    >Sample text of Zen-text component</sb-zen-text
+  > `;
 };
 
 export const StorySizes = () => html/*html*/ `
-  <zen-text size="2xl">2xl I love Zen UI</zen-text>
-  <text-with-details></text-with-details>
-  <zen-text size="xl">xl I love Zen UI</zen-text>
-  <text-with-details></text-with-details>
-  <zen-text size="lg">lg I love Zen UI</zen-text>
-  <text-with-details></text-with-details>
-  <zen-text size="md">md I love Zen UI</zen-text>
-  <text-with-details></text-with-details>
-  <zen-text size="sm">sm I love Zen UI</zen-text>
-  <text-with-details></text-with-details>
-  <zen-text size="xs">xs I love Zen UI</zen-text>
-  <text-with-details></text-with-details>
+  <sb-zen-text size="2xl">2xl I love Zen UI</sb-zen-text>
+  <sb-text-with-details></sb-text-with-details>
+  <sb-zen-text size="xl">xl I love Zen UI</sb-zen-text>
+  <sb-text-with-details></sb-text-with-details>
+  <sb-zen-text size="lg">lg I love Zen UI</sb-zen-text>
+  <sb-text-with-details></sb-text-with-details>
+  <sb-zen-text size="md">md I love Zen UI</sb-zen-text>
+  <sb-text-with-details></sb-text-with-details>
+  <sb-zen-text size="sm">sm I love Zen UI</sb-zen-text>
+  <sb-text-with-details></sb-text-with-details>
+  <sb-zen-text size="xs">xs I love Zen UI</sb-zen-text>
+  <sb-text-with-details></sb-text-with-details>
 `;
 
 export const StoryHeadings = () => html/*html*/ `
-  <zen-text size="xl" variant="heading">xl I love Zen UI</zen-text>
-  <text-with-details></text-with-details>
-  <zen-text size="lg" variant="heading">lg I love Zen UI</zen-text>
-  <text-with-details></text-with-details>
-  <zen-text size="md" variant="heading">md I love Zen UI</zen-text>
-  <text-with-details></text-with-details>
-  <zen-text size="sm" variant="heading">sm I love Zen UI</zen-text>
-  <text-with-details></text-with-details>
-  <zen-text size="xs" variant="heading">xs I love Zen UI</zen-text>
-  <text-with-details></text-with-details>
+  <sb-zen-text size="xl" variant="heading">xl I love Zen UI</sb-zen-text>
+  <sb-text-with-details></sb-text-with-details>
+  <sb-zen-text size="lg" variant="heading">lg I love Zen UI</sb-zen-text>
+  <sb-text-with-details></sb-text-with-details>
+  <sb-zen-text size="md" variant="heading">md I love Zen UI</sb-zen-text>
+  <sb-text-with-details></sb-text-with-details>
+  <sb-zen-text size="sm" variant="heading">sm I love Zen UI</sb-zen-text>
+  <sb-text-with-details></sb-text-with-details>
+  <sb-zen-text size="xs" variant="heading">xs I love Zen UI</sb-zen-text>
+  <sb-text-with-details></sb-text-with-details>
 `;
 
 export const StoryProps = () => html/*html*/ `
-  <zen-text required>Required</zen-text>
+  <sb-zen-text required>Required</sb-zen-text>
   <div style="margin-top: 0.5rem"></div>
-  <zen-text uppercase>UpperCase</zen-text>
+  <sb-zen-text uppercase>UpperCase</sb-zen-text>
   <div style="margin-top: 0.5rem"></div>
-  <zen-text lowercase>LowerCase</zen-text>
+  <sb-zen-text lowercase>LowerCase</sb-zen-text>
   <div style="margin-top: 0.5rem"></div>
-  <zen-text bold>bold</zen-text>
+  <sb-zen-text bold>bold</sb-zen-text>
   <div style="margin-top: 0.5rem"></div>
-  <zen-text pale>pale</zen-text>
+  <sb-zen-text pale>pale</sb-zen-text>
   <div style="margin-top: 0.5rem"></div>
-  <zen-text disabled>disabled</zen-text>
+  <sb-zen-text disabled>disabled</sb-zen-text>
   <div style="margin-top: 0.5rem"></div>
-  <zen-text italic>italic</zen-text>
+  <sb-zen-text italic>italic</sb-zen-text>
   <div style="margin-top: 0.5rem"></div>
-  <zen-text strikethrough>strikethrough</zen-text>
+  <sb-zen-text strikethrough>strikethrough</sb-zen-text>
   <div style="margin-top: 0.5rem"></div>
-  <zen-text underline>underline</zen-text>
+  <sb-zen-text underline>underline</sb-zen-text>
   <div style="margin-top: 0.5rem"></div>
-  <zen-text style="max-width: 200px" align="right">align right</zen-text>
+  <sb-zen-text style="max-width: 200px" align="right">align right</sb-zen-text>
   <div style="margin-top: 0.5rem"></div>
-  <zen-text style="max-width: 200px" align="center">align center</zen-text>
+  <sb-zen-text style="max-width: 200px" align="center">align center</sb-zen-text>
   <div style="margin-top: 0.5rem"></div>
-  <zen-text bold italic>combination of props</zen-text>
+  <sb-zen-text bold italic>combination of props</sb-zen-text>
   <div style="margin-top: 0.5rem"></div>
-  <zen-text style="max-width: 200px" truncate> truncate of some very large text </zen-text>
+  <sb-zen-text style="max-width: 200px" truncate> truncate of some very large text </sb-zen-text>
   <div style="margin-top: 0.5rem"></div>
-  <zen-text inline bold>inline</zen-text>
-  <zen-text inline italic>inline</zen-text>
-  <zen-text inline uppercase>inline</zen-text>
+  <sb-zen-text inline bold>inline</sb-zen-text>
+  <sb-zen-text inline italic>inline</sb-zen-text>
+  <sb-zen-text inline uppercase>inline</sb-zen-text>
 `;
 
 export const StoryLabel = () => html/*html*/ `
   <zen-form-group>
-    <zen-text variant="label" required>Username</zen-text>
-    <zen-input></zen-input>
-    <zen-text variant="support">This field should be unique</zen-text>
+    <sb-zen-text variant="label" required>Username</sb-zen-text>
+    <sb-zen-input></sb-zen-input>
+    <sb-zen-text variant="support">This field should be unique</sb-zen-text>
   </zen-form-group>
 `;
 
