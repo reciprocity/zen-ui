@@ -1,4 +1,4 @@
-/// <reference types='cypress' />
+/// <reference types="cypress" />
 import {createVisualTests} from '../../support/utils/visualTesting';
 
 describe('Button visual tests', () => {
