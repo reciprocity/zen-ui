@@ -3,6 +3,11 @@ import { indent, unindent } from './helpers';
 
 declare global {
   interface Window {
+    /**
+     * Disabling since the playground is meant as a POC for now.
+     * Vue typings should later be added if we decide to improve it further.
+     */
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     Vue: any;
   }
 }
