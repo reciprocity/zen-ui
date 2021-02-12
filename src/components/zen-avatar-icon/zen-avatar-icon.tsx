@@ -49,7 +49,7 @@ export class ZenAvatarIcon {
     return initials;
   }
 
-  render() {
+  render(): HTMLElement {
     return (
       <Host style={{ background: this.background, color: this.color }}>
         <img class={{ hidden: !this.hasImage() }} src={this.imageUrl} />
