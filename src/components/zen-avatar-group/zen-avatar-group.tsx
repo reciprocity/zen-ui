@@ -31,12 +31,20 @@ export class ZenAvatarGroup {
   }
 
   shownUsers(): AvatarData[] {
-    const shownUsers = this.users.slice(0, this.displayMax);
+    let shownUsers = this.users.slice(0, this.displayMax);
+    // Handle edge case for displaying last two users in tooltip
+    if (this.displayMax == this.users.length - 1) {
+      shownUsers = this.users.slice(0, this.displayMax - 1);
+    }
     return this.getUserData(shownUsers);
   }
 
   hiddenUsers(): AvatarData[] {
-    const hiddenUsers = this.users.slice(this.displayMax, this.users.length);
+    let hiddenUsers = this.users.slice(this.displayMax, this.users.length);
+    // Handle edge case for displaying last two users in tooltip
+    if (this.displayMax == this.users.length - 1) {
+      hiddenUsers = this.users.slice(this.displayMax - 1, this.users.length);
+    }
     return this.getUserData(hiddenUsers);
   }
 
@@ -71,7 +79,7 @@ export class ZenAvatarGroup {
         {this.shownUsers().map(user => (
           <zen-avatar users={[user]} animation={this.users.length > 1} />
         ))}
-        {this.hiddenUsers().length > 0 ? <zen-avatar users={this.hiddenUsers()} animation={true} /> : null}
+        {this.hiddenUsers().length > 0 ? <zen-avatar users={this.hiddenUsers()} animation={false} /> : null}
       </Host>
     );
   }
