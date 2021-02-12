@@ -1,4 +1,6 @@
 module.exports = {
+  // Ignore typings files since this config is only for .js files
+  ignorePatterns: ['*.d.ts'],
   plugins: ['cypress'],
   extends: [
     'eslint:recommended',
