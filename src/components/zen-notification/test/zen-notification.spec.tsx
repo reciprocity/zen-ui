@@ -1,5 +1,6 @@
 import { newSpecPage } from '@stencil/core/testing';
 import { ZenNotification } from '../zen-notification';
+import { getDefaultSlotContent } from '../../helpers/helpers';
 
 describe('zen-notification', () => {
   it.each(['success', 'info', 'warning', 'error'])('should correctly apply variant (variant: %s)', async variant => {
@@ -14,17 +15,16 @@ describe('zen-notification', () => {
   it('should set title and message', async () => {
     const page = await newSpecPage({
       components: [ZenNotification],
-      html: `<zen-notification heading="Test Heading" message="Test Message"></zen-notification>`,
+      html: `<zen-notification heading="Test Heading">Test Message</zen-notification>`,
     });
-
     expect(page.root.shadowRoot.querySelector('.title').textContent).toEqual('Test Heading');
-    expect(page.root.shadowRoot.querySelector('.message').textContent).toEqual('Test Message');
+    expect(page.root.shadowRoot.querySelector('slot')).not.toBeNull();
   });
 
   it('should display button to dismiss notification', async () => {
     const page = await newSpecPage({
       components: [ZenNotification],
-      html: `<zen-notification heading="Test Heading" message="Test Message"></zen-notification>`,
+      html: `<zen-notification heading="Test Heading">Test Message</zen-notification>`,
     });
 
     expect(page.root.shadowRoot.querySelector('.close')).not.toBeNull();

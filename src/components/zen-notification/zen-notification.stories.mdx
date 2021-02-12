@@ -8,44 +8,32 @@ const argTypes = getArgTypes(compData);
 
 <Meta title="Notifications/Notification" component="zen-notification" argTypes={argTypes} />
 
-export const StoryWithControls = args => html/*html*/ ` <zen-notification ...="${spreadArgs(args, argTypes)}" /> `;
+export const StoryWithControls = args =>
+  html/*html*/ `<zen-notification ...="${spreadArgs(args, argTypes)}">Settings successfully saved!</zen-notification>`;
 
 export const StoryVariants = () => html/*html*/ ` <div style="padding-bottom: 20px">
-    <zen-notification
-      variant="success"
-      heading="Success"
-      message="Settings successfully saved!"
-      dismiss-duration="none"
-      dismiss="true"
-    />
+    <zen-notification variant="success" heading="Success" dismiss-duration="none" dismiss="true">
+      This is the notification message. There may be a number of things to add to this message, but try to keep it to
+      three lines. Links underlined.
+    </zen-notification>
   </div>
   <div style="padding-bottom: 20px">
-    <zen-notification
-      variant="info"
-      heading="Info"
-      message="You have 6 items that need your attention!"
-      dismiss-duration="none"
-      dismiss="true"
-    />
+    <zen-notification variant="info" heading="Info" dismiss-duration="none" dismiss="true">
+      This is the notification message. There may be a number of things to add to this message, but try to keep it to
+      three lines. Links underlined.
+    </zen-notification>
   </div>
   <div style="padding-bottom: 20px">
-    <zen-notification
-      variant="warning"
-      heading="Warning"
-      message="Proceed with caution. Any changes will
-  lead to the recalculation of the risk ratings and scores accross the entire risk register."
-      dismiss-duration="none"
-      dismiss="true"
-    />
+    <zen-notification variant="warning" heading="Warning" dismiss-duration="none" dismiss="true">
+      This is the notification message. There may be a number of things to add to this message, but try to keep it to
+      three lines. Links underlined.
+    </zen-notification>
   </div>
   <div>
-    <zen-notification
-      variant="error"
-      heading="Error"
-      message="Oops, something went wrong."
-      dismiss-duration="none"
-      dismiss="true"
-    />
+    <zen-notification variant="error" heading="Error" dismiss-duration="none" dismiss="true">
+      This is the notification message. There may be a number of things to add to this message, but try to keep it to
+      three lines. Links underlined.
+    </zen-notification>
   </div>`;
 
 # Notification
@@ -75,7 +63,6 @@ Use when you need to notify user, but don't need his direct response.
       // override some default values:
       dismissDuration: 'none',
       heading: 'Success',
-      message: 'Settings successfully saved!',
     }}
   >
     {StoryWithControls.bind({})}

@@ -259,10 +259,6 @@ export namespace Components {
          */
         "heading": string;
         /**
-          * Message
-         */
-        "message": string;
-        /**
           * Variant
          */
         "variant": NotificationVariant;
@@ -1015,10 +1011,6 @@ declare namespace LocalJSX {
           * Title
          */
         "heading"?: string;
-        /**
-          * Message
-         */
-        "message"?: string;
         /**
           * Variant
          */
