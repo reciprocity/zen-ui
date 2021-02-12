@@ -1,5 +1,5 @@
 import { Component, Host, h, Prop } from '@stencil/core';
-import { Avatar, AvatarColor, AvatarData } from '../../components/helpers/types';
+import { Avatar, AvatarColor, AvatarData } from '../helpers/types';
 
 @Component({
   tag: 'zen-avatar-group',
