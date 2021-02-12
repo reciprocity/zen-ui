@@ -1,14 +1,15 @@
 /// <reference types="cypress" />
-import {createVisualTests} from '../../support/utils/visualTesting';
+import { createVisualTests } from '../../support/utils/visualTesting';
 
 describe('Text visual tests', () => {
-
   const pageId = 'typography-text--default';
-  const stories = ["story--typography-text--sizes",
-  "story--typography-text--headings",
-  "story--typography-text--label",
-  "story--typography-text--props",
-  "story--typography-text--default-story"];
+  const stories = [
+    'story--typography-text--sizes',
+    'story--typography-text--headings',
+    'story--typography-text--label',
+    'story--typography-text--props',
+    'story--typography-text--default-story',
+  ];
 
   // Example how to skip testing for some user stories
   const skipedStories = [];
@@ -18,5 +19,5 @@ describe('Text visual tests', () => {
     cy.verifyAllStoriesHaveVRT(stories, skipedStories);
   });
 
-  createVisualTests(stories, skipedStories)
+  createVisualTests(stories, skipedStories);
 });

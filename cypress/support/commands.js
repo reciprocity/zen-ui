@@ -8,9 +8,11 @@ function addMatchImageSnapshotCommandInMode(isInteractiveMode) {
       cy.log('Skipping snapshot');
     });
   } else {
-    addMatchImageSnapshotCommand({failureThreshold: 0.03,
+    addMatchImageSnapshotCommand({
+      failureThreshold: 0.03,
       failureThresholdType: 'percent',
-      customDiffConfig: { threshold: 0.1 },});
+      customDiffConfig: { threshold: 0.1 },
+    });
   }
 }
 
@@ -21,7 +23,7 @@ addMatchImageSnapshotCommandInMode(isInteractiveMode);
  *
  * @param {string} id  Storybook docs page id
  */
-Cypress.Commands.add('visitStorybookIframe', (id) => {
+Cypress.Commands.add('visitStorybookIframe', id => {
   Cypress.log({ name: 'CUSTOM - visitStorybookIframe: ' });
 
   cy.visit(`iframe.html?id=${id}&viewMode=docs`);
@@ -34,14 +36,14 @@ Cypress.Commands.add('visitStorybookIframe', (id) => {
  * @param {Array<string>} stories  Array of stories set for testing
  * @param {Array<string>} skipedStories  Array of skiped stories
  */
-Cypress.Commands.add ('verifyAllStoriesHaveVRT', (stories, skipedStories =[]) => {
+Cypress.Commands.add('verifyAllStoriesHaveVRT', (stories, skipedStories = []) => {
   Cypress.log({ name: 'CUSTOM - verifyAllStoriesHaveVRT: ' });
-  cy.get('[id^=story--]').each((selector) => {
-    let selectors =[];
-    selectors.push(selector);
-  }).then((selectors) => {
-    expect(selectors.length).to.equal(stories.length + skipedStories.length)
-  });
+  cy.get('[id^=story--]')
+    .each(selector => {
+      let selectors = [];
+      selectors.push(selector);
+    })
+    .then(selectors => {
+      expect(selectors.length).to.equal(stories.length + skipedStories.length);
+    });
 });
-
-

@@ -6,9 +6,9 @@ describe('Divider visual tests', () => {
   const pageId = 'layout-divider--default';
 
   const stories = [
-    "story--layout-divider--text",
-    "story--layout-divider--divs",
-    "story--layout-divider--default-story",
+    'story--layout-divider--text',
+    'story--layout-divider--divs',
+    'story--layout-divider--default-story',
   ];
 
   before(() => {

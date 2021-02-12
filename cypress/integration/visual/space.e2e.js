@@ -1,10 +1,10 @@
 /// <reference types="cypress" />
-import {createVisualTests} from '../../support/utils/visualTesting';
+import { createVisualTests } from '../../support/utils/visualTesting';
 
 describe('Button visual tests', () => {
-
   const pageId = 'layout-space';
-  const stories = ['story--layout-space--sizes',
+  const stories = [
+    'story--layout-space--sizes',
     'story--layout-space--aligns-vert',
     'story--layout-space--aligns-horz',
     'story--layout-space--aligns-column-vert',
@@ -12,7 +12,7 @@ describe('Button visual tests', () => {
     'story--layout-space--paddings',
     'story--layout-space--children',
     'story--layout-space--default-story',
-  ]
+  ];
 
   // Example how to skip testing for some user stories
   const skipedStories = [];
@@ -22,5 +22,5 @@ describe('Button visual tests', () => {
     cy.verifyAllStoriesHaveVRT(stories, skipedStories);
   });
 
-  createVisualTests(stories, skipedStories)
+  createVisualTests(stories, skipedStories);
 });
