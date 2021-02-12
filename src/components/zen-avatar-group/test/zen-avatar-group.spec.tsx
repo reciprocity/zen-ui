@@ -74,4 +74,14 @@ describe('zen-avatar-group', () => {
     await page.waitForChanges();
     expect(page.root.shadowRoot.querySelectorAll('zen-avatar').length).toEqual(5);
   });
+
+  it('should show last two avatars in tooltip', async () => {
+    const page = await newSpecPage({
+      components: [ZenAvatarGroup, ZenTooltip, ZenAvatar, ZenAvatarIcon],
+      html: `<zen-avatar-group display-max="4"  />`,
+    });
+    page.root.users = users;
+    await page.waitForChanges();
+    expect(page.root.shadowRoot.querySelectorAll('zen-avatar').length).toEqual(4);
+  });
 });
