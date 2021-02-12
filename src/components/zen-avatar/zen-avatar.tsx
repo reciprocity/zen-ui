@@ -45,7 +45,7 @@ export class ZenAvatar {
         />
         <zen-tooltip variant="light" show-delay="0" max-height={this.users.length > 4 ? '200px' : null}>
           {this.users.map((user, index) => (
-            <div>
+            <div class="container">
               <div class="row">
                 <zen-avatar-icon
                   class="avatar"

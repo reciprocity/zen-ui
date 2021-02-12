@@ -12,8 +12,8 @@
   }
 }
 
-zen-tooltip {
-  max-width: fit-content;
+.container {
+  display: grid;
 }
 
 .avatar-icon {
@@ -22,6 +22,7 @@ zen-tooltip {
 
 .row {
   display: flex;
+  align-items: center;
 }
 
 .column {
@@ -30,7 +31,7 @@ zen-tooltip {
 }
 
 .avatar {
-  margin-right: 5px;
+  margin-right: 10px;
 }
 
 .title {
@@ -48,7 +49,6 @@ zen-tooltip {
 }
 
 .splitter {
-  border-bottom: 1px solid $color-gray-100;
-  padding: 0.6rem 0.3rem 0;
-  margin: 0 0.3rem 0.6rem;
+  border-top: 1px solid $color-gray-100;
+  margin: 1rem 0;
 }
