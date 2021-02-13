@@ -59,10 +59,7 @@ describe('zen-avatar-group', () => {
     });
     page.root.users = users;
     await page.waitForChanges();
-    expect(page.root.shadowRoot.querySelectorAll('zen-avatar').length).toEqual(4);
-    expect(
-      page.root.shadowRoot.querySelectorAll('zen-avatar')[3].shadowRoot.querySelector('zen-tooltip').childElementCount,
-    ).toEqual(2);
+    expect(page.root.shadowRoot.querySelectorAll('zen-avatar').length).toEqual(3);
   });
 
   it('should show all avatars icons', async () => {
@@ -82,6 +79,8 @@ describe('zen-avatar-group', () => {
     });
     page.root.users = users;
     await page.waitForChanges();
-    expect(page.root.shadowRoot.querySelectorAll('zen-avatar').length).toEqual(4);
+    expect(
+      page.root.shadowRoot.querySelectorAll('zen-avatar')[3].shadowRoot.querySelector('zen-tooltip').childElementCount,
+    ).toEqual(2);
   });
 });
