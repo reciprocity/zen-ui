@@ -9,28 +9,28 @@ const { argTypes } = getArgTypesAndArgs('zen-popover');
 
 export const StoryWithControls = args => {
   return html/*html*/ `
-    <div style="height:500px; width:100%; vertical-align: top;">
+     <zen-space no-wrap horizontal-align="start" vertical-align="start" style="height: 200px" >
         <zen-popover ...="${spreadArgs(args, argTypes)}">
             <zen-button variant="primary" slot="target">
-                Target
+                Button
             </zen-button>
-            <zen-card style="background: white;width:300px;height:300px; text-align: center;">
-                <div>Test</div>
+            <zen-card style="background: white; padding: 1rem; width:200px; text-align: center;">
+                <zen-text>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</zen-text>
             <zen-card>
         </zen-popover>
-    </div>
+    </zen-space>
   `;
 };
 
 export const StoryPositionVariants = args => {
   return html/*html*/ `
-    <zen-space no-wrap spacing="lg" horizontal-align="space-evenly" vertical-align="top" style="height: 400px" >
+    <zen-space no-wrap spacing="lg" horizontal-align="space-evenly" vertical-align="start" style="height: 400px" >
         <zen-popover placement="bottom-start">
             <zen-button variant="primary" slot="target">
                 Left
             </zen-button>
             <zen-card style="background: white; padding: 1rem; width:200px; text-align: center;">
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                <zen-text>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</zen-text>
             <zen-card>
         </zen-popover>
         <zen-popover placement="bottom-end">
@@ -38,7 +38,7 @@ export const StoryPositionVariants = args => {
                 Right
             </zen-button>
             <zen-card style="background: white; padding: 1rem; width: 200px; text-align: center;">
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                <zen-text>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</zen-text>
             <zen-card>
         </zen-popover>
     </zen-space>

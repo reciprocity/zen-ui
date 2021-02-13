@@ -17,39 +17,39 @@ export class ZenPopover {
   @Prop() readonly offset: Offsets = { x: 0, y: 8 };
 
   componentDidLoad() {
-    const target = getSlotElement(this.element, 'target');
-    const content = getDefaultSlotContent(this.element)[0] as HTMLElement;
+    const targetSlotEl = getSlotElement(this.element, 'target');
+    const defaultSlotEl = getDefaultSlotContent(this.element)[0] as HTMLElement;
 
-    const popper = createPopper(target, content, {
+    const instance = createPopper(targetSlotEl, defaultSlotEl, {
       placement: this.placement,
       modifiers: [
         {
           name: 'offset',
           options: {
-            offset: [0, 8],
+            offset: [this.offset.x, this.offset.y],
           },
         },
       ],
     });
 
     window.addEventListener('click', event => {
-      const targetNode = event.target as Node;
+      const clickTargetNode = event.target as Node;
 
-      if (content.contains(targetNode)) {
+      if (defaultSlotEl.contains(clickTargetNode)) {
         return;
-      } else if (targetNode === target) {
-        this.show(popper, content);
+      } else if (clickTargetNode === targetSlotEl) {
+        this.show(instance, defaultSlotEl);
       } else {
-        this.hide(content);
+        this.hide(defaultSlotEl);
       }
     });
 
-    this.hide(content);
+    this.hide(defaultSlotEl);
   }
 
-  show(popper, element: HTMLElement): void {
+  show(instance, element: HTMLElement): void {
     element.style.display = 'block';
-    popper.forceUpdate();
+    instance.forceUpdate();
   }
 
   hide(element: HTMLElement): void {
