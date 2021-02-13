@@ -31,20 +31,12 @@ export class ZenAvatarGroup {
   }
 
   shownUsers(): AvatarData[] {
-    let shownUsers = this.users.slice(0, this.displayMax);
-    // Handle edge case for displaying last two users in tooltip
-    if (this.displayMax == this.users.length - 1) {
-      shownUsers = this.users.slice(0, this.displayMax - 1);
-    }
+    const shownUsers = this.users.slice(0, this.displayMax - 1);
     return this.getUserData(shownUsers);
   }
 
   hiddenUsers(): AvatarData[] {
-    let hiddenUsers = this.users.slice(this.displayMax, this.users.length);
-    // Handle edge case for displaying last two users in tooltip
-    if (this.displayMax == this.users.length - 1) {
-      hiddenUsers = this.users.slice(this.displayMax - 1, this.users.length);
-    }
+    const hiddenUsers = this.users.slice(this.displayMax - 1, this.users.length);
     return this.getUserData(hiddenUsers);
   }
 
