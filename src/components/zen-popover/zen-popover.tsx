@@ -1,5 +1,5 @@
 import { Component, Host, h, Element, Prop } from '@stencil/core';
-import { createPopper, Placement } from '@popperjs/core';
+import { createPopper, Placement, Offsets } from '@popperjs/core';
 import { getDefaultSlotContent, getSlotElement } from '../helpers/helpers';
 
 @Component({
@@ -11,13 +11,16 @@ export class ZenPopover {
   @Element() element: HTMLZenPopoverElement;
 
   /** Placement */
-  @Prop() readonly placement: Placement = 'auto';
+  @Prop() readonly placement: Placement = 'bottom-end';
+
+  /** Placement */
+  @Prop() readonly offset: Offsets = { x: 0, y: 8 };
 
   componentDidLoad() {
     const target = getSlotElement(this.element, 'target');
     const content = getDefaultSlotContent(this.element)[0] as HTMLElement;
 
-    createPopper(target, content, {
+    const popper = createPopper(target, content, {
       placement: this.placement,
       modifiers: [
         {
@@ -29,17 +32,24 @@ export class ZenPopover {
       ],
     });
 
-    target.addEventListener('click', () => {
-      this.show(content);
+    window.addEventListener('click', event => {
+      const targetNode = event.target as Node;
+
+      if (content.contains(targetNode)) {
+        return;
+      } else if (targetNode === target) {
+        this.show(popper, content);
+      } else {
+        this.hide(content);
+      }
     });
 
-    content.addEventListener('mouseleave', () => {
-      this.hide(content);
-    });
+    this.hide(content);
   }
 
-  show(element: HTMLElement): void {
+  show(popper, element: HTMLElement): void {
     element.style.display = 'block';
+    popper.forceUpdate();
   }
 
   hide(element: HTMLElement): void {

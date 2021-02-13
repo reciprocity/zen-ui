@@ -7,7 +7,7 @@ const { argTypes } = getArgTypesAndArgs('zen-popover');
 
 <Meta title="In progress/Popover" component="zen-popover" argTypes={argTypes} />
 
-export const Template = args => {
+export const StoryWithControls = args => {
   return html/*html*/ `
     <div style="height:500px; width:100%; vertical-align: top;">
         <zen-popover ...="${spreadArgs(args, argTypes)}">
@@ -19,6 +19,29 @@ export const Template = args => {
             <zen-card>
         </zen-popover>
     </div>
+  `;
+};
+
+export const StoryPositionVariants = args => {
+  return html/*html*/ `
+    <zen-space no-wrap spacing="lg" horizontal-align="space-evenly" vertical-align="top" style="height: 400px" >
+        <zen-popover placement="bottom-start">
+            <zen-button variant="primary" slot="target">
+                Left
+            </zen-button>
+            <zen-card style="background: white; padding: 1rem; width:200px; text-align: center;">
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+            <zen-card>
+        </zen-popover>
+        <zen-popover placement="bottom-end">
+            <zen-button variant="primary" slot="target">
+                Right
+            </zen-button>
+            <zen-card style="background: white; padding: 1rem; width: 200px; text-align: center;">
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+            <zen-card>
+        </zen-popover>
+    </zen-space>
   `;
 };
 
@@ -48,8 +71,8 @@ export const StoryFilters = args => {
     element.icon = faPlus;
   });
   return html/*html*/ `
-    <div style="height:500px; width:100%; vertical-align: top;">
-        <zen-popover placement="bottom-end" ...="${spreadArgs(args, argTypes)}">
+     <zen-space no-wrap spacing="lg" horizontal-align="start" vertical-align="top" style="height: 400px" >
+        <zen-popover placement="bottom-start" ...="${spreadArgs(args, argTypes)}">
             <zen-button variant="primary" slot="target">
                 <zen-icon slot="leadingIcon" id="filter" style="height:14px; align-self:center;"></zen-icon>
                 Filter
@@ -127,7 +150,7 @@ export const StoryFilters = args => {
                 </zen-space>
             <zen-card>
         </zen-popover>
-    </div>
+    </zen-space>
   `;
 };
 
@@ -139,7 +162,15 @@ Popover component
 
 <br />
 
-### 1. Story for filters component
+### 1. Story for a popover position
+
+- Different positioning
+
+<Canvas>
+  <Story name="StoryPositionVariants">{StoryPositionVariants.bind({})}</Story>
+</Canvas>
+
+### 2. Story for filters component
 
 - Example how to create filters component
 
@@ -156,7 +187,7 @@ Popover component
       ...getDefaultArgs(argTypes),
     }}
   >
-    {Template.bind({})}
+    {StoryWithControls.bind({})}
   </Story>
 </Canvas>
 
