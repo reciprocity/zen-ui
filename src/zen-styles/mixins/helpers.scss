@@ -13,6 +13,10 @@
   margin: $padding;
   height: $size;
   width: $size;
+  min-width: $size;
+  max-width: $size;
+  min-height: $size;
+  max-height: $size;
   border-radius: 50%;
   position: relative;
 }

@@ -43,27 +43,29 @@ export class ZenAvatar {
           background={this.getBackground()}
           color={this.getColor()}
         />
-        <zen-tooltip variant="light" show-delay="0" max-height={this.users.length > 4 ? '200px' : null}>
+        <zen-tooltip variant="light" show-delay="0" max-height={this.users.length > 4 ? '250px' : null}>
           {this.users.map((user, index) => (
-            <div class="container">
-              <div class="row">
+            <div>
+              <zen-space no-wrap padding="lg" vertical-align="start" spacing="md">
                 <zen-avatar-icon
                   class="avatar"
                   user-name={user.userName}
                   color={user.color}
                   background={user.background}
                 />
-                <div class="column">
-                  <div class="title">{user.userName}</div>
-                  <div class="email">{user.email}</div>
-                </div>
-              </div>
+                <zen-space vertical padding="none" spacing="xs">
+                  <zen-text size="md" bold>
+                    {user.userName}
+                  </zen-text>
+                  <zen-text size="sm">{user.email}</zen-text>
+                </zen-space>
+              </zen-space>
               <div
                 class={{
                   splitter: true,
                   hidden: index == this.users.length - 1 || this.users.length == 1,
                 }}
-              />
+              ></div>
             </div>
           ))}
         </zen-tooltip>
