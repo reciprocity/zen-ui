@@ -18,6 +18,18 @@ export class ZenPopover {
 
   componentDidLoad() {
     const targetSlotEl = getSlotElement(this.element, 'target');
+    const defaultSlot = getDefaultSlotContent(this.element);
+
+    if (!targetSlotEl) {
+      console.error('No target element specified for the target slot!');
+      return;
+    }
+
+    if (!defaultSlot) {
+      console.error('No content added to default slot!');
+      return;
+    }
+
     const defaultSlotEl = getDefaultSlotContent(this.element)[0] as HTMLElement;
 
     const instance = createPopper(targetSlotEl, defaultSlotEl, {

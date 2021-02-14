@@ -9,7 +9,7 @@ const { argTypes } = getArgTypesAndArgs('zen-popover');
 
 export const StoryWithControls = args => {
   return html/*html*/ `
-     <zen-space no-wrap horizontal-align="start" vertical-align="start" style="height: 200px" >
+     <zen-space no-wrap horizontal-align="start" vertical-align="start" style="height: 150px" >
         <zen-popover ...="${spreadArgs(args, argTypes)}">
             <zen-button variant="primary" slot="target">
                 Button
@@ -24,7 +24,7 @@ export const StoryWithControls = args => {
 
 export const StoryPositionVariants = args => {
   return html/*html*/ `
-    <zen-space no-wrap spacing="lg" horizontal-align="space-evenly" vertical-align="start" style="height: 400px" >
+    <zen-space no-wrap spacing="lg" horizontal-align="space-evenly" vertical-align="start" style="height: 150px" >
         <zen-popover placement="bottom-start">
             <zen-button variant="primary" slot="target">
                 Left
@@ -72,7 +72,7 @@ export const StoryFilters = args => {
   });
   return html/*html*/ `
      <zen-space no-wrap spacing="lg" horizontal-align="start" vertical-align="top" style="height: 400px" >
-        <zen-popover placement="bottom-start" ...="${spreadArgs(args, argTypes)}">
+        <zen-popover placement="bottom-start">
             <zen-button variant="primary" slot="target">
                 <zen-icon slot="leadingIcon" id="filter" style="height:14px; align-self:center;"></zen-icon>
                 Filter
@@ -185,6 +185,7 @@ Popover component
     name="default"
     args={{
       ...getDefaultArgs(argTypes),
+      placement: 'bottom-start',
     }}
   >
     {StoryWithControls.bind({})}
