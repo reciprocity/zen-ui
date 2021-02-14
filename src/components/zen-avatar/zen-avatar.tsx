@@ -46,14 +46,14 @@ export class ZenAvatar {
         <zen-tooltip variant="light" show-delay="0" max-height={this.users.length > 4 ? '250px' : null}>
           {this.users.map((user, index) => (
             <div>
-              <zen-space no-wrap padding="lg" vertical-align="start" spacing="md">
+              <zen-space no-wrap padding="lg" vertical-align="start" spacing="lg">
                 <zen-avatar-icon
                   class="avatar"
                   user-name={user.userName}
                   color={user.color}
                   background={user.background}
                 />
-                <zen-space vertical padding="none" spacing="xs">
+                <zen-space vertical padding="xs" spacing="sm">
                   <zen-text size="md" bold>
                     {user.userName}
                   </zen-text>
