@@ -37,11 +37,11 @@ export const TemplateSlot = () => {
     element.users = user;
   });
   return html/*html*/ `
-    <zen-space  horizontal-align="center" vertical-align="end" style="height:150px" >
+    <zen-space horizontal-align="center" vertical-align="end" style="height:150px" >
      <div>
-        <zen-button label="Info" variant="secondary"></zen-button>
+        <zen-button label="User" variant="secondary"></zen-button>
         <zen-tooltip
-                always-visible
+                always-visible="true"
                 position="top"
                 variant="light"
            >
@@ -62,9 +62,9 @@ export const TemplateVariants = () => {
   return html/*html*/ `
     <zen-space nowrap horizontal-align="space-evenly" vertical-align="end" style="height:300px">
       <div>
-         <zen-button label="Edit" variant="primary"></zen-button>
+          <zen-button label="Example" variant="primary"></zen-button>
           <zen-tooltip
-                always-visible
+                always-visible="true"
                 position="top"
                 variant="dark"
            >
@@ -76,7 +76,7 @@ export const TemplateVariants = () => {
       <div>
         <zen-button label="Info" variant="secondary"></zen-button>
         <zen-tooltip
-          always-visible
+          always-visible="true"
           position="top"
           variant="light"
         >
@@ -88,7 +88,7 @@ export const TemplateVariants = () => {
       <div>
         <zen-button label="Delete" variant="destructive"></zen-button>
         <zen-tooltip
-          always-visible
+          always-visible="true"
           position="top"
           variant="error"
         >
@@ -106,7 +106,7 @@ export const Scrollable = () => {
     <zen-space nowrap horizontal-align="space-evenly" vertical-align="end" style="height:200px">
       <div>
         <zen-button label="Info" variant="secondary"></zen-button>
-        <zen-tooltip position="top" variant="light" label="Override text" max-height="10rem" always-visible>
+        <zen-tooltip position="top" variant="light" label="Override text" max-height="10rem">
           <zen-space padding="lg">
             <zen-text size="sm"
               >Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
