@@ -9,7 +9,6 @@ module.exports = {
     'plugin:prettier/recommended',
   ],
   env: {
-    node: true,
     'cypress/globals': true,
   },
   globals: {
