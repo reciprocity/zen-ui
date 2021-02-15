@@ -55,23 +55,32 @@ describe('zen-avatar-group', () => {
   it('should correctly render avatars', async () => {
     const page = await newSpecPage({
       components: [ZenAvatarGroup, ZenTooltip, ZenAvatar, ZenAvatarIcon],
-      html: `<zen-avatar-group display-max="3"  />`,
+      html: `<zen-avatar-group max-icons="3"  />`,
     });
     page.root.users = users;
     await page.waitForChanges();
-    expect(page.root.shadowRoot.querySelectorAll('zen-avatar').length).toEqual(4);
-    expect(
-      page.root.shadowRoot.querySelectorAll('zen-avatar')[3].shadowRoot.querySelector('zen-tooltip').childElementCount,
-    ).toEqual(2);
+    expect(page.root.shadowRoot.querySelectorAll('zen-avatar').length).toEqual(3);
   });
 
   it('should show all avatars icons', async () => {
     const page = await newSpecPage({
       components: [ZenAvatarGroup, ZenTooltip, ZenAvatar, ZenAvatarIcon],
-      html: `<zen-avatar-group display-max="5"  />`,
+      html: `<zen-avatar-group max-icons="5"  />`,
     });
     page.root.users = users;
     await page.waitForChanges();
     expect(page.root.shadowRoot.querySelectorAll('zen-avatar').length).toEqual(5);
+  });
+
+  it('should show last two avatars in tooltip', async () => {
+    const page = await newSpecPage({
+      components: [ZenAvatarGroup, ZenTooltip, ZenAvatar, ZenAvatarIcon],
+      html: `<zen-avatar-group max-icons="4"  />`,
+    });
+    page.root.users = users;
+    await page.waitForChanges();
+    expect(
+      page.root.shadowRoot.querySelectorAll('zen-avatar')[3].shadowRoot.querySelector('zen-tooltip').childElementCount,
+    ).toEqual(2);
   });
 });

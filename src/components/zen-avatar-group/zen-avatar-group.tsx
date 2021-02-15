@@ -10,8 +10,8 @@ export class ZenAvatarGroup {
   /** Array of user's data  */
   @Prop() readonly users: Avatar[] = [];
 
-  /** Max number of users to display  */
-  @Prop() readonly displayMax: number = 4;
+  /** Max number of icons to display  */
+  @Prop() readonly maxIcons: number = 4;
 
   getUserData(users: Avatar[]): AvatarData[] {
     const colors = this.colors();
@@ -31,12 +31,12 @@ export class ZenAvatarGroup {
   }
 
   shownUsers(): AvatarData[] {
-    const shownUsers = this.users.slice(0, this.displayMax);
+    const shownUsers = this.users.slice(0, this.maxIcons - 1);
     return this.getUserData(shownUsers);
   }
 
   hiddenUsers(): AvatarData[] {
-    const hiddenUsers = this.users.slice(this.displayMax, this.users.length);
+    const hiddenUsers = this.users.slice(this.maxIcons - 1, this.users.length);
     return this.getUserData(hiddenUsers);
   }
 
@@ -71,7 +71,7 @@ export class ZenAvatarGroup {
         {this.shownUsers().map(user => (
           <zen-avatar users={[user]} animation={this.users.length > 1} />
         ))}
-        {this.hiddenUsers().length > 0 ? <zen-avatar users={this.hiddenUsers()} animation={true} /> : null}
+        {this.hiddenUsers().length > 0 ? <zen-avatar users={this.hiddenUsers()} animation={false} /> : null}
       </Host>
     );
   }
