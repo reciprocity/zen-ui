@@ -2,14 +2,14 @@
 import { createVisualTests } from '../../support/utils/visualTesting';
 
 describe('Button visual tests', () => {
-  const pageId = 'buttons-button--default';
+  const pageId = 'forms-button--default';
   const stories = [
-    'story--buttons-button--story-simple',
-    'story--buttons-button--story-loading',
-    'story--buttons-button--story-disabled',
-    'story--buttons-button--story-with-icons',
-    'story--buttons-button--story-form-group',
-    'story--buttons-button--default-story',
+    'story--forms-button--story-simple',
+    'story--forms-button--story-loading',
+    'story--forms-button--story-disabled',
+    'story--forms-button--story-with-icons',
+    'story--forms-button--story-form-group',
+    'story--forms-button--default-story',
   ];
 
   // Example how to skip testing for some user stories
