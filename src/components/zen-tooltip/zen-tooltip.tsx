@@ -112,7 +112,7 @@ export class ZenTooltip {
 
   debounceShow = debounce(this.show, this.showDelay);
 
-  minDelay = this.maxHeight === 'none' ? 150 : 0; // should be async!
+  minDelay = this.maxHeight === 'none' ? 0 : 200; // should be async!
   delay = Math.max(this.hideDelay, this.minDelay);
   debounceHide = debounce(this.hide, this.delay);
 
