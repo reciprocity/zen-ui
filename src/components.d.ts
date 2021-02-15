@@ -75,9 +75,9 @@ export namespace Components {
     }
     interface ZenAvatarGroup {
         /**
-          * Max number of users to display
+          * Max number of icons to display
          */
-        "displayMax": number;
+        "maxIcons": number;
         /**
           * Array of user's data
          */
@@ -824,9 +824,9 @@ declare namespace LocalJSX {
     }
     interface ZenAvatarGroup {
         /**
-          * Max number of users to display
+          * Max number of icons to display
          */
-        "displayMax"?: number;
+        "maxIcons"?: number;
         /**
           * Array of user's data
          */

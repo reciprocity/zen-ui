@@ -55,7 +55,7 @@ describe('zen-avatar-group', () => {
   it('should correctly render avatars', async () => {
     const page = await newSpecPage({
       components: [ZenAvatarGroup, ZenTooltip, ZenAvatar, ZenAvatarIcon],
-      html: `<zen-avatar-group display-max="3"  />`,
+      html: `<zen-avatar-group max-icons="3"  />`,
     });
     page.root.users = users;
     await page.waitForChanges();
@@ -65,7 +65,7 @@ describe('zen-avatar-group', () => {
   it('should show all avatars icons', async () => {
     const page = await newSpecPage({
       components: [ZenAvatarGroup, ZenTooltip, ZenAvatar, ZenAvatarIcon],
-      html: `<zen-avatar-group display-max="5"  />`,
+      html: `<zen-avatar-group max-icons="5"  />`,
     });
     page.root.users = users;
     await page.waitForChanges();
@@ -75,7 +75,7 @@ describe('zen-avatar-group', () => {
   it('should show last two avatars in tooltip', async () => {
     const page = await newSpecPage({
       components: [ZenAvatarGroup, ZenTooltip, ZenAvatar, ZenAvatarIcon],
-      html: `<zen-avatar-group display-max="4"  />`,
+      html: `<zen-avatar-group max-icons="4"  />`,
     });
     page.root.users = users;
     await page.waitForChanges();
