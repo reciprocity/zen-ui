@@ -11,40 +11,48 @@ module.exports = {
     'plugin:@stencil/recommended',
     'plugin:prettier/recommended',
   ],
-  globals: {
-    cy: true
-  },
   env: {
     node: true,
   },
   rules: {
-    // when single export, prefer using default over named export
+    /**
+     * JS
+     */
+    // When single export, prefer using default over named export
     'import/prefer-default-export': 0,
-    // if one param in arrow func, remove parentheses:
+    // If one param in arrow func, remove parentheses
     'arrow-parens': ['error', 'as-needed'],
-    // x++ is allowed, but should be careful with whitespaces:
+    // x++ is allowed, but should be careful with whitespace
     'no-plusplus': 0,
-    // function input params can be reassigned:
+    // Function input params can be reassigned
     'no-param-reassign': 0,
-    // Allow continue in loops:
+    // Allow continue in loops
     'no-continue': 0,
-    // Allow console.logs:
+    // Allow console.logs
     'no-console': 0,
-    // Allow calling prototype methods directly on instances:
+    // Allow calling prototype methods directly on instances
     'no-prototype-builtins': 0,
-    // Allow complex ternaries:
+    // Allow complex ternaries
     'no-nested-ternary': 0,
-    // Switch statement doesn't have to define default case:
+    // Switch statement doesn't have to define default case
     'default-case': 0,
-    // No space between function name and parens - function withoutSpace(x) {:
+    // No space between function name and parens - function withoutSpace(x) {
     'space-before-function-paren': 0,
-    // Guard hasOwnProperty in for-in should be there, but we prefere return:
+    // Guard hasOwnProperty in for-in should be there, but we prefer return:
     // if (!x.hasOwnProperty(key)) return;
     'guard-for-in': 0,
-    // Allow lexical declarations in case statement:
+    // Allow lexical declarations in case statement
     'no-case-declarations': 0,
 
-    // Stencil rules:
+    /**
+     * JSX
+     */
+    // JSX props should not use arrow functions
+    'react/jsx-no-bind': 0,
+
+    /**
+     * Stencil
+     */
     '@stencil/async-methods': 'error',
     '@stencil/ban-prefix': ['error', ['stencil', 'stnl', 'st']],
     '@stencil/decorators-context': 'error',
@@ -74,9 +82,9 @@ module.exports = {
     '@stencil/reserved-member-names': 'error',
     '@stencil/single-export': 'error',
     '@stencil/strict-mutable': 'error',
-    // This type is not allowed in the 'if' condition because it is always truthy. Allowed types are boolean, null-union, undefined-union, or boolean-or-undefined:
+    // This type is not allowed in the 'if' condition because it is always
+    // truthy. Allowed types are boolean, null-union, undefined-union, or
+    // boolean-or-undefined
     '@stencil/strict-boolean-conditions': 0,
-    // JSX props should not use arrow functions:
-    'react/jsx-no-bind': 0,
   },
 };

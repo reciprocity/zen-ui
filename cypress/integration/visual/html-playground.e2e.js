@@ -5,11 +5,9 @@ describe('HTML Playground', () => {
 
   before(() => {
     cy.visitStorybookIframe(pageId);
-  })
+  });
 
   it('should render title', () => {
-    cy.get('#html-playground')
-      .should('have.text', 'Html Playground')
-      .matchImageSnapshot();
+    cy.get('#html-playground').should('have.text', 'Html Playground').matchImageSnapshot();
   });
 });

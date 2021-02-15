@@ -1,11 +1,9 @@
 /// <reference types="cypress" />
-import {createVisualTests} from '../../support/utils/visualTesting';
+import { createVisualTests } from '../../support/utils/visualTesting';
 
 describe('Text visual tests', () => {
-
   const pageId = 'notifications-modal-window--mutiple';
-  const stories = ["story--notifications-modal-window--mutiple",
-  "story--notifications-modal-window--default-story"];
+  const stories = ['story--notifications-modal-window--mutiple', 'story--notifications-modal-window--default-story'];
 
   // Example how to skip testing for some user stories
   const skipedStories = [];
@@ -16,5 +14,5 @@ describe('Text visual tests', () => {
     // TODO: screenshots aren't ok we should add clicks and take screenshot of the modal, not of triggering buttons
   });
 
-  createVisualTests(stories, skipedStories)
+  createVisualTests(stories, skipedStories);
 });

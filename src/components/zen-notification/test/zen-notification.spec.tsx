@@ -1,6 +1,5 @@
 import { newSpecPage } from '@stencil/core/testing';
 import { ZenNotification } from '../zen-notification';
-import { getDefaultSlotContent } from '../../helpers/helpers';
 
 describe('zen-notification', () => {
   it.each(['success', 'info', 'warning', 'error'])('should correctly apply variant (variant: %s)', async variant => {
