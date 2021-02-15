@@ -35,7 +35,7 @@ $item-ypadding: 0.5rem;
   }
 }
 
-:host([selected][focused], [selected]:hover, [focused]:hover) {
+:host([selected][focused], :not([no-hover])[selected]:hover, :not([no-hover])[focused]:hover) {
   .background {
     background-color: $color-gray-200;
   }
