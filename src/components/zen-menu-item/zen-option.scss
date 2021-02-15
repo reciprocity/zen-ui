@@ -29,13 +29,17 @@ $item-ypadding: 0.5rem;
   }
 }
 
-:host(:not([no-hover]):hover, [selected], [focused]) {
+:host(:not([no-hover]):hover),
+:host([selected]),
+:host([focused]) {
   .background {
     background-color: $color-gray-100;
   }
 }
 
-:host([selected][focused], :not([no-hover])[selected]:hover, :not([no-hover])[focused]:hover) {
+:host([selected][focused]),
+:host(:not([no-hover])[selected]:hover),
+:host(:not([no-hover])[focused]:hover) {
   .background {
     background-color: $color-gray-200;
   }
