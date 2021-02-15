@@ -2,122 +2,100 @@ import { html } from 'lit-html';
 import Readme from './readme.md';
 import { Meta, Description, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
 import { getArgTypesAndArgs, spreadArgs } from '../../../.storybook/helpers/argTypes';
+import { waitForElement } from '../../../.storybook/helpers/utils';
 const { argTypes, args } = getArgTypesAndArgs('zen-tooltip');
 
 <Meta title="Notifications/Tooltip" component="zen-tooltip" argTypes={argTypes} />
 
+export const user = [
+  {
+    userName: 'Mike Anderson',
+    email: 'mike.anderson@reciprocitylabs.com',
+    color: '#00528C',
+    background: '#D5E9FA',
+  },
+];
+
 export const Template = args => {
   return html/*html*/ `
-    <div style="text-align: center" class="my-48">
-      <zen-button style="display:inline-block" label="Apply changes" variant="secondary"></zen-button>
-      <zen-tooltip ...="${spreadArgs(args, argTypes)}"></zen-tooltip>
-    </div>
+    <zen-space horizontal-align="center" vertical-align="center" style="height: 300px;">
+      <zen-button label="Apply changes" variant="secondary"></zen-button>
+      <zen-tooltip ...="${spreadArgs(args, argTypes)}">
+        <zen-space padding="lg">
+          <zen-text size="sm" style="color:white;"
+            >Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+            industry's standard dummy text ever since the 1500s.</zen-text
+          >
+        </zen-space>
+      </zen-tooltip>
+    </zen-space>
   `;
 };
 
 export const TemplateSlot = () => {
+  waitForElement('#avatar', element => {
+    element.users = user;
+  });
   return html/*html*/ `
-    <style>
-      .row {
-        display: flex;
-      }
-      .column {
-        flex-direction: column;
-        text-align: left;
-        margin-right: 0.7rem;
-      }
-      .tooltip-title {
-        font-size: 0.875rem;
-        margin-bottom: 0.2rem;
-        font-weight: bold;
-      }
-      .tooltip-code {
-        font-size: 0.75rem;
-        margin-bottom: 0.2rem;
-      }
-      .tooltip-role {
-        color: #868e96;
-        font-size: 0.625rem;
-        font-weight: bold;
-        line-height: 1rem;
-        text-transform: uppercase;
-        margin: 0;
-      }
-      .profile {
-        min-height: 2rem;
-        min-width: 2rem;
-        max-height: 2rem;
-        max-width: 2rem;
-        border-radius: 50%;
-        position: relative;
-        cursor: pointer;
-        background: #ffdaff;
-        text-align: center;
-        line-height: 2rem;
-        color: #b875c4;
-      }
-    </style>
-    <div class="mt-56" style="cursor:pointer; text-align: center">
-      <span>kim.anderson@reciprocity.com</span>
-      <zen-tooltip
-        style="max-width: fit-content;"
-        always-visible="true"
-        position="top"
-        variant="light"
-        label="Override text"
-      >
-        <div class="row">
-          <div class="column profile">KA</div>
-          <div class="column">
-            <span class="tooltip-title">Kim Anderson</span>
-            <p class="tooltip-code">kim.anderson@reciprocitylabs.com</p>
-            <p class="tooltip-role">administrator</p>
-          </div>
+    <zen-space  horizontal-align="center" vertical-align="end" style="height:150px" >
+     <div>
+        <zen-button label="Info" variant="secondary"></zen-button>
+        <zen-tooltip
+                always-visible
+                position="top"
+                variant="light"
+           >
+            <zen-space no-wrap padding="lg" spacing="lg">
+                <zen-avatar-icon user-name="Niki Franklin" background="#FFEED2" color="#A26900" size="lg"></zen-avatar-icon>
+                <zen-space padding="none" spacing="xs">
+                    <zen-text size="sm" bold>Niki Franklin</zen-text>
+                    <zen-text size="sm">niki.franklin@reciprocitylabs.com</zen-text>
+                <zen-space>
+            </zen-space>
+         </zen-tooltip>
         </div>
-      </zen-tooltip>
-    </div>
+    </zen-space>
   `;
 };
 
 export const TemplateVariants = () => {
   return html/*html*/ `
-    <style>
-      .container {
-        display: flex;
-        justify-content: space-between;
-        padding-top: 7rem;
-        padding-left: 7rem;
-        padding-right: 7rem;
-        text-align: center;
-      }
-    </style>
-    <div class="container">
+    <zen-space nowrap horizontal-align="space-evenly" vertical-align="end" style="height:300px">
       <div>
-        <zen-button style="display: block" label="Edit" variant="primary"></zen-button style="display: block">
-        <zen-tooltip
-          always-visible="true"
-          position="top"
-          variant="dark"
-          label="The Manager can edit and create the PCI-DSS."
-        ></zen-tooltip>
+         <zen-button label="Edit" variant="primary"></zen-button>
+          <zen-tooltip
+                always-visible
+                position="top"
+                variant="dark"
+           >
+            <zen-space padding="lg">
+                <zen-text size="sm" style="color:white;">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</zen-text>
+            </zen-space>
+         </zen-tooltip>
       </div>
       <div>
         <zen-button label="Info" variant="secondary"></zen-button>
         <zen-tooltip
-          always-visible="true"
+          always-visible
           position="top"
           variant="light"
-          label="This is a information tooltip."
-        ></zen-tooltip>
+        >
+            <zen-space padding="lg">
+                <zen-text size="sm">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</zen-text>
+            </zen-space>
+        </zen-tooltip>
       </div>
       <div>
         <zen-button label="Delete" variant="destructive"></zen-button>
         <zen-tooltip
-          always-visible="true"
+          always-visible
           position="top"
           variant="error"
-          label="Are you sure you want to delete the object!"
-        ></zen-tooltip>
+        >
+            <zen-space padding="lg">
+                <zen-text size="sm" style="color:white;">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</zen-text>
+            </zen-space>
+        </zen-tooltip>
       </div>
     </div>
   `;
@@ -125,80 +103,21 @@ export const TemplateVariants = () => {
 
 export const Scrollable = () => {
   return html/*html*/ `
-    <style>
-      .host {
-        max-width: fit-content;
-      }
-      .row {
-        display: flex;
-      }
-      .column {
-        flex-direction: column;
-        text-align: left;
-        margin-right: 0.7rem;
-      }
-      .tooltip-title {
-        font-size: 0.875rem;
-        margin-bottom: 0.2rem;
-        font-weight: bold;
-      }
-      .tooltip-code {
-        font-size: 0.75rem;
-        margin-bottom: 0.2rem;
-      }
-      .tooltip-role {
-        color: #868e96;
-        font-size: 0.625rem;
-        font-weight: bold;
-        line-height: 1rem;
-        text-transform: uppercase;
-        margin: 0;
-      }
-      .profile {
-        min-height: 2rem;
-        min-width: 2rem;
-        max-height: 2rem;
-        max-width: 2rem;
-        border-radius: 50%;
-        position: relative;
-        cursor: pointer;
-        background: #e7e7e7;
-        text-align: center;
-        line-height: 2rem;
-        color: #b875c4;
-      }
-    </style>
-    <div class="mt-64" style="cursor:pointer; text-align: center">
-      <span>Multiple users selected</span>
-      <zen-tooltip class="host" position="top" variant="light" label="Override text" max-height="4rem">
-        <div>
-          <div class="row py-8">
-            <div class="column profile" style="background: #ffdaff">KA</div>
-            <div class="column">
-              <span class="tooltip-title">Kim Anderson</span>
-              <p class="tooltip-code">kim.anderson@reciprocitylabs.com</p>
-              <p class="tooltip-role">administrator</p>
-            </div>
-          </div>
-          <div class="row py-8">
-            <div class="column profile" style="background: #ffdaff">KA</div>
-            <div class="column">
-              <span class="tooltip-title">John Herschel Glenn Jr.</span>
-              <p class="tooltip-code">john.glenn@reciprocitylabs.com</p>
-              <p class="tooltip-role">administrator</p>
-            </div>
-          </div>
-          <div class="row py-8">
-            <div class="column profile" style="background: #ffdaff">KA</div>
-            <div class="column">
-              <span class="tooltip-title">Buzz Aldrin</span>
-              <p class="tooltip-code">buzz.aldrin@reciprocitylabs.com</p>
-              <p class="tooltip-role">reader</p>
-            </div>
-          </div>
-        </div>
-      </zen-tooltip>
-    </div>
+    <zen-space nowrap horizontal-align="space-evenly" vertical-align="end" style="height:200px">
+      <div>
+        <zen-button label="Info" variant="secondary"></zen-button>
+        <zen-tooltip position="top" variant="light" label="Override text" max-height="10rem" always-visible>
+          <zen-space padding="lg">
+            <zen-text size="sm"
+              >Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+              industry's standard dummy text ever since the 1500s. Lorem Ipsum is simply dummy text of the printing and
+              typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the
+              1500s.</zen-text
+            >
+          </zen-space>
+        </zen-tooltip>
+      </div>
+    </zen-space>
   `;
 };
 
