@@ -5,7 +5,7 @@ As per JIRA ticket
 
 #### ChangeLOG
 
-- [ ] I have added all notable deployment/development environment (onprem!) changes to [CHANGELOG.md](https://github.com/reciprocity/zen-ui/blob/main/README.md)
+[Changelog](https://zen-ui.zengrc.com/?path=/docs/changelog--page)
 
 
 #### Useful links
