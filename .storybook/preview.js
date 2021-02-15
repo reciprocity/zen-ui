@@ -32,7 +32,6 @@ export const parameters = {
         ],
         'Typography',
         'Layout',
-        'Buttons',
         'Forms',
         'Icons',
         'Navigation',
