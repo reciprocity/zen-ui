@@ -7,9 +7,11 @@ module.exports = {
     'plugin:cypress/recommended',
     'plugin:chai-friendly/recommended',
     'plugin:prettier/recommended',
+    // Needs to be explicitly specified because it's important that
+    // other extended rules don't override project root rules
+    '../.eslintrc.js',
   ],
   env: {
-    node: true,
     'cypress/globals': true,
   },
   globals: {
