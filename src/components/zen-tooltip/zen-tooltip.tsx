@@ -150,6 +150,7 @@ export class ZenTooltip {
     for (const el of [tooltip, previousElement]) {
       if (!el) continue;
       el.addEventListener('mousemove', (event: MouseEvent) => show(event));
+      el.addEventListener('mouseover', (event: MouseEvent) => show(event));
       el.addEventListener('touchstart', () => show());
       el.addEventListener('mouseout', () => {
         hide();
