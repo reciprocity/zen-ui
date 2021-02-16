@@ -29,9 +29,22 @@ Emit native events (`click`, `change`, `input`,...) instead of making them up to
 Note that the majority of these events will bubble up and you don't need to emit them manually. Emiting them manually might even be a bad idea because event.target will be different (host element instead of the actual element).
 Note also that if `event.composed` is false, it will not bubble out of shadow dom! Therefore events with `event.composed` false need to be emitted manually. An example of such an event would be input's event `change`.
 
+### Property names conventions
+For size variations always use conventional shorthands:
+`xs`, `sm`, `md`, `lg`, `xl`, `2xl`,...
+
 ## Writing stories
 Template for a new component's story page can be found here:
 `/src/components/zen-spinner/template.stories.mdx.sample`
+
+## Documentation
+- All **available slots** that component supports should be listed above `@Component` directive like this:
+```javascript
+/**
+ * @slot leadingSlot - Slot placed at the left
+ * @slot trailingSlot - Slot placed at the right
+ */
+```
 
 ## Writing Tests
 
