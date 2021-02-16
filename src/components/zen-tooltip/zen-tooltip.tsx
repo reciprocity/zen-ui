@@ -3,6 +3,10 @@ import { Position, TooltipVariant, Point, Rect } from '../helpers/types';
 import { containsRect, oppositePosition } from '../helpers/helpers';
 import debounce from 'lodash/debounce';
 
+/**
+ * @slot defaultSlot - Slot that has zen space padding lg set
+ * @slot contentSlot - Slot for custom content without padding
+ */
 @Component({
   tag: 'zen-tooltip',
   styleUrl: 'zen-tooltip.scss',
