@@ -1,0 +1,40 @@
+import { html } from 'lit-html';
+import Readme from './readme.md';
+import { Meta, Description, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
+import { getArgTypesAndArgs, spreadArgs } from '../../../.storybook/helpers/argTypes';
+import { waitForElement } from '../../../.storybook/helpers/utils';
+const { argTypes, args } = getArgTypesAndArgs('zen-tree');
+
+<Meta title="In progress/Tree" component="zen-tree" argTypes={argTypes} />
+
+export const Template = args => {
+  return html/*html*/ `
+    <zen-space horizontal-align="center" vertical-align="center" style="height: 300px;">
+      <zen-tree>Test</zen-tree>
+    </zen-space>
+  `;
+};
+
+# Zen Tree
+
+## Component preview
+
+<br />
+
+## Properties
+
+<Canvas>
+  <Story
+    name="default"
+    args={{
+      ...args,
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+<ArgsTable story="default" />
+
+<div class="stencildoc" />
+<Description>{Readme}</Description>

@@ -4,6 +4,8 @@ import { eventHandles, action } from '../../../.storybook/helpers/custom-action'
 import { getArgTypes, getDefaultArgs, getComponentData, spreadArgs } from '../../../.storybook/helpers/argTypes';
 
 import data from '../../../stencilDocs.json';
+import { faArrowRight } from '@fortawesome/pro-light-svg-icons';
+import { waitForElement } from '../../../.storybook/helpers/utils';
 const compData = data.components.find(n => n.tag === 'zen-table');
 const argTypes = getArgTypes(compData);
 
@@ -185,6 +187,34 @@ export const Story3 = () => {
   `;
 };
 
+export const StoryTree = () => {
+  waitForElement('#icon1', element => {
+    element.icon = faArrowRight;
+  });
+  return html/*html*/ `
+    <sb-zen-table>
+      <sb-zen-table-row>
+        <sb-zen-table-cell><sb-zen-text>PCI Requirement 1 - Firewall Configuration</sb-zen-text></sb-zen-table-cell>
+      </sb-zen-table-row>
+      <sb-zen-table-row child depth="1">
+        <sb-zen-table-cell><sb-zen-text>PCI Requirement 2 - Firewall Configuration</sb-zen-text></sb-zen-table-cell>
+      </sb-zen-table-row>
+      <sb-zen-table-row child depth="1">
+        <sb-zen-table-cell><sb-zen-text>PCI Requirement 3 - Firewall Configuration</sb-zen-text></sb-zen-table-cell>
+      </sb-zen-table-row>
+      <sb-zen-table-row child depth="2">
+        <sb-zen-table-cell><sb-zen-text>PCI Requirement 4 - Firewall Configuration</sb-zen-text></sb-zen-table-cell>
+      </sb-zen-table-row>
+      <sb-zen-table-row child depth="2">
+        <sb-zen-table-cell><sb-zen-text>PCI Requirement 5 - Firewall Configuration</sb-zen-text></sb-zen-table-cell>
+      </sb-zen-table-row>
+      <sb-zen-table-row>
+        <sb-zen-table-cell><sb-zen-text>PCI Requirement 6 - Firewall Configuration</sb-zen-text></sb-zen-table-cell>
+      </sb-zen-table-row>
+    </sb-zen-table>
+  `;
+};
+
 export const StoryWithControls = args => html/*html*/ `
   <sb-zen-table id="table2" ...="${spreadArgs(args, argTypes)}">
     <sb-zen-table-header>
@@ -275,6 +305,14 @@ A composition of `ZenTable` component and fragment `ZenTableRow`, `ZenTableHeade
 
 <Canvas>
   <Story name="no-header">{Story3.bind({})}</Story>
+</Canvas>
+
+### 4. Tree
+
+`ZenTable` tree.
+
+<Canvas>
+  <Story name="tree">{StoryTree.bind({})}</Story>
 </Canvas>
 
 ## Properties
