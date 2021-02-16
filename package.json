@@ -17,7 +17,8 @@
   "scripts": {
     "start": "yarn stencil:build && (yarn stencil:watch & yarn storybook:start)",
     "build": "yarn stencil:build && yarn storybook:build",
-    "npm:publish": "rm -rf dist && rm -rf public && rm -rf loader && rm -rf node_modules && rm yarn.lock && yarn && yarn build && npm version patch && npm publish",
+    "npm:build": "rm -rf dist && rm -rf public && rm -rf loader && rm -rf node_modules && rm yarn.lock && yarn && yarn build",
+    "npm:publish": "npm publish",
     "test": "stencil test --spec --watchAll --coverage",
     "test:ci": "stencil test --spec --coverage",
     "test:report": "open ./coverage/lcov-report/index.html",
