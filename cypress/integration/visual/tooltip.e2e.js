@@ -29,7 +29,7 @@ describe('Tooltip visual tests', { scrollBehavior: 'center' }, () => {
   it('Verifies ' + `${story[2]}`, () => {
     cy.get(`#${story[2]}`)
       .within(() => {
-        cy.contains('Multiple users selected').click();
+        cy.get('zen-button').click();
         cy.get('zen-tooltip').should('be.visible');
       })
       .parents('.innerZoomElementWrapper')
