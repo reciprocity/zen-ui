@@ -167,7 +167,11 @@ export class ZenTooltip {
     };
     return (
       <Host style={{ 'max-height': this.maxHeight }} class={{ visible: this.visible, ...classes }}>
-        <slot>{this.label}</slot>
+        <slot name="content">
+          <zen-space padding="lg">
+            <slot>{this.label}</slot>
+          </zen-space>
+        </slot>
         <div
           class={{
             arrow: this.hasArrow,

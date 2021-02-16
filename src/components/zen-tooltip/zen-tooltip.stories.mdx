@@ -21,12 +21,10 @@ export const Template = args => {
     <zen-space horizontal-align="center" vertical-align="center" style="height: 300px;">
       <zen-button label="Apply changes" variant="secondary"></zen-button>
       <zen-tooltip ...="${spreadArgs(args, argTypes)}">
-        <zen-space padding="lg">
-          <zen-text size="sm" style="color:white;"
-            >Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-            industry's standard dummy text ever since the 1500s.</zen-text
-          >
-        </zen-space>
+        <zen-text size="sm" style="color:white;"
+          >Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+          industry's standard dummy text ever since the 1500s.</zen-text
+        >
       </zen-tooltip>
     </zen-space>
   `;
@@ -45,14 +43,14 @@ export const TemplateSlot = () => {
                 position="top"
                 variant="light"
            >
-            <zen-space no-wrap padding="lg" spacing="lg">
-                <zen-avatar-icon user-name="Niki Franklin" background="#FFEED2" color="#A26900" size="lg"></zen-avatar-icon>
-                <zen-space padding="none" spacing="xs">
-                    <zen-text size="sm" bold>Niki Franklin</zen-text>
-                    <zen-text size="sm">niki.franklin@reciprocitylabs.com</zen-text>
-                <zen-space>
+            <zen-space slot="content" no-wrap padding="lg" spacing="lg">
+              <zen-avatar-icon user-name="Niki Franklin" background="#FFEED2" color="#A26900" size="lg"></zen-avatar-icon>
+              <zen-space padding="none" spacing="xs">
+                  <zen-text size="sm" bold>Niki Franklin</zen-text>
+                  <zen-text size="sm">niki.franklin@reciprocitylabs.com</zen-text>
+              <zen-space>
+             </zen-tooltip>
             </zen-space>
-         </zen-tooltip>
         </div>
     </zen-space>
   `;
@@ -68,9 +66,7 @@ export const TemplateVariants = () => {
                 position="top"
                 variant="dark"
            >
-            <zen-space padding="lg">
-                <zen-text size="sm" style="color:white;">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</zen-text>
-            </zen-space>
+            <zen-text size="sm" style="color:white;">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</zen-text>
          </zen-tooltip>
       </div>
       <div>
@@ -80,9 +76,7 @@ export const TemplateVariants = () => {
           position="top"
           variant="light"
         >
-            <zen-space padding="lg">
-                <zen-text size="sm">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</zen-text>
-            </zen-space>
+           <zen-text size="sm">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</zen-text>
         </zen-tooltip>
       </div>
       <div>
@@ -92,9 +86,7 @@ export const TemplateVariants = () => {
           position="top"
           variant="error"
         >
-            <zen-space padding="lg">
-                <zen-text size="sm" style="color:white;">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</zen-text>
-            </zen-space>
+            <zen-text size="sm" style="color:white;">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</zen-text>
         </zen-tooltip>
       </div>
     </div>
@@ -107,14 +99,12 @@ export const Scrollable = () => {
       <div>
         <zen-button label="Info" variant="secondary"></zen-button>
         <zen-tooltip position="top" variant="light" label="Override text" max-height="10rem">
-          <zen-space padding="lg">
-            <zen-text size="sm"
-              >Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-              industry's standard dummy text ever since the 1500s. Lorem Ipsum is simply dummy text of the printing and
-              typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the
-              1500s.</zen-text
-            >
-          </zen-space>
+          <zen-text size="sm"
+            >Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+            industry's standard dummy text ever since the 1500s. Lorem Ipsum is simply dummy text of the printing and
+            typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the
+            1500s.</zen-text
+          >
         </zen-tooltip>
       </div>
     </zen-space>
@@ -139,7 +129,7 @@ Use prop `variant` to style the tooltip.
 
 #### 2. Custom content:
 
-Wrap some html content with `<zen-tooltip>` and it will appear inside the tooltip.
+Wrap some html content with `<zen-tooltip>` and it will appear inside the tooltip. For no default paddings add it to the content slot
 
 <Canvas>
   <Story name="slot">{TemplateSlot.bind({})}</Story>
