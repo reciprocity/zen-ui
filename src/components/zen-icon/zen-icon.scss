@@ -1,11 +1,20 @@
 :host {
   display: flex;
-  height: 1rem;
-  width: 1rem;
   justify-content: center;
+  align-items: center;
+
+  svg {
+    height: 1rem;
+    width: 1rem;
+  }
 }
 
-:host([size='lg']) {
+:host([size='lg']) svg {
   width: 1.5rem;
   height: 1.5rem;
+}
+
+:host([size='sm']) svg {
+  width: 0.75rem;
+  height: 0.75rem;
 }

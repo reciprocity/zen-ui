@@ -15,7 +15,7 @@ export type AvatarIconSize = 'sm' | 'md' | 'lg';
 
 export type TextSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';
 
-export type IconSizes = 'md' | 'lg';
+export type IconSizes = 'sm' | 'md' | 'lg';
 
 export type Size = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
