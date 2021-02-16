@@ -57,7 +57,7 @@ export const users = [
 
 export const StoryWithControls = args => {
   waitForElement('#avatar-control', element => {
-    element.users = user;
+    element.users = args.users;
   });
   return html/*html*/ `
     <zen-space vertical-align="center" horizontal-align="center" style="height: 200px;">
@@ -115,7 +115,7 @@ Avatar component
     name="default"
     args={{
       ...getDefaultArgs(argTypes),
-      users: { user },
+      users: user,
     }}
   >
     {StoryWithControls.bind({})}
