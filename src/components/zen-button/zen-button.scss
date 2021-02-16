@@ -2,7 +2,7 @@
 @import './mixins.scss';
 
 :host {
-  display: flex;
+  display: inline-flex;
   width: fit-content;
   width: -moz-fit-content;
   position: relative;

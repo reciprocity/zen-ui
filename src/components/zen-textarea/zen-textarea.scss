@@ -2,7 +2,7 @@
 @import '../../zen-styles/mixins/forms.scss';
 
 :host {
-  display: flex;
+  display: inline-flex;
   width: 100%;
   height: 5rem;
   font-size: $text-md;
