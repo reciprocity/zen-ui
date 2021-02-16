@@ -1,4 +1,4 @@
-import { Component, Host, h, Element, Prop } from '@stencil/core';
+import { Component, Host, h, Element, Prop, State } from '@stencil/core';
 import { createPopper, Placement, Offsets } from '@popperjs/core';
 import { getDefaultSlotContent, getSlotElement } from '../helpers/helpers';
 
@@ -11,8 +11,11 @@ export class ZenPopover {
   private popperInstance = null;
   private targetSlotEl: HTMLElement = null;
   private defaultSlotEl: HTMLElement = null;
+  private clickHandler = undefined;
 
   @Element() element: HTMLZenPopoverElement;
+
+  @State() visible = false;
 
   /** Placement */
   @Prop() readonly placement: Placement = 'bottom-end';
@@ -41,20 +44,9 @@ export class ZenPopover {
     }
 
     this.defaultSlotEl = getDefaultSlotContent(this.element)[0] as HTMLElement;
-    this.createPopper();
-
-    window.addEventListener('click', event => {
-      const clickTargetNode = event.target as Node;
-
-      if (this.defaultSlotEl.contains(clickTargetNode)) {
-        return;
-      } else if (clickTargetNode === this.targetSlotEl) {
-        this.show();
-      } else {
-        this.hide();
-      }
+    this.targetSlotEl.addEventListener('click', () => {
+      this.toggle();
     });
-
     this.hide();
   }
 
@@ -80,13 +72,32 @@ export class ZenPopover {
   }
 
   show(): void {
-    this.defaultSlotEl.style.display = 'block';
     this.createPopper();
+    this.defaultSlotEl.style.display = 'block';
+
+    this.clickHandler = event => this.closeOnClickOut(event);
+    document.addEventListener('mousedown', this.clickHandler);
+    this.visible = true;
   }
 
   hide(): void {
     this.defaultSlotEl.style.display = 'none';
     this.destroyPopper();
+
+    if (this.clickHandler) document.removeEventListener('mousedown', this.clickHandler);
+    this.visible = false;
+  }
+
+  toggle(): void {
+    this.visible ? this.hide() : this.show();
+  }
+
+  async closeOnClickOut(event: MouseEvent): Promise<void> {
+    const clickTargetNode = event.target as Node;
+    if (!this.defaultSlotEl.contains(clickTargetNode)) {
+      this.hide();
+    }
+    return;
   }
 
   render(): HTMLElement {
