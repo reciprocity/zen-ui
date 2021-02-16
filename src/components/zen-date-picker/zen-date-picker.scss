@@ -14,4 +14,41 @@ zen-icon {
   color: $color-gray-300;
 }
 
+.calendar {
+  background-color: $color-white;
+  box-shadow: $shadow-drop-200;
+  width: 340px;
+  margin-top: 0.25rem;
+
+  .navigation {
+    min-height: 3rem;
+  }
+
+  zen-icon {
+    cursor: pointer;
+    color: $color-gray-500;
+  }
+
+  .date {
+    min-width: 120px;
+    @include noselect;
+  }
+
+  .day-name {
+    color: $color-gray-500;
+    @include noselect;
+  }
+
+  .day-num {
+    width: calc(100% / 7);
+    box-sizing: border-box;
+    height: 2.75rem;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: background-color $transition-color-fast;
+
+    &:not(.empty):hover {
+      background-color: $color-gray-100;
+    }
+  }
 }
