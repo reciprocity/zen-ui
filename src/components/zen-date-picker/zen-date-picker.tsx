@@ -1,4 +1,5 @@
-import { Component, Host, h } from '@stencil/core';
+import { Component, Host, h, Prop } from '@stencil/core';
+import { faCalendarAlt } from '@fortawesome/pro-regular-svg-icons';
 
 @Component({
   tag: 'zen-date-picker',
@@ -6,7 +7,22 @@ import { Component, Host, h } from '@stencil/core';
   shadow: true,
 })
 export class ZenDatePicker {
+  /** Selected date */
+  @Prop() readonly formattedDate = '';
+
+  /** Placeholder */
+  @Prop() readonly placeholder = 'Select date';
+
   render(): HTMLElement {
-    return <Host>Date picker</Host>;
+    return (
+      <Host>
+        <zen-input placeholder={this.placeholder}>
+          <zen-space padding="md none md md" slot="leadingSlot">
+            <zen-icon icon={faCalendarAlt}></zen-icon>
+          </zen-space>
+          {this.formattedDate}
+        </zen-input>
+      </Host>
+    );
   }
 }

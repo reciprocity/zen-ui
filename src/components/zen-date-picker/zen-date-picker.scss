@@ -1,3 +1,17 @@
+@import '../../zen-styles/variables.scss';
+@import '../../zen-styles/shadows.scss';
+@import '../../zen-styles/mixins/forms.scss';
+
 :host {
+  display: block;
+}
+
+zen-input {
+  display: inline-flex;
+}
+
+zen-icon {
+  color: $color-gray-300;
+}
 
 }
