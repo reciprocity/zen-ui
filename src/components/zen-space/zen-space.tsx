@@ -22,6 +22,9 @@ export class ZenSpace {
   /** Is it row or column? */
   @Prop({ reflect: true }) readonly vertical: boolean = false;
 
+  /** Width: 100% */
+  @Prop({ reflect: true }) readonly stretch: boolean = false;
+
   /** Vertical align of items */
   @Prop({ reflect: true }) readonly verticalAlign: FlexAlign = 'center';
 
