@@ -292,7 +292,7 @@ export namespace Components {
     }
     interface ZenPopover {
         /**
-          * Placement
+          * Popover offset
          */
         "offset": Offsets;
         /**
@@ -1062,7 +1062,7 @@ declare namespace LocalJSX {
     }
     interface ZenPopover {
         /**
-          * Placement
+          * Popover offset
          */
         "offset"?: Offsets;
         /**
