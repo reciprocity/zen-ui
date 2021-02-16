@@ -24,7 +24,7 @@ export class ZenPopover {
     this.targetSlotEl = getSlotElement(this.element, 'target');
 
     // If there is no target element use previous element
-    if (! this.targetSlotEl) {
+    if (!this.targetSlotEl) {
       this.targetSlotEl = this.element.previousElementSibling as HTMLElement;
     }
 
@@ -81,7 +81,7 @@ export class ZenPopover {
 
   show(): void {
     this.defaultSlotEl.style.display = 'block';
-    this.createPopper()
+    this.createPopper();
   }
 
   hide(): void {
