@@ -192,6 +192,10 @@ export namespace Components {
          */
         "menuWidth": string;
         /**
+          * Name of element, can be used as reference for form data
+         */
+        "name": string;
+        /**
           * Text in field if nothing selected
          */
         "placeholder": string;
@@ -978,6 +982,10 @@ declare namespace LocalJSX {
           * Width of menu. Set '100%' to match field width.
          */
         "menuWidth"?: string;
+        /**
+          * Name of element, can be used as reference for form data
+         */
+        "name"?: string;
         /**
           * Text in field if nothing selected
          */
