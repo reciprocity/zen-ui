@@ -154,6 +154,14 @@ export namespace Components {
         "required": false;
     }
     interface ZenDatePicker {
+        /**
+          * Selected date
+         */
+        "formattedDate": "";
+        /**
+          * Placeholder
+         */
+        "placeholder": "Select date";
     }
     interface ZenDivider {
     }
@@ -352,6 +360,10 @@ export namespace Components {
           * Spacing between items
          */
         "spacing": Size | None;
+        /**
+          * Width: 100%
+         */
+        "stretch": boolean;
         /**
           * Is it row or column?
          */
@@ -912,6 +924,14 @@ declare namespace LocalJSX {
         "required"?: false;
     }
     interface ZenDatePicker {
+        /**
+          * Selected date
+         */
+        "formattedDate"?: "";
+        /**
+          * Placeholder
+         */
+        "placeholder"?: "Select date";
     }
     interface ZenDivider {
     }
@@ -1110,6 +1130,10 @@ declare namespace LocalJSX {
           * Spacing between items
          */
         "spacing"?: Size | None;
+        /**
+          * Width: 100%
+         */
+        "stretch"?: boolean;
         /**
           * Is it row or column?
          */
