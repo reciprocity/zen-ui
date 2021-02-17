@@ -1,10 +1,13 @@
 :host {
   box-sizing: border-box;
-  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: baseline;
+}
+
+:host([stretch]) {
+  width: 100%;
 }
 
 :host([vertical]) {
@@ -124,22 +127,27 @@ $spacings: (
 
 // Slotted --------------------------------------
 
+::slotted(.space-before),
 ::slotted([space-before]) {
   margin-left: auto !important;
 }
 
+::slotted(.space-after),
 ::slotted([space-after]) {
   margin-right: auto !important;
 }
 
+::slotted(.fill),
 ::slotted([fill]) {
   flex-grow: 1 !important;
 }
 
+::slotted(.fill-lg),
 ::slotted([fill-lg]) {
   flex-grow: 2 !important;
 }
 
+::slotted(.fill-xl),
 ::slotted([fill-xl]) {
   flex-grow: 4 !important;
 }
