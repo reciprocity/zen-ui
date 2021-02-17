@@ -22,18 +22,43 @@ export const StoryWithControls = args => {
   `;
 };
 
+export const StoryTriggerEvents = args => {
+  return html/*html*/ `
+     <zen-space no-wrap horizontal-align="space-evenly" vertical-align="start" style="height: 200px" >
+        <zen-popover placement="bottom-start">
+           <zen-button slot="target"  variant="primary">
+                Click Event
+            </zen-button>
+            <zen-card style="background: white; padding: 1rem; width:200px; max-height:150px;">
+                <zen-text>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</zen-text>
+            <zen-card>
+        </zen-popover>
+        <zen-popover placement="bottom-start" trigger-event="hover">
+           <zen-button slot="target"  variant="primary">
+                Hover Event
+            </zen-button>
+            <zen-card style="background: white; padding: 1rem; width:200px; max-height:150px;">
+                <zen-text>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</zen-text>
+            <zen-card>
+        </zen-popover>
+    </zen-space>
+  `;
+};
+
 export const StoryScrollable = args => {
   return html/*html*/ `
-     <zen-space no-wrap horizontal-align="center" vertical-align="start" style="height: 200px" >
+   <div style="height:200px">
+     <zen-space no-wrap padding="none" horizontal-align="center" vertical-align="center" style="height: 500px;" >
         <zen-button variant="primary">
-            Top
+            Top Start
         </zen-button>
-        <zen-popover placement="top">
-            <zen-card style="background: white; padding: 1rem; width:200px; max-height:150px; overflow-y: auto ">
+        <zen-popover placement="bottom-end" always-visible>
+            <zen-card style="background: white; padding: 1rem; width:200px; ">
                 <zen-text>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry.</zen-text>
             <zen-card>
         </zen-popover>
     </zen-space>
+  </div>
   `;
 };
 
@@ -42,7 +67,7 @@ export const StoryPositionVariants = args => {
     <zen-space no-wrap spacing="lg" horizontal-align="space-evenly" vertical-align="start" style="height: 150px" >
         <zen-popover placement="bottom-start">
             <zen-button variant="primary" slot="target">
-                Left
+                Position bottom start
             </zen-button>
             <zen-card style="background: white; padding: 1rem; width:200px; text-align: center;">
                 <zen-text>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</zen-text>
@@ -50,7 +75,7 @@ export const StoryPositionVariants = args => {
         </zen-popover>
         <zen-popover placement="bottom-end">
             <zen-button variant="primary" slot="target">
-                Right
+                Position bottom end
             </zen-button>
             <zen-card style="background: white; padding: 1rem; width: 200px; text-align: center;">
                 <zen-text>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</zen-text>
@@ -185,15 +210,25 @@ Show popover bottom start and bottom end.
   <Story name="StoryPositionVariants">{StoryPositionVariants.bind({})}</Story>
 </Canvas>
 
-### 2. Story with positioning set to top
+### 3. Story different trigger events
 
-Show popover positioned at the bottom even position is set to top. Button is added as a previous element.
+Show popover on different trigger events (click, right click, hover)
+
+<Canvas>
+  <Story name="StoryTriggerEvents">{StoryTriggerEvents.bind({})}</Story>
+</Canvas>
+
+
+### 4. Story changes in popover position
+
+Alternate popover position based on scrolling
 
 <Canvas>
   <Story name="StoryScrollable">{StoryScrollable.bind({})}</Story>
 </Canvas>
 
-### 3. Story with complex component
+
+### 5. Story with complex component
 
 Show popover with complex slot content.
 

@@ -21,6 +21,8 @@ export type Size = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
 export type None = 'none';
 
+export type TriggerEvent = 'click' | 'hover';
+
 // Others:
 export type Point = { x: number; y: number };
 
