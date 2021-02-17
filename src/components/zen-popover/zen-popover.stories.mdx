@@ -1,0 +1,221 @@
+import { html } from 'lit-html';
+import { Meta, Description, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
+import { faTimes, faTrashAlt, faPlus, faFilter, faCheck } from '@fortawesome/pro-light-svg-icons';
+import { waitForElement } from '../../../.storybook/helpers/utils';
+import { getArgTypesAndArgs, getDefaultArgs, getComponentData, spreadArgs } from '../../../.storybook/helpers/argTypes';
+const { argTypes } = getArgTypesAndArgs('zen-popover');
+
+<Meta title="In progress/Popover" component="zen-popover" argTypes={argTypes} />
+
+export const StoryWithControls = args => {
+  return html/*html*/ `
+     <zen-space no-wrap horizontal-align="center" vertical-align="center" style="height: 200px" >
+        <zen-popover ...="${spreadArgs(args, argTypes)}">
+            <zen-button variant="primary" slot="target">
+                Button
+            </zen-button>
+            <zen-card style="background: white; padding: 1rem; width:200px; text-align: center;">
+                <zen-text>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</zen-text>
+            <zen-card>
+        </zen-popover>
+    </zen-space>
+  `;
+};
+
+export const StoryScrollable = args => {
+  return html/*html*/ `
+     <zen-space no-wrap horizontal-align="center" vertical-align="start" style="height: 200px" >
+        <zen-button variant="primary">
+            Top
+        </zen-button>
+        <zen-popover placement="top">
+            <zen-card style="background: white; padding: 1rem; width:200px; max-height:150px; overflow-y: auto ">
+                <zen-text>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry.</zen-text>
+            <zen-card>
+        </zen-popover>
+    </zen-space>
+  `;
+};
+
+export const StoryPositionVariants = args => {
+  return html/*html*/ `
+    <zen-space no-wrap spacing="lg" horizontal-align="space-evenly" vertical-align="start" style="height: 150px" >
+        <zen-popover placement="bottom-start">
+            <zen-button variant="primary" slot="target">
+                Left
+            </zen-button>
+            <zen-card style="background: white; padding: 1rem; width:200px; text-align: center;">
+                <zen-text>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</zen-text>
+            <zen-card>
+        </zen-popover>
+        <zen-popover placement="bottom-end">
+            <zen-button variant="primary" slot="target">
+                Right
+            </zen-button>
+            <zen-card style="background: white; padding: 1rem; width: 200px; text-align: center;">
+                <zen-text>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</zen-text>
+            <zen-card>
+        </zen-popover>
+    </zen-space>
+  `;
+};
+
+export const StoryFilters = args => {
+  waitForElement('#filter', element => {
+    element.icon = faFilter;
+  });
+  waitForElement('#cross', element => {
+    element.icon = faTimes;
+  });
+  waitForElement('#check', element => {
+    element.icon = faCheck;
+  });
+  waitForElement('#trash', element => {
+    element.icon = faTrashAlt;
+  });
+  waitForElement('#plus', element => {
+    element.icon = faPlus;
+  });
+  waitForElement('#cross2', element => {
+    element.icon = faTimes;
+  });
+  waitForElement('#trash2', element => {
+    element.icon = faTrashAlt;
+  });
+  waitForElement('#plus2', element => {
+    element.icon = faPlus;
+  });
+  return html/*html*/ `
+     <zen-space no-wrap spacing="lg" horizontal-align="start" vertical-align="top" style="height: 400px" >
+        <zen-popover placement="bottom-start">
+            <zen-button variant="primary" slot="target">
+                <zen-icon slot="leadingIcon" id="filter" style="height:14px; align-self:center;"></zen-icon>
+                Filter
+            </zen-button>
+            <zen-card style="background: white;">
+                <zen-space horizontal-align="start" padding="lg">
+                  <zen-text size="xs" variant="heading">Filters</zen-text>
+                </zen-space>
+                <zen-space no-wrap="true" spacing="md" padding="lg">
+                    <!-- query row button -->
+                    <zen-icon id="check" style="color:#34835B"></zen-icon>
+                    <!-- attribute name -->
+                    <zen-dropdown placeholder="Attribute/mapping" style="width: 192px;">
+                      <zen-option value="1">Title</zen-option>
+                      <zen-option value="2">Description</zen-option>
+                      <zen-option value="3">Status</zen-option>
+                      <zen-option value="4">Start Date</zen-option>
+                    </zen-dropdown>
+                    <!-- comparator -->
+                    <zen-dropdown placeholder="Select" style="width: 192px;">
+                      <zen-option value="1">Contains</zen-option>
+                      <zen-option value="2">Does not Contain</zen-option>
+                      <zen-option value="3">Equals</zen-option>
+                      <zen-option value="4">Does not Equal</zen-option>
+                    </zen-dropdown>
+                    <!-- value -->
+                    <zen-input style="width: 192px;height: 35px;"></zen-input>
+                    <!-- add group filter -->
+                    <zen-button variant="tertiary">
+                        <zen-icon id="plus" slot="leadingIcon"></zen-icon>
+                    </zen-button>
+                    <!-- remove filter -->
+                    <zen-button variant="tertiary">
+                        <zen-icon id="trash" slot="leadingIcon"></zen-icon>
+                    </zen-button>
+                </zen-space>
+                <zen-space no-wrap="true" spacing="md" padding="lg">
+                    <!-- query row button -->
+                    <zen-icon id="cross2"></zen-icon>
+                    <!-- attribute name -->
+                    <zen-dropdown placeholder="Attribute/mapping" style="width: 192px;">
+                      <zen-option value="1">Title</zen-option>
+                      <zen-option value="2">Description</zen-option>
+                      <zen-option value="3">Status</zen-option>
+                      <zen-option value="4">Start Date</zen-option>
+                    </zen-dropdown>
+                    <!-- comparator -->
+                    <zen-dropdown placeholder="Select" disabled="true" style="width: 192px;">
+                      <zen-option value="1">Contains</zen-option>
+                      <zen-option value="2">Does not Contain</zen-option>
+                      <zen-option value="3">Equals</zen-option>
+                      <zen-option value="4">Does not Equal</zen-option>
+                    </zen-dropdown>
+                    <!-- value -->
+                    <zen-input disabled="true" style="width: 192px;height: 35px;"></zen-input>
+                    <!-- add group filter -->
+                    <zen-button variant="tertiary">
+                        <zen-icon id="plus2" slot="leadingIcon"></zen-icon>
+                    </zen-button>
+                    <!-- remove filter -->
+                    <zen-button variant="tertiary">
+                        <zen-icon id="trash2" slot="leadingIcon"></zen-icon>
+                    </zen-button>
+                </zen-space>
+                <zen-space padding="lg">
+                  <zen-button variant="secondary">
+                      + Add new
+                  </zen-button>
+                </zen-space>
+                <zen-divider style="margin-bottom: 0"></zen-divider>
+                <zen-space no-wrap="true" spacing="md" padding="lg" horizontal-align="end">
+                    <zen-button variant="primary">
+                        Apply Filter
+                    </zen-button>
+                </zen-space>
+            <zen-card>
+        </zen-popover>
+    </zen-space>
+  `;
+};
+
+# Zen Popover
+
+Popover component
+
+## Component previews
+
+<br />
+
+### 1. Story position variants
+
+Show popover bottom start and bottom end.
+
+<Canvas>
+  <Story name="StoryPositionVariants">{StoryPositionVariants.bind({})}</Story>
+</Canvas>
+
+### 2. Story with positioning set to top
+
+Show popover positioned at the bottom even position is set to top. Button is added as a previous element.
+
+<Canvas>
+  <Story name="StoryScrollable">{StoryScrollable.bind({})}</Story>
+</Canvas>
+
+### 3. Story with complex component
+
+Show popover with complex slot content.
+
+<Canvas>
+  <Story name="StoryFilters">{StoryFilters.bind({})}</Story>
+</Canvas>
+
+## Properties
+
+<Canvas>
+  <Story
+    name="default"
+    args={{
+      ...getDefaultArgs(argTypes),
+      placement: 'bottom-start',
+      offset: { x: 0, y: 8 },
+    }}
+  >
+    {StoryWithControls.bind({})}
+  </Story>
+</Canvas>
+
+<ArgsTable story="default" />
+
+<docs-table docs={JSON.stringify(getComponentData('zen-popover'))}></docs-table>
