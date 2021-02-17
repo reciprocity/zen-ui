@@ -1,5 +1,6 @@
 import { Config } from '@stencil/core';
 import { sass } from '@stencil/sass';
+import { reactOutputTarget } from '@stencil/react-output-target';
 
 export const config: Config = {
   namespace: 'zen-ui',
@@ -11,6 +12,10 @@ export const config: Config = {
     {
       type: 'dist-custom-elements-bundle',
     },
+    reactOutputTarget({
+      componentCorePackage: '@reciprocity/zen-ui',
+      proxiesFile: './dist/react/components.ts',
+    }),
     {
       type: 'docs-readme',
       footer: '',
