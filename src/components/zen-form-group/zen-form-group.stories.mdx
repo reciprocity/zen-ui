@@ -12,65 +12,64 @@ const argTypes = getArgTypes(compData);
 
 export const StoryWithControls = args => {
   return html/*html*/ `
-    <zen-form-group ...=${spreadArgs(args, argTypes)}>
-      <zen-text variant="label" required>Username</zen-text>
-      <zen-input></zen-input>
-      <zen-text variant="support">This field should be unique</zen-text>
-    </zen-form-group>
+    <sb-zen-form-group ...=${spreadArgs(args, argTypes)}>
+      <sb-zen-text variant="label" required>Username</sb-zen-text>
+      <sb-zen-input></sb-zen-input>
+      <sb-zen-text variant="support">This field should be unique</sb-zen-text>
+    </sb-zen-form-group>
   `;
 };
 
 export const StoryLabelAndSupport = () => {
   return html/*html*/ `
-    <zen-form-group>
-      <zen-text variant="label">Username</zen-text>
-      <zen-input></zen-input>
-      <zen-text variant="support">This field should be unique</zen-text>
-    </zen-form-group>
+    <sb-zen-form-group>
+      <sb-zen-text variant="label">Username</sb-zen-text>
+      <sb-zen-input></sb-zen-input>
+      <sb-zen-text variant="support">This field should be unique</sb-zen-text>
+    </sb-zen-form-group>
   `;
 };
 
 export const StoryWithLabelAndTextarea = () => {
   return html/*html*/ `
-    <zen-form-group>
-      <zen-text variant="label">Describe yourself</zen-text>
-      <zen-textarea placeholder="Write here..."></zen-textarea>
-      <zen-text variant="support">0 of 2500 characters</zen-text>
-    </zen-form-group>
-    </zen-form-group>
+    <sb-zen-form-group>
+      <sb-zen-text variant="label">Describe yourself</sb-zen-text>
+      <sb-zen-textarea placeholder="Write here..."></sb-zen-textarea>
+      <sb-zen-text variant="support">0 of 2500 characters</sb-zen-text>
+    </sb-zen-form-group>
   `;
 };
 
 export const StoryWithAllFormComponents = () => {
   return html/*html*/ `
     <div>
-      <zen-form-group>
-        <zen-text variant="label" required>Name</zen-text>
-        <zen-input></zen-input>
-      </zen-form-group>
-      <zen-form-group>
-        <zen-text variant="label" required>Lastname</zen-text>
-        <zen-input></zen-input>
-      </zen-form-group>
-      <zen-form-group>
-        <zen-text variant="label" required>Country</zen-text>
-        <zen-dropdown>
-          <zen-option>Argentina</zen-option>
-          <zen-option>Slovenia</zen-option>
-          <zen-option>United States</zen-option>
-        </zen-dropdown>
-      </zen-form-group>
-      <zen-form-group>
-        <zen-text variant="label" required>Comments</zen-text>
-        <zen-textarea placeholder="Write here..."></zen-textarea>
-        <zen-input-support-text text="0 of 2500 characters"></zen-input-support-text>
-      </zen-form-group>
-      <zen-form-group>
-        <zen-checkbox label="Has admin rights"></zen-checkbox>
-      </zen-form-group>
-      <zen-form-group>
-        <zen-button>Save</zen-button>
-      </zen-form-group>
+      <sb-zen-form-group>
+        <sb-zen-text variant="label" required>Name</sb-zen-text>
+        <sb-zen-input></sb-zen-input>
+      </sb-zen-form-group>
+      <sb-zen-form-group>
+        <sb-zen-text variant="label" required>Lastname</sb-zen-text>
+        <sb-zen-input></sb-zen-input>
+      </sb-zen-form-group>
+      <sb-zen-form-group>
+        <sb-zen-text variant="label" required>Country</sb-zen-text>
+        <sb-zen-dropdown>
+          <sb-zen-option>Argentina</sb-zen-option>
+          <sb-zen-option>Slovenia</sb-zen-option>
+          <sb-zen-option>United States</sb-zen-option>
+        </sb-zen-dropdown>
+      </sb-zen-form-group>
+      <sb-zen-form-group>
+        <sb-zen-text variant="label" required>Comments</sb-zen-text>
+        <sb-zen-textarea placeholder="Write here..."></sb-zen-textarea>
+        <sb-zen-input-support-text text="0 of 2500 characters"></sb-zen-input-support-text>
+      </sb-zen-form-group>
+      <sb-zen-form-group>
+        <sb-zen-checkbox label="Has admin rights"></sb-zen-checkbox>
+      </sb-zen-form-group>
+      <sb-zen-form-group>
+        <sb-zen-button>Save</sb-zen-button>
+      </sb-zen-form-group>
     </div>
   `;
 };
