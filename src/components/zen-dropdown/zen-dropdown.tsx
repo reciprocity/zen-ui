@@ -29,6 +29,8 @@ export class ZenDropdown {
 
   @State() opened = false;
 
+  /** Name of element, can be used as reference for form data */
+  @Prop() readonly name: string = '';
   /** Selected option */
   @Prop({ mutable: true }) value: OptionValue = undefined;
   /** Alignment of field content and menu (if menuWidth set). */
