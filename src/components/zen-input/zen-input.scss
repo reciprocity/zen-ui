@@ -37,6 +37,7 @@ input {
   padding: 0.375rem 0.5rem;
   display: flex;
   border: none;
+  flex: 1 1 auto;
 
   &:disabled {
     opacity: 0.5;
