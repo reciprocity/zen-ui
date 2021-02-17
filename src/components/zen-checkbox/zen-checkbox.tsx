@@ -13,6 +13,9 @@ import { Component, Host, h, Prop, Watch, Element } from '@stencil/core';
 export class ZenCheckbox {
   @Element() hostElement: HTMLZenCheckboxElement;
 
+  /** Name of element, can be used as reference for form data */
+  @Prop() readonly name: string = '';
+
   /** Set checked state. */
   @Prop({ mutable: true }) checked = false;
 

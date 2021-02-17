@@ -16,6 +16,9 @@ export class ZenButton {
 
   @Element() hostElement: HTMLZenButtonElement;
 
+  /** Name of element, can be used as reference for form data */
+  @Prop() readonly name: string = '';
+
   /** Color variant of the button */
   @Prop() readonly variant: ButtonVariants = 'primary';
 

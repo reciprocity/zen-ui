@@ -15,6 +15,9 @@ import { toggleAttribute } from '../helpers/helpers';
 export class ZenRadio {
   @Element() hostElement: HTMLZenRadioElement;
 
+  /** Name of element, can be used as reference for form data */
+  @Prop() readonly name: string = '';
+
   /** Check/uncheck radio */
   @Prop({ reflect: true }) readonly checked: boolean = false;
 

@@ -8,6 +8,9 @@ import { Component, Host, h, Element, Prop, Watch, State } from '@stencil/core';
 export class ZenToggle {
   @Element() hostElement: HTMLZenToggleElement;
 
+  /** Name of element, can be used as reference for form data */
+  @Prop() readonly name: string = '';
+
   /** Set disabled state. */
   @Prop({ reflect: true }) readonly disabled = false;
 
