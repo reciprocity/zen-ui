@@ -8,6 +8,9 @@ import { Component, Host, h, Prop, Element } from '@stencil/core';
 export class ZenTextarea {
   @Element() hostElement: HTMLZenTextareaElement;
 
+  /** Name of element, can be used as reference for form data */
+  @Prop() readonly name: string = '';
+
   /** Appends attribute disabled. */
   @Prop() readonly disabled = false;
 

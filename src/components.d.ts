@@ -126,6 +126,10 @@ export namespace Components {
          */
         "loading"?: boolean;
         /**
+          * Name of element, can be used as reference for form data
+         */
+        "name": string;
+        /**
           * Color variant of the button
          */
         "variant": ButtonVariants;
@@ -149,6 +153,10 @@ export namespace Components {
           * Label of the checkbox.
          */
         "label": string;
+        /**
+          * Name of element, can be used as reference for form data
+         */
+        "name": string;
         /**
           * Shows a red asterisk after label.
          */
@@ -192,6 +200,10 @@ export namespace Components {
          */
         "menuWidth": string;
         /**
+          * Name of element, can be used as reference for form data
+         */
+        "name": string;
+        /**
           * Text in field if nothing selected
          */
         "placeholder": string;
@@ -233,6 +245,10 @@ export namespace Components {
           * Shows invalid styles.
          */
         "invalid": false;
+        /**
+          * Name of element, can be used as reference for form data
+         */
+        "name": string;
         /**
           * Placeholder of the input.
          */
@@ -337,6 +353,10 @@ export namespace Components {
           * Group id to which this radio belongs
          */
         "group": string;
+        /**
+          * Name of element, can be used as reference for form data
+         */
+        "name": string;
         /**
           * Shows a red asterisk after label
          */
@@ -478,6 +498,10 @@ export namespace Components {
          */
         "disabled": false;
         /**
+          * Name of element, can be used as reference for form data
+         */
+        "name": string;
+        /**
           * Placeholder of the textarea.
          */
         "placeholder": string;
@@ -499,6 +523,10 @@ export namespace Components {
           * Set disabled state.
          */
         "disabled": false;
+        /**
+          * Name of element, can be used as reference for form data
+         */
+        "name": string;
     }
     interface ZenTooltip {
         /**
@@ -913,6 +941,10 @@ declare namespace LocalJSX {
          */
         "loading"?: boolean;
         /**
+          * Name of element, can be used as reference for form data
+         */
+        "name"?: string;
+        /**
           * Color variant of the button
          */
         "variant"?: ButtonVariants;
@@ -936,6 +968,10 @@ declare namespace LocalJSX {
           * Label of the checkbox.
          */
         "label"?: string;
+        /**
+          * Name of element, can be used as reference for form data
+         */
+        "name"?: string;
         /**
           * Shows a red asterisk after label.
          */
@@ -979,6 +1015,10 @@ declare namespace LocalJSX {
          */
         "menuWidth"?: string;
         /**
+          * Name of element, can be used as reference for form data
+         */
+        "name"?: string;
+        /**
           * Text in field if nothing selected
          */
         "placeholder"?: string;
@@ -1016,6 +1056,10 @@ declare namespace LocalJSX {
           * Shows invalid styles.
          */
         "invalid"?: false;
+        /**
+          * Name of element, can be used as reference for form data
+         */
+        "name"?: string;
         /**
           * Placeholder of the input.
          */
@@ -1128,6 +1172,10 @@ declare namespace LocalJSX {
           * Group id to which this radio belongs
          */
         "group"?: string;
+        /**
+          * Name of element, can be used as reference for form data
+         */
+        "name"?: string;
         /**
           * Shows a red asterisk after label
          */
@@ -1265,6 +1313,10 @@ declare namespace LocalJSX {
          */
         "disabled"?: false;
         /**
+          * Name of element, can be used as reference for form data
+         */
+        "name"?: string;
+        /**
           * Placeholder of the textarea.
          */
         "placeholder"?: string;
@@ -1286,6 +1338,10 @@ declare namespace LocalJSX {
           * Set disabled state.
          */
         "disabled"?: false;
+        /**
+          * Name of element, can be used as reference for form data
+         */
+        "name"?: string;
     }
     interface ZenTooltip {
         /**

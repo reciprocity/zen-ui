@@ -15,6 +15,9 @@ export class ZenInput {
 
   @Element() hostElement: HTMLZenInputElement;
 
+  /** Name of element, can be used as reference for form data */
+  @Prop() readonly name: string = '';
+
   /** Paint focused border */
   @Prop({ mutable: true }) hasFocus = false;
 
