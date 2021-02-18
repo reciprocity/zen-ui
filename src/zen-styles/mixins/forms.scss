@@ -1,9 +1,8 @@
 @mixin zenInputBase() {
-  display: block;
+  display: inline-block;
   color: $color-gray-700;
   background: $color-white;
   box-sizing: border-box;
-  width: 100%;
   font-family: inherit;
   font-size: inherit;
   margin: 0;
