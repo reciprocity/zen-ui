@@ -1,6 +1,10 @@
 import { Component, Host, h, Prop, Watch, State } from '@stencil/core';
 import { getDayNumbers, today, getMonthName } from './date-helpers';
 import getYear from 'date-fns/getYear';
+import addMonths from 'date-fns/addMonths';
+import addYears from 'date-fns/addYears';
+import subMonths from 'date-fns/subMonths';
+import subYears from 'date-fns/subYears';
 import {
   faCalendarAlt,
   faChevronDoubleLeft,
@@ -8,6 +12,13 @@ import {
   faChevronRight,
   faChevronDoubleRight,
 } from '@fortawesome/pro-regular-svg-icons';
+
+enum Navigate {
+  prevMonth,
+  prevYear,
+  nextMonth,
+  nextYear,
+}
 
 @Component({
   tag: 'zen-date-picker',
@@ -39,6 +50,23 @@ export class ZenDatePicker {
     this.monthViewedInCalendarChanged(this.calendarMonth);
   }
 
+  navigate(type: Navigate): void {
+    switch (type) {
+      case Navigate.prevMonth:
+        this.calendarMonth = subMonths(this.calendarMonth, 1);
+        break;
+      case Navigate.nextMonth:
+        this.calendarMonth = addMonths(this.calendarMonth, 1);
+        break;
+      case Navigate.prevYear:
+        this.calendarMonth = subYears(this.calendarMonth, 1);
+        break;
+      case Navigate.nextYear:
+        this.calendarMonth = addYears(this.calendarMonth, 1);
+        break;
+    }
+  }
+
   render(): HTMLElement {
     return (
       <Host>
@@ -56,13 +84,23 @@ export class ZenDatePicker {
             horizontal-align="center"
             vertical-align="stretch"
           >
-            <zen-icon icon={faChevronDoubleLeft} size="sm"></zen-icon>
-            <zen-icon icon={faChevronLeft} size="sm" class="fill"></zen-icon>
+            <zen-icon icon={faChevronDoubleLeft} size="sm" onClick={() => this.navigate(Navigate.prevYear)}></zen-icon>
+            <zen-icon
+              icon={faChevronLeft}
+              size="sm"
+              class="fill"
+              onClick={() => this.navigate(Navigate.prevMonth)}
+            ></zen-icon>
             <zen-text align="center" class="date" uppercase bold>
               {this.calendarMonthName} {this.calendarYear}
             </zen-text>
-            <zen-icon icon={faChevronRight} size="sm" class="fill"></zen-icon>
-            <zen-icon icon={faChevronDoubleRight} size="sm"></zen-icon>
+            <zen-icon
+              icon={faChevronRight}
+              size="sm"
+              class="fill"
+              onClick={() => this.navigate(Navigate.nextMonth)}
+            ></zen-icon>
+            <zen-icon icon={faChevronDoubleRight} size="sm" onClick={() => this.navigate(Navigate.nextYear)}></zen-icon>
           </zen-space>
           <div class="days">
             <zen-space padding="lg" horizontal-align="space-around">
