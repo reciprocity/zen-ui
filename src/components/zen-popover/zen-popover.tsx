@@ -25,7 +25,7 @@ export class ZenPopover {
   @Prop() readonly triggerEvent: TriggerEvent = 'click';
 
   /** Dont hide tooltip */
-  @Prop() readonly alwaysVisible: boolean = false;
+  @Prop({ reflect: true }) readonly alwaysVisible: boolean = false;
 
   /** Popover offset */
   @Prop() readonly offset: Offsets = { x: 0, y: 8 };
@@ -44,6 +44,7 @@ export class ZenPopover {
       return;
     }
 
+    // Get slot default content
     const defaultSlot = getDefaultSlotContent(this.element);
 
     // Throw error if there is nothing in the default slot
@@ -51,6 +52,7 @@ export class ZenPopover {
       console.error('No content added to default slot!');
       return;
     }
+
     this.defaultSlotEl = getDefaultSlotContent(this.element)[0] as HTMLElement;
 
     if (this.alwaysVisible) {
@@ -77,20 +79,21 @@ export class ZenPopover {
   }
 
   show(): void {
-    // dont do nothing if already visible
+    // Dont do nothing if already visible
     if (this.visible) return;
 
+    // Create popper and set display
     this.createPopper();
     this.defaultSlotEl.style.display = 'block';
     this.visible = true;
 
-    // add event listener for click outside
+    // Add event listener for click outside
     this.clickHandler = event => this.closeOnClickOutside(event);
     document.addEventListener('mousedown', this.clickHandler);
   }
 
   hide(): void {
-    // create - destroy popper because of performance improvements
+    // Destroy popper and set display
     this.destroyPopper();
     this.defaultSlotEl.style.display = 'none';
     this.visible = false;
@@ -107,9 +110,9 @@ export class ZenPopover {
     const clickTargetNode = event.target as Node;
 
     if (this.targetSlotEl == clickTargetNode || this.alwaysVisible) {
-      return;
+      return; // Do nothing if clicked on target el or is always visible
     } else if (!this.defaultSlotEl.contains(clickTargetNode)) {
-      this.hide();
+      this.hide(); // Hide if clicked outside
     }
   }
 
