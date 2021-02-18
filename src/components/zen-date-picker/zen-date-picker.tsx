@@ -1,5 +1,5 @@
 import { Component, Host, h, Prop, Watch, State, Element } from '@stencil/core';
-import { getDayNumbers, today, getMonthName } from './date-helpers';
+import { getDayNumbers, today, getMonthName, parseDate } from './date-helpers';
 import getYear from 'date-fns/getYear';
 import addMonths from 'date-fns/addMonths';
 import addYears from 'date-fns/addYears';
@@ -8,7 +8,6 @@ import subYears from 'date-fns/subYears';
 import format from 'date-fns/format';
 import setDate from 'date-fns/setDate';
 import isValid from 'date-fns/isValid';
-import parse from 'date-fns/parse';
 import {
   faCalendarAlt,
   faChevronDoubleLeft,
@@ -107,7 +106,7 @@ export class ZenDatePicker {
 
   onInputChange(event: Event): void {
     const input = event.target as HTMLInputElement;
-    const date = parse(input.value, this.format, today());
+    const date = parseDate(input.value, this.format);
 
     if (isValid(date)) {
       this.value = date;

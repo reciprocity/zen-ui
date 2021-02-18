@@ -2,6 +2,10 @@ import getDaysInMonth from 'date-fns/getDaysInMonth';
 import getDay from 'date-fns/getDay';
 import getMonth from 'date-fns/getMonth';
 import setDate from 'date-fns/setDate';
+import parse from 'date-fns/parse';
+import isValid from 'date-fns/isValid';
+
+const defaultSeparator = '/';
 
 const monthNames = [
   'January',
@@ -40,4 +44,34 @@ export function getDayNumbers(date: Date): number[] {
 
 export function getMonthName(date: Date): string {
   return monthNames[getMonth(date)];
+}
+
+export function parseDate(str: string, format: string): Date {
+  function fixYearShorthand(str: string): string {
+    // convert '1.1.19' into '1.1.2019'
+    const lastNum = (str.match(/([0-9]+)$/g) || [])[0];
+    if (!lastNum || lastNum.length !== 2) return str;
+
+    return str.substr(0, str.length - lastNum.length) + '20' + lastNum;
+  }
+
+  function prettifyAndParse(str: string, format: string): Date {
+    // turn eg. '1-2. 2020' into '1/2/2020'
+    // replace any non-alpha-num char group with a separator:
+    const nonAlphaNumChars = format.match(/[^0-9a-zA-Z]/g);
+    const separator = nonAlphaNumChars ? nonAlphaNumChars[0] : defaultSeparator;
+    str = str.trim().replace(/([^0-9]+)/g, separator);
+
+    return parse(str, format, today());
+  }
+
+  str = fixYearShorthand(str.trim());
+
+  let result = parse(str, format, today());
+
+  if (!isValid(result)) {
+    result = prettifyAndParse(str, format);
+  }
+
+  return result;
 }
