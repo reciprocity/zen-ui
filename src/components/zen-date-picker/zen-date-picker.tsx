@@ -97,47 +97,55 @@ export class ZenDatePicker {
   render(): HTMLElement {
     return (
       <Host>
-        <zen-input placeholder={this.placeholder} value={this.formattedDate}>
-          <zen-space padding="md none md md" slot="leadingSlot">
-            <zen-icon icon={faCalendarAlt}></zen-icon>
-          </zen-space>
-        </zen-input>
+        <sb-zen-input placeholder={this.placeholder} value={this.formattedDate}>
+          <sb-zen-space padding="md none md md" slot="leadingSlot">
+            <sb-zen-icon icon={faCalendarAlt}></sb-zen-icon>
+          </sb-zen-space>
+        </sb-zen-input>
         <div class="calendar">
-          <zen-space
+          <sb-zen-space
             class="navigation"
             padding="sm lg"
             slot="leadingSlot"
             horizontal-align="center"
             vertical-align="stretch"
           >
-            <zen-icon icon={faChevronDoubleLeft} size="sm" onClick={() => this.navigate(Navigate.prevYear)}></zen-icon>
-            <zen-icon
+            <sb-zen-icon
+              icon={faChevronDoubleLeft}
+              size="sm"
+              onClick={() => this.navigate(Navigate.prevYear)}
+            ></sb-zen-icon>
+            <sb-zen-icon
               icon={faChevronLeft}
               size="sm"
               class="fill"
               onClick={() => this.navigate(Navigate.prevMonth)}
-            ></zen-icon>
-            <zen-text align="center" class="date" uppercase bold>
+            ></sb-zen-icon>
+            <sb-zen-text align="center" class="date" uppercase bold>
               {this.calendarMonthName} {this.calendarYear}
-            </zen-text>
-            <zen-icon
+            </sb-zen-text>
+            <sb-zen-icon
               icon={faChevronRight}
               size="sm"
               class="fill"
               onClick={() => this.navigate(Navigate.nextMonth)}
-            ></zen-icon>
-            <zen-icon icon={faChevronDoubleRight} size="sm" onClick={() => this.navigate(Navigate.nextYear)}></zen-icon>
-          </zen-space>
+            ></sb-zen-icon>
+            <sb-zen-icon
+              icon={faChevronDoubleRight}
+              size="sm"
+              onClick={() => this.navigate(Navigate.nextYear)}
+            ></sb-zen-icon>
+          </sb-zen-space>
           <div class="days">
-            <zen-space padding="lg" horizontal-align="space-around">
+            <sb-zen-space padding="lg" horizontal-align="space-around">
               {this.daysShort.map(dayName => (
-                <zen-text class="day-name">{dayName}</zen-text>
+                <sb-zen-text class="day-name">{dayName}</sb-zen-text>
               ))}
-            </zen-space>
+            </sb-zen-space>
           </div>
-          <zen-space padding="xs lg lg" spacing="none">
+          <sb-zen-space padding="xs lg lg" spacing="none">
             {this.dayNums.map(num => (
-              <zen-text
+              <sb-zen-text
                 class={{
                   'day-num': true,
                   empty: !num,
@@ -149,9 +157,9 @@ export class ZenDatePicker {
                 }}
               >
                 {num || ''}
-              </zen-text>
+              </sb-zen-text>
             ))}
-          </zen-space>
+          </sb-zen-space>
         </div>
       </Host>
     );
