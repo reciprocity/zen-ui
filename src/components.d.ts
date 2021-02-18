@@ -6,7 +6,7 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { StringifiedJson } from "./stories/components/color-swatch-group/color-swatch-group";
-import { Align, Avatar, AvatarData, AvatarIconSize, Duration, IconSizes, None, NotificationVariant, Position, Size, TextSize, TextVariant, TooltipVariant } from "./components/helpers/types";
+import { Align, Avatar, AvatarData, AvatarIconSize, Duration, IconSizes, None, NotificationVariant, Position, Size, TextSize, TextVariant, TooltipVariant, TriggerEvent } from "./components/helpers/types";
 import { ButtonVariants } from "./components/zen-button/types";
 import { OptionValue } from "./components/zen-menu-item/zen-option";
 import { IconDefinition } from "@fortawesome/pro-light-svg-icons";
@@ -318,13 +318,21 @@ export namespace Components {
     }
     interface ZenPopover {
         /**
+          * Don't hide tooltip
+         */
+        "alwaysVisible": boolean;
+        /**
           * Popover offset
          */
         "offset": Offsets;
         /**
           * Placement
          */
-        "placement": Placement;
+        "position": Placement;
+        /**
+          * Triggering event
+         */
+        "triggerEvent": TriggerEvent;
     }
     interface ZenProgressTracker {
         /**
@@ -1137,13 +1145,21 @@ declare namespace LocalJSX {
     }
     interface ZenPopover {
         /**
+          * Don't hide tooltip
+         */
+        "alwaysVisible"?: boolean;
+        /**
           * Popover offset
          */
         "offset"?: Offsets;
         /**
           * Placement
          */
-        "placement"?: Placement;
+        "position"?: Placement;
+        /**
+          * Triggering event
+         */
+        "triggerEvent"?: TriggerEvent;
     }
     interface ZenProgressTracker {
         /**

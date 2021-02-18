@@ -1,6 +1,7 @@
 import { Component, Host, h, Element, Prop, State } from '@stencil/core';
 import { createPopper, Placement, Offsets } from '@popperjs/core';
 import { getDefaultSlotContent, getSlotElement } from '../helpers/helpers';
+import { TriggerEvent } from '../helpers/types';
 
 @Component({
   tag: 'zen-popover',
@@ -18,12 +19,18 @@ export class ZenPopover {
   @State() visible = false;
 
   /** Placement */
-  @Prop() readonly placement: Placement = 'bottom-end';
+  @Prop() readonly position: Placement = 'bottom-end';
+
+  /** Triggering event */
+  @Prop() readonly triggerEvent: TriggerEvent = 'click';
+
+  /** Don't hide tooltip */
+  @Prop({ reflect: true }) readonly alwaysVisible: boolean = false;
 
   /** Popover offset */
   @Prop() readonly offset: Offsets = { x: 0, y: 8 };
 
-  componentDidLoad() {
+  componentDidLoad(): void {
     this.targetSlotEl = getSlotElement(this.element, 'target');
 
     // If there is no target element use previous element
@@ -31,28 +38,87 @@ export class ZenPopover {
       this.targetSlotEl = this.element.previousElementSibling as HTMLElement;
     }
 
+    // Throw error if there is no target element specified
     if (!this.targetSlotEl) {
       console.error('No target element specified for the target slot!');
       return;
     }
 
+    // Get slot default content
     const defaultSlot = getDefaultSlotContent(this.element);
 
+    // Throw error if there is nothing in the default slot
     if (!defaultSlot) {
       console.error('No content added to default slot!');
       return;
     }
 
-    this.defaultSlotEl = getDefaultSlotContent(this.element)[0] as HTMLElement;
-    this.targetSlotEl.addEventListener('click', () => {
-      this.toggle();
-    });
-    this.hide();
+    this.defaultSlotEl = defaultSlot[0] as HTMLElement;
+
+    if (this.alwaysVisible) {
+      this.show();
+    } else {
+      this.addTriggerEvents();
+      this.hide();
+    }
   }
 
-  createPopper() {
+  addTriggerEvents(): void {
+    // Add events to the target element
+    if (this.triggerEvent == 'click') {
+      this.targetSlotEl.addEventListener('click', () => this.toggle());
+    }
+
+    if (this.triggerEvent == 'hover') {
+      this.targetSlotEl.addEventListener('mousemove', () => this.show());
+      this.targetSlotEl.addEventListener('mouseover', () => this.show());
+      this.targetSlotEl.addEventListener('touchstart', () => this.show());
+      this.targetSlotEl.addEventListener('mouseout', () => this.hide());
+      this.targetSlotEl.addEventListener('touchcancel', () => this.hide());
+    }
+  }
+
+  show(): void {
+    // Dont do nothing if already visible
+    if (this.visible) return;
+
+    // Create popper and set display
+    this.createPopper();
+    this.defaultSlotEl.style.display = 'block';
+    this.visible = true;
+
+    // Add event listener for click outside
+    this.clickHandler = event => this.closeOnClickOutside(event);
+    document.addEventListener('mousedown', this.clickHandler);
+  }
+
+  hide(): void {
+    // Destroy popper and set display
+    this.destroyPopper();
+    this.defaultSlotEl.style.display = 'none';
+    this.visible = false;
+
+    // remove event listener for click outside
+    if (this.clickHandler) document.removeEventListener('mousedown', this.clickHandler);
+  }
+
+  toggle(): void {
+    this.visible ? this.hide() : this.show();
+  }
+
+  async closeOnClickOutside(event: MouseEvent): Promise<void> {
+    const clickTargetNode = event.target as Node;
+
+    if (this.targetSlotEl == clickTargetNode || this.alwaysVisible) {
+      return; // Do nothing if clicked on target el or is always visible
+    } else if (!this.defaultSlotEl.contains(clickTargetNode)) {
+      this.hide(); // Hide if clicked outside
+    }
+  }
+
+  createPopper(): void {
     this.popperInstance = createPopper(this.targetSlotEl, this.defaultSlotEl, {
-      placement: this.placement,
+      placement: this.position,
       modifiers: [
         {
           name: 'offset',
@@ -64,40 +130,11 @@ export class ZenPopover {
     });
   }
 
-  destroyPopper() {
+  destroyPopper(): void {
     if (this.popperInstance) {
       this.popperInstance.destroy();
       this.popperInstance = null;
     }
-  }
-
-  show(): void {
-    this.createPopper();
-    this.defaultSlotEl.style.display = 'block';
-
-    this.clickHandler = event => this.closeOnClickOut(event);
-    document.addEventListener('mousedown', this.clickHandler);
-    this.visible = true;
-  }
-
-  hide(): void {
-    this.defaultSlotEl.style.display = 'none';
-    this.destroyPopper();
-
-    if (this.clickHandler) document.removeEventListener('mousedown', this.clickHandler);
-    this.visible = false;
-  }
-
-  toggle(): void {
-    this.visible ? this.hide() : this.show();
-  }
-
-  async closeOnClickOut(event: MouseEvent): Promise<void> {
-    const clickTargetNode = event.target as Node;
-    if (!this.defaultSlotEl.contains(clickTargetNode)) {
-      this.hide();
-    }
-    return;
   }
 
   render(): HTMLElement {

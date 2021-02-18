@@ -3,3 +3,11 @@
 :host {
   display: block;
 }
+
+.hidden {
+  display: none !important;
+}
+
+:host(.hidden) {
+  display: none !important;
+}
