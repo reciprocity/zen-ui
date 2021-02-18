@@ -4,6 +4,7 @@ import getMonth from 'date-fns/getMonth';
 import setDate from 'date-fns/setDate';
 import parse from 'date-fns/parse';
 import isValid from 'date-fns/isValid';
+import getYear from 'date-fns/getYear';
 
 const defaultSeparator = '/';
 
@@ -55,6 +56,14 @@ export function parseDate(str: string, format: string): Date {
     return str.substr(0, str.length - lastNum.length) + '20' + lastNum;
   }
 
+  function fixMissingYear(str: string): string {
+    // convert '1.1.' into '1.1.2021'
+    const currentYear = getYear(today());
+    const nums = str.match(/\b([0-9]+)\b/g);
+    if (!nums || nums.length !== 2) return str;
+    return str + ' ' + currentYear;
+  }
+
   function prettifyAndParse(str: string, format: string): Date {
     // turn eg. '1-2. 2020' into '1/2/2020'
     // replace any non-alpha-num char group with a separator:
@@ -66,6 +75,7 @@ export function parseDate(str: string, format: string): Date {
   }
 
   str = fixYearShorthand(str.trim());
+  str = fixMissingYear(str);
 
   let result = parse(str, format, today());
 
