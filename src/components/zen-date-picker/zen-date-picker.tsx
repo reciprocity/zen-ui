@@ -24,6 +24,10 @@ enum Navigate {
   nextYear,
 }
 
+/**
+ * @event change | Called on date change
+ */
+
 @Component({
   tag: 'zen-date-picker',
   styleUrl: 'zen-date-picker.scss',
@@ -94,6 +98,7 @@ export class ZenDatePicker {
   selectDay(day: number): void {
     if (!day) return;
     this.value = setDate(this.calendarMonth, day);
+    this.host.dispatchEvent(new window.Event('change'));
   }
 
   isSelected(day: number): boolean {
@@ -110,6 +115,7 @@ export class ZenDatePicker {
 
     if (isValid(date)) {
       this.value = date;
+      this.host.dispatchEvent(new window.Event('change'));
     } else {
       // revert to old date:
       this.dateChanged(this.value);
