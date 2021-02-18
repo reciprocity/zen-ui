@@ -1,6 +1,6 @@
 import { Component, Host, h, Prop, State, Element } from '@stencil/core';
 import { Position, TooltipVariant, Point, Rect } from '../helpers/types';
-import { containsRect, oppositePosition } from '../helpers/helpers';
+import { applyPrefix, containsRect, oppositePosition } from '../helpers/helpers';
 import debounce from 'lodash/debounce';
 
 /**
@@ -164,6 +164,7 @@ export class ZenTooltip {
   }
 
   render(): HTMLElement {
+    const ZenSpace = applyPrefix('zen-space', this.element);
     const classes = {
       tooltip: true,
       [this.variant]: true,
@@ -173,9 +174,9 @@ export class ZenTooltip {
     return (
       <Host style={{ 'max-height': this.maxHeight }} class={{ visible: this.visible, ...classes }}>
         <slot name="content">
-          <zen-space padding="lg">
+          <ZenSpace padding="lg">
             <slot>{this.label}</slot>
-          </zen-space>
+          </ZenSpace>
         </slot>
         <div
           class={{

@@ -12,37 +12,37 @@ import { faChevronDown, faUser } from '@fortawesome/pro-light-svg-icons';
 <Meta title="Forms/Button" component="zen-button" argTypes={argTypes} />
 
 export const StoryWithControls = args =>
-  html/*html*/ ` <zen-button ...="${spreadArgs(args, argTypes)}">Button</zen-button>`;
+  html/*html*/ ` <sb-zen-button ...="${spreadArgs(args, argTypes)}">Button</sb-zen-button>`;
 
 export const StorySimple = () =>
   html/*html*/ `
     <div style="display: flex; justify-content: space-evenly;">
       <div style="display: flex; flex-direction: column; align-items: center;">
-        <zen-button variant="primary">Button</zen-button>
+        <sb-zen-button variant="primary">Button</sb-zen-button>
         <span style="margin-top: 0.5rem;">Primary</span>
       </div>
       <div style="display: flex; flex-direction: column; align-items: center;">
-        <zen-button variant="secondary">Button</zen-button>
+        <sb-zen-button variant="secondary">Button</sb-zen-button>
         <span style="margin-top: 0.5rem;">Secondary</span>
       </div>
       <div style="display: flex; flex-direction: column; align-items: center;">
-        <zen-button variant="tertiary">Button</zen-button>
+        <sb-zen-button variant="tertiary">Button</sb-zen-button>
         <span style="margin-top: 0.5rem;">Tertiary</span>
       </div>
       <div style="display: flex; flex-direction: column; align-items: center;">
-        <zen-button variant="positive">Button</zen-button>
+        <sb-zen-button variant="positive">Button</sb-zen-button>
         <span style="margin-top: 0.5rem;">Positive</span>
       </div>
       <div style="display: flex; flex-direction: column; align-items: center;">
-        <zen-button variant="destructive">Button</zen-button>
+        <sb-zen-button variant="destructive">Button</sb-zen-button>
         <span style="margin-top: 0.5rem;">Destructive</span>
       </div>
     </div>
   `;
 
-export const StoryLoading = () => html/*html*/ ` <zen-button loading>Button</zen-button> `;
+export const StoryLoading = () => html/*html*/ ` <sb-zen-button loading>Button</sb-zen-button> `;
 
-export const StoryDisabled = () => html/*html*/ ` <zen-button disabled>Button</zen-button> `;
+export const StoryDisabled = () => html/*html*/ ` <sb-zen-button disabled>Button</sb-zen-button> `;
 
 export const StoryWithIcons = () => {
   ['#icon1', '#icon2', '#icon4', '#icon5'].forEach(id => {
@@ -56,26 +56,26 @@ export const StoryWithIcons = () => {
   return html/*html*/ `
     <div style="display: flex; justify-content: space-evenly;">
       <div style="display: flex; flex-direction: column; align-items: center;">
-        <zen-button>
-          <zen-icon slot="leadingIcon" id="icon1"></zen-icon>
+        <sb-zen-button>
+          <sb-zen-icon slot="leadingIcon" id="icon1"></sb-zen-icon>
           Leading Slot
-        </zen-button>
+        </sb-zen-button>
         <span style="margin-top: 0.5rem;">Leading Slot</span>
       </div>
       <div style="display: flex; flex-direction: column; align-items: center;">
-        <zen-button> Trailing Slot<zen-icon slot="trailingIcon" id="icon2"></zen-icon> </zen-button>
+        <sb-zen-button> Trailing Slot<sb-zen-icon slot="trailingIcon" id="icon2"></sb-zen-icon> </sb-zen-button>
         <span style="margin-top: 0.5rem;">Trailing Slot</span>
       </div>
       <div style="display: flex; flex-direction: column; align-items: center;">
-        <zen-button>
-          <zen-icon slot="leadingIcon" id="icon3"></zen-icon>
+        <sb-zen-button>
+          <sb-zen-icon slot="leadingIcon" id="icon3"></sb-zen-icon>
           Leading and Trailing Slots
-          <zen-icon slot="trailingIcon" id="icon4"></zen-icon>
-        </zen-button>
+          <sb-zen-icon slot="trailingIcon" id="icon4"></sb-zen-icon>
+        </sb-zen-button>
         <span style="margin-top: 0.5rem;">Leading and Trailing Slots</span>
       </div>
       <div style="display: flex; flex-direction: column; align-items: center;">
-        <zen-button> <zen-icon slot="leadingIcon" id="icon5"></zen-icon></zen-button>
+        <sb-zen-button> <sb-zen-icon slot="leadingIcon" id="icon5"></sb-zen-icon></sb-zen-button>
         <span style="margin-top: 0.5rem;">Just icon</span>
       </div>
     </div>
@@ -84,19 +84,19 @@ export const StoryWithIcons = () => {
 
 export const StoryFormGroup = args =>
   html/*html*/ `
-    <zen-form-group>
-      <zen-space vertical spacing="md">
-        <zen-text>Username</zen-text>
-        <zen-input></zen-input>
-        <zen-text>Password</zen-text>
-        <zen-input></zen-input>
-        <zen-checkbox label="Remember me"></zen-checkbox>
-        <zen-space spacing="md" padding="none">
-          <zen-button>Log In</zen-button>
-          <zen-button variant="secondary">Register</zen-button>
-        </zen-space>
-      </zen-space>
-    </zen-form-group>
+    <sb-zen-form-group>
+      <sb-zen-space vertical spacing="md">
+        <sb-zen-text>Username</sb-zen-text>
+        <sb-zen-input></sb-zen-input>
+        <sb-zen-text>Password</sb-zen-text>
+        <sb-zen-input></sb-zen-input>
+        <sb-zen-checkbox label="Remember me"></sb-zen-checkbox>
+        <sb-zen-space spacing="md" padding="none">
+          <sb-zen-button>Log In</sb-zen-button>
+          <sb-zen-button variant="secondary">Register</sb-zen-button>
+        </sb-zen-space>
+      </sb-zen-space>
+    </sb-zen-form-group>
   `;
 
 # Button

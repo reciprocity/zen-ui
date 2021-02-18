@@ -13,7 +13,7 @@ const Template = ({ items, value }) => {
   function changed(event) {
     console.log('changed', event);
   }
-  return html`<zen-tabs @change=${changed} .tabs=${items} value=${value} />`;
+  return html`<sb-zen-tabs @change=${changed} .tabs=${items} value=${value} />`;
 };
 
 export const Default = Template.bind({});

@@ -13,26 +13,26 @@ export const StoryRadiosGroup = () => {
     document.querySelector('#selected-radio').textContent = event.target.selected;
   }
   return html/*html*/ `
-    <zen-form-group>
-      <zen-text variant="label">Group 1</zen-text>
-      <zen-space vertical padding="none">
-        <zen-radio group="first" value="1" @change="${changed}">Option 1</zen-radio>
-        <zen-radio group="first" value="2">Option 2</zen-radio>
-        <zen-radio group="first" value="3">Option 3</zen-radio>
-        <zen-radio group="first" value="4" checked disabled>Option 4</zen-radio>
-      </zen-space>
-      <zen-divider></zen-divider>
-      <zen-text size="md">
+    <sb-zen-form-group>
+      <sb-zen-text variant="label">Group 1</sb-zen-text>
+      <sb-zen-space vertical padding="none">
+        <sb-zen-radio group="first" value="1" @change="${changed}">Option 1</sb-zen-radio>
+        <sb-zen-radio group="first" value="2">Option 2</sb-zen-radio>
+        <sb-zen-radio group="first" value="3">Option 3</sb-zen-radio>
+        <sb-zen-radio group="first" value="4" checked disabled>Option 4</sb-zen-radio>
+      </sb-zen-space>
+      <sb-zen-divider></sb-zen-divider>
+      <sb-zen-text size="md">
         Selected: <b><span id="selected-radio"></span></b>
-      </zen-text>
-    </zen-form-group>
-    <zen-form-group>
-      <zen-text variant="label">Group 2</zen-text>
-      <zen-space vertical padding="none">
-        <zen-radio group="second" value="a">Option A</zen-radio>
-        <zen-radio group="second" checked value="b">Prechecked B</zen-radio>
-      </zen-space>
-    </zen-form-group>
+      </sb-zen-text>
+    </sb-zen-form-group>
+    <sb-zen-form-group>
+      <sb-zen-text variant="label">Group 2</sb-zen-text>
+      <sb-zen-space vertical padding="none">
+        <sb-zen-radio group="second" value="a">Option A</sb-zen-radio>
+        <sb-zen-radio group="second" checked value="b">Prechecked B</sb-zen-radio>
+      </sb-zen-space>
+    </sb-zen-form-group>
   `;
 };
 
@@ -41,29 +41,30 @@ export const StoryButtonControl = () => {
     console.log('changed');
   }
   function select(item, value) {
-    document.querySelector(`#button-radios zen-radio[value='${item}']`).checked = value;
+    document.querySelector(`#button-radios sb-zen-radio[value='${item}']`).checked = value;
   }
   function clear(value) {
-    document.querySelector(`#button-radios zen-radio`).selected = '';
+    document.querySelector(`#button-radios sb-zen-radio`).selected = '';
   }
   return html/*html*/ `
-    <zen-form-group id="button-radios">
-      <zen-text variant="label">First group</zen-text>
-      <zen-space vertical padding="none">
-        <zen-radio group="third" value="1" @change="${changed}">Option 1</zen-radio>
-        <zen-radio group="third" value="2">Option 2</zen-radio>
-        <zen-radio group="third" value="3">Option 3</zen-radio>
-      <zen-space>
-    </zen-form-group>
-    <zen-space>
-      <zen-button @click="${() => select('1', true)}">Check 1</zen-button>
-      <zen-button @click="${() => select('3', true)}">Check 3</zen-button>
-      <zen-button @click="${() => clear('')}">Clear</zen-button>
+    <sb-zen-form-group id="button-radios">
+      <sb-zen-text variant="label">First group</sb-zen-text>
+      <sb-zen-space vertical padding="none">
+        <sb-zen-radio group="third" value="1" @change="${changed}">Option 1</sb-zen-radio>
+        <sb-zen-radio group="third" value="2">Option 2</sb-zen-radio>
+        <sb-zen-radio group="third" value="3">Option 3</sb-zen-radio>
+      <sb-zen-space>
+    </sb-zen-form-group>
+    <sb-zen-space>
+      <sb-zen-button @click="${() => select('1', true)}">Check 1</sb-zen-button>
+      <sb-zen-button @click="${() => select('3', true)}">Check 3</sb-zen-button>
+      <sb-zen-button @click="${() => clear('')}">Clear</zen-button>
+    </sb-zen-space>
   `;
 };
 
 export const StoryWithControls = args => {
-  return html/*html*/ ` <zen-radio ...="${spreadArgs(args, argTypes)}">Option 1</zen-radio> `;
+  return html/*html*/ ` <sb-zen-radio ...="${spreadArgs(args, argTypes)}">Option 1</sb-zen-radio> `;
 };
 
 # Radio

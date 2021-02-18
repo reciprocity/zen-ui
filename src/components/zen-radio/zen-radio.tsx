@@ -1,7 +1,7 @@
 import { Component, Host, h, Prop, Element, Listen, Watch, Method } from '@stencil/core';
 import { querySelectorAllDeep } from 'query-selector-shadow-dom';
 import last from 'lodash/last';
-import { toggleAttribute } from '../helpers/helpers';
+import { applyPrefix, toggleAttribute } from '../helpers/helpers';
 
 /**
  * @event change | Called each time radio.selected changes
@@ -102,7 +102,8 @@ export class ZenRadio {
   }
 
   elementsInSameGroup(onlyEnabled?: boolean): HTMLZenRadioElement[] {
-    const selector = `zen-radio[group=${this.group}]${onlyEnabled ? ':not([disabled])' : ''}`;
+    const radioWithPrefix = applyPrefix('zen-radio', this.hostElement);
+    const selector = `${radioWithPrefix}[group=${this.group}]${onlyEnabled ? ':not([disabled])' : ''}`;
     return this.group ? (Array.from(querySelectorAllDeep(selector)) as HTMLZenRadioElement[]) : [this.hostElement];
   }
 

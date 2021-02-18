@@ -13,7 +13,7 @@ describe('Tooltip visual tests', { scrollBehavior: 'center' }, () => {
   before(() => {
     cy.visitStorybookIframe(pageId);
     cy.verifyAllStoriesHaveVRT(story);
-    cy.get('zen-tooltip[always-visible="true"]').each(el => {
+    cy.get('sb-zen-tooltip[always-visible="true"]').each(el => {
       cy.wrap(el).should('be.visible');
     });
   });
@@ -29,8 +29,8 @@ describe('Tooltip visual tests', { scrollBehavior: 'center' }, () => {
   it('Verifies ' + `${story[2]}`, () => {
     cy.get(`#${story[2]}`)
       .within(() => {
-        cy.get('zen-button').click();
-        cy.get('zen-tooltip').should('be.visible');
+        cy.get('sb-zen-button').click();
+        cy.get('sb-zen-tooltip').should('be.visible');
       })
       .parents('.innerZoomElementWrapper')
       .matchImageSnapshot();
@@ -39,8 +39,8 @@ describe('Tooltip visual tests', { scrollBehavior: 'center' }, () => {
   it('Verifies ' + `${story[3]}`, () => {
     cy.get(`#${story[3]}`)
       .within(() => {
-        cy.get('zen-button').click();
-        cy.get('zen-tooltip').should('be.visible');
+        cy.get('sb-zen-button').click();
+        cy.get('sb-zen-tooltip').should('be.visible');
       })
       .parents('.innerZoomElementWrapper')
       .matchImageSnapshot();

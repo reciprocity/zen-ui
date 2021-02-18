@@ -1,5 +1,5 @@
 import { Component, Host, h, Prop, State, Listen, Watch, Element, Method } from '@stencil/core';
-import { getDefaultSlotContent, waitNextFrame, getComposedPath } from '../helpers/helpers';
+import { getDefaultSlotContent, waitNextFrame, getComposedPath, applyPrefix } from '../helpers/helpers';
 import { faChevronDown } from '@fortawesome/pro-light-svg-icons';
 import { OptionValue } from '../zen-menu-item/zen-option';
 import { Align } from '../helpers/types';
@@ -150,7 +150,9 @@ export class ZenDropdown {
 
   getSlottedOptionItems(): HTMLZenOptionElement[] | undefined[] {
     return Array.from(getDefaultSlotContent(this.hostElement))
-      .filter(n => n.nodeName === 'ZEN-OPTION' && !n.getAttribute('disabled'))
+      .filter(
+        n => n.nodeName === applyPrefix('zen-option', this.hostElement).toUpperCase() && !n.getAttribute('disabled'),
+      )
       .map(n => n as HTMLZenOptionElement);
   }
 
@@ -256,6 +258,8 @@ export class ZenDropdown {
   }
 
   render(): HTMLElement {
+    const ZenIcon = applyPrefix('zen-icon', this.hostElement);
+    const ZenAnimate = applyPrefix('zen-animate', this.hostElement);
     return (
       <Host tabindex={this.disabled ? null : 0} ref={el => (this.div = el)}>
         <div
@@ -278,7 +282,7 @@ export class ZenDropdown {
             </slot>
           </div>
           <div class="arrow">
-            <zen-icon icon={faChevronDown}></zen-icon>
+            <ZenIcon icon={faChevronDown}></ZenIcon>
           </div>
         </div>
         <div
@@ -286,11 +290,11 @@ export class ZenDropdown {
           style={{ width: this.menuWidth }}
           ref={el => (this.listWrap = el)}
         >
-          <zen-animate show={this.opened}>
+          <ZenAnimate show={this.opened}>
             <div class="list" ref={el => (this.list = el)}>
               <slot />
             </div>
-          </zen-animate>
+          </ZenAnimate>
         </div>
       </Host>
     );

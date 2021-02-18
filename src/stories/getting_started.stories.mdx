@@ -24,40 +24,26 @@ yarn add @reciprocity/zen-ui
 
 ## Putting components in action
 
-There are two options
-
-1. You can import all components at once
-1. You can import individual components
-
-#### 1. Import all components at once
+#### Registering all components
 
 ```js
-import { applyPolyfills, defineCustomElements } from '@reciprocity/zen-ui/loader';
+import { defineCustomElements } from '@reciprocity/zen-ui/loader';
 
-applyPolyfills().then(() => {
-  defineCustomElements();
-});
+defineCustomElements(window, { transformTagName: tagName => `YOUR_APP_ID-${tagName}` });
 ```
 
-#### 2. Import components one at a time
-
-```js
-import { ZenButton, ZenSpinner } from '@reciprocity/zen-ui/dist/custom-elements';
-
-customElements.define('zen-button', ZenButton);
-customElements.define('zen-spinner', ZenSpinner);
-```
+**Notice the YOUR_APP_ID should be a single word without hyphens.**
 
 ### Using components
 
-After importing components, just use them as any regular html element:
+After importing components, just use them as any regular html element with the added prefix (let's take **comply** as example):
 
 ```html
-<zen-dropdown>
-  <zen-option value="orange">Orange</zen-option>
-  <zen-option value="lemon">Lemon</zen-option>
-  <zen-option value="apple">Apple</zen-option>
-</zen-dropdown>
+<comply-zen-dropdown>
+  <comply-zen-option value="orange">Orange</comply-zen-option>
+  <comply-zen-option value="lemon">Lemon</comply-zen-option>
+  <comply-zen-option value="apple">Apple</comply-zen-option>
+</comply-zen-dropdown>
 ```
 
 ## General notes
@@ -65,12 +51,6 @@ After importing components, just use them as any regular html element:
 Notes here apply to all components from Zen UI library.
 Read this before consuming these components.
 
-### Events
+### Unique prefixes
 
-By default, all Zen-UI components emit **prefixed custom events** instead of native ones.<br/>
-So if you want to listen to changes/focus/... hook on to:
-
-`zenChange`
-`zenInput`
-`zenFocus`
-`zenBlur`
+When registering ZenUI components in you application make sure that you're using a non-existent prefix to avoid any unexpected behavior by name collision.

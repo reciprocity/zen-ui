@@ -25,12 +25,12 @@ const DEFAULTS_SOURCES = (): SourceCodes => ({
         console.log('Button clicked', event);
       }
     </script>
-    <zen-button
+    <sb-zen-button
       label="Click"
       onClick="buttonClicked(event)"
     />`,
   vue: /*js*/ `{
-    template: \`<zen-button
+    template: \`<sb-zen-button
       :label="buttonTitle"
       :variant="buttonVariant"
       @click="onClick($event)"
@@ -216,7 +216,7 @@ export class HtmlPlayground {
     return (
       <Host class="html-playground">
         <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12" onLoad={() => this.vueLoaded()}></script>
-        <zen-tabs
+        <sb-zen-tabs
           id="framework-tabs"
           onChange={() => {
             this.onTabClicked();

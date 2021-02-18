@@ -1,4 +1,5 @@
 import { Component, Host, h, Prop, Element, State, Watch, Listen } from '@stencil/core';
+import { applyPrefix } from '../helpers/helpers';
 import { ButtonVariants } from './types';
 
 /**
@@ -50,10 +51,15 @@ export class ZenButton {
   }
 
   render(): HTMLElement {
+    const ZenSpinner = applyPrefix('zen-spinner', this.hostElement);
+    const spinnerStyle = {
+      position: 'absolute',
+      inset: 0,
+    };
     return (
       <Host class={{ btn: true, [`btn-${this.variant}`]: true, disabled: this.disabled }} tabindex={this.tabindex}>
         <slot name="leadingIcon" />
-        {this.loading ? <zen-spinner></zen-spinner> : null}
+        {this.loading ? <ZenSpinner style={spinnerStyle}></ZenSpinner> : null}
         <span class={{ ml: this.leadingIconSlotFulfilled, mr: this.trailingIconSlotFulfilled }}>
           <slot>Button</slot>
         </span>

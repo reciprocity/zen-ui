@@ -27,4 +27,7 @@ export const config: Config = {
     },
     transformIgnorePatterns: ['node_modules/(?!query-selector-shadow-dom/)'],
   },
+  extras: {
+    tagNameTransform: true,
+  },
 };

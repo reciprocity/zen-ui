@@ -1,4 +1,5 @@
-import { Component, Host, h, Prop } from '@stencil/core';
+import { Component, Host, h, Prop, Element } from '@stencil/core';
+import { applyPrefix } from '../helpers/helpers';
 import { AvatarData } from '../helpers/types';
 
 @Component({
@@ -7,6 +8,8 @@ import { AvatarData } from '../helpers/types';
   shadow: true,
 })
 export class ZenAvatar {
+  @Element() hostElement: HTMLZenAvatarElement;
+
   /** Users  */
   @Prop() readonly users: AvatarData[] = [];
 
@@ -34,32 +37,36 @@ export class ZenAvatar {
   }
 
   render(): HTMLElement {
+    const ZenAvatarIcon = applyPrefix('zen-avatar-icon', this.hostElement);
+    const ZenTooltip = applyPrefix('zen-tooltip', this.hostElement);
+    const ZenSpace = applyPrefix('zen-space', this.hostElement);
+    const ZenText = applyPrefix('zen-text', this.hostElement);
     return (
       <Host>
-        <zen-avatar-icon
+        <ZenAvatarIcon
           class="avatar-icon"
           user-name={this.getUserName()}
           email={this.getEmail()}
           background={this.getBackground()}
           color={this.getColor()}
         />
-        <zen-tooltip variant="light" show-delay="0" max-height={this.users.length > 4 ? '250px' : null}>
+        <ZenTooltip variant="light" show-delay="0" max-height={this.users.length > 4 ? '250px' : null}>
           {this.users.map((user, index) => (
             <div slot="content">
-              <zen-space no-wrap padding="lg" vertical-align="start" spacing="lg">
-                <zen-avatar-icon
+              <ZenSpace no-wrap padding="lg" vertical-align="start" spacing="lg">
+                <ZenAvatarIcon
                   class="avatar"
                   user-name={user.userName}
                   color={user.color}
                   background={user.background}
                 />
-                <zen-space vertical padding="xs" spacing="sm">
-                  <zen-text size="md" bold>
+                <ZenSpace vertical padding="xs" spacing="sm">
+                  <ZenText size="md" bold>
                     {user.userName}
-                  </zen-text>
-                  <zen-text size="sm">{user.email}</zen-text>
-                </zen-space>
-              </zen-space>
+                  </ZenText>
+                  <ZenText size="sm">{user.email}</ZenText>
+                </ZenSpace>
+              </ZenSpace>
               <div
                 class={{
                   splitter: true,
@@ -68,7 +75,7 @@ export class ZenAvatar {
               ></div>
             </div>
           ))}
-        </zen-tooltip>
+        </ZenTooltip>
       </Host>
     );
   }

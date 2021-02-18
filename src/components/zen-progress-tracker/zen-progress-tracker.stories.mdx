@@ -15,7 +15,7 @@ export const StoryWithControls = args => {
     element.steps = args.steps;
   });
   return html/*html*/ `
-    <zen-progress-tracker id="tracker" ...="${spreadArgs(args, argTypes)}" />
+    <sb-zen-progress-tracker id="tracker" ...="${spreadArgs(args, argTypes)}" />
     ${action('#tracker', ['blur', 'focus', 'click', 'change'])}
   `;
 };

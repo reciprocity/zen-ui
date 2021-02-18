@@ -14,19 +14,6 @@
 | `sourceCodes`       | --                   | What framework is initally selected                        | `SourceCodes` | `DEFAULTS_SOURCES()`       |
 
 
-## Dependencies
-
-### Depends on
-
-- [zen-tabs](../../../components/zen-tabs)
-
-### Graph
-```mermaid
-graph TD;
-  html-playground --> zen-tabs
-  style html-playground fill:#f9f,stroke:#333,stroke-width:4px
-```
-
 ----------------------------------------------
 
 

@@ -10,14 +10,14 @@ const argTypes = getArgTypes(compData);
 <Meta title="Layout/Divider" component="zen-divider" argTypes={argTypes} />
 
 export const StoryWithControls = args => {
-  return html/*html*/ ` <zen-divider ...="${spreadArgs(args, argTypes)}"></zen-divider> `;
+  return html/*html*/ ` <sb-zen-divider ...="${spreadArgs(args, argTypes)}"></sb-zen-divider> `;
 };
 
 export const StoryText = () => {
   return html/*html*/ `
     <div>
       Content A
-      <zen-divider></zen-divider>
+      <sb-zen-divider></sb-zen-divider>
       Content B
     </div>
   `;
@@ -27,7 +27,7 @@ export const StoryDivs = () => {
   return html/*html*/ `
     <div>
       <div style="width: 50%; height: 2rem; background: tomato;"></div>
-      <zen-divider></zen-divider>
+      <sb-zen-divider></sb-zen-divider>
       <div style="width: 50%; height: 2rem; background: lightblue;"></div>
     </div>
   `;

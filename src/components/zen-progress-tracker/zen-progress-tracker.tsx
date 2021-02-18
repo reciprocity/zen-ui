@@ -2,6 +2,7 @@ import { Component, Host, h, Prop, State, Watch, Element } from '@stencil/core';
 import { faCheck } from '@fortawesome/pro-light-svg-icons';
 import { StepsFilter } from './types';
 import cloneDeep from 'lodash/cloneDeep';
+import { applyPrefix } from '../helpers/helpers';
 
 export interface StepItem {
   label: string;
@@ -72,6 +73,7 @@ export class ZenProgressTracker {
   }
 
   render(): HTMLElement {
+    const ZenIcon = applyPrefix('zen-icon', this.hostElement);
     return (
       <Host class="zen-steps">
         <div class="progressbar">
@@ -87,7 +89,7 @@ export class ZenProgressTracker {
             >
               <div class="roundle">
                 {this.getItemState(index) === 'active' && <div>{index + 1}</div>}
-                {this.getItemState(index) === 'completed' && <zen-icon icon={faCheck}></zen-icon>}
+                {this.getItemState(index) === 'completed' && <ZenIcon icon={faCheck}></ZenIcon>}
               </div>
               <div class="label">{step.label}</div>
             </li>

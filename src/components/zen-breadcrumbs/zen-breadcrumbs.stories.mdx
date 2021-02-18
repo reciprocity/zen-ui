@@ -11,33 +11,33 @@ const argTypes = getArgTypes(compData);
 
 export const StoryLinks = args => {
   return html/*html*/ `
-    <zen-breadcrumbs>
+    <sb-zen-breadcrumbs>
       <a href="https://www.google.com">Any</a>
       <a href="https://www.bing.com">Place</a>
       <a href="https://www.yahoo.com">You</a>
       <a href="https://www.duckduckgo.com">Want</a>
-    </zen-breadcrumbs>
+    </sb-zen-breadcrumbs>
   `;
 };
 
 export const StoryLinksAndText = args => {
   return html/*html*/ `
-    <zen-breadcrumbs>
+    <sb-zen-breadcrumbs>
       <a href="./">ZenUI</a>
       <div>Navigation</div>
       <a href="?path=/docs/navigation-breadcrumbs">Breadcrumbs</a>
-    </zen-breadcrumbs>
+    </sb-zen-breadcrumbs>
   `;
 };
 
 export const StoryWithControls = args => {
   return html/*html*/ `
-    <zen-breadcrumbs ...="${spreadArgs(args, argTypes)}">
+    <sb-zen-breadcrumbs ...="${spreadArgs(args, argTypes)}">
       <a href="https://www.google.com">Any</a>
       <a href="https://www.bing.com">Place</a>
       <a href="https://www.yahoo.com">You</a>
       <a href="https://www.duckduckgo.com">Want</a>
-    </zen-breadcrumbs>
+    </sb-zen-breadcrumbs>
   `;
 };
 

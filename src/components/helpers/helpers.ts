@@ -69,3 +69,9 @@ export function toggleAttribute(element: Element, attribute: string, value: stri
     element.removeAttribute(attribute);
   }
 }
+
+export function applyPrefix(componentName: string, parentElement: Element): string {
+  const parentPrefix = parentElement.tagName.split('-')[0].toLowerCase();
+  const sanitizedPrefix = parentPrefix !== 'zen' ? `${parentPrefix}-` : '';
+  return `${sanitizedPrefix}${componentName}`;
+}

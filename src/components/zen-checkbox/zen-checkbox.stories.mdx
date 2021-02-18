@@ -11,18 +11,18 @@ const argTypes = getArgTypes(compData);
 
 export const StoryFormGroup = args =>
   html/*html*/ `
-    <zen-form-group>
-      <zen-space vertical spacing="md">
-        <zen-text size="lg" bold>Pizza toppings</zen-text>
-        <zen-checkbox label="Pepperoni"></zen-checkbox>
-        <zen-checkbox label="Black olives"></zen-checkbox>
-        <zen-checkbox label="Veggies"></zen-checkbox>
-      </zen-space>
-    </zen-form-group>
+    <sb-zen-form-group>
+      <sb-zen-space vertical spacing="md">
+        <sb-zen-text size="lg" bold>Pizza toppings</sb-zen-text>
+        <sb-zen-checkbox label="Pepperoni"></sb-zen-checkbox>
+        <sb-zen-checkbox label="Black olives"></sb-zen-checkbox>
+        <sb-zen-checkbox label="Veggies"></sb-zen-checkbox>
+      </sb-zen-space>
+    </sb-zen-form-group>
   `;
 
 export const StoryWithControls = args => html/*html*/ `
-  <zen-checkbox id="story-with-ctrls-element" ...="${spreadArgs(args, argTypes)}"></zen-checkbox>
+  <sb-zen-checkbox id="story-with-ctrls-element" ...="${spreadArgs(args, argTypes)}"></sb-zen-checkbox>
   ${action('#story-with-ctrls-element', ['change', 'click'])}
 `;
 
