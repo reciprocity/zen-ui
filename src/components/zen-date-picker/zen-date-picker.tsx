@@ -1,4 +1,6 @@
-import { Component, Host, h, Prop } from '@stencil/core';
+import { Component, Host, h, Prop, Watch, State } from '@stencil/core';
+import { getDayNumbers, today, getMonthName } from './date-helpers';
+import getYear from 'date-fns/getYear';
 import {
   faCalendarAlt,
   faChevronDoubleLeft,
@@ -16,17 +18,25 @@ export class ZenDatePicker {
   daysShort = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
   dayNums = [];
 
+  @State() calendarMonthName = '';
+  @State() calendarYear = 1970;
+  @State() calendarMonth = today();
+
   /** Selected date */
   @Prop() readonly formattedDate = '';
 
   /** Placeholder */
   @Prop() readonly placeholder = 'Select date';
 
+  @Watch('calendarMonth')
+  async monthViewedInCalendarChanged(calendarMonth: Date): Promise<void> {
+    this.dayNums = getDayNumbers(calendarMonth);
+    this.calendarMonthName = getMonthName(calendarMonth);
+    this.calendarYear = getYear(calendarMonth);
+  }
+
   connectedCallback(): void {
-    this.dayNums = [0, 0, 0, 0, 0];
-    for (let i = 1; i <= 31; i++) {
-      this.dayNums.push(i);
-    }
+    this.monthViewedInCalendarChanged(this.calendarMonth);
   }
 
   render(): HTMLElement {
@@ -48,8 +58,8 @@ export class ZenDatePicker {
           >
             <zen-icon icon={faChevronDoubleLeft} size="sm"></zen-icon>
             <zen-icon icon={faChevronLeft} size="sm" class="fill"></zen-icon>
-            <zen-text class="date" uppercase bold>
-              December 2021
+            <zen-text align="center" class="date" uppercase bold>
+              {this.calendarMonthName} {this.calendarYear}
             </zen-text>
             <zen-icon icon={faChevronRight} size="sm" class="fill"></zen-icon>
             <zen-icon icon={faChevronDoubleRight} size="sm"></zen-icon>
