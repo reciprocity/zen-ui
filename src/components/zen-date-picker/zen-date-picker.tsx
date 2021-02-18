@@ -5,6 +5,8 @@ import addMonths from 'date-fns/addMonths';
 import addYears from 'date-fns/addYears';
 import subMonths from 'date-fns/subMonths';
 import subYears from 'date-fns/subYears';
+import format from 'date-fns/format';
+import setDate from 'date-fns/setDate';
 import {
   faCalendarAlt,
   faChevronDoubleLeft,
@@ -34,10 +36,22 @@ export class ZenDatePicker {
   @State() calendarMonth = today();
 
   /** Selected date */
-  @Prop() readonly formattedDate = '';
+  @Prop({ mutable: true }) formattedDate = '';
 
   /** Placeholder */
   @Prop() readonly placeholder = 'Select date';
+
+  /** Date format */
+  @Prop() readonly format = 'MM/dd/yyyy';
+
+  /** Selected date */
+  @Prop({ mutable: true }) value: Date = today();
+
+  @Watch('value')
+  async dateChanged(value: Date): Promise<void> {
+    this.formattedDate = format(value, this.format);
+    this.calendarMonth = value;
+  }
 
   @Watch('calendarMonth')
   async monthViewedInCalendarChanged(calendarMonth: Date): Promise<void> {
@@ -47,7 +61,7 @@ export class ZenDatePicker {
   }
 
   connectedCallback(): void {
-    this.monthViewedInCalendarChanged(this.calendarMonth);
+    this.dateChanged(this.value);
   }
 
   navigate(type: Navigate): void {
@@ -67,14 +81,26 @@ export class ZenDatePicker {
     }
   }
 
+  selectDay(day: number): void {
+    if (!day) return;
+    this.value = setDate(this.calendarMonth, day);
+  }
+
+  isSelected(day: number): boolean {
+    if (!day) return false;
+
+    const itemDate = setDate(this.calendarMonth, day);
+    const itemDateFormatted = format(itemDate, this.format);
+    return itemDateFormatted === this.formattedDate;
+  }
+
   render(): HTMLElement {
     return (
       <Host>
-        <zen-input placeholder={this.placeholder}>
+        <zen-input placeholder={this.placeholder} value={this.formattedDate}>
           <zen-space padding="md none md md" slot="leadingSlot">
             <zen-icon icon={faCalendarAlt}></zen-icon>
           </zen-space>
-          {this.formattedDate}
         </zen-input>
         <div class="calendar">
           <zen-space
@@ -111,7 +137,17 @@ export class ZenDatePicker {
           </div>
           <zen-space padding="xs lg lg" spacing="none">
             {this.dayNums.map(num => (
-              <zen-text class={{ 'day-num': true, empty: !num }} align="center">
+              <zen-text
+                class={{
+                  'day-num': true,
+                  empty: !num,
+                  selected: this.isSelected(num),
+                }}
+                align="center"
+                onClick={() => {
+                  this.selectDay(num);
+                }}
+              >
                 {num || ''}
               </zen-text>
             ))}
