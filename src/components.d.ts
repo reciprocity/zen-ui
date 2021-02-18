@@ -164,13 +164,21 @@ export namespace Components {
     }
     interface ZenDatePicker {
         /**
+          * Date format
+         */
+        "format": "MM/dd/yyyy";
+        /**
           * Selected date
          */
-        "formattedDate": "";
+        "formattedDate": string;
         /**
           * Placeholder
          */
         "placeholder": "Select date";
+        /**
+          * Selected date
+         */
+        "value": Date;
     }
     interface ZenDivider {
     }
@@ -987,13 +995,21 @@ declare namespace LocalJSX {
     }
     interface ZenDatePicker {
         /**
+          * Date format
+         */
+        "format"?: "MM/dd/yyyy";
+        /**
           * Selected date
          */
-        "formattedDate"?: "";
+        "formattedDate"?: string;
         /**
           * Placeholder
          */
         "placeholder"?: "Select date";
+        /**
+          * Selected date
+         */
+        "value"?: Date;
     }
     interface ZenDivider {
     }

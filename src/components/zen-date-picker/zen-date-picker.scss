@@ -41,14 +41,26 @@ zen-icon {
 
   .day-num {
     width: calc(100% / 7);
+    @include noselect;
     box-sizing: border-box;
     height: 2.75rem;
-    cursor: pointer;
     border-radius: 2px;
-    transition: background-color $transition-color-fast;
 
-    &:not(.empty):hover {
-      background-color: $color-gray-100;
+    &:not(.empty) {
+      cursor: pointer;
+
+      &:not(.selected):hover {
+        background-color: $color-gray-100;
+      }
+    }
+
+    &.selected {
+      background-color: $color-blue-700;
+      color: $color-white;
+
+      &:hover {
+        background-color: $color-blue-800;
+      }
     }
   }
 }
