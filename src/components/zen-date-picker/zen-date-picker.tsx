@@ -7,6 +7,8 @@ import subMonths from 'date-fns/subMonths';
 import subYears from 'date-fns/subYears';
 import format from 'date-fns/format';
 import setDate from 'date-fns/setDate';
+import isValid from 'date-fns/isValid';
+import parse from 'date-fns/parse';
 import {
   faCalendarAlt,
   faChevronDoubleLeft,
@@ -34,6 +36,8 @@ export class ZenDatePicker {
   daysShort = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
   dayNums = [];
 
+  @Element() host: HTMLZenDatePickerElement;
+
   @State() calendarMonthName = '';
   @State() calendarYear = 1970;
   @State() calendarMonth = today();
@@ -53,6 +57,10 @@ export class ZenDatePicker {
   @Watch('value')
   async dateChanged(value: Date): Promise<void> {
     this.formattedDate = format(value, this.format);
+    const input = this.host.shadowRoot.querySelector('#date-input') as HTMLZenInputElement;
+    if (input) {
+      input.value = this.formattedDate;
+    }
     this.calendarMonth = value;
   }
 
@@ -97,6 +105,18 @@ export class ZenDatePicker {
     return itemDateFormatted === this.formattedDate;
   }
 
+  onInputChange(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    const date = parse(input.value, this.format, today());
+
+    if (isValid(date)) {
+      this.value = date;
+    } else {
+      // revert to old date:
+      this.dateChanged(this.value);
+    }
+  }
+
   render(): HTMLElement {
     const ZenInput = applyPrefix('zen-input', this.hostElement);
     const ZenText = applyPrefix('zen-text', this.hostElement);
@@ -104,7 +124,12 @@ export class ZenDatePicker {
     const ZenIcon = applyPrefix('zen-icon', this.hostElement);
     return (
       <Host>
-        <ZenInput placeholder={this.placeholder} value={this.formattedDate}>
+        <ZenInput
+          id="date-input"
+          placeholder={this.placeholder}
+          value={this.formattedDate}
+          onChange={e => this.onInputChange(e)}
+        >
           <ZenSpace padding="md none md md" slot="leadingSlot">
             <ZenIcon icon={faCalendarAlt}></ZenIcon>
           </ZenSpace>
