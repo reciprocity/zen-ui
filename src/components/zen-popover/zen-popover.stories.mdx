@@ -27,13 +27,13 @@ export const StoryPositionVariants = args => {
   return html/*html*/ `
     <zen-space no-wrap spacing="xl" horizontal-align="space-around">
       <zen-space vertical-align="start" style="height: 200px; width:100%; position: relative;">
-        <zen-popover placement="bottom-start" always-visible>
+        <zen-popover position="bottom-start" always-visible>
           <zen-button variant="primary" slot="target"> Position bottom start </zen-button>
           <zen-card style="background: white; padding: 1rem; width:120px;">
             <zen-text size="sm">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</zen-text>
           </zen-card>
         </zen-popover>
-        <zen-popover placement="bottom-end" always-visible style="position:absolute; right:0;">
+        <zen-popover position="bottom-end" always-visible style="position:absolute; right:0;">
           <zen-button variant="primary" slot="target"> Position bottom end </zen-button>
           <zen-card style="background: white; padding: 1rem; width: 120px;">
             <zen-text size="sm">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</zen-text>
@@ -41,13 +41,13 @@ export const StoryPositionVariants = args => {
         </zen-popover>
       </zen-space>
       <zen-space vertical-align="end" style="height: 200px; width:100%; position: relative;">
-        <zen-popover placement="top-start" always-visible>
+        <zen-popover position="top-start" always-visible>
           <zen-button variant="primary" slot="target"> Position top start </zen-button>
           <zen-card style="background: white; padding: 1rem; width:120px;">
             <zen-text size="sm">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</zen-text>
           </zen-card>
         </zen-popover>
-        <zen-popover placement="top-end" always-visible style="position:absolute; right:0;">
+        <zen-popover position="top-end" always-visible style="position:absolute; right:0;">
           <zen-button variant="primary" slot="target"> Position top ends </zen-button>
           <zen-card style="background: white; padding: 1rem; width:120px; text-align: center;">
             <zen-text size="sm">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</zen-text>
@@ -61,13 +61,13 @@ export const StoryPositionVariants = args => {
 export const StoryTriggerEvents = args => {
   return html/*html*/ `
     <zen-space no-wrap horizontal-align="space-evenly" vertical-align="start" style="height: 150px">
-      <zen-popover placement="bottom-start">
+      <zen-popover position="bottom-start">
         <zen-button slot="target" variant="primary"> Click Event </zen-button>
         <zen-card style="background: white; padding: 1rem; width:200px; max-height:150px;">
           <zen-text size="sm">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</zen-text>
         </zen-card>
       </zen-popover>
-      <zen-popover placement="bottom-start" trigger-event="hover">
+      <zen-popover position="bottom-start" trigger-event="hover">
         <zen-button slot="target" variant="primary"> Hover Event </zen-button>
         <zen-card style="background: white; padding: 1rem; width:200px; max-height:150px;">
           <zen-text size="sm">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</zen-text>
@@ -82,7 +82,7 @@ export const StoryScrollable = args => {
     <div style="height:200px">
       <zen-space no-wrap padding="none" horizontal-align="center" vertical-align="center" style="height: 500px;">
         <zen-button variant="primary"> Top Start </zen-button>
-        <zen-popover placement="bottom-end" always-visible>
+        <zen-popover position="bottom-end" always-visible>
           <zen-card style="background: white; padding: 1rem; width:200px; ">
             <zen-text size="sm"
               >Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy
@@ -123,7 +123,7 @@ export const StoryFilters = args => {
   });
   return html/*html*/ `
     <zen-space no-wrap spacing="lg" horizontal-align="start" vertical-align="top" style="height: 400px">
-      <zen-popover placement="bottom-start">
+      <zen-popover position="bottom-start">
         <zen-button variant="primary" slot="target">
           <zen-icon slot="leadingIcon" id="filter" style="height:14px; align-self:center;"></zen-icon>
           Filter
@@ -209,33 +209,33 @@ Popover component
 
 <br />
 
-### 1. Story position variants
+### 1. Position variants
 
-Show popover position examples. ()
+Use attribute placement to set default side of trigger element on which popover will be showed.
 
 <Canvas>
   <Story name="StoryPositionVariants">{StoryPositionVariants.bind({})}</Story>
 </Canvas>
 
-### 3. Story different trigger events
+### 2. Different trigger events
 
-Show popover on different trigger events (click, right click, hover).
+Use trigger event to set what should trigger popover to show. (click, hover).
 
 <Canvas>
   <Story name="StoryTriggerEvents">{StoryTriggerEvents.bind({})}</Story>
 </Canvas>
 
-### 4. Story changes in popover placement
+### 3. Changes in popover position
 
-Alternate popover placement top-bottom based on scrolling.
+Popover should automatically adjust position if it has no space.
 
 <Canvas>
   <Story name="StoryScrollable">{StoryScrollable.bind({})}</Story>
 </Canvas>
 
-### 5. Story with complex component
+### 4. Popover with complex component
 
-Show popover with complex slot content.
+You can add complex build components to the default slot.
 
 <Canvas>
   <Story name="StoryFilters">{StoryFilters.bind({})}</Story>
@@ -248,7 +248,7 @@ Show popover with complex slot content.
     name="default"
     args={{
       ...getDefaultArgs(argTypes),
-      placement: 'bottom-start',
+      position: 'bottom-start',
       offset: { x: 0, y: 8 },
     }}
   >

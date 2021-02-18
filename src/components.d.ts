@@ -318,7 +318,7 @@ export namespace Components {
     }
     interface ZenPopover {
         /**
-          * Dont hide tooltip
+          * Don't hide tooltip
          */
         "alwaysVisible": boolean;
         /**
@@ -328,9 +328,9 @@ export namespace Components {
         /**
           * Placement
          */
-        "placement": Placement;
+        "position": Placement;
         /**
-          * Trigger event
+          * Triggering event
          */
         "triggerEvent": TriggerEvent;
     }
@@ -1145,7 +1145,7 @@ declare namespace LocalJSX {
     }
     interface ZenPopover {
         /**
-          * Dont hide tooltip
+          * Don't hide tooltip
          */
         "alwaysVisible"?: boolean;
         /**
@@ -1155,9 +1155,9 @@ declare namespace LocalJSX {
         /**
           * Placement
          */
-        "placement"?: Placement;
+        "position"?: Placement;
         /**
-          * Trigger event
+          * Triggering event
          */
         "triggerEvent"?: TriggerEvent;
     }

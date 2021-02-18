@@ -19,18 +19,18 @@ export class ZenPopover {
   @State() visible = false;
 
   /** Placement */
-  @Prop() readonly placement: Placement = 'bottom-end';
+  @Prop() readonly position: Placement = 'bottom-end';
 
-  /** Trigger event */
+  /** Triggering event */
   @Prop() readonly triggerEvent: TriggerEvent = 'click';
 
-  /** Dont hide tooltip */
+  /** Don't hide tooltip */
   @Prop({ reflect: true }) readonly alwaysVisible: boolean = false;
 
   /** Popover offset */
   @Prop() readonly offset: Offsets = { x: 0, y: 8 };
 
-  componentDidLoad() {
+  componentDidLoad(): void {
     this.targetSlotEl = getSlotElement(this.element, 'target');
 
     // If there is no target element use previous element
@@ -53,7 +53,7 @@ export class ZenPopover {
       return;
     }
 
-    this.defaultSlotEl = getDefaultSlotContent(this.element)[0] as HTMLElement;
+    this.defaultSlotEl = defaultSlot[0] as HTMLElement;
 
     if (this.alwaysVisible) {
       this.show();
@@ -63,7 +63,7 @@ export class ZenPopover {
     }
   }
 
-  addTriggerEvents() {
+  addTriggerEvents(): void {
     // Add events to the target element
     if (this.triggerEvent == 'click') {
       this.targetSlotEl.addEventListener('click', () => this.toggle());
@@ -116,9 +116,9 @@ export class ZenPopover {
     }
   }
 
-  createPopper() {
+  createPopper(): void {
     this.popperInstance = createPopper(this.targetSlotEl, this.defaultSlotEl, {
-      placement: this.placement,
+      placement: this.position,
       modifiers: [
         {
           name: 'offset',
@@ -130,7 +130,7 @@ export class ZenPopover {
     });
   }
 
-  destroyPopper() {
+  destroyPopper(): void {
     if (this.popperInstance) {
       this.popperInstance.destroy();
       this.popperInstance = null;
