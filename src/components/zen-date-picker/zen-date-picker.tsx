@@ -1,5 +1,5 @@
 import { Component, Host, h, Prop, Watch, State, Element } from '@stencil/core';
-import { getDayNumbers, today, getMonthName, parseDate } from './date-helpers';
+import { getDayNumbers, helpers, getMonthName, parseDate } from './date-helpers';
 import getYear from 'date-fns/getYear';
 import addMonths from 'date-fns/addMonths';
 import addYears from 'date-fns/addYears';
@@ -39,7 +39,7 @@ export class ZenDatePicker {
 
   @State() calendarMonthName = '';
   @State() calendarYear = 1970;
-  @State() calendarMonth = today();
+  @State() calendarMonth = helpers.today();
 
   /** Selected date */
   @Prop({ mutable: true }) formattedDate = '';
@@ -51,7 +51,7 @@ export class ZenDatePicker {
   @Prop() readonly format = 'MM/dd/yyyy';
 
   /** Selected date */
-  @Prop({ mutable: true }) value: Date = today();
+  @Prop({ mutable: true }) value: Date = helpers.today();
 
   @Watch('value')
   async dateChanged(value: Date): Promise<void> {

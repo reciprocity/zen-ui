@@ -23,9 +23,11 @@ const monthNames = [
   'December',
 ];
 
-export function today(): Date {
-  return new Date();
-}
+export const helpers = {
+  today(): Date {
+    return new Date();
+  },
+};
 
 export function getDayNumbers(date: Date): number[] {
   const result = [];
@@ -58,7 +60,7 @@ export function parseDate(str: string, format: string): Date {
 
   function fixMissingYear(str: string): string {
     // convert '1.1.' into '1.1.2021'
-    const currentYear = getYear(today());
+    const currentYear = getYear(helpers.today());
     const nums = str.match(/\b([0-9]+)\b/g);
     if (!nums || nums.length !== 2) return str;
     return str + ' ' + currentYear;
@@ -71,13 +73,13 @@ export function parseDate(str: string, format: string): Date {
     const separator = nonAlphaNumChars ? nonAlphaNumChars[0] : defaultSeparator;
     str = str.trim().replace(/([^0-9]+)/g, separator);
 
-    return parse(str, format, today());
+    return parse(str, format, helpers.today());
   }
 
   str = fixYearShorthand(str.trim());
   str = fixMissingYear(str);
 
-  let result = parse(str, format, today());
+  let result = parse(str, format, helpers.today());
 
   if (!isValid(result)) {
     result = prettifyAndParse(str, format);
