@@ -232,6 +232,10 @@ export namespace Components {
          */
         "icon": IconDefinition;
         /**
+          * Inner spacing of container
+         */
+        "padding": Size | None | string;
+        /**
           * Size of the icon.
          */
         "size": IconSizes;
@@ -1070,6 +1074,10 @@ declare namespace LocalJSX {
           * Icon data (js file) imported from Font Awesome SVG package.
          */
         "icon"?: IconDefinition;
+        /**
+          * Inner spacing of container
+         */
+        "padding"?: Size | None | string;
         /**
           * Size of the icon.
          */
