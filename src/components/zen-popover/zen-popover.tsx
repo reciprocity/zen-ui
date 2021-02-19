@@ -68,7 +68,7 @@ export class ZenPopover {
   addTriggerEvents(): void {
     // Add events to the target element
     if (this.triggerEvent == 'click') {
-      this.targetSlotEl.addEventListener('click', () => this.toggle());
+      this.targetSlotEl.addEventListener('click', () => (this.visible = !this.visible));
     }
 
     if (this.triggerEvent == 'hover') {
@@ -99,10 +99,6 @@ export class ZenPopover {
 
     // remove event listener for click outside
     if (this.clickHandler) document.removeEventListener('mousedown', this.clickHandler);
-  }
-
-  toggle(): void {
-    this.visible ? this.hide() : this.show();
   }
 
   async closeOnClickOutside(event: MouseEvent): Promise<void> {
