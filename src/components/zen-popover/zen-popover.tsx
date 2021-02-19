@@ -1,4 +1,4 @@
-import { Component, Host, h, Element, Prop, State } from '@stencil/core';
+import { Component, Host, h, Element, Prop, Watch } from '@stencil/core';
 import { createPopper, Placement, Offsets } from '@popperjs/core';
 import { getDefaultSlotContent, getSlotElement } from '../helpers/helpers';
 import { TriggerEvent } from '../helpers/types';
@@ -16,7 +16,8 @@ export class ZenPopover {
 
   @Element() element: HTMLZenPopoverElement;
 
-  @State() visible = false;
+  /** Show/hide popover */
+  @Prop({ mutable: true }) visible = false;
 
   /** Placement */
   @Prop() readonly position: Placement = 'bottom-end';
@@ -29,6 +30,11 @@ export class ZenPopover {
 
   /** Popover offset */
   @Prop() readonly offset: Offsets = { x: 0, y: 8 };
+
+  @Watch('visible')
+  async visibleChanged(visible: boolean): Promise<void> {
+    visible ? this.show() : this.hide();
+  }
 
   componentDidLoad(): void {
     this.targetSlotEl = getSlotElement(this.element, 'target');
@@ -55,12 +61,8 @@ export class ZenPopover {
 
     this.defaultSlotEl = defaultSlot[0] as HTMLElement;
 
-    if (this.alwaysVisible) {
-      this.show();
-    } else {
-      this.addTriggerEvents();
-      this.hide();
-    }
+    this.addTriggerEvents();
+    this.visibleChanged(this.visible);
   }
 
   addTriggerEvents(): void {
@@ -70,18 +72,15 @@ export class ZenPopover {
     }
 
     if (this.triggerEvent == 'hover') {
-      this.targetSlotEl.addEventListener('mousemove', () => this.show());
-      this.targetSlotEl.addEventListener('mouseover', () => this.show());
-      this.targetSlotEl.addEventListener('touchstart', () => this.show());
-      this.targetSlotEl.addEventListener('mouseout', () => this.hide());
-      this.targetSlotEl.addEventListener('touchcancel', () => this.hide());
+      this.targetSlotEl.addEventListener('mousemove', () => (this.visible = true));
+      this.targetSlotEl.addEventListener('mouseover', () => (this.visible = true));
+      this.targetSlotEl.addEventListener('touchstart', () => (this.visible = true));
+      this.targetSlotEl.addEventListener('mouseout', () => (this.visible = false));
+      this.targetSlotEl.addEventListener('touchcancel', () => (this.visible = false));
     }
   }
 
   show(): void {
-    // Dont do nothing if already visible
-    if (this.visible) return;
-
     // Create popper and set display
     this.createPopper();
     this.defaultSlotEl.style.display = 'block';
@@ -112,7 +111,7 @@ export class ZenPopover {
     if (this.targetSlotEl == clickTargetNode || this.alwaysVisible) {
       return; // Do nothing if clicked on target el or is always visible
     } else if (!this.defaultSlotEl.contains(clickTargetNode)) {
-      this.hide(); // Hide if clicked outside
+      this.visible = false; // Hide if clicked outside
     }
   }
 
