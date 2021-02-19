@@ -13,7 +13,10 @@ export class ZenPopover {
   private targetSlotEl: HTMLElement = null;
   private popup: HTMLElement = null;
   private clickHandler = undefined;
+  private showTimer = undefined;
   private hideTimer = undefined;
+  private showDelay = 0;
+  private hideDelay = 0;
 
   @Element() element: HTMLZenPopoverElement;
 
@@ -35,12 +38,21 @@ export class ZenPopover {
   /** User can click content within popover */
   @Prop({ reflect: true }) readonly interactive: boolean = false;
 
+  /** Show and hide delay. Only affects show on hover! Eg. '100' - both show & hide 100ms. '100 500' - show 100ms, hide 500ms. */
+  @Prop() readonly delay: string = '0';
+
   @Watch('visible')
   async visibleChanged(visible: boolean): Promise<void> {
-    if (this.visible) {
-      clearTimeout(this.hideTimer);
-    }
+    clearTimeout(this.hideTimer);
+    clearTimeout(this.showTimer);
     visible ? this.show() : this.hide();
+  }
+
+  @Watch('delay')
+  async delayPropChanged(delay: string): Promise<void> {
+    const values = delay.match(/([0-9]+)/g);
+    this.showDelay = values ? parseInt(values[0], 10) || 0 : 0;
+    this.hideDelay = values ? parseInt(values[1], 10) || this.showDelay : 0;
   }
 
   componentDidLoad(): void {
@@ -61,16 +73,25 @@ export class ZenPopover {
 
     this.addTriggerEvents();
     this.visibleChanged(this.visible);
+    this.delayPropChanged(this.delay);
   }
 
   addTriggerEvents(): void {
     const show = () => {
       clearTimeout(this.hideTimer);
-      this.visible = true;
+      clearTimeout(this.showTimer);
+      if (!this.showDelay) {
+        this.visible = true;
+      } else {
+        this.showTimer = setTimeout(() => {
+          this.visible = true;
+        }, this.showDelay);
+      }
     };
 
     const hide = () => {
       clearTimeout(this.hideTimer);
+      clearTimeout(this.showTimer);
       if (!this.interactive || this.triggerEvent !== 'hover') {
         this.visible = false;
         return;
@@ -79,9 +100,10 @@ export class ZenPopover {
       // If it's interactive, user should have a little time to move
       //  mouse over popover before it closes:
       const timeToMoveMouseOverPopover = 120;
+      const delay = Math.max(timeToMoveMouseOverPopover, this.hideDelay);
       this.hideTimer = setTimeout(() => {
         this.visible = false;
-      }, timeToMoveMouseOverPopover);
+      }, delay);
     };
 
     // Add events to the target element

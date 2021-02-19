@@ -42,4 +42,10 @@ describe('zen-popover', () => {
   // Prop `closeOnClickOut`
   it('should hide on click out', () => {});
   it('shouldn`t hide on click out if closeOnClickOut is false', () => {});
+
+  // Prop `delay`
+  it('should hide with delay if interactive and trigger is hover even if delay is 0', () => {});
+  it('should show with delay if delay is set', () => {});
+  it('should show and hide with different delays if delay shorthand is passed', () => {});
+  it('should always show and hide without delay on click', () => {});
 });
