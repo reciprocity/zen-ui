@@ -18,7 +18,7 @@ export class ZenPopover {
   private showDelay = 0;
   private hideDelay = 0;
 
-  @Element() element: HTMLZenPopoverElement;
+  @Element() host: HTMLZenPopoverElement;
 
   /** Show/hide popover */
   @Prop({ mutable: true }) visible = false;
@@ -152,11 +152,11 @@ export class ZenPopover {
   }
 
   componentDidLoad(): void {
-    this.targetSlotEl = getSlotElement(this.element, 'target');
+    this.targetSlotEl = getSlotElement(this.host, 'target');
 
     // If there is no target element use previous element
     if (!this.targetSlotEl) {
-      this.targetSlotEl = this.element.previousElementSibling as HTMLElement;
+      this.targetSlotEl = this.host.previousElementSibling as HTMLElement;
     }
 
     // Throw error if there is no target element specified
@@ -165,7 +165,7 @@ export class ZenPopover {
       return;
     }
 
-    this.popup = this.element.shadowRoot.querySelector('.panel');
+    this.popup = this.host.shadowRoot.querySelector('.panel');
 
     this.addTriggerEvents();
     this.visibleChanged(this.visible);
