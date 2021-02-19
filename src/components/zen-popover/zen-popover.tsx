@@ -1,6 +1,6 @@
 import { Component, Host, h, Element, Prop, Watch } from '@stencil/core';
 import { createPopper, Placement, Offsets } from '@popperjs/core';
-import { getSlotElement } from '../helpers/helpers';
+import { getSlotElement, getComposedPath, waitNextFrame } from '../helpers/helpers';
 import { TriggerEvent } from '../helpers/types';
 
 @Component({
@@ -59,11 +59,10 @@ export class ZenPopover {
   addTriggerEvents(): void {
     // Add events to the target element
     if (this.triggerEvent == 'click') {
-      this.targetSlotEl.addEventListener('click', () => (this.visible = !this.visible));
+      this.targetSlotEl.addEventListener('mousedown', () => (this.visible = !this.visible));
     }
 
     if (this.triggerEvent == 'hover') {
-      this.targetSlotEl.addEventListener('mousemove', () => (this.visible = true));
       this.targetSlotEl.addEventListener('mouseover', () => (this.visible = true));
       this.targetSlotEl.addEventListener('touchstart', () => (this.visible = true));
       this.targetSlotEl.addEventListener('mouseout', () => (this.visible = false));
@@ -79,7 +78,9 @@ export class ZenPopover {
 
     // Add event listener for click outside
     this.clickHandler = event => this.closeOnClickOutside(event);
-    document.addEventListener('mousedown', this.clickHandler);
+    setTimeout(() => {
+      document.addEventListener('mousedown', this.clickHandler);
+    }, 50);
   }
 
   hide(): void {
@@ -93,13 +94,11 @@ export class ZenPopover {
   }
 
   async closeOnClickOutside(event: MouseEvent): Promise<void> {
-    const clickTargetNode = event.target as Node;
-
-    if (this.targetSlotEl == clickTargetNode || !this.closeOnClickOut) {
-      return; // Do nothing if clicked on target el or is always visible
-    } else if (!this.popup.contains(clickTargetNode)) {
-      this.visible = false; // Hide if clicked outside
-    }
+    const path = getComposedPath(event);
+    const clickedInside = path.find(n => n === this.popup);
+    if (clickedInside) return;
+    await waitNextFrame(); // prevent race with click-open
+    this.visible = false;
   }
 
   createPopper(): void {
