@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, Watch, State } from '@stencil/core';
+import { Component, Host, h, Prop, Watch, State, Element } from '@stencil/core';
 import { getDayNumbers, today, getMonthName } from './date-helpers';
 import getYear from 'date-fns/getYear';
 import addMonths from 'date-fns/addMonths';
@@ -14,6 +14,7 @@ import {
   faChevronRight,
   faChevronDoubleRight,
 } from '@fortawesome/pro-regular-svg-icons';
+import { applyPrefix } from '../helpers/helpers';
 
 enum Navigate {
   prevMonth,
@@ -28,6 +29,8 @@ enum Navigate {
   shadow: true,
 })
 export class ZenDatePicker {
+  @Element() hostElement: HTMLZenDatePickerElement;
+
   daysShort = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
   dayNums = [];
 
@@ -95,49 +98,53 @@ export class ZenDatePicker {
   }
 
   render(): HTMLElement {
+    const ZenInput = applyPrefix('zen-input', this.hostElement);
+    const ZenText = applyPrefix('zen-text', this.hostElement);
+    const ZenSpace = applyPrefix('zen-space', this.hostElement);
+    const ZenIcon = applyPrefix('zen-icon', this.hostElement);
     return (
       <Host>
-        <zen-input placeholder={this.placeholder} value={this.formattedDate}>
-          <zen-space padding="md none md md" slot="leadingSlot">
-            <zen-icon icon={faCalendarAlt}></zen-icon>
-          </zen-space>
-        </zen-input>
+        <ZenInput placeholder={this.placeholder} value={this.formattedDate}>
+          <ZenSpace padding="md none md md" slot="leadingSlot">
+            <ZenIcon icon={faCalendarAlt}></ZenIcon>
+          </ZenSpace>
+        </ZenInput>
         <div class="calendar">
-          <zen-space
+          <ZenSpace
             class="navigation"
             padding="sm lg"
             slot="leadingSlot"
             horizontal-align="center"
             vertical-align="stretch"
           >
-            <zen-icon icon={faChevronDoubleLeft} size="sm" onClick={() => this.navigate(Navigate.prevYear)}></zen-icon>
-            <zen-icon
+            <ZenIcon icon={faChevronDoubleLeft} size="sm" onClick={() => this.navigate(Navigate.prevYear)}></ZenIcon>
+            <ZenIcon
               icon={faChevronLeft}
               size="sm"
               class="fill"
               onClick={() => this.navigate(Navigate.prevMonth)}
-            ></zen-icon>
-            <zen-text align="center" class="date" uppercase bold>
+            ></ZenIcon>
+            <ZenText align="center" class="date" uppercase bold>
               {this.calendarMonthName} {this.calendarYear}
-            </zen-text>
-            <zen-icon
+            </ZenText>
+            <ZenIcon
               icon={faChevronRight}
               size="sm"
               class="fill"
               onClick={() => this.navigate(Navigate.nextMonth)}
-            ></zen-icon>
-            <zen-icon icon={faChevronDoubleRight} size="sm" onClick={() => this.navigate(Navigate.nextYear)}></zen-icon>
-          </zen-space>
+            ></ZenIcon>
+            <ZenIcon icon={faChevronDoubleRight} size="sm" onClick={() => this.navigate(Navigate.nextYear)}></ZenIcon>
+          </ZenSpace>
           <div class="days">
-            <zen-space padding="lg" horizontal-align="space-around">
+            <ZenSpace padding="lg" horizontal-align="space-around">
               {this.daysShort.map(dayName => (
-                <zen-text class="day-name">{dayName}</zen-text>
+                <ZenText class="day-name">{dayName}</ZenText>
               ))}
-            </zen-space>
+            </ZenSpace>
           </div>
-          <zen-space padding="xs lg lg" spacing="none">
+          <ZenSpace padding="xs lg lg" spacing="none">
             {this.dayNums.map(num => (
-              <zen-text
+              <ZenText
                 class={{
                   'day-num': true,
                   empty: !num,
@@ -149,9 +156,9 @@ export class ZenDatePicker {
                 }}
               >
                 {num || ''}
-              </zen-text>
+              </ZenText>
             ))}
-          </zen-space>
+          </ZenSpace>
         </div>
       </Host>
     );

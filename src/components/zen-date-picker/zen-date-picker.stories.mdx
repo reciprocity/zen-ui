@@ -9,7 +9,9 @@ const argTypes = getArgTypes(compData);
 <Meta title="Forms/Date picker" component="zen-date-picker" argTypes={argTypes} />
 
 export const StoryWithControls = args => {
-  return html/*html*/ ` <zen-date-picker style="width: 192px" ...="${spreadArgs(args, argTypes)}"> </zen-date-picker> `;
+  return html/*html*/ `
+    <sb-zen-date-picker style="width: 192px" ...="${spreadArgs(args, argTypes)}"> </sb-zen-date-picker>
+  `;
 };
 
 # Date picker
