@@ -31,6 +31,9 @@ export class ZenPopover {
   /** Popover offset */
   @Prop() readonly offset: Offsets = { x: 0, y: 8 };
 
+  /** User can click content within popover */
+  @Prop({ reflect: true }) readonly interactive: boolean = false;
+
   @Watch('visible')
   async visibleChanged(visible: boolean): Promise<void> {
     visible ? this.show() : this.hide();
@@ -95,7 +98,7 @@ export class ZenPopover {
 
   async closeOnClickOutside(event: MouseEvent): Promise<void> {
     const path = getComposedPath(event);
-    const clickedInside = path.find(n => n === this.popup);
+    const clickedInside = this.interactive && path.find(n => n === this.popup);
     if (clickedInside) return;
     await waitNextFrame(); // prevent race with click-open
     this.visible = false;

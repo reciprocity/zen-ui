@@ -12,6 +12,10 @@
   display: none !important;
 }
 
+:host(:not([interactive])) .panel {
+  pointer-events: none;
+}
+
 .panel {
   display: block;
   background-color: $color-white;
