@@ -26,26 +26,54 @@ describe('zen-popover', () => {
   );
 
   // Interactive
-  it('should hide with delay if interactive and trigger is hover', () => {});
-  it('shouldn`t hide with delay if interactive and trigger is click', () => {});
-  it('should hide if click on non-interactive tooltip', () => {});
+  it('should hide with delay if interactive and trigger is hover', () => {
+    // todo
+  });
+  it('shouldn`t hide with delay if interactive and trigger is click', () => {
+    // todo
+  });
+  it('should hide if click on non-interactive tooltip', () => {
+    // todo
+  });
 
   // Hover trigger
-  it('should show on hover if trigger is hover', () => {});
-  it('shouldn`t show on hover if trigger isn`t hover', () => {});
-  it('should hide on click if trigger is hover', () => {});
+  it('should show on hover if trigger is hover', () => {
+    // todo
+  });
+  it('shouldn`t show on hover if trigger isn`t hover', () => {
+    // todo
+  });
+  it('should hide on click if trigger is hover', () => {
+    // todo
+  });
 
   // Click trigger
-  it('should show on click if trigger is click', () => {});
-  it('should hide on second click if trigger is click', () => {});
+  it('should show on click if trigger is click', () => {
+    // todo
+  });
+  it('should hide on second click if trigger is click', () => {
+    // todo
+  });
 
   // Prop `closeOnClickOut`
-  it('should hide on click out', () => {});
-  it('shouldn`t hide on click out if closeOnClickOut is false', () => {});
+  it('should hide on click out', () => {
+    // todo
+  });
+  it('shouldn`t hide on click out if closeOnClickOut is false', () => {
+    // todo
+  });
 
   // Prop `delay`
-  it('should hide with delay if interactive and trigger is hover even if delay is 0', () => {});
-  it('should show with delay if delay is set', () => {});
-  it('should show and hide with different delays if delay shorthand is passed', () => {});
-  it('should always show and hide without delay on click', () => {});
+  it('should hide with delay if interactive and trigger is hover even if delay is 0', () => {
+    // todo
+  });
+  it('should show with delay if delay is set', () => {
+    // todo
+  });
+  it('should show and hide with different delays if delay shorthand is passed', () => {
+    // todo
+  });
+  it('should always show and hide without delay on click', () => {
+    // todo
+  });
 });
