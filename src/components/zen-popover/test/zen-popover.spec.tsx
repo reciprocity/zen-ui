@@ -8,7 +8,7 @@ helpers.getSlotElement = jest.fn(() => options);
 helpers.getDefaultSlotContent = jest.fn(() => options);
 
 describe('zen-popover', () => {
-  xit.each(['top-right', 'top-left'])(
+  it.skip.each(['top-right', 'top-left'])(
     'should correctly apply position (position: %s)',
     async (position: string, done: DoneFn) => {
       const page = await newSpecPage({
@@ -24,4 +24,22 @@ describe('zen-popover', () => {
       }, 101);
     },
   );
+
+  // Interactive
+  it('should hide with delay if interactive and trigger is hover', () => {});
+  it('shouldn`t hide with delay if interactive and trigger is click', () => {});
+  it('should hide if click on non-interactive tooltip', () => {});
+
+  // Hover trigger
+  it('should show on hover if trigger is hover', () => {});
+  it('shouldn`t show on hover if trigger isn`t hover', () => {});
+  it('should hide on click if trigger is hover', () => {});
+
+  // Click trigger
+  it('should show on click if trigger is click', () => {});
+  it('should hide on second click if trigger is click', () => {});
+
+  // Prop `closeOnClickOut`
+  it('should hide on click out', () => {});
+  it('shouldn`t hide on click out if closeOnClickOut is false', () => {});
 });

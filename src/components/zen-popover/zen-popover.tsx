@@ -13,6 +13,7 @@ export class ZenPopover {
   private targetSlotEl: HTMLElement = null;
   private popup: HTMLElement = null;
   private clickHandler = undefined;
+  private hideTimer = undefined;
 
   @Element() element: HTMLZenPopoverElement;
 
@@ -36,6 +37,9 @@ export class ZenPopover {
 
   @Watch('visible')
   async visibleChanged(visible: boolean): Promise<void> {
+    if (this.visible) {
+      clearTimeout(this.hideTimer);
+    }
     visible ? this.show() : this.hide();
   }
 
@@ -60,16 +64,37 @@ export class ZenPopover {
   }
 
   addTriggerEvents(): void {
+    const show = () => {
+      clearTimeout(this.hideTimer);
+      this.visible = true;
+    };
+
+    const hide = () => {
+      clearTimeout(this.hideTimer);
+      if (!this.interactive || this.triggerEvent !== 'hover') {
+        this.visible = false;
+        return;
+      }
+
+      // If it's interactive, user should have a little time to move
+      //  mouse over popover before it closes:
+      const timeToMoveMouseOverPopover = 120;
+      this.hideTimer = setTimeout(() => {
+        this.visible = false;
+      }, timeToMoveMouseOverPopover);
+    };
+
     // Add events to the target element
     if (this.triggerEvent == 'click') {
       this.targetSlotEl.addEventListener('mousedown', () => (this.visible = !this.visible));
-    }
-
-    if (this.triggerEvent == 'hover') {
-      this.targetSlotEl.addEventListener('mouseover', () => (this.visible = true));
-      this.targetSlotEl.addEventListener('touchstart', () => (this.visible = true));
-      this.targetSlotEl.addEventListener('mouseout', () => (this.visible = false));
+    } else if (this.triggerEvent == 'hover') {
+      this.targetSlotEl.addEventListener('mouseover', () => show());
+      this.targetSlotEl.addEventListener('mouseout', () => hide());
+      this.targetSlotEl.addEventListener('touchstart', () => show());
       this.targetSlotEl.addEventListener('touchcancel', () => (this.visible = false));
+      // Stop hideTimer when mouse is over tooltip:
+      this.popup.addEventListener('mouseover', () => show());
+      this.popup.addEventListener('mouseout', () => hide());
     }
   }
 
