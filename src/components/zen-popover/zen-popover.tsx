@@ -1,6 +1,6 @@
 import { Component, Host, h, Element, Prop, Watch } from '@stencil/core';
 import { createPopper, Placement, Offsets } from '@popperjs/core';
-import { getDefaultSlotContent, getSlotElement } from '../helpers/helpers';
+import { getSlotElement } from '../helpers/helpers';
 import { TriggerEvent } from '../helpers/types';
 
 @Component({
@@ -11,7 +11,7 @@ import { TriggerEvent } from '../helpers/types';
 export class ZenPopover {
   private popperInstance = null;
   private targetSlotEl: HTMLElement = null;
-  private defaultSlotEl: HTMLElement = null;
+  private popup: HTMLElement = null;
   private clickHandler = undefined;
 
   @Element() element: HTMLZenPopoverElement;
@@ -50,16 +50,7 @@ export class ZenPopover {
       return;
     }
 
-    // Get slot default content
-    const defaultSlot = getDefaultSlotContent(this.element);
-
-    // Throw error if there is nothing in the default slot
-    if (!defaultSlot) {
-      console.error('No content added to default slot!');
-      return;
-    }
-
-    this.defaultSlotEl = defaultSlot[0] as HTMLElement;
+    this.popup = this.element.shadowRoot.querySelector('.panel');
 
     this.addTriggerEvents();
     this.visibleChanged(this.visible);
@@ -83,7 +74,7 @@ export class ZenPopover {
   show(): void {
     // Create popper and set display
     this.createPopper();
-    this.defaultSlotEl.style.display = 'block';
+    this.popup.style.display = 'block';
     this.visible = true;
 
     // Add event listener for click outside
@@ -94,7 +85,7 @@ export class ZenPopover {
   hide(): void {
     // Destroy popper and set display
     this.destroyPopper();
-    this.defaultSlotEl.style.display = 'none';
+    this.popup.style.display = 'none';
     this.visible = false;
 
     // remove event listener for click outside
@@ -106,13 +97,13 @@ export class ZenPopover {
 
     if (this.targetSlotEl == clickTargetNode || !this.closeOnClickOut) {
       return; // Do nothing if clicked on target el or is always visible
-    } else if (!this.defaultSlotEl.contains(clickTargetNode)) {
+    } else if (!this.popup.contains(clickTargetNode)) {
       this.visible = false; // Hide if clicked outside
     }
   }
 
   createPopper(): void {
-    this.popperInstance = createPopper(this.targetSlotEl, this.defaultSlotEl, {
+    this.popperInstance = createPopper(this.targetSlotEl, this.popup, {
       placement: this.position,
       modifiers: [
         {
@@ -136,7 +127,9 @@ export class ZenPopover {
     return (
       <Host>
         <slot name="target"></slot>
-        <slot />
+        <div class="panel">
+          <slot />
+        </div>
       </Host>
     );
   }
