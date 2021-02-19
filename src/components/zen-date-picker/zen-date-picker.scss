@@ -10,7 +10,7 @@ zen-input {
   display: inline-flex;
 }
 
-zen-icon {
+.icon {
   color: $color-gray-300;
 }
 
@@ -24,7 +24,7 @@ zen-icon {
     min-height: 3rem;
   }
 
-  zen-icon {
+  .icon {
     cursor: pointer;
     color: $color-gray-500;
   }
