@@ -3,7 +3,7 @@ import { createVisualTests } from '../../support/utils/visualTesting';
 
 describe('Icon visual tests', () => {
   const pageId = 'icons-icon--default';
-  const stories = ['story--icons-icon--default-story'];
+  const stories = ['story--icons-icon--default-story', 'story--icons-icon--paddings'];
 
   // Example how to skip testing for some user stories
   const skipedStories = [];

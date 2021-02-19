@@ -15,8 +15,6 @@ const argTypes = getArgTypes(compData);
 
 import { faUser } from '@fortawesome/pro-light-svg-icons';
 
-
-
 <Meta title="Icons/Icon" component="zen-icon" argTypes={argTypes} />
 
 export const StoryDefault = args => {
@@ -27,7 +25,7 @@ export const StoryDefault = args => {
 };
 
 export const StoryIconPadding = args => {
-  ['#zen-icon-xs', '#zen-icon-sm', '#zen-icon-md', "#zen-icon-lg", "#zen-icon-xl"].forEach(id => {
+  ['#zen-icon-xs', '#zen-icon-sm', '#zen-icon-md', '#zen-icon-lg', '#zen-icon-xl'].forEach(id => {
     waitForElement(id, element => {
       element.icon = faUser;
     });
