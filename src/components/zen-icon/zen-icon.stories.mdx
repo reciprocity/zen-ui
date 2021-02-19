@@ -5,13 +5,13 @@ const css = /*css*/ `
   .icon {
     width: min-content;
     background: lightgray;
+    text-align; center;
   }
 `;
 import { waitForElement } from '../../../.storybook/helpers/utils';
-
 import data from '../../../stencilDocs.json';
 const compData = data.components.find(n => n.tag === 'zen-icon');
-const argTypes = getArgTypes(compData);
+let argTypes = getArgTypes(compData);
 
 import { faUser } from '@fortawesome/pro-light-svg-icons';
 
@@ -20,8 +20,12 @@ import { faUser } from '@fortawesome/pro-light-svg-icons';
 export const StoryDefault = args => {
   waitForElement('#zen-icon-element', element => {
     element.icon = args.icon;
+    argTypes['size'].control = 'select';
+    argTypes['padding'].control = 'select';
   });
-  return html/*html*/ ` <sb-zen-icon id="zen-icon-element" ...="${spreadArgs(args, argTypes)}"></sb-zen-icon> `;
+  return html/*html*/ `
+    <sb-zen-icon class="icon" id="zen-icon-element" ...="${spreadArgs(args, argTypes)}"></sb-zen-icon>
+  `;
 };
 
 export const StoryIconPadding = args => {
