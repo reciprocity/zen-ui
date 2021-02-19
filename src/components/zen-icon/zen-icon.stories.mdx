@@ -1,6 +1,12 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
 import { html } from 'lit-html';
 import { getArgTypes, getDefaultArgs, getComponentData, spreadArgs } from '../../../.storybook/helpers/argTypes';
+const css = /*css*/ `
+  .icon {
+    width: min-content;
+    background: lightgray;
+  }
+`;
 import { waitForElement } from '../../../.storybook/helpers/utils';
 
 import data from '../../../stencilDocs.json';
@@ -8,6 +14,8 @@ const compData = data.components.find(n => n.tag === 'zen-icon');
 const argTypes = getArgTypes(compData);
 
 import { faUser } from '@fortawesome/pro-light-svg-icons';
+
+
 
 <Meta title="Icons/Icon" component="zen-icon" argTypes={argTypes} />
 
@@ -18,9 +26,41 @@ export const StoryDefault = args => {
   return html/*html*/ ` <sb-zen-icon id="zen-icon-element" ...="${spreadArgs(args, argTypes)}"></sb-zen-icon> `;
 };
 
+export const StoryIconPadding = args => {
+  ['#zen-icon-xs', '#zen-icon-sm', '#zen-icon-md', "#zen-icon-lg", "#zen-icon-xl"].forEach(id => {
+    waitForElement(id, element => {
+      element.icon = faUser;
+    });
+  });
+  return html/*html*/ `
+    <style>
+      ${css}
+    </style>
+    <sb-zen-space  horizontal-align="space-evenly">
+        <sb-zen-icon id="zen-icon-xs" padding="xs" class="icon"></sb-zen-icon>
+        <sb-zen-icon id="zen-icon-sm" padding="sm" class="icon""></sb-zen-icon>
+        <sb-zen-icon id="zen-icon-md" padding="md" class="icon""></sb-zen-icon>
+        <sb-zen-icon id="zen-icon-lg" padding="lg" class="icon""></sb-zen-icon>
+        <sb-zen-icon id="zen-icon-xl" padding="xl" class="icon""></sb-zen-icon>
+    </sb-zen-space>
+  `;
+};
+
 # Icon
 
 Icon component wrapper
+
+## Component previews
+
+<br />
+
+### 1. Icon paddings
+
+Apply padding to the icon.
+
+<Canvas>
+  <Story name="paddings">{StoryIconPadding.bind({})}</Story>
+</Canvas>
 
 <br />
 
