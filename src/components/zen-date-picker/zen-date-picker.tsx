@@ -34,12 +34,10 @@ enum Navigate {
   shadow: true,
 })
 export class ZenDatePicker {
-  @Element() hostElement: HTMLZenDatePickerElement;
+  @Element() host: HTMLZenDatePickerElement;
 
   daysShort = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
   dayNums = [];
-
-  @Element() host: HTMLZenDatePickerElement;
 
   @State() calendarMonthName = '';
   @State() calendarYear = 1970;
@@ -123,10 +121,10 @@ export class ZenDatePicker {
   }
 
   render(): HTMLElement {
-    const ZenInput = applyPrefix('zen-input', this.hostElement);
-    const ZenText = applyPrefix('zen-text', this.hostElement);
-    const ZenSpace = applyPrefix('zen-space', this.hostElement);
-    const ZenIcon = applyPrefix('zen-icon', this.hostElement);
+    const ZenInput = applyPrefix('zen-input', this.host);
+    const ZenText = applyPrefix('zen-text', this.host);
+    const ZenSpace = applyPrefix('zen-space', this.host);
+    const ZenIcon = applyPrefix('zen-icon', this.host);
     return (
       <Host>
         <ZenInput
