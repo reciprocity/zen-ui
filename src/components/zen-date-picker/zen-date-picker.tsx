@@ -1,5 +1,5 @@
 import { Component, Host, h, Prop, Watch, State, Element } from '@stencil/core';
-import { getDayNumbers, today, getMonthName } from './date-helpers';
+import { getDayNumbers, helpers, getMonthName, parseDate } from './date-helpers';
 import getYear from 'date-fns/getYear';
 import addMonths from 'date-fns/addMonths';
 import addYears from 'date-fns/addYears';
@@ -7,6 +7,7 @@ import subMonths from 'date-fns/subMonths';
 import subYears from 'date-fns/subYears';
 import format from 'date-fns/format';
 import setDate from 'date-fns/setDate';
+import isValid from 'date-fns/isValid';
 import {
   faCalendarAlt,
   faChevronDoubleLeft,
@@ -23,20 +24,24 @@ enum Navigate {
   nextYear,
 }
 
+/**
+ * @event change | Called on date change
+ */
+
 @Component({
   tag: 'zen-date-picker',
   styleUrl: 'zen-date-picker.scss',
   shadow: true,
 })
 export class ZenDatePicker {
-  @Element() hostElement: HTMLZenDatePickerElement;
+  @Element() host: HTMLZenDatePickerElement;
 
   daysShort = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
   dayNums = [];
 
   @State() calendarMonthName = '';
   @State() calendarYear = 1970;
-  @State() calendarMonth = today();
+  @State() calendarMonth = helpers.today();
 
   /** Selected date */
   @Prop({ mutable: true }) formattedDate = '';
@@ -48,11 +53,15 @@ export class ZenDatePicker {
   @Prop() readonly format = 'MM/dd/yyyy';
 
   /** Selected date */
-  @Prop({ mutable: true }) value: Date = today();
+  @Prop({ mutable: true }) value: Date = helpers.today();
 
   @Watch('value')
   async dateChanged(value: Date): Promise<void> {
     this.formattedDate = format(value, this.format);
+    const input = this.host.shadowRoot.querySelector('#date-input') as HTMLZenInputElement;
+    if (input) {
+      input.value = this.formattedDate;
+    }
     this.calendarMonth = value;
   }
 
@@ -87,6 +96,7 @@ export class ZenDatePicker {
   selectDay(day: number): void {
     if (!day) return;
     this.value = setDate(this.calendarMonth, day);
+    this.host.dispatchEvent(new window.Event('change'));
   }
 
   isSelected(day: number): boolean {
@@ -97,14 +107,32 @@ export class ZenDatePicker {
     return itemDateFormatted === this.formattedDate;
   }
 
+  onInputChange(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    const date = parseDate(input.value, this.format);
+
+    if (isValid(date)) {
+      this.value = date;
+      this.host.dispatchEvent(new window.Event('change'));
+    } else {
+      // revert to old date:
+      this.dateChanged(this.value);
+    }
+  }
+
   render(): HTMLElement {
-    const ZenInput = applyPrefix('zen-input', this.hostElement);
-    const ZenText = applyPrefix('zen-text', this.hostElement);
-    const ZenSpace = applyPrefix('zen-space', this.hostElement);
-    const ZenIcon = applyPrefix('zen-icon', this.hostElement);
+    const ZenInput = applyPrefix('zen-input', this.host);
+    const ZenText = applyPrefix('zen-text', this.host);
+    const ZenSpace = applyPrefix('zen-space', this.host);
+    const ZenIcon = applyPrefix('zen-icon', this.host);
     return (
       <Host>
-        <ZenInput placeholder={this.placeholder} value={this.formattedDate}>
+        <ZenInput
+          id="date-input"
+          placeholder={this.placeholder}
+          value={this.formattedDate}
+          onChange={e => this.onInputChange(e)}
+        >
           <ZenSpace padding="md none md md" slot="leadingSlot">
             <ZenIcon icon={faCalendarAlt}></ZenIcon>
           </ZenSpace>
