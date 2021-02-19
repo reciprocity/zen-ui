@@ -78,27 +78,6 @@ export class ZenPopover {
     this.hideDelay = values ? parseInt(values[1], 10) || this.showDelay : 0;
   }
 
-  componentDidLoad(): void {
-    this.targetSlotEl = getSlotElement(this.element, 'target');
-
-    // If there is no target element use previous element
-    if (!this.targetSlotEl) {
-      this.targetSlotEl = this.element.previousElementSibling as HTMLElement;
-    }
-
-    // Throw error if there is no target element specified
-    if (!this.targetSlotEl) {
-      console.error('No target element specified for the target slot!');
-      return;
-    }
-
-    this.popup = this.element.shadowRoot.querySelector('.panel');
-
-    this.addTriggerEvents();
-    this.visibleChanged(this.visible);
-    this.delayPropChanged(this.delay);
-  }
-
   addTriggerEvents(): void {
     const show = () => {
       clearTimeout(this.hideTimer);
@@ -170,6 +149,27 @@ export class ZenPopover {
       this.popperInstance.destroy();
       this.popperInstance = null;
     }
+  }
+
+  componentDidLoad(): void {
+    this.targetSlotEl = getSlotElement(this.element, 'target');
+
+    // If there is no target element use previous element
+    if (!this.targetSlotEl) {
+      this.targetSlotEl = this.element.previousElementSibling as HTMLElement;
+    }
+
+    // Throw error if there is no target element specified
+    if (!this.targetSlotEl) {
+      console.error('No target element specified for the target slot!');
+      return;
+    }
+
+    this.popup = this.element.shadowRoot.querySelector('.panel');
+
+    this.addTriggerEvents();
+    this.visibleChanged(this.visible);
+    this.delayPropChanged(this.delay);
   }
 
   render(): HTMLElement {
