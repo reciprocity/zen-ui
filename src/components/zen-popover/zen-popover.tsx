@@ -25,8 +25,8 @@ export class ZenPopover {
   /** Triggering event */
   @Prop() readonly triggerEvent: TriggerEvent = 'click';
 
-  /** Don't hide tooltip */
-  @Prop({ reflect: true }) readonly alwaysVisible: boolean = false;
+  /** Close on click outside */
+  @Prop() readonly closeOnClickOut: boolean = true;
 
   /** Popover offset */
   @Prop() readonly offset: Offsets = { x: 0, y: 8 };
@@ -104,7 +104,7 @@ export class ZenPopover {
   async closeOnClickOutside(event: MouseEvent): Promise<void> {
     const clickTargetNode = event.target as Node;
 
-    if (this.targetSlotEl == clickTargetNode || this.alwaysVisible) {
+    if (this.targetSlotEl == clickTargetNode || !this.closeOnClickOut) {
       return; // Do nothing if clicked on target el or is always visible
     } else if (!this.defaultSlotEl.contains(clickTargetNode)) {
       this.visible = false; // Hide if clicked outside
