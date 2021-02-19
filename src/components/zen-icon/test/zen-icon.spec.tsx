@@ -17,4 +17,12 @@ describe('zen-icon', () => {
     });
     expect(page.root.innerHTML).toBe('');
   });
+
+  it.each(['xs', 'sm', 'md', 'lg', 'xl'])('should correctly apply padding (padding: %s)', async (padding: string) => {
+    const page = await newSpecPage({
+      components: [ZenIcon],
+      html: `<zen-icon padding="${padding}"></zen-icon>`,
+    });
+    expect(page.root.classList.contains('padding-' + padding)).toBe(true);
+  });
 });
