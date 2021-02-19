@@ -43,9 +43,32 @@ export class ZenPopover {
 
   @Watch('visible')
   async visibleChanged(visible: boolean): Promise<void> {
+    const show = (): void => {
+      // Create popper and set display
+      this.createPopper();
+      this.popup.style.display = 'block';
+      this.visible = true;
+
+      // Add event listener for click outside
+      this.clickHandler = event => this.closeOnClickOutside(event);
+      setTimeout(() => {
+        document.addEventListener('mousedown', this.clickHandler);
+      }, 50);
+    };
+
+    const hide = (): void => {
+      // Destroy popper and set display
+      this.destroyPopper();
+      this.popup.style.display = 'none';
+      this.visible = false;
+
+      // remove event listener for click outside
+      if (this.clickHandler) document.removeEventListener('mousedown', this.clickHandler);
+    };
+
     clearTimeout(this.hideTimer);
     clearTimeout(this.showTimer);
-    visible ? this.show() : this.hide();
+    visible ? show() : hide();
   }
 
   @Watch('delay')
@@ -118,29 +141,6 @@ export class ZenPopover {
       this.popup.addEventListener('mouseover', () => show());
       this.popup.addEventListener('mouseout', () => hide());
     }
-  }
-
-  show(): void {
-    // Create popper and set display
-    this.createPopper();
-    this.popup.style.display = 'block';
-    this.visible = true;
-
-    // Add event listener for click outside
-    this.clickHandler = event => this.closeOnClickOutside(event);
-    setTimeout(() => {
-      document.addEventListener('mousedown', this.clickHandler);
-    }, 50);
-  }
-
-  hide(): void {
-    // Destroy popper and set display
-    this.destroyPopper();
-    this.popup.style.display = 'none';
-    this.visible = false;
-
-    // remove event listener for click outside
-    if (this.clickHandler) document.removeEventListener('mousedown', this.clickHandler);
   }
 
   async closeOnClickOutside(event: MouseEvent): Promise<void> {
