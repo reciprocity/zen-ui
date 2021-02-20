@@ -1,0 +1,18 @@
+.popup {
+  transition: transform 0.15s, opacity 0.15s linear;
+}
+
+.popup[animate='out-finished'] {
+  display: none;
+}
+
+.popup[animate='out-end'],
+.popup[animate='in-start'] {
+  opacity: 0;
+  transform: translateY(-30%);
+}
+
+.popup[animate='out-start'],
+.popup[animate='in-end'] {
+  transform: translateY(0);
+}

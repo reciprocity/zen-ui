@@ -1,4 +1,5 @@
 @import '../../zen-styles/component-helpers.scss';
+@import './animations.scss';
 
 :host {
   display: block;
@@ -11,21 +12,4 @@
 .popup {
   background-color: $color-white;
   box-shadow: $shadow-drop-200;
-  transition: transform 0.15s, opacity 0.15s linear;
-
-  &[animate='out-end'],
-  &[animate='in-start'] {
-    opacity: 0;
-    transform: translateY(-30%);
-  }
-
-  &[animate='out-start'],
-  &[animate='in-end'] {
-    transform: translateY(0);
-  }
-
-  &[animate='out-finished'] {
-    display: none;
-  }
 }
-
