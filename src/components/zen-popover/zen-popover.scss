@@ -4,21 +4,28 @@
   display: block;
 }
 
-.hidden {
-  display: none !important;
-}
-
-:host(.hidden) {
-  display: none !important;
-}
-
-:host(:not([interactive])) .popup {
+:host(:not([interactive])) .popup-wrap {
   pointer-events: none;
 }
 
 .popup {
-  display: block;
   background-color: $color-white;
   box-shadow: $shadow-drop-200;
-  margin-top: 0.25rem;
+  transition: transform 0.15s, opacity 0.15s linear;
+
+  &[animate='out-end'],
+  &[animate='in-start'] {
+    opacity: 0;
+    transform: translateY(-30%);
+  }
+
+  &[animate='out-start'],
+  &[animate='in-end'] {
+    transform: translateY(0);
+  }
+
+  &[animate='out-finished'] {
+    display: none;
+  }
 }
+

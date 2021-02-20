@@ -1,6 +1,7 @@
 import { Component, Host, h, Element, Prop, Watch } from '@stencil/core';
 import { createPopper, Placement, Offsets } from '@popperjs/core';
 import { getSlotElement, getComposedPath, waitNextFrame } from '../helpers/helpers';
+import { showWithAnimation, hideWithAnimation, showInstantly, hideInstantly } from '../helpers/animations';
 import { TriggerEvent } from '../helpers/types';
 
 @Component({
@@ -44,9 +45,8 @@ export class ZenPopover {
   @Watch('visible')
   async visibleChanged(visible: boolean): Promise<void> {
     const show = (): void => {
-      // Create popper and set display
       this.createPopper();
-      this.popup.style.display = 'block';
+        showWithAnimation(this.popup);
       this.visible = true;
 
       // Add event listener for click outside
@@ -57,9 +57,7 @@ export class ZenPopover {
     };
 
     const hide = (): void => {
-      // Destroy popper and set display
-      this.destroyPopper();
-      this.popup.style.display = 'none';
+        hideWithAnimation(this.popup, () => this.destroyPopper());
       this.visible = false;
 
       // remove event listener for click outside
@@ -94,7 +92,8 @@ export class ZenPopover {
     const hide = () => {
       clearTimeout(this.hideTimer);
       clearTimeout(this.showTimer);
-      if (!this.interactive || this.triggerEvent !== 'hover') {
+      const instantHide = (!this.interactive || this.triggerEvent !== 'hover') && !this.hideDelay;
+      if (instantHide) {
         this.visible = false;
         return;
       }
@@ -131,7 +130,8 @@ export class ZenPopover {
   }
 
   createPopper(): void {
-    this.popperInstance = createPopper(this.targetSlotEl, this.popup, {
+    const popupWrap = this.host.shadowRoot.querySelector('.popup-wrap') as HTMLElement;
+    this.popperInstance = createPopper(this.targetSlotEl, popupWrap, {
       placement: this.position,
       modifiers: [
         {
@@ -176,8 +176,10 @@ export class ZenPopover {
     return (
       <Host>
         <slot name="target"></slot>
+        <div class="popup-wrap" role="tooltip">
           <div class="popup">
-          <slot />
+            <slot />
+          </div>
         </div>
       </Host>
     );
