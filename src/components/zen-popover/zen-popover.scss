@@ -12,11 +12,11 @@
   display: none !important;
 }
 
-:host(:not([interactive])) .panel {
+:host(:not([interactive])) .popup {
   pointer-events: none;
 }
 
-.panel {
+.popup {
   display: block;
   background-color: $color-white;
   box-shadow: $shadow-drop-200;

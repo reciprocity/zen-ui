@@ -165,7 +165,7 @@ export class ZenPopover {
       return;
     }
 
-    this.popup = this.host.shadowRoot.querySelector('.panel');
+    this.popup = this.host.shadowRoot.querySelector('.popup');
 
     this.addTriggerEvents();
     this.visibleChanged(this.visible);
@@ -176,7 +176,7 @@ export class ZenPopover {
     return (
       <Host>
         <slot name="target"></slot>
-        <div class="panel">
+          <div class="popup">
           <slot />
         </div>
       </Host>
