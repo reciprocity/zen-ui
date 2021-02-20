@@ -1,6 +1,6 @@
 import { Component, Host, h, Element, Prop, Watch } from '@stencil/core';
 import { createPopper, Placement, Offsets } from '@popperjs/core';
-import { getSlotElement, getComposedPath, waitNextFrame } from '../helpers/helpers';
+import { getComposedPath, waitNextFrame } from '../helpers/helpers';
 import { showWithAnimation, hideWithAnimation, showInstantly, hideInstantly } from '../helpers/animations';
 import { TriggerEvent } from '../helpers/types';
 
@@ -163,12 +163,7 @@ export class ZenPopover {
   }
 
   componentDidLoad(): void {
-    this.targetSlotEl = getSlotElement(this.host, 'target');
-
-    // If there is no target element use previous element
-    if (!this.targetSlotEl) {
       this.targetSlotEl = this.host.previousElementSibling as HTMLElement;
-    }
 
     // Throw error if there is no target element specified
     if (!this.targetSlotEl) {
@@ -186,7 +181,6 @@ export class ZenPopover {
   render(): HTMLElement {
     return (
       <Host>
-        <slot name="target"></slot>
         <div class="popup-wrap" role="tooltip">
           <div class="popup">
             <slot />
