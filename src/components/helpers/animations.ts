@@ -32,6 +32,11 @@ export async function showWithAnimation(element: HTMLElement): Promise<void> {
   await transitionAnimateAttr(element, 'in-start', 'in-end');
 }
 
+export async function showInstantly(element: HTMLElement): Promise<void> {
+  clearHideTimer(element);
+  element.setAttribute('animate', 'in-end');
+}
+
 export async function hideWithAnimation(element: HTMLElement, callback?: () => void): Promise<void> {
   clearHideTimer(element);
 
@@ -44,4 +49,9 @@ export async function hideWithAnimation(element: HTMLElement, callback?: () => v
     if (callback) callback();
   }, transitionTime || 10);
   element.setAttribute('data-anim-hide-timer', hideTimerId.toString());
+}
+
+export async function hideInstantly(element: HTMLElement): Promise<void> {
+  clearHideTimer(element);
+  element.setAttribute('animate', 'out-finished');
 }

@@ -18,6 +18,7 @@ export class ZenPopover {
   private hideTimer = undefined;
   private showDelay = 0;
   private hideDelay = 0;
+  private animate = false;
 
   @Element() host: HTMLZenPopoverElement;
 
@@ -46,7 +47,11 @@ export class ZenPopover {
   async visibleChanged(visible: boolean): Promise<void> {
     const show = (): void => {
       this.createPopper();
+      if (this.animate) {
         showWithAnimation(this.popup);
+      } else {
+        showInstantly(this.popup);
+      }
       this.visible = true;
 
       // Add event listener for click outside
@@ -57,7 +62,12 @@ export class ZenPopover {
     };
 
     const hide = (): void => {
+      if (this.animate) {
         hideWithAnimation(this.popup, () => this.destroyPopper());
+      } else {
+        hideInstantly(this.popup);
+        this.destroyPopper();
+      }
       this.visible = false;
 
       // remove event listener for click outside
@@ -67,6 +77,7 @@ export class ZenPopover {
     clearTimeout(this.hideTimer);
     clearTimeout(this.showTimer);
     visible ? show() : hide();
+    this.animate = true; // After initial `visible` is set, we can animate
   }
 
   @Watch('delay')
