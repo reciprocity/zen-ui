@@ -125,6 +125,7 @@ export class ZenDatePicker {
     const ZenText = applyPrefix('zen-text', this.host);
     const ZenSpace = applyPrefix('zen-space', this.host);
     const ZenIcon = applyPrefix('zen-icon', this.host);
+    const ZenPopover = applyPrefix('zen-popover', this.host);
     return (
       <Host>
         <ZenInput
@@ -137,14 +138,12 @@ export class ZenDatePicker {
             <ZenIcon class="icon" icon={faCalendarAlt}></ZenIcon>
           </ZenSpace>
         </ZenInput>
-        <div class="calendar">
-          <ZenSpace
-            class="navigation"
-            padding="sm lg"
-            slot="leadingSlot"
-            horizontal-align="center"
-            vertical-align="stretch"
+        <ZenPopover
+          class="calendar"
+          interactive
+          position="bottom-start"
           >
+          <ZenSpace class="navigation" padding="sm lg" horizontal-align="center" vertical-align="stretch">
             <ZenIcon
               class="icon"
               icon={faChevronDoubleLeft}
@@ -197,7 +196,7 @@ export class ZenDatePicker {
               </ZenText>
             ))}
           </ZenSpace>
-        </div>
+        </ZenPopover>
       </Host>
     );
   }
