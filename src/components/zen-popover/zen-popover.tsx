@@ -1,4 +1,4 @@
-import { Component, Host, h, Element, Prop, Watch } from '@stencil/core';
+import { Component, Host, h, Element, Prop, Watch, State } from '@stencil/core';
 import { createPopper, Placement, Offsets } from '@popperjs/core';
 import { getComposedPath, waitNextFrame } from '../helpers/helpers';
 import { showWithAnimation, hideWithAnimation, showInstantly, hideInstantly } from '../helpers/animations';
@@ -21,6 +21,8 @@ export class ZenPopover {
   private animate = false;
 
   @Element() host: HTMLZenPopoverElement;
+
+  @State() actualPosition: Placement;
 
   /** Show/hide popover */
   @Prop({ mutable: true }) visible = false;
@@ -45,10 +47,16 @@ export class ZenPopover {
 
   @Watch('visible')
   async visibleChanged(visible: boolean): Promise<void> {
-    const show = (): void => {
-      this.createPopper();
+    const show = async (): Promise<void> => {
+      const lastHideAnimationCompleted = !!this.popperInstance;
+      showInstantly(this.popup); // show it so popper can get dimensions
+      await this.createPopper();
+      hideInstantly(this.popup);
+
       if (this.animate) {
-        showWithAnimation(this.popup);
+        // If it isn't visible (previous hide animation has complete), force start position.
+        // Otherwise just continue from current position, to prevent jumping animation.
+        showWithAnimation(this.popup, lastHideAnimationCompleted);
       } else {
         showInstantly(this.popup);
       }
@@ -140,7 +148,7 @@ export class ZenPopover {
     this.visible = false;
   }
 
-  createPopper(): void {
+  async createPopper(): Promise<void> {
     const popupWrap = this.host.shadowRoot.querySelector('.popup-wrap') as HTMLElement;
     this.popperInstance = createPopper(this.targetSlotEl, popupWrap, {
       placement: this.position,
@@ -153,6 +161,8 @@ export class ZenPopover {
         },
       ],
     });
+    await waitNextFrame();
+    this.actualPosition = this.popperInstance.state.placement;
   }
 
   destroyPopper(): void {
@@ -163,7 +173,7 @@ export class ZenPopover {
   }
 
   componentDidLoad(): void {
-      this.targetSlotEl = this.host.previousElementSibling as HTMLElement;
+    this.targetSlotEl = this.host.previousElementSibling as HTMLElement;
 
     // Throw error if there is no target element specified
     if (!this.targetSlotEl) {
@@ -182,7 +192,8 @@ export class ZenPopover {
     return (
       <Host>
         <div class="popup-wrap" role="tooltip">
-          <div class="popup">
+          <div class="popup" data-position={this.actualPosition}>
+            <div id="arrow" data-popper-arrow></div>
             <slot />
           </div>
         </div>
