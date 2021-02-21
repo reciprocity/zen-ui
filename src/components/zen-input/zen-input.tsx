@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, Element, Listen } from '@stencil/core';
+import { Component, Host, h, Prop, Element, Listen, State } from '@stencil/core';
 import { getNextField } from '../helpers/helpers';
 
 /**
@@ -15,11 +15,13 @@ export class ZenInput {
 
   @Element() hostElement: HTMLZenInputElement;
 
+  @State() inputFocused = false;
+
   /** Name of element, can be used as reference for form data */
   @Prop() readonly name: string = '';
 
   /** Paint focused border */
-  @Prop({ mutable: true }) hasFocus = false;
+  @Prop() readonly hasFocus = false;
 
   /** Placeholder of the input. */
   @Prop() readonly placeholder: string = '';
@@ -61,11 +63,11 @@ export class ZenInput {
   };
 
   private onBlur = () => {
-    this.hasFocus = false;
+    this.inputFocused = false;
   };
 
   private onFocus = () => {
-    this.hasFocus = true;
+    this.inputFocused = true;
   };
 
   private getValue(): string {
@@ -76,7 +78,7 @@ export class ZenInput {
     const value = this.getValue();
 
     return (
-      <Host class={{ 'has-focus': this.hasFocus, invalid: this.invalid, disabled: this.disabled }}>
+      <Host class={{ 'has-focus': this.hasFocus || this.inputFocused, invalid: this.invalid, disabled: this.disabled }}>
         <slot name="leadingSlot"></slot>
         <input
           ref={el => (this.input = el)}
