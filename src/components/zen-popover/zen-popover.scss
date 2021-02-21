@@ -3,6 +3,8 @@
 
 :host {
   display: block;
+  width: 300px;
+  position: absolute;
 }
 
 :host(:not([interactive])) .popup-wrap {
