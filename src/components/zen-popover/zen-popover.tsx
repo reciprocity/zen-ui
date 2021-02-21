@@ -1,4 +1,4 @@
-import { Component, Host, h, Element, Prop, Watch, State } from '@stencil/core';
+import { Component, Host, h, Element, Prop, Watch, State, Event, EventEmitter } from '@stencil/core';
 import { createPopper, Placement, Offsets } from '@popperjs/core';
 import { getComposedPath, waitNextFrame } from '../helpers/helpers';
 import { showWithAnimation, hideWithAnimation, showInstantly, hideInstantly } from '../helpers/animations';
@@ -44,6 +44,9 @@ export class ZenPopover {
 
   /** Show and hide delay. Only affects show on hover! Eg. '100' - both show & hide 100ms. '100 500' - show 100ms, hide 500ms. */
   @Prop() readonly delay: string = '0';
+
+  /** Visibility changed */
+  @Event() visibilityChange: EventEmitter<void>;
 
   @Watch('visible')
   async visibleChanged(visible: boolean): Promise<void> {
@@ -162,12 +165,14 @@ export class ZenPopover {
     });
     await waitNextFrame();
     this.actualPosition = this.popperInstance.state.placement;
+    this.visibilityChange.emit();
   }
 
   destroyPopper(): void {
     if (this.popperInstance) {
       this.popperInstance.destroy();
       this.popperInstance = null;
+      this.visibilityChange.emit();
     }
   }
 
