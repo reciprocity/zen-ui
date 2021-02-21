@@ -43,6 +43,8 @@ export class ZenDatePicker {
   @State() calendarYear = 1970;
   @State() calendarMonth = helpers.today();
 
+  @State() opened = false;
+
   /** Selected date */
   @Prop({ mutable: true }) formattedDate = '';
 
@@ -120,6 +122,10 @@ export class ZenDatePicker {
     }
   }
 
+  onOpenToggle(popup: HTMLZenPopoverElement): void {
+    this.opened = popup.visible;
+  }
+
   render(): HTMLElement {
     const ZenInput = applyPrefix('zen-input', this.host);
     const ZenText = applyPrefix('zen-text', this.host);
@@ -132,6 +138,7 @@ export class ZenDatePicker {
           id="date-input"
           placeholder={this.placeholder}
           value={this.formattedDate}
+          has-focus={this.opened}
           onChange={e => this.onInputChange(e)}
         >
           <ZenSpace padding="md none md md" slot="leadingSlot">
@@ -142,7 +149,8 @@ export class ZenDatePicker {
           class="calendar"
           interactive
           position="bottom-start"
-          >
+          onVisibilityChange={e => this.onOpenToggle(e.target)}
+        >
           <ZenSpace class="navigation" padding="sm lg" horizontal-align="center" vertical-align="stretch">
             <ZenIcon
               class="icon"
