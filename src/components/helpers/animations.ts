@@ -15,9 +15,17 @@
 
 import { waitNextFrame } from '../helpers/helpers';
 
-async function transitionAnimateAttr(element: HTMLElement, fromAttr: string, toAttr: string) {
+async function transitionAnimateAttr(element: HTMLElement, fromAttr: string, toAttr: string, fromCurrentValue = true) {
+  // fromCurrentValue: Animate to toAttr from current values. Else it will force fromAttr before animating to toAttr values.
+
+  if (!fromCurrentValue) {
+    element.style.transition = 'none'; // remove transition, so from values are applied instantly
+  }
   element.setAttribute('animate', fromAttr);
   await waitNextFrame();
+  if (!fromCurrentValue) {
+    element.style.transition = '';
+  }
   element.setAttribute('animate', toAttr);
 }
 
@@ -27,9 +35,9 @@ function clearHideTimer(element: HTMLElement) {
   clearTimeout(hideTimerId);
 }
 
-export async function showWithAnimation(element: HTMLElement): Promise<void> {
+export async function showWithAnimation(element: HTMLElement, fromCurrentValue = true): Promise<void> {
   clearHideTimer(element);
-  await transitionAnimateAttr(element, 'in-start', 'in-end');
+  await transitionAnimateAttr(element, 'in-start', 'in-end', fromCurrentValue);
 }
 
 export async function showInstantly(element: HTMLElement): Promise<void> {
@@ -37,10 +45,14 @@ export async function showInstantly(element: HTMLElement): Promise<void> {
   element.setAttribute('animate', 'in-end');
 }
 
-export async function hideWithAnimation(element: HTMLElement, callback?: () => void): Promise<void> {
+export async function hideWithAnimation(
+  element: HTMLElement,
+  callback?: () => void,
+  fromCurrentValue = true,
+): Promise<void> {
   clearHideTimer(element);
 
-  await transitionAnimateAttr(element, 'out-start', 'out-end');
+  await transitionAnimateAttr(element, 'out-start', 'out-end', fromCurrentValue);
 
   // Remove element with delay, so transition finishes first:
   const transitionTime = parseFloat(getComputedStyle(element)['transitionDuration']) * 1000;
