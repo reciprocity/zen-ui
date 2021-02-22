@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, Watch, State, Element } from '@stencil/core';
+import { Component, Host, h, Prop, Watch, State, Element, Listen } from '@stencil/core';
 import { getDayNumbers, helpers, getMonthName, parseDate } from './date-helpers';
 import getYear from 'date-fns/getYear';
 import addMonths from 'date-fns/addMonths';
@@ -82,14 +82,22 @@ export class ZenDatePicker {
     this.calendarYear = getYear(calendarMonth);
   }
 
+  @Listen('keydown')
+  handleKeyDown(ev: KeyboardEvent): boolean {
+    if (ev.key === 'Escape') {
+      this.popover.toggle(false);
+    }
+
+    if (ev.key === ' ' || ev.key === 'Enter') {
+      this.popover.toggle();
+      ev.preventDefault();
+      return false;
+    }
+  }
+
   focusChanged(e: Event): void {
     const show = e.target === (this.host as HTMLElement);
     this.popover.toggle(show);
-  }
-
-  connectedCallback(): void {
-    this.dateChanged(this.value);
-    document.addEventListener('focusin', e => this.focusChanged(e));
   }
 
   navigate(type: Navigate): void {
@@ -138,6 +146,11 @@ export class ZenDatePicker {
 
   onOpenToggle(popup: HTMLZenPopoverElement): void {
     this.opened = popup.visible;
+  }
+
+  connectedCallback(): void {
+    this.dateChanged(this.value);
+    document.addEventListener('focusin', e => this.focusChanged(e));
   }
 
   render(): HTMLElement {
