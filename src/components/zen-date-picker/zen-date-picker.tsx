@@ -38,6 +38,8 @@ export class ZenDatePicker {
 
   daysShort = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
   dayNums = [];
+  popover: HTMLZenPopoverElement = null;
+  input: HTMLZenInputElement = null;
 
   @State() calendarMonthName = '';
   @State() calendarYear = 1970;
@@ -63,15 +65,13 @@ export class ZenDatePicker {
   @Watch('value')
   async dateChanged(value: Date): Promise<void> {
     this.formattedDate = format(value, this.format);
-    const input = this.host.shadowRoot.querySelector('#date-input') as HTMLZenInputElement;
-    if (input) {
-      input.value = this.formattedDate;
+    if (this.input) {
+      this.input.value = this.formattedDate;
     }
     this.calendarMonth = value;
     if (this.opened && this.closeOnClick) {
-      const popover = this.host.shadowRoot.querySelector('.calendar') as HTMLZenPopoverElement;
-      popover.visible = false;
-      input.focusInput();
+      this.popover.visible = false;
+      this.input.focusInput();
     }
   }
 
@@ -144,6 +144,7 @@ export class ZenDatePicker {
       <Host>
         <ZenInput
           id="date-input"
+          ref={el => (this.input = el)}
           placeholder={this.placeholder}
           value={this.formattedDate}
           has-focus={this.opened}
@@ -155,6 +156,7 @@ export class ZenDatePicker {
         </ZenInput>
         <ZenPopover
           class="calendar"
+          ref={el => (this.popover = el)}
           interactive
           position="bottom-start"
           onVisibilityChange={e => this.onOpenToggle(e.target)}
