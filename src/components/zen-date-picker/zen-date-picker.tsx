@@ -82,8 +82,14 @@ export class ZenDatePicker {
     this.calendarYear = getYear(calendarMonth);
   }
 
+  focusChanged(e: Event): void {
+    const show = e.target === (this.host as HTMLElement);
+    this.popover.toggle(show);
+  }
+
   connectedCallback(): void {
     this.dateChanged(this.value);
+    document.addEventListener('focusin', e => this.focusChanged(e));
   }
 
   navigate(type: Navigate): void {
@@ -156,6 +162,7 @@ export class ZenDatePicker {
         </ZenInput>
         <ZenPopover
           class="calendar"
+          tabindex={this.opened ? 0 : -1}
           ref={el => (this.popover = el)}
           interactive
           position="bottom-start"
