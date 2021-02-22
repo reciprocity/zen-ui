@@ -6,7 +6,7 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { StringifiedJson } from "./stories/components/color-swatch-group/color-swatch-group";
-import { Align, Avatar, AvatarData, AvatarIconSize, Duration, IconSizes, None, NotificationVariant, Position, Size, TextSize, TextVariant, TooltipVariant, TriggerEvent } from "./components/helpers/types";
+import { Align, Avatar, AvatarData, AvatarIconSize, Duration, IconSizes, None, NotificationVariant, PaddingShorthand, Position, Size, TextSize, TextVariant, TooltipVariant, TriggerEvent } from "./components/helpers/types";
 import { ButtonVariants } from "./components/zen-button/types";
 import { OptionValue } from "./components/zen-menu-item/zen-option";
 import { IconDefinition } from "@fortawesome/pro-light-svg-icons";
@@ -232,6 +232,10 @@ export namespace Components {
          */
         "icon": IconDefinition;
         /**
+          * Inner spacing of container
+         */
+        "padding": PaddingShorthand;
+        /**
           * Size of the icon.
          */
         "size": IconSizes;
@@ -414,7 +418,7 @@ export namespace Components {
         /**
           * Inner spacing of container
          */
-        "padding": Size | None | string;
+        "padding": PaddingShorthand;
         /**
           * Spacing between items
          */
@@ -1071,6 +1075,10 @@ declare namespace LocalJSX {
          */
         "icon"?: IconDefinition;
         /**
+          * Inner spacing of container
+         */
+        "padding"?: PaddingShorthand;
+        /**
           * Size of the icon.
          */
         "size"?: IconSizes;
@@ -1257,7 +1265,7 @@ declare namespace LocalJSX {
         /**
           * Inner spacing of container
          */
-        "padding"?: Size | None | string;
+        "padding"?: PaddingShorthand;
         /**
           * Spacing between items
          */

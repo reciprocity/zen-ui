@@ -18,3 +18,42 @@
   width: 0.75rem;
   height: 0.75rem;
 }
+
+// Padding --------------------------------------
+
+$paddings: (
+  'none': 0,
+  'xs': 1px,
+  'sm': 0.25rem,
+  'md': 0.5rem,
+  'lg': 1rem,
+  'xl': 2rem,
+);
+
+@each $key, $value in $paddings {
+  :host(.padding-#{$key}) {
+    padding: #{$value};
+  }
+}
+
+@each $key, $value in $paddings {
+  :host(.padding-x-#{$key}) {
+    padding-left: #{$value};
+    padding-right: #{$value};
+  }
+}
+
+@each $key, $value in $paddings {
+  :host(.padding-y-#{$key}) {
+    padding-top: #{$value};
+    padding-bottom: #{$value};
+  }
+}
+
+@each $side in [ 'top', 'right', 'bottom', 'left' ] {
+  @each $key, $value in $paddings {
+    :host(.padding-#{$side}-#{$key}) {
+      padding-#{$side}: #{$value};
+    }
+  }
+}

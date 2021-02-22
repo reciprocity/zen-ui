@@ -75,3 +75,42 @@ export function applyPrefix(componentName: string, parentElement: Element): stri
   const sanitizedPrefix = parentPrefix !== 'zen' ? `${parentPrefix}-` : '';
   return `${sanitizedPrefix}${componentName}`;
 }
+
+export function parsePadding(padding: string): Record<string, unknown> {
+  let paddingClasses: Record<string, unknown> = {};
+
+  // Support padding shorthands (eg. padding: 12px 1rem 5rem;)
+  const values = padding.split(' ');
+  switch (values.length) {
+    case 1:
+      paddingClasses = {
+        [`padding-${values[0]}`]: true,
+      };
+      break;
+
+    case 2:
+      paddingClasses = {
+        [`padding-y-${values[0]}`]: true,
+        [`padding-x-${values[1]}`]: true,
+      };
+      break;
+
+    case 3:
+      paddingClasses = {
+        [`padding-top-${values[0]}`]: true,
+        [`padding-x-${values[1]}`]: true,
+        [`padding-bottom-${values[2]}`]: true,
+      };
+      break;
+
+    default:
+      paddingClasses = {
+        [`padding-top-${values[0]}`]: true,
+        [`padding-right-${values[1]}`]: true,
+        [`padding-bottom-${values[2]}`]: true,
+        [`padding-left-${values[3]}`]: true,
+      };
+      break;
+  }
+  return paddingClasses;
+}

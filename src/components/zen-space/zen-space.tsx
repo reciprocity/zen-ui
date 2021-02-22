@@ -1,5 +1,6 @@
 import { Component, Host, h, Prop, Watch, State } from '@stencil/core';
-import { Size, None } from '../helpers/types';
+import { Size, None, PaddingShorthand } from '../helpers/types';
+import { parsePadding } from '../helpers/helpers';
 
 type FlexAlign =
   | 'start'
@@ -35,50 +36,18 @@ export class ZenSpace {
   @Prop({ reflect: true }) readonly spacing: Size | None = 'sm';
 
   /** Inner spacing of container */
-  @Prop() readonly padding: Size | None | string = 'sm';
+  @Prop() readonly padding: PaddingShorthand = 'sm';
 
   /** Break row/column if content doesn't fit */
   @Prop({ reflect: true }) readonly noWrap: boolean = false;
 
   @Watch('padding')
-  async paddingChanged(padding: string): Promise<void> {
-    // Support padding shorthands (eg. padding: 12px 1rem 5rem;)
-    const values = padding.split(' ');
-    switch (values.length) {
-      case 1:
-        this.paddingClasses = {
-          [`padding-${values[0]}`]: true,
-        };
-        break;
-
-      case 2:
-        this.paddingClasses = {
-          [`padding-y-${values[0]}`]: true,
-          [`padding-x-${values[1]}`]: true,
-        };
-        break;
-
-      case 3:
-        this.paddingClasses = {
-          [`padding-top-${values[0]}`]: true,
-          [`padding-x-${values[1]}`]: true,
-          [`padding-bottom-${values[2]}`]: true,
-        };
-        break;
-
-      default:
-        this.paddingClasses = {
-          [`padding-top-${values[0]}`]: true,
-          [`padding-right-${values[1]}`]: true,
-          [`padding-bottom-${values[2]}`]: true,
-          [`padding-left-${values[3]}`]: true,
-        };
-        break;
-    }
+  spacePaddingChanged(padding: string): void {
+    this.paddingClasses = parsePadding(padding);
   }
 
   componentDidLoad(): void {
-    this.paddingChanged(this.padding);
+    this.spacePaddingChanged(this.padding);
   }
 
   render(): HTMLElement {

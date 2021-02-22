@@ -1,11 +1,17 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
 import { html } from 'lit-html';
 import { getArgTypes, getDefaultArgs, getComponentData, spreadArgs } from '../../../.storybook/helpers/argTypes';
+const css = /*css*/ `
+  .icon {
+    width: min-content;
+    background: lightgray;
+    text-align; center;
+  }
+`;
 import { waitForElement } from '../../../.storybook/helpers/utils';
-
 import data from '../../../stencilDocs.json';
 const compData = data.components.find(n => n.tag === 'zen-icon');
-const argTypes = getArgTypes(compData);
+let argTypes = getArgTypes(compData);
 
 import { faUser } from '@fortawesome/pro-light-svg-icons';
 
@@ -14,13 +20,68 @@ import { faUser } from '@fortawesome/pro-light-svg-icons';
 export const StoryDefault = args => {
   waitForElement('#zen-icon-element', element => {
     element.icon = args.icon;
+    argTypes['size'].control = 'select';
+    argTypes['padding'].control = 'select';
   });
-  return html/*html*/ ` <sb-zen-icon id="zen-icon-element" ...="${spreadArgs(args, argTypes)}"></sb-zen-icon> `;
+  return html/*html*/ `
+    <sb-zen-icon class="icon" id="zen-icon-element" ...="${spreadArgs(args, argTypes)}"></sb-zen-icon>
+  `;
+};
+
+export const StoryIconPadding = args => {
+  ['#zen-icon-none', '#zen-icon-xs', '#zen-icon-sm', '#zen-icon-md', '#zen-icon-lg', '#zen-icon-xl'].forEach(id => {
+    waitForElement(id, element => {
+      element.icon = faUser;
+    });
+  });
+  return html/*html*/ `
+    <style>
+      ${css}
+    </style>
+    <sb-zen-space horizontal-align="space-evenly" vertical-align="end">
+        <sb-zen-space vertical vertical-align="space-evenly" horizontal-align="center">
+          <sb-zen-icon id="zen-icon-none" padding="none" class="icon"></sb-zen-icon>
+          <zen-text size="sm">none</zen-text>
+        </sb-zen-space>
+        <sb-zen-space vertical vertical-align="space-evenly" horizontal-align="center">
+          <sb-zen-icon id="zen-icon-xs" padding="xs" class="icon"></sb-zen-icon>
+          <zen-text size="sm">xs</zen-text>
+        </sb-zen-space>
+        <sb-zen-space vertical vertical-align="space-evenly" horizontal-align="center">
+            <sb-zen-icon id="zen-icon-sm" padding="sm" class="icon""></sb-zen-icon>
+            <zen-text size="sm">sm</zen-text>
+        </sb-zen-space>
+        <sb-zen-space vertical vertical-align="space-evenly" horizontal-align="center">
+            <sb-zen-icon id="zen-icon-md" padding="md" class="icon""></sb-zen-icon>
+            <zen-text size="sm">md</zen-text>
+        </sb-zen-space>
+        <sb-zen-space vertical vertical-align="space-evenly" horizontal-align="center">
+            <sb-zen-icon id="zen-icon-lg" padding="lg" class="icon""></sb-zen-icon>
+            <zen-text size="sm">lg</zen-text>
+        </sb-zen-space>
+        <sb-zen-space vertical vertical-align="space-evenly" horizontal-align="center">
+            <sb-zen-icon id="zen-icon-xl" padding="xl" class="icon""></sb-zen-icon>
+            <zen-text size="sm">xl</zen-text>
+        </sb-zen-space>
+    </sb-zen-space>
+  `;
 };
 
 # Icon
 
 Icon component wrapper
+
+## Component previews
+
+<br />
+
+### 1. Icon paddings
+
+Apply padding to the icon.
+
+<Canvas>
+  <Story name="paddings">{StoryIconPadding.bind({})}</Story>
+</Canvas>
 
 <br />
 
