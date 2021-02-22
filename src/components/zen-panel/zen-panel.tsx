@@ -11,8 +11,6 @@ import { applyPrefix } from '../helpers/helpers';
 export class ZenPanel {
   @Element() host: HTMLZenPanelElement;
 
-  /** The title of the panel */
-  @Prop() readonly header: string = 'Header';
   /** Whether the panel has an arrow */
   @Prop() readonly arrow: boolean = true;
 
@@ -40,7 +38,7 @@ export class ZenPanel {
       <Host>
         <div class="header-container" onClick={() => this.toggleHidden()}>
           {this.arrow && <ZenIcon icon={this.icon()} size="sm" class="icon fill" />}
-          <div class="header">{this.header}</div>
+          <slot name="header" />
         </div>
         <div class={this.contentClasses()}>
           <slot></slot>

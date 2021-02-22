@@ -347,10 +347,6 @@ export namespace Components {
           * Whether the panel has an arrow
          */
         "arrow": boolean;
-        /**
-          * The title of the panel
-         */
-        "header": string;
     }
     interface ZenPopover {
         /**
@@ -1244,10 +1240,6 @@ declare namespace LocalJSX {
           * Whether the panel has an arrow
          */
         "arrow"?: boolean;
-        /**
-          * The title of the panel
-         */
-        "header"?: string;
     }
     interface ZenPopover {
         /**

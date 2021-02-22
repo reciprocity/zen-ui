@@ -10,13 +10,21 @@ const argTypes = getArgTypes(compData);
 <Meta title="Containers/Panel" component="zen-panel" argTypes={argTypes} />
 
 export const StoryWithControls = args => {
-  return html/*html*/ ` <sb-zen-panel ...="${spreadArgs(args, argTypes)}"> Content </sb-zen-panel> `;
+  return html/*html*/ `
+    <sb-zen-panel ...="${spreadArgs(args, argTypes)}">
+      <div slot="header">Panel title</div>
+      Content
+    </sb-zen-panel>
+  `;
 };
 
 export const StoryText = () => {
   return html/*html*/ `
     <div>
-      <sb-zen-panel header="Panel title 1"> Content </sb-zen-panel>
+      <sb-zen-panel>
+        <div slot="header">Panel title 1</div>
+        Content
+      </sb-zen-panel>
     </div>
   `;
 };
@@ -24,7 +32,8 @@ export const StoryText = () => {
 export const StoryDivs = () => {
   return html/*html*/ `
     <div>
-      <sb-zen-panel header="Panel title 2">
+      <sb-zen-panel>
+        <div slot="header">Panel title 2</div>
         <div style="width: 4rem; height: 4rem; background: lightgreen;">Content but in a div</div>
       </sb-zen-panel>
     </div>
@@ -34,7 +43,10 @@ export const StoryDivs = () => {
 export const StoryNoArrow = () => {
   return html/*html*/ `
     <div>
-      <sb-zen-panel header="Panel title 3" arrow="false"> Content </sb-zen-panel>
+      <sb-zen-panel arrow="false">
+        <div slot="header">Panel title 3</div>
+        Content
+      </sb-zen-panel>
     </div>
   `;
 };
