@@ -47,7 +47,7 @@
   width: 100%;
   background-color: $color-white;
   box-shadow: $shadow-drop-200;
-  transition: transform 0.15s ease-out, opacity 0.15s linear;
+  transition: transform 0.25s ease-out, opacity 0.25s ease-out;
 }
 
 .drawer[animate='out-finished'] {
@@ -64,24 +64,23 @@
 .drawer[animate='out-end'],
 .drawer[animate='in-start'] {
   opacity: 0;
-  transform: translateX(30px);
-  transition: transform 0.15s ease-in, opacity 0.15s;
+  transform: translateX(70%);
 }
 
 .drawer[data-position*='top'][animate='out-end'],
 .drawer[data-position*='top'][animate='in-start'] {
   opacity: 0;
-  transform: translateY(-30px);
+  transform: translateY(-70%);
 }
 
 .drawer[data-position*='left'][animate='out-end'],
 .drawer[data-position*='left'][animate='in-start'] {
   opacity: 0;
-  transform: translateX(-30px);
+  transform: translateX(-70%);
 }
 
 .drawer[data-position*='bottom'][animate='out-end'],
 .drawer[data-position*='bottom'][animate='in-start'] {
   opacity: 0;
-  transform: translateY(30px);
+  transform: translateY(70%);
 }
