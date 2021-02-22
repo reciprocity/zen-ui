@@ -76,7 +76,7 @@ export function applyPrefix(componentName: string, parentElement: Element): stri
   return `${sanitizedPrefix}${componentName}`;
 }
 
-export function paddingChanged(padding: string): Record<string, unknown> {
+export function parsePadding(padding: string): Record<string, unknown> {
   let paddingClasses: Record<string, unknown> = {};
 
   // Support padding shorthands (eg. padding: 12px 1rem 5rem;)
