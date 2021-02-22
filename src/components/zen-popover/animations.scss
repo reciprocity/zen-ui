@@ -1,0 +1,39 @@
+.popup {
+  transition: transform 0.15s ease-out, opacity 0.15s linear;
+}
+
+.popup[animate='out-finished'] {
+  display: none;
+}
+
+// end position:
+.popup[animate='out-start'],
+.popup[animate='in-end'] {
+  transform: translate(0);
+}
+
+// bottom - default:
+.popup[animate='out-end'],
+.popup[animate='in-start'] {
+  opacity: 0;
+  transform: translateY(-30px);
+  transition: transform 0.15s ease-in, opacity 0.15s;
+}
+
+.popup[data-position*='top'][animate='out-end'],
+.popup[data-position*='top'][animate='in-start'] {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.popup[data-position*='left'][animate='out-end'],
+.popup[data-position*='left'][animate='in-start'] {
+  opacity: 0;
+  transform: translateX(30px);
+}
+
+.popup[data-position*='right'][animate='out-end'],
+.popup[data-position*='right'][animate='in-start'] {
+  opacity: 0;
+  transform: translateX(-30px);
+}

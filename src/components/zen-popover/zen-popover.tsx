@@ -1,6 +1,7 @@
-import { Component, Host, h, Element, Prop, Watch } from '@stencil/core';
+import { Component, Host, h, Element, Prop, Watch, State } from '@stencil/core';
 import { createPopper, Placement, Offsets } from '@popperjs/core';
-import { getSlotElement, getComposedPath, waitNextFrame } from '../helpers/helpers';
+import { getComposedPath, waitNextFrame } from '../helpers/helpers';
+import { showWithAnimation, hideWithAnimation, showInstantly, hideInstantly } from '../helpers/animations';
 import { TriggerEvent } from '../helpers/types';
 
 @Component({
@@ -17,13 +18,16 @@ export class ZenPopover {
   private hideTimer = undefined;
   private showDelay = 0;
   private hideDelay = 0;
+  private animate = false;
 
   @Element() host: HTMLZenPopoverElement;
+
+  @State() actualPosition: Placement;
 
   /** Show/hide popover */
   @Prop({ mutable: true }) visible = false;
 
-  /** Placement */
+  /** Position */
   @Prop() readonly position: Placement = 'bottom-end';
 
   /** Triggering event */
@@ -43,10 +47,19 @@ export class ZenPopover {
 
   @Watch('visible')
   async visibleChanged(visible: boolean): Promise<void> {
-    const show = (): void => {
-      // Create popper and set display
-      this.createPopper();
-      this.popup.style.display = 'block';
+    const show = async (): Promise<void> => {
+      if (this.animate) {
+        const lastHideAnimationCompleted = !!this.popperInstance;
+        showInstantly(this.popup); // show it so popper can get dimensions
+        await this.createPopper();
+        hideInstantly(this.popup);
+        // If it isn't visible (prev hide anim has complete), force start position.
+        // Otherwise continue from current position, to prevent anim jumping.
+        showWithAnimation(this.popup, lastHideAnimationCompleted);
+      } else {
+        await this.createPopper();
+        showInstantly(this.popup);
+      }
       this.visible = true;
 
       // Add event listener for click outside
@@ -57,9 +70,12 @@ export class ZenPopover {
     };
 
     const hide = (): void => {
-      // Destroy popper and set display
-      this.destroyPopper();
-      this.popup.style.display = 'none';
+      if (this.animate) {
+        hideWithAnimation(this.popup, () => this.destroyPopper());
+      } else {
+        hideInstantly(this.popup);
+        this.destroyPopper();
+      }
       this.visible = false;
 
       // remove event listener for click outside
@@ -69,6 +85,7 @@ export class ZenPopover {
     clearTimeout(this.hideTimer);
     clearTimeout(this.showTimer);
     visible ? show() : hide();
+    this.animate = true; // After initial `visible` is set, we can animate
   }
 
   @Watch('delay')
@@ -94,7 +111,8 @@ export class ZenPopover {
     const hide = () => {
       clearTimeout(this.hideTimer);
       clearTimeout(this.showTimer);
-      if (!this.interactive || this.triggerEvent !== 'hover') {
+      const instantHide = (!this.interactive || this.triggerEvent !== 'hover') && !this.hideDelay;
+      if (instantHide) {
         this.visible = false;
         return;
       }
@@ -125,13 +143,14 @@ export class ZenPopover {
   async closeOnClickOutside(event: MouseEvent): Promise<void> {
     const path = getComposedPath(event);
     const clickedInside = this.interactive && path.find(n => n === this.popup);
-    if (clickedInside) return;
+    if (clickedInside || !this.closeOnClickOut) return;
     await waitNextFrame(); // prevent race with click-open
     this.visible = false;
   }
 
-  createPopper(): void {
-    this.popperInstance = createPopper(this.targetSlotEl, this.popup, {
+  async createPopper(): Promise<void> {
+    const popupWrap = this.host.shadowRoot.querySelector('.popup-wrap') as HTMLElement;
+    this.popperInstance = createPopper(this.targetSlotEl, popupWrap, {
       placement: this.position,
       modifiers: [
         {
@@ -142,6 +161,8 @@ export class ZenPopover {
         },
       ],
     });
+    await waitNextFrame();
+    this.actualPosition = this.popperInstance.state.placement;
   }
 
   destroyPopper(): void {
@@ -152,12 +173,7 @@ export class ZenPopover {
   }
 
   componentDidLoad(): void {
-    this.targetSlotEl = getSlotElement(this.host, 'target');
-
-    // If there is no target element use previous element
-    if (!this.targetSlotEl) {
-      this.targetSlotEl = this.host.previousElementSibling as HTMLElement;
-    }
+    this.targetSlotEl = this.host.previousElementSibling as HTMLElement;
 
     // Throw error if there is no target element specified
     if (!this.targetSlotEl) {
@@ -165,7 +181,7 @@ export class ZenPopover {
       return;
     }
 
-    this.popup = this.host.shadowRoot.querySelector('.panel');
+    this.popup = this.host.shadowRoot.querySelector('.popup');
 
     this.addTriggerEvents();
     this.visibleChanged(this.visible);
@@ -175,9 +191,11 @@ export class ZenPopover {
   render(): HTMLElement {
     return (
       <Host>
-        <slot name="target"></slot>
-        <div class="panel">
-          <slot />
+        <div class="popup-wrap" role="tooltip">
+          <div class="popup" data-position={this.actualPosition}>
+            <div id="arrow" data-popper-arrow></div>
+            <slot />
+          </div>
         </div>
       </Host>
     );

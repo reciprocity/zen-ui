@@ -1,24 +1,17 @@
 @import '../../zen-styles/component-helpers.scss';
+@import './animations.scss';
 
 :host {
   display: block;
+  width: 300px;
+  position: absolute;
 }
 
-.hidden {
-  display: none !important;
-}
-
-:host(.hidden) {
-  display: none !important;
-}
-
-:host(:not([interactive])) .panel {
+:host(:not([interactive])) .popup-wrap {
   pointer-events: none;
 }
 
-.panel {
-  display: block;
+.popup {
   background-color: $color-white;
   box-shadow: $shadow-drop-200;
-  margin-top: 0.25rem;
 }

@@ -346,7 +346,7 @@ export namespace Components {
          */
         "offset": Offsets;
         /**
-          * Placement
+          * Position
          */
         "position": Placement;
         /**
@@ -1197,7 +1197,7 @@ declare namespace LocalJSX {
          */
         "offset"?: Offsets;
         /**
-          * Placement
+          * Position
          */
         "position"?: Placement;
         /**
