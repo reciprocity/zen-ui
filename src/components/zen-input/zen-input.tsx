@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, Element, Listen, State } from '@stencil/core';
+import { Component, Host, h, Prop, Element, Listen, State, Method } from '@stencil/core';
 import { getNextField } from '../helpers/helpers';
 
 /**
@@ -44,6 +44,12 @@ export class ZenInput {
       ev.preventDefault();
       getNextField(this.input).focus();
     }
+  }
+
+  /** Focus input */
+  @Method()
+  async focusInput(): Promise<void> {
+    this.input.focus();
   }
 
   private onInput = (ev: Event) => {
