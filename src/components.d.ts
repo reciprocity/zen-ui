@@ -326,9 +326,17 @@ export namespace Components {
     }
     interface ZenPopover {
         /**
-          * Don't hide tooltip
+          * Close on click outside
          */
-        "alwaysVisible": boolean;
+        "closeOnClickOut": boolean;
+        /**
+          * Show and hide delay. Only affects show on hover! Eg. '100' - both show & hide 100ms. '100 500' - show 100ms, hide 500ms.
+         */
+        "delay": string;
+        /**
+          * User can click content within popover
+         */
+        "interactive": boolean;
         /**
           * Popover offset
          */
@@ -341,6 +349,10 @@ export namespace Components {
           * Triggering event
          */
         "triggerEvent": TriggerEvent;
+        /**
+          * Show/hide popover
+         */
+        "visible": boolean;
     }
     interface ZenProgressTracker {
         /**
@@ -1161,9 +1173,17 @@ declare namespace LocalJSX {
     }
     interface ZenPopover {
         /**
-          * Don't hide tooltip
+          * Close on click outside
          */
-        "alwaysVisible"?: boolean;
+        "closeOnClickOut"?: boolean;
+        /**
+          * Show and hide delay. Only affects show on hover! Eg. '100' - both show & hide 100ms. '100 500' - show 100ms, hide 500ms.
+         */
+        "delay"?: string;
+        /**
+          * User can click content within popover
+         */
+        "interactive"?: boolean;
         /**
           * Popover offset
          */
@@ -1176,6 +1196,10 @@ declare namespace LocalJSX {
           * Triggering event
          */
         "triggerEvent"?: TriggerEvent;
+        /**
+          * Show/hide popover
+         */
+        "visible"?: boolean;
     }
     interface ZenProgressTracker {
         /**

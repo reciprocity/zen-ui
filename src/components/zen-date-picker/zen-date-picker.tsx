@@ -134,7 +134,7 @@ export class ZenDatePicker {
           onChange={e => this.onInputChange(e)}
         >
           <ZenSpace padding="md none md md" slot="leadingSlot">
-            <ZenIcon icon={faCalendarAlt}></ZenIcon>
+            <ZenIcon class="icon" icon={faCalendarAlt}></ZenIcon>
           </ZenSpace>
         </ZenInput>
         <div class="calendar">
@@ -145,11 +145,16 @@ export class ZenDatePicker {
             horizontal-align="center"
             vertical-align="stretch"
           >
-            <ZenIcon icon={faChevronDoubleLeft} size="sm" onClick={() => this.navigate(Navigate.prevYear)}></ZenIcon>
+            <ZenIcon
+              class="icon"
+              icon={faChevronDoubleLeft}
+              size="sm"
+              onClick={() => this.navigate(Navigate.prevYear)}
+            ></ZenIcon>
             <ZenIcon
               icon={faChevronLeft}
               size="sm"
-              class="fill"
+              class="icon fill"
               onClick={() => this.navigate(Navigate.prevMonth)}
             ></ZenIcon>
             <ZenText align="center" class="date" uppercase bold>
@@ -158,10 +163,15 @@ export class ZenDatePicker {
             <ZenIcon
               icon={faChevronRight}
               size="sm"
-              class="fill"
+              class="icon fill"
               onClick={() => this.navigate(Navigate.nextMonth)}
             ></ZenIcon>
-            <ZenIcon icon={faChevronDoubleRight} size="sm" onClick={() => this.navigate(Navigate.nextYear)}></ZenIcon>
+            <ZenIcon
+              class="icon"
+              icon={faChevronDoubleRight}
+              size="sm"
+              onClick={() => this.navigate(Navigate.nextYear)}
+            ></ZenIcon>
           </ZenSpace>
           <div class="days">
             <ZenSpace padding="lg" horizontal-align="space-around">

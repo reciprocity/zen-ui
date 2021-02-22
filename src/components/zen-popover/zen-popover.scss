@@ -11,3 +11,14 @@
 :host(.hidden) {
   display: none !important;
 }
+
+:host(:not([interactive])) .panel {
+  pointer-events: none;
+}
+
+.panel {
+  display: block;
+  background-color: $color-white;
+  box-shadow: $shadow-drop-200;
+  margin-top: 0.25rem;
+}
