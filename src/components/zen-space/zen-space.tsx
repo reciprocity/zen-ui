@@ -1,6 +1,6 @@
 import { Component, Host, h, Prop, Watch, State } from '@stencil/core';
-import { Size, None } from '../helpers/types';
-import { paddingChanged } from '../helpers/helpers';
+import { Size, None, PaddingShorthand } from '../helpers/types';
+import { parsePadding } from '../helpers/helpers';
 
 type FlexAlign =
   | 'start'
@@ -36,14 +36,14 @@ export class ZenSpace {
   @Prop({ reflect: true }) readonly spacing: Size | None = 'sm';
 
   /** Inner spacing of container */
-  @Prop() readonly padding: Size | None | string = 'sm';
+  @Prop() readonly padding: PaddingShorthand = 'sm';
 
   /** Break row/column if content doesn't fit */
   @Prop({ reflect: true }) readonly noWrap: boolean = false;
 
   @Watch('padding')
   spacePaddingChanged(padding: string): void {
-    this.paddingClasses = paddingChanged(padding);
+    this.paddingClasses = parsePadding(padding);
   }
 
   componentDidLoad(): void {

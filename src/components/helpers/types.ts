@@ -19,6 +19,8 @@ export type IconSizes = 'sm' | 'md' | 'lg';
 
 export type Size = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
+export type PaddingShorthand = Size | None;
+
 export type None = 'none';
 
 export type TriggerEvent = 'click' | 'hover';
