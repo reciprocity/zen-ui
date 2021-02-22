@@ -48,16 +48,16 @@ export class ZenPopover {
   @Watch('visible')
   async visibleChanged(visible: boolean): Promise<void> {
     const show = async (): Promise<void> => {
-      const lastHideAnimationCompleted = !!this.popperInstance;
-      showInstantly(this.popup); // show it so popper can get dimensions
-      await this.createPopper();
-      hideInstantly(this.popup);
-
       if (this.animate) {
-        // If it isn't visible (previous hide animation has complete), force start position.
-        // Otherwise just continue from current position, to prevent jumping animation.
+        const lastHideAnimationCompleted = !!this.popperInstance;
+        showInstantly(this.popup); // show it so popper can get dimensions
+        await this.createPopper();
+        hideInstantly(this.popup);
+        // If it isn't visible (prev hide anim has complete), force start position.
+        // Otherwise continue from current position, to prevent anim jumping.
         showWithAnimation(this.popup, lastHideAnimationCompleted);
       } else {
+        await this.createPopper();
         showInstantly(this.popup);
       }
       this.visible = true;
