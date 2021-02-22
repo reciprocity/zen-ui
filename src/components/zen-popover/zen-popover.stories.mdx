@@ -13,8 +13,8 @@ export const StoryWithControls = args => {
   });
   return html/*html*/ `
     <sb-zen-space no-wrap horizontal-align="center" vertical-align="center" style="height: 200px;">
+      <sb-zen-button variant="primary"> Button </sb-zen-button>
       <sb-zen-popover id="control" ...="${spreadArgs(args, argTypes)}">
-        <sb-zen-button variant="primary" slot="target"> Button </sb-zen-button>
         <sb-zen-space padding="md">
           <sb-zen-text size="sm"
             >Lorem Ipsum is simply dummy text of the printing and typesetting industry.</sb-zen-text
@@ -29,16 +29,16 @@ export const StoryPositionVariants = args => {
   return html/*html*/ `
     <sb-zen-space no-wrap spacing="xl" horizontal-align="space-around">
       <sb-zen-space vertical-align="start" style="height: 200px; width:100%; position: relative;">
+        <sb-zen-button variant="primary"> Position bottom start </sb-zen-button>
         <sb-zen-popover position="bottom-start" always-visible>
-          <sb-zen-button variant="primary" slot="target"> Position bottom start </sb-zen-button>
           <sb-zen-space padding="md">
             <sb-zen-text size="sm"
               >Lorem Ipsum is simply dummy text of the printing and typesetting industry.</sb-zen-text
             >
           </sb-zen-space>
         </sb-zen-popover>
+        <sb-zen-button variant="primary"> Position bottom end </sb-zen-button>
         <sb-zen-popover position="bottom-end" always-visible style="position:absolute; right:0;">
-          <sb-zen-button variant="primary" slot="target"> Position bottom end </sb-zen-button>
           <sb-zen-space padding="md">
             <sb-zen-text size="sm"
               >Lorem Ipsum is simply dummy text of the printing and typesetting industry.</sb-zen-text
@@ -47,16 +47,16 @@ export const StoryPositionVariants = args => {
         </sb-zen-popover>
       </sb-zen-space>
       <sb-zen-space vertical-align="end" style="height: 200px; width:100%; position: relative;">
+        <sb-zen-button variant="primary"> Position top start </sb-zen-button>
         <sb-zen-popover position="top-start" always-visible>
-          <sb-zen-button variant="primary" slot="target"> Position top start </sb-zen-button>
           <sb-zen-space padding="md">
             <sb-zen-text size="sm"
               >Lorem Ipsum is simply dummy text of the printing and typesetting industry.</sb-zen-text
             >
           </sb-zen-space>
         </sb-zen-popover>
+        <sb-zen-button variant="primary"> Position top ends </sb-zen-button>
         <sb-zen-popover position="top-end" always-visible style="position:absolute; right:0;">
-          <sb-zen-button variant="primary" slot="target"> Position top ends </sb-zen-button>
           <sb-zen-space padding="md">
             <sb-zen-text size="sm"
               >Lorem Ipsum is simply dummy text of the printing and typesetting industry.</sb-zen-text
@@ -71,16 +71,16 @@ export const StoryPositionVariants = args => {
 export const StoryTriggerEvents = args => {
   return html/*html*/ `
     <sb-zen-space no-wrap horizontal-align="space-evenly" vertical-align="start" style="height: 150px">
+      <sb-zen-button variant="primary"> Click Event </sb-zen-button>
       <sb-zen-popover position="bottom-start">
-        <sb-zen-button slot="target" variant="primary"> Click Event </sb-zen-button>
         <sb-zen-space padding="md">
           <sb-zen-text size="sm"
             >Lorem Ipsum is simply dummy text of the printing and typesetting industry.</sb-zen-text
           >
         </sb-zen-space>
       </sb-zen-popover>
+      <sb-zen-button variant="primary"> Hover Event </sb-zen-button>
       <sb-zen-popover position="bottom-start" trigger-event="hover">
-        <sb-zen-button slot="target" variant="primary"> Hover Event </sb-zen-button>
         <sb-zen-space padding="md">
           <sb-zen-text size="sm"
             >Lorem Ipsum is simply dummy text of the printing and typesetting industry.</sb-zen-text
@@ -138,11 +138,11 @@ export const StoryFilters = args => {
   });
   return html/*html*/ `
     <sb-zen-space no-wrap spacing="lg" horizontal-align="start" vertical-align="top" style="height: 400px">
+      <sb-zen-button variant="primary">
+        <sb-zen-icon slot="leadingIcon" id="filter" style="height:14px; align-self:center;"></sb-zen-icon>
+        Filter
+      </sb-zen-button>
       <sb-zen-popover position="bottom-start">
-        <sb-zen-button variant="primary" slot="target">
-          <sb-zen-icon slot="leadingIcon" id="filter" style="height:14px; align-self:center;"></sb-zen-icon>
-          Filter
-        </sb-zen-button>
         <sb-zen-space padding="md">
           <sb-zen-space horizontal-align="start" padding="lg">
             <sb-zen-text size="xs" variant="heading">Filters</sb-zen-text>
