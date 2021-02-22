@@ -1,0 +1,26 @@
+@import '../../zen-styles/component-helpers.scss';
+
+:host {
+  display: block;
+
+  // border-top: 1px solid $color-gray-200;
+  // margin: 0.5em 0;
+}
+
+.header-container {
+  display: flex;
+
+  cursor: pointer;
+}
+
+// .chevron {}
+
+.header {
+  margin-left: 4px;
+}
+
+// .content {}
+
+.hidden {
+  display: none;
+}
