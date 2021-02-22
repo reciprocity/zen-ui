@@ -1,4 +1,4 @@
-import { Component, Host, h, Element, Prop, Watch, State, Event, EventEmitter } from '@stencil/core';
+import { Component, Host, h, Element, Prop, Watch, State, Event, EventEmitter, Method } from '@stencil/core';
 import { createPopper, Placement, Offsets } from '@popperjs/core';
 import { getComposedPath, waitNextFrame } from '../helpers/helpers';
 import { showWithAnimation, hideWithAnimation, showInstantly, hideInstantly } from '../helpers/animations';
@@ -62,7 +62,6 @@ export class ZenPopover {
         await this.createPopper();
         showInstantly(this.popup);
       }
-      this.visible = true;
 
       // Add event listener for click outside
       this.clickHandler = event => this.closeOnClickOutside(event);
@@ -78,7 +77,6 @@ export class ZenPopover {
         hideInstantly(this.popup);
         this.destroyPopper();
       }
-      this.visible = false;
 
       // remove event listener for click outside
       if (this.clickHandler) document.removeEventListener('mousedown', this.clickHandler);
@@ -97,6 +95,16 @@ export class ZenPopover {
     this.hideDelay = values ? parseInt(values[1], 10) || this.showDelay : 0;
   }
 
+  /** Close an opened dropdown menu */
+  @Method()
+  async toggle(show?: boolean): Promise<void> {
+    if (show === undefined) {
+      show = !this.visible;
+    }
+    if (show === this.visible) return;
+    this.visible = show;
+  }
+
   addTriggerEvents(): void {
     const show = () => {
       clearTimeout(this.hideTimer);
@@ -113,7 +121,7 @@ export class ZenPopover {
     const hide = () => {
       clearTimeout(this.hideTimer);
       clearTimeout(this.showTimer);
-      const instantHide = (!this.interactive || this.triggerEvent !== 'hover') && !this.hideDelay;
+      const instantHide = (!this.interactive || this.triggerEvent === 'click') && !this.hideDelay;
       if (instantHide) {
         this.visible = false;
         return;
@@ -129,9 +137,9 @@ export class ZenPopover {
     };
 
     // Add events to the target element
-    if (this.triggerEvent == 'click') {
+    if (this.triggerEvent === 'click') {
       this.targetSlotEl.addEventListener('mousedown', () => (this.visible = !this.visible));
-    } else if (this.triggerEvent == 'hover') {
+    } else if (this.triggerEvent === 'hover') {
       this.targetSlotEl.addEventListener('mouseover', () => show());
       this.targetSlotEl.addEventListener('mouseout', () => hide());
       this.targetSlotEl.addEventListener('touchstart', () => show());
