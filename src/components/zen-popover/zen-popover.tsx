@@ -143,7 +143,7 @@ export class ZenPopover {
   async closeOnClickOutside(event: MouseEvent): Promise<void> {
     const path = getComposedPath(event);
     const clickedInside = this.interactive && path.find(n => n === this.popup);
-    if (clickedInside) return;
+    if (clickedInside || !this.closeOnClickOut) return;
     await waitNextFrame(); // prevent race with click-open
     this.visible = false;
   }
