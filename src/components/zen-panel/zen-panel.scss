@@ -2,9 +2,6 @@
 
 :host {
   display: block;
-
-  // border-top: 1px solid $color-gray-200;
-  // margin: 0.5em 0;
 }
 
 .header-container {
@@ -13,13 +10,13 @@
   cursor: pointer;
 }
 
-// .chevron {}
+.chevron {
+  color: $color-gray-700;
+}
 
 .header {
   margin-left: 4px;
 }
-
-// .content {}
 
 .visible {
   display: none;
