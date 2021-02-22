@@ -60,4 +60,14 @@ describe('zen-animate', () => {
     await page.waitForChanges();
     expect(page.root.shadowRoot.querySelector('slot')).toBeFalsy();
   });
+
+  it('should retry to get slot if it failed first time', async () => {
+    helpers.getDefaultSlotContent = jest.fn(() => []);
+    const page = await newSpecPage({
+      components: [ZenAnimate],
+      html: `<zen-animate show="true"><h1>Slot</h1></zen-animate>`,
+    });
+    await page.waitForChanges();
+    expect(helpers.getDefaultSlotContent).toHaveBeenCalledTimes(4);
+  });
 });
