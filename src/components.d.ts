@@ -164,6 +164,10 @@ export namespace Components {
     }
     interface ZenDatePicker {
         /**
+          * Close calendar after picking a date
+         */
+        "closeOnClick": boolean;
+        /**
           * Date format
          */
         "format": "MM/dd/yyyy";
@@ -260,9 +264,13 @@ export namespace Components {
          */
         "enterToTab": true;
         /**
+          * Focus input
+         */
+        "focusInput": () => Promise<void>;
+        /**
           * Paint focused border
          */
-        "hasFocus": boolean;
+        "hasFocus": false;
         /**
           * Shows invalid styles.
          */
@@ -359,6 +367,10 @@ export namespace Components {
           * Position
          */
         "position": Placement;
+        /**
+          * Close an opened dropdown menu
+         */
+        "toggle": (show?: boolean) => Promise<void>;
         /**
           * Triggering event
          */
@@ -1028,6 +1040,10 @@ declare namespace LocalJSX {
     }
     interface ZenDatePicker {
         /**
+          * Close calendar after picking a date
+         */
+        "closeOnClick"?: boolean;
+        /**
           * Date format
          */
         "format"?: "MM/dd/yyyy";
@@ -1122,7 +1138,7 @@ declare namespace LocalJSX {
         /**
           * Paint focused border
          */
-        "hasFocus"?: boolean;
+        "hasFocus"?: false;
         /**
           * Shows invalid styles.
          */
@@ -1223,6 +1239,10 @@ declare namespace LocalJSX {
           * Popover offset
          */
         "offset"?: Offsets;
+        /**
+          * Visibility changed
+         */
+        "onVisibilityChange"?: (event: CustomEvent<void>) => void;
         /**
           * Position
          */
