@@ -29,7 +29,7 @@ export const StoryPositionVariants = args => {
   return html/*html*/ `
     <sb-zen-space no-wrap padding="xl" spacing="sm" horizontal-align="center" vertical-align="center">
       <sb-zen-button variant="primary">left</sb-zen-button>
-      <sb-zen-popover position="left" always-visible style="max-width: 120px">
+      <sb-zen-popover position="left" style="max-width: 120px">
         <sb-zen-space padding="md">
           <sb-zen-text size="sm"
             >Lorem Ipsum is simply dummy text of the printing and typesetting industry.</sb-zen-text
@@ -37,7 +37,7 @@ export const StoryPositionVariants = args => {
         </sb-zen-space>
       </sb-zen-popover>
       <sb-zen-button variant="primary">bottom-start</sb-zen-button>
-      <sb-zen-popover position="bottom-start" always-visible>
+      <sb-zen-popover position="bottom-start">
         <sb-zen-space padding="md">
           <sb-zen-text size="sm"
             >Lorem Ipsum is simply dummy text of the printing and typesetting industry.</sb-zen-text
@@ -45,7 +45,7 @@ export const StoryPositionVariants = args => {
         </sb-zen-space>
       </sb-zen-popover>
       <sb-zen-button variant="primary">bottom-end</sb-zen-button>
-      <sb-zen-popover position="bottom-end" always-visible style="position:absolute; right:0;">
+      <sb-zen-popover position="bottom-end" style="position:absolute; right:0;">
         <sb-zen-space padding="md">
           <sb-zen-text size="sm"
             >Lorem Ipsum is simply dummy text of the printing and typesetting industry.</sb-zen-text
@@ -53,7 +53,7 @@ export const StoryPositionVariants = args => {
         </sb-zen-space>
       </sb-zen-popover>
       <sb-zen-button variant="primary">top-start</sb-zen-button>
-      <sb-zen-popover position="top-start" always-visible>
+      <sb-zen-popover position="top-start">
         <sb-zen-space padding="md">
           <sb-zen-text size="sm"
             >Lorem Ipsum is simply dummy text of the printing and typesetting industry.</sb-zen-text
@@ -61,7 +61,7 @@ export const StoryPositionVariants = args => {
         </sb-zen-space>
       </sb-zen-popover>
       <sb-zen-button variant="primary">top-end</sb-zen-button>
-      <sb-zen-popover position="top-end" always-visible style="position:absolute; right:0;">
+      <sb-zen-popover position="top-end" style="position:absolute; right:0;">
         <sb-zen-space padding="md">
           <sb-zen-text size="sm"
             >Lorem Ipsum is simply dummy text of the printing and typesetting industry.</sb-zen-text
@@ -69,7 +69,7 @@ export const StoryPositionVariants = args => {
         </sb-zen-space>
       </sb-zen-popover>
       <sb-zen-button variant="primary">right</sb-zen-button>
-      <sb-zen-popover position="right" always-visible style="max-width: 120px">
+      <sb-zen-popover position="right" style="max-width: 120px">
         <sb-zen-space padding="md">
           <sb-zen-text size="sm"
             >Lorem Ipsum is simply dummy text of the printing and typesetting industry.</sb-zen-text
@@ -108,7 +108,7 @@ export const StoryScrollable = args => {
     <div style="height: 200px">
       <sb-zen-space no-wrap padding="none" horizontal-align="center" vertical-align="center" style="height: 400px;">
         <sb-zen-button variant="primary"> Top Start </sb-zen-button>
-        <sb-zen-popover position="bottom-end" always-visible>
+        <sb-zen-popover position="bottom-end" visible="true" close-on-click-out="false">
           <sb-zen-space padding="md">
             <sb-zen-text size="sm"
               >Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy
@@ -154,7 +154,7 @@ export const StoryFilters = args => {
         <sb-zen-icon slot="leadingIcon" id="filter" style="height:14px; align-self:center;"></sb-zen-icon>
         Filter
       </sb-zen-button>
-      <sb-zen-popover position="bottom-start">
+      <sb-zen-popover position="bottom-start" visible="true" close-on-click-out="false">
         <sb-zen-space padding="md">
           <sb-zen-space horizontal-align="start" padding="lg">
             <sb-zen-text size="xs" variant="heading">Filters</sb-zen-text>
