@@ -57,6 +57,9 @@ export class ZenDatePicker {
   /** Selected date */
   @Prop({ mutable: true }) value: Date = helpers.today();
 
+  /** Close calendar after picking a date */
+  @Prop() readonly closeOnClick: boolean = true;
+
   @Watch('value')
   async dateChanged(value: Date): Promise<void> {
     this.formattedDate = format(value, this.format);
@@ -65,6 +68,11 @@ export class ZenDatePicker {
       input.value = this.formattedDate;
     }
     this.calendarMonth = value;
+    if (this.opened && this.closeOnClick) {
+      const popover = this.host.shadowRoot.querySelector('.calendar') as HTMLZenPopoverElement;
+      popover.visible = false;
+      input.focusInput();
+    }
   }
 
   @Watch('calendarMonth')
