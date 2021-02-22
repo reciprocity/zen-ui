@@ -14,20 +14,20 @@ export class ZenPanel {
   /** Whether the panel has an arrow */
   @Prop() readonly arrow: boolean = true;
 
-  @State() hidden = true;
+  @State() visible = true;
 
-  toggleHidden(): void {
-    this.hidden = !this.hidden;
+  toggleContent(): void {
+    this.visible = !this.visible;
   }
 
   icon(): IconDefinition {
-    return this.hidden ? faChevronRight : faChevronDown;
+    return this.visible ? faChevronRight : faChevronDown;
   }
 
   contentClasses(): Record<string, boolean> {
     return {
       content: true,
-      hidden: this.hidden,
+      visible: this.visible,
     };
   }
 
@@ -36,7 +36,7 @@ export class ZenPanel {
 
     return (
       <Host>
-        <div class="header-container" onClick={() => this.toggleHidden()}>
+        <div class="header-container" onClick={() => this.toggleContent()}>
           {this.arrow && <ZenIcon icon={this.icon()} size="sm" class="icon fill" />}
           <slot name="header" />
         </div>

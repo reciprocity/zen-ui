@@ -12,19 +12,19 @@ describe('zen-panel', () => {
   });
 
   describe('icon', () => {
-    it('should display right chevron icon if hidden', () => {
+    it('should display right chevron icon if not visible', () => {
       const panel = new ZenPanel();
 
-      expect(panel.hidden).toBe(true);
+      expect(panel.visible).toBe(true);
       expect(panel.icon().iconName).toEqual('chevron-right');
     });
 
-    it('should display down chevron icon if not hidden', () => {
+    it('should display down chevron icon if visible', () => {
       const panel = new ZenPanel();
 
-      panel.toggleHidden();
+      panel.toggleContent();
 
-      expect(panel.hidden).toBe(false);
+      expect(panel.visible).toBe(false);
       expect(panel.icon().iconName).toEqual('chevron-down');
     });
   });
@@ -32,28 +32,28 @@ describe('zen-panel', () => {
   describe('content', () => {
     it('should hide content on init', () => {
       const panel = new ZenPanel();
-      expect(panel.hidden).toBe(true);
+      expect(panel.visible).toBe(true);
     });
 
-    it('should not display content if hidden', () => {
+    it('should not display content if not visible', () => {
       const panel = new ZenPanel();
 
-      expect(panel.hidden).toBe(true);
+      expect(panel.visible).toBe(true);
       expect(panel.contentClasses()).toEqual({
         content: true,
-        hidden: true,
+        visible: true,
       });
     });
 
-    it('should display content if not hidden', () => {
+    it('should display content if visible', () => {
       const panel = new ZenPanel();
 
-      panel.toggleHidden();
+      panel.toggleContent();
 
-      expect(panel.hidden).toBe(false);
+      expect(panel.visible).toBe(false);
       expect(panel.contentClasses()).toEqual({
         content: true,
-        hidden: false,
+        visible: false,
       });
     });
   });
