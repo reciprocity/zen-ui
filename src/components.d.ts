@@ -186,7 +186,11 @@ export namespace Components {
         /**
           * Is drawer visible
          */
-        "show": false;
+        "opened": false;
+        /**
+          * Position
+         */
+        "position": Position;
     }
     interface ZenDropdown {
         /**
@@ -1046,7 +1050,11 @@ declare namespace LocalJSX {
         /**
           * Is drawer visible
          */
-        "show"?: false;
+        "opened"?: false;
+        /**
+          * Position
+         */
+        "position"?: Position;
     }
     interface ZenDropdown {
         /**
