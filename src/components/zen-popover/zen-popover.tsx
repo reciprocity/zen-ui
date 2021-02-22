@@ -27,7 +27,7 @@ export class ZenPopover {
   /** Show/hide popover */
   @Prop({ mutable: true }) visible = false;
 
-  /** Placement */
+  /** Position */
   @Prop() readonly position: Placement = 'bottom-end';
 
   /** Triggering event */
