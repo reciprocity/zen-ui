@@ -1,0 +1,54 @@
+@import '../../zen-styles/component-helpers.scss';
+@import '../../zen-styles/shadows.scss';
+
+:host {
+  display: none;
+  position: absolute;
+  height: 100%;
+  width: 300px;
+  top: 0;
+  right: -300px;
+  z-index: 9999;
+
+  transition: right 0.3s ease 0s;
+}
+
+:host(.visible) {
+  display: block;
+  width: 300px;
+  top: 0;
+  right: 0;
+  transition: right 0.3s ease 0s;
+}
+
+.visible {
+  display: block;
+  width: 300px;
+  top: 0;
+  right: 0;
+  transition: right 0.3s ease 0s;
+}
+
+.container {
+  display: block;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  top: 0px;
+  right: -300px;
+  margin-left: 10px;
+  margin-top: 15px;
+  overflow-y: auto;
+  box-shadow: rgb(0 0 0 / 10%) -15px 0px 17px -7px;
+
+  &.visible {
+     right: 0px;
+     transition: right 0.3s ease 0s;
+  }
+
+
+
+}
+
+
