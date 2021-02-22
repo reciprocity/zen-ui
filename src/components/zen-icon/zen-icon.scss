@@ -1,7 +1,10 @@
+@import '../../zen-styles/component-helpers.scss';
+
 :host {
   display: flex;
   justify-content: center;
   align-items: center;
+  @include noselect;
 
   svg {
     height: 1rem;
