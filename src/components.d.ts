@@ -182,6 +182,16 @@ export namespace Components {
     }
     interface ZenDivider {
     }
+    interface ZenDrawer {
+        /**
+          * Is drawer visible
+         */
+        "opened": false;
+        /**
+          * Position
+         */
+        "position": Position;
+    }
     interface ZenDropdown {
         /**
           * Don't draw border around field
@@ -690,6 +700,12 @@ declare global {
         prototype: HTMLZenDividerElement;
         new (): HTMLZenDividerElement;
     };
+    interface HTMLZenDrawerElement extends Components.ZenDrawer, HTMLStencilElement {
+    }
+    var HTMLZenDrawerElement: {
+        prototype: HTMLZenDrawerElement;
+        new (): HTMLZenDrawerElement;
+    };
     interface HTMLZenDropdownElement extends Components.ZenDropdown, HTMLStencilElement {
     }
     var HTMLZenDropdownElement: {
@@ -838,6 +854,7 @@ declare global {
         "zen-checkbox": HTMLZenCheckboxElement;
         "zen-date-picker": HTMLZenDatePickerElement;
         "zen-divider": HTMLZenDividerElement;
+        "zen-drawer": HTMLZenDrawerElement;
         "zen-dropdown": HTMLZenDropdownElement;
         "zen-form-group": HTMLZenFormGroupElement;
         "zen-icon": HTMLZenIconElement;
@@ -1028,6 +1045,16 @@ declare namespace LocalJSX {
         "value"?: Date;
     }
     interface ZenDivider {
+    }
+    interface ZenDrawer {
+        /**
+          * Is drawer visible
+         */
+        "opened"?: false;
+        /**
+          * Position
+         */
+        "position"?: Position;
     }
     interface ZenDropdown {
         /**
@@ -1461,6 +1488,7 @@ declare namespace LocalJSX {
         "zen-checkbox": ZenCheckbox;
         "zen-date-picker": ZenDatePicker;
         "zen-divider": ZenDivider;
+        "zen-drawer": ZenDrawer;
         "zen-dropdown": ZenDropdown;
         "zen-form-group": ZenFormGroup;
         "zen-icon": ZenIcon;
@@ -1504,6 +1532,7 @@ declare module "@stencil/core" {
             "zen-checkbox": LocalJSX.ZenCheckbox & JSXBase.HTMLAttributes<HTMLZenCheckboxElement>;
             "zen-date-picker": LocalJSX.ZenDatePicker & JSXBase.HTMLAttributes<HTMLZenDatePickerElement>;
             "zen-divider": LocalJSX.ZenDivider & JSXBase.HTMLAttributes<HTMLZenDividerElement>;
+            "zen-drawer": LocalJSX.ZenDrawer & JSXBase.HTMLAttributes<HTMLZenDrawerElement>;
             "zen-dropdown": LocalJSX.ZenDropdown & JSXBase.HTMLAttributes<HTMLZenDropdownElement>;
             "zen-form-group": LocalJSX.ZenFormGroup & JSXBase.HTMLAttributes<HTMLZenFormGroupElement>;
             "zen-icon": LocalJSX.ZenIcon & JSXBase.HTMLAttributes<HTMLZenIconElement>;

@@ -23,6 +23,7 @@ async function transitionAnimateAttr(element: HTMLElement, fromAttr: string, toA
   }
   element.setAttribute('animate', fromAttr);
   await waitNextFrame();
+  await waitNextFrame();
   if (!fromCurrentValue) {
     element.style.transition = '';
   }
@@ -35,8 +36,9 @@ function clearHideTimer(element: HTMLElement) {
   clearTimeout(hideTimerId);
 }
 
-export async function showWithAnimation(element: HTMLElement, fromCurrentValue = true): Promise<void> {
+export async function showWithAnimation(element: HTMLElement): Promise<void> {
   clearHideTimer(element);
+  const fromCurrentValue = !(element.getAttribute('animate') === 'out-finished');
   await transitionAnimateAttr(element, 'in-start', 'in-end', fromCurrentValue);
 }
 
@@ -45,13 +47,9 @@ export async function showInstantly(element: HTMLElement): Promise<void> {
   element.setAttribute('animate', 'in-end');
 }
 
-export async function hideWithAnimation(
-  element: HTMLElement,
-  callback?: () => void,
-  fromCurrentValue = true,
-): Promise<void> {
+export async function hideWithAnimation(element: HTMLElement, callback?: () => void): Promise<void> {
   clearHideTimer(element);
-
+  const fromCurrentValue = !(element.getAttribute('animate') === 'out-finished');
   await transitionAnimateAttr(element, 'out-start', 'out-end', fromCurrentValue);
 
   // Remove element with delay, so transition finishes first:

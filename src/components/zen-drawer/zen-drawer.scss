@@ -1,0 +1,103 @@
+@import '../../zen-styles/component-helpers.scss';
+@import '../../zen-styles/shadows.scss';
+
+:host {
+  display: block;
+  width: 30%;
+  position: absolute;
+  height: 100%;
+  overflow: hidden;
+}
+
+.close-btn {
+  position: absolute;
+  right: 0;
+}
+
+.close-icon {
+  color: $color-gray-600;
+}
+
+:host([data-position*='right']) {
+  right: 0;
+  padding-left: 10px;
+  margin-left: -10px;
+}
+
+:host([data-position*='left']) {
+  left: 0;
+  padding-right: 10px;
+  margin-right: -10px;
+
+  .close-icon {
+    transform: rotate(180deg);
+  }
+}
+
+:host([data-position*='top']) {
+  width: 100%;
+  height: fit-content;
+  top: 0;
+  padding-bottom: 10px;
+  margin-bottom: -10px;
+
+  .close-icon {
+    transform: rotate(-90deg);
+  }
+}
+
+:host([data-position*='bottom']) {
+  width: 100%;
+  height: fit-content;
+  bottom: 0;
+  padding-top: 10px;
+  margin-top: -10px;
+
+  .close-icon {
+    transform: rotate(90deg);
+  }
+}
+
+.drawer {
+  height: 100%;
+  width: 100%;
+  background-color: $color-white;
+  box-shadow: $shadow-drop-200;
+  transition: transform 0.25s ease-out, opacity 0.25s ease-out;
+  overflow-y: auto;
+}
+
+.drawer[animate='out-finished'] {
+  display: none;
+}
+
+// end position:
+.drawer[animate='out-start'],
+.drawer[animate='in-end'] {
+  transform: translate(0);
+}
+
+// default position right
+.drawer[animate='out-end'],
+.drawer[animate='in-start'] {
+  opacity: 0;
+  transform: translateX(70%);
+}
+
+.drawer[data-position*='top'][animate='out-end'],
+.drawer[data-position*='top'][animate='in-start'] {
+  opacity: 0;
+  transform: translateY(-70%);
+}
+
+.drawer[data-position*='left'][animate='out-end'],
+.drawer[data-position*='left'][animate='in-start'] {
+  opacity: 0;
+  transform: translateX(-70%);
+}
+
+.drawer[data-position*='bottom'][animate='out-end'],
+.drawer[data-position*='bottom'][animate='in-start'] {
+  opacity: 0;
+  transform: translateY(70%);
+}
