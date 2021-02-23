@@ -20,23 +20,11 @@ export class ZenDrawer {
 
   @Watch('opened')
   async openedChanged(): Promise<void> {
-    const show = async (): Promise<void> => {
-      await showWithAnimation(this.drawer);
-    };
-
-    const hide = (): void => {
-      hideWithAnimation(this.drawer);
-    };
-
-    this.opened ? show() : hide();
+    this.opened ? showWithAnimation(this.drawer) : hideWithAnimation(this.drawer);
   }
 
   componentDidLoad(): void {
-    if (this.opened) {
-      showInstantly(this.drawer);
-    } else {
-      hideInstantly(this.drawer);
-    }
+    this.opened ? showInstantly(this.drawer) : hideInstantly(this.drawer);
   }
 
   render(): HTMLElement {

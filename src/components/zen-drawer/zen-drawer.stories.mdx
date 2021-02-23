@@ -6,31 +6,41 @@ import { waitForElement } from '../../../.storybook/helpers/utils';
 import { faChevronDoubleRight } from '@fortawesome/pro-light-svg-icons';
 const { argTypes, args } = getArgTypesAndArgs('zen-drawer');
 
-<Meta title="In progress/Drawer" component="zen-drawer" argTypes={argTypes} />
+<Meta title="Layout/Drawer" component="zen-drawer" argTypes={argTypes} />
 
 export const Template = args => {
   waitForElement('#zen-icon-element', element => {
     element.icon = faChevronDoubleRight;
   });
   function toggleDrawer() {
-    document.querySelector('#drawer1').opened = !document.querySelector('#drawer1').opened;
+    const drawer = document.querySelector('#drawer1');
+    drawer.opened = !drawer.opened;
   }
   return html/*html*/ `
-     <sb-zen-space padding="none" vertical="true" horizontal-align="center" padding="lg" space="lg" style="position:relative; height: 400px" >
-        <sb-zen-button @click="${toggleDrawer}">Open Drawer</sb-zen-button>
-        <sb-zen-drawer id="drawer1"  ...="${spreadArgs(args, argTypes)}">
-          <sb-zen-button variant="tertiary" @click="${toggleDrawer}">
-               <sb-zen-icon size="sm" id="zen-icon-element"></sb-zen-icon>
-          </sb-zen-button>
-          <sb-zen-space vertical="true" padding="lg" space="lg">
-            <sb-zen-text variant="label" size="sm">Title</sb-zen-text>
-            <sb-zen-text size="sm">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</sb-zen-text>
-            <sb-zen-text variant="label" size="sm">Description</sb-zen-text>
-            <sb-zen-text size="sm">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-            </sb-zen-text>
-            </sb-zen-text>
-          </sb-zen-space>
-        </sb-zen-drawer>
+    <sb-zen-space
+      padding="none"
+      spacing="none"
+      horizontal-align="center"
+      style="border: 1px solid lightgrey; position:relative; height: 400px"
+    >
+      <sb-zen-button @click="${toggleDrawer}">Open Drawer</sb-zen-button>
+      <sb-zen-drawer id="drawer1" ...="${spreadArgs(args, argTypes)}">
+        <sb-zen-button variant="tertiary" @click="${toggleDrawer}">
+          <sb-zen-icon size="sm" id="zen-icon-element"></sb-zen-icon>
+        </sb-zen-button>
+        <sb-zen-space vertical="true" padding="lg" space="lg">
+          <sb-zen-text variant="label" size="sm">Title</sb-zen-text>
+          <sb-zen-text size="sm">
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+          </sb-zen-text>
+          <sb-zen-text variant="label" size="sm">Description</sb-zen-text>
+          <sb-zen-text size="sm">
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text
+            of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting
+            industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+          </sb-zen-text>
+        </sb-zen-space>
+      </sb-zen-drawer>
     </sb-zen-space>
   `;
 };
