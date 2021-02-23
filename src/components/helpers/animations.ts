@@ -18,6 +18,7 @@ import { waitNextFrame, getCssTransitionDuration } from '../helpers/helpers';
 async function transitionAnimateAttr(element: HTMLElement, fromAttr: string, toAttr: string, fromCurrentValue = true) {
   // fromCurrentValue: Animate to toAttr from current values. Else it will force fromAttr before animating to toAttr values.
 
+  const transitions = element.style.transition;
   if (!fromCurrentValue) {
     element.style.transition = 'none'; // remove transition, so from values are applied instantly
   }
@@ -25,7 +26,7 @@ async function transitionAnimateAttr(element: HTMLElement, fromAttr: string, toA
   await waitNextFrame();
   await waitNextFrame();
   if (!fromCurrentValue) {
-    element.style.transition = '';
+    element.style.transition = transitions;
   }
   element.setAttribute('animate', toAttr);
 }
