@@ -13,34 +13,30 @@ export const StoryWithControls = args =>
     >Settings successfully saved!</sb-zen-notification
   >`;
 
-export const StoryVariants = () => html/*html*/ ` <div style="padding-bottom: 20px">
-    <sb-zen-notification variant="success" heading="Success" dismiss-duration="none" dismiss="true">
+export const StoryVariants = () => html/*html*/ `
+  <sb-zen-space no-wrap vertical spacing="lg">
+    <sb-zen-notification variant="success" heading="Success" dismiss-duration="none" dismiss="false">
       This is the notification message. There may be a number of things to add to this message, but try to keep it to
       three lines. Links underlined.
     </sb-zen-notification>
-  </div>
-  <div style="padding-bottom: 20px">
-    <sb-zen-notification variant="info" heading="Info" dismiss-duration="none" dismiss="true">
+    <sb-zen-notification variant="info" heading="Info" dismiss-duration="none" dismiss="false">
       This is the notification message. There may be a number of things to add to this message, but try to keep it to
       three lines. Links underlined.
     </sb-zen-notification>
-  </div>
-  <div style="padding-bottom: 20px">
-    <sb-zen-notification variant="warning" heading="Warning" dismiss-duration="none" dismiss="true">
+    <sb-zen-notification variant="warning" heading="Warning" dismiss-duration="none" dismiss="false">
       This is the notification message. There may be a number of things to add to this message, but try to keep it to
       three lines. Links underlined.
     </sb-zen-notification>
-  </div>
-  <div>
-    <sb-zen-notification variant="error" heading="Error" dismiss-duration="none" dismiss="true">
+    <sb-zen-notification variant="error" heading="Error" dismiss-duration="none" dismiss="false">
       This is the notification message. There may be a number of things to add to this message, but try to keep it to
       three lines. Links underlined.
     </sb-zen-notification>
-  </div>`;
+  </sb-zen-space>
+`;
 
 # Notification
 
-Toast notifications. Can be dismissable or permanent.
+Toast notifications. Can be dismissible or permanent.
 Use when you need to notify user, but don't need his direct response.
 
 ## Component previews

@@ -1,7 +1,8 @@
-import { Component, Host, h, Prop } from '@stencil/core';
+import { Component, Host, h, Prop, Element } from '@stencil/core';
 import { faTimes } from '@fortawesome/pro-light-svg-icons';
 import { Duration, NotificationVariant } from '../helpers/types';
 import { getIcon, getTimeout } from './helpers';
+import { applyPrefix } from '../helpers/helpers';
 
 @Component({
   tag: 'zen-notification',
@@ -9,7 +10,7 @@ import { getIcon, getTimeout } from './helpers';
   shadow: true,
 })
 export class ZenNotification {
-  div: HTMLElement = undefined;
+  @Element() element: HTMLZenNotificationElement;
 
   /** Variant  */
   @Prop() readonly variant: NotificationVariant = 'success';
@@ -30,52 +31,33 @@ export class ZenNotification {
   componentDidRender(): void {
     if (this.dismissDuration !== 'none') {
       setTimeout(() => {
-        this.close(this.div);
+        this.close(this.element);
       }, getTimeout(this.dismissDuration));
     }
   }
 
   render(): HTMLElement {
-    const classes = {
-      show: true,
-      notification: true,
-      [`notification-${this.variant}`]: true,
-    };
-
-    const close = {
-      close: true,
-      hide: this.dismiss == false,
-    };
-
-    const icon = {
-      icon: true,
-      [`icon-${this.variant}`]: true,
-    };
-
-    const title = {
-      title: true,
-      [`title-${this.variant}`]: true,
-    };
-
+    const ZenIcon = applyPrefix('zen-icon', this.element);
+    const ZenSpace = applyPrefix('zen-space', this.element);
+    const ZenText = applyPrefix('zen-text', this.element);
     return (
-      <Host class="show" ref={el => (this.div = el)}>
-        <div class={classes}>
-          <div
-            class={close}
-            onClick={() => {
-              this.close(this.div);
-            }}
-          >
-            <zen-icon icon={faTimes}></zen-icon>
-          </div>
-          <div class="row">
-            <zen-icon class={icon} icon={getIcon(this.variant)}></zen-icon>
-            <div class={title}>{this.heading}</div>
-          </div>
-          <div class="content">
-            <slot />
-          </div>
-        </div>
+      <Host class={{ show: true }}>
+        <ZenIcon
+          class={{ close: true, hide: this.dismiss == false }}
+          onClick={() => {
+            this.close(this.element);
+          }}
+          icon={faTimes}
+        />
+        <ZenSpace spacing="sm" padding="none">
+          <ZenIcon class="icon" icon={getIcon(this.variant)} />
+          <ZenText bold class="title">
+            {this.heading}
+          </ZenText>
+        </ZenSpace>
+        <ZenSpace class="content">
+          <slot />
+        </ZenSpace>
       </Host>
     );
   }
