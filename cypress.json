@@ -2,8 +2,5 @@
   "projectId": "iqmzqy",
   "baseUrl": "http://localhost:6006",
   "includeShadowDom": true,
-  "video": false,
-  "retries": {
-    "runMode": 2
-  }
+  "video": false
 }
