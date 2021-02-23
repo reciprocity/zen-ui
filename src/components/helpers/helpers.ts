@@ -1,4 +1,5 @@
 import { querySelectorAllDeep } from 'query-selector-shadow-dom';
+import { htmlToElement } from './jest';
 import { Position, Rect } from './types';
 
 export function waitNextFrame(): Promise<boolean> {
@@ -113,4 +114,8 @@ export function parsePadding(padding: string): Record<string, unknown> {
       break;
   }
   return paddingClasses;
+}
+
+export function getCssTransitionDuration(element: HTMLElement): number {
+  return parseFloat(getComputedStyle(element)['transitionDuration']) * 1000 || 0;
 }
