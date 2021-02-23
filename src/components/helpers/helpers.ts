@@ -1,5 +1,4 @@
 import { querySelectorAllDeep } from 'query-selector-shadow-dom';
-import { htmlToElement } from './jest';
 import { Position, Rect } from './types';
 
 export function waitNextFrame(): Promise<boolean> {
