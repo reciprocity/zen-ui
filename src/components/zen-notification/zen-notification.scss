@@ -4,6 +4,13 @@
   display: block;
   width: 90vw;
   max-width: 376px;
+  box-sizing: border-box;
+  min-height: 128px;
+  position: relative;
+  padding: 1rem;
+  box-shadow: $shadow-drop-200;
+  border-radius: 0.1rem;
+  background: $color-white;
 }
 
 .show {
@@ -14,29 +21,51 @@
   visibility: hidden;
 }
 
-.notification {
-  box-sizing: border-box;
-  min-height: 128px;
-  position: relative;
-  padding: 1.1rem 1.1rem;
-  box-shadow: 0 1px 2px rgba(62, 70, 76, 0.25), 0 2px 8px rgba(62, 70, 76, 0.2);
-  border-radius: 0.1rem;
-  background: $color-white;
+:host([variant='success']) {
+  border-top: 4px solid $color-green-700;
 
-  &.notification-success {
-    border-top: 4px solid $color-green-700;
+  .title {
+    color: $color-green-700;
   }
 
-  &.notification-info {
-    border-top: 4px solid $color-gray-400;
+  .icon {
+    color: $color-green-700;
+  }
+}
+
+:host([variant='info']) {
+  border-top: 4px solid $color-gray-400;
+
+  .title {
+    color: $color-gray-400;
   }
 
-  &.notification-warning {
-    border-top: 4px solid $color-yellow-700;
+  .icon {
+    color: $color-gray-400;
+  }
+}
+
+:host([variant='warning']) {
+  border-top: 4px solid $color-yellow-700;
+
+  .title {
+    color: $color-yellow-700;
   }
 
-  &.notification-error {
-    border-top: 4px solid $color-red-700;
+  .icon {
+    color: $color-yellow-700;
+  }
+}
+
+:host([variant='error']) {
+  border-top: 4px solid $color-red-700;
+
+  .title {
+    color: $color-red-700;
+  }
+
+  .icon {
+    color: $color-red-700;
   }
 }
 
@@ -50,68 +79,7 @@
   color: $color-gray-400;
 }
 
-.row {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  width: 100%;
-}
-
-.title {
-  font-size: $text-md;
-  font-weight: bold;
-  margin-bottom: 1px;
-
-  &.title-success {
-    color: $color-green-700;
-  }
-
-  &.title-info {
-    color: $color-gray-400;
-  }
-
-  &.title-warning {
-    color: $color-yellow-700;
-  }
-
-  &.title-error {
-    color: $color-red-700;
-  }
-}
-
-.icon {
-  margin-right: 0.5rem;
-  align-self: center;
-
-  &.icon-success {
-    color: $color-green-700;
-  }
-
-  &.icon-info {
-    color: $color-gray-400;
-  }
-
-  &.icon-warning {
-    color: $color-yellow-700;
-  }
-
-  &.icon-error {
-    color: $color-red-700;
-  }
-}
-
-.icon-container {
-  float: left;
-  display: flex;
-  justify-content: center;
-  margin: 0.1rem 0.4rem 0 0;
-  width: 1.5rem;
-  height: 1.5rem;
-  vertical-align: top;
-}
-
 .content {
-  padding-top: 0.4rem;
   font-size: $text-md;
   line-height: 1.25rem;
 }
