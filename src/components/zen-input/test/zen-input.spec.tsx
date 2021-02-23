@@ -1,4 +1,9 @@
 import { newSpecPage } from '@stencil/core/testing';
+
+let getNextFieldResult = null;
+import * as helpers from '../../helpers/helpers';
+helpers.getNextField = jest.fn(() => getNextFieldResult);
+
 import { ZenInput } from '../zen-input';
 
 describe('zen-input', () => {
@@ -141,5 +146,36 @@ describe('zen-input', () => {
     await page.waitForChanges();
 
     expect(inputSpy).toHaveBeenCalled();
+  });
+
+  it('should focus when focusInput called', async () => {
+    const page = await newSpecPage({
+      components: [ZenInput],
+      html: `<zen-input></zen-input>`,
+    });
+
+    const inputElement = page.root.shadowRoot.querySelector('input');
+    inputElement.focus = jest.fn();
+    page.root.focusInput();
+    await page.waitForChanges();
+    expect(inputElement.focus).toHaveBeenCalled();
+  });
+
+  it('enter-to-tab should focus next input', async () => {
+    const page = await newSpecPage({
+      components: [ZenInput],
+      html: `
+        <zen-input enter-to-tab></zen-input>
+        <p>some text</p>
+        <input id="next-input"/>
+      `,
+    });
+    const input = page.doc.querySelector('zen-input');
+    const nextInput = page.doc.querySelector('#next-input');
+    getNextFieldResult = nextInput;
+    nextInput.focus = jest.fn();
+    input.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }));
+    await page.waitForChanges();
+    expect(nextInput.focus).toHaveBeenCalled();
   });
 });
