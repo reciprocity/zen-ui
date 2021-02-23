@@ -15,17 +15,13 @@
 }
 
 .close-icon {
-  color: $color-gray-300;
+  color: $color-gray-600;
 }
 
 :host([data-position*='right']) {
   right: 0;
   padding-left: 10px;
   margin-left: -10px;
-
-  .close-icon {
-    color: $color-gray-300;
-  }
 }
 
 :host([data-position*='left']) {
@@ -68,6 +64,7 @@
   background-color: $color-white;
   box-shadow: $shadow-drop-200;
   transition: transform 0.25s ease-out, opacity 0.25s ease-out;
+  overflow-y: auto;
 }
 
 .drawer[animate='out-finished'] {
