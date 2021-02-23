@@ -25,9 +25,6 @@ export const Template = args => {
     >
       <sb-zen-button @click="${toggleDrawer}">Open Drawer</sb-zen-button>
       <sb-zen-drawer id="drawer1" ...="${spreadArgs(args, argTypes)}">
-        <sb-zen-button variant="tertiary" @click="${toggleDrawer}">
-          <sb-zen-icon size="sm" id="zen-icon-element"></sb-zen-icon>
-        </sb-zen-button>
         <sb-zen-space vertical="true" padding="lg" space="lg">
           <sb-zen-text variant="label" size="sm">Title</sb-zen-text>
           <sb-zen-text size="sm">
