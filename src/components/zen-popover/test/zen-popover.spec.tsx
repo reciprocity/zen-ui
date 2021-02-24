@@ -39,6 +39,7 @@ describe('zen-popover', () => {
   let trigger: HTMLButtonElement;
 
   const render = async (params?: string) => {
+    jest.clearAllTimers();
     jest.useFakeTimers();
     page = await newSpecPage({
       components: [ZenPopover, ZenButton],
