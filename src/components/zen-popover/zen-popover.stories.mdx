@@ -83,7 +83,7 @@ export const StoryPositionVariants = args => {
 export const StoryTriggerEvents = args => {
   return html/*html*/ `
     <sb-zen-space no-wrap horizontal-align="space-evenly" vertical-align="start" style="height: 90px">
-      <sb-zen-button variant="primary"> Click Event </sb-zen-button>
+      <sb-zen-button variant="primary">Click toggle</sb-zen-button>
       <sb-zen-popover>
         <sb-zen-space padding="md">
           <sb-zen-text size="sm"
@@ -91,7 +91,15 @@ export const StoryTriggerEvents = args => {
           >
         </sb-zen-space>
       </sb-zen-popover>
-      <sb-zen-button variant="primary"> Hover Event </sb-zen-button>
+      <sb-zen-button variant="primary">Click</sb-zen-button>
+      <sb-zen-popover close-on-target-click="false">
+        <sb-zen-space padding="md">
+          <sb-zen-text size="sm"
+            >Lorem Ipsum is simply dummy text of the printing and typesetting industry.</sb-zen-text
+          >
+        </sb-zen-space>
+      </sb-zen-popover>
+      <sb-zen-button variant="primary">Hover</sb-zen-button>
       <sb-zen-popover trigger-event="hover">
         <sb-zen-space padding="md">
           <sb-zen-text size="sm"
@@ -246,7 +254,8 @@ Use attribute placement to set default side of trigger element on which popover 
 
 ### 2. Trigger events
 
-Use trigger event to set what should trigger popover to show. (click, hover).
+Use trigger event to set what should trigger popover to show (click, hover).
+Set props `close-on-target-click` and `close-on-click-out` to control closing behaviour.
 
 <Canvas>
   <Story name="StoryTriggerEvents">{StoryTriggerEvents.bind({})}</Story>
