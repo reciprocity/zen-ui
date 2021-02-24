@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, Watch, State, Element } from '@stencil/core';
+import { Component, Host, h, Prop, Watch, State, Element, Listen } from '@stencil/core';
 import { getDayNumbers, helpers, getMonthName, parseDate } from './date-helpers';
 import getYear from 'date-fns/getYear';
 import addMonths from 'date-fns/addMonths';
@@ -38,10 +38,14 @@ export class ZenDatePicker {
 
   daysShort = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
   dayNums = [];
+  popover: HTMLZenPopoverElement = null;
+  input: HTMLZenInputElement = null;
 
   @State() calendarMonthName = '';
   @State() calendarYear = 1970;
   @State() calendarMonth = helpers.today();
+
+  @State() opened = false;
 
   /** Selected date */
   @Prop({ mutable: true }) formattedDate = '';
@@ -55,14 +59,20 @@ export class ZenDatePicker {
   /** Selected date */
   @Prop({ mutable: true }) value: Date = helpers.today();
 
+  /** Close calendar after picking a date */
+  @Prop() readonly closeOnClick: boolean = true;
+
   @Watch('value')
   async dateChanged(value: Date): Promise<void> {
     this.formattedDate = format(value, this.format);
-    const input = this.host.shadowRoot.querySelector('#date-input') as HTMLZenInputElement;
-    if (input) {
-      input.value = this.formattedDate;
+    if (this.input) {
+      this.input.value = this.formattedDate;
     }
     this.calendarMonth = value;
+    if (this.opened && this.closeOnClick) {
+      this.popover.visible = false;
+      this.input.focusInput();
+    }
   }
 
   @Watch('calendarMonth')
@@ -72,8 +82,22 @@ export class ZenDatePicker {
     this.calendarYear = getYear(calendarMonth);
   }
 
-  connectedCallback(): void {
-    this.dateChanged(this.value);
+  @Listen('keydown')
+  handleKeyDown(ev: KeyboardEvent): boolean {
+    if (ev.key === 'Escape') {
+      this.popover.toggle(false);
+    }
+
+    if (ev.key === ' ') {
+      this.popover.toggle();
+      ev.preventDefault();
+      return false;
+    }
+  }
+
+  focusChanged(e: Event): void {
+    const show = e.target === (this.host as HTMLElement);
+    this.popover.toggle(show);
   }
 
   navigate(type: Navigate): void {
@@ -120,31 +144,45 @@ export class ZenDatePicker {
     }
   }
 
+  onOpenToggle(popup: HTMLZenPopoverElement): void {
+    this.opened = popup.visible;
+  }
+
+  connectedCallback(): void {
+    this.dateChanged(this.value);
+    document.addEventListener('focusin', e => this.focusChanged(e));
+  }
+
   render(): HTMLElement {
     const ZenInput = applyPrefix('zen-input', this.host);
     const ZenText = applyPrefix('zen-text', this.host);
     const ZenSpace = applyPrefix('zen-space', this.host);
     const ZenIcon = applyPrefix('zen-icon', this.host);
+    const ZenPopover = applyPrefix('zen-popover', this.host);
     return (
       <Host>
         <ZenInput
           id="date-input"
+          ref={el => (this.input = el)}
           placeholder={this.placeholder}
           value={this.formattedDate}
+          has-focus={this.opened}
           onChange={e => this.onInputChange(e)}
         >
           <ZenSpace padding="md none md md" slot="leadingSlot">
             <ZenIcon class="icon" icon={faCalendarAlt}></ZenIcon>
           </ZenSpace>
         </ZenInput>
-        <div class="calendar">
-          <ZenSpace
-            class="navigation"
-            padding="sm lg"
-            slot="leadingSlot"
-            horizontal-align="center"
-            vertical-align="stretch"
-          >
+        <ZenPopover
+          class="calendar"
+          tabindex={this.opened ? 0 : -1}
+          ref={el => (this.popover = el)}
+          interactive
+          position="bottom-start"
+          close-on-target-click="false"
+          onVisibleChange={e => this.onOpenToggle(e.target)}
+        >
+          <ZenSpace class="navigation" padding="sm lg" horizontal-align="center" vertical-align="stretch">
             <ZenIcon
               class="icon"
               icon={faChevronDoubleLeft}
@@ -197,7 +235,7 @@ export class ZenDatePicker {
               </ZenText>
             ))}
           </ZenSpace>
-        </div>
+        </ZenPopover>
       </Host>
     );
   }

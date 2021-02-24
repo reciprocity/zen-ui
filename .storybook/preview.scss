@@ -113,3 +113,14 @@ h1.sbdocs-h1 {
 .sbdocs-preview {
   margin: 0.5rem auto !important;
 }
+
+// Allow popups to display outside of story boundaries:
+.sbdocs-preview,
+.docs-story,
+.css-1wjen9k {
+  overflow: visible !important;
+}
+
+.css-25bv1u { // show code button
+  bottom: 10px !important;
+}
