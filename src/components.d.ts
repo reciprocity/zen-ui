@@ -352,6 +352,10 @@ export namespace Components {
          */
         "closeOnClickOut": boolean;
         /**
+          * Close on target click if opened
+         */
+        "closeOnTargetClick": boolean;
+        /**
           * Show and hide delay. Only affects show on hover! Eg. '100' - both show & hide 100ms. '100 500' - show 100ms, hide 500ms.
          */
         "delay": string;
@@ -1227,6 +1231,10 @@ declare namespace LocalJSX {
           * Close on click outside
          */
         "closeOnClickOut"?: boolean;
+        /**
+          * Close on target click if opened
+         */
+        "closeOnTargetClick"?: boolean;
         /**
           * Show and hide delay. Only affects show on hover! Eg. '100' - both show & hide 100ms. '100 500' - show 100ms, hide 500ms.
          */

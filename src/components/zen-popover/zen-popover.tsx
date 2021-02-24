@@ -16,6 +16,7 @@ export class ZenPopover {
   private clickHandler = undefined;
   private showTimer = undefined;
   private hideTimer = undefined;
+  private clickHandlerTimer = undefined;
   private showDelay = 0;
   private hideDelay = 0;
   private animate = false;
@@ -35,6 +36,9 @@ export class ZenPopover {
 
   /** Close on click outside */
   @Prop() readonly closeOnClickOut: boolean = true;
+
+  /** Close on target click if opened */
+  @Prop() readonly closeOnTargetClick: boolean = true;
 
   /** Popover offset */
   @Prop() readonly offset: Offsets = { x: 0, y: 8 };
@@ -63,11 +67,13 @@ export class ZenPopover {
         showInstantly(this.popup);
       }
 
-      // Add event listener for click outside
-      this.clickHandler = event => this.closeOnClickOutside(event);
-      setTimeout(() => {
-        document.addEventListener('mousedown', this.clickHandler);
-      }, 50);
+      if (this.closeOnClickOut) {
+        this.clickHandler = event => this.closeOnClickOutside(event);
+        clearTimeout(this.clickHandlerTimer);
+        this.clickHandlerTimer = setTimeout(() => {
+          document.addEventListener('mousedown', this.clickHandler);
+        }, 50);
+      }
     };
 
     const hide = (): void => {
@@ -79,6 +85,7 @@ export class ZenPopover {
       }
 
       // remove event listener for click outside
+      clearTimeout(this.clickHandlerTimer);
       if (this.clickHandler) document.removeEventListener('mousedown', this.clickHandler);
     };
 
@@ -136,10 +143,14 @@ export class ZenPopover {
       }, delay);
     };
 
-    // Add events to the target element
-    if (this.triggerEvent === 'click') {
-      this.targetSlotEl.addEventListener('mousedown', () => (this.visible = !this.visible));
-    } else if (this.triggerEvent === 'hover') {
+    if (this.triggerEvent === 'click' || this.closeOnTargetClick) {
+      this.targetSlotEl.addEventListener('mousedown', () => {
+        if (!this.closeOnTargetClick && this.visible) return;
+        this.visible = this.triggerEvent === 'click' ? !this.visible : false;
+      });
+    }
+
+    if (this.triggerEvent === 'hover') {
       this.targetSlotEl.addEventListener('mouseover', () => show());
       this.targetSlotEl.addEventListener('mouseout', () => hide());
       this.targetSlotEl.addEventListener('touchstart', () => show());
@@ -152,8 +163,10 @@ export class ZenPopover {
 
   async closeOnClickOutside(event: MouseEvent): Promise<void> {
     const path = getComposedPath(event);
-    const clickedInside = this.interactive && path.find(n => n === this.popup);
-    if (clickedInside || !this.closeOnClickOut) return;
+    const clickedInPopup = this.interactive && path.find(n => n === this.popup);
+    const clickedInTarget = path.find(n => n === this.targetSlotEl);
+    if (clickedInPopup || clickedInTarget) return;
+
     await waitNextFrame(); // prevent race with click-open
     this.visible = false;
   }
