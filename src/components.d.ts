@@ -1068,6 +1068,10 @@ declare namespace LocalJSX {
     }
     interface ZenDrawer {
         /**
+          * Inner drawer hide button clicked
+         */
+        "onClose"?: (event: CustomEvent<void>) => void;
+        /**
           * Is drawer visible
          */
         "opened"?: false;

@@ -1,4 +1,4 @@
-import { Component, Element, Host, h, Prop, Watch } from '@stencil/core';
+import { Component, Element, Host, h, Prop, Watch, Event, EventEmitter } from '@stencil/core';
 import { hideInstantly, hideWithAnimation, showInstantly, showWithAnimation } from '../helpers/animations';
 import { Position } from '../helpers/types';
 import { applyPrefix } from '../helpers/helpers';
@@ -20,9 +20,16 @@ export class ZenDrawer {
   /** Position */
   @Prop({ reflect: true }) readonly position: Position = 'right';
 
+  /** Inner drawer hide button clicked */
+  @Event() close: EventEmitter<void>;
+
   @Watch('opened')
   async openedChanged(): Promise<void> {
     this.opened ? showWithAnimation(this.drawer) : hideWithAnimation(this.drawer);
+  }
+
+  onCloseClicked(): void {
+    this.close.emit();
   }
 
   componentDidLoad(): void {
@@ -35,13 +42,7 @@ export class ZenDrawer {
     return (
       <Host data-position={this.position}>
         <div class="drawer" data-position={this.position} ref={el => (this.drawer = el)}>
-          <ZenButton
-            class="close-btn"
-            variant="tertiary"
-            onClick={() => {
-              this.element.opened = false;
-            }}
-          >
+          <ZenButton onClick={() => this.onCloseClicked()} class="close-btn" variant="tertiary">
             <ZenIcon size="md" class="close-icon" icon={faArrowToRight}></ZenIcon>
           </ZenButton>
           <slot></slot>

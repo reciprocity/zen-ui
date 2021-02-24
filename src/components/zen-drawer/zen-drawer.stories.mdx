@@ -2,19 +2,13 @@ import { html } from 'lit-html';
 import Readme from './readme.md';
 import { Meta, Description, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
 import { getArgTypesAndArgs, spreadArgs } from '../../../.storybook/helpers/argTypes';
-import { waitForElement } from '../../../.storybook/helpers/utils';
-import { faChevronDoubleRight } from '@fortawesome/pro-light-svg-icons';
 const { argTypes, args } = getArgTypesAndArgs('zen-drawer');
 
 <Meta title="Layout/Drawer" component="zen-drawer" argTypes={argTypes} />
 
 export const Template = args => {
-  waitForElement('#zen-icon-element', element => {
-    element.icon = faChevronDoubleRight;
-  });
-  function toggleDrawer() {
-    const drawer = document.querySelector('#drawer1');
-    drawer.opened = !drawer.opened;
+  function openDrawer() {
+    document.querySelector('#drawer1').opened = true;
   }
   return html/*html*/ `
     <sb-zen-space
@@ -23,8 +17,14 @@ export const Template = args => {
       horizontal-align="center"
       style="border: 1px solid lightgrey; position:relative; height: 400px"
     >
-      <sb-zen-button @click="${toggleDrawer}">Open Drawer</sb-zen-button>
-      <sb-zen-drawer id="drawer1" ...="${spreadArgs(args, argTypes)}">
+      <sb-zen-button @click="${openDrawer}">Open Drawer</sb-zen-button>
+      <sb-zen-drawer
+        @close="${e => {
+          e.target.opened = false;
+        }}"
+        id="drawer1"
+        ...="${spreadArgs(args, argTypes)}"
+      >
         <sb-zen-space vertical="true" padding="lg" space="lg">
           <sb-zen-text variant="label" size="sm">Title</sb-zen-text>
           <sb-zen-text size="sm">
