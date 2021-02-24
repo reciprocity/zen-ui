@@ -180,7 +180,7 @@ export class ZenDatePicker {
           interactive
           position="bottom-start"
           close-on-target-click="false"
-          onVisibilityChange={e => this.onOpenToggle(e.target)}
+          onVisibleChange={e => this.onOpenToggle(e.target)}
         >
           <ZenSpace class="navigation" padding="sm lg" horizontal-align="center" vertical-align="stretch">
             <ZenIcon

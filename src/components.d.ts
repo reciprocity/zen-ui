@@ -1250,7 +1250,7 @@ declare namespace LocalJSX {
         /**
           * Visibility changed
          */
-        "onVisibilityChange"?: (event: CustomEvent<void>) => void;
+        "onVisibleChange"?: (event: CustomEvent<void>) => void;
         /**
           * Position
          */

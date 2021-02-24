@@ -50,7 +50,7 @@ export class ZenPopover {
   @Prop() readonly delay: string = '0';
 
   /** Visibility changed */
-  @Event() visibilityChange: EventEmitter<void>;
+  @Event() visibleChange: EventEmitter<void>;
 
   @Watch('visible')
   async visibleChanged(visible: boolean): Promise<void> {
@@ -186,14 +186,14 @@ export class ZenPopover {
     });
     await waitNextFrame();
     this.actualPosition = this.popperInstance.state.placement;
-    this.visibilityChange.emit();
+    this.visibleChange.emit();
   }
 
   destroyPopper(): void {
     if (this.popperInstance) {
       this.popperInstance.destroy();
       this.popperInstance = null;
-      this.visibilityChange.emit();
+      this.visibleChange.emit();
     }
   }
 
