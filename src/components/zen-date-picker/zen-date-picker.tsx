@@ -88,7 +88,7 @@ export class ZenDatePicker {
       this.popover.toggle(false);
     }
 
-    if (ev.key === ' ' || ev.key === 'Enter') {
+    if (ev.key === ' ') {
       this.popover.toggle();
       ev.preventDefault();
       return false;
