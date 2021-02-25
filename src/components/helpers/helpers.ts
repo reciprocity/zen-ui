@@ -1,5 +1,4 @@
 import { querySelectorAllDeep } from 'query-selector-shadow-dom';
-import { Position, Rect } from './types';
 
 export function waitNextFrame(): Promise<boolean> {
   return new Promise(resolve => {
@@ -37,25 +36,6 @@ export function getNextField(currentInput: HTMLElement): HTMLElement {
   });
   const currentIndex = allElements.findIndex((el: HTMLElement) => el === currentInput);
   return allElements[(currentIndex + 1) % allElements.length] as HTMLElement;
-}
-
-export function containsRect(parentRect: Rect, childRect: Rect, threshold = 0): boolean {
-  return (
-    childRect.left - parentRect.left >= -threshold &&
-    childRect.top - parentRect.top >= -threshold &&
-    parentRect.left + parentRect.width - (childRect.left + childRect.width) >= -threshold &&
-    parentRect.top + parentRect.height - (childRect.top + childRect.height) >= -threshold
-  );
-}
-
-export function oppositePosition(position: Position): Position {
-  const opposites = {
-    left: 'right',
-    right: 'left',
-    top: 'bottom',
-    bottom: 'top',
-  };
-  return opposites[position] as Position;
 }
 
 export function getComposedPath(event: MouseEvent): EventTarget[] {
