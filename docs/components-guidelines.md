@@ -37,6 +37,8 @@ For size variations always use conventional shorthands:
 Template for a new component's story page can be found here:
 `/src/components/zen-spinner/template.stories.mdx.sample`
 
+1. When exposing different possible values for a prop, be sure to add `<zen-text variant="label">` beneath each example, so user can quickly see what value is used.
+
 ## Documentation
 - All **available slots** that component supports should be listed above `@Component` directive like this:
 ```javascript
