@@ -10,18 +10,18 @@ import { faChevronRight } from '@fortawesome/pro-light-svg-icons';
 export class ZenTableRow {
   @Element() element: HTMLZenTableRowElement;
 
-  /** Visible if no parent or parent.opened (read-only) */
+  /** Visible if no !depth or parent.expanded (read-only) */
   @Prop({ mutable: true }) visible = true;
 
-  /** Is row opened */
-  @Prop({ mutable: true }) opened = false;
+  /** Is row expanded */
+  @Prop({ mutable: true }) expanded = false;
 
   /** Depth position of row */
   @Prop() readonly depth: number = 0;
 
-  @Watch('opened')
-  async visibleChanged(opened?: boolean): Promise<void> {
-    this.children().forEach(child => (child.visible = opened));
+  @Watch('expanded')
+  async visibleChanged(expanded?: boolean): Promise<void> {
+    this.children().forEach(child => (child.visible = expanded));
   }
 
   children(): HTMLZenTableRowElement[] {
@@ -52,12 +52,12 @@ export class ZenTableRow {
   }
 
   onClick(): void {
-    this.opened = !this.opened;
+    this.expanded = !this.expanded;
   }
 
   componentDidLoad(): void {
     const parentRow = this.getParentRow();
-    this.visible = !parentRow || parentRow.opened;
+    this.visible = !parentRow || parentRow.expanded;
   }
 
   render(): HTMLTableRowElement {
