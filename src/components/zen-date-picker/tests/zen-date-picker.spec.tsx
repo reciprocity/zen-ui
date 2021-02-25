@@ -1,6 +1,15 @@
 import { newSpecPage, SpecPage } from '@stencil/core/testing';
 import { simulateKey } from '../../helpers/jest';
 
+const popperMock = {
+  destroy: jest.fn(),
+  state: {
+    placement: 'bottom',
+  },
+};
+import * as popper from '@popperjs/core';
+popper.createPopper = jest.fn(() => popperMock);
+
 import { helpers } from '../date-helpers';
 helpers.today = jest.fn(() => new Date(1972, 1, 18));
 
@@ -126,6 +135,9 @@ describe('zen-date-picker', () => {
 
   it('should close calendar on value set', async () => {
     await render();
+    const inputElement = input.shadowRoot.querySelector('input');
+    inputElement.focus = jest.fn();
+
     await focusInput();
     expect(calendar.visible).toBeTruthy();
 

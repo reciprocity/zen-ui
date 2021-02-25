@@ -148,7 +148,7 @@ export class ZenDatePicker {
     this.opened = popup.visible;
   }
 
-  connectedCallback(): void {
+  componentDidLoad(): void {
     this.dateChanged(this.value);
     document.addEventListener('focusin', e => this.focusChanged(e));
   }
