@@ -374,7 +374,7 @@ export namespace Components {
         /**
           * Trigger element
          */
-        "targetSlotEl": HTMLElement;
+        "targetElement": HTMLElement;
         /**
           * Close an opened dropdown menu
          */
@@ -1266,7 +1266,7 @@ declare namespace LocalJSX {
         /**
           * Trigger element
          */
-        "targetSlotEl"?: HTMLElement;
+        "targetElement"?: HTMLElement;
         /**
           * Triggering event
          */

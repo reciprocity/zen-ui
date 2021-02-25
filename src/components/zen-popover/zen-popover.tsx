@@ -31,7 +31,7 @@ export class ZenPopover {
   @Prop() readonly position: Placement = 'bottom-end';
 
   /** Trigger element */
-  @Prop({ mutable: true }) targetSlotEl: HTMLElement = null;
+  @Prop({ mutable: true }) targetElement: HTMLElement = null;
 
   /** Triggering event */
   @Prop() readonly triggerEvent: TriggerEvent = 'click';
@@ -104,8 +104,8 @@ export class ZenPopover {
     this.hideDelay = values ? parseInt(values[1], 10) || this.showDelay : 0;
   }
 
-  @Watch('targetSlotEl')
-  async targetSlotElChanged(target: HTMLElement): Promise<void> {
+  @Watch('targetElement')
+  async targetElementChanged(target: HTMLElement): Promise<void> {
     if (target) {
       this.addTriggerEvents();
     }
@@ -154,17 +154,17 @@ export class ZenPopover {
     };
 
     if (this.triggerEvent === 'click' || this.closeOnTargetClick) {
-      this.targetSlotEl.addEventListener('mousedown', () => {
+      this.targetElement.addEventListener('mousedown', () => {
         if (!this.closeOnTargetClick && this.visible) return;
         this.visible = this.triggerEvent === 'click' ? !this.visible : false;
       });
     }
 
     if (this.triggerEvent === 'hover') {
-      this.targetSlotEl.addEventListener('mouseover', () => show());
-      this.targetSlotEl.addEventListener('mouseout', () => hide());
-      this.targetSlotEl.addEventListener('touchstart', () => show());
-      this.targetSlotEl.addEventListener('touchcancel', () => (this.visible = false));
+      this.targetElement.addEventListener('mouseover', () => show());
+      this.targetElement.addEventListener('mouseout', () => hide());
+      this.targetElement.addEventListener('touchstart', () => show());
+      this.targetElement.addEventListener('touchcancel', () => (this.visible = false));
       // Stop hideTimer when mouse is over tooltip:
       this.popup.addEventListener('mouseover', () => show());
       this.popup.addEventListener('mouseout', () => hide());
@@ -174,7 +174,7 @@ export class ZenPopover {
   async closeOnClickOutside(event: MouseEvent): Promise<void> {
     const path = getComposedPath(event);
     const clickedInPopup = this.interactive && path.find(n => n === this.popup);
-    const clickedInTarget = path.find(n => n === this.targetSlotEl);
+    const clickedInTarget = path.find(n => n === this.targetElement);
     if (clickedInPopup || clickedInTarget) return;
 
     await waitNextFrame(); // prevent race with click-open
@@ -183,7 +183,7 @@ export class ZenPopover {
 
   async createPopper(): Promise<void> {
     const popupWrap = this.host.shadowRoot.querySelector('.popup-wrap') as HTMLElement;
-    this.popperInstance = createPopper(this.targetSlotEl, popupWrap, {
+    this.popperInstance = createPopper(this.targetElement, popupWrap, {
       placement: this.position,
       modifiers: [
         {
@@ -210,8 +210,8 @@ export class ZenPopover {
   componentDidLoad(): void {
     this.popup = this.host.shadowRoot.querySelector('.popup');
 
-    if (!this.targetSlotEl) {
-      this.targetSlotEl = this.host.previousElementSibling as HTMLElement;
+    if (!this.targetElement) {
+      this.targetElement = this.host.previousElementSibling as HTMLElement;
     }
     this.visibleChanged(this.visible);
     this.delayPropChanged(this.delay);
