@@ -4,11 +4,6 @@ $arrow_size: 0.3rem;
 
 :host {
   position: absolute;
-  top: 0;
-  left: 0;
-  max-width: 11rem;
-  min-width: min-content;
-  z-index: $z-index-tooltips;
 }
 
 :host(:not([has-arrow])),
@@ -16,6 +11,12 @@ $arrow_size: 0.3rem;
   & .arrow {
     display: none;
   }
+}
+
+.popover {
+  max-width: 11rem;
+  min-width: min-content;
+  z-index: $z-index-tooltips;
 }
 
 .arrow {
