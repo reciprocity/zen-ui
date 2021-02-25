@@ -1,6 +1,7 @@
 import { Component, Host, h, Prop, State, Element, Watch } from '@stencil/core';
-import { Position, TooltipVariant } from '../helpers/types';
+import { TooltipVariant } from '../helpers/types';
 import { applyPrefix } from '../helpers/helpers';
+import { Placement } from '@popperjs/core';
 
 /**
  * @slot defaultSlot - Slot that has zen space padding lg set
@@ -18,15 +19,13 @@ export class ZenTooltip {
 
   @State() visible = false;
 
-  @State() realPosition: Position = 'top';
-
   @State() target: HTMLElement = null;
 
   @State() color = '';
   @State() backgroundColor = '';
 
   /** Set tooltip position */
-  @Prop() readonly position?: Position = 'top';
+  @Prop() readonly position?: Placement = 'top';
 
   /** Set tooltip variant */
   @Prop() readonly variant?: TooltipVariant = 'dark';
@@ -82,7 +81,6 @@ export class ZenTooltip {
     const ZenPopover = applyPrefix('zen-popover', this.element);
     const classes = {
       tooltip: true,
-      [this.realPosition]: true,
       scrollable: this.maxHeight !== 'none',
     };
     return (
@@ -91,7 +89,7 @@ export class ZenTooltip {
           ref={el => (this.popover = el)}
           class="popover"
           trigger-event="hover"
-          position="bottom-start"
+          position={this.position}
           close-on-target-click="false"
           background-color={this.backgroundColor}
           style={{ color: this.color }}
@@ -104,7 +102,6 @@ export class ZenTooltip {
           <div
             class={{
               arrow: this.hasArrow,
-              [this.realPosition]: true,
               [this.variant]: true,
             }}
           ></div>

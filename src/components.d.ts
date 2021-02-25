@@ -622,7 +622,7 @@ export namespace Components {
         /**
           * Set tooltip position
          */
-        "position"?: Position;
+        "position"?: Placement;
         /**
           * Delay between mouse enter and tooltip show (in ms)
          */
@@ -1510,7 +1510,7 @@ declare namespace LocalJSX {
         /**
           * Set tooltip position
          */
-        "position"?: Position;
+        "position"?: Placement;
         /**
           * Delay between mouse enter and tooltip show (in ms)
          */
