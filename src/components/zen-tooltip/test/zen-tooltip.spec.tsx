@@ -1,5 +1,14 @@
 import { newSpecPage } from '@stencil/core/testing';
 
+const popperMock = {
+  destroy: jest.fn(),
+  state: {
+    placement: 'bottom',
+  },
+};
+import * as popper from '@popperjs/core';
+popper.createPopper = jest.fn(() => popperMock);
+
 import { ZenTooltip } from '../zen-tooltip';
 import { ZenPopover } from '../../zen-popover/zen-popover';
 
@@ -36,8 +45,6 @@ describe('zen-tooltip', () => {
     const target = page.doc.querySelector('.trigger');
     const tooltip = page.doc.querySelector('zen-tooltip');
     const popover = tooltip.shadowRoot.querySelector('.popover') as HTMLZenPopoverElement;
-
-    expect(popover.visible).toBeFalsy();
 
     target.dispatchEvent(new MouseEvent('mouseover'));
 
