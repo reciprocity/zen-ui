@@ -93,6 +93,7 @@ export class ZenTooltip {
           close-on-target-click="false"
           background-color={this.backgroundColor}
           style={{ color: this.color }}
+          offset={{ x: 0, y: this.offset }}
         >
           <slot name="content">
             <ZenSpace padding="lg">
