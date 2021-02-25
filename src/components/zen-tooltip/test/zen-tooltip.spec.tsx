@@ -1,51 +1,63 @@
 import { newSpecPage } from '@stencil/core/testing';
 
 import { ZenTooltip } from '../zen-tooltip';
+import { ZenPopover } from '../../zen-popover/zen-popover';
 
 describe('zen-tooltip', () => {
-  it.each(['dark', 'light', 'error'])('should correctly apply variant (variant: %s)', async variant => {
+  it('should correctly apply correct color to each variant', async () => {
     const page = await newSpecPage({
-      components: [ZenTooltip],
-      html: `<zen-tooltip variant="${variant}" label="Testing tooltip"></zen-tooltip>`,
+      components: [ZenTooltip, ZenPopover],
+      html: `
+        <zen-tooltip variant="dark">Some text</zen-tooltip>
+      `,
     });
-    expect(page.root.classList.contains(variant)).toBe(true);
+    const tooltip = page.doc.querySelector('zen-tooltip');
+    const popover = tooltip.shadowRoot.querySelector('.popover') as HTMLZenPopoverElement;
+    expect(popover.backgroundColor).toEqual('#1e272c');
+
+    tooltip.variant = 'error';
+    await page.waitForChanges();
+    expect(popover.backgroundColor).toEqual('#c22f3d');
+
+    tooltip.variant = '';
+    await page.waitForChanges();
+    expect(popover.backgroundColor).toEqual('');
   });
 
-  it.each(['top', 'right', 'bottom', 'left'])(
-    'should correctly apply position (position: %s)',
-    async (position: string, done: DoneFn) => {
-      const page = await newSpecPage({
-        components: [ZenTooltip],
-        html: `<div>Trigger</div><zen-tooltip position="${position}" always-visible="true" label="Testing tooltip"></zen-tooltip>`,
-      });
-
-      // We have to wait that tooltip is displayed because of always visible param
-      setTimeout(async () => {
-        expect(page.root.classList.contains(position)).toBe(true);
-        done();
-      }, 101);
-    },
-  );
-
-  it('should show tooltip on mouse over', async done => {
+  it('should show tooltip on mouse over', async () => {
     const page = await newSpecPage({
-      components: [ZenTooltip],
-      html: `<div>Trigger</div><zen-tooltip label="test" show-delay="0"></zen-tooltip>`,
+      components: [ZenTooltip, ZenPopover],
+      html: `
+        <div class="trigger">Trigger</div>
+        <zen-tooltip>Some text</zen-tooltip>
+      `,
     });
 
-    expect(page.root).not.toHaveClass('visible');
+    const target = page.doc.querySelector('.trigger');
+    const tooltip = page.doc.querySelector('zen-tooltip');
+    const popover = tooltip.shadowRoot.querySelector('.popover') as HTMLZenPopoverElement;
 
-    const mouseEvent = new MouseEvent('mousemove', {
-      clientX: 100,
-      clientY: 100,
+    expect(popover.visible).toBeFalsy();
+
+    target.dispatchEvent(new MouseEvent('mouseover'));
+
+    await page.waitForChanges();
+    expect(popover.visible).toBeTruthy();
+  });
+
+  it('should assign target element to popover', async () => {
+    const page = await newSpecPage({
+      components: [ZenTooltip, ZenPopover],
+      html: `
+        <div class="trigger">Trigger</div>
+        <zen-tooltip>Some text</zen-tooltip>
+      `,
     });
-    const target = page.root.previousElementSibling;
-    target.dispatchEvent(mouseEvent);
 
-    setTimeout(async () => {
-      await page.waitForChanges();
-      expect(page.root).toHaveClass('visible');
-      done();
-    }, 0);
+    const target = page.doc.querySelector('.trigger');
+    const tooltip = page.doc.querySelector('zen-tooltip');
+    const popover = tooltip.shadowRoot.querySelector('.popover') as HTMLZenPopoverElement;
+
+    expect(popover.targetElement).toEqual(target);
   });
 });
