@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, Element, Listen, State, Method } from '@stencil/core';
+import { Component, Host, h, Prop, Element, Listen, State, Method, Watch } from '@stencil/core';
 import { getNextField } from '../helpers/helpers';
 
 /**
@@ -44,6 +44,11 @@ export class ZenInput {
       ev.preventDefault();
       getNextField(this.input).focus();
     }
+  }
+
+  @Watch('value')
+  async monthViewedInCalendarChanged(value: string): Promise<void> {
+    this.input.value = value;
   }
 
   /** Focus input */
