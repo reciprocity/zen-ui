@@ -33,7 +33,7 @@ describe('Tooltip visual tests', { scrollBehavior: 'center' }, () => {
   it('Verifies ' + `${story[2]}`, () => {
     cy.get(`#${story[2]}`)
       .within(() => {
-        cy.get('sb-zen-button').click();
+        cy.get('sb-zen-button').trigger('mouseover');
         findPopup(cy).should('be.visible');
       })
       .parents('.innerZoomElementWrapper')
@@ -43,7 +43,7 @@ describe('Tooltip visual tests', { scrollBehavior: 'center' }, () => {
   it('Verifies ' + `${story[3]}`, () => {
     cy.get(`#${story[3]}`)
       .within(() => {
-        cy.get('sb-zen-button').click();
+        cy.get('sb-zen-button').trigger('mouseover');
         findPopup(cy).should('be.visible');
       })
       .parents('.innerZoomElementWrapper')

@@ -19,7 +19,7 @@ export const user = [
 export const Template = args => {
   return html/*html*/ `
     <sb-zen-space horizontal-align="center" vertical-align="center" style="height: 300px;">
-      <sb-zen-button label="Apply changes" variant="secondary"></sb-zen-button>
+      <sb-zen-button label="Apply changes" variant="secondary">Button</sb-zen-button>
       <sb-zen-tooltip ...="${spreadArgs(args, argTypes)}">
         <sb-zen-text size="sm" style="color: inherit"
           >Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
@@ -97,7 +97,7 @@ export const Scrollable = () => {
   return html/*html*/ `
     <sb-zen-space nowrap horizontal-align="space-evenly" vertical-align="end" style="height:200px">
       <div>
-        <sb-zen-button label="Info" variant="secondary"></sb-zen-button>
+        <sb-zen-button label="Info" variant="secondary">Hover</sb-zen-button>
         <sb-zen-tooltip position="top" variant="light" label="Override text" max-height="10rem">
           <sb-zen-text size="sm"
             >Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
