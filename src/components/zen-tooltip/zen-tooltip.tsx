@@ -42,11 +42,8 @@ export class ZenTooltip {
   /** Limit tooltips height and make content scroll  */
   @Prop() readonly maxHeight: string = 'none';
 
-  /** Delay between mouse out and tooltip hide (in ms)  */
-  @Prop() readonly hideDelay: number = 0;
-
-  /** Delay between mouse enter and tooltip show (in ms)  */
-  @Prop() readonly showDelay: number = 300;
+  /** Show and hide delay. Eg. '100' - both show & hide 100ms. '100 500' - show 100ms, hide 500ms. */
+  @Prop() readonly delay: string = '0';
 
   /** Pointing arrow - like a cartoon balloon */
   @Prop({ reflect: true }) readonly hasArrow?: boolean = true;
@@ -97,6 +94,7 @@ export class ZenTooltip {
           close-on-click-out={this.alwaysVisible ? 'false' : 'true'}
           close-on-target-click={this.alwaysVisible ? 'false' : 'true'}
           visible={this.alwaysVisible}
+          delay={this.delay}
         >
           <slot name="content">
             <ZenSpace padding="lg">

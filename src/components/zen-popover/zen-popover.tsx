@@ -104,7 +104,10 @@ export class ZenPopover {
   async delayPropChanged(delay: string): Promise<void> {
     const values = delay.match(/([0-9]+)/g);
     this.showDelay = values ? parseInt(values[0], 10) || 0 : 0;
-    this.hideDelay = values ? parseInt(values[1], 10) || this.showDelay : 0;
+    this.hideDelay = values ? parseInt(values[1], 10) : 0;
+    if (Number.isNaN(this.hideDelay)) {
+      this.hideDelay = this.showDelay;
+    }
   }
 
   @Watch('targetElement')

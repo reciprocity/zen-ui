@@ -600,13 +600,13 @@ export namespace Components {
          */
         "alwaysVisible"?: boolean;
         /**
+          * Show and hide delay. Eg. '100' - both show & hide 100ms. '100 500' - show 100ms, hide 500ms.
+         */
+        "delay": string;
+        /**
           * Pointing arrow - like a cartoon balloon
          */
         "hasArrow"?: boolean;
-        /**
-          * Delay between mouse out and tooltip hide (in ms)
-         */
-        "hideDelay": number;
         /**
           * Set tooltip label
          */
@@ -623,10 +623,6 @@ export namespace Components {
           * Set tooltip position
          */
         "position"?: Placement;
-        /**
-          * Delay between mouse enter and tooltip show (in ms)
-         */
-        "showDelay": number;
         /**
           * Set tooltip variant
          */
@@ -1488,13 +1484,13 @@ declare namespace LocalJSX {
          */
         "alwaysVisible"?: boolean;
         /**
+          * Show and hide delay. Eg. '100' - both show & hide 100ms. '100 500' - show 100ms, hide 500ms.
+         */
+        "delay"?: string;
+        /**
           * Pointing arrow - like a cartoon balloon
          */
         "hasArrow"?: boolean;
-        /**
-          * Delay between mouse out and tooltip hide (in ms)
-         */
-        "hideDelay"?: number;
         /**
           * Set tooltip label
          */
@@ -1511,10 +1507,6 @@ declare namespace LocalJSX {
           * Set tooltip position
          */
         "position"?: Placement;
-        /**
-          * Delay between mouse enter and tooltip show (in ms)
-         */
-        "showDelay"?: number;
         /**
           * Set tooltip variant
          */
