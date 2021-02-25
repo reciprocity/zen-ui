@@ -348,6 +348,10 @@ export namespace Components {
     }
     interface ZenPopover {
         /**
+          * Background color
+         */
+        "backgroundColor": string;
+        /**
           * Close on click outside
          */
         "closeOnClickOut": boolean;
@@ -1235,6 +1239,10 @@ declare namespace LocalJSX {
         "value"?: OptionValue;
     }
     interface ZenPopover {
+        /**
+          * Background color
+         */
+        "backgroundColor"?: string;
         /**
           * Close on click outside
          */

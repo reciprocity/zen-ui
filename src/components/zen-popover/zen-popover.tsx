@@ -51,6 +51,9 @@ export class ZenPopover {
   /** Show and hide delay. Only affects show on hover! Eg. '100' - both show & hide 100ms. '100 500' - show 100ms, hide 500ms. */
   @Prop() readonly delay: string = '0';
 
+  /** Background color */
+  @Prop() readonly backgroundColor: string = '';
+
   /** Visibility changed */
   @Event() visibleChange: EventEmitter<void>;
 
@@ -218,10 +221,11 @@ export class ZenPopover {
   }
 
   render(): HTMLElement {
+    const style = this.backgroundColor ? { 'background-color': this.backgroundColor } : {};
     return (
       <Host>
         <div class="popup-wrap" role="tooltip">
-          <div class="popup" data-position={this.actualPosition}>
+          <div class="popup" style={style} data-position={this.actualPosition}>
             <div id="arrow" data-popper-arrow></div>
             <slot />
           </div>
