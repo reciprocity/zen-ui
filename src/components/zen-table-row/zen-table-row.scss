@@ -9,12 +9,12 @@
   transform: scale(1); // hack to apply position relative (tested in chrome & ff)
 }
 
+.expand-icon {
+  cursor: pointer;
+}
+
 :host(.hidden) {
   display: none;
-
-  &.expand-icon {
-    transform: rotate(45deg);
-  }
 }
 
 .widgets {
@@ -24,9 +24,14 @@
   justify-content: left;
   align-items: center;
   position: absolute;
-  inset: 0px auto 0px 0px;
+  inset: 0 auto 0 0;
+
+  &.hidden {
+    display: none;
+  }
 }
 
+.checkbox.hidden,
 .expand-icon.hidden {
   visibility: hidden;
 }
@@ -36,7 +41,7 @@ $arrow-width: 1rem;
 $checkbox-width: 2rem;
 
 // If depth isn't defined, default to 0:
-:host(:not([depth])) ::slotted(*:first-child) {
+:host(:not([depth])) ::slotted(*:first-child) :not(.widgets.hidden) {
   padding-left: #{$checkbox-width};
 }
 

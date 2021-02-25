@@ -490,15 +490,19 @@ export namespace Components {
     }
     interface ZenTableRow {
         /**
+          * Show checkbox
+         */
+        "checkboxVisible": true;
+        /**
           * Depth position of row
          */
         "depth": number;
         /**
-          * Is row opened
+          * Is row expanded
          */
-        "opened": boolean;
+        "expanded": boolean;
         /**
-          * Visible if no parent or parent.opened (read-only)
+          * Visible if no !depth or parent.expanded (read-only)
          */
         "visible": boolean;
     }
@@ -631,8 +635,6 @@ export namespace Components {
           * Set tooltip variant
          */
         "variant"?: TooltipVariant;
-    }
-    interface ZenTree {
     }
 }
 declare global {
@@ -864,12 +866,6 @@ declare global {
         prototype: HTMLZenTooltipElement;
         new (): HTMLZenTooltipElement;
     };
-    interface HTMLZenTreeElement extends Components.ZenTree, HTMLStencilElement {
-    }
-    var HTMLZenTreeElement: {
-        prototype: HTMLZenTreeElement;
-        new (): HTMLZenTreeElement;
-    };
     interface HTMLElementTagNameMap {
         "color-swatch": HTMLColorSwatchElement;
         "color-swatch-group": HTMLColorSwatchGroupElement;
@@ -909,7 +905,6 @@ declare global {
         "zen-textarea": HTMLZenTextareaElement;
         "zen-toggle": HTMLZenToggleElement;
         "zen-tooltip": HTMLZenTooltipElement;
-        "zen-tree": HTMLZenTreeElement;
     }
 }
 declare namespace LocalJSX {
@@ -1383,15 +1378,19 @@ declare namespace LocalJSX {
     }
     interface ZenTableRow {
         /**
+          * Show checkbox
+         */
+        "checkboxVisible"?: true;
+        /**
           * Depth position of row
          */
         "depth"?: number;
         /**
-          * Is row opened
+          * Is row expanded
          */
-        "opened"?: boolean;
+        "expanded"?: boolean;
         /**
-          * Visible if no parent or parent.opened (read-only)
+          * Visible if no !depth or parent.expanded (read-only)
          */
         "visible"?: boolean;
     }
@@ -1525,8 +1524,6 @@ declare namespace LocalJSX {
          */
         "variant"?: TooltipVariant;
     }
-    interface ZenTree {
-    }
     interface IntrinsicElements {
         "color-swatch": ColorSwatch;
         "color-swatch-group": ColorSwatchGroup;
@@ -1566,7 +1563,6 @@ declare namespace LocalJSX {
         "zen-textarea": ZenTextarea;
         "zen-toggle": ZenToggle;
         "zen-tooltip": ZenTooltip;
-        "zen-tree": ZenTree;
     }
 }
 export { LocalJSX as JSX };
@@ -1611,7 +1607,6 @@ declare module "@stencil/core" {
             "zen-textarea": LocalJSX.ZenTextarea & JSXBase.HTMLAttributes<HTMLZenTextareaElement>;
             "zen-toggle": LocalJSX.ZenToggle & JSXBase.HTMLAttributes<HTMLZenToggleElement>;
             "zen-tooltip": LocalJSX.ZenTooltip & JSXBase.HTMLAttributes<HTMLZenTooltipElement>;
-            "zen-tree": LocalJSX.ZenTree & JSXBase.HTMLAttributes<HTMLZenTreeElement>;
         }
     }
 }

@@ -10,6 +10,9 @@ import { faChevronRight } from '@fortawesome/pro-light-svg-icons';
 export class ZenTableRow {
   @Element() element: HTMLZenTableRowElement;
 
+  /** Show checkbox */
+  @Prop() readonly checkboxVisible = true;
+
   /** Visible if no !depth or parent.expanded (read-only) */
   @Prop({ mutable: true }) visible = true;
 
@@ -55,6 +58,10 @@ export class ZenTableRow {
     this.expanded = !this.expanded;
   }
 
+  hideWidgets(): boolean {
+    return !this.checkboxVisible && !this.children().length;
+  }
+
   componentDidLoad(): void {
     const parentRow = this.getParentRow();
     this.visible = !parentRow || parentRow.expanded;
@@ -65,8 +72,8 @@ export class ZenTableRow {
     const ZenIcon = applyPrefix('zen-icon', this.element);
     return (
       <Host class={{ hidden: !this.visible, expandable: !!this.children().length }}>
-        <div class="widgets">
-          <ZenCheckBox class="checkbox" />
+        <div class={{ widgets: true, hidden: this.hideWidgets() }}>
+          <ZenCheckBox class={{ checkbox: true, hidden: !this.checkboxVisible }} />
           <ZenIcon
             class={{ 'expand-icon': true, hidden: !this.children().length }}
             size="sm"
