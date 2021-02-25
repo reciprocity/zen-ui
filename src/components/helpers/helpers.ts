@@ -114,3 +114,7 @@ export function parsePadding(padding: string): Record<string, unknown> {
   }
   return paddingClasses;
 }
+
+export function getCssTransitionDuration(element: HTMLElement): number {
+  return parseFloat(getComputedStyle(element)['transitionDuration']) * 1000 || 0;
+}

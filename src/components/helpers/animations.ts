@@ -13,11 +13,12 @@
   Check `zen-popover` component for example.
 */
 
-import { waitNextFrame } from '../helpers/helpers';
+import { waitNextFrame, getCssTransitionDuration } from '../helpers/helpers';
 
 async function transitionAnimateAttr(element: HTMLElement, fromAttr: string, toAttr: string, fromCurrentValue = true) {
   // fromCurrentValue: Animate to toAttr from current values. Else it will force fromAttr before animating to toAttr values.
 
+  const transitions = element.style.transition;
   if (!fromCurrentValue) {
     element.style.transition = 'none'; // remove transition, so from values are applied instantly
   }
@@ -25,7 +26,7 @@ async function transitionAnimateAttr(element: HTMLElement, fromAttr: string, toA
   await waitNextFrame();
   await waitNextFrame();
   if (!fromCurrentValue) {
-    element.style.transition = '';
+    element.style.transition = transitions;
   }
   element.setAttribute('animate', toAttr);
 }
@@ -53,11 +54,10 @@ export async function hideWithAnimation(element: HTMLElement, callback?: () => v
   await transitionAnimateAttr(element, 'out-start', 'out-end', fromCurrentValue);
 
   // Remove element with delay, so transition finishes first:
-  const transitionTime = parseFloat(getComputedStyle(element)['transitionDuration']) * 1000;
   const hideTimerId = setTimeout(() => {
     element.setAttribute('animate', 'out-finished');
     if (callback) callback();
-  }, transitionTime || 10);
+  }, getCssTransitionDuration(element) || 10);
   element.setAttribute('data-anim-hide-timer', hideTimerId.toString());
 }
 

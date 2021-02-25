@@ -1,5 +1,5 @@
 import { newSpecPage } from '@stencil/core/testing';
-import { ZenSpace } from '../zen-space/zen-space';
+import { ZenSpace } from '../../zen-space/zen-space';
 
 describe('helpers', () => {
   it('should correctly parse padding shorthands', async () => {
