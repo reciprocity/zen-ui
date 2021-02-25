@@ -8,6 +8,13 @@
   z-index: 100;
 }
 
+.popup-wrap,
+.popup {
+  max-height: inherit;
+  min-height: inherit;
+  height: inherit;
+}
+
 :host(:not([interactive])) .popup-wrap {
   pointer-events: none;
 }
@@ -16,4 +23,5 @@
   background-color: $color-white;
   box-shadow: $shadow-drop-200;
   border-radius: 2px;
+  overflow: auto;
 }
