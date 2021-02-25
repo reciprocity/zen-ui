@@ -36,10 +36,11 @@ $arrow-width: 1rem;
 $checkbox-width: 2rem;
 
 // If depth isn't defined, default to 0:
-:host(:not([depth])) ::slotted(*:first-child){
+:host(:not([depth])) ::slotted(*:first-child) {
   padding-left: #{$checkbox-width};
 }
-:host(:not([depth]).expandable) ::slotted(*:first-child){
+
+:host(:not([depth]).expandable) ::slotted(*:first-child) {
   padding-left: #{$checkbox-width + $arrow-width};
 }
 

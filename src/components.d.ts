@@ -490,10 +490,6 @@ export namespace Components {
     }
     interface ZenTableRow {
         /**
-          * Is this row a child
-         */
-        "child": false;
-        /**
           * Depth position of row
          */
         "depth": number;
@@ -501,6 +497,9 @@ export namespace Components {
           * Is row opened
          */
         "opened": boolean;
+        /**
+          * Visible if no parent or parent.opened (read-only)
+         */
         "visible": boolean;
     }
     interface ZenTabs {
@@ -1384,10 +1383,6 @@ declare namespace LocalJSX {
     }
     interface ZenTableRow {
         /**
-          * Is this row a child
-         */
-        "child"?: false;
-        /**
           * Depth position of row
          */
         "depth"?: number;
@@ -1395,6 +1390,9 @@ declare namespace LocalJSX {
           * Is row opened
          */
         "opened"?: boolean;
+        /**
+          * Visible if no parent or parent.opened (read-only)
+         */
         "visible"?: boolean;
     }
     interface ZenTabs {

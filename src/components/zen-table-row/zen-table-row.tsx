@@ -10,14 +10,11 @@ import { faChevronRight } from '@fortawesome/pro-light-svg-icons';
 export class ZenTableRow {
   @Element() element: HTMLZenTableRowElement;
 
-  /* Visible if no parent or parent.opened (read-only) */
+  /** Visible if no parent or parent.opened (read-only) */
   @Prop({ mutable: true }) visible = true;
 
   /** Is row opened */
   @Prop({ mutable: true }) opened = false;
-
-  /** Is this row a child */
-  @Prop() readonly child = false;
 
   /** Depth position of row */
   @Prop() readonly depth: number = 0;
@@ -29,19 +26,29 @@ export class ZenTableRow {
 
   children(): HTMLZenTableRowElement[] {
     const children = [];
-    let next = this.element.nextElementSibling;
+    let next = this.element.nextElementSibling as HTMLZenTableRowElement;
 
     // Get all rows that have depth greater then the parent
     while (next) {
-      const depth = parseInt(next.getAttribute('depth'), 10);
-      if (depth <= this.depth) break;
-      if (depth === this.depth + 1) {
+      if (next.depth <= this.depth) break;
+      if (next.depth === this.depth + 1) {
         children.push(next as HTMLZenTableRowElement);
       }
-      next = next.nextElementSibling;
+      next = next.nextElementSibling as HTMLZenTableRowElement;
     }
 
     return children;
+  }
+
+  getParentRow(): HTMLZenTableRowElement {
+    // find first prev sibling with depth 1 smaller than ours:
+    let prev = this.element.previousElementSibling as HTMLZenTableRowElement;
+
+    while (prev) {
+      if (prev.depth === this.depth - 1) return prev;
+      prev = prev.previousElementSibling as HTMLZenTableRowElement;
+    }
+    return null;
   }
 
   onClick(): void {
@@ -49,7 +56,8 @@ export class ZenTableRow {
   }
 
   componentDidLoad(): void {
-    if (this.child) this.visible = false;
+    const parentRow = this.getParentRow();
+    this.visible = !parentRow || parentRow.opened;
   }
 
   render(): HTMLTableRowElement {
