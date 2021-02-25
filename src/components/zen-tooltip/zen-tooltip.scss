@@ -11,12 +11,6 @@ $arrow_size: 0.3rem;
   z-index: $z-index-tooltips;
 }
 
-:host(.scrollable) {
-  pointer-events: all;
-  overflow-y: auto;
-  overflow-x: hidden;
-}
-
 :host(:not([has-arrow])),
 :host(.scrollable) {
   & .arrow {

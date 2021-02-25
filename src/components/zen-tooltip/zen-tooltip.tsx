@@ -78,23 +78,27 @@ export class ZenTooltip {
     const ZenPopover = applyPrefix('zen-popover', this.element);
     const classes = {
       tooltip: true,
-      scrollable: this.maxHeight !== 'none',
     };
+    const isScrollable = this.maxHeight !== 'none';
 
     return (
-      <Host style={{ 'max-height': this.maxHeight }} class={{ visible: this.visible, ...classes }}>
+      <Host class={{ visible: this.visible, ...classes }}>
         <ZenPopover
           ref={el => (this.popover = el)}
           class="popover"
           trigger-event={this.alwaysVisible ? 'click' : 'hover'}
           position={this.position}
           background-color={this.backgroundColor}
-          style={{ color: this.color }}
+          style={{
+            color: this.color,
+            'max-height': this.maxHeight,
+          }}
           offset={{ x: 0, y: this.offset }}
           close-on-click-out={this.alwaysVisible ? 'false' : 'true'}
           close-on-target-click={this.alwaysVisible ? 'false' : 'true'}
           visible={this.alwaysVisible}
           delay={this.delay}
+          interactive={isScrollable}
         >
           <slot name="content">
             <ZenSpace padding="lg">
