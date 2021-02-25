@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, State, Element } from '@stencil/core';
+import { Component, Host, h, Prop, State, Element, Watch } from '@stencil/core';
 import { Position, TooltipVariant } from '../helpers/types';
 import { applyPrefix } from '../helpers/helpers';
 
@@ -21,6 +21,9 @@ export class ZenTooltip {
   @State() realPosition: Position = 'top';
 
   @State() target: HTMLElement = null;
+
+  @State() color = '';
+  @State() backgroundColor = '';
 
   /** Set tooltip position */
   @Prop() readonly position?: Position = 'top';
@@ -49,8 +52,29 @@ export class ZenTooltip {
   /** Pointing arrow - like a cartoon balloon */
   @Prop({ reflect: true }) readonly hasArrow?: boolean = true;
 
+  @Watch('variant')
+  async variantChanged(variant: TooltipVariant): Promise<void> {
+    switch (variant) {
+      case 'dark':
+        this.backgroundColor = '#1e272c'; // $color-gray-800
+        this.color = '#fff';
+        break;
+
+      case 'error':
+        this.backgroundColor = '#c22f3d'; // $color-red-800
+        this.color = '#fff';
+        break;
+
+      default:
+        this.backgroundColor = '';
+        this.color = '';
+        break;
+    }
+  }
+
   componentDidLoad(): void {
     this.popover.targetElement = this.element.previousElementSibling as HTMLElement;
+    this.variantChanged(this.variant);
   }
 
   render(): HTMLElement {
@@ -58,7 +82,6 @@ export class ZenTooltip {
     const ZenPopover = applyPrefix('zen-popover', this.element);
     const classes = {
       tooltip: true,
-      [this.variant]: true,
       [this.realPosition]: true,
       scrollable: this.maxHeight !== 'none',
     };
@@ -70,6 +93,8 @@ export class ZenTooltip {
           trigger-event="hover"
           position="bottom-start"
           close-on-target-click="false"
+          background-color={this.backgroundColor}
+          style={{ color: this.color }}
         >
           <slot name="content">
             <ZenSpace padding="lg">
