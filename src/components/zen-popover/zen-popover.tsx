@@ -11,7 +11,6 @@ import { TriggerEvent } from '../helpers/types';
 })
 export class ZenPopover {
   private popperInstance = null;
-  private targetSlotEl: HTMLElement = null;
   private popup: HTMLElement = null;
   private clickHandler = undefined;
   private showTimer = undefined;
@@ -30,6 +29,9 @@ export class ZenPopover {
 
   /** Position */
   @Prop() readonly position: Placement = 'bottom-end';
+
+  /** Trigger element */
+  @Prop({ mutable: true }) targetSlotEl: HTMLElement = null;
 
   /** Triggering event */
   @Prop() readonly triggerEvent: TriggerEvent = 'click';
@@ -100,6 +102,14 @@ export class ZenPopover {
     const values = delay.match(/([0-9]+)/g);
     this.showDelay = values ? parseInt(values[0], 10) || 0 : 0;
     this.hideDelay = values ? parseInt(values[1], 10) || this.showDelay : 0;
+  }
+
+  @Watch('targetSlotEl')
+  async targetSlotElChanged(target: HTMLElement): Promise<void> {
+    if (target) {
+      this.addTriggerEvents();
+    }
+    // todo: else removeTriggerEvents
   }
 
   /** Close an opened dropdown menu */
@@ -198,17 +208,11 @@ export class ZenPopover {
   }
 
   componentDidLoad(): void {
-    this.targetSlotEl = this.host.previousElementSibling as HTMLElement;
-
-    // Throw error if there is no target element specified
-    if (!this.targetSlotEl) {
-      console.error('No target element specified for the target slot!');
-      return;
-    }
-
     this.popup = this.host.shadowRoot.querySelector('.popup');
 
-    this.addTriggerEvents();
+    if (!this.targetSlotEl) {
+      this.targetSlotEl = this.host.previousElementSibling as HTMLElement;
+    }
     this.visibleChanged(this.visible);
     this.delayPropChanged(this.delay);
   }

@@ -372,6 +372,10 @@ export namespace Components {
          */
         "position": Placement;
         /**
+          * Trigger element
+         */
+        "targetSlotEl": HTMLElement;
+        /**
           * Close an opened dropdown menu
          */
         "toggle": (show?: boolean) => Promise<void>;
@@ -1259,6 +1263,10 @@ declare namespace LocalJSX {
           * Position
          */
         "position"?: Placement;
+        /**
+          * Trigger element
+         */
+        "targetSlotEl"?: HTMLElement;
         /**
           * Triggering event
          */
