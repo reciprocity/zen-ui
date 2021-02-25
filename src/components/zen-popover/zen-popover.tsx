@@ -28,7 +28,7 @@ export class ZenPopover {
   @Prop({ mutable: true }) visible = false;
 
   /** Position */
-  @Prop() readonly position: Placement = 'bottom-end';
+  @Prop() readonly position: Placement = 'bottom';
 
   /** Trigger element */
   @Prop({ mutable: true }) targetElement: HTMLElement = null;
