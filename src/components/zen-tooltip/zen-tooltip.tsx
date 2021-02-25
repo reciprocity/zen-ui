@@ -1,7 +1,6 @@
 import { Component, Host, h, Prop, State, Element } from '@stencil/core';
-import { Position, TooltipVariant, Point, Rect } from '../helpers/types';
-import { applyPrefix, containsRect, oppositePosition } from '../helpers/helpers';
-import debounce from 'lodash/debounce';
+import { Position, TooltipVariant } from '../helpers/types';
+import { applyPrefix } from '../helpers/helpers';
 
 /**
  * @slot defaultSlot - Slot that has zen space padding lg set
@@ -13,11 +12,15 @@ import debounce from 'lodash/debounce';
   shadow: true,
 })
 export class ZenTooltip {
+  private popover: HTMLZenPopoverElement = null;
+
   @Element() element: HTMLZenTooltipElement;
 
   @State() visible = false;
 
   @State() realPosition: Position = 'top';
+
+  @State() target: HTMLElement = null;
 
   /** Set tooltip position */
   @Prop() readonly position?: Position = 'top';
@@ -46,125 +49,13 @@ export class ZenTooltip {
   /** Pointing arrow - like a cartoon balloon */
   @Prop({ reflect: true }) readonly hasArrow?: boolean = true;
 
-  positionTooltip(position?: Position): Rect {
-    const previousElement = this.element.previousElementSibling as HTMLElement;
-    const bounds = previousElement.getBoundingClientRect();
-
-    this.element.style.display = 'block';
-    this.element.style.left = '0';
-    this.element.style.top = '0';
-    const myBounds = this.element.getBoundingClientRect();
-    this.element.style.display = '';
-
-    let x = bounds.left - myBounds.left + (bounds.width - myBounds.width) / 2;
-    let y = bounds.top - myBounds.top + (bounds.height - myBounds.height) / 2;
-
-    switch (position || this.position) {
-      case 'left':
-        x -= (bounds.width + myBounds.width) / 2 + this.offset;
-        break;
-
-      case 'right':
-        x += (bounds.width + myBounds.width) / 2 + this.offset;
-        break;
-
-      case 'top':
-        y -= (bounds.height + myBounds.height) / 2 + this.offset;
-        break;
-
-      case 'bottom':
-        y += (bounds.height + myBounds.height) / 2 + this.offset;
-        break;
-    }
-
-    this.element.style.left = `${x}px`;
-    this.element.style.top = `${y}px`;
-
-    myBounds.x += x;
-    myBounds.y += y;
-    return myBounds;
-  }
-
-  isTooltipFullyVisible(tooltipRect?: Rect): boolean {
-    const myBounds = tooltipRect || this.element.getBoundingClientRect();
-    const viewBounds = {
-      left: 0,
-      top: 0,
-      width: window.innerWidth,
-      height: window.innerHeight,
-    };
-    return containsRect(viewBounds, myBounds, 10);
-  }
-
-  show(): void {
-    this.debounceHide.cancel();
-    if (this.visible) return;
-    const tooltipRect = this.positionTooltip();
-
-    this.realPosition = this.position;
-    // if it's alwaysVisible we shouldn't change it if it's out of view:
-    if (!this.alwaysVisible && !this.isTooltipFullyVisible(tooltipRect)) {
-      this.realPosition = oppositePosition(this.position);
-      this.positionTooltip(this.realPosition);
-    }
-    this.visible = true;
-  }
-
-  hide(): void {
-    this.visible = false;
-  }
-
-  debounceShow = debounce(this.show, this.showDelay);
-
-  minDelay = this.maxHeight === 'none' ? 0 : 200; // should be async!
-  delay = Math.max(this.hideDelay, this.minDelay);
-  debounceHide = debounce(this.hide, this.delay);
-
   componentDidLoad(): void {
-    let lastPoint: Point = { x: 0, y: 0 };
-
-    const show = (event?: MouseEvent) => {
-      this.debounceHide.cancel();
-
-      // Show only if mouse hasn't moved too much:
-      if (event) {
-        const dist = Math.sqrt((lastPoint.x - event.clientX) ** 2 + (lastPoint.y - event.clientY) ** 2);
-        const moveThreshold = 3;
-        if (dist <= moveThreshold) return;
-        lastPoint = { x: event.clientX, y: event.clientY };
-      }
-
-      this.debounceShow();
-    };
-
-    const hide = () => {
-      this.debounceShow.cancel();
-      this.debounceHide();
-    };
-
-    if (this.alwaysVisible) {
-      this.realPosition = this.position;
-      // Add timeout, so target component is already layed-out correctly:
-      setTimeout(() => this.show(), 100);
-      return;
-    }
-
-    const tooltip = this.element;
-    const previousElement = tooltip.previousElementSibling;
-    for (const el of [tooltip, previousElement]) {
-      if (!el) continue;
-      el.addEventListener('mousemove', (event: MouseEvent) => show(event));
-      el.addEventListener('mouseover', (event: MouseEvent) => show(event));
-      el.addEventListener('touchstart', () => show());
-      el.addEventListener('mouseout', () => {
-        hide();
-      });
-      el.addEventListener('touchcancel', () => hide());
-    }
+    this.popover.targetElement = this.element.previousElementSibling as HTMLElement;
   }
 
   render(): HTMLElement {
     const ZenSpace = applyPrefix('zen-space', this.element);
+    const ZenPopover = applyPrefix('zen-popover', this.element);
     const classes = {
       tooltip: true,
       [this.variant]: true,
@@ -173,18 +64,26 @@ export class ZenTooltip {
     };
     return (
       <Host style={{ 'max-height': this.maxHeight }} class={{ visible: this.visible, ...classes }}>
-        <slot name="content">
-          <ZenSpace padding="lg">
-            <slot>{this.label}</slot>
-          </ZenSpace>
-        </slot>
-        <div
-          class={{
-            arrow: this.hasArrow,
-            [this.realPosition]: true,
-            [this.variant]: true,
-          }}
-        ></div>
+        <ZenPopover
+          ref={el => (this.popover = el)}
+          class="popover"
+          trigger-event="hover"
+          position="bottom-start"
+          close-on-target-click="false"
+        >
+          <slot name="content">
+            <ZenSpace padding="lg">
+              <slot>{this.label}</slot>
+            </ZenSpace>
+          </slot>
+          <div
+            class={{
+              arrow: this.hasArrow,
+              [this.realPosition]: true,
+              [this.variant]: true,
+            }}
+          ></div>
+        </ZenPopover>
       </Host>
     );
   }
