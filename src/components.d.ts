@@ -596,7 +596,7 @@ export namespace Components {
     }
     interface ZenTooltip {
         /**
-          * Dont hide tooltip
+          * Don't hide tooltip
          */
         "alwaysVisible"?: boolean;
         /**
@@ -612,7 +612,7 @@ export namespace Components {
          */
         "label"?: string;
         /**
-          * Limit tooltip's height and make content scroll
+          * Limit tooltips height and make content scroll
          */
         "maxHeight": string;
         /**
@@ -1484,7 +1484,7 @@ declare namespace LocalJSX {
     }
     interface ZenTooltip {
         /**
-          * Dont hide tooltip
+          * Don't hide tooltip
          */
         "alwaysVisible"?: boolean;
         /**
@@ -1500,7 +1500,7 @@ declare namespace LocalJSX {
          */
         "label"?: string;
         /**
-          * Limit tooltip's height and make content scroll
+          * Limit tooltips height and make content scroll
          */
         "maxHeight"?: string;
         /**

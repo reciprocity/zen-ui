@@ -36,10 +36,10 @@ export class ZenTooltip {
   /** Set tooltip offset to target element */
   @Prop() readonly offset?: number = 10;
 
-  /** Dont hide tooltip */
+  /** Don't hide tooltip */
   @Prop() readonly alwaysVisible?: boolean = false;
 
-  /** Limit tooltip's height and make content scroll  */
+  /** Limit tooltips height and make content scroll  */
   @Prop() readonly maxHeight: string = 'none';
 
   /** Delay between mouse out and tooltip hide (in ms)  */
@@ -83,17 +83,20 @@ export class ZenTooltip {
       tooltip: true,
       scrollable: this.maxHeight !== 'none',
     };
+
     return (
       <Host style={{ 'max-height': this.maxHeight }} class={{ visible: this.visible, ...classes }}>
         <ZenPopover
           ref={el => (this.popover = el)}
           class="popover"
-          trigger-event="hover"
+          trigger-event={this.alwaysVisible ? 'click' : 'hover'}
           position={this.position}
-          close-on-target-click="false"
           background-color={this.backgroundColor}
           style={{ color: this.color }}
           offset={{ x: 0, y: this.offset }}
+          close-on-click-out={this.alwaysVisible ? 'false' : 'true'}
+          close-on-target-click={this.alwaysVisible ? 'false' : 'true'}
+          visible={this.alwaysVisible}
         >
           <slot name="content">
             <ZenSpace padding="lg">
