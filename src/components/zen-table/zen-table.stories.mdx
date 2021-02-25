@@ -192,24 +192,51 @@ export const StoryTree = () => {
     element.icon = faArrowRight;
   });
   return html/*html*/ `
+    <style>
+      .first {
+        width: 50%;
+      }
+    </style>
     <sb-zen-table>
       <sb-zen-table-row>
-        <sb-zen-table-cell><sb-zen-text>PCI Requirement 1 - Firewall Configuration</sb-zen-text></sb-zen-table-cell>
+        <sb-zen-table-cell class="first"><sb-zen-text>PCI Requirement 1 - Firewall Configuration</sb-zen-text></sb-zen-table-cell>
+        <sb-zen-table-cell><sb-zen-text>Status</sb-zen-text></sb-zen-table-cell>
+        <sb-zen-table-cell><sb-zen-text>Some description plus some</sb-zen-text></sb-zen-table-cell>
       </sb-zen-table-row>
       <sb-zen-table-row child depth="1">
-        <sb-zen-table-cell><sb-zen-text>PCI Requirement 2 - Firewall Configuration</sb-zen-text></sb-zen-table-cell>
+        <sb-zen-table-cell class="first"><sb-zen-text>PCI Requirement 2 - Firewall Configuration</sb-zen-text></sb-zen-table-cell>
+        <sb-zen-table-cell><sb-zen-text>Status</sb-zen-text></sb-zen-table-cell>
+        <sb-zen-table-cell><sb-zen-text>Some description plus some</sb-zen-text></sb-zen-table-cell>
       </sb-zen-table-row>
       <sb-zen-table-row child depth="1">
-        <sb-zen-table-cell><sb-zen-text>PCI Requirement 3 - Firewall Configuration</sb-zen-text></sb-zen-table-cell>
+        <sb-zen-table-cell class="first"><sb-zen-text>PCI Requirement 3 - Firewall Configuration</sb-zen-text></sb-zen-table-cell>
+        <sb-zen-table-cell><sb-zen-text>Status</sb-zen-text></sb-zen-table-cell>
+        <sb-zen-table-cell><sb-zen-text>Some description plus some</sb-zen-text></sb-zen-table-cell>
       </sb-zen-table-row>
       <sb-zen-table-row child depth="2">
-        <sb-zen-table-cell><sb-zen-text>PCI Requirement 4 - Firewall Configuration</sb-zen-text></sb-zen-table-cell>
+        <sb-zen-table-cell class="first"><sb-zen-text>PCI Requirement 4 - Firewall Configuration</sb-zen-text></sb-zen-table-cell>
+        <sb-zen-table-cell><sb-zen-text>Status</sb-zen-text></sb-zen-table-cell>
+        <sb-zen-table-cell><sb-zen-text>Some description plus some</sb-zen-text></sb-zen-table-cell>
       </sb-zen-table-row>
       <sb-zen-table-row child depth="2">
-        <sb-zen-table-cell><sb-zen-text>PCI Requirement 5 - Firewall Configuration</sb-zen-text></sb-zen-table-cell>
+        <sb-zen-table-cell class="first"><sb-zen-text>PCI Requirement 5 - Firewall Configuration</sb-zen-text></sb-zen-table-cell>
+        <sb-zen-table-cell><sb-zen-text>Status</sb-zen-text></sb-zen-table-cell>
+        <sb-zen-table-cell><sb-zen-text>Some description plus some</sb-zen-text></sb-zen-table-cell>
+      </sb-zen-table-row>
+      <sb-zen-table-row child depth="2">
+        <sb-zen-table-cell class="first"><sb-zen-text>PCI Requirement 5 - Firewall Configuration</sb-zen-text></sb-zen-table-cell>
+        <sb-zen-table-cell><sb-zen-text>Status</sb-zen-text></sb-zen-table-cell>
+        <sb-zen-table-cell><sb-zen-text>Some description plus some</sb-zen-text></sb-zen-table-cell>
+      </sb-zen-table-row>
+      <sb-zen-table-row child depth="1">
+        <sb-zen-table-cell class="first"><sb-zen-text>PCI Requirement 5 - Firewall Configuration</sb-zen-text></sb-zen-table-cell>
+        <sb-zen-table-cell><sb-zen-text>Status</sb-zen-text></sb-zen-table-cell>
+        <sb-zen-table-cell><sb-zen-text>Some description plus some</sb-zen-text></sb-zen-table-cell>
       </sb-zen-table-row>
       <sb-zen-table-row>
-        <sb-zen-table-cell><sb-zen-text>PCI Requirement 6 - Firewall Configuration</sb-zen-text></sb-zen-table-cell>
+        <sb-zen-table-cell class="first"><sb-zen-text>PCI Requirement 6 - Firewall Configuration</sb-zen-text></sb-zen-table-cell>
+        <sb-zen-table-cell><sb-zen-text>Status</sb-zen-text></sb-zen-table-cell>
+        <sb-zen-table-cell><sb-zen-text>Some description plus some</sb-zen-text></sb-zen-table-cell>
       </sb-zen-table-row>
     </sb-zen-table>
   `;

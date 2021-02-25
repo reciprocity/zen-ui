@@ -498,8 +498,9 @@ export namespace Components {
          */
         "depth": number;
         /**
-          * Is row visible
+          * Is row opened
          */
+        "opened": boolean;
         "visible": boolean;
     }
     interface ZenTabs {
@@ -1391,8 +1392,9 @@ declare namespace LocalJSX {
          */
         "depth"?: number;
         /**
-          * Is row visible
+          * Is row opened
          */
+        "opened"?: boolean;
         "visible"?: boolean;
     }
     interface ZenTabs {

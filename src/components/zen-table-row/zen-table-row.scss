@@ -5,6 +5,8 @@
   border-top: 1px solid $color-gray-200;
   border-bottom: 1px solid $color-gray-200;
   transition: transform 0.25s ease-out, opacity 0.25s ease-out;
+  position: relative;
+  transform: scale(1); // hack to apply position relative (tested in chrome & ff)
 }
 
 :host(.hidden) {
@@ -15,15 +17,42 @@
   }
 }
 
-.container {
-  width: 50px;
+.widgets {
   box-sizing: border-box;
   display: flex;
   flex-direction: row;
   justify-content: left;
   align-items: center;
+  position: absolute;
+  inset: 0px auto 0px 0px;
 }
 
-.not-visible {
+.expand-icon.hidden {
   visibility: hidden;
+}
+
+// Checkboxes and expand arrow padding:
+$arrow-width: 1rem;
+$checkbox-width: 2rem;
+
+// If depth isn't defined, default to 0:
+:host(:not([depth])) ::slotted(*:first-child){
+  padding-left: #{$checkbox-width};
+}
+:host(:not([depth]).expandable) ::slotted(*:first-child){
+  padding-left: #{$checkbox-width + $arrow-width};
+}
+
+@for $i from 0 through 32 {
+  :host([depth='#{$i}']) ::slotted(*:first-child) {
+    padding-left: #{($i + 1) * 2}rem;
+  }
+
+  :host([depth='#{$i}']) .widgets {
+    padding-left: #{$i * 2}rem;
+  }
+
+  :host([depth='#{$i}'].expandable) ::slotted(*:first-child) {
+    padding-left: #{($i + 1) * $checkbox-width + $arrow-width};
+  }
 }
