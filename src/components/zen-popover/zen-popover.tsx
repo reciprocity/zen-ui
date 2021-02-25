@@ -111,6 +111,10 @@ export class ZenPopover {
   async targetElementChanged(target: HTMLElement): Promise<void> {
     if (target) {
       this.addTriggerEvents();
+      if (this.visible) {
+        this.destroyPopper();
+        this.createPopper();
+      }
     }
     // todo: else removeTriggerEvents
   }
@@ -175,6 +179,7 @@ export class ZenPopover {
   }
 
   async closeOnClickOutside(event: MouseEvent): Promise<void> {
+    if (!this.closeOnClickOut) return;
     const path = getComposedPath(event);
     const clickedInPopup = this.interactive && path.find(n => n === this.popup);
     const clickedInTarget = path.find(n => n === this.targetElement);
