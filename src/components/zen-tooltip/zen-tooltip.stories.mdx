@@ -35,7 +35,7 @@ export const TemplateSlot = () => {
     element.users = user;
   });
   return html/*html*/ `
-    <sb-zen-space horizontal-align="center" vertical-align="end" style="height:150px" >
+    <sb-zen-space horizontal-align="center" vertical-align="center" style="height:150px" >
      <div>
         <sb-zen-button label="User" variant="secondary"></sb-zen-button>
         <sb-zen-tooltip
@@ -58,15 +58,16 @@ export const TemplateSlot = () => {
 
 export const TemplateVariants = () => {
   return html/*html*/ `
-    <sb-zen-space nowrap horizontal-align="space-evenly" vertical-align="end" style="height:300px">
+    <sb-zen-space nowrap horizontal-align="space-evenly" vertical-align="end" style="height:250px">
       <div>
           <sb-zen-button label="Example" variant="primary"></sb-zen-button>
           <sb-zen-tooltip
                 always-visible="true"
                 position="top"
                 variant="dark"
+                flip="false"
            >
-            <sb-zen-text size="sm" style="color:white;">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</sb-zen-text>
+            <sb-zen-text size="sm" style="color:white;">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s. Lorem Ipsum is simply dummy text of the printing and typesetting industry.</sb-zen-text>
          </sb-zen-tooltip>
       </div>
       <div>
@@ -75,8 +76,9 @@ export const TemplateVariants = () => {
           always-visible="true"
           position="top"
           variant="light"
+          flip="false"
         >
-           <sb-zen-text size="sm">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</sb-zen-text>
+           <sb-zen-text size="sm">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s. Lorem Ipsum is simply dummy text of the printing and typesetting industry.</sb-zen-text>
         </sb-zen-tooltip>
       </div>
       <div>
@@ -85,8 +87,9 @@ export const TemplateVariants = () => {
           always-visible="true"
           position="top"
           variant="error"
+          flip="false"
         >
-            <sb-zen-text size="sm" style="color:white;">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</sb-zen-text>
+            <sb-zen-text size="sm" style="color:white;">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s. Lorem Ipsum is simply dummy text of the printing and typesetting industry.</sb-zen-text>
         </sb-zen-tooltip>
       </div>
     </div>
@@ -102,8 +105,7 @@ export const Scrollable = () => {
           <sb-zen-text size="sm"
             >Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
             industry's standard dummy text ever since the 1500s. Lorem Ipsum is simply dummy text of the printing and
-            typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the
-            1500s.</sb-zen-text
+            typesetting industry.</sb-zen-text
           >
         </sb-zen-tooltip>
       </div>
