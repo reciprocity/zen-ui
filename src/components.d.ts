@@ -364,6 +364,10 @@ export namespace Components {
          */
         "delay": string;
         /**
+          * Popover positions it self on other side if no space available
+         */
+        "flip": boolean;
+        /**
           * User can click content within popover
          */
         "interactive": boolean;
@@ -603,10 +607,6 @@ export namespace Components {
           * Show and hide delay. Eg. '100' - both show & hide 100ms. '100 500' - show 100ms, hide 500ms.
          */
         "delay": string;
-        /**
-          * Pointing arrow - like a cartoon balloon
-         */
-        "hasArrow"?: boolean;
         /**
           * Set tooltip label
          */
@@ -1252,6 +1252,10 @@ declare namespace LocalJSX {
          */
         "delay"?: string;
         /**
+          * Popover positions it self on other side if no space available
+         */
+        "flip"?: boolean;
+        /**
           * User can click content within popover
          */
         "interactive"?: boolean;
@@ -1487,10 +1491,6 @@ declare namespace LocalJSX {
           * Show and hide delay. Eg. '100' - both show & hide 100ms. '100 500' - show 100ms, hide 500ms.
          */
         "delay"?: string;
-        /**
-          * Pointing arrow - like a cartoon balloon
-         */
-        "hasArrow"?: boolean;
         /**
           * Set tooltip label
          */

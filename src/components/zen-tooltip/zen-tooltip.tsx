@@ -45,9 +45,6 @@ export class ZenTooltip {
   /** Show and hide delay. Eg. '100' - both show & hide 100ms. '100 500' - show 100ms, hide 500ms. */
   @Prop() readonly delay: string = '0';
 
-  /** Pointing arrow - like a cartoon balloon */
-  @Prop({ reflect: true }) readonly hasArrow?: boolean = true;
-
   @Watch('variant')
   async variantChanged(variant: TooltipVariant): Promise<void> {
     switch (variant) {
@@ -105,12 +102,6 @@ export class ZenTooltip {
               <slot>{this.label}</slot>
             </ZenSpace>
           </slot>
-          <div
-            class={{
-              arrow: this.hasArrow,
-              [this.variant]: true,
-            }}
-          ></div>
         </ZenPopover>
       </Host>
     );
