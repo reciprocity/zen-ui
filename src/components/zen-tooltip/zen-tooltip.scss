@@ -4,31 +4,6 @@ $arrow_size: 0.3rem;
 
 :host {
   position: absolute;
-  max-width: 11rem;
-  min-width: min-content;
-  z-index: $z-index-tooltips;
-  display: none;
-  font-size: $text-sm;
-  border-radius: $border-radius-default;
-  line-height: 1rem;
-  text-align: center;
-  font-family: inherit;
-
-  // light - default:
-  color: $color-gray-800;
-  background-color: $color-white;
-  border: 1px solid $color-gray-200;
-  box-shadow: $shadow-drop-200;
-}
-
-:host(.visible) {
-  display: block;
-}
-
-:host(.scrollable) {
-  pointer-events: all;
-  overflow-y: auto;
-  overflow-x: hidden;
 }
 
 :host(:not([has-arrow])),
@@ -36,6 +11,12 @@ $arrow_size: 0.3rem;
   & .arrow {
     display: none;
   }
+}
+
+.popover {
+  max-width: 11rem;
+  min-width: min-content;
+  z-index: $z-index-tooltips;
 }
 
 .arrow {
@@ -74,27 +55,5 @@ $arrow_size: 0.3rem;
   &.left {
     border-left: $arrow_size solid $color-gray-200;
     right: -$arrow_size;
-  }
-}
-
-:host(.dark) {
-  color: $color-white;
-  background-color: $color-gray-800;
-  border: 1px solid $color-gray-800;
-  box-shadow: none;
-
-  .arrow {
-    border-color: $color-gray-800;
-  }
-}
-
-:host(.error) {
-  color: $color-white;
-  background-color: $color-red-800;
-  border: 1px solid $color-red-800;
-  box-shadow: none;
-
-  .arrow {
-    border-color: $color-red-800;
   }
 }

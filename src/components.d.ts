@@ -348,6 +348,10 @@ export namespace Components {
     }
     interface ZenPopover {
         /**
+          * Background color
+         */
+        "backgroundColor": string;
+        /**
           * Close on click outside
          */
         "closeOnClickOut": boolean;
@@ -371,6 +375,10 @@ export namespace Components {
           * Position
          */
         "position": Placement;
+        /**
+          * Trigger element
+         */
+        "targetElement": HTMLElement;
         /**
           * Close an opened dropdown menu
          */
@@ -588,23 +596,23 @@ export namespace Components {
     }
     interface ZenTooltip {
         /**
-          * Dont hide tooltip
+          * Don't hide tooltip
          */
         "alwaysVisible"?: boolean;
+        /**
+          * Show and hide delay. Eg. '100' - both show & hide 100ms. '100 500' - show 100ms, hide 500ms.
+         */
+        "delay": string;
         /**
           * Pointing arrow - like a cartoon balloon
          */
         "hasArrow"?: boolean;
         /**
-          * Delay between mouse out and tooltip hide (in ms)
-         */
-        "hideDelay": number;
-        /**
           * Set tooltip label
          */
         "label"?: string;
         /**
-          * Limit tooltip's height and make content scroll
+          * Limit tooltips height and make content scroll
          */
         "maxHeight": string;
         /**
@@ -614,11 +622,7 @@ export namespace Components {
         /**
           * Set tooltip position
          */
-        "position"?: Position;
-        /**
-          * Delay between mouse enter and tooltip show (in ms)
-         */
-        "showDelay": number;
+        "position"?: Placement;
         /**
           * Set tooltip variant
          */
@@ -1232,6 +1236,10 @@ declare namespace LocalJSX {
     }
     interface ZenPopover {
         /**
+          * Background color
+         */
+        "backgroundColor"?: string;
+        /**
           * Close on click outside
          */
         "closeOnClickOut"?: boolean;
@@ -1259,6 +1267,10 @@ declare namespace LocalJSX {
           * Position
          */
         "position"?: Placement;
+        /**
+          * Trigger element
+         */
+        "targetElement"?: HTMLElement;
         /**
           * Triggering event
          */
@@ -1468,23 +1480,23 @@ declare namespace LocalJSX {
     }
     interface ZenTooltip {
         /**
-          * Dont hide tooltip
+          * Don't hide tooltip
          */
         "alwaysVisible"?: boolean;
+        /**
+          * Show and hide delay. Eg. '100' - both show & hide 100ms. '100 500' - show 100ms, hide 500ms.
+         */
+        "delay"?: string;
         /**
           * Pointing arrow - like a cartoon balloon
          */
         "hasArrow"?: boolean;
         /**
-          * Delay between mouse out and tooltip hide (in ms)
-         */
-        "hideDelay"?: number;
-        /**
           * Set tooltip label
          */
         "label"?: string;
         /**
-          * Limit tooltip's height and make content scroll
+          * Limit tooltips height and make content scroll
          */
         "maxHeight"?: string;
         /**
@@ -1494,11 +1506,7 @@ declare namespace LocalJSX {
         /**
           * Set tooltip position
          */
-        "position"?: Position;
-        /**
-          * Delay between mouse enter and tooltip show (in ms)
-         */
-        "showDelay"?: number;
+        "position"?: Placement;
         /**
           * Set tooltip variant
          */

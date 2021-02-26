@@ -25,16 +25,6 @@ export type None = 'none';
 
 export type TriggerEvent = 'click' | 'hover';
 
-// Others:
-export type Point = { x: number; y: number };
-
-export type Rect = {
-  left: number;
-  top: number;
-  width: number;
-  height: number;
-};
-
 export interface Avatar {
   userName?: string;
   email?: string;

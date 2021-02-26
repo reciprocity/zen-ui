@@ -11,7 +11,6 @@ import { TriggerEvent } from '../helpers/types';
 })
 export class ZenPopover {
   private popperInstance = null;
-  private targetSlotEl: HTMLElement = null;
   private popup: HTMLElement = null;
   private clickHandler = undefined;
   private showTimer = undefined;
@@ -29,7 +28,10 @@ export class ZenPopover {
   @Prop({ mutable: true }) visible = false;
 
   /** Position */
-  @Prop() readonly position: Placement = 'bottom-end';
+  @Prop() readonly position: Placement = 'bottom';
+
+  /** Trigger element */
+  @Prop({ mutable: true }) targetElement: HTMLElement = null;
 
   /** Triggering event */
   @Prop() readonly triggerEvent: TriggerEvent = 'click';
@@ -48,6 +50,9 @@ export class ZenPopover {
 
   /** Show and hide delay. Only affects show on hover! Eg. '100' - both show & hide 100ms. '100 500' - show 100ms, hide 500ms. */
   @Prop() readonly delay: string = '0';
+
+  /** Background color */
+  @Prop() readonly backgroundColor: string = '';
 
   /** Visibility changed */
   @Event() visibleChange: EventEmitter<void>;
@@ -99,7 +104,22 @@ export class ZenPopover {
   async delayPropChanged(delay: string): Promise<void> {
     const values = delay.match(/([0-9]+)/g);
     this.showDelay = values ? parseInt(values[0], 10) || 0 : 0;
-    this.hideDelay = values ? parseInt(values[1], 10) || this.showDelay : 0;
+    this.hideDelay = values ? parseInt(values[1], 10) : 0;
+    if (Number.isNaN(this.hideDelay)) {
+      this.hideDelay = this.showDelay;
+    }
+  }
+
+  @Watch('targetElement')
+  async targetElementChanged(target: HTMLElement): Promise<void> {
+    if (target) {
+      this.addTriggerEvents();
+      if (this.visible) {
+        this.destroyPopper();
+        this.createPopper();
+      }
+    }
+    // todo: else removeTriggerEvents
   }
 
   /** Close an opened dropdown menu */
@@ -144,17 +164,17 @@ export class ZenPopover {
     };
 
     if (this.triggerEvent === 'click' || this.closeOnTargetClick) {
-      this.targetSlotEl.addEventListener('mousedown', () => {
+      this.targetElement.addEventListener('mousedown', () => {
         if (!this.closeOnTargetClick && this.visible) return;
         this.visible = this.triggerEvent === 'click' ? !this.visible : false;
       });
     }
 
     if (this.triggerEvent === 'hover') {
-      this.targetSlotEl.addEventListener('mouseover', () => show());
-      this.targetSlotEl.addEventListener('mouseout', () => hide());
-      this.targetSlotEl.addEventListener('touchstart', () => show());
-      this.targetSlotEl.addEventListener('touchcancel', () => (this.visible = false));
+      this.targetElement.addEventListener('mouseover', () => show());
+      this.targetElement.addEventListener('mouseout', () => hide());
+      this.targetElement.addEventListener('touchstart', () => show());
+      this.targetElement.addEventListener('touchcancel', () => (this.visible = false));
       // Stop hideTimer when mouse is over tooltip:
       this.popup.addEventListener('mouseover', () => show());
       this.popup.addEventListener('mouseout', () => hide());
@@ -162,9 +182,10 @@ export class ZenPopover {
   }
 
   async closeOnClickOutside(event: MouseEvent): Promise<void> {
+    if (!this.closeOnClickOut) return;
     const path = getComposedPath(event);
     const clickedInPopup = this.interactive && path.find(n => n === this.popup);
-    const clickedInTarget = path.find(n => n === this.targetSlotEl);
+    const clickedInTarget = path.find(n => n === this.targetElement);
     if (clickedInPopup || clickedInTarget) return;
 
     await waitNextFrame(); // prevent race with click-open
@@ -173,7 +194,7 @@ export class ZenPopover {
 
   async createPopper(): Promise<void> {
     const popupWrap = this.host.shadowRoot.querySelector('.popup-wrap') as HTMLElement;
-    this.popperInstance = createPopper(this.targetSlotEl, popupWrap, {
+    this.popperInstance = createPopper(this.targetElement, popupWrap, {
       placement: this.position,
       modifiers: [
         {
@@ -198,26 +219,21 @@ export class ZenPopover {
   }
 
   componentDidLoad(): void {
-    this.targetSlotEl = this.host.previousElementSibling as HTMLElement;
-
-    // Throw error if there is no target element specified
-    if (!this.targetSlotEl) {
-      console.error('No target element specified for the target slot!');
-      return;
-    }
-
     this.popup = this.host.shadowRoot.querySelector('.popup');
 
-    this.addTriggerEvents();
+    if (!this.targetElement) {
+      this.targetElement = this.host.previousElementSibling as HTMLElement;
+    }
     this.visibleChanged(this.visible);
     this.delayPropChanged(this.delay);
   }
 
   render(): HTMLElement {
+    const style = this.backgroundColor ? { 'background-color': this.backgroundColor } : {};
     return (
       <Host>
         <div class="popup-wrap" role="tooltip">
-          <div class="popup" data-position={this.actualPosition}>
+          <div class="popup" style={style} data-position={this.actualPosition}>
             <div id="arrow" data-popper-arrow></div>
             <slot />
           </div>

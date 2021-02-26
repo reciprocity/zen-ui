@@ -10,11 +10,15 @@ describe('Tooltip visual tests', { scrollBehavior: 'center' }, () => {
     'story--notifications-tooltip--default-story',
   ];
 
+  function findPopup(cy) {
+    return cy.get('sb-zen-tooltip').shadow().find('sb-zen-popover').shadow().find('.popup-wrap .popup');
+  }
+
   before(() => {
     cy.visitStorybookIframe(pageId);
     cy.verifyAllStoriesHaveVRT(story);
-    cy.get('sb-zen-tooltip[always-visible="true"]').each(el => {
-      cy.wrap(el).should('be.visible');
+    cy.get('sb-zen-tooltip[always-visible="true"]').each(() => {
+      findPopup(cy).should('be.visible');
     });
   });
 
@@ -29,8 +33,8 @@ describe('Tooltip visual tests', { scrollBehavior: 'center' }, () => {
   it('Verifies ' + `${story[2]}`, () => {
     cy.get(`#${story[2]}`)
       .within(() => {
-        cy.get('sb-zen-button').click();
-        cy.get('sb-zen-tooltip').should('be.visible');
+        cy.get('sb-zen-button').trigger('mouseover');
+        findPopup(cy).should('be.visible');
       })
       .parents('.innerZoomElementWrapper')
       .matchImageSnapshot();
@@ -39,8 +43,8 @@ describe('Tooltip visual tests', { scrollBehavior: 'center' }, () => {
   it('Verifies ' + `${story[3]}`, () => {
     cy.get(`#${story[3]}`)
       .within(() => {
-        cy.get('sb-zen-button').click();
-        cy.get('sb-zen-tooltip').should('be.visible');
+        cy.get('sb-zen-button').trigger('mouseover');
+        findPopup(cy).should('be.visible');
       })
       .parents('.innerZoomElementWrapper')
       .matchImageSnapshot();
