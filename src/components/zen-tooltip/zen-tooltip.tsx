@@ -36,6 +36,9 @@ export class ZenTooltip {
   /** Set tooltip offset to target element */
   @Prop() readonly offset?: number = 10;
 
+  /** Positions it self on other side if no space available */
+  @Prop() readonly flip: boolean = true;
+
   /** Don't hide tooltip */
   @Prop() readonly alwaysVisible?: boolean = false;
 
@@ -96,6 +99,7 @@ export class ZenTooltip {
           visible={this.alwaysVisible}
           delay={this.delay}
           interactive={isScrollable}
+          flip={this.flip}
         >
           <slot name="content">
             <ZenSpace padding="lg">
