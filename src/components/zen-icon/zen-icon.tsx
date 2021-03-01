@@ -10,7 +10,8 @@ import { parsePadding } from '../helpers/helpers';
   shadow: true,
 })
 export class ZenIcon {
-  @Element() hostElement: HTMLZenIconElement;
+  @Element() host: HTMLZenIconElement;
+
   @State() paddingClasses = {};
 
   /** Size of the icon. */

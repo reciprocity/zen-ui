@@ -8,7 +8,7 @@ export type OptionValue = string | number | undefined;
   shadow: true,
 })
 export class ZenOption {
-  @Element() hostElement: HTMLZenOptionElement;
+  @Element() host: HTMLZenOptionElement;
 
   /** Render item as selected */
   @Prop({ reflect: true }) readonly selected: boolean = false;

@@ -22,7 +22,7 @@ export interface StepEvent {
   shadow: true,
 })
 export class ZenProgressTracker {
-  @Element() hostElement: HTMLZenProgressTrackerElement;
+  @Element() host: HTMLZenProgressTrackerElement;
 
   @State() internalActiveIndex: number;
   /** Ordered array of possible steps */
@@ -40,7 +40,7 @@ export class ZenProgressTracker {
   /** User clicked a step */
   selectStep(index: number): void {
     this.internalActiveIndex = index;
-    this.hostElement.dispatchEvent(new window.Event('change'));
+    this.host.dispatchEvent(new window.Event('change'));
   }
 
   stepClicked(index: number): void {
@@ -73,7 +73,7 @@ export class ZenProgressTracker {
   }
 
   render(): HTMLElement {
-    const ZenIcon = applyPrefix('zen-icon', this.hostElement);
+    const ZenIcon = applyPrefix('zen-icon', this.host);
     return (
       <Host class="zen-steps">
         <div class="progressbar">

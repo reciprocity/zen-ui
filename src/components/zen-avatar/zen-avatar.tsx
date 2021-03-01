@@ -8,7 +8,7 @@ import { AvatarData } from '../helpers/types';
   shadow: true,
 })
 export class ZenAvatar {
-  @Element() hostElement: HTMLZenAvatarElement;
+  @Element() host: HTMLZenAvatarElement;
 
   /** Users  */
   @Prop() readonly users: AvatarData[] = [];
@@ -37,10 +37,10 @@ export class ZenAvatar {
   }
 
   render(): HTMLElement {
-    const ZenAvatarIcon = applyPrefix('zen-avatar-icon', this.hostElement);
-    const ZenTooltip = applyPrefix('zen-tooltip', this.hostElement);
-    const ZenSpace = applyPrefix('zen-space', this.hostElement);
-    const ZenText = applyPrefix('zen-text', this.hostElement);
+    const ZenAvatarIcon = applyPrefix('zen-avatar-icon', this.host);
+    const ZenTooltip = applyPrefix('zen-tooltip', this.host);
+    const ZenSpace = applyPrefix('zen-space', this.host);
+    const ZenText = applyPrefix('zen-text', this.host);
     return (
       <Host>
         <ZenAvatarIcon

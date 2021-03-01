@@ -61,7 +61,7 @@ export class HtmlPlayground {
 
   vueApp;
 
-  @Element() hostElement: HTMLHtmlPlaygroundElement;
+  @Element() host: HTMLHtmlPlaygroundElement;
 
   @State() textValue = '';
 
@@ -83,7 +83,7 @@ export class HtmlPlayground {
   }
 
   localStorageKey(): string {
-    return `html-playground${this.hostElement.id ? '-' + this.hostElement.id : ''}-value`;
+    return `html-playground${this.host.id ? '-' + this.host.id : ''}-value`;
   }
 
   onTextareaChange(e: Event): void {
@@ -104,7 +104,7 @@ export class HtmlPlayground {
   }
 
   onTabClicked(): void {
-    const tabs = this.hostElement.shadowRoot.querySelector('#framework-tabs') as HTMLZenTabsElement;
+    const tabs = this.host.shadowRoot.querySelector('#framework-tabs') as HTMLZenTabsElement;
     this.selectedFramework = tabs.value.toString();
   }
 
@@ -112,7 +112,7 @@ export class HtmlPlayground {
   handleKeyDown(ev: KeyboardEvent): void {
     if (ev.key === 'Tab') {
       ev.preventDefault();
-      const textarea = this.hostElement.shadowRoot.querySelector('textarea');
+      const textarea = this.host.shadowRoot.querySelector('textarea');
       if (ev.shiftKey) {
         unindent(textarea);
       } else {
@@ -124,7 +124,7 @@ export class HtmlPlayground {
     const apply = (ev.key === 'Enter' && ctrl) || ev.key === 'Escape' || (ev.key === 's' && ctrl);
     if (apply) {
       // Apply changes:
-      const textarea = this.hostElement.shadowRoot.querySelector('textarea');
+      const textarea = this.host.shadowRoot.querySelector('textarea');
       textarea.dispatchEvent(new Event('change'));
       ev.preventDefault();
     }
@@ -168,7 +168,7 @@ export class HtmlPlayground {
     }
 
     const target = document.createElement('div');
-    this.hostElement.shadowRoot.querySelector('#vue-preview').appendChild(target);
+    this.host.shadowRoot.querySelector('#vue-preview').appendChild(target);
     this.vueApp = new window.Vue(config).$mount(target);
   }
 
@@ -179,7 +179,7 @@ export class HtmlPlayground {
       scripts.forEach(script => window.eval(script.innerHTML));
     }
 
-    const target = this.hostElement.shadowRoot.querySelector('#vanilla-preview');
+    const target = this.host.shadowRoot.querySelector('#vanilla-preview');
     target.innerHTML = this.sourceCodes['js'];
     evalScripts(target);
   }

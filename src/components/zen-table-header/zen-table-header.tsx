@@ -6,15 +6,15 @@ import { h, Component, Element, Host, Prop } from '@stencil/core';
   shadow: true,
 })
 export class ZenTableHeader {
+  @Element() host: HTMLZenTableHeaderElement;
+
   /** Remains fixed at the top of the table during vertical scrolling */
   @Prop() readonly sticky = false;
-
-  @Element() hostElement: HTMLZenTableHeaderElement;
 
   setSticky(): void {
     const forEach = (arr, fn) => arr.forEach(fn);
 
-    const elements = this.hostElement.children;
+    const elements = this.host.children;
     const setSticky = (c: HTMLElement) => c.setAttribute('sticky', '');
 
     forEach(elements, setSticky);

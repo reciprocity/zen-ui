@@ -14,7 +14,7 @@ import { modalsService } from './zen-modals-service';
   shadow: true,
 })
 export class ZenModal {
-  @Element() hostElement: HTMLZenModalElement;
+  @Element() host: HTMLZenModalElement;
 
   /** Set `true` to show and `false` to hide modal */
   @Prop({ reflect: true }) readonly show = false;
@@ -34,9 +34,9 @@ export class ZenModal {
   @Watch('show')
   async showChanged(show: boolean): Promise<void> {
     if (show) {
-      modalsService.makeTopmost(this.hostElement);
+      modalsService.makeTopmost(this.host);
     } else {
-      modalsService.modalClosed(this.hostElement);
+      modalsService.modalClosed(this.host);
     }
   }
 
@@ -55,9 +55,9 @@ export class ZenModal {
   }
 
   render(): HTMLElement {
-    const ZenAnimate = applyPrefix('zen-animate', this.hostElement);
-    const ZenButton = applyPrefix('zen-button', this.hostElement);
-    const ZenText = applyPrefix('zen-text', this.hostElement);
+    const ZenAnimate = applyPrefix('zen-animate', this.host);
+    const ZenButton = applyPrefix('zen-button', this.host);
+    const ZenText = applyPrefix('zen-text', this.host);
     return (
       <Host>
         <ZenAnimate show={this.show}>

@@ -13,7 +13,7 @@ import { getNextField } from '../helpers/helpers';
 export class ZenInput {
   input = null;
 
-  @Element() hostElement: HTMLZenInputElement;
+  @Element() host: HTMLZenInputElement;
 
   @State() inputFocused = false;
 
@@ -70,7 +70,7 @@ export class ZenInput {
       this.value = input.value || '';
     }
     // change event should be forwarded, because it's not composed:
-    this.hostElement.dispatchEvent(new window.Event('change'));
+    this.host.dispatchEvent(new window.Event('change'));
   };
 
   private onBlur = () => {

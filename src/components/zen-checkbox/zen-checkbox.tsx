@@ -11,7 +11,7 @@ import { Component, Host, h, Prop, Watch, Element } from '@stencil/core';
   shadow: true,
 })
 export class ZenCheckbox {
-  @Element() hostElement: HTMLZenCheckboxElement;
+  @Element() host: HTMLZenCheckboxElement;
 
   /** Name of element, can be used as reference for form data */
   @Prop() readonly name: string = '';
@@ -30,7 +30,7 @@ export class ZenCheckbox {
 
   @Watch('checked')
   checkedChanged(): void {
-    this.hostElement.dispatchEvent(new window.Event('change'));
+    this.host.dispatchEvent(new window.Event('change'));
   }
 
   private onClick = (ev: MouseEvent) => {

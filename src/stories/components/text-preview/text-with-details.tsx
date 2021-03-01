@@ -6,7 +6,7 @@ import { Component, Host, h, State, Element } from '@stencil/core';
   shadow: true,
 })
 export class TextWithDetails {
-  @Element() hostElement: HTMLTextWithDetailsElement;
+  @Element() host: HTMLTextWithDetailsElement;
 
   @State() details: string;
 
@@ -19,7 +19,7 @@ export class TextWithDetails {
 
   componentDidLoad(): void {
     setTimeout(() => {
-      this.renderDetails(this.hostElement.previousElementSibling);
+      this.renderDetails(this.host.previousElementSibling);
     }, 1);
   }
 

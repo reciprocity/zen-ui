@@ -8,7 +8,7 @@ import { Avatar, AvatarColor, AvatarData } from '../helpers/types';
   shadow: true,
 })
 export class ZenAvatarGroup {
-  @Element() hostElement: HTMLZenAvatarGroupElement;
+  @Element() host: HTMLZenAvatarGroupElement;
 
   /** Array of user's data  */
   @Prop() readonly users: Avatar[] = [];
@@ -69,7 +69,7 @@ export class ZenAvatarGroup {
   }
 
   render(): HTMLElement {
-    const ZenAvatar = applyPrefix('zen-avatar', this.hostElement);
+    const ZenAvatar = applyPrefix('zen-avatar', this.host);
     return (
       <Host>
         {this.shownUsers().map(user => (
