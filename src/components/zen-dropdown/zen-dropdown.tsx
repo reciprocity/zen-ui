@@ -225,17 +225,6 @@ export class ZenDropdown {
     this.opened = false;
   }
 
-  openAbove(): boolean {
-    if (!this.listWrap) return false;
-    let el: HTMLElement = this.listWrap;
-    let y = el.offsetTop;
-    while (el.offsetParent) {
-      el = el.offsetParent as HTMLElement;
-      y += el.offsetTop;
-    }
-    return y < window.pageYOffset || y + this.menuHeight > window.pageYOffset + window.innerHeight;
-  }
-
   appendOptionsOnClickHandlers(): void {
     const items = this.getSlottedOptionItems();
     if (!items.length) return;
@@ -284,7 +273,7 @@ export class ZenDropdown {
           </div>
         </div>
         <div
-          class={{ 'list-wrap': true, 'open-above': this.openAbove(), 'align-right': this.fieldAlign !== 'left' }}
+          class={{ 'list-wrap': true, 'align-right': this.fieldAlign !== 'left' }}
           style={{ width: this.menuWidth }}
           ref={el => (this.listWrap = el)}
         >
