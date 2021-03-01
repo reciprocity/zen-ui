@@ -343,6 +343,10 @@ export namespace Components {
         "value": OptionValue;
     }
     interface ZenPanel {
+        /**
+          * Default visible state
+         */
+        "visible": boolean;
     }
     interface ZenPopover {
         /**
@@ -1232,6 +1236,10 @@ declare namespace LocalJSX {
         "value"?: OptionValue;
     }
     interface ZenPanel {
+        /**
+          * Default visible state
+         */
+        "visible"?: boolean;
     }
     interface ZenPopover {
         /**

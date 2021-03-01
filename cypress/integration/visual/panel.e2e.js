@@ -9,6 +9,7 @@ describe('Panel visual tests', () => {
     'story--containers-panel--text',
     'story--containers-panel--divs',
     'story--containers-panel--form-element',
+    'story--containers-panel--form-element-visible',
     'story--containers-panel--default-story',
   ];
 

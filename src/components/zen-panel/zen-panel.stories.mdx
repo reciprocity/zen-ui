@@ -52,6 +52,18 @@ export const StoryFormElement = () => {
   `;
 };
 
+export const StoryFormElementVisible = () => {
+  return html/*html*/ `
+    <div>
+      <sb-zen-panel visible>
+        <div slot="header">Settings</div>
+        <sb-zen-toggle></sb-zen-toggle>
+        <span style="margin-left: 0.25rem;">Enable Jira integration</span>
+      </sb-zen-panel>
+    </div>
+  `;
+};
+
 # Panel
 
 Expand and collapse a content area.
@@ -76,6 +88,12 @@ Expand and collapse a content area.
 
 <Canvas>
   <Story name="form-element">{StoryFormElement.bind({})}</Story>
+</Canvas>
+
+### 4. Panel with form element and visible by default
+
+<Canvas>
+  <Story name="form-element-visible">{StoryFormElementVisible.bind({})}</Story>
 </Canvas>
 
 ## Properties

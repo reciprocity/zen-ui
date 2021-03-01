@@ -15,7 +15,7 @@ describe('zen-panel', () => {
     it('should display right chevron icon if not visible', () => {
       const panel = new ZenPanel();
 
-      expect(panel.visible).toBe(true);
+      expect(panel.internalVisible).toBe(false);
       expect(panel.icon().iconName).toEqual('chevron-right');
     });
 
@@ -24,7 +24,7 @@ describe('zen-panel', () => {
 
       panel.toggleContent();
 
-      expect(panel.visible).toBe(false);
+      expect(panel.internalVisible).toBe(true);
       expect(panel.icon().iconName).toEqual('chevron-down');
     });
   });
@@ -32,16 +32,16 @@ describe('zen-panel', () => {
   describe('content', () => {
     it('should hide content on init', () => {
       const panel = new ZenPanel();
-      expect(panel.visible).toBe(true);
+      expect(panel.internalVisible).toBe(false);
     });
 
     it('should not display content if not visible', () => {
       const panel = new ZenPanel();
 
-      expect(panel.visible).toBe(true);
+      expect(panel.internalVisible).toBe(false);
       expect(panel.contentClasses()).toEqual({
         content: true,
-        visible: true,
+        visible: false,
       });
     });
 
@@ -50,10 +50,10 @@ describe('zen-panel', () => {
 
       panel.toggleContent();
 
-      expect(panel.visible).toBe(false);
+      expect(panel.internalVisible).toBe(true);
       expect(panel.contentClasses()).toEqual({
         content: true,
-        visible: false,
+        visible: true,
       });
     });
   });
