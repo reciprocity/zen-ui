@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, Element } from '@stencil/core';
+import { Component, Host, h, Prop, Element, State } from '@stencil/core';
 import { faTimes } from '@fortawesome/pro-light-svg-icons';
 import { NotificationVariant } from '../helpers/types';
 import { getIcon } from './helpers';
@@ -12,6 +12,8 @@ import { applyPrefix } from '../helpers/helpers';
 export class ZenNotification {
   @Element() host: HTMLZenNotificationElement;
 
+  @State() visible = true;
+
   /** Variant  */
   @Prop() readonly variant: NotificationVariant = 'success';
 
@@ -21,8 +23,8 @@ export class ZenNotification {
   /** Can dismiss */
   @Prop() readonly dismiss: boolean = false;
 
-  close(el: HTMLElement): void {
-    el.className = '';
+  close(): void {
+    this.visible = false;
   }
 
   render(): HTMLElement {
@@ -30,11 +32,11 @@ export class ZenNotification {
     const ZenSpace = applyPrefix('zen-space', this.host);
     const ZenText = applyPrefix('zen-text', this.host);
     return (
-      <Host class={{ show: true }}>
+      <Host class={{ hidden: !this.visible }}>
         <ZenIcon
-          class={{ close: true, hide: this.dismiss == false }}
+          class={{ close: true, hidden: !this.dismiss }}
           onClick={() => {
-            this.close(this.host);
+            this.close();
           }}
           icon={faTimes}
         />
