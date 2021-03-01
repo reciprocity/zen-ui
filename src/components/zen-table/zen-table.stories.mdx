@@ -198,61 +198,107 @@ export const StoryTree = () => {
       }
     </style>
     <sb-zen-table>
-      <sb-zen-table-row>
+      <sb-zen-table-row selectable>
         <sb-zen-table-cell class="first"
           ><sb-zen-text>PCI Requirement 1 - Firewall Configuration</sb-zen-text></sb-zen-table-cell
         >
         <sb-zen-table-cell><sb-zen-text>Status</sb-zen-text></sb-zen-table-cell>
         <sb-zen-table-cell><sb-zen-text>Some description plus some</sb-zen-text></sb-zen-table-cell>
       </sb-zen-table-row>
-      <sb-zen-table-row depth="1">
+      <sb-zen-table-row depth="1" selectable>
         <sb-zen-table-cell class="first"
           ><sb-zen-text>PCI Requirement 2 - Firewall Configuration</sb-zen-text></sb-zen-table-cell
         >
         <sb-zen-table-cell><sb-zen-text>Status</sb-zen-text></sb-zen-table-cell>
         <sb-zen-table-cell><sb-zen-text>Some description plus some</sb-zen-text></sb-zen-table-cell>
       </sb-zen-table-row>
-      <sb-zen-table-row depth="1">
+      <sb-zen-table-row depth="1" selectable>
         <sb-zen-table-cell class="first"
           ><sb-zen-text>PCI Requirement 3 - Firewall Configuration</sb-zen-text></sb-zen-table-cell
         >
         <sb-zen-table-cell><sb-zen-text>Status</sb-zen-text></sb-zen-table-cell>
         <sb-zen-table-cell><sb-zen-text>Some description plus some</sb-zen-text></sb-zen-table-cell>
       </sb-zen-table-row>
-      <sb-zen-table-row depth="2">
+      <sb-zen-table-row depth="2" selectable>
         <sb-zen-table-cell class="first"
           ><sb-zen-text>PCI Requirement 4 - Firewall Configuration</sb-zen-text></sb-zen-table-cell
         >
         <sb-zen-table-cell><sb-zen-text>Status</sb-zen-text></sb-zen-table-cell>
         <sb-zen-table-cell><sb-zen-text>Some description plus some</sb-zen-text></sb-zen-table-cell>
       </sb-zen-table-row>
-      <sb-zen-table-row depth="2">
+      <sb-zen-table-row depth="2" selectable>
         <sb-zen-table-cell class="first"
           ><sb-zen-text>PCI Requirement 5 - Firewall Configuration</sb-zen-text></sb-zen-table-cell
         >
         <sb-zen-table-cell><sb-zen-text>Status</sb-zen-text></sb-zen-table-cell>
         <sb-zen-table-cell><sb-zen-text>Some description plus some</sb-zen-text></sb-zen-table-cell>
       </sb-zen-table-row>
-      <sb-zen-table-row depth="2">
-        <sb-zen-table-cell class="first"
-          ><sb-zen-text>PCI Requirement 5 - Firewall Configuration</sb-zen-text></sb-zen-table-cell
-        >
-        <sb-zen-table-cell><sb-zen-text>Status</sb-zen-text></sb-zen-table-cell>
-        <sb-zen-table-cell><sb-zen-text>Some description plus some</sb-zen-text></sb-zen-table-cell>
-      </sb-zen-table-row>
-      <sb-zen-table-row depth="1">
-        <sb-zen-table-cell class="first"
-          ><sb-zen-text>PCI Requirement 5 - Firewall Configuration</sb-zen-text></sb-zen-table-cell
-        >
-        <sb-zen-table-cell><sb-zen-text>Status</sb-zen-text></sb-zen-table-cell>
-        <sb-zen-table-cell><sb-zen-text>Some description plus some</sb-zen-text></sb-zen-table-cell>
-      </sb-zen-table-row>
-      <sb-zen-table-row depth="0">
+      <sb-zen-table-row depth="2" selectable>
         <sb-zen-table-cell class="first"
           ><sb-zen-text>PCI Requirement 6 - Firewall Configuration</sb-zen-text></sb-zen-table-cell
         >
         <sb-zen-table-cell><sb-zen-text>Status</sb-zen-text></sb-zen-table-cell>
         <sb-zen-table-cell><sb-zen-text>Some description plus some</sb-zen-text></sb-zen-table-cell>
+      </sb-zen-table-row>
+      <sb-zen-table-row depth="1" selectable>
+        <sb-zen-table-cell class="first"
+          ><sb-zen-text>PCI Requirement 7 - Firewall Configuration</sb-zen-text></sb-zen-table-cell
+        >
+        <sb-zen-table-cell><sb-zen-text>Status</sb-zen-text></sb-zen-table-cell>
+        <sb-zen-table-cell><sb-zen-text>Some description plus some</sb-zen-text></sb-zen-table-cell>
+      </sb-zen-table-row>
+      <sb-zen-table-row depth="0" selectable>
+        <sb-zen-table-cell class="first"
+          ><sb-zen-text>PCI Requirement 8 - Firewall Configuration</sb-zen-text></sb-zen-table-cell
+        >
+        <sb-zen-table-cell><sb-zen-text>Status</sb-zen-text></sb-zen-table-cell>
+        <sb-zen-table-cell><sb-zen-text>Some description plus some</sb-zen-text></sb-zen-table-cell>
+      </sb-zen-table-row>
+    </sb-zen-table>
+  `;
+};
+
+export const StoryExtendedRowContent = () => {
+  waitForElement('#icon1', element => {
+    element.icon = faArrowRight;
+  });
+  return html/*html*/ `
+    <style>
+      .first {
+        width: 50%;
+      }
+    </style>
+    <sb-zen-table>
+      <sb-zen-table-header>
+        <sb-zen-table-header-cell>Title 1</sb-zen-table-header-cell>
+        <sb-zen-table-header-cell>Title 2</sb-zen-table-header-cell>
+        <sb-zen-table-header-cell>Title 3</sb-zen-table-header-cell>
+        <sb-zen-table-header-cell>Title 4</sb-zen-table-header-cell>
+      </sb-zen-table-header>
+      <sb-zen-table-row>
+        <sb-zen-table-cell>Row 1, Cell 1</sb-zen-table-cell>
+        <sb-zen-table-cell>Row 1, Cell 2</sb-zen-table-cell>
+        <sb-zen-table-cell>Row 1, Cell 3</sb-zen-table-cell>
+        <sb-zen-table-cell>Row 1, Cell 4</sb-zen-table-cell>
+      </sb-zen-table-row>
+      <sb-zen-table-row slotted class="colspan">
+        <sb-zen-table-cell>
+          <sb-zen-dropdown>
+            <sb-zen-option value="1" disabled="true">Option 1</sb-zen-option>
+            <sb-zen-option value="2">Option 2</sb-zen-option>
+            <sb-zen-option value="3">Option 3</sb-zen-option>
+          </sb-zen-dropdown>
+          <sb-zen-table>
+            <sb-zen-table-header>
+              <sb-zen-table-header-cell>Title 1</sb-zen-table-header-cell>
+              <sb-zen-table-header-cell>Title 2</sb-zen-table-header-cell>
+            </sb-zen-table-header>
+            <sb-zen-table-row>
+              <sb-zen-table-cell>Row 1, Cell 1</sb-zen-table-cell>
+              <sb-zen-table-cell>Row 1, Cell 2</sb-zen-table-cell>
+            </sb-zen-table-row>
+          </sb-zen-table>
+        </sb-zen-table-cell>
       </sb-zen-table-row>
     </sb-zen-table>
   `;
@@ -352,10 +398,18 @@ A composition of `ZenTable` component and fragment `ZenTableRow`, `ZenTableHeade
 
 ### 4. Tree
 
-`ZenTable` tree.
+`ZenTable` tree view.
 
 <Canvas>
   <Story name="tree">{StoryTree.bind({})}</Story>
+</Canvas>
+
+### 4. Custom extended row with content
+
+`ZenTable` tree view.
+
+<Canvas>
+  <Story name="custom">{StoryExtendedRowContent.bind({})}</Story>
 </Canvas>
 
 ## Properties

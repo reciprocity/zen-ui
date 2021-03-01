@@ -4,17 +4,23 @@
   display: table-row;
   border-top: 1px solid $color-gray-200;
   border-bottom: 1px solid $color-gray-200;
-  transition: transform 0.25s ease-out, opacity 0.25s ease-out;
   position: relative;
   transform: scale(1); // hack to apply position relative (tested in chrome & ff)
 }
 
-.expand-icon {
-  cursor: pointer;
-}
-
 :host(.hidden) {
   display: none;
+}
+
+.expand-icon {
+  cursor: pointer;
+  transition: transform 0.25s ease-in-out;
+}
+
+.expanded {
+  .expand-icon {
+    transform: rotate(90deg);
+  }
 }
 
 .widgets {
@@ -41,11 +47,15 @@ $arrow-width: 1rem;
 $checkbox-width: 2rem;
 
 // If depth isn't defined, default to 0:
-:host(:not([depth])) ::slotted(*:first-child) :not(.widgets.hidden) {
+:host(:not([depth]).selectable) ::slotted(*:first-child) {
   padding-left: #{$checkbox-width};
 }
 
 :host(:not([depth]).expandable) ::slotted(*:first-child) {
+  padding-left: #{$arrow-width};
+}
+
+:host(:not([depth]).expandable.selectable) ::slotted(*:first-child) {
   padding-left: #{$checkbox-width + $arrow-width};
 }
 

@@ -490,10 +490,6 @@ export namespace Components {
     }
     interface ZenTableRow {
         /**
-          * Show checkbox
-         */
-        "checkboxVisible": true;
-        /**
           * Depth position of row
          */
         "depth": number;
@@ -501,6 +497,14 @@ export namespace Components {
           * Is row expanded
          */
         "expanded": boolean;
+        /**
+          * Show checkbox
+         */
+        "selectable": false;
+        /**
+          * To add custom content
+         */
+        "slotted": false;
         /**
           * Visible if no !depth or parent.expanded (read-only)
          */
@@ -1378,10 +1382,6 @@ declare namespace LocalJSX {
     }
     interface ZenTableRow {
         /**
-          * Show checkbox
-         */
-        "checkboxVisible"?: true;
-        /**
           * Depth position of row
          */
         "depth"?: number;
@@ -1389,6 +1389,14 @@ declare namespace LocalJSX {
           * Is row expanded
          */
         "expanded"?: boolean;
+        /**
+          * Show checkbox
+         */
+        "selectable"?: false;
+        /**
+          * To add custom content
+         */
+        "slotted"?: false;
         /**
           * Visible if no !depth or parent.expanded (read-only)
          */

@@ -11,7 +11,10 @@ export class ZenTableRow {
   @Element() element: HTMLZenTableRowElement;
 
   /** Show checkbox */
-  @Prop() readonly checkboxVisible = true;
+  @Prop() readonly selectable = false;
+
+  /** To add custom content  */
+  @Prop() readonly slotted = false;
 
   /** Visible if no !depth or parent.expanded (read-only) */
   @Prop({ mutable: true }) visible = true;
@@ -58,8 +61,12 @@ export class ZenTableRow {
     this.expanded = !this.expanded;
   }
 
-  hideWidgets(): boolean {
-    return !this.checkboxVisible && !this.children().length;
+  showWidgets(): boolean {
+    return this.selectable || !!this.children().length;
+  }
+
+  hasChildren(): boolean {
+    return !!this.children().length;
   }
 
   componentDidLoad(): void {
@@ -70,12 +77,30 @@ export class ZenTableRow {
   render(): HTMLTableRowElement {
     const ZenCheckBox = applyPrefix('zen-checkbox', this.element);
     const ZenIcon = applyPrefix('zen-icon', this.element);
+    const hostClass = {
+      hidden: !this.visible,
+      selectable: this.selectable,
+      expandable: this.hasChildren(),
+    };
+    const widgetClass = {
+      widgets: true,
+      hidden: !this.showWidgets(),
+      expanded: this.expanded,
+    };
+    const checkboxClass = {
+      checkbox: true,
+      hidden: !this.selectable,
+    };
+    const expandIconClass = {
+      'expand-icon': true,
+      hidden: !this.hasChildren(),
+    };
     return (
-      <Host class={{ hidden: !this.visible, expandable: !!this.children().length }}>
-        <div class={{ widgets: true, hidden: this.hideWidgets() }}>
-          <ZenCheckBox class={{ checkbox: true, hidden: !this.checkboxVisible }} />
+      <Host class={hostClass}>
+        <div class={widgetClass}>
+          <ZenCheckBox class={checkboxClass} />
           <ZenIcon
-            class={{ 'expand-icon': true, hidden: !this.children().length }}
+            class={expandIconClass}
             size="sm"
             padding="sm"
             icon={faChevronRight}
