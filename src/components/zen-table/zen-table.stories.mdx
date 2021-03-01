@@ -259,46 +259,46 @@ export const StoryTree = () => {
 };
 
 export const StoryExtendedRowContent = () => {
-  waitForElement('#icon1', element => {
-    element.icon = faArrowRight;
-  });
   return html/*html*/ `
-    <style>
-      .first {
-        width: 50%;
-      }
-    </style>
     <sb-zen-table>
-      <sb-zen-table-header>
+      <sb-zen-table-header selectable>
         <sb-zen-table-header-cell>Title 1</sb-zen-table-header-cell>
         <sb-zen-table-header-cell>Title 2</sb-zen-table-header-cell>
         <sb-zen-table-header-cell>Title 3</sb-zen-table-header-cell>
         <sb-zen-table-header-cell>Title 4</sb-zen-table-header-cell>
       </sb-zen-table-header>
-      <sb-zen-table-row>
+      <sb-zen-table-row selectable>
         <sb-zen-table-cell>Row 1, Cell 1</sb-zen-table-cell>
         <sb-zen-table-cell>Row 1, Cell 2</sb-zen-table-cell>
         <sb-zen-table-cell>Row 1, Cell 3</sb-zen-table-cell>
         <sb-zen-table-cell>Row 1, Cell 4</sb-zen-table-cell>
       </sb-zen-table-row>
-      <sb-zen-table-row slotted class="colspan">
+      <sb-zen-table-row fullspan depth="1" selectable style="height:215px;">
         <sb-zen-table-cell>
-          <sb-zen-dropdown>
-            <sb-zen-option value="1" disabled="true">Option 1</sb-zen-option>
-            <sb-zen-option value="2">Option 2</sb-zen-option>
-            <sb-zen-option value="3">Option 3</sb-zen-option>
-          </sb-zen-dropdown>
-          <sb-zen-table>
-            <sb-zen-table-header>
-              <sb-zen-table-header-cell>Title 1</sb-zen-table-header-cell>
-              <sb-zen-table-header-cell>Title 2</sb-zen-table-header-cell>
-            </sb-zen-table-header>
-            <sb-zen-table-row>
-              <sb-zen-table-cell>Row 1, Cell 1</sb-zen-table-cell>
-              <sb-zen-table-cell>Row 1, Cell 2</sb-zen-table-cell>
-            </sb-zen-table-row>
-          </sb-zen-table>
+          <sb-zen-space vertical no-wrap spacing="lg" padding="lg">
+            <sb-zen-dropdown style="width: 200px">
+              <sb-zen-option value="1" disabled="true">Option 1</sb-zen-option>
+              <sb-zen-option value="2">Option 2</sb-zen-option>
+              <sb-zen-option value="3">Option 3</sb-zen-option>
+            </sb-zen-dropdown>
+            <sb-zen-table>
+              <sb-zen-table-row>
+                <sb-zen-table-cell>Inner Row 1, Cell 1</sb-zen-table-cell>
+                <sb-zen-table-cell>Inner Row 1, Cell 2</sb-zen-table-cell>
+              </sb-zen-table-row>
+              <sb-zen-table-row>
+                <sb-zen-table-cell>Inner Row 2, Cell 1</sb-zen-table-cell>
+                <sb-zen-table-cell>Inner Row 2, Cell 2</sb-zen-table-cell>
+              </sb-zen-table-row>
+            </sb-zen-table>
+          </sb-zen-space>
         </sb-zen-table-cell>
+      </sb-zen-table-row>
+      <sb-zen-table-row selectable>
+        <sb-zen-table-cell>Row 2, Cell 1</sb-zen-table-cell>
+        <sb-zen-table-cell>Row 2, Cell 2</sb-zen-table-cell>
+        <sb-zen-table-cell>Row 2, Cell 3</sb-zen-table-cell>
+        <sb-zen-table-cell>Row 2, Cell 4</sb-zen-table-cell>
       </sb-zen-table-row>
     </sb-zen-table>
   `;
@@ -406,7 +406,7 @@ A composition of `ZenTable` component and fragment `ZenTableRow`, `ZenTableHeade
 
 ### 4. Custom extended row with content
 
-`ZenTable` tree view.
+`ZenTable` setting table row parameter fullspan and height of row we get a slotted row .
 
 <Canvas>
   <Story name="custom">{StoryExtendedRowContent.bind({})}</Story>
