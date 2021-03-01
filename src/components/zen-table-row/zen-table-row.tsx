@@ -56,9 +56,22 @@ export class ZenTableRow {
     }
     return null;
   }
+  traverseOnClose(): void {
+    let next = this.element.nextElementSibling as HTMLZenTableRowElement;
+
+    // Get all rows that have depth greater then the parent
+    while (next) {
+      if (next.depth <= this.depth) break;
+      if (next.depth > this.depth && !this.expanded) {
+        next.expanded = false;
+      }
+      next = next.nextElementSibling as HTMLZenTableRowElement;
+    }
+  }
 
   onClick(): void {
     this.expanded = !this.expanded;
+    this.traverseOnClose();
   }
 
   showWidgets(): boolean {
