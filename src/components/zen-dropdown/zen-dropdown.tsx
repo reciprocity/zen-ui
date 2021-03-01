@@ -1,5 +1,5 @@
 import { Component, Host, h, Prop, State, Listen, Watch, Element, Method } from '@stencil/core';
-import { getDefaultSlotContent, waitNextFrame, applyPrefix } from '../helpers/helpers';
+import { getDefaultSlotContent, applyPrefix } from '../helpers/helpers';
 import { faChevronDown } from '@fortawesome/pro-light-svg-icons';
 import { OptionValue } from '../zen-menu-item/zen-option';
 import { Align } from '../helpers/types';
@@ -20,9 +20,7 @@ export interface OptionItem {
   shadow: true,
 })
 export class ZenDropdown {
-  div: HTMLElement = undefined;
-  listWrap: HTMLElement = undefined;
-  list: HTMLElement = undefined;
+  popover: HTMLZenPopoverElement = null;
 
   @Element() host: HTMLZenDropdownElement;
 
@@ -50,8 +48,9 @@ export class ZenDropdown {
   /** Close an opened dropdown menu */
   @Method()
   async toggle(open?: boolean): Promise<void> {
-    if (open === this.opened) return;
-    this.opened = open;
+    if (open === this.popover.visible) return;
+    this.popover.visible = open;
+    this.setFocusedOption();
   }
 
   @Watch('opened')
@@ -59,11 +58,11 @@ export class ZenDropdown {
     if (!opened) return;
 
     // Reset scroll:
-    if (this.list) {
+    /* TODO: if (this.list) {
       await waitNextFrame();
       await waitNextFrame();
       this.list.scrollTop = 0;
-    }
+    } */
 
     this.markSelectedSlottedOption(this.value);
 
@@ -80,7 +79,7 @@ export class ZenDropdown {
     const toggleKeys = ['Space', 'Enter', 'ArrowUp', 'ArrowDown'];
 
     if (!this.opened && toggleKeys.includes(ev.key)) {
-      this.toggleDropdown();
+      this.toggle();
       ev.preventDefault();
       return;
     }
@@ -105,6 +104,11 @@ export class ZenDropdown {
         ev.preventDefault();
         break;
     }
+  }
+
+  focusChanged(e: Event): void {
+    const show = e.target === (this.hostElement as HTMLElement);
+    this.popover.toggle(show);
   }
 
   cloneSelectedToField(): void {
@@ -168,15 +172,9 @@ export class ZenDropdown {
       this.setFocusedOption(this.getSelectedOptionElement());
     }
     if (this.closeOnSelect) {
-      this.opened = false;
+      this.popover.visible = false;
     }
     this.host.dispatchEvent(new window.Event('change'));
-  }
-
-  toggleDropdown(open?: boolean): void {
-    if (open === undefined) open = !this.opened;
-    this.setFocusedOption();
-    this.opened = open;
   }
 
   setFocusedOption(option?: HTMLZenOptionElement): void {
@@ -219,26 +217,42 @@ export class ZenDropdown {
     }
   }
 
-  async connectedCallback(): Promise<void> {
-    await waitNextFrame();
-    await waitNextFrame();
+  onOpenToggle(): void {
+    this.opened = this.popover.visible;
+  }
+
+  componentDidLoad(): void {
     this.valueChanged();
+    document.addEventListener('focusin', e => this.focusChanged(e));
   }
 
   render(): HTMLElement {
     const ZenIcon = applyPrefix('zen-icon', this.host);
-    const ZenAnimate = applyPrefix('zen-animate', this.host);
+    const ZenPopover = applyPrefix('zen-popover', this.host);
+
+    const offset = {
+      x: 0,
+      y: this.menuWidth === '100%' ? 0 : 3,
+    };
+
+    let align = 'bottom';
+    switch (this.fieldAlign) {
+      case 'left':
+        align = 'bottom-start';
+        break;
+      case 'right':
+        align = 'bottom-end';
+        break;
+    }
+
     return (
-      <Host tabindex={this.disabled ? null : 0} ref={el => (this.div = el)}>
+      <Host tabindex={this.disabled ? null : 0}>
         <div
           class={{
             field: true,
             opened: this.opened,
             borderless: this.borderless,
             disabled: this.disabled,
-          }}
-          onMouseDown={() => {
-            this.toggleDropdown(true);
           }}
         >
           <div class={{ hidden: !this.value }}>
@@ -249,21 +263,20 @@ export class ZenDropdown {
               <div class="placeholder">{this.placeholder}</div>
             </slot>
           </div>
-          <div class="arrow">
-            <ZenIcon icon={faChevronDown}></ZenIcon>
-          </div>
+          <ZenIcon class="arrow" icon={faChevronDown}></ZenIcon>
         </div>
-        <div
-          class={{ 'list-wrap': true, 'align-right': this.fieldAlign !== 'left' }}
+        <ZenPopover
+          class="list"
+          tabindex={this.opened ? 0 : -1}
+          ref={el => (this.popover = el)}
+          interactive
+          position={align}
+          onVisibleChange={() => this.onOpenToggle()}
           style={{ width: this.menuWidth }}
-          ref={el => (this.listWrap = el)}
+          offset={offset}
         >
-          <ZenAnimate show={this.opened}>
-            <div class="list" ref={el => (this.list = el)}>
-              <slot />
-            </div>
-          </ZenAnimate>
-        </div>
+          <slot />
+        </ZenPopover>
       </Host>
     );
   }

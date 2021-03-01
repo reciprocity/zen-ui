@@ -27,4 +27,5 @@
   box-shadow: $shadow-drop-200;
   border-radius: 2px;
   overflow: auto;
+  -webkit-overflow-scrolling: touch;
 }
