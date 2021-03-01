@@ -6,7 +6,7 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { StringifiedJson } from "./stories/components/color-swatch-group/color-swatch-group";
-import { Align, Avatar, AvatarData, AvatarIconSize, Duration, IconSizes, None, NotificationVariant, PaddingShorthand, Position, Size, TextSize, TextVariant, TooltipVariant, TriggerEvent } from "./components/helpers/types";
+import { Align, Avatar, AvatarData, AvatarIconSize, IconSizes, None, NotificationVariant, PaddingShorthand, Position, Size, TextSize, TextVariant, TooltipVariant, TriggerEvent } from "./components/helpers/types";
 import { ButtonVariants } from "./components/zen-button/types";
 import { OptionValue } from "./components/zen-menu-item/zen-option";
 import { IconDefinition } from "@fortawesome/pro-light-svg-icons";
@@ -308,10 +308,6 @@ export namespace Components {
          */
         "dismiss": boolean;
         /**
-          * Hide duration
-         */
-        "dismissDuration": Duration;
-        /**
           * Title
          */
         "heading": string;
@@ -596,17 +592,9 @@ export namespace Components {
     }
     interface ZenTooltip {
         /**
-          * Don't hide tooltip
-         */
-        "alwaysVisible"?: boolean;
-        /**
           * Show and hide delay. Eg. '100' - both show & hide 100ms. '100 500' - show 100ms, hide 500ms.
          */
         "delay": string;
-        /**
-          * Pointing arrow - like a cartoon balloon
-         */
-        "hasArrow"?: boolean;
         /**
           * Set tooltip label
          */
@@ -1196,10 +1184,6 @@ declare namespace LocalJSX {
          */
         "dismiss"?: boolean;
         /**
-          * Hide duration
-         */
-        "dismissDuration"?: Duration;
-        /**
           * Title
          */
         "heading"?: string;
@@ -1480,17 +1464,9 @@ declare namespace LocalJSX {
     }
     interface ZenTooltip {
         /**
-          * Don't hide tooltip
-         */
-        "alwaysVisible"?: boolean;
-        /**
           * Show and hide delay. Eg. '100' - both show & hide 100ms. '100 500' - show 100ms, hide 500ms.
          */
         "delay"?: string;
-        /**
-          * Pointing arrow - like a cartoon balloon
-         */
-        "hasArrow"?: boolean;
         /**
           * Set tooltip label
          */

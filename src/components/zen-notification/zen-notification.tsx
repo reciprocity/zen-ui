@@ -1,7 +1,7 @@
 import { Component, Host, h, Prop, Element } from '@stencil/core';
 import { faTimes } from '@fortawesome/pro-light-svg-icons';
-import { Duration, NotificationVariant } from '../helpers/types';
-import { getIcon, getTimeout } from './helpers';
+import { NotificationVariant } from '../helpers/types';
+import { getIcon } from './helpers';
 import { applyPrefix } from '../helpers/helpers';
 
 @Component({
@@ -18,22 +18,11 @@ export class ZenNotification {
   /** Title */
   @Prop() readonly heading: string = '';
 
-  /** Hide duration */
-  @Prop() readonly dismissDuration: Duration = 'medium';
-
   /** Can dismiss */
   @Prop() readonly dismiss: boolean = false;
 
   close(el: HTMLElement): void {
     el.className = '';
-  }
-
-  componentDidRender(): void {
-    if (this.dismissDuration !== 'none') {
-      setTimeout(() => {
-        this.close(this.element);
-      }, getTimeout(this.dismissDuration));
-    }
   }
 
   render(): HTMLElement {

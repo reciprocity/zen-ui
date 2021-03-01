@@ -9,8 +9,6 @@ export type TextVariant = null | 'heading' | 'label' | 'support';
 
 export type NotificationVariant = 'success' | 'info' | 'warning' | 'error';
 
-export type Duration = 'none' | 'short' | 'medium' | 'long';
-
 export type AvatarIconSize = 'sm' | 'md' | 'lg';
 
 export type TextSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';

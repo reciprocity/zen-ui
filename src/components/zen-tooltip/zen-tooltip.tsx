@@ -18,9 +18,7 @@ export class ZenTooltip {
   @Element() element: HTMLZenTooltipElement;
 
   @State() visible = false;
-
   @State() target: HTMLElement = null;
-
   @State() color = '';
   @State() backgroundColor = '';
 
@@ -36,17 +34,11 @@ export class ZenTooltip {
   /** Set tooltip offset to target element */
   @Prop() readonly offset?: number = 10;
 
-  /** Don't hide tooltip */
-  @Prop() readonly alwaysVisible?: boolean = false;
-
   /** Limit tooltips height and make content scroll  */
   @Prop() readonly maxHeight: string = 'none';
 
   /** Show and hide delay. Eg. '100' - both show & hide 100ms. '100 500' - show 100ms, hide 500ms. */
   @Prop() readonly delay: string = '0';
-
-  /** Pointing arrow - like a cartoon balloon */
-  @Prop({ reflect: true }) readonly hasArrow?: boolean = true;
 
   @Watch('variant')
   async variantChanged(variant: TooltipVariant): Promise<void> {
@@ -86,7 +78,7 @@ export class ZenTooltip {
         <ZenPopover
           ref={el => (this.popover = el)}
           class="popover"
-          trigger-event={this.alwaysVisible ? 'click' : 'hover'}
+          trigger-event="hover"
           position={this.position}
           background-color={this.backgroundColor}
           style={{
@@ -94,9 +86,6 @@ export class ZenTooltip {
             'max-height': this.maxHeight,
           }}
           offset={{ x: 0, y: this.offset }}
-          close-on-click-out={this.alwaysVisible ? 'false' : 'true'}
-          close-on-target-click={this.alwaysVisible ? 'false' : 'true'}
-          visible={this.alwaysVisible}
           delay={this.delay}
           interactive={isScrollable}
         >
@@ -105,12 +94,6 @@ export class ZenTooltip {
               <slot>{this.label}</slot>
             </ZenSpace>
           </slot>
-          <div
-            class={{
-              arrow: this.hasArrow,
-              [this.variant]: true,
-            }}
-          ></div>
         </ZenPopover>
       </Host>
     );

@@ -17,8 +17,8 @@ describe('Tooltip visual tests', { scrollBehavior: 'center' }, () => {
   before(() => {
     cy.visitStorybookIframe(pageId);
     cy.verifyAllStoriesHaveVRT(story);
-    cy.get('sb-zen-tooltip[always-visible="true"]').each(() => {
-      findPopup(cy).should('be.visible');
+    cy.get('sb-zen-tooltip').each(() => {
+      findPopup(cy).should('not.be.visible');
     });
   });
 

@@ -14,7 +14,7 @@ describe('zen-notification', () => {
   it('should display button to dismiss notification', async () => {
     const page = await newSpecPage({
       components: [ZenNotification],
-      html: `<zen-notification heading="Test Heading">Test Message</zen-notification>`,
+      html: `<zen-notification heading="Test Heading" dismiss="true">Test Message</zen-notification>`,
     });
 
     expect(page.root.shadowRoot.querySelector('.close')).not.toBeNull();

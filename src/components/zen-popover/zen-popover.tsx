@@ -192,18 +192,25 @@ export class ZenPopover {
     this.visible = false;
   }
 
+  modifiers(): Record<string, unknown>[] {
+    const modifiers = [];
+    const offsetOption = {
+      name: 'offset',
+      options: {
+        offset: [this.offset.x, this.offset.y],
+      },
+    };
+
+    modifiers.push(offsetOption);
+    return modifiers;
+  }
+
   async createPopper(): Promise<void> {
     const popupWrap = this.host.shadowRoot.querySelector('.popup-wrap') as HTMLElement;
+
     this.popperInstance = createPopper(this.targetElement, popupWrap, {
       placement: this.position,
-      modifiers: [
-        {
-          name: 'offset',
-          options: {
-            offset: [this.offset.x, this.offset.y],
-          },
-        },
-      ],
+      modifiers: this.modifiers(),
     });
     await waitNextFrame();
     this.actualPosition = this.popperInstance.state.placement;
@@ -234,7 +241,6 @@ export class ZenPopover {
       <Host>
         <div class="popup-wrap" role="tooltip">
           <div class="popup" style={style} data-position={this.actualPosition}>
-            <div id="arrow" data-popper-arrow></div>
             <slot />
           </div>
         </div>

@@ -12,7 +12,7 @@ export const StoryWithControls = args => {
     element.offset = args.offset;
   });
   return html/*html*/ `
-    <sb-zen-space no-wrap horizontal-align="center" vertical-align="center" style="height: 200px;">
+    <sb-zen-space no-wrap padding="xl" spacing="sm" horizontal-align="center" vertical-align="center">
       <sb-zen-button variant="primary"> Button </sb-zen-button>
       <sb-zen-popover id="control" ...="${spreadArgs(args, argTypes)}">
         <sb-zen-space padding="md">
@@ -114,7 +114,7 @@ export const StoryTriggerEvents = args => {
 export const StoryScrollable = args => {
   return html/*html*/ `
     <div style="height: 200px">
-      <sb-zen-space no-wrap padding="none" horizontal-align="center" vertical-align="center" style="height: 400px;">
+      <sb-zen-space no-wrap padding="none" horizontal-align="center" vertical-align="center" style="height: 200px;">
         <sb-zen-button variant="primary"> Top Start </sb-zen-button>
         <sb-zen-popover position="bottom-end" visible="true" close-on-click-out="false">
           <sb-zen-space padding="md">
@@ -162,8 +162,14 @@ export const StoryFilters = args => {
         <sb-zen-icon slot="leadingIcon" id="filter" style="height:14px; align-self:center;"></sb-zen-icon>
         Filter
       </sb-zen-button>
-      <sb-zen-popover position="bottom-start" visible="true" close-on-click-out="false">
-        <sb-zen-space padding="md">
+      <sb-zen-popover
+        position="bottom-start"
+        visible="true"
+        interactive="true"
+        style="width: fit-content"
+        close-on-click-out="false"
+      >
+        <sb-zen-space vertical padding="none">
           <sb-zen-space horizontal-align="start" padding="lg">
             <sb-zen-text size="xs" variant="heading">Filters</sb-zen-text>
           </sb-zen-space>
@@ -223,11 +229,11 @@ export const StoryFilters = args => {
               <sb-zen-icon id="trash2" slot="leadingIcon"></sb-zen-icon>
             </sb-zen-button>
           </sb-zen-space>
-          <sb-zen-space padding="md">
+          <sb-zen-space horizontal-align="start" padding="lg">
             <sb-zen-button variant="secondary"> + Add new </sb-zen-button>
           </sb-zen-space>
-          <sb-zen-divider style="margin-bottom: 0"></sb-zen-divider>
-          <sb-zen-space no-wrap="true" spacing="md" padding="lg" horizontal-align="end">
+          <sb-zen-divider style="width:100%; margin-bottom: 0"></sb-zen-divider>
+          <sb-zen-space horizontal-align="end" padding="lg" style="width:100%;">
             <sb-zen-button variant="primary"> Apply Filter </sb-zen-button>
           </sb-zen-space>
         </sb-zen-space>
