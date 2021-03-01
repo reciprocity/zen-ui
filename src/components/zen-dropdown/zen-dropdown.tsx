@@ -1,5 +1,5 @@
 import { Component, Host, h, Prop, State, Listen, Watch, Element, Method } from '@stencil/core';
-import { getDefaultSlotContent, waitNextFrame, getComposedPath, applyPrefix } from '../helpers/helpers';
+import { getDefaultSlotContent, waitNextFrame, applyPrefix } from '../helpers/helpers';
 import { faChevronDown } from '@fortawesome/pro-light-svg-icons';
 import { OptionValue } from '../zen-menu-item/zen-option';
 import { Align } from '../helpers/types';
@@ -23,7 +23,6 @@ export class ZenDropdown {
   div: HTMLElement = undefined;
   listWrap: HTMLElement = undefined;
   list: HTMLElement = undefined;
-  clickHandler = undefined;
 
   @Element() host: HTMLZenDropdownElement;
 
@@ -57,27 +56,18 @@ export class ZenDropdown {
 
   @Watch('opened')
   async openedChanged(opened: boolean): Promise<void> {
-    if (opened) {
-      if (!this.clickHandler) {
-        this.clickHandler = event => this.closeOnClickOut(event);
-      }
-      setTimeout(() => {
-        document.addEventListener('mousedown', this.clickHandler);
-      }, 50);
+    if (!opened) return;
 
-      // Reset scroll:
-      if (this.list) {
-        await waitNextFrame();
-        await waitNextFrame();
-        this.list.scrollTop = 0;
-      }
-
-      this.markSelectedSlottedOption(this.value);
-
-      this.appendOptionsOnClickHandlers();
-    } else {
-      document.removeEventListener('mousedown', this.clickHandler);
+    // Reset scroll:
+    if (this.list) {
+      await waitNextFrame();
+      await waitNextFrame();
+      this.list.scrollTop = 0;
     }
+
+    this.markSelectedSlottedOption(this.value);
+
+    this.appendOptionsOnClickHandlers();
   }
 
   @Watch('value')
@@ -214,15 +204,6 @@ export class ZenDropdown {
     }
     const focusOption = direction === 'forward' ? next : prev;
     this.setFocusedOption(focusOption);
-  }
-
-  // Events
-  async closeOnClickOut(event: MouseEvent): Promise<void> {
-    const path = getComposedPath(event);
-    const clickedInside = path.find(n => n === this.list);
-    if (clickedInside) return;
-    await waitNextFrame(); // prevent race with click-open
-    this.opened = false;
   }
 
   appendOptionsOnClickHandlers(): void {
