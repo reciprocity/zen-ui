@@ -1,26 +1,36 @@
 import { newSpecPage, SpecPage } from '@stencil/core/testing';
-import { simulateMouse, htmlToElement, simulateKey } from '../../helpers/jest';
+import { htmlToElement, simulateKey } from '../../helpers/jest';
 
 let options: NodeListOf<HTMLZenOptionElement> | undefined[] = [];
 
-jest.useFakeTimers();
+const popperMock = () => ({
+  destroy: jest.fn(),
+  state: {
+    placement: 'bottom',
+    visible: false,
+  },
+});
+import * as popper from '@popperjs/core';
+popper.createPopper = jest.fn(() => popperMock());
 
-jest.unmock('../../helpers/helpers');
 import * as helpers from '../../helpers/helpers';
 helpers.getDefaultSlotContent = jest.fn(() => options);
 helpers.getComposedPath = jest.fn(() => []);
 helpers.waitNextFrame = jest.fn(() => new Promise(resolve => resolve(true)));
 
 import { ZenDropdown } from '../zen-dropdown';
+import { ZenPopover } from '../../zen-popover/zen-popover';
 
 describe('zen-dropdown', () => {
   let page: SpecPage;
   let dropdown: Element;
-  let field: Element;
+  let list: HTMLZenPopoverElement;
 
   beforeEach(async () => {
+    jest.clearAllTimers();
+    jest.useFakeTimers();
     page = await newSpecPage({
-      components: [ZenDropdown],
+      components: [ZenDropdown, ZenPopover],
       html: `<zen-dropdown>
         <zen-option value="admin">Administrator</zen-option>
         <zen-option value="reader">Reader</zen-option>
@@ -28,45 +38,47 @@ describe('zen-dropdown', () => {
       </ zen-dropdown>`,
     });
     dropdown = page.root;
+    list = dropdown.shadowRoot.querySelector('.list');
     options = htmlToElement(`<zen-option value="admin">Administrator</zen-option>
         <zen-option value="reader">Reader</zen-option>
         <zen-option value="contributor">Contributor</zen-option>`);
 
-    field = dropdown.shadowRoot.querySelector('.field');
-    simulateMouse('mousedown', field);
     await page.waitForChanges();
-    jest.advanceTimersByTime(100);
+    const focusin = new Event('focusin', { bubbles: true, composed: true });
+    dropdown.dispatchEvent(focusin);
   });
 
-  it('should open on click', async () => {
-    expect(dropdown.shadowRoot.querySelector('.field')).toHaveClass('opened');
-  });
-
-  it('should close on click outside of dropdown', async () => {
-    simulateMouse('mousedown', global.document);
-    await page.waitForChanges();
-    await page.waitForChanges();
-    expect(dropdown.shadowRoot.querySelector('.field')).not.toHaveClass('opened');
+  it('should open on focus', async () => {
+    expect(list.visible).toBeTruthy();
   });
 
   it('should move focus to next item on arrow-down click', async () => {
     simulateKey('ArrowDown', dropdown);
-    await page.waitForChanges();
+
     expect(options[0].getAttribute('focused')).toEqual('true');
     expect(options[1].getAttribute('focused')).toEqual(null);
     simulateKey('ArrowDown', dropdown);
-    await page.waitForChanges();
+
     expect(options[0].getAttribute('focused')).toEqual(null);
     expect(options[1].getAttribute('focused')).toEqual('true');
+    simulateKey('ArrowUp', dropdown);
+
+    expect(options[0].getAttribute('focused')).toEqual('true');
+    expect(options[1].getAttribute('focused')).toEqual(null);
   });
 
   it('should select element with Enter key', async () => {
     simulateKey('ArrowDown', dropdown);
-    await page.waitForChanges();
     simulateKey('ArrowDown', dropdown);
-    await page.waitForChanges();
     simulateKey('Enter', dropdown);
-    await page.waitForChanges();
     expect(dropdown.value).toEqual('reader');
+  });
+
+  it('closes on Enter key', async () => {
+    simulateKey('Escape', dropdown);
+    await page.waitForChanges();
+    expect(list.visible).toBeFalsy();
+    simulateKey(' ', dropdown);
+    expect(list.visible).toBeTruthy();
   });
 });

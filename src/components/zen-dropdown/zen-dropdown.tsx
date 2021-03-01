@@ -48,6 +48,9 @@ export class ZenDropdown {
   /** Close an opened dropdown menu */
   @Method()
   async toggle(open?: boolean): Promise<void> {
+    if (open === undefined) {
+      open = !this.popover.visible;
+    }
     if (open === this.popover.visible) return;
     this.popover.visible = open;
     this.setFocusedOption();
@@ -76,9 +79,12 @@ export class ZenDropdown {
 
   @Listen('keydown')
   handleKeyDown(ev: KeyboardEvent): void {
-    const toggleKeys = ['Space', 'Enter', 'ArrowUp', 'ArrowDown'];
+    const getFocusedOption = (): HTMLZenOptionElement =>
+      Array.from(this.getSlottedOptionItems()).filter(el => el.hasAttribute('focused'))[0];
 
-    if (!this.opened && toggleKeys.includes(ev.key)) {
+    const toggleKeys = [' ', 'Enter', 'ArrowUp', 'ArrowDown'];
+
+    if (!this.popover.visible && toggleKeys.includes(ev.key)) {
       this.toggle();
       ev.preventDefault();
       return;
@@ -96,12 +102,16 @@ export class ZenDropdown {
         break;
 
       case 'Enter':
-      case 'Space':
-        const focused = this.getFocusedOption();
+      case ' ':
+        const focused = getFocusedOption();
         if (focused) {
           this.selectValue(focused.getAttribute('value'));
         }
         ev.preventDefault();
+        break;
+
+      case 'Escape':
+        this.popover.toggle(false);
         break;
     }
   }
@@ -135,7 +145,6 @@ export class ZenDropdown {
     copy.removeAttribute('selected');
     this.host.appendChild(copy);
     (copy as Element).slot = 'field-private';
-    return;
   }
 
   getOptionValue(option: HTMLZenOptionElement): OptionValue {
@@ -186,9 +195,6 @@ export class ZenDropdown {
     if (!option) return;
     option.setAttribute('focused', 'true');
   }
-
-  getFocusedOption = (): HTMLZenOptionElement =>
-    Array.from(this.getSlottedOptionItems()).filter(el => el.hasAttribute('focused'))[0];
 
   moveFocusedOption(direction = 'forward'): void {
     const items = this.getSlottedOptionItems();
