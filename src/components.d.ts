@@ -232,6 +232,8 @@ export namespace Components {
     }
     interface ZenDivider {
     }
+    interface ZenDraggable {
+    }
     interface ZenDrawer {
         /**
           * Is drawer visible
@@ -283,6 +285,8 @@ export namespace Components {
           * Selected option
          */
         "value": OptionValue;
+    }
+    interface ZenFormGroup {
     }
     interface ZenIcon {
         /**
@@ -852,6 +856,12 @@ declare global {
         prototype: HTMLZenDividerElement;
         new (): HTMLZenDividerElement;
     };
+    interface HTMLZenDraggableElement extends Components.ZenDraggable, HTMLStencilElement {
+    }
+    var HTMLZenDraggableElement: {
+        prototype: HTMLZenDraggableElement;
+        new (): HTMLZenDraggableElement;
+    };
     interface HTMLZenDrawerElement extends Components.ZenDrawer, HTMLStencilElement {
     }
     var HTMLZenDrawerElement: {
@@ -863,6 +873,12 @@ declare global {
     var HTMLZenDropdownElement: {
         prototype: HTMLZenDropdownElement;
         new (): HTMLZenDropdownElement;
+    };
+    interface HTMLZenFormGroupElement extends Components.ZenFormGroup, HTMLStencilElement {
+    }
+    var HTMLZenFormGroupElement: {
+        prototype: HTMLZenFormGroupElement;
+        new (): HTMLZenFormGroupElement;
     };
     interface HTMLZenIconElement extends Components.ZenIcon, HTMLStencilElement {
     }
@@ -1019,8 +1035,10 @@ declare global {
         "zen-checkbox": HTMLZenCheckboxElement;
         "zen-date-picker": HTMLZenDatePickerElement;
         "zen-divider": HTMLZenDividerElement;
+        "zen-draggable": HTMLZenDraggableElement;
         "zen-drawer": HTMLZenDrawerElement;
         "zen-dropdown": HTMLZenDropdownElement;
+        "zen-form-group": HTMLZenFormGroupElement;
         "zen-icon": HTMLZenIconElement;
         "zen-input": HTMLZenInputElement;
         "zen-modal": HTMLZenModalElement;
@@ -1259,6 +1277,8 @@ declare namespace LocalJSX {
     }
     interface ZenDivider {
     }
+    interface ZenDraggable {
+    }
     interface ZenDrawer {
         /**
           * Inner drawer hide button clicked
@@ -1310,6 +1330,8 @@ declare namespace LocalJSX {
           * Selected option
          */
         "value"?: OptionValue;
+    }
+    interface ZenFormGroup {
     }
     interface ZenIcon {
         /**
@@ -1786,8 +1808,10 @@ declare namespace LocalJSX {
         "zen-checkbox": ZenCheckbox;
         "zen-date-picker": ZenDatePicker;
         "zen-divider": ZenDivider;
+        "zen-draggable": ZenDraggable;
         "zen-drawer": ZenDrawer;
         "zen-dropdown": ZenDropdown;
+        "zen-form-group": ZenFormGroup;
         "zen-icon": ZenIcon;
         "zen-input": ZenInput;
         "zen-modal": ZenModal;
@@ -1833,8 +1857,10 @@ declare module "@stencil/core" {
             "zen-checkbox": LocalJSX.ZenCheckbox & JSXBase.HTMLAttributes<HTMLZenCheckboxElement>;
             "zen-date-picker": LocalJSX.ZenDatePicker & JSXBase.HTMLAttributes<HTMLZenDatePickerElement>;
             "zen-divider": LocalJSX.ZenDivider & JSXBase.HTMLAttributes<HTMLZenDividerElement>;
+            "zen-draggable": LocalJSX.ZenDraggable & JSXBase.HTMLAttributes<HTMLZenDraggableElement>;
             "zen-drawer": LocalJSX.ZenDrawer & JSXBase.HTMLAttributes<HTMLZenDrawerElement>;
             "zen-dropdown": LocalJSX.ZenDropdown & JSXBase.HTMLAttributes<HTMLZenDropdownElement>;
+            "zen-form-group": LocalJSX.ZenFormGroup & JSXBase.HTMLAttributes<HTMLZenFormGroupElement>;
             "zen-icon": LocalJSX.ZenIcon & JSXBase.HTMLAttributes<HTMLZenIconElement>;
             "zen-input": LocalJSX.ZenInput & JSXBase.HTMLAttributes<HTMLZenInputElement>;
             "zen-modal": LocalJSX.ZenModal & JSXBase.HTMLAttributes<HTMLZenModalElement>;
