@@ -364,10 +364,6 @@ export namespace Components {
          */
         "delay": string;
         /**
-          * Popover positions it self on other side if no space available
-         */
-        "flip": boolean;
-        /**
           * User can click content within popover
          */
         "interactive": boolean;
@@ -600,17 +596,9 @@ export namespace Components {
     }
     interface ZenTooltip {
         /**
-          * Don't hide tooltip
-         */
-        "alwaysVisible"?: boolean;
-        /**
           * Show and hide delay. Eg. '100' - both show & hide 100ms. '100 500' - show 100ms, hide 500ms.
          */
         "delay": string;
-        /**
-          * Positions it self on other side if no space available
-         */
-        "flip": boolean;
         /**
           * Set tooltip label
          */
@@ -1256,10 +1244,6 @@ declare namespace LocalJSX {
          */
         "delay"?: string;
         /**
-          * Popover positions it self on other side if no space available
-         */
-        "flip"?: boolean;
-        /**
           * User can click content within popover
          */
         "interactive"?: boolean;
@@ -1488,17 +1472,9 @@ declare namespace LocalJSX {
     }
     interface ZenTooltip {
         /**
-          * Don't hide tooltip
-         */
-        "alwaysVisible"?: boolean;
-        /**
           * Show and hide delay. Eg. '100' - both show & hide 100ms. '100 500' - show 100ms, hide 500ms.
          */
         "delay"?: string;
-        /**
-          * Positions it self on other side if no space available
-         */
-        "flip"?: boolean;
         /**
           * Set tooltip label
          */

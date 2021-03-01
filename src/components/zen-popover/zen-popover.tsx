@@ -45,9 +45,6 @@ export class ZenPopover {
   /** Popover offset */
   @Prop() readonly offset: Offsets = { x: 0, y: 8 };
 
-  /** Popover positions it self on other side if no space available */
-  @Prop() readonly flip: boolean = true;
-
   /** User can click content within popover */
   @Prop({ reflect: true }) readonly interactive: boolean = false;
 
@@ -197,7 +194,6 @@ export class ZenPopover {
 
   modifiers(): Record<string, unknown>[] {
     const modifiers = [];
-
     const offsetOption = {
       name: 'offset',
       options: {
@@ -205,16 +201,7 @@ export class ZenPopover {
       },
     };
 
-    const noFlipOption = {
-      name: 'flip',
-      options: {
-        fallbackPlacements: [],
-      },
-    };
-
     modifiers.push(offsetOption);
-    if (!this.flip) modifiers.push(noFlipOption);
-
     return modifiers;
   }
 
