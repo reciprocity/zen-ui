@@ -343,10 +343,6 @@ export namespace Components {
         "value": OptionValue;
     }
     interface ZenPanel {
-        /**
-          * Whether the panel has an arrow
-         */
-        "arrow": boolean;
     }
     interface ZenPopover {
         /**
@@ -1236,10 +1232,6 @@ declare namespace LocalJSX {
         "value"?: OptionValue;
     }
     interface ZenPanel {
-        /**
-          * Whether the panel has an arrow
-         */
-        "arrow"?: boolean;
     }
     interface ZenPopover {
         /**

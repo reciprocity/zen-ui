@@ -8,7 +8,6 @@ describe('Panel visual tests', () => {
   const stories = [
     'story--containers-panel--text',
     'story--containers-panel--divs',
-    'story--containers-panel--no-arrow',
     'story--containers-panel--default-story',
   ];
 

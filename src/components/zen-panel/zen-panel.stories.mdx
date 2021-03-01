@@ -40,17 +40,6 @@ export const StoryDivs = () => {
   `;
 };
 
-export const StoryNoArrow = () => {
-  return html/*html*/ `
-    <div>
-      <sb-zen-panel arrow="false">
-        <div slot="header">Panel title 3</div>
-        Content
-      </sb-zen-panel>
-    </div>
-  `;
-};
-
 # Panel
 
 Expand and collapse a content area.
@@ -69,12 +58,6 @@ Expand and collapse a content area.
 
 <Canvas>
   <Story name="divs">{StoryDivs.bind({})}</Story>
-</Canvas>
-
-### 3. Panel without arrow
-
-<Canvas>
-  <Story name="no-arrow">{StoryNoArrow.bind({})}</Story>
 </Canvas>
 
 ## Properties

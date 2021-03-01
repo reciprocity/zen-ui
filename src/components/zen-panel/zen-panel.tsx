@@ -1,4 +1,4 @@
-import { h, Component, Element, Host, Prop, State } from '@stencil/core';
+import { h, Component, Element, Host, State } from '@stencil/core';
 import { faChevronRight, faChevronDown, IconDefinition } from '@fortawesome/pro-regular-svg-icons';
 
 import { applyPrefix } from '../helpers/helpers';
@@ -10,9 +10,6 @@ import { applyPrefix } from '../helpers/helpers';
 })
 export class ZenPanel {
   @Element() host: HTMLZenPanelElement;
-
-  /** Whether the panel has an arrow */
-  @Prop() readonly arrow: boolean = true;
 
   @State() visible = true;
 
@@ -37,7 +34,7 @@ export class ZenPanel {
     return (
       <Host>
         <div class="header-container" onClick={() => this.toggleContent()}>
-          {this.arrow && <ZenIcon icon={this.icon()} size="sm" class="icon fill chevron" />}
+          <ZenIcon icon={this.icon()} size="sm" class="icon fill chevron" />
           <slot name="header" />
         </div>
         <div class={this.contentClasses()}>
