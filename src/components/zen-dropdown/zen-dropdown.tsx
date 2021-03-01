@@ -117,7 +117,7 @@ export class ZenDropdown {
   }
 
   focusChanged(e: Event): void {
-    const show = e.target === (this.hostElement as HTMLElement);
+    const show = e.target === (this.host as HTMLElement);
     this.popover.toggle(show);
   }
 
