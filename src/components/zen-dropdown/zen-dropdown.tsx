@@ -52,6 +52,7 @@ export class ZenDropdown {
       open = !this.popover.visible;
     }
     if (open === this.popover.visible) return;
+
     this.popover.visible = open;
     this.setFocusedOption();
   }
@@ -122,7 +123,9 @@ export class ZenDropdown {
 
     const slot = this.host.shadowRoot.querySelector('slot[name=field-private]') as HTMLSlotElement;
     if (!slot) return;
+
     const existing = slot.assignedNodes ? (slot.assignedNodes()[0] as HTMLElement) : false;
+
     if (existing) {
       existing.parentNode.removeChild(existing);
     }
@@ -133,8 +136,10 @@ export class ZenDropdown {
     // if we would append it to .field directly it would be in shadow dom
     // and styles from host's dom can't style it
     const selected = this.getSelectedOptionElement();
+
     if (!selected) return;
     const copy = selected.cloneNode(true) as HTMLElement;
+
     copy.setAttribute('no-hover', 'true');
     copy.removeAttribute('focused');
     copy.removeAttribute('selected');
@@ -155,6 +160,7 @@ export class ZenDropdown {
   markSelectedSlottedOption(value: OptionValue): void {
     // Set attr `selected` to currently selected slotted item:
     const items = this.getSlottedOptionItems();
+
     if (!items.length) return;
     for (let i = 0; i < items.length; i++) {
       items[i].selected = this.getOptionValue(items[i]) === value;
@@ -163,6 +169,7 @@ export class ZenDropdown {
 
   getSelectedOptionElement(): HTMLZenOptionElement {
     const items = this.getSlottedOptionItems();
+
     for (let i = 0; i < items.length; i++) {
       if (this.getOptionValue(items[i]) === this.value) {
         return items[i];
@@ -184,6 +191,7 @@ export class ZenDropdown {
   setFocusedOption(option?: HTMLZenOptionElement): void {
     // only one item can be focused, so remove focus from all other items:
     const items = this.getSlottedOptionItems();
+
     for (let i = 0; i < items.length; i++) {
       items[i].removeAttribute('focused');
     }
@@ -195,6 +203,7 @@ export class ZenDropdown {
     const items = this.getSlottedOptionItems();
     let prev = items[items.length - 1];
     let next = items[0];
+
     for (let i = 0; i < items.length; i++) {
       if (items[i].hasAttribute('focused')) {
         prev = items[i - 1] || prev;
