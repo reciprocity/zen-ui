@@ -68,6 +68,7 @@ export const Story1 = () => {
   `;
 };
 
+
 export const Story2 = () => {
   return html/*html*/ `
     <!-- Necessary for demonstrating sticky header -->
@@ -159,29 +160,36 @@ export const Story3 = () => {
         <sb-zen-table-cell>Row 4, Cell 3</sb-zen-table-cell>
         <sb-zen-table-cell>Row 4, Cell 4</sb-zen-table-cell>
       </sb-zen-table-row>
-      <sb-zen-table-row>
-        <sb-zen-table-cell>Row 5, Cell 1</sb-zen-table-cell>
-        <sb-zen-table-cell>Row 5, Cell 2</sb-zen-table-cell>
-        <sb-zen-table-cell>Row 5, Cell 3</sb-zen-table-cell>
-        <sb-zen-table-cell>Row 5, Cell 4</sb-zen-table-cell>
+    </sb-zen-table>
+  `;
+};
+
+export const StorySelectable = () => {
+  return html/*html*/ `
+    <sb-zen-table>
+      <sb-zen-table-header selectable>
+        <sb-zen-table-header-cell>Title 1</sb-zen-table-header-cell>
+        <sb-zen-table-header-cell>Title 2</sb-zen-table-header-cell>
+        <sb-zen-table-header-cell>Title 3</sb-zen-table-header-cell>
+        <sb-zen-table-header-cell>Title 4</sb-zen-table-header-cell>
+      </sb-zen-table-header>
+      <sb-zen-table-row selectable>
+        <sb-zen-table-cell>Row 1, Cell 1</sb-zen-table-cell>
+        <sb-zen-table-cell>Row 1, Cell 2</sb-zen-table-cell>
+        <sb-zen-table-cell>Row 1, Cell 3</sb-zen-table-cell>
+        <sb-zen-table-cell>Row 1, Cell 4</sb-zen-table-cell>
       </sb-zen-table-row>
-      <sb-zen-table-row>
-        <sb-zen-table-cell>Row 6, Cell 1</sb-zen-table-cell>
-        <sb-zen-table-cell>Row 6, Cell 2</sb-zen-table-cell>
-        <sb-zen-table-cell>Row 6, Cell 3</sb-zen-table-cell>
-        <sb-zen-table-cell>Row 6, Cell 4</sb-zen-table-cell>
+      <sb-zen-table-row selectable>
+        <sb-zen-table-cell>Row 2, Cell 1</sb-zen-table-cell>
+        <sb-zen-table-cell>Row 2, Cell 2</sb-zen-table-cell>
+        <sb-zen-table-cell>Row 2, Cell 3</sb-zen-table-cell>
+        <sb-zen-table-cell>Row 2, Cell 4</sb-zen-table-cell>
       </sb-zen-table-row>
-      <sb-zen-table-row>
-        <sb-zen-table-cell>Row 7, Cell 1</sb-zen-table-cell>
-        <sb-zen-table-cell>Row 7, Cell 2</sb-zen-table-cell>
-        <sb-zen-table-cell>Row 7, Cell 3</sb-zen-table-cell>
-        <sb-zen-table-cell>Row 7, Cell 4</sb-zen-table-cell>
-      </sb-zen-table-row>
-      <sb-zen-table-row>
-        <sb-zen-table-cell>Row 8, Cell 1</sb-zen-table-cell>
-        <sb-zen-table-cell>Row 8, Cell 2</sb-zen-table-cell>
-        <sb-zen-table-cell>Row 8, Cell 3</sb-zen-table-cell>
-        <sb-zen-table-cell>Row 8, Cell 4</sb-zen-table-cell>
+      <sb-zen-table-row selectable>
+        <sb-zen-table-cell>Row 3, Cell 1</sb-zen-table-cell>
+        <sb-zen-table-cell>Row 3, Cell 2</sb-zen-table-cell>
+        <sb-zen-table-cell>Row 3, Cell 3</sb-zen-table-cell>
+        <sb-zen-table-cell>Row 3, Cell 4</sb-zen-table-cell>
       </sb-zen-table-row>
     </sb-zen-table>
   `;
@@ -273,7 +281,7 @@ export const StoryExtendedRowContent = () => {
         <sb-zen-table-cell>Row 1, Cell 3</sb-zen-table-cell>
         <sb-zen-table-cell>Row 1, Cell 4</sb-zen-table-cell>
       </sb-zen-table-row>
-      <sb-zen-table-row fullspan depth="1" selectable style="height:215px;">
+      <sb-zen-table-row full-span depth="1" style="height:215px;">
         <sb-zen-table-cell>
           <sb-zen-space vertical no-wrap spacing="lg" padding="lg">
             <sb-zen-dropdown style="width: 200px">
@@ -396,7 +404,16 @@ A composition of `ZenTable` component and fragment `ZenTableRow`, `ZenTableHeade
   <Story name="no-header">{Story3.bind({})}</Story>
 </Canvas>
 
-### 4. Tree
+
+### 4. Table with selectable rows
+
+`ZenTable` component with selectable rows.
+
+<Canvas>
+  <Story name="selectable">{StorySelectable.bind({})}</Story>
+</Canvas>
+
+### 5. Tree
 
 `ZenTable` tree view.
 
@@ -404,7 +421,7 @@ A composition of `ZenTable` component and fragment `ZenTableRow`, `ZenTableHeade
   <Story name="tree">{StoryTree.bind({})}</Story>
 </Canvas>
 
-### 4. Custom extended row with content
+### 6. Custom extended row with content
 
 `ZenTable` setting table row parameter fullspan and height of row we get a slotted row .
 
