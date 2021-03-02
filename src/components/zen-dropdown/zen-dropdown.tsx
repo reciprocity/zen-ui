@@ -1,5 +1,5 @@
 import { Component, Host, h, Prop, State, Listen, Watch, Element, Method } from '@stencil/core';
-import { getDefaultSlotContent, waitNextFrame, getComposedPath, applyPrefix } from '../helpers/helpers';
+import { getDefaultSlotContent, applyPrefix } from '../helpers/helpers';
 import { faChevronDown } from '@fortawesome/pro-light-svg-icons';
 import { OptionValue } from '../zen-menu-item/zen-option';
 import { Align } from '../helpers/types';
@@ -20,10 +20,7 @@ export interface OptionItem {
   shadow: true,
 })
 export class ZenDropdown {
-  div: HTMLElement = undefined;
-  listWrap: HTMLElement = undefined;
-  list: HTMLElement = undefined;
-  clickHandler = undefined;
+  popover: HTMLZenPopoverElement = null;
 
   @Element() host: HTMLZenDropdownElement;
 
@@ -51,33 +48,24 @@ export class ZenDropdown {
   /** Close an opened dropdown menu */
   @Method()
   async toggle(open?: boolean): Promise<void> {
-    if (open === this.opened) return;
-    this.opened = open;
+    if (open === undefined) {
+      open = !this.popover.visible;
+    }
+    if (open === this.popover.visible) return;
+
+    this.popover.visible = open;
+    this.setFocusedOption();
   }
 
   @Watch('opened')
   async openedChanged(opened: boolean): Promise<void> {
-    if (opened) {
-      if (!this.clickHandler) {
-        this.clickHandler = event => this.closeOnClickOut(event);
-      }
-      setTimeout(() => {
-        document.addEventListener('mousedown', this.clickHandler);
-      }, 50);
+    if (!opened) return;
 
-      // Reset scroll:
-      if (this.list) {
-        await waitNextFrame();
-        await waitNextFrame();
-        this.list.scrollTop = 0;
-      }
+    this.popover.setScrollTop(0);
 
-      this.markSelectedSlottedOption(this.value);
+    this.markSelectedSlottedOption(this.value);
 
-      this.appendOptionsOnClickHandlers();
-    } else {
-      document.removeEventListener('mousedown', this.clickHandler);
-    }
+    this.appendOptionsOnClickHandlers();
   }
 
   @Watch('value')
@@ -87,10 +75,13 @@ export class ZenDropdown {
 
   @Listen('keydown')
   handleKeyDown(ev: KeyboardEvent): void {
-    const toggleKeys = ['Space', 'Enter', 'ArrowUp', 'ArrowDown'];
+    const getFocusedOption = (): HTMLZenOptionElement =>
+      Array.from(this.getSlottedOptionItems()).filter(el => el.hasAttribute('focused'))[0];
 
-    if (!this.opened && toggleKeys.includes(ev.key)) {
-      this.toggleDropdown();
+    const toggleKeys = [' ', 'Enter', 'ArrowUp', 'ArrowDown'];
+
+    if (!this.popover.visible && toggleKeys.includes(ev.key)) {
+      this.toggle();
       ev.preventDefault();
       return;
     }
@@ -107,14 +98,23 @@ export class ZenDropdown {
         break;
 
       case 'Enter':
-      case 'Space':
-        const focused = this.getFocusedOption();
+      case ' ':
+        const focused = getFocusedOption();
         if (focused) {
           this.selectValue(focused.getAttribute('value'));
         }
         ev.preventDefault();
         break;
+
+      case 'Escape':
+        this.popover.toggle(false);
+        break;
     }
+  }
+
+  focusChanged(e: Event): void {
+    const show = e.target === (this.host as HTMLElement);
+    this.popover.toggle(show);
   }
 
   cloneSelectedToField(): void {
@@ -123,7 +123,9 @@ export class ZenDropdown {
 
     const slot = this.host.shadowRoot.querySelector('slot[name=field-private]') as HTMLSlotElement;
     if (!slot) return;
+
     const existing = slot.assignedNodes ? (slot.assignedNodes()[0] as HTMLElement) : false;
+
     if (existing) {
       existing.parentNode.removeChild(existing);
     }
@@ -134,14 +136,15 @@ export class ZenDropdown {
     // if we would append it to .field directly it would be in shadow dom
     // and styles from host's dom can't style it
     const selected = this.getSelectedOptionElement();
+
     if (!selected) return;
     const copy = selected.cloneNode(true) as HTMLElement;
+
     copy.setAttribute('no-hover', 'true');
     copy.removeAttribute('focused');
     copy.removeAttribute('selected');
     this.host.appendChild(copy);
     (copy as Element).slot = 'field-private';
-    return;
   }
 
   getOptionValue(option: HTMLZenOptionElement): OptionValue {
@@ -157,6 +160,7 @@ export class ZenDropdown {
   markSelectedSlottedOption(value: OptionValue): void {
     // Set attr `selected` to currently selected slotted item:
     const items = this.getSlottedOptionItems();
+
     if (!items.length) return;
     for (let i = 0; i < items.length; i++) {
       items[i].selected = this.getOptionValue(items[i]) === value;
@@ -165,6 +169,7 @@ export class ZenDropdown {
 
   getSelectedOptionElement(): HTMLZenOptionElement {
     const items = this.getSlottedOptionItems();
+
     for (let i = 0; i < items.length; i++) {
       if (this.getOptionValue(items[i]) === this.value) {
         return items[i];
@@ -178,20 +183,15 @@ export class ZenDropdown {
       this.setFocusedOption(this.getSelectedOptionElement());
     }
     if (this.closeOnSelect) {
-      this.opened = false;
+      this.popover.visible = false;
     }
     this.host.dispatchEvent(new window.Event('change'));
-  }
-
-  toggleDropdown(open?: boolean): void {
-    if (open === undefined) open = !this.opened;
-    this.setFocusedOption();
-    this.opened = open;
   }
 
   setFocusedOption(option?: HTMLZenOptionElement): void {
     // only one item can be focused, so remove focus from all other items:
     const items = this.getSlottedOptionItems();
+
     for (let i = 0; i < items.length; i++) {
       items[i].removeAttribute('focused');
     }
@@ -199,13 +199,11 @@ export class ZenDropdown {
     option.setAttribute('focused', 'true');
   }
 
-  getFocusedOption = (): HTMLZenOptionElement =>
-    Array.from(this.getSlottedOptionItems()).filter(el => el.hasAttribute('focused'))[0];
-
   moveFocusedOption(direction = 'forward'): void {
     const items = this.getSlottedOptionItems();
     let prev = items[items.length - 1];
     let next = items[0];
+
     for (let i = 0; i < items.length; i++) {
       if (items[i].hasAttribute('focused')) {
         prev = items[i - 1] || prev;
@@ -214,26 +212,6 @@ export class ZenDropdown {
     }
     const focusOption = direction === 'forward' ? next : prev;
     this.setFocusedOption(focusOption);
-  }
-
-  // Events
-  async closeOnClickOut(event: MouseEvent): Promise<void> {
-    const path = getComposedPath(event);
-    const clickedInside = path.find(n => n === this.list);
-    if (clickedInside) return;
-    await waitNextFrame(); // prevent race with click-open
-    this.opened = false;
-  }
-
-  openAbove(): boolean {
-    if (!this.listWrap) return false;
-    let el: HTMLElement = this.listWrap;
-    let y = el.offsetTop;
-    while (el.offsetParent) {
-      el = el.offsetParent as HTMLElement;
-      y += el.offsetTop;
-    }
-    return y < window.pageYOffset || y + this.menuHeight > window.pageYOffset + window.innerHeight;
   }
 
   appendOptionsOnClickHandlers(): void {
@@ -249,26 +227,42 @@ export class ZenDropdown {
     }
   }
 
-  async connectedCallback(): Promise<void> {
-    await waitNextFrame();
-    await waitNextFrame();
+  onOpenToggle(): void {
+    this.opened = this.popover.visible;
+  }
+
+  componentDidLoad(): void {
     this.valueChanged();
+    document.addEventListener('focusin', e => this.focusChanged(e));
   }
 
   render(): HTMLElement {
     const ZenIcon = applyPrefix('zen-icon', this.host);
-    const ZenAnimate = applyPrefix('zen-animate', this.host);
+    const ZenPopover = applyPrefix('zen-popover', this.host);
+
+    const offset = {
+      x: 0,
+      y: this.menuWidth === '100%' ? 0 : 3,
+    };
+
+    let align = 'bottom';
+    switch (this.fieldAlign) {
+      case 'left':
+        align = 'bottom-start';
+        break;
+      case 'right':
+        align = 'bottom-end';
+        break;
+    }
+
     return (
-      <Host tabindex={this.disabled ? null : 0} ref={el => (this.div = el)}>
+      <Host tabindex={this.disabled ? null : 0}>
         <div
           class={{
             field: true,
             opened: this.opened,
             borderless: this.borderless,
             disabled: this.disabled,
-          }}
-          onMouseDown={() => {
-            this.toggleDropdown(true);
           }}
         >
           <div class={{ hidden: !this.value }}>
@@ -279,21 +273,20 @@ export class ZenDropdown {
               <div class="placeholder">{this.placeholder}</div>
             </slot>
           </div>
-          <div class="arrow">
-            <ZenIcon icon={faChevronDown}></ZenIcon>
-          </div>
+          <ZenIcon class="arrow" icon={faChevronDown}></ZenIcon>
         </div>
-        <div
-          class={{ 'list-wrap': true, 'open-above': this.openAbove(), 'align-right': this.fieldAlign !== 'left' }}
+        <ZenPopover
+          class="list"
+          tabindex={this.opened ? 0 : -1}
+          ref={el => (this.popover = el)}
+          interactive
+          position={align}
+          onVisibleChange={() => this.onOpenToggle()}
           style={{ width: this.menuWidth }}
-          ref={el => (this.listWrap = el)}
+          offset={offset}
         >
-          <ZenAnimate show={this.opened}>
-            <div class="list" ref={el => (this.list = el)}>
-              <slot />
-            </div>
-          </ZenAnimate>
-        </div>
+          <slot />
+        </ZenPopover>
       </Host>
     );
   }

@@ -54,30 +54,14 @@ $field-height: #{1.2rem + 2 * 0.5rem};
   .arrow {
     position: absolute;
     right: 10px;
-    top: calc(50% - 9px);
+    top: calc(50% - 12px);
     color: $color-gray-500;
     border-bottom-width: 0;
     transition: transform $open-transition;
   }
 
-  &.opened {
-    .arrow {
-      transform: rotate(180deg);
-    }
-  }
-}
-
-.list-wrap {
-  position: absolute;
-  left: -24px;
-  padding-right: 24px;
-  padding-left: 24px;
-  overflow: hidden;
-  z-index: 100;
-
-  &.align-right {
-    left: auto;
-    right: -24px;
+  &.opened .arrow {
+    transform: rotate(180deg);
   }
 }
 
@@ -90,59 +74,5 @@ $item-line-height: 1.2rem;
 $item-ypadding: 0.5rem;
 
 .list {
-  border: 1px solid $border;
-  border-top: none;
-  background-color: $background;
-  padding: 0;
-  margin: 0;
-  box-shadow: $shadow-drop-200;
   max-height: #{4 * ($item-line-height + 2 * $item-ypadding)};
-  transition: transform $open-transition, opacity $open-transition linear;
-  overflow: auto;
-  -webkit-overflow-scrolling: touch;
-  border-radius: $input-radius;
-
-  li {
-    line-height: $item-line-height;
-    list-style-type: none;
-    transition: background-color 0.1s linear;
-    padding: $item-ypadding 1rem;
-    box-sizing: border-box;
-    display: flex;
-    align-items: center;
-
-    &:hover {
-      background-color: rgba(#000, 0.05);
-    }
-
-    &.selected {
-      background-color: $color-gray-100;
-    }
-  }
-}
-
-.list[animate='out-end'],
-.list[animate='in-start'] {
-  opacity: 0;
-  transform: translate(0, -100px);
-}
-
-.list-wrap.open-above {
-  // Move menu above the dropdown:
-  transform: translate(0, calc(-100% - #{$field-height}));
-  padding-top: 24px;
-  padding-bottom: 0;
-
-  .list[animate='out-end'],
-  .list[animate='in-start'] {
-    // Drive in from below:
-    transform: translate(0, 100px);
-  }
-}
-
-:host([menu-width]:not([menu-width='100%'])) {
-  .list {
-    margin-top: 3px;
-    border-width: 1px;
-  }
 }

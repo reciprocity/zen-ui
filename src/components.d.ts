@@ -372,6 +372,10 @@ export namespace Components {
          */
         "position": Placement;
         /**
+          * Control scroll position when scrollable content
+         */
+        "setScrollTop": (position: number) => Promise<void>;
+        /**
           * Trigger element
          */
         "targetElement": HTMLElement;

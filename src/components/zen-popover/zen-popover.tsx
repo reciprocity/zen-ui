@@ -132,6 +132,12 @@ export class ZenPopover {
     this.visible = show;
   }
 
+  /** Control scroll position when scrollable content */
+  @Method()
+  async setScrollTop(position: number): Promise<void> {
+    this.popup.scrollTop = position;
+  }
+
   addTriggerEvents(): void {
     const show = () => {
       clearTimeout(this.hideTimer);
