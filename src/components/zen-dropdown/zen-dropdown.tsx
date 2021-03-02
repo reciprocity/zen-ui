@@ -60,12 +60,7 @@ export class ZenDropdown {
   async openedChanged(opened: boolean): Promise<void> {
     if (!opened) return;
 
-    // Reset scroll:
-    /* TODO: if (this.list) {
-      await waitNextFrame();
-      await waitNextFrame();
-      this.list.scrollTop = 0;
-    } */
+    this.popover.setScrollTop(0);
 
     this.markSelectedSlottedOption(this.value);
 
