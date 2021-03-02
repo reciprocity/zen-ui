@@ -1,0 +1,66 @@
+import { html } from 'lit-html';
+import { Meta, Description, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
+import { faGripVertical } from '@fortawesome/pro-light-svg-icons';
+import { waitForElement } from '../../../.storybook/helpers/utils';
+import { getArgTypesAndArgs, getDefaultArgs, getComponentData, spreadArgs } from '../../../.storybook/helpers/argTypes';
+const { argTypes } = getArgTypesAndArgs('zen-draggable');
+
+<Meta title="In progress/Draggable" component="zen-draggable" argTypes={argTypes} />
+
+export const StoryDraggable = args => {
+  ['#icon1', '#icon2', '#icon3', '#icon4', '#icon5'].forEach(id => {
+    waitForElement(id, element => {
+      element.icon = faGripVertical;
+    });
+  });
+  return html/*html*/ `
+    <style>
+      .item {
+        width: 250px;
+        border: 1px solid lightgray;
+        cursor: grab;
+        padding-bottom: 0.5rem;
+      }
+    </style>
+    <sb-zen-space vertical padding="md" spacing="none" horizontal-align="center" vertical-align="center">
+      <sb-zen-draggable>
+        <sb-zen-space spacing="lg" padding="md" class="item">
+          <sb-zen-icon id="icon1"></sb-zen-icon>
+          <sb-zen-text>Item 1</sb-zen-text>
+        </sb-zen-space>
+        <sb-zen-space spacing="lg" padding="md" class="item">
+          <sb-zen-icon id="icon2"></sb-zen-icon>
+          <sb-zen-text>Item 2</sb-zen-text>
+        </sb-zen-space>
+        <sb-zen-space spacing="lg" padding="md" class="item">
+          <sb-zen-icon id="icon3"></sb-zen-icon>
+          <sb-zen-text>Item 3</sb-zen-text>
+        </sb-zen-space>
+        <sb-zen-space spacing="lg" padding="md" class="item">
+          <sb-zen-icon id="icon4"></sb-zen-icon>
+          <sb-zen-text>Item 4</sb-zen-text>
+        </sb-zen-space>
+        <sb-zen-space spacing="lg" padding="md" class="item">
+          <sb-zen-icon id="icon5"></sb-zen-icon>
+          <sb-zen-text>Item 5</sb-zen-text>
+        </sb-zen-space>
+      </sb-zen-draggable>
+    </sb-zen-space>
+  `;
+};
+
+# Zen Draggable
+
+Slotted content becomes draggable.
+
+## Component previews
+
+<br />
+
+### 1. Draggable items
+
+<Canvas>
+  <Story name="Draggable">{StoryDraggable.bind({})}</Story>
+</Canvas>
+
+<docs-table docs={JSON.stringify(getComponentData('zen-draggable'))}></docs-table>
