@@ -502,10 +502,6 @@ export namespace Components {
          */
         "selectable": false;
         /**
-          * To add custom content
-         */
-        "slotted": false;
-        /**
           * Visible if no !depth or parent.expanded (read-only)
          */
         "visible": boolean;
@@ -1393,10 +1389,6 @@ declare namespace LocalJSX {
           * Show checkbox
          */
         "selectable"?: false;
-        /**
-          * To add custom content
-         */
-        "slotted"?: false;
         /**
           * Visible if no !depth or parent.expanded (read-only)
          */

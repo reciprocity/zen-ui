@@ -13,9 +13,6 @@ export class ZenTableRow {
   /** Show checkbox */
   @Prop() readonly selectable = false;
 
-  /** To add custom content  */
-  @Prop() readonly slotted = false;
-
   /** Visible if no !depth or parent.expanded (read-only) */
   @Prop({ mutable: true }) visible = true;
 
@@ -46,6 +43,22 @@ export class ZenTableRow {
     return children;
   }
 
+  descendants(): HTMLZenTableRowElement[] {
+    const descendants = [];
+    let next = this.element.nextElementSibling as HTMLZenTableRowElement;
+
+    // Get all rows that have depth greater then the parent
+    while (next) {
+      if (next.depth <= this.depth) break;
+      if (next.depth > this.depth && !this.expanded) {
+        descendants.push(next);
+      }
+      next = next.nextElementSibling as HTMLZenTableRowElement;
+    }
+
+    return descendants;
+  }
+
   getParentRow(): HTMLZenTableRowElement {
     // find first prev sibling with depth 1 smaller than ours:
     let prev = this.element.previousElementSibling as HTMLZenTableRowElement;
@@ -56,22 +69,15 @@ export class ZenTableRow {
     }
     return null;
   }
-  traverseOnClose(): void {
-    let next = this.element.nextElementSibling as HTMLZenTableRowElement;
 
-    // Get all rows that have depth greater then the parent
-    while (next) {
-      if (next.depth <= this.depth) break;
-      if (next.depth > this.depth && !this.expanded) {
-        next.expanded = false;
-      }
-      next = next.nextElementSibling as HTMLZenTableRowElement;
-    }
+  closeDescendants(): void {
+    // Close all descendents of this row
+    this.descendants().forEach(n => (n.expanded = false));
   }
 
   onClick(): void {
     this.expanded = !this.expanded;
-    this.traverseOnClose();
+    this.closeDescendants();
   }
 
   showWidgets(): boolean {
