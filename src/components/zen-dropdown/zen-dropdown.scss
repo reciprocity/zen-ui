@@ -54,7 +54,7 @@ $field-height: #{1.2rem + 2 * 0.5rem};
   .arrow {
     position: absolute;
     right: 10px;
-    top: calc(50% - 9px);
+    top: calc(50% - 12px);
     color: $color-gray-500;
     border-bottom-width: 0;
     transition: transform $open-transition;
