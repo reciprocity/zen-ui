@@ -16,19 +16,9 @@ export const StoryWithControls = args => {
 export const StoryText = () => {
   return html/*html*/ `
     <div>
-      Content A
+      <zen-text>Faucibus non class pretium laoreet lacus placerat maecenas litora iaculis.</zen-text>
       <sb-zen-divider></sb-zen-divider>
-      Content B
-    </div>
-  `;
-};
-
-export const StoryDivs = () => {
-  return html/*html*/ `
-    <div>
-      <div style="width: 50%; height: 2rem; background: tomato;"></div>
-      <sb-zen-divider></sb-zen-divider>
-      <div style="width: 50%; height: 2rem; background: lightblue;"></div>
+      <zen-text>Dis imperdiet eu natoque et scelerisque nisi</zen-text>
     </div>
   `;
 };
@@ -41,31 +31,8 @@ Separate content.
 
 <br />
 
-### 1. Divide text
+### 1. Simple divider example
 
 <Canvas>
   <Story name="text">{StoryText.bind({})}</Story>
 </Canvas>
-
-### 2. Divide divs
-
-<Canvas>
-  <Story name="divs">{StoryDivs.bind({})}</Story>
-</Canvas>
-
-## Properties
-
-<Canvas>
-  <Story
-    name="default"
-    args={{
-      ...getDefaultArgs(argTypes),
-    }}
-  >
-    {StoryWithControls.bind({})}
-  </Story>
-</Canvas>
-
-<ArgsTable story="default" />
-
-<docs-table docs={JSON.stringify(getComponentData('zen-divider'))}></docs-table>

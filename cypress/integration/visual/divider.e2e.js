@@ -3,13 +3,9 @@
 import { createVisualTests } from '../../support/utils/visualTesting';
 
 describe('Divider visual tests', () => {
-  const pageId = 'layout-divider--default';
+  const pageId = 'layout-divider';
 
-  const stories = [
-    'story--layout-divider--text',
-    'story--layout-divider--divs',
-    'story--layout-divider--default-story',
-  ];
+  const stories = ['story--layout-divider--text'];
 
   before(() => {
     cy.visitStorybookIframe(pageId);
