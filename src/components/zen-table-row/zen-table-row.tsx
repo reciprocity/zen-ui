@@ -20,7 +20,7 @@ export class ZenTableRow {
   @Prop({ mutable: true }) expanded = false;
 
   /** Is cell full span (colspan=number of cells) */
-  @Prop({ mutable: true }) fullSpan = false;
+  @Prop() readonly fullSpan = false;
 
   /** Depth position of row */
   @Prop() readonly depth: number = 0;

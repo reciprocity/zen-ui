@@ -504,7 +504,7 @@ export namespace Components {
         /**
           * Is cell full span (colspan=number of cells)
          */
-        "fullSpan": boolean;
+        "fullSpan": false;
         /**
           * Show checkbox
          */
@@ -1400,7 +1400,7 @@ declare namespace LocalJSX {
         /**
           * Is cell full span (colspan=number of cells)
          */
-        "fullSpan"?: boolean;
+        "fullSpan"?: false;
         /**
           * Show checkbox
          */
