@@ -19,6 +19,9 @@ export class ZenTableRow {
   /** Is row expanded */
   @Prop({ mutable: true }) expanded = false;
 
+  /** Is cell full span (colspan=number of cells) */
+  @Prop({ mutable: true }) fullSpan = false;
+
   /** Depth position of row */
   @Prop() readonly depth: number = 0;
 
@@ -96,6 +99,7 @@ export class ZenTableRow {
   render(): HTMLTableRowElement {
     const ZenCheckBox = applyPrefix('zen-checkbox', this.element);
     const ZenIcon = applyPrefix('zen-icon', this.element);
+    const ZenTableCell = applyPrefix('zen-table-cell', this.element);
     const hostClass = {
       hidden: !this.visible,
       selectable: this.selectable,
@@ -114,18 +118,22 @@ export class ZenTableRow {
       'expand-icon': true,
       hidden: !this.hasChildren(),
     };
+
     return (
       <Host class={hostClass}>
-        <div class={widgetClass}>
-          <ZenCheckBox class={checkboxClass} />
-          <ZenIcon
-            class={expandIconClass}
-            size="sm"
-            padding="sm"
-            icon={faChevronRight}
-            onClick={() => this.onClick()}
-          />
-        </div>
+        {this.showWidgets() && (
+          <ZenTableCell class={widgetClass}>
+            <ZenCheckBox class={checkboxClass} />
+            <ZenIcon
+              class={expandIconClass}
+              size="sm"
+              padding="sm"
+              icon={faChevronRight}
+              onClick={() => this.onClick()}
+            />
+          </ZenTableCell>
+        )}
+
         <slot></slot>
       </Host>
     );

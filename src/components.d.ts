@@ -478,6 +478,10 @@ export namespace Components {
     }
     interface ZenTableHeader {
         /**
+          * Show checkbox
+         */
+        "selectable": false;
+        /**
           * Remains fixed at the top of the table during vertical scrolling
          */
         "sticky": false;
@@ -497,6 +501,10 @@ export namespace Components {
           * Is row expanded
          */
         "expanded": boolean;
+        /**
+          * Is cell full span (colspan=number of cells)
+         */
+        "fullSpan": boolean;
         /**
           * Show checkbox
          */
@@ -1366,6 +1374,10 @@ declare namespace LocalJSX {
     }
     interface ZenTableHeader {
         /**
+          * Show checkbox
+         */
+        "selectable"?: false;
+        /**
           * Remains fixed at the top of the table during vertical scrolling
          */
         "sticky"?: false;
@@ -1385,6 +1397,10 @@ declare namespace LocalJSX {
           * Is row expanded
          */
         "expanded"?: boolean;
+        /**
+          * Is cell full span (colspan=number of cells)
+         */
+        "fullSpan"?: boolean;
         /**
           * Show checkbox
          */

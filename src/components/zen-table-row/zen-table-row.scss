@@ -23,7 +23,7 @@
   }
 }
 
-:host([fullspan]) ::slotted(*:first-child) {
+:host([full-span]) ::slotted(*:first-child) {
   position: absolute;
   left: 0;
   width: 100%;
@@ -53,21 +53,12 @@
 $arrow-width: 1rem;
 $checkbox-width: 2rem;
 
-// If depth isn't defined, default to 0:
-:host(:not([depth]).selectable) ::slotted(*:first-child) {
-  padding-left: #{$checkbox-width};
-}
-
-:host(:not([depth]).expandable) ::slotted(*:first-child) {
-  padding-left: #{$arrow-width};
-}
-
 :host(:not([depth]).expandable.selectable) ::slotted(*:first-child) {
   padding-left: #{$checkbox-width + $arrow-width};
 }
 
 @for $i from 0 through 32 {
-  :host([depth='#{$i}']) ::slotted(*:first-child) {
+  :host([depth='#{$i}']:not([full-span])) ::slotted(*:first-child) {
     padding-left: #{($i + 1) * 2}rem;
   }
 
