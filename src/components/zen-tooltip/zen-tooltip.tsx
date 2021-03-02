@@ -15,7 +15,7 @@ import { Placement } from '@popperjs/core';
 export class ZenTooltip {
   private popover: HTMLZenPopoverElement = null;
 
-  @Element() element: HTMLZenTooltipElement;
+  @Element() host: HTMLZenTooltipElement;
 
   @State() visible = false;
   @State() target: HTMLElement = null;
@@ -61,13 +61,13 @@ export class ZenTooltip {
   }
 
   componentDidLoad(): void {
-    this.popover.targetElement = this.element.previousElementSibling as HTMLElement;
+    this.popover.targetElement = this.host.previousElementSibling as HTMLElement;
     this.variantChanged(this.variant);
   }
 
   render(): HTMLElement {
-    const ZenSpace = applyPrefix('zen-space', this.element);
-    const ZenPopover = applyPrefix('zen-popover', this.element);
+    const ZenSpace = applyPrefix('zen-space', this.host);
+    const ZenPopover = applyPrefix('zen-popover', this.host);
     const classes = {
       tooltip: true,
     };

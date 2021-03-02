@@ -6,7 +6,7 @@ import { Component, Host, h, Element, Prop, Watch, State } from '@stencil/core';
   shadow: true,
 })
 export class ZenToggle {
-  @Element() hostElement: HTMLZenToggleElement;
+  @Element() host: HTMLZenToggleElement;
 
   /** Name of element, can be used as reference for form data */
   @Prop() readonly name: string = '';
@@ -22,7 +22,7 @@ export class ZenToggle {
 
   @Watch('checked')
   checkedChanged(): void {
-    this.hostElement.dispatchEvent(new window.Event('change'));
+    this.host.dispatchEvent(new window.Event('change'));
   }
 
   @Watch('disabled')

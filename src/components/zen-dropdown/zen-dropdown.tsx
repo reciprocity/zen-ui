@@ -25,7 +25,7 @@ export class ZenDropdown {
   list: HTMLElement = undefined;
   clickHandler = undefined;
 
-  @Element() hostElement: HTMLZenDropdownElement;
+  @Element() host: HTMLZenDropdownElement;
 
   @State() opened = false;
 
@@ -121,7 +121,7 @@ export class ZenDropdown {
     // Clear previously copied item from slot[name=field]:
     if (!this.value) return;
 
-    const slot = this.hostElement.shadowRoot.querySelector('slot[name=field-private]') as HTMLSlotElement;
+    const slot = this.host.shadowRoot.querySelector('slot[name=field-private]') as HTMLSlotElement;
     if (!slot) return;
     const existing = slot.assignedNodes ? (slot.assignedNodes()[0] as HTMLElement) : false;
     if (existing) {
@@ -139,7 +139,7 @@ export class ZenDropdown {
     copy.setAttribute('no-hover', 'true');
     copy.removeAttribute('focused');
     copy.removeAttribute('selected');
-    this.hostElement.appendChild(copy);
+    this.host.appendChild(copy);
     (copy as Element).slot = 'field-private';
     return;
   }
@@ -149,10 +149,8 @@ export class ZenDropdown {
   }
 
   getSlottedOptionItems(): HTMLZenOptionElement[] | undefined[] {
-    return Array.from(getDefaultSlotContent(this.hostElement))
-      .filter(
-        n => n.nodeName === applyPrefix('zen-option', this.hostElement).toUpperCase() && !n.getAttribute('disabled'),
-      )
+    return Array.from(getDefaultSlotContent(this.host))
+      .filter(n => n.nodeName === applyPrefix('zen-option', this.host).toUpperCase() && !n.getAttribute('disabled'))
       .map(n => n as HTMLZenOptionElement);
   }
 
@@ -182,7 +180,7 @@ export class ZenDropdown {
     if (this.closeOnSelect) {
       this.opened = false;
     }
-    this.hostElement.dispatchEvent(new window.Event('change'));
+    this.host.dispatchEvent(new window.Event('change'));
   }
 
   toggleDropdown(open?: boolean): void {
@@ -258,8 +256,8 @@ export class ZenDropdown {
   }
 
   render(): HTMLElement {
-    const ZenIcon = applyPrefix('zen-icon', this.hostElement);
-    const ZenAnimate = applyPrefix('zen-animate', this.hostElement);
+    const ZenIcon = applyPrefix('zen-icon', this.host);
+    const ZenAnimate = applyPrefix('zen-animate', this.host);
     return (
       <Host tabindex={this.disabled ? null : 0} ref={el => (this.div = el)}>
         <div

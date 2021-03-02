@@ -6,10 +6,10 @@ import { h, Component, Element, Host, Prop } from '@stencil/core';
   shadow: true,
 })
 export class ZenBreadcrumbs {
+  @Element() host: HTMLZenBreadcrumbsElement;
+
   /** The separator string */
   @Prop() readonly separator: string = '>';
-
-  @Element() host: HTMLZenBreadcrumbsElement;
 
   children: Element[];
   elements: Element[];

@@ -6,7 +6,7 @@ import { Component, Host, h, Prop, Element } from '@stencil/core';
   shadow: true,
 })
 export class ZenTextarea {
-  @Element() hostElement: HTMLZenTextareaElement;
+  @Element() host: HTMLZenTextareaElement;
 
   /** Name of element, can be used as reference for form data */
   @Prop() readonly name: string = '';
@@ -36,7 +36,7 @@ export class ZenTextarea {
       this.text = input.value || '';
     }
     // change event should be forwarded, because it's not composed:
-    this.hostElement.dispatchEvent(new window.Event('change'));
+    this.host.dispatchEvent(new window.Event('change'));
   };
 
   render(): HTMLElement {

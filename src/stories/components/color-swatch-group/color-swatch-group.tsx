@@ -15,9 +15,9 @@ export type StringifiedJson = string;
   shadow: false,
 })
 export class ColorSwatchGroup {
-  @Element() hostElement: HTMLColorSwatchGroupElement;
-
   private _colors: ColorSwatchItem[];
+
+  @Element() host: HTMLColorSwatchGroupElement;
 
   /** Array of colors */
   @Prop() readonly colors: StringifiedJson = '[]';
@@ -32,7 +32,7 @@ export class ColorSwatchGroup {
   }
 
   render(): HTMLElement {
-    const ColorSwatch = applyPrefix('color-swatch', this.hostElement);
+    const ColorSwatch = applyPrefix('color-swatch', this.host);
     return (
       <Host class="color-swatch-group">
         {this._colors.map(color => (

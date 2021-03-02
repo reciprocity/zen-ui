@@ -12,7 +12,7 @@ import { faArrowToRight } from '@fortawesome/pro-light-svg-icons';
 export class ZenDrawer {
   private drawer: HTMLElement = null;
 
-  @Element() element: HTMLZenDrawerElement;
+  @Element() host: HTMLZenDrawerElement;
 
   /** Is drawer visible */
   @Prop({ reflect: true }) readonly opened = false;
@@ -37,8 +37,8 @@ export class ZenDrawer {
   }
 
   render(): HTMLElement {
-    const ZenButton = applyPrefix('zen-button', this.element);
-    const ZenIcon = applyPrefix('zen-icon', this.element);
+    const ZenButton = applyPrefix('zen-button', this.host);
+    const ZenIcon = applyPrefix('zen-icon', this.host);
     return (
       <Host data-position={this.position}>
         <div class="drawer" data-position={this.position} ref={el => (this.drawer = el)}>

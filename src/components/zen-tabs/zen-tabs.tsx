@@ -13,7 +13,7 @@ export type TabValue = string | number;
   shadow: true,
 })
 export class ZenTabs {
-  @Element() hostElement: HTMLZenTabsElement;
+  @Element() host: HTMLZenTabsElement;
 
   /** Index of currently selected tab. */
   @Prop() readonly tabs: TabItem[] = [];
@@ -23,7 +23,7 @@ export class ZenTabs {
 
   tabClicked(event: Event): void {
     this.value = (event.target as HTMLElement).getAttribute('data-value');
-    this.hostElement.dispatchEvent(new Event('change'));
+    this.host.dispatchEvent(new Event('change'));
   }
 
   isTabActive = (tab: TabItem): boolean => tab.value == this.value;

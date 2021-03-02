@@ -8,7 +8,7 @@ import { waitNextFrame, getDefaultSlotContent } from '../helpers/helpers';
 export class ZenAnimate {
   hideTimer = undefined;
 
-  @Element() hostElement: HTMLZenAnimateElement;
+  @Element() host: HTMLZenAnimateElement;
 
   @State() doShow = false;
 
@@ -24,12 +24,12 @@ export class ZenAnimate {
   }
 
   async componentDidRender(): Promise<void> {
-    let slot = getDefaultSlotContent(this.hostElement);
+    let slot = getDefaultSlotContent(this.host);
 
     if (!slot.length && this.show) {
       this.doShow = true;
       await waitNextFrame();
-      slot = getDefaultSlotContent(this.hostElement);
+      slot = getDefaultSlotContent(this.host);
     }
 
     if (!slot.length) return;

@@ -15,7 +15,7 @@ export class ZenButton {
   leadingIconSlotFulfilled: boolean;
   trailingIconSlotFulfilled: boolean;
 
-  @Element() hostElement: HTMLZenButtonElement;
+  @Element() host: HTMLZenButtonElement;
 
   /** Name of element, can be used as reference for form data */
   @Prop() readonly name: string = '';
@@ -39,19 +39,19 @@ export class ZenButton {
 
   componentWillLoad(): void {
     this.leadingIconSlotFulfilled =
-      !!this.hostElement.querySelector('[slot="leadingIcon"]') && this.hostElement.textContent.trim() != '';
+      !!this.host.querySelector('[slot="leadingIcon"]') && this.host.textContent.trim() != '';
     this.trailingIconSlotFulfilled =
-      !!this.hostElement.querySelector('[slot="trailingIcon"]') && this.hostElement.textContent.trim() != '';
+      !!this.host.querySelector('[slot="trailingIcon"]') && this.host.textContent.trim() != '';
     this.disabledChanged(this.disabled);
   }
 
   @Listen('keyup')
   handleKeyUp(ev: KeyboardEvent): void {
-    ev.code === 'Enter' ? this.hostElement.click() : null;
+    ev.code === 'Enter' ? this.host.click() : null;
   }
 
   render(): HTMLElement {
-    const ZenSpinner = applyPrefix('zen-spinner', this.hostElement);
+    const ZenSpinner = applyPrefix('zen-spinner', this.host);
     const spinnerStyle = {
       position: 'absolute',
       inset: 0,

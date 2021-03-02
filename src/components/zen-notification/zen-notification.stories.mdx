@@ -14,20 +14,20 @@ export const StoryWithControls = args =>
   >`;
 
 export const StoryVariants = () => html/*html*/ `
-  <sb-zen-space no-wrap vertical spacing="lg">
-    <sb-zen-notification variant="success" heading="Success" dismiss-duration="none" dismiss="false">
+  <sb-zen-space vertical spacing="lg">
+    <sb-zen-notification variant="success" heading="Success">
       This is the notification message. There may be a number of things to add to this message, but try to keep it to
       three lines. Links underlined.
     </sb-zen-notification>
-    <sb-zen-notification variant="info" heading="Info" dismiss-duration="none" dismiss="false">
+    <sb-zen-notification variant="info" heading="Info">
       This is the notification message. There may be a number of things to add to this message, but try to keep it to
       three lines. Links underlined.
     </sb-zen-notification>
-    <sb-zen-notification variant="warning" heading="Warning" dismiss-duration="none" dismiss="false">
+    <sb-zen-notification variant="warning" heading="Warning">
       This is the notification message. There may be a number of things to add to this message, but try to keep it to
       three lines. Links underlined.
     </sb-zen-notification>
-    <sb-zen-notification variant="error" heading="Error" dismiss-duration="none" dismiss="false">
+    <sb-zen-notification variant="error" heading="Error">
       This is the notification message. There may be a number of things to add to this message, but try to keep it to
       three lines. Links underlined.
     </sb-zen-notification>
@@ -48,7 +48,7 @@ Use when you need to notify user, but don't need his direct response.
 - There are different `variants` of notification
 
 <Canvas>
-  <Story name="button">{StoryVariants.bind({})}</Story>
+  <Story name="variants">{StoryVariants.bind({})}</Story>
 </Canvas>
 
 ## Properties
@@ -58,8 +58,6 @@ Use when you need to notify user, but don't need his direct response.
     name="default"
     args={{
       ...getDefaultArgs(argTypes),
-      // override some default values:
-      dismissDuration: 'none',
       heading: 'Success',
     }}
   >

@@ -13,7 +13,7 @@ import { applyPrefix, toggleAttribute } from '../helpers/helpers';
   shadow: true,
 })
 export class ZenRadio {
-  @Element() hostElement: HTMLZenRadioElement;
+  @Element() host: HTMLZenRadioElement;
 
   /** Name of element, can be used as reference for form data */
   @Prop() readonly name: string = '';
@@ -61,7 +61,7 @@ export class ZenRadio {
     };
 
     const isUpdating = (): boolean => {
-      return !!this.hostElement.getAttribute('updating-group');
+      return !!this.host.getAttribute('updating-group');
     };
 
     const updateElement = (element: HTMLZenRadioElement, selected: string): void => {
@@ -98,13 +98,13 @@ export class ZenRadio {
   }
 
   radioInput(): HTMLInputElement {
-    return this.hostElement.shadowRoot.querySelector('input[type=radio]');
+    return this.host.shadowRoot.querySelector('input[type=radio]');
   }
 
   elementsInSameGroup(onlyEnabled?: boolean): HTMLZenRadioElement[] {
-    const radioWithPrefix = applyPrefix('zen-radio', this.hostElement);
+    const radioWithPrefix = applyPrefix('zen-radio', this.host);
     const selector = `${radioWithPrefix}[group=${this.group}]${onlyEnabled ? ':not([disabled])' : ''}`;
-    return this.group ? (Array.from(querySelectorAllDeep(selector)) as HTMLZenRadioElement[]) : [this.hostElement];
+    return this.group ? (Array.from(querySelectorAllDeep(selector)) as HTMLZenRadioElement[]) : [this.host];
   }
 
   onClick(event: Event): void {
@@ -119,7 +119,7 @@ export class ZenRadio {
     // Since we're in a shadow dom, arrow up/down doesn't work to move
     //   amoung the options, so we have to do it manually:
     const radios = this.elementsInSameGroup(true);
-    const index = radios.findIndex(radio => radio === this.hostElement);
+    const index = radios.findIndex(radio => radio === this.host);
     if (['ArrowUp', 'ArrowDown'].includes(event.key)) {
       const forward = event.key === 'ArrowDown';
       const next = radios[forward ? index + 1 : index - 1];
