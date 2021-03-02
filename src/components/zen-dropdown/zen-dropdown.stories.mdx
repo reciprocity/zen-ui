@@ -41,12 +41,7 @@ export const Template = args => {
         padding: 0 1rem;
       }
     </style>
-    <sb-zen-dropdown
-      id="dropdown-controls"
-      class="mb-80"
-      style="max-width: 300px;"
-      ...="${spread(camelKeysToKebab(args))}"
-    >
+    <sb-zen-dropdown id="dropdown-controls" style="max-width: 300px;" ...="${spread(camelKeysToKebab(args))}">
       <div class="separator">Some custom title</div>
       <sb-zen-option value="1">Item 1</sb-zen-option>
       <sb-zen-option default-padding="false" value="2">
@@ -76,25 +71,7 @@ export const CustomIcons = args => {
     });
   });
   return html/*html*/ `
-    <style>
-      .icon {
-        height: 1rem;
-        margin-right: 0.5rem;
-      }
-      .content {
-        width: 100%;
-        display: flex;
-        align-items: center;
-        padding: 1rem;
-      }
-      .separator {
-        margin-top: 1rem;
-        border-bottom: 1px solid;
-        color: #0078cd;
-        padding: 0 1rem;
-      }
-    </style>
-    <sb-zen-dropdown id="dropdown-with-options-slot" class="mb-80" style="min-height: 3.2rem; max-width: 300px;">
+    <sb-zen-dropdown id="dropdown-with-options-slot" style="min-height: 3.2rem; max-width: 300px;">
       <div class="separator">Group 1</div>
       <sb-zen-option default-padding="false" value="1">
         <div class="content">
@@ -131,7 +108,7 @@ export const InvitePeople = () => {
   function onDropdownBlur() {
     document.querySelector('#input1').hasFocus = false;
   }
-  return html/*html*/ `<sb-zen-input id="input1" placeholder="Username" class="mb-72" style="max-width: 500px">
+  return html/*html*/ `<sb-zen-input id="input1" placeholder="Username" style="max-width: 500px">
     <sb-zen-dropdown
       id="dropdown1"
       slot="trailingSlot"
