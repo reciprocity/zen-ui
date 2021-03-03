@@ -107,7 +107,6 @@ export class ZenTableRow {
     };
     const widgetClass = {
       widgets: true,
-      hidden: !this.showWidgets(),
       expanded: this.expanded,
     };
     const checkboxClass = {

@@ -46,7 +46,7 @@
 
 .checkbox.hidden,
 .expand-icon.hidden {
-  visibility: hidden;
+  display: none;
 }
 
 // Checkboxes and expand arrow padding:
@@ -63,7 +63,7 @@ $checkbox-width: 2rem;
   }
 
   :host([depth='#{$i}']) .widgets {
-    padding-left: #{$i * 2}rem;
+    padding-left: #{$i * 1.5}rem;
   }
 
   :host([depth='#{$i}'].expandable) ::slotted(*:first-child) {
