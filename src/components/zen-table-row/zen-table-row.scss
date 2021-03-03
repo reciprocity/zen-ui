@@ -3,13 +3,19 @@
 :host {
   display: table-row;
   border-top: 1px solid $color-gray-200;
-  border-bottom: 1px solid $color-gray-200;
+  border-left: 1px solid $color-white;
+  border-right: 1px solid $color-white;
   position: relative;
   transform: scale(1); // hack to apply position relative (tested in chrome & ff)
 }
 
 :host(.hidden) {
   display: none;
+}
+
+:host(.selected) {
+  background: $color-blue-100;
+  border: 1px solid $color-blue-700;
 }
 
 .expand-icon {
@@ -38,12 +44,9 @@
   align-items: center;
   position: absolute;
   inset: 0 auto 0 0;
-
-  &.hidden {
-    display: none;
-  }
 }
 
+.widgets.hidden,
 .checkbox.hidden,
 .expand-icon.hidden {
   display: none;

@@ -568,6 +568,10 @@ export namespace Components {
          */
         "selectable": false;
         /**
+          * Is row selected
+         */
+        "selected": boolean;
+        /**
           * Visible if no depth or parent.expanded
          */
         "visible": boolean;
@@ -1532,6 +1536,10 @@ declare namespace LocalJSX {
           * Show checkbox (read-only)
          */
         "selectable"?: false;
+        /**
+          * Is row selected
+         */
+        "selected"?: boolean;
         /**
           * Visible if no depth or parent.expanded
          */

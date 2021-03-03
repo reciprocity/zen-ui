@@ -190,6 +190,12 @@ export const StorySelectable = () => {
         <sb-zen-table-cell>Row 3, Cell 3</sb-zen-table-cell>
         <sb-zen-table-cell>Row 3, Cell 4</sb-zen-table-cell>
       </sb-zen-table-row>
+      <sb-zen-table-row selectable>
+        <sb-zen-table-cell>Row 4, Cell 1</sb-zen-table-cell>
+        <sb-zen-table-cell>Row 4, Cell 2</sb-zen-table-cell>
+        <sb-zen-table-cell>Row 4, Cell 3</sb-zen-table-cell>
+        <sb-zen-table-cell>Row 4, Cell 4</sb-zen-table-cell>
+      </sb-zen-table-row>
     </sb-zen-table>
   `;
 };
@@ -205,7 +211,7 @@ export const StoryTree = () => {
       }
     </style>
     <sb-zen-table>
-      <sb-zen-table-row selectable>
+      <sb-zen-table-row depth="0" selectable>
         <sb-zen-table-cell class="first"
           ><sb-zen-text>PCI Requirement 1 - Firewall Configuration</sb-zen-text></sb-zen-table-cell
         >

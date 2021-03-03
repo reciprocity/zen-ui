@@ -5,6 +5,9 @@
   border-spacing: 0;
   display: table;
   width: 100%;
-
   font-size: $text-md;
+}
+
+:host(:last-child) {
+  border-bottom: 1px solid $color-gray-200;
 }

@@ -13,6 +13,9 @@ export class ZenTableRow {
   /** Show checkbox (read-only) */
   @Prop() readonly selectable = false;
 
+  /** Is row selected */
+  @Prop({ mutable: true }) selected = false;
+
   /** Visible if no depth or parent.expanded */
   @Prop({ mutable: true }) visible = true;
 
@@ -97,6 +100,10 @@ export class ZenTableRow {
     this.visible = !parentRow || parentRow.expanded;
   }
 
+  onRowSelect(): void {
+    this.selected = !this.selected;
+  }
+
   render(): HTMLTableRowElement {
     const ZenCheckBox = applyPrefix('zen-checkbox', this.element);
     const ZenIcon = applyPrefix('zen-icon', this.element);
@@ -105,6 +112,7 @@ export class ZenTableRow {
       hidden: !this.visible,
       selectable: this.selectable,
       expandable: this.hasChildren(),
+      selected: this.selected,
     };
     const widgetClass = {
       widgets: true,
@@ -123,7 +131,7 @@ export class ZenTableRow {
       <Host class={hostClass}>
         {this.showWidgets() && (
           <ZenTableCell class={widgetClass}>
-            <ZenCheckBox class={checkboxClass} />
+            <ZenCheckBox onChange={() => this.onRowSelect()} class={checkboxClass} />
             <ZenIcon
               class={expandIconClass}
               size="sm"
