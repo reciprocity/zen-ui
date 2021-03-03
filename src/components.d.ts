@@ -510,7 +510,7 @@ export namespace Components {
          */
         "selectable": false;
         /**
-          * Visible if no !depth or parent.expanded (read-only)
+          * Visible if no depth or parent.expanded
          */
         "visible": boolean;
     }
@@ -1406,7 +1406,7 @@ declare namespace LocalJSX {
          */
         "selectable"?: false;
         /**
-          * Visible if no !depth or parent.expanded (read-only)
+          * Visible if no depth or parent.expanded
          */
         "visible"?: boolean;
     }

@@ -13,7 +13,7 @@ export class ZenTableRow {
   /** Show checkbox */
   @Prop() readonly selectable = false;
 
-  /** Visible if no !depth or parent.expanded (read-only) */
+  /** Visible if no depth or parent.expanded */
   @Prop({ mutable: true }) visible = true;
 
   /** Is row expanded */

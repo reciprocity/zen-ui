@@ -1,4 +1,4 @@
-import { h, Component, Element, Host, Prop } from '@stencil/core';
+import { h, Component, Element, Host, Prop, State } from '@stencil/core';
 import { applyPrefix } from '../helpers/helpers';
 
 @Component({
@@ -7,6 +7,8 @@ import { applyPrefix } from '../helpers/helpers';
   shadow: true,
 })
 export class ZenTableHeader {
+  @State() expandable = false;
+
   @Element() host: HTMLZenTableHeaderElement;
 
   /** Remains fixed at the top of the table during vertical scrolling */
@@ -15,12 +17,16 @@ export class ZenTableHeader {
   /** Show checkbox */
   @Prop() readonly selectable = false;
 
-  hasExpendableRows(): boolean {
-    const children = Array.from(this.host.parentNode.children);
+  hasExpandableRows(): boolean {
+    let expandable = false;
+    const children = Array.from(this.host.parentElement.children);
     children.forEach(child => {
-      if (child.classList.contains('expendable')) return true;
+      if (child.classList.contains('expandable')) {
+        expandable = true;
+        return;
+      }
     });
-    return false;
+    return expandable;
   }
 
   setSticky(): void {
@@ -38,13 +44,18 @@ export class ZenTableHeader {
     }
   }
 
+  componentDidLoad(): void {
+    // Has to be run after component is loaded
+    this.expandable = this.hasExpandableRows();
+  }
+
   render(): HTMLTableRowElement {
     const ZenTableHeaderCell = applyPrefix('zen-table-header-cell', this.host);
     const ZenCheckBox = applyPrefix('zen-checkbox', this.host);
     return (
       <Host>
         {this.selectable && (
-          <ZenTableHeaderCell class={{ selectable: this.selectable, expendable: this.hasExpendableRows() }}>
+          <ZenTableHeaderCell class={{ selectable: this.selectable, expandable: this.expandable }}>
             <ZenCheckBox />
           </ZenTableHeaderCell>
         )}
