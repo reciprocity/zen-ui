@@ -16,7 +16,7 @@
   z-index: 2;
 }
 
-:host::after {
+:host(.sticky)::after {
   content: '';
   position: absolute;
   left: 0;
