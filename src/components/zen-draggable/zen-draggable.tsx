@@ -10,14 +10,9 @@ export class ZenDraggable {
   @Element() host: HTMLZenDraggableElement;
 
   componentDidLoad(): void {
-    const children = Array.from(this.host.parentElement.children);
-    children.forEach(child => {
-      new Sortable(child, {
-        animation: 150,
-      });
-    });
+    Sortable.create(this.host, { animation: 150 });
   }
-  render() {
+  render(): HTMLElement {
     return (
       <Host>
         <slot></slot>
