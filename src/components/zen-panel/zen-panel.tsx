@@ -36,10 +36,10 @@ export class ZenPanel {
 
     return (
       <Host>
-        <div class="header-container" onClick={() => this.toggleContent()}>
+        <sb-zen-text class="header-container" size="md" onClick={() => this.toggleContent()}>
           <ZenIcon icon={this.icon()} size="sm" class="icon fill chevron" />
           <slot name="header" />
-        </div>
+        </sb-zen-text>
         <div class={this.contentClasses()}>
           <slot></slot>
         </div>
