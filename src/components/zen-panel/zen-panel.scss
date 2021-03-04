@@ -1,0 +1,28 @@
+@import '../../zen-styles/component-helpers.scss';
+
+:host {
+  display: block;
+  font-size: 0.875rem;
+}
+
+.header-container {
+  cursor: pointer;
+}
+
+.chevron {
+  color: $color-gray-700;
+}
+
+.header {
+  margin-left: 4px;
+}
+
+.content {
+  display: none;
+
+  margin-top: 1rem;
+}
+
+.visible {
+  display: block;
+}

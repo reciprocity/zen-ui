@@ -1,0 +1,114 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
+import { html } from 'lit-html';
+
+import { getArgTypes, getDefaultArgs, getComponentData, spreadArgs } from '../../../.storybook/helpers/argTypes';
+
+import data from '../../../stencilDocs.json';
+const compData = data.components.find(n => n.tag === 'zen-panel');
+const argTypes = getArgTypes(compData);
+
+<Meta title="Containers/Panel" component="zen-panel" argTypes={argTypes} />
+
+export const StoryWithControls = args => {
+  return html/*html*/ `
+    <sb-zen-panel ...="${spreadArgs(args, argTypes)}">
+      <div slot="header">Panel title</div>
+      Content
+    </sb-zen-panel>
+  `;
+};
+
+export const StoryText = () => {
+  return html/*html*/ `
+    <div>
+      <sb-zen-panel>
+        <div slot="header">Panel title 1</div>
+        Content
+      </sb-zen-panel>
+    </div>
+  `;
+};
+
+export const StoryDivs = () => {
+  return html/*html*/ `
+    <div>
+      <sb-zen-panel>
+        <div slot="header">Panel title 2</div>
+        <div style="width: 4rem; height: 4rem; background: lightgreen;">Content but in a div</div>
+      </sb-zen-panel>
+    </div>
+  `;
+};
+
+export const StoryFormElement = () => {
+  return html/*html*/ `
+    <div>
+      <sb-zen-panel>
+        <div slot="header">Settings</div>
+        <sb-zen-toggle></sb-zen-toggle>
+        <span style="margin-left: 0.25rem;">Enable Jira integration</span>
+      </sb-zen-panel>
+    </div>
+  `;
+};
+
+export const StoryFormElementVisible = () => {
+  return html/*html*/ `
+    <div>
+      <sb-zen-panel visible>
+        <div slot="header">Settings</div>
+        <sb-zen-toggle></sb-zen-toggle>
+        <span style="margin-left: 0.25rem;">Enable Jira integration</span>
+      </sb-zen-panel>
+    </div>
+  `;
+};
+
+# Panel
+
+Expand and collapse a content area.
+
+## Component previews
+
+<br />
+
+### 1. Panel with text
+
+<Canvas>
+  <Story name="text">{StoryText.bind({})}</Story>
+</Canvas>
+
+### 2. Panel with divs
+
+<Canvas>
+  <Story name="divs">{StoryDivs.bind({})}</Story>
+</Canvas>
+
+### 3. Panel with form element
+
+<Canvas>
+  <Story name="form-element">{StoryFormElement.bind({})}</Story>
+</Canvas>
+
+### 4. Panel with form element and visible by default
+
+<Canvas>
+  <Story name="form-element-visible">{StoryFormElementVisible.bind({})}</Story>
+</Canvas>
+
+## Properties
+
+<Canvas>
+  <Story
+    name="default"
+    args={{
+      ...getDefaultArgs(argTypes),
+    }}
+  >
+    {StoryWithControls.bind({})}
+  </Story>
+</Canvas>
+
+<ArgsTable story="default" />
+
+<docs-table docs={JSON.stringify(getComponentData('zen-panel'))}></docs-table>
