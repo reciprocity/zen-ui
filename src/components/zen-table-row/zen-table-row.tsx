@@ -10,7 +10,7 @@ import { faChevronRight } from '@fortawesome/pro-light-svg-icons';
 export class ZenTableRow {
   @Element() element: HTMLZenTableRowElement;
 
-  /** Show checkbox */
+  /** Show checkbox (read-only) */
   @Prop() readonly selectable = false;
 
   /** Visible if no depth or parent.expanded */
@@ -22,12 +22,19 @@ export class ZenTableRow {
   /** Is cell full span (colspan=number of cells) */
   @Prop() readonly fullSpan = false;
 
-  /** Depth position of row */
+  /** Depth position of row (read-only) */
   @Prop() readonly depth: number = 0;
 
   @Watch('expanded')
-  async visibleChanged(expanded?: boolean): Promise<void> {
-    this.children().forEach(child => (child.visible = expanded));
+  async expandedChanged(expanded: boolean): Promise<void> {
+    if (expanded) {
+      this.children().forEach(n => (n.visible = true));
+    } else {
+      this.descendants().forEach(n => {
+        n.visible = false;
+        n.expanded = false;
+      });
+    }
   }
 
   children(): HTMLZenTableRowElement[] {
@@ -73,14 +80,8 @@ export class ZenTableRow {
     return null;
   }
 
-  closeDescendants(): void {
-    // Close all descendents of this row
-    this.descendants().forEach(n => (n.expanded = false));
-  }
-
-  onClick(): void {
+  toggleExpand(): void {
     this.expanded = !this.expanded;
-    this.closeDescendants();
   }
 
   showWidgets(): boolean {
@@ -128,7 +129,7 @@ export class ZenTableRow {
               size="sm"
               padding="sm"
               icon={faChevronRight}
-              onClick={() => this.onClick()}
+              onClick={() => this.toggleExpand()}
             />
           </ZenTableCell>
         )}

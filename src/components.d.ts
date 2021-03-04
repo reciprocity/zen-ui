@@ -494,7 +494,7 @@ export namespace Components {
     }
     interface ZenTableRow {
         /**
-          * Depth position of row
+          * Depth position of row (read-only)
          */
         "depth": number;
         /**
@@ -506,7 +506,7 @@ export namespace Components {
          */
         "fullSpan": false;
         /**
-          * Show checkbox
+          * Show checkbox (read-only)
          */
         "selectable": false;
         /**
@@ -1390,7 +1390,7 @@ declare namespace LocalJSX {
     }
     interface ZenTableRow {
         /**
-          * Depth position of row
+          * Depth position of row (read-only)
          */
         "depth"?: number;
         /**
@@ -1402,7 +1402,7 @@ declare namespace LocalJSX {
          */
         "fullSpan"?: false;
         /**
-          * Show checkbox
+          * Show checkbox (read-only)
          */
         "selectable"?: false;
         /**
