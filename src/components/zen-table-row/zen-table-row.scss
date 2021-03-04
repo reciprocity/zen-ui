@@ -14,7 +14,7 @@
 }
 
 :host(.selected) {
-  background: $color-blue-100;
+  background: $color-blue-50;
   border: 1px solid $color-blue-700;
 }
 
@@ -66,10 +66,18 @@ $checkbox-width: 2rem;
   }
 
   :host([depth='#{$i}']) .widgets {
-    padding-left: #{$i * 1.5}rem;
+    padding-left: #{$i * 2}rem;
   }
 
   :host([depth='#{$i}'].expandable) ::slotted(*:first-child) {
+    padding-left: #{($i + 1) *  $arrow-width};
+  }
+
+  :host([depth='#{$i}'].selectable) ::slotted(*:first-child) {
+    padding-left: #{($i + 1) * $checkbox-width};
+  }
+
+  :host([depth='#{$i}'].selectable.expandable) ::slotted(*:first-child) {
     padding-left: #{($i + 1) * $checkbox-width + $arrow-width};
   }
 }
