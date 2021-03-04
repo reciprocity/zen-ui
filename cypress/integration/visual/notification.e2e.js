@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
 import { createVisualTests } from '../../support/utils/visualTesting';
 
-describe('Notification visual tests', () => {
+describe.skip('Notification visual tests', () => {
   const pageId = 'notifications-notification--variants';
   const stories = ['story--notifications-notification--variants', 'story--notifications-notification--default-story'];
 
