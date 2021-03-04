@@ -4,6 +4,8 @@ import { eventHandles, action } from '../../../.storybook/helpers/custom-action'
 import { getArgTypes, getDefaultArgs, getComponentData, spreadArgs } from '../../../.storybook/helpers/argTypes';
 
 import data from '../../../stencilDocs.json';
+import { faArrowRight } from '@fortawesome/pro-light-svg-icons';
+import { waitForElement } from '../../../.storybook/helpers/utils';
 const compData = data.components.find(n => n.tag === 'zen-table');
 const argTypes = getArgTypes(compData);
 
@@ -157,29 +159,167 @@ export const Story3 = () => {
         <sb-zen-table-cell>Row 4, Cell 3</sb-zen-table-cell>
         <sb-zen-table-cell>Row 4, Cell 4</sb-zen-table-cell>
       </sb-zen-table-row>
-      <sb-zen-table-row>
-        <sb-zen-table-cell>Row 5, Cell 1</sb-zen-table-cell>
-        <sb-zen-table-cell>Row 5, Cell 2</sb-zen-table-cell>
-        <sb-zen-table-cell>Row 5, Cell 3</sb-zen-table-cell>
-        <sb-zen-table-cell>Row 5, Cell 4</sb-zen-table-cell>
+    </sb-zen-table>
+  `;
+};
+
+export const StorySelectable = () => {
+  return html/*html*/ `
+    <sb-zen-table>
+      <sb-zen-table-header selectable>
+        <sb-zen-table-header-cell>Title 1</sb-zen-table-header-cell>
+        <sb-zen-table-header-cell>Title 2</sb-zen-table-header-cell>
+        <sb-zen-table-header-cell>Title 3</sb-zen-table-header-cell>
+        <sb-zen-table-header-cell>Title 4</sb-zen-table-header-cell>
+      </sb-zen-table-header>
+      <sb-zen-table-row selectable>
+        <sb-zen-table-cell>Row 1, Cell 1</sb-zen-table-cell>
+        <sb-zen-table-cell>Row 1, Cell 2</sb-zen-table-cell>
+        <sb-zen-table-cell>Row 1, Cell 3</sb-zen-table-cell>
+        <sb-zen-table-cell>Row 1, Cell 4</sb-zen-table-cell>
       </sb-zen-table-row>
-      <sb-zen-table-row>
-        <sb-zen-table-cell>Row 6, Cell 1</sb-zen-table-cell>
-        <sb-zen-table-cell>Row 6, Cell 2</sb-zen-table-cell>
-        <sb-zen-table-cell>Row 6, Cell 3</sb-zen-table-cell>
-        <sb-zen-table-cell>Row 6, Cell 4</sb-zen-table-cell>
+      <sb-zen-table-row selectable>
+        <sb-zen-table-cell>Row 2, Cell 1</sb-zen-table-cell>
+        <sb-zen-table-cell>Row 2, Cell 2</sb-zen-table-cell>
+        <sb-zen-table-cell>Row 2, Cell 3</sb-zen-table-cell>
+        <sb-zen-table-cell>Row 2, Cell 4</sb-zen-table-cell>
       </sb-zen-table-row>
-      <sb-zen-table-row>
-        <sb-zen-table-cell>Row 7, Cell 1</sb-zen-table-cell>
-        <sb-zen-table-cell>Row 7, Cell 2</sb-zen-table-cell>
-        <sb-zen-table-cell>Row 7, Cell 3</sb-zen-table-cell>
-        <sb-zen-table-cell>Row 7, Cell 4</sb-zen-table-cell>
+      <sb-zen-table-row selectable>
+        <sb-zen-table-cell>Row 3, Cell 1</sb-zen-table-cell>
+        <sb-zen-table-cell>Row 3, Cell 2</sb-zen-table-cell>
+        <sb-zen-table-cell>Row 3, Cell 3</sb-zen-table-cell>
+        <sb-zen-table-cell>Row 3, Cell 4</sb-zen-table-cell>
       </sb-zen-table-row>
-      <sb-zen-table-row>
-        <sb-zen-table-cell>Row 8, Cell 1</sb-zen-table-cell>
-        <sb-zen-table-cell>Row 8, Cell 2</sb-zen-table-cell>
-        <sb-zen-table-cell>Row 8, Cell 3</sb-zen-table-cell>
-        <sb-zen-table-cell>Row 8, Cell 4</sb-zen-table-cell>
+    </sb-zen-table>
+  `;
+};
+
+export const StoryTree = () => {
+  waitForElement('#icon1', element => {
+    element.icon = faArrowRight;
+  });
+  return html/*html*/ `
+    <style>
+      .first {
+        width: 50%;
+      }
+    </style>
+    <sb-zen-table>
+      <sb-zen-table-row selectable>
+        <sb-zen-table-cell class="first"
+          ><sb-zen-text>PCI Requirement 1 - Firewall Configuration</sb-zen-text></sb-zen-table-cell
+        >
+        <sb-zen-table-cell><sb-zen-text>Status</sb-zen-text></sb-zen-table-cell>
+        <sb-zen-table-cell><sb-zen-text>Some description plus some</sb-zen-text></sb-zen-table-cell>
+      </sb-zen-table-row>
+      <sb-zen-table-row depth="1" selectable>
+        <sb-zen-table-cell class="first"
+          ><sb-zen-text>PCI Requirement 2 - Firewall Configuration</sb-zen-text></sb-zen-table-cell
+        >
+        <sb-zen-table-cell><sb-zen-text>Status</sb-zen-text></sb-zen-table-cell>
+        <sb-zen-table-cell><sb-zen-text>Some description plus some</sb-zen-text></sb-zen-table-cell>
+      </sb-zen-table-row>
+      <sb-zen-table-row depth="1" selectable>
+        <sb-zen-table-cell class="first"
+          ><sb-zen-text>PCI Requirement 3 - Firewall Configuration</sb-zen-text></sb-zen-table-cell
+        >
+        <sb-zen-table-cell><sb-zen-text>Status</sb-zen-text></sb-zen-table-cell>
+        <sb-zen-table-cell><sb-zen-text>Some description plus some</sb-zen-text></sb-zen-table-cell>
+      </sb-zen-table-row>
+      <sb-zen-table-row depth="2" selectable>
+        <sb-zen-table-cell class="first"
+          ><sb-zen-text>PCI Requirement 4 - Firewall Configuration</sb-zen-text></sb-zen-table-cell
+        >
+        <sb-zen-table-cell><sb-zen-text>Status</sb-zen-text></sb-zen-table-cell>
+        <sb-zen-table-cell><sb-zen-text>Some description plus some</sb-zen-text></sb-zen-table-cell>
+      </sb-zen-table-row>
+      <sb-zen-table-row depth="2" selectable>
+        <sb-zen-table-cell class="first"
+          ><sb-zen-text>PCI Requirement 5 - Firewall Configuration</sb-zen-text></sb-zen-table-cell
+        >
+        <sb-zen-table-cell><sb-zen-text>Status</sb-zen-text></sb-zen-table-cell>
+        <sb-zen-table-cell><sb-zen-text>Some description plus some</sb-zen-text></sb-zen-table-cell>
+      </sb-zen-table-row>
+      <sb-zen-table-row depth="2" selectable>
+        <sb-zen-table-cell class="first"
+          ><sb-zen-text>PCI Requirement 6 - Firewall Configuration</sb-zen-text></sb-zen-table-cell
+        >
+        <sb-zen-table-cell><sb-zen-text>Status</sb-zen-text></sb-zen-table-cell>
+        <sb-zen-table-cell><sb-zen-text>Some description plus some</sb-zen-text></sb-zen-table-cell>
+      </sb-zen-table-row>
+      <sb-zen-table-row depth="1" selectable>
+        <sb-zen-table-cell class="first"
+          ><sb-zen-text>PCI Requirement 7 - Firewall Configuration</sb-zen-text></sb-zen-table-cell
+        >
+        <sb-zen-table-cell><sb-zen-text>Status</sb-zen-text></sb-zen-table-cell>
+        <sb-zen-table-cell><sb-zen-text>Some description plus some</sb-zen-text></sb-zen-table-cell>
+      </sb-zen-table-row>
+      <sb-zen-table-row depth="0" selectable>
+        <sb-zen-table-cell class="first"
+          ><sb-zen-text>PCI Requirement 8 - Firewall Configuration</sb-zen-text></sb-zen-table-cell
+        >
+        <sb-zen-table-cell><sb-zen-text>Status</sb-zen-text></sb-zen-table-cell>
+        <sb-zen-table-cell><sb-zen-text>Some description plus some</sb-zen-text></sb-zen-table-cell>
+      </sb-zen-table-row>
+      <sb-zen-table-row depth="1" selectable>
+        <sb-zen-table-cell class="first"
+          ><sb-zen-text>PCI Requirement 8 - Firewall Configuration</sb-zen-text></sb-zen-table-cell
+        >
+        <sb-zen-table-cell><sb-zen-text>Status</sb-zen-text></sb-zen-table-cell>
+        <sb-zen-table-cell><sb-zen-text>Some description plus some</sb-zen-text></sb-zen-table-cell>
+      </sb-zen-table-row>
+      <sb-zen-table-row depth="1" selectable>
+        <sb-zen-table-cell class="first"
+          ><sb-zen-text>PCI Requirement 9 - Firewall Configuration</sb-zen-text></sb-zen-table-cell
+        >
+        <sb-zen-table-cell><sb-zen-text>Status</sb-zen-text></sb-zen-table-cell>
+        <sb-zen-table-cell><sb-zen-text>Some description plus some</sb-zen-text></sb-zen-table-cell>
+      </sb-zen-table-row>
+    </sb-zen-table>
+  `;
+};
+
+export const StoryExtendedRowContent = () => {
+  return html/*html*/ `
+    <sb-zen-table>
+      <sb-zen-table-header selectable>
+        <sb-zen-table-header-cell>Title 1</sb-zen-table-header-cell>
+        <sb-zen-table-header-cell>Title 2</sb-zen-table-header-cell>
+        <sb-zen-table-header-cell>Title 3</sb-zen-table-header-cell>
+        <sb-zen-table-header-cell>Title 4</sb-zen-table-header-cell>
+      </sb-zen-table-header>
+      <sb-zen-table-row full-span-parent selectable>
+        <sb-zen-table-cell>Row 1, Cell 1</sb-zen-table-cell>
+        <sb-zen-table-cell>Row 1, Cell 2</sb-zen-table-cell>
+        <sb-zen-table-cell>Row 1, Cell 3</sb-zen-table-cell>
+        <sb-zen-table-cell>Row 1, Cell 4</sb-zen-table-cell>
+      </sb-zen-table-row>
+      <sb-zen-table-row full-span depth="1" style="height:215px;">
+        <sb-zen-table-cell>
+          <sb-zen-space vertical no-wrap spacing="lg" padding="lg">
+            <sb-zen-dropdown style="width: 200px">
+              <sb-zen-option value="1" disabled="true">Option 1</sb-zen-option>
+              <sb-zen-option value="2">Option 2</sb-zen-option>
+              <sb-zen-option value="3">Option 3</sb-zen-option>
+            </sb-zen-dropdown>
+            <sb-zen-table>
+              <sb-zen-table-row>
+                <sb-zen-table-cell>Inner Row 1, Cell 1</sb-zen-table-cell>
+                <sb-zen-table-cell>Inner Row 1, Cell 2</sb-zen-table-cell>
+              </sb-zen-table-row>
+              <sb-zen-table-row>
+                <sb-zen-table-cell>Inner Row 2, Cell 1</sb-zen-table-cell>
+                <sb-zen-table-cell>Inner Row 2, Cell 2</sb-zen-table-cell>
+              </sb-zen-table-row>
+            </sb-zen-table>
+          </sb-zen-space>
+        </sb-zen-table-cell>
+      </sb-zen-table-row>
+      <sb-zen-table-row selectable>
+        <sb-zen-table-cell>Row 2, Cell 1</sb-zen-table-cell>
+        <sb-zen-table-cell>Row 2, Cell 2</sb-zen-table-cell>
+        <sb-zen-table-cell>Row 2, Cell 3</sb-zen-table-cell>
+        <sb-zen-table-cell>Row 2, Cell 4</sb-zen-table-cell>
       </sb-zen-table-row>
     </sb-zen-table>
   `;
@@ -275,6 +415,30 @@ A composition of `ZenTable` component and fragment `ZenTableRow`, `ZenTableHeade
 
 <Canvas>
   <Story name="no-header">{Story3.bind({})}</Story>
+</Canvas>
+
+### 4. Table with selectable rows
+
+`ZenTable` component with selectable rows.
+
+<Canvas>
+  <Story name="selectable">{StorySelectable.bind({})}</Story>
+</Canvas>
+
+### 5. Table as a tree
+
+`ZenTable` tree view.
+
+<Canvas>
+  <Story name="tree">{StoryTree.bind({})}</Story>
+</Canvas>
+
+### 6. Custom extended row with content
+
+`ZenTable` setting table row parameter fullspan and height of row we get a slotted row .
+
+<Canvas>
+  <Story name="custom">{StoryExtendedRowContent.bind({})}</Story>
 </Canvas>
 
 ## Properties

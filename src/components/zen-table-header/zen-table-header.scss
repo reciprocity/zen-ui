@@ -2,3 +2,15 @@
   display: table-row;
   position: relative;
 }
+
+.selectable {
+  width: 2rem;
+}
+
+.expandable {
+  width: 1rem;
+}
+
+.selectable.expandable {
+  width: 3rem;
+}

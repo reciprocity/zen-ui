@@ -2,7 +2,71 @@
 
 :host {
   display: table-row;
-
   border-top: 1px solid $color-gray-200;
   border-bottom: 1px solid $color-gray-200;
+  position: relative;
+  transform: scale(1); // hack to apply position relative (tested in chrome & ff)
+}
+
+:host(.hidden) {
+  display: none;
+}
+
+.expand-icon {
+  cursor: pointer;
+  transition: transform 0.25s ease-in-out;
+}
+
+.expanded {
+  .expand-icon {
+    transform: rotate(90deg);
+  }
+}
+
+:host([full-span]) ::slotted(*:first-child) {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  inset: 0 0 auto 0;
+}
+
+.widgets {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+  position: absolute;
+  inset: 0 auto 0 0;
+
+  &.hidden {
+    display: none;
+  }
+}
+
+.checkbox.hidden,
+.expand-icon.hidden {
+  display: none;
+}
+
+// Checkboxes and expand arrow padding:
+$arrow-width: 1rem;
+$checkbox-width: 2rem;
+
+:host(:not([depth]):not([full-span-parent]).expandable.selectable) ::slotted(*:first-child) {
+  padding-left: #{$checkbox-width + $arrow-width};
+}
+
+@for $i from 0 through 32 {
+  :host([depth='#{$i}']:not([full-span])) ::slotted(*:first-child) {
+    padding-left: #{($i + 1) * 2}rem;
+  }
+
+  :host([depth='#{$i}']) .widgets {
+    padding-left: #{$i * 1.5}rem;
+  }
+
+  :host([depth='#{$i}'].expandable) ::slotted(*:first-child) {
+    padding-left: #{($i + 1) * $checkbox-width + $arrow-width};
+  }
 }

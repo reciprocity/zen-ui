@@ -3,26 +3,24 @@
 :host {
   display: table-cell;
   padding: 0.5rem 0;
-
   background: $color-white;
   border-bottom: 2px solid $color-gray-200;
   font-weight: bold;
   text-align: left;
+  vertical-align: middle;
 }
 
 :host(.sticky) {
   position: sticky;
   top: 0;
+  z-index: 2;
 }
 
-:host:after {
+:host(.sticky)::after {
   content: '';
   position: absolute;
   left: 0;
   width: 100%;
-}
-
-:host:after {
   bottom: -2px;
   border-bottom: 2px solid $color-gray-200;
 }

@@ -484,6 +484,10 @@ export namespace Components {
     }
     interface ZenTableHeader {
         /**
+          * Show checkbox
+         */
+        "selectable": false;
+        /**
           * Remains fixed at the top of the table during vertical scrolling
          */
         "sticky": false;
@@ -495,6 +499,26 @@ export namespace Components {
         "sticky": false;
     }
     interface ZenTableRow {
+        /**
+          * Depth position of row (read-only)
+         */
+        "depth": number;
+        /**
+          * Is row expanded
+         */
+        "expanded": boolean;
+        /**
+          * Is cell full span (colspan=number of cells)
+         */
+        "fullSpan": false;
+        /**
+          * Show checkbox (read-only)
+         */
+        "selectable": false;
+        /**
+          * Visible if no depth or parent.expanded
+         */
+        "visible": boolean;
     }
     interface ZenTabs {
         /**
@@ -1369,6 +1393,10 @@ declare namespace LocalJSX {
     }
     interface ZenTableHeader {
         /**
+          * Show checkbox
+         */
+        "selectable"?: false;
+        /**
           * Remains fixed at the top of the table during vertical scrolling
          */
         "sticky"?: false;
@@ -1380,6 +1408,26 @@ declare namespace LocalJSX {
         "sticky"?: false;
     }
     interface ZenTableRow {
+        /**
+          * Depth position of row (read-only)
+         */
+        "depth"?: number;
+        /**
+          * Is row expanded
+         */
+        "expanded"?: boolean;
+        /**
+          * Is cell full span (colspan=number of cells)
+         */
+        "fullSpan"?: false;
+        /**
+          * Show checkbox (read-only)
+         */
+        "selectable"?: false;
+        /**
+          * Visible if no depth or parent.expanded
+         */
+        "visible"?: boolean;
     }
     interface ZenTabs {
         /**
