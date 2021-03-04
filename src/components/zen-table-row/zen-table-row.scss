@@ -53,7 +53,7 @@
 $arrow-width: 1rem;
 $checkbox-width: 2rem;
 
-:host(:not([depth]).expandable.selectable) ::slotted(*:first-child) {
+:host(:not([depth]):not([full-span-parent]).expandable.selectable) ::slotted(*:first-child) {
   padding-left: #{$checkbox-width + $arrow-width};
 }
 
