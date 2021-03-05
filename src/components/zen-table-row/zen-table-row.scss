@@ -1,4 +1,8 @@
 @import '../../zen-styles/component-helpers.scss';
+@import '../../zen-styles/mixins/forms.scss';
+
+$expand-icon-transition: 0.2s;
+$select-transition: 0.5s;
 
 :host {
   display: table-row;
@@ -7,6 +11,7 @@
   border-right: 1px solid $color-white;
   position: relative;
   transform: scale(1); // hack to apply position relative (tested in chrome & ff)
+  transition: border $select-transition;
 }
 
 :host(.hidden) {
@@ -15,18 +20,11 @@
 
 :host(.selected) {
   background: $color-blue-50;
-  border: 1px solid $color-blue-700;
+  border: 1px solid $color-blue-700 !important;
 }
 
-.expand-icon {
-  cursor: pointer;
-  transition: transform 0.25s ease-in-out;
-}
-
-.expanded {
-  .expand-icon {
-    transform: rotate(90deg);
-  }
+:host([full-span-parent]) {
+  border-bottom: 1px solid $color-gray-200;
 }
 
 :host([full-span]) ::slotted(*:first-child) {
@@ -34,6 +32,18 @@
   left: 0;
   width: 100%;
   inset: 0 0 auto 0;
+  border-top: none;
+}
+
+.expand-icon {
+  cursor: pointer;
+  transition: transform $expand-icon-transition;
+}
+
+.expanded {
+  .expand-icon {
+    transform: rotate(90deg);
+  }
 }
 
 .widgets {
