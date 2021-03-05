@@ -6,7 +6,7 @@ import { waitForElement } from '../../../.storybook/helpers/utils';
 const compData = data.components.find(n => n.tag === 'zen-avatar');
 const argTypes = getArgTypes(compData);
 
-<Meta title="Icons/Avatar" component="zen-avatar" argTypes={argTypes} />
+<Meta title="Icons/Avatar/Avatar" component="zen-avatar" argTypes={argTypes} />
 
 export const user = [
   {
@@ -60,7 +60,7 @@ export const StoryWithControls = args => {
     element.users = args.users;
   });
   return html/*html*/ `
-    <sb-zen-space vertical-align="center" horizontal-align="center" style="height: 200px;">
+    <sb-zen-space vertical-align="center" horizontal-align="center">
       <sb-zen-avatar id="avatar-control" ...="${spreadArgs(args, argTypes)}" />
     </sb-zen-space>
   `;
@@ -71,7 +71,7 @@ export const StoryAvatar = () => {
     element.users = user;
   });
   return html/*html*/ `
-    <sb-zen-space vertical-align="center" horizontal-align="center" style="height: 200px;">
+    <sb-zen-space vertical-align="center" horizontal-align="center">
       <sb-zen-avatar id="avatar" />
     </sb-zen-space>
   `;
@@ -82,7 +82,7 @@ export const StoryAvatarMultipleUsers = () => {
     element.users = users;
   });
   return html/*html*/ `
-    <sb-zen-space vertical-align="center" horizontal-align="center" style="height: 510px;">
+    <sb-zen-space vertical-align="center" horizontal-align="center">
       <sb-zen-avatar id="avatar-multi" />
     </sb-zen-space>
   `;

@@ -1,7 +1,6 @@
 /// <reference types="cypress" />
-import { createVisualTests } from '../../support/utils/visualTesting';
 
-describe('Dropdown visual tests', () => {
+describe('Dropdown visual tests', { scrollBehavior: 'center' }, () => {
   const pageId = 'forms-dropdown--button';
   const stories = [
     'story--forms-dropdown--button',
@@ -15,5 +14,22 @@ describe('Dropdown visual tests', () => {
     cy.verifyAllStoriesHaveVRT(stories);
   });
 
-  createVisualTests(stories);
+  stories.forEach(story => {
+    it('Verifies opened dropdown in ' + `${story}`, () => {
+      const dropdown = `#${story} sb-zen-dropdown`;
+      cy.get(dropdown).click();
+      // wait menu:
+      cy.get(dropdown)
+        .shadow()
+        .find('sb-zen-popover')
+        .shadow()
+        .find('.popup-wrap', { timeout: 1000 })
+        .should('be.visible');
+
+      // field screenshot:
+      cy.get(dropdown).shadow().find('sb-zen-popover').shadow().find('.popup-wrap').matchImageSnapshot();
+      // menu screenshot:
+      cy.get(dropdown).matchImageSnapshot(`field-${story}`);
+    });
+  });
 });

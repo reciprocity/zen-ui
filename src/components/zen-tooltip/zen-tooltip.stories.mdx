@@ -18,14 +18,9 @@ export const user = [
 
 export const Template = args => {
   return html/*html*/ `
-    <sb-zen-space horizontal-align="center" vertical-align="center" style="height: 300px;">
+    <sb-zen-space horizontal-align="center" vertical-align="center">
       <sb-zen-button label="Apply changes" variant="secondary">Button</sb-zen-button>
-      <sb-zen-tooltip ...="${spreadArgs(args, argTypes)}">
-        <sb-zen-text size="sm" style="color: inherit"
-          >Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-          industry's standard dummy text ever since the 1500s.</sb-zen-text
-        >
-      </sb-zen-tooltip>
+      <sb-zen-tooltip ...="${spreadArgs(args, argTypes)}"></sb-zen-tooltip>
     </sb-zen-space>
   `;
 };
@@ -35,8 +30,8 @@ export const TemplateSlot = () => {
     element.users = user;
   });
   return html/*html*/ `
-    <sb-zen-space horizontal-align="center" vertical-align="center" style="height:150px" >
-     <div>
+    <sb-zen-space horizontal-align="center" vertical-align="center">
+      <div>
         <sb-zen-button label="User" variant="secondary"></sb-zen-button>
         <sb-zen-tooltip position="top" variant="light">
             <sb-zen-space slot="content" no-wrap padding="lg" spacing="lg">
@@ -45,7 +40,7 @@ export const TemplateSlot = () => {
                   <sb-zen-text size="sm" bold>Niki Franklin</sb-zen-text>
                   <sb-zen-text size="sm">niki.franklin@reciprocitylabs.com</sb-zen-text>
               <sb-zen-space>
-             </sb-zen-tooltip>
+              </sb-zen-tooltip>
             </sb-zen-space>
         </div>
     </sb-zen-space>
@@ -54,7 +49,7 @@ export const TemplateSlot = () => {
 
 export const TemplateVariants = () => {
   return html/*html*/ `
-    <sb-zen-space nowrap horizontal-align="space-evenly" vertical-align="end" style="height:250px">
+    <sb-zen-space nowrap horizontal-align="space-evenly" vertical-align="end">
       <div>
           <sb-zen-button label="Example" variant="primary"></sb-zen-button>
           <sb-zen-tooltip position="top" variant="dark">
@@ -79,7 +74,7 @@ export const TemplateVariants = () => {
 
 export const Scrollable = () => {
   return html/*html*/ `
-    <sb-zen-space nowrap horizontal-align="space-evenly" vertical-align="end" style="height:200px">
+    <sb-zen-space nowrap horizontal-align="space-evenly" vertical-align="end">
       <div>
         <sb-zen-button label="Info" variant="secondary">Hover</sb-zen-button>
         <sb-zen-tooltip position="top" variant="light" label="Override text" max-height="10rem">

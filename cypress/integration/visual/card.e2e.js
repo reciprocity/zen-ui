@@ -3,13 +3,9 @@
 import { createVisualTests } from '../../support/utils/visualTesting';
 
 describe('Card visual tests', () => {
-  const pageId = 'containers-card--default';
+  const pageId = 'layout-card--default';
 
-  const stories = [
-    'story--containers-card--card',
-    'story--containers-card--disabled',
-    'story--containers-card--default-story',
-  ];
+  const stories = ['story--layout-card--card', 'story--layout-card--disabled', 'story--layout-card--default-story'];
 
   before(() => {
     cy.visitStorybookIframe(pageId);

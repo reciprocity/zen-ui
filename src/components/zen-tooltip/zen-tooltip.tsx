@@ -91,7 +91,11 @@ export class ZenTooltip {
         >
           <slot name="content">
             <ZenSpace padding="lg">
-              <slot>{this.label}</slot>
+              <slot>
+                <sb-zen-text size="sm" style={{ color: this.color }}>
+                  {this.label}
+                </sb-zen-text>
+              </slot>
             </ZenSpace>
           </slot>
         </ZenPopover>

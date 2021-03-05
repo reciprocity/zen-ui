@@ -5,14 +5,14 @@ import { waitForElement } from '../../../.storybook/helpers/utils';
 import { getArgTypesAndArgs, getDefaultArgs, getComponentData, spreadArgs } from '../../../.storybook/helpers/argTypes';
 const { argTypes } = getArgTypesAndArgs('zen-popover');
 
-<Meta title="In progress/Popover" component="zen-popover" argTypes={argTypes} />
+<Meta title="Layout/Popover" component="zen-popover" argTypes={argTypes} />
 
 export const StoryWithControls = args => {
   waitForElement('#control', element => {
     element.offset = args.offset;
   });
   return html/*html*/ `
-    <sb-zen-space no-wrap padding="xl" spacing="sm" horizontal-align="center" vertical-align="center">
+    <sb-zen-space no-wrap spacing="sm" horizontal-align="center" vertical-align="center">
       <sb-zen-button variant="primary"> Button </sb-zen-button>
       <sb-zen-popover id="control" ...="${spreadArgs(args, argTypes)}">
         <sb-zen-space padding="md">
@@ -82,7 +82,7 @@ export const StoryPositionVariants = args => {
 
 export const StoryTriggerEvents = args => {
   return html/*html*/ `
-    <sb-zen-space no-wrap horizontal-align="space-evenly" vertical-align="start" style="height: 90px">
+    <sb-zen-space no-wrap horizontal-align="space-evenly" vertical-align="start">
       <sb-zen-button variant="primary">Click toggle</sb-zen-button>
       <sb-zen-popover>
         <sb-zen-space padding="md">
@@ -113,8 +113,8 @@ export const StoryTriggerEvents = args => {
 
 export const StoryScrollable = args => {
   return html/*html*/ `
-    <div style="height: 200px">
-      <sb-zen-space no-wrap padding="none" horizontal-align="center" vertical-align="center" style="height: 200px;">
+    <div style="height: 200px; overflow: auto;">
+      <sb-zen-space no-wrap padding="none" horizontal-align="center" vertical-align="center" style="height: 400px;">
         <sb-zen-button variant="primary"> Top Start </sb-zen-button>
         <sb-zen-popover position="bottom-end" visible="true" close-on-click-out="false">
           <sb-zen-space padding="md">
@@ -157,18 +157,12 @@ export const StoryFilters = args => {
     element.icon = faPlus;
   });
   return html/*html*/ `
-    <sb-zen-space no-wrap spacing="lg" horizontal-align="start" vertical-align="top" style="height: 400px">
+    <sb-zen-space no-wrap spacing="lg" horizontal-align="start" vertical-align="top">
       <sb-zen-button variant="primary">
         <sb-zen-icon slot="leadingIcon" id="filter" style="height:14px; align-self:center;"></sb-zen-icon>
         Filter
       </sb-zen-button>
-      <sb-zen-popover
-        position="bottom-start"
-        visible="true"
-        interactive="true"
-        style="width: fit-content"
-        close-on-click-out="false"
-      >
+      <sb-zen-popover position="bottom-start" interactive="true" style="width: fit-content">
         <sb-zen-space vertical padding="none">
           <sb-zen-space horizontal-align="start" padding="lg">
             <sb-zen-text size="xs" variant="heading">Filters</sb-zen-text>
