@@ -2,7 +2,7 @@
 import { createVisualTests } from '../../support/utils/visualTesting';
 
 describe('Avatar icon visual tests', () => {
-  const pageId = 'icons-avatar-icon--default';
+  const pageId = 'icons-avatar-avatar-icon--default';
   const stories = [
     'story--icons-avatar-avatar-icon--story-avatar-variants',
     'story--icons-avatar-avatar-icon--story-avatar-sizes',
