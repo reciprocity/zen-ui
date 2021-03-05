@@ -6,13 +6,6 @@ $arrow_size: 0.3rem;
   position: absolute;
 }
 
-:host(.dark) {
-  color: $color-white;
-  background-color: $color-gray-800;
-  border: 1px solid $color-gray-800;
-  box-shadow: none;
-}
-
 .popover {
   max-width: 11rem;
   min-width: min-content;

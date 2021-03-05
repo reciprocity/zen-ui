@@ -20,12 +20,7 @@ export const Template = args => {
   return html/*html*/ `
     <sb-zen-space horizontal-align="center" vertical-align="center">
       <sb-zen-button label="Apply changes" variant="secondary">Button</sb-zen-button>
-      <sb-zen-tooltip ...="${spreadArgs(args, argTypes)}">
-        <sb-zen-text size="sm" style="color: inherit"
-          >Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-          industry's standard dummy text ever since the 1500s.</sb-zen-text
-        >
-      </sb-zen-tooltip>
+      <sb-zen-tooltip ...="${spreadArgs(args, argTypes)}"></sb-zen-tooltip>
     </sb-zen-space>
   `;
 };
