@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
 import { createVisualTests } from '../../support/utils/visualTesting';
 
-describe.skip('Notification visual tests', () => {
+describe('Notification visual tests', () => {
   const pageId = 'notifications-notification--variants';
   const stories = ['story--notifications-notification--variants', 'story--notifications-notification--default-story'];
 
@@ -10,6 +10,7 @@ describe.skip('Notification visual tests', () => {
 
   before(() => {
     cy.visitStorybookIframe(pageId);
+    cy.get('sb-zen-notification').should('be.visible');
     cy.verifyAllStoriesHaveVRT(stories, skipedStories);
   });
 
