@@ -1,20 +1,27 @@
 :host {
   box-sizing: border-box;
   display: flex;
+  overflow: hidden;
+}
+
+.content {
+  box-sizing: border-box;
+  display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: baseline;
+  flex: 1 1 100%;
 }
 
-:host([stretch]) {
+:host([stretch]) .content {
   width: 100%;
 }
 
-:host([vertical]) {
+:host([vertical]) .content {
   flex-direction: column;
 }
 
-:host(:not([no-wrap])) {
+:host(:not([no-wrap])) .content {
   flex-wrap: wrap;
 }
 
@@ -30,20 +37,20 @@ $paddings: (
 );
 
 @each $key, $value in $paddings {
-  :host(.padding-#{$key}) {
+  :host(.padding-#{$key}) .content {
     padding: #{$value};
   }
 }
 
 @each $key, $value in $paddings {
-  :host(.padding-x-#{$key}) {
+  :host(.padding-x-#{$key}) .content {
     padding-left: #{$value};
     padding-right: #{$value};
   }
 }
 
 @each $key, $value in $paddings {
-  :host(.padding-y-#{$key}) {
+  :host(.padding-y-#{$key}) .content {
     padding-top: #{$value};
     padding-bottom: #{$value};
   }
@@ -51,7 +58,7 @@ $paddings: (
 
 @each $side in [ 'top', 'right', 'bottom', 'left' ] {
   @each $key, $value in $paddings {
-    :host(.padding-#{$side}-#{$key}) {
+    :host(.padding-#{$side}-#{$key}) .content {
       padding-#{$side}: #{$value};
     }
   }
@@ -71,13 +78,13 @@ $aligns: (
 );
 
 @each $key, $value in $aligns {
-  :host(:not([vertical])[vertical-align='#{$key}']) {
+  :host(:not([vertical])[vertical-align='#{$key}']) .content {
     align-items: #{$value};
   }
 }
 
 @each $key, $value in $aligns {
-  :host(:not([vertical])[horizontal-align='#{$key}']) {
+  :host(:not([vertical])[horizontal-align='#{$key}']) .content {
     justify-content: #{$value};
   }
 }
@@ -85,13 +92,13 @@ $aligns: (
 // Column align ---------------------------------
 
 @each $key, $value in $aligns {
-  :host([vertical-align='#{$key}']) {
+  :host([vertical-align='#{$key}']) .content {
     justify-content: #{$value};
   }
 }
 
 @each $key, $value in $aligns {
-  :host([horizontal-align='#{$key}']) {
+  :host([horizontal-align='#{$key}']) .content {
     align-items: #{$value};
   }
 }
@@ -113,15 +120,31 @@ $spacings: (
 );
 
 @each $key, $value in $spacings {
-  :host([spacing='#{$key}']) ::slotted(*:not(:first-child)) {
-    margin-left: #{$value};
+  :host([spacing='#{$key}']) {
+    .content {
+      margin-left: #{-$value / 2};
+      margin-right: #{-$value / 2};
+    }
+
+    ::slotted(*) {
+      margin-left: #{$value / 2};
+      margin-right: #{$value / 2};
+    }
   }
 }
 
 @each $key, $value in $spacings {
-  :host([spacing='#{$key}'][vertical]) ::slotted(*:not(:first-child)) {
-    margin-left: 0;
-    margin-top: #{$value};
+  :host([spacing='#{$key}'][vertical]) {
+    .content {
+      margin-left: #{-$value / 2};
+      margin-right: #{-$value / 2};
+    }
+
+    ::slotted(*) {
+      margin-left: 0;
+      margin-top: #{$value / 2};
+      margin-bottom: #{$value / 2};
+    }
   }
 }
 

@@ -53,9 +53,11 @@ export class ZenSpace {
   render(): HTMLElement {
     return (
       <Host class={this.paddingClasses}>
-        <slot>
-          <p>zen-space should not be empty</p>
-        </slot>
+        <div class="content">
+          <slot>
+            <p>zen-space should not be empty</p>
+          </slot>
+        </div>
       </Host>
     );
   }
