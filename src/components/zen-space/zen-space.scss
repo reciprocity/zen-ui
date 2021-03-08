@@ -120,6 +120,11 @@ $spacings: (
 
 @each $key, $value in $spacings {
   :host([spacing='#{$key}']) {
+    .content {
+      margin-left: #{-$value / 2};
+      margin-right: #{-$value / 2};
+    }
+
     ::slotted(*) {
       margin-left: #{$value / 2};
       margin-right: #{$value / 2};
@@ -129,6 +134,11 @@ $spacings: (
 
 @each $key, $value in $spacings {
   :host([spacing='#{$key}'][vertical]) {
+    .content {
+      margin-left: #{-$value / 2};
+      margin-right: #{-$value / 2};
+    }
+
     ::slotted(*) {
       margin-left: 0;
       margin-top: #{$value / 2};
