@@ -16,5 +16,5 @@ describe('Breadcrumbs visual tests', () => {
     cy.verifyAllStoriesHaveVRT(stories);
   });
 
-  createVisualTests(stories);
+  createVisualTests(stories, [], 'sb-zen-breadcrumbs');
 });

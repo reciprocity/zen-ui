@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-describe('Dropdown visual tests', { scrollBehavior: 'center' }, () => {
+describe.skip('Dropdown visual tests', { scrollBehavior: 'center' }, () => {
   const pageId = 'forms-dropdown--button';
   const stories = [
     'story--forms-dropdown--button',
@@ -18,18 +18,18 @@ describe('Dropdown visual tests', { scrollBehavior: 'center' }, () => {
     it('Verifies opened dropdown in ' + `${story}`, () => {
       const dropdown = `#${story} sb-zen-dropdown`;
       cy.get(dropdown).click();
-      // wait menu:
+
+      // field screenshot:
       cy.get(dropdown)
         .shadow()
         .find('sb-zen-popover')
         .shadow()
-        .find('.popup-wrap', { timeout: 1000 })
-        .should('be.visible');
+        .find('.popup-wrap')
+        .should('be.visible')
+        .matchImageSnapshot();
 
-      // field screenshot:
-      cy.get(dropdown).shadow().find('sb-zen-popover').shadow().find('.popup-wrap').matchImageSnapshot();
       // menu screenshot:
-      cy.get(dropdown).matchImageSnapshot(`field-${story}`);
+      cy.get(dropdown).should('be.visible').matchImageSnapshot(`field-${story}`);
     });
   });
 });

@@ -6,9 +6,12 @@
  * @param {Array<string>} skipedStories  Array of stories which will be skipped
  */
 
-export function createVisualTests(stories, skipedStories = []) {
+export function createVisualTests(stories, skipedStories = [], selector) {
   stories.forEach(story => {
     it('Verifies ' + `${story}`, () => {
+      if (selector) {
+        cy.get(`#${story} ${selector}`).should('be.visible');
+      }
       cy.get(`#${story}`).matchImageSnapshot();
     });
   });

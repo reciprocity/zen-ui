@@ -150,7 +150,7 @@ export class ZenDatePicker {
 
   componentDidLoad(): void {
     this.dateChanged(this.value);
-    document.addEventListener('focusin', e => this.focusChanged(e));
+    this.host.addEventListener('focusin', e => this.focusChanged(e));
   }
 
   render(): HTMLElement {

@@ -10,5 +10,5 @@ describe('Checkbox visual tests', () => {
     cy.verifyAllStoriesHaveVRT(stories);
   });
 
-  createVisualTests(stories);
+  createVisualTests(stories, [], 'sb-zen-checkbox');
 });

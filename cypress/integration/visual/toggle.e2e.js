@@ -10,5 +10,5 @@ describe('Toggle visual tests', () => {
     cy.verifyAllStoriesHaveVRT(stories);
   });
 
-  createVisualTests(stories);
+  createVisualTests(stories, [], 'sb-zen-toggle');
 });
