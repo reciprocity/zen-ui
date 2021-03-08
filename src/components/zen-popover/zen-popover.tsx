@@ -154,15 +154,17 @@ export class ZenPopover {
     const hide = () => {
       clearTimeout(this.hideTimer);
       clearTimeout(this.showTimer);
-      const instantHide = (!this.interactive || this.triggerEvent === 'click') && !this.hideDelay;
+      const instantHide = this.triggerEvent === 'click';
       if (instantHide) {
         this.visible = false;
         return;
       }
 
       // If it's interactive, user should have a little time to move
-      //  mouse over popover before it closes:
-      const timeToMoveMouseOverPopover = 120;
+      //  mouse over popover before it closes.
+      //  Even if it's not interactive, delay hiding a bit to prevent flickering
+      //    when mouseout different elements in the popup:
+      const timeToMoveMouseOverPopover = this.interactive ? 120 : 20;
       const delay = Math.max(timeToMoveMouseOverPopover, this.hideDelay);
       this.hideTimer = setTimeout(() => {
         this.visible = false;
