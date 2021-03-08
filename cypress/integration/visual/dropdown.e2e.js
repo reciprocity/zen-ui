@@ -27,9 +27,16 @@ describe('Dropdown visual tests', { scrollBehavior: 'center' }, () => {
         .should('be.visible');
 
       // field screenshot:
-      cy.get(dropdown).shadow().find('sb-zen-popover').shadow().find('.popup-wrap').matchImageSnapshot();
+      cy.get(dropdown)
+        .shadow()
+        .find('sb-zen-popover')
+        .shadow()
+        .find('.popup-wrap')
+        .should('be.visible')
+        .matchImageSnapshot();
+
       // menu screenshot:
-      cy.get(dropdown).matchImageSnapshot(`field-${story}`);
+      cy.get(dropdown).should('be.visible').matchImageSnapshot(`field-${story}`);
     });
   });
 });
