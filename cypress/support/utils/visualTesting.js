@@ -9,6 +9,7 @@
 export function createVisualTests(stories, skipedStories = [], selector) {
   stories.forEach(story => {
     it('Verifies ' + `${story}`, () => {
+      cy.get(`#${story}`).scrollIntoView();
       if (selector) {
         cy.get(`#${story} ${selector}`).should('be.visible');
       }
@@ -18,6 +19,10 @@ export function createVisualTests(stories, skipedStories = [], selector) {
 
   skipedStories.forEach(story => {
     it.skip('Verifies ' + `${story}`, () => {
+      cy.get(`#${story}`).scrollIntoView();
+      if (selector) {
+        cy.get(`#${story} ${selector}`).should('be.visible');
+      }
       cy.get(`#${story}`).matchImageSnapshot();
     });
   });
