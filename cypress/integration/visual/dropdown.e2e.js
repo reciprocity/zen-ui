@@ -18,13 +18,6 @@ describe('Dropdown visual tests', { scrollBehavior: 'center' }, () => {
     it('Verifies opened dropdown in ' + `${story}`, () => {
       const dropdown = `#${story} sb-zen-dropdown`;
       cy.get(dropdown).click();
-      // wait menu:
-      cy.get(dropdown)
-        .shadow()
-        .find('sb-zen-popover')
-        .shadow()
-        .find('.popup-wrap', { timeout: 1000 })
-        .should('be.visible');
 
       // field screenshot:
       cy.get(dropdown)
