@@ -31,6 +31,8 @@ export class ZenProgressTracker {
   @Prop({ reflect: true }) readonly activeIndex: number = 0;
   /** User can click step to go to step */
   @Prop({ reflect: true }) readonly clickable: StepsFilter = 'completed';
+  /** Max label width */
+  @Prop({ reflect: true }) readonly labelWidth: string = '8rem';
 
   @Watch('activeIndex')
   activeIndexChanged(activeIndex: number): void {
@@ -91,7 +93,9 @@ export class ZenProgressTracker {
                 {this.getItemState(index) === 'active' && <div>{index + 1}</div>}
                 {this.getItemState(index) === 'completed' && <ZenIcon icon={faCheck}></ZenIcon>}
               </div>
-              <div class="label">{step.label}</div>
+              <div class="label" style={{ width: this.labelWidth }}>
+                {step.label}
+              </div>
             </li>
           ))}
         </ul>

@@ -45,7 +45,7 @@ describe('zen-progress-tracker', () => {
           <div class="roundle">
             <div>1</div>
           </div>
-          <div class="label">Step one</div>
+          <div class="label" style="width: 8rem;">Step one</div>
         </li>
       </ul>`);
   });

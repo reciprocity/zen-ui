@@ -408,6 +408,10 @@ export namespace Components {
          */
         "clickable": StepsFilter;
         /**
+          * Max label width
+         */
+        "labelWidth": string;
+        /**
           * Ordered array of possible steps
          */
         "steps": Array<StepItem>;
@@ -1320,6 +1324,10 @@ declare namespace LocalJSX {
           * User can click step to go to step
          */
         "clickable"?: StepsFilter;
+        /**
+          * Max label width
+         */
+        "labelWidth"?: string;
         /**
           * Ordered array of possible steps
          */
