@@ -63,8 +63,8 @@ export class ZenTableRow {
     // Get all rows that have depth greater then the parent
     while (next) {
       if (next.depth <= this.depth) break;
-      if (next.depth > this.depth && !this.expanded) {
-        descendants.push(next);
+      if (next.depth > this.depth) {
+        descendants.push(next as HTMLZenTableRowElement);
       }
       next = next.nextElementSibling as HTMLZenTableRowElement;
     }
@@ -102,6 +102,10 @@ export class ZenTableRow {
 
   onRowSelect(): void {
     this.selected = !this.selected;
+    this.descendants().forEach(n => {
+      const checkbox = n.shadowRoot.firstElementChild.firstElementChild as HTMLZenCheckboxElement;
+      if (checkbox) checkbox.checked = this.selected;
+    });
   }
 
   render(): HTMLTableRowElement {

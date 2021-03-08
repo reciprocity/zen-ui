@@ -540,6 +540,10 @@ export namespace Components {
          */
         "selectable": false;
         /**
+          * Select all rows
+         */
+        "selected": boolean;
+        /**
           * Remains fixed at the top of the table during vertical scrolling
          */
         "sticky": false;
@@ -1508,6 +1512,10 @@ declare namespace LocalJSX {
           * Show checkbox
          */
         "selectable"?: false;
+        /**
+          * Select all rows
+         */
+        "selected"?: boolean;
         /**
           * Remains fixed at the top of the table during vertical scrolling
          */
