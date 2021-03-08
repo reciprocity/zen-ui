@@ -17,6 +17,9 @@ export class ZenTableHeader {
   /** Show checkbox */
   @Prop() readonly selectable = false;
 
+  /** Select all rows */
+  @Prop({ mutable: true }) selected = false;
+
   hasExpandableRows(): boolean {
     let expandable = false;
     const children = Array.from(this.host.parentElement.children);
@@ -38,6 +41,28 @@ export class ZenTableHeader {
     forEach(elements, setSticky);
   }
 
+  descendants(): HTMLZenTableRowElement[] {
+    const descendants = [];
+    let next = this.host.nextElementSibling as HTMLZenTableRowElement;
+
+    while (next) {
+      descendants.push(next as HTMLZenTableRowElement);
+      next = next.nextElementSibling as HTMLZenTableRowElement;
+    }
+
+    return descendants;
+  }
+
+  onSelect(): void {
+    this.selected = !this.selected;
+    this.descendants().forEach(n => {
+      const row = n.shadowRoot.firstElementChild as HTMLZenTableRowElement;
+      if (row) row.selected = this.selected;
+      const checkbox = n.shadowRoot.firstElementChild.firstElementChild as HTMLZenCheckboxElement;
+      if (checkbox) checkbox.checked = this.selected;
+    });
+  }
+
   componentWillLoad(): void {
     if (this.sticky) {
       this.setSticky();
@@ -45,7 +70,6 @@ export class ZenTableHeader {
   }
 
   componentDidLoad(): void {
-    // Has to be run after component is loaded
     this.expandable = this.hasExpandableRows();
   }
 
@@ -56,7 +80,7 @@ export class ZenTableHeader {
       <Host>
         {this.selectable && (
           <ZenTableHeaderCell class={{ selectable: this.selectable, expandable: this.expandable }}>
-            <ZenCheckBox />
+            <ZenCheckBox onChange={() => this.onSelect()} checked={this.selected} />
           </ZenTableHeaderCell>
         )}
         <slot></slot>
