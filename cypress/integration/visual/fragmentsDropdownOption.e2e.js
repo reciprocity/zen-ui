@@ -16,5 +16,5 @@ describe('Dropdown option visual tests', () => {
     cy.verifyAllStoriesHaveVRT(stories, skipedStories);
   });
 
-  createVisualTests(stories, skipedStories);
+  createVisualTests(stories, skipedStories, 'sb-zen-option');
 });
