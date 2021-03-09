@@ -45,6 +45,6 @@ export interface AvatarColor {
 export interface Notification {
   heading: string;
   content: string;
-  severity: string;
-  position: string;
+  variant: NotificationVariant;
+  position: PositionVariant;
 }

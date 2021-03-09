@@ -24,7 +24,10 @@ export class ZenNotification {
   @Prop() readonly dismiss: boolean = false;
 
   close(): void {
-    this.visible = false;
+    this.host.classList.add('closing');
+    this.host.onanimationend = () => {
+      this.host.remove();
+    };
   }
 
   render(): HTMLElement {

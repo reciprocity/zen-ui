@@ -11,6 +11,7 @@
   box-shadow: $shadow-drop-200;
   border-radius: 0.1rem;
   background: $color-white;
+  animation: appear 0.5s;
 }
 
 .hidden {
@@ -78,4 +79,27 @@
 .content {
   font-size: $text-md;
   line-height: 1.25rem;
+}
+
+:host(.closing) {
+  height: 100%;
+  animation: disappear 0.5s;
+}
+
+@keyframes appear {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes disappear {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }

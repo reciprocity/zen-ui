@@ -1,0 +1,58 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
+import { html } from 'lit-html';
+import { getArgTypes, getDefaultArgs, getComponentData, spreadArgs } from '../../../.storybook/helpers/argTypes';
+import { displayNotification } from '../helpers/notifications.ts';
+
+import data from '../../../stencilDocs.json';
+const compData = data.components.find(n => n.tag === 'zen-notifications-wrapper');
+const argTypes = getArgTypes(compData);
+
+<Meta title="Notifications/Notification Wrapper" component="zen-notifications-wrapper" argTypes={argTypes} />
+
+export const StoryWithControls = args =>
+  html/*html*/ `<sb-zen-notification ...="${spreadArgs(args, argTypes)}"
+    >Settings successfully saved!</sb-zen-notification
+  >`;
+
+export const StoryVariants = () => {
+  return html/*html*/ `
+    <sb-zen-space vertical spacing="lg">
+      <sb-zen-button
+        @click="${() =>
+          displayNotification({
+            heading: 'News of the week',
+            content: 'Look, its the eiffel tower',
+            variant: 'warning',
+            position: 'bottom-right',
+          })}"
+      ></sb-zen-button>
+      <sb-zen-button
+        variant="destructive"
+        @click="${() =>
+          displayNotification({
+            heading: 'This is a title',
+            content: 'Content on demand',
+            variant: 'error',
+            position: 'top-right',
+          })}"
+      ></sb-zen-button>
+    </sb-zen-space>
+  `;
+};
+
+# Notification
+
+Toast notifications. Can be dismissible or permanent.
+Use when you need to notify user, but don't need his direct response.
+
+<br />
+
+## Component previews
+
+<br />
+
+### Variants
+
+<Canvas>
+  <Story name="variants">{StoryVariants.bind({})}</Story>
+</Canvas>
