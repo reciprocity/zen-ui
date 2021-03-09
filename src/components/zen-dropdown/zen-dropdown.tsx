@@ -1,5 +1,5 @@
 import { Component, Host, h, Prop, State, Listen, Watch, Element, Method } from '@stencil/core';
-import { getDefaultSlotContent, applyPrefix } from '../helpers/helpers';
+import { getDefaultSlotContent, applyPrefix, scrollIntoView } from '../helpers/helpers';
 import { faChevronDown } from '@fortawesome/pro-light-svg-icons';
 import { OptionValue } from '../zen-menu-item/zen-option';
 import { Align } from '../helpers/types';
@@ -197,6 +197,7 @@ export class ZenDropdown {
     }
     if (!option) return;
     option.setAttribute('focused', 'true');
+    scrollIntoView(option);
   }
 
   moveFocusedOption(direction = 'forward'): void {
