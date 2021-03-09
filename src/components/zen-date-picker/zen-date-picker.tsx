@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, Watch, State, Element, Listen } from '@stencil/core';
+import { Component, Host, h, Prop, Watch, State, Element, Listen, Method } from '@stencil/core';
 import { getDayNumbers, helpers, getMonthName, parseDate } from './date-helpers';
 import getYear from 'date-fns/getYear';
 import addMonths from 'date-fns/addMonths';
@@ -66,7 +66,7 @@ export class ZenDatePicker {
   @Watch('value')
   async dateChanged(value: Date): Promise<void> {
     this.ensureValidFormatString();
-    this.formattedDate = format(value, this.format);
+    this.formattedDate = isValid(value) ? format(value, this.format) : '';
     if (this.input) {
       this.input.value = this.formattedDate;
     }
@@ -85,9 +85,12 @@ export class ZenDatePicker {
 
   @Watch('calendarMonth')
   async monthViewedInCalendarChanged(calendarMonth: Date): Promise<void> {
-    this.dayNums = getDayNumbers(calendarMonth);
-    this.calendarMonthName = getMonthName(calendarMonth);
-    this.calendarYear = getYear(calendarMonth);
+    if (!isValid(calendarMonth)) {
+      this.calendarMonth = helpers.today();
+    }
+    this.dayNums = getDayNumbers(this.calendarMonth);
+    this.calendarMonthName = getMonthName(this.calendarMonth);
+    this.calendarYear = getYear(this.calendarMonth);
   }
 
   @Listen('keydown')
@@ -101,6 +104,13 @@ export class ZenDatePicker {
       ev.preventDefault();
       return false;
     }
+  }
+
+  /** Set value to invalid date and formattedDate to empty string. */
+  @Method()
+  async clearDate(): Promise<void> {
+    this.value = new Date(NaN);
+    this.host.dispatchEvent(new window.Event('change'));
   }
 
   ensureValidFormatString(fallback = 'MM/dd/yyyy'): void {
@@ -144,7 +154,12 @@ export class ZenDatePicker {
 
     const itemDate = setDate(this.calendarMonth, day);
     const itemDateFormatted = format(itemDate, this.format);
-    return itemDateFormatted === this.formattedDate;
+    if (isValid(this.value)) {
+      return itemDateFormatted === this.formattedDate;
+    } else {
+      const todayFormatted = format(helpers.today(), this.format);
+      return itemDateFormatted === todayFormatted;
+    }
   }
 
   onInputChange(event: Event): void {
@@ -170,7 +185,7 @@ export class ZenDatePicker {
   }
 
   onClearClick(event: Event): void {
-    console.log('clear');
+    this.clearDate();
     event.stopPropagation();
   }
 

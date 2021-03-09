@@ -164,6 +164,10 @@ export namespace Components {
     }
     interface ZenDatePicker {
         /**
+          * Set value to invalid date and formattedDate to empty string.
+         */
+        "clearDate": () => Promise<void>;
+        /**
           * Close calendar after picking a date
          */
         "closeOnClick": boolean;
