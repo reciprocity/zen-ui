@@ -23,10 +23,6 @@ $select-transition: 0.5s;
   border: 1px solid $color-blue-700 !important;
 }
 
-:host([full-span-parent]) {
-  border-bottom: 1px solid $color-gray-200;
-}
-
 :host([full-span]) ::slotted(*:first-child) {
   position: absolute;
   left: 0;
@@ -41,6 +37,16 @@ $select-transition: 0.5s;
 }
 
 .expanded {
+  background: $color-blue-50;
+
+  .expand-icon {
+    transform: rotate(90deg);
+  }
+}
+
+:host(.expanded) {
+  background: $color-blue-50;
+
   .expand-icon {
     transform: rotate(90deg);
   }
@@ -54,6 +60,7 @@ $select-transition: 0.5s;
   align-items: center;
   position: absolute;
   inset: 0 auto 0 0;
+  padding-left: 0.5rem;
 }
 
 .widgets.hidden,
@@ -65,29 +72,30 @@ $select-transition: 0.5s;
 // Checkboxes and expand arrow padding:
 $arrow-width: 1rem;
 $checkbox-width: 2rem;
+$default-padding: 0.3rem;
+
+:host(:not([depth]):not([full-span-parent]).expandable) ::slotted(*:first-child) {
+  padding-left: #{$arrow-width * 2};
+}
 
 :host(:not([depth]):not([full-span-parent]).expandable.selectable) ::slotted(*:first-child) {
-  padding-left: #{$checkbox-width + $arrow-width};
+  padding-left: #{$default-padding + $checkbox-width + $arrow-width};
 }
 
 @for $i from 0 through 32 {
-  :host([depth='#{$i}']:not([full-span])) ::slotted(*:first-child) {
-    padding-left: #{($i + 1) * 2}rem;
-  }
-
   :host([depth='#{$i}']) .widgets {
-    padding-left: #{$i * 2}rem;
+    padding-left: #{$i * 3}rem;
   }
 
   :host([depth='#{$i}'].expandable) ::slotted(*:first-child) {
-    padding-left: #{($i + 1) * $arrow-width};
+    padding-left: #{($i + 1) * ($default-padding + $arrow-width)};
   }
 
   :host([depth='#{$i}'].selectable) ::slotted(*:first-child) {
-    padding-left: #{($i + 1) * $checkbox-width};
+    padding-left: #{($i + 1) * ($checkbox-width + 1)};
   }
 
   :host([depth='#{$i}'].selectable.expandable) ::slotted(*:first-child) {
-    padding-left: #{($i + 1) * $checkbox-width + $arrow-width};
+    padding-left: #{($i + 1) * ($checkbox-width + $arrow-width)};
   }
 }

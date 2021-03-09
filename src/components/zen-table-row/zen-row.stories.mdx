@@ -66,7 +66,7 @@ export const StoryRowsSelectable = () => {
 export const StoryRowExpandable = () => {
   return html/*html*/ `
     <sb-zen-table>
-      <sb-zen-table-row depth="0" full-span-parent>
+      <sb-zen-table-row>
         <sb-zen-table-cell>Row 1, Cell 1</sb-zen-table-cell>
         <sb-zen-table-cell>Row 1, Cell 2</sb-zen-table-cell>
         <sb-zen-table-cell>Row 1, Cell 3</sb-zen-table-cell>
@@ -82,6 +82,10 @@ export const StoryRowExpandable = () => {
             </sb-zen-dropdown>
           </sb-zen-space>
         </sb-zen-table-cell>
+        <sb-zen-table-cell></sb-zen-table-cell>
+        <sb-zen-table-cell></sb-zen-table-cell>
+        <sb-zen-table-cell></sb-zen-table-cell>
+        <sb-zen-table-cell></sb-zen-table-cell>
       </sb-zen-table-row>
     </sb-zen-table>
   `;

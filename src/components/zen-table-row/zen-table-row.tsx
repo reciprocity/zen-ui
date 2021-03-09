@@ -31,7 +31,10 @@ export class ZenTableRow {
   @Watch('expanded')
   async expandedChanged(expanded: boolean): Promise<void> {
     if (expanded) {
-      this.children().forEach(n => (n.visible = true));
+      this.children().forEach(n => {
+        n.visible = true;
+        n.expanded = true;
+      });
     } else {
       this.descendants().forEach(n => {
         n.visible = false;
@@ -117,6 +120,7 @@ export class ZenTableRow {
       selectable: this.selectable,
       expandable: this.hasChildren(),
       selected: this.selected,
+      expanded: this.expanded,
     };
     const widgetClass = {
       widgets: true,

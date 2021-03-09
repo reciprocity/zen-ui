@@ -79,7 +79,7 @@ export class ZenTableHeader {
     return (
       <Host>
         {this.selectable && (
-          <ZenTableHeaderCell class={{ selectable: this.selectable, expandable: this.expandable }}>
+          <ZenTableHeaderCell class={{ widgets: true, selectable: this.selectable, expandable: this.expandable }}>
             <ZenCheckBox onChange={() => this.onSelect()} checked={this.selected} />
           </ZenTableHeaderCell>
         )}
