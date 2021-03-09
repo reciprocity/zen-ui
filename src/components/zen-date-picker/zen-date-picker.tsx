@@ -14,6 +14,7 @@ import {
   faChevronLeft,
   faChevronRight,
   faChevronDoubleRight,
+  faTimes,
 } from '@fortawesome/pro-regular-svg-icons';
 import { applyPrefix } from '../helpers/helpers';
 
@@ -168,6 +169,11 @@ export class ZenDatePicker {
     this.host.addEventListener('focusin', e => this.focusChanged(e));
   }
 
+  onClearClick(event: Event): void {
+    console.log('clear');
+    event.stopPropagation();
+  }
+
   render(): HTMLElement {
     const ZenInput = applyPrefix('zen-input', this.host);
     const ZenText = applyPrefix('zen-text', this.host);
@@ -184,9 +190,14 @@ export class ZenDatePicker {
           has-focus={this.opened}
           onChange={e => this.onInputChange(e)}
         >
-          <ZenSpace padding="md none md md" slot="leadingSlot">
-            <ZenIcon class="icon" icon={faCalendarAlt}></ZenIcon>
-          </ZenSpace>
+          <ZenIcon slot="leadingSlot" padding="md none md md" class="icon" icon={faCalendarAlt}></ZenIcon>
+          <ZenIcon
+            slot="trailingSlot"
+            padding="md md md none"
+            class="icon clear"
+            icon={faTimes}
+            onMousedown={event => this.onClearClick(event)}
+          ></ZenIcon>
         </ZenInput>
         <ZenPopover
           class="calendar"
