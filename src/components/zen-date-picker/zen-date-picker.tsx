@@ -63,6 +63,9 @@ export class ZenDatePicker {
   /** Close calendar after picking a date */
   @Prop() readonly closeOnClick: boolean = true;
 
+  /** If user can clear the date. */
+  @Prop() readonly allowEmpty: boolean = true;
+
   @Watch('value')
   async dateChanged(value: Date): Promise<void> {
     this.ensureValidFormatString();
@@ -164,7 +167,7 @@ export class ZenDatePicker {
 
   onInputChange(event: Event): void {
     const input = event.target as HTMLInputElement;
-    if (!input.value) {
+    if (!input.value && this.allowEmpty) {
       this.clearDate();
       return;
     }
@@ -211,13 +214,15 @@ export class ZenDatePicker {
           onChange={e => this.onInputChange(e)}
         >
           <ZenIcon slot="leadingSlot" padding="md none md md" class="icon" icon={faCalendarAlt}></ZenIcon>
-          <ZenIcon
-            slot="trailingSlot"
-            padding="md md md none"
-            class="icon clear"
-            icon={faTimes}
-            onMousedown={event => this.onClearClick(event)}
-          ></ZenIcon>
+          {this.allowEmpty && (
+            <ZenIcon
+              slot="trailingSlot"
+              padding="md md md none"
+              class="icon clear"
+              icon={faTimes}
+              onMousedown={event => this.onClearClick(event)}
+            ></ZenIcon>
+          )}
         </ZenInput>
         <ZenPopover
           class="calendar"
