@@ -106,13 +106,13 @@ function getScrollParent(element: HTMLElement) {
   return tallerThanParent ? element : getScrollParent(element.parentNode as HTMLElement);
 }
 
-export function scrollIntoView(element: HTMLElement): void {
+export function scrollIntoView(element: HTMLElement, scrollParent: HTMLElement): void {
   // Note! For smooth transition scroll, set `scroll-behavior: smooth` to parent.
   // Custom function to scroll into view.
   // Native Element.scrollIntoView() doesn't work well with shadow dom on Safari and FF
 
   const elementBounds = element.getBoundingClientRect();
-  const scrollParent = getScrollParent(element);
+  scrollParent = getScrollParent(element);
   const scrollParentBounds = scrollParent.getBoundingClientRect();
   const topDistance = elementBounds.top - scrollParentBounds.top;
   const bottomDistance = elementBounds.bottom - scrollParentBounds.bottom;
