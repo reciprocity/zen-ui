@@ -112,7 +112,7 @@ export function scrollIntoView(element: HTMLElement, scrollParent: HTMLElement):
   // Native Element.scrollIntoView() doesn't work well with shadow dom on Safari and FF
 
   const elementBounds = element.getBoundingClientRect();
-  scrollParent = getScrollParent(element);
+  scrollParent = scrollParent || getScrollParent(element);
   const scrollParentBounds = scrollParent.getBoundingClientRect();
   const topDistance = elementBounds.top - scrollParentBounds.top;
   const bottomDistance = elementBounds.bottom - scrollParentBounds.bottom;
