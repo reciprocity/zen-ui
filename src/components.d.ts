@@ -366,6 +366,10 @@ export namespace Components {
          */
         "delay": string;
         /**
+          * Returns popup html element (the thing with background and shadow)
+         */
+        "getPopup": () => Promise<HTMLElement>;
+        /**
           * User can click content within popover
          */
         "interactive": boolean;
