@@ -9,16 +9,19 @@ describe('Table visual tests', () => {
     'story--tables-table--with-fragments',
     'story--tables-table--sticky-header',
     'story--tables-table--no-header',
+    'story--tables-table--default-story',
+  ];
+
+  const skippedStories = [
     'story--tables-table--selectable',
     'story--tables-table--tree',
     'story--tables-table--custom',
-    'story--tables-table--default-story',
   ];
 
   before(() => {
     cy.visitStorybookIframe(pageId);
-    cy.verifyAllStoriesHaveVRT(stories);
+    cy.verifyAllStoriesHaveVRT(stories, skippedStories);
   });
 
-  createVisualTests(stories, [], 'sb-zen-table');
+  createVisualTests(stories, skippedStories, 'sb-zen-table');
 });
