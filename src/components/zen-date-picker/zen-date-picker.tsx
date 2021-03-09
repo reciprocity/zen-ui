@@ -164,6 +164,11 @@ export class ZenDatePicker {
 
   onInputChange(event: Event): void {
     const input = event.target as HTMLInputElement;
+    if (!input.value) {
+      this.clearDate();
+      return;
+    }
+
     const date = parseDate(input.value, this.format);
 
     if (isValid(date)) {
