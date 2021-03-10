@@ -24,13 +24,13 @@ describe('zen-date-picker', () => {
   let input: HTMLZenInputElement;
   let calendar: HTMLZenPopoverElement;
 
-  const render = async () => {
+  const render = async (params: string) => {
     jest.clearAllTimers();
     jest.useFakeTimers();
     page = await newSpecPage({
       components: [ZenDatePicker, ZenInput, ZenPopover],
       html: /*html*/ `
-        <zen-date-picker />
+        <zen-date-picker ${params} />
       `,
     });
     await page.waitForChanges();
@@ -164,5 +164,12 @@ describe('zen-date-picker', () => {
     simulateKey(' ', datepicker);
     await page.waitForChanges();
     expect(calendar.visible).toBeFalsy();
+  });
+
+  it('should fallback to default format if format invalid', async () => {
+    await render('format="dd.mm.yyyy"');
+    expect(datepicker.format).toBe('dd.mm.yyyy');
+    datepicker.format = '';
+    expect(datepicker.format).toBe('dd.mm.yyyy');
   });
 });
