@@ -32,14 +32,15 @@ export class ZenPanel {
   }
 
   render(): HTMLElement {
+    const ZenText = applyPrefix('zen-text', this.host);
     const ZenIcon = applyPrefix('zen-icon', this.host);
 
     return (
       <Host>
-        <sb-zen-text class="header-container" size="md" onClick={() => this.toggleContent()}>
+        <ZenText class="header-container" size="md" onClick={() => this.toggleContent()}>
           <ZenIcon icon={this.icon()} size="sm" class="icon fill chevron" />
           <slot name="header" />
-        </sb-zen-text>
+        </ZenText>
         <div class={this.contentClasses()}>
           <slot></slot>
         </div>
