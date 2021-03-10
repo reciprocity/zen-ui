@@ -29,6 +29,10 @@ $item-ypadding: 0.5rem;
   }
 }
 
+::slotted(.content) {
+  width: 100%; // safari fix
+}
+
 :host(:not([no-hover]):hover),
 :host([selected]),
 :host([focused]) {

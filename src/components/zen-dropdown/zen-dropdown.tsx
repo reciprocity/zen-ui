@@ -1,5 +1,5 @@
 import { Component, Host, h, Prop, State, Listen, Watch, Element, Method } from '@stencil/core';
-import { getDefaultSlotContent, applyPrefix } from '../helpers/helpers';
+import { getDefaultSlotContent, applyPrefix, scrollIntoView } from '../helpers/helpers';
 import { faChevronDown } from '@fortawesome/pro-light-svg-icons';
 import { OptionValue } from '../zen-menu-item/zen-option';
 import { Align } from '../helpers/types';
@@ -188,7 +188,7 @@ export class ZenDropdown {
     this.host.dispatchEvent(new window.Event('change'));
   }
 
-  setFocusedOption(option?: HTMLZenOptionElement): void {
+  async setFocusedOption(option?: HTMLZenOptionElement): Promise<void> {
     // only one item can be focused, so remove focus from all other items:
     const items = this.getSlottedOptionItems();
 
@@ -197,6 +197,7 @@ export class ZenDropdown {
     }
     if (!option) return;
     option.setAttribute('focused', 'true');
+    scrollIntoView(option, await this.popover.getPopup());
   }
 
   moveFocusedOption(direction = 'forward'): void {
