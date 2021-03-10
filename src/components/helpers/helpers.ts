@@ -98,3 +98,28 @@ export function parsePadding(padding: string): Record<string, unknown> {
 export function getCssTransitionDuration(element: HTMLElement): number {
   return parseFloat(getComputedStyle(element)['transitionDuration']) * 1000 || 0;
 }
+
+function getScrollParent(element: HTMLElement) {
+  // Doesn't work with shadow dom!
+  if (!element) return null;
+  const tallerThanParent = element.scrollHeight > element.clientHeight;
+  return tallerThanParent ? element : getScrollParent(element.parentNode as HTMLElement);
+}
+
+export function scrollIntoView(element: HTMLElement, scrollParent: HTMLElement): void {
+  // Note! For smooth transition scroll, set `scroll-behavior: smooth` to parent.
+  // Custom function to scroll into view.
+  // Native Element.scrollIntoView() doesn't work well with shadow dom on Safari and FF
+
+  const elementBounds = element.getBoundingClientRect();
+  scrollParent = scrollParent || getScrollParent(element);
+  const scrollParentBounds = scrollParent.getBoundingClientRect();
+  const topDistance = elementBounds.top - scrollParentBounds.top;
+  const bottomDistance = elementBounds.bottom - scrollParentBounds.bottom;
+
+  if (topDistance < 0) {
+    scrollParent.scrollBy(0, topDistance);
+  } else if (bottomDistance > 0) {
+    scrollParent.scrollBy(0, bottomDistance);
+  }
+}

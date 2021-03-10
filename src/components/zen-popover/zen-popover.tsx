@@ -138,6 +138,12 @@ export class ZenPopover {
     this.popup.scrollTop = position;
   }
 
+  /** Returns popup html element (the thing with background and shadow) */
+  @Method()
+  async getPopup(): Promise<HTMLElement> {
+    return this.host.shadowRoot.querySelector('.popup') as HTMLElement;
+  }
+
   addTriggerEvents(): void {
     const show = () => {
       clearTimeout(this.hideTimer);

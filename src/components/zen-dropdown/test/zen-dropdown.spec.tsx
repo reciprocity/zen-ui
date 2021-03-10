@@ -16,6 +16,7 @@ popper.createPopper = jest.fn(() => popperMock());
 import * as helpers from '../../helpers/helpers';
 helpers.getDefaultSlotContent = jest.fn(() => options);
 helpers.getComposedPath = jest.fn(() => []);
+helpers.scrollIntoView = jest.fn(() => true);
 helpers.waitNextFrame = jest.fn(() => new Promise(resolve => resolve(true)));
 
 import { ZenDropdown } from '../zen-dropdown';
