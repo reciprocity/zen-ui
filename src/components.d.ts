@@ -88,7 +88,7 @@ export namespace Components {
          */
         "email": string;
         /**
-          * Outer Padding
+          * Padding
          */
         "padding": PaddingShorthand;
         /**
@@ -102,9 +102,17 @@ export namespace Components {
     }
     interface ZenAvatarGroup {
         /**
+          * If multiple avatars then show icon animation
+         */
+        "animation": boolean;
+        /**
           * Max number of icons to display
          */
         "maxIcons": number;
+        /**
+          * Icons size
+         */
+        "size": IconSizes;
         /**
           * Array of user's data
          */
@@ -1041,7 +1049,7 @@ declare namespace LocalJSX {
          */
         "email"?: string;
         /**
-          * Outer Padding
+          * Padding
          */
         "padding"?: PaddingShorthand;
         /**
@@ -1055,9 +1063,17 @@ declare namespace LocalJSX {
     }
     interface ZenAvatarGroup {
         /**
+          * If multiple avatars then show icon animation
+         */
+        "animation"?: boolean;
+        /**
           * Max number of icons to display
          */
         "maxIcons"?: number;
+        /**
+          * Icons size
+         */
+        "size"?: IconSizes;
         /**
           * Array of user's data
          */

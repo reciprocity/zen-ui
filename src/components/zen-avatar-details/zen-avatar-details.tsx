@@ -22,7 +22,7 @@ export class ZenAvatarDetails {
   /** Icon background color  */
   @Prop() readonly background: string = '#D5E9FA';
 
-  /** Outer Padding */
+  /** Padding */
   @Prop() readonly padding: PaddingShorthand = 'lg';
 
   /** Spacing between icon and username  */

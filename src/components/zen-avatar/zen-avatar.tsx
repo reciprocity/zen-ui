@@ -16,24 +16,28 @@ export class ZenAvatar {
   /** Show icon animation  */
   @Prop({ reflect: true }) readonly animation: boolean = false;
 
-  getUserValue(property: string): string {
+  userValue(property: string): string {
     return this.users[0] ? this.users[0][property] : '';
   }
 
-  getUserName(): string {
-    return this.users.length == 1 ? this.getUserValue('userName') : '+' + this.users.length;
+  userName(): string {
+    return this.users.length == 1 ? this.userValue('userName') : '+' + this.users.length;
   }
 
-  getEmail(): string {
-    return this.getUserValue('email');
+  email(): string {
+    return this.userValue('email');
   }
 
-  getBackground(): string {
-    return this.users.length == 1 ? this.getUserValue('background') : '#CED4DA';
+  background(): string {
+    return this.users.length == 1 ? this.userValue('background') : '#CED4DA';
   }
 
-  getColor(): string {
-    return this.users.length == 1 ? this.getUserValue('color') : '#3E464C';
+  color(): string {
+    return this.users.length == 1 ? this.userValue('color') : '#3E464C';
+  }
+
+  size(): string {
+    return this.userValue('size');
   }
 
   render(): HTMLElement {
@@ -44,10 +48,11 @@ export class ZenAvatar {
       <Host>
         <ZenAvatarIcon
           class={{ 'avatar-icon': true, animation: this.animation }}
-          user-name={this.getUserName()}
-          email={this.getEmail()}
-          background={this.getBackground()}
-          color={this.getColor()}
+          user-name={this.userName()}
+          email={this.email()}
+          background={this.background()}
+          color={this.color()}
+          size={this.size()}
         />
         <ZenTooltip variant="light" show-delay="0" max-height={this.users.length > 4 ? '250px' : null}>
           {this.users.map((user, index) => (

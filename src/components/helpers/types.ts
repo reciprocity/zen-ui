@@ -30,6 +30,7 @@ export interface Avatar {
 export interface AvatarData extends Avatar {
   background?: string;
   color?: string;
+  size?: string;
 }
 
 export interface AvatarColor {
