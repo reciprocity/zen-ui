@@ -54,7 +54,7 @@ export class ZenDatePicker {
   @Prop() readonly placeholder = 'Select date';
 
   /** Date format */
-  @Prop() readonly format = 'MM/dd/yyyy';
+  @Prop({ mutable: true }) format = 'MM/dd/yyyy';
 
   /** Selected date */
   @Prop({ mutable: true }) value: Date = helpers.today();
@@ -64,6 +64,7 @@ export class ZenDatePicker {
 
   @Watch('value')
   async dateChanged(value: Date): Promise<void> {
+    this.ensureValidFormatString();
     this.formattedDate = format(value, this.format);
     if (this.input) {
       this.input.value = this.formattedDate;
@@ -73,6 +74,12 @@ export class ZenDatePicker {
       this.popover.visible = false;
       this.input.focusInput();
     }
+  }
+
+  @Watch('format')
+  async formatChanged(_: string, old: string): Promise<void> {
+    this.ensureValidFormatString(old);
+    this.dateChanged(this.value);
   }
 
   @Watch('calendarMonth')
@@ -92,6 +99,14 @@ export class ZenDatePicker {
       this.popover.toggle();
       ev.preventDefault();
       return false;
+    }
+  }
+
+  ensureValidFormatString(fallback = 'MM/dd/yyyy'): void {
+    try {
+      format(this.value, this.format);
+    } catch (err) {
+      this.format = fallback;
     }
   }
 

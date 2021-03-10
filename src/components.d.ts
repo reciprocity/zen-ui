@@ -170,7 +170,7 @@ export namespace Components {
         /**
           * Date format
          */
-        "format": "MM/dd/yyyy";
+        "format": string;
         /**
           * Selected date
          */
@@ -1091,7 +1091,7 @@ declare namespace LocalJSX {
         /**
           * Date format
          */
-        "format"?: "MM/dd/yyyy";
+        "format"?: string;
         /**
           * Selected date
          */
