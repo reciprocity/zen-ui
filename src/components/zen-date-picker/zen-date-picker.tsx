@@ -187,14 +187,14 @@ export class ZenDatePicker {
     this.opened = popup.visible;
   }
 
-  componentDidLoad(): void {
-    this.dateChanged(this.value);
-    this.host.addEventListener('focusin', e => this.focusChanged(e));
-  }
-
   onClearClick(event: Event): void {
     this.clearDate();
     event.stopPropagation();
+  }
+
+  componentDidLoad(): void {
+    this.dateChanged(this.value);
+    this.host.addEventListener('focusin', e => this.focusChanged(e));
   }
 
   render(): HTMLElement {

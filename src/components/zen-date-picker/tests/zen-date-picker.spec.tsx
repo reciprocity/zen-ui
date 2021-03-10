@@ -1,5 +1,5 @@
 import { newSpecPage, SpecPage } from '@stencil/core/testing';
-import { simulateKey } from '../../helpers/jest';
+import { simulateKey, simulateMouse } from '../../helpers/jest';
 
 const popperMock = {
   destroy: jest.fn(),
@@ -23,20 +23,22 @@ describe('zen-date-picker', () => {
   let datepicker: HTMLZenDatePickerElement;
   let input: HTMLZenInputElement;
   let calendar: HTMLZenPopoverElement;
+  let xButton: HTMLZenPopoverElement;
 
-  const render = async (params: string) => {
+  const render = async (attributes: string) => {
     jest.clearAllTimers();
     jest.useFakeTimers();
     page = await newSpecPage({
       components: [ZenDatePicker, ZenInput, ZenPopover],
       html: /*html*/ `
-        <zen-date-picker ${params} />
+        <zen-date-picker ${attributes} />
       `,
     });
     await page.waitForChanges();
     datepicker = page.root as HTMLZenDatePickerElement;
     input = datepicker.shadowRoot.querySelector('#date-input');
     calendar = datepicker.shadowRoot.querySelector('.calendar');
+    xButton = datepicker.shadowRoot.querySelector('.icon.clear');
   };
 
   async function focusInput() {
@@ -171,5 +173,35 @@ describe('zen-date-picker', () => {
     expect(datepicker.format).toBe('dd.mm.yyyy');
     datepicker.format = '';
     expect(datepicker.format).toBe('dd.mm.yyyy');
+  });
+
+  it('should clear value on x button click', async () => {
+    await render();
+    expect(datepicker.value).toEqual(new Date(1972, 2 - 1, 18));
+    expect(xButton).toBeTruthy();
+
+    simulateMouse('mousedown', xButton);
+    expect(JSON.stringify(datepicker.value)).toEqual('null');
+  });
+
+  it('should clear value on emptying input', async () => {
+    await render();
+    expect(datepicker.value).toEqual(new Date(1972, 2 - 1, 18));
+
+    setInputValue('');
+    expect(JSON.stringify(datepicker.value)).toEqual('null');
+  });
+
+  it('should not render x button if allowEmpty is false', async () => {
+    await render('allow-empty="false"');
+    expect(xButton).toBeFalsy();
+  });
+
+  it('should not clear date if allowEmpty is false', async () => {
+    await render('allow-empty="false"');
+    expect(datepicker.value).toEqual(new Date(1972, 2 - 1, 18));
+
+    setInputValue('');
+    expect(datepicker.value).toEqual(new Date(1972, 2 - 1, 18));
   });
 });
