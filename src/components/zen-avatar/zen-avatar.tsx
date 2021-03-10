@@ -38,13 +38,12 @@ export class ZenAvatar {
 
   render(): HTMLElement {
     const ZenAvatarIcon = applyPrefix('zen-avatar-icon', this.host);
+    const ZenAvatarDetails = applyPrefix('zen-avatar-details', this.host);
     const ZenTooltip = applyPrefix('zen-tooltip', this.host);
-    const ZenSpace = applyPrefix('zen-space', this.host);
-    const ZenText = applyPrefix('zen-text', this.host);
     return (
       <Host>
         <ZenAvatarIcon
-          class="avatar-icon"
+          class={{ 'avatar-icon': true, animation: this.animation }}
           user-name={this.getUserName()}
           email={this.getEmail()}
           background={this.getBackground()}
@@ -52,27 +51,20 @@ export class ZenAvatar {
         />
         <ZenTooltip variant="light" show-delay="0" max-height={this.users.length > 4 ? '250px' : null}>
           {this.users.map((user, index) => (
-            <div slot="content">
-              <ZenSpace no-wrap padding="lg" vertical-align="start" spacing="lg">
-                <ZenAvatarIcon
-                  class="avatar"
-                  user-name={user.userName}
-                  color={user.color}
-                  background={user.background}
-                />
-                <ZenSpace vertical padding="xs" spacing="sm">
-                  <ZenText size="md" bold>
-                    {user.userName}
-                  </ZenText>
-                  <ZenText size="sm">{user.email}</ZenText>
-                </ZenSpace>
-              </ZenSpace>
+            <div>
+              <ZenAvatarDetails
+                user-name={user.userName}
+                email={user.email}
+                color={user.color}
+                background={user.background}
+                padding="none"
+              />
               <div
                 class={{
                   splitter: true,
                   hidden: index == this.users.length - 1 || this.users.length == 1,
                 }}
-              ></div>
+              />
             </div>
           ))}
         </ZenTooltip>
