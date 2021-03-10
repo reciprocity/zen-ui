@@ -74,6 +74,32 @@ export namespace Components {
          */
         "users": AvatarData[];
     }
+    interface ZenAvatarDetails {
+        /**
+          * Icon background color
+         */
+        "background": string;
+        /**
+          * Icon color
+         */
+        "color": string;
+        /**
+          * User email
+         */
+        "email": string;
+        /**
+          * Outer Padding
+         */
+        "padding": PaddingShorthand;
+        /**
+          * Spacing between icon and username
+         */
+        "spacing": Size;
+        /**
+          * User name
+         */
+        "userName": string;
+    }
     interface ZenAvatarGroup {
         /**
           * Max number of icons to display
@@ -708,6 +734,12 @@ declare global {
         prototype: HTMLZenAvatarElement;
         new (): HTMLZenAvatarElement;
     };
+    interface HTMLZenAvatarDetailsElement extends Components.ZenAvatarDetails, HTMLStencilElement {
+    }
+    var HTMLZenAvatarDetailsElement: {
+        prototype: HTMLZenAvatarDetailsElement;
+        new (): HTMLZenAvatarDetailsElement;
+    };
     interface HTMLZenAvatarGroupElement extends Components.ZenAvatarGroup, HTMLStencilElement {
     }
     var HTMLZenAvatarGroupElement: {
@@ -902,6 +934,7 @@ declare global {
         "text-with-details": HTMLTextWithDetailsElement;
         "zen-animate": HTMLZenAnimateElement;
         "zen-avatar": HTMLZenAvatarElement;
+        "zen-avatar-details": HTMLZenAvatarDetailsElement;
         "zen-avatar-group": HTMLZenAvatarGroupElement;
         "zen-avatar-icon": HTMLZenAvatarIconElement;
         "zen-breadcrumbs": HTMLZenBreadcrumbsElement;
@@ -993,6 +1026,32 @@ declare namespace LocalJSX {
           * Users
          */
         "users"?: AvatarData[];
+    }
+    interface ZenAvatarDetails {
+        /**
+          * Icon background color
+         */
+        "background"?: string;
+        /**
+          * Icon color
+         */
+        "color"?: string;
+        /**
+          * User email
+         */
+        "email"?: string;
+        /**
+          * Outer Padding
+         */
+        "padding"?: PaddingShorthand;
+        /**
+          * Spacing between icon and username
+         */
+        "spacing"?: Size;
+        /**
+          * User name
+         */
+        "userName"?: string;
     }
     interface ZenAvatarGroup {
         /**
@@ -1580,6 +1639,7 @@ declare namespace LocalJSX {
         "text-with-details": TextWithDetails;
         "zen-animate": ZenAnimate;
         "zen-avatar": ZenAvatar;
+        "zen-avatar-details": ZenAvatarDetails;
         "zen-avatar-group": ZenAvatarGroup;
         "zen-avatar-icon": ZenAvatarIcon;
         "zen-breadcrumbs": ZenBreadcrumbs;
@@ -1624,6 +1684,7 @@ declare module "@stencil/core" {
             "text-with-details": LocalJSX.TextWithDetails & JSXBase.HTMLAttributes<HTMLTextWithDetailsElement>;
             "zen-animate": LocalJSX.ZenAnimate & JSXBase.HTMLAttributes<HTMLZenAnimateElement>;
             "zen-avatar": LocalJSX.ZenAvatar & JSXBase.HTMLAttributes<HTMLZenAvatarElement>;
+            "zen-avatar-details": LocalJSX.ZenAvatarDetails & JSXBase.HTMLAttributes<HTMLZenAvatarDetailsElement>;
             "zen-avatar-group": LocalJSX.ZenAvatarGroup & JSXBase.HTMLAttributes<HTMLZenAvatarGroupElement>;
             "zen-avatar-icon": LocalJSX.ZenAvatarIcon & JSXBase.HTMLAttributes<HTMLZenAvatarIconElement>;
             "zen-breadcrumbs": LocalJSX.ZenBreadcrumbs & JSXBase.HTMLAttributes<HTMLZenBreadcrumbsElement>;
