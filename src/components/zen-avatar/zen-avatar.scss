@@ -4,23 +4,21 @@
   display: block;
 }
 
-:host([animation]) zen-avatar-icon {
-  transition: $transition-avatar;
-
-  &:hover {
-    transform: translateY(-5px);
-  }
-}
-
 .hidden {
   display: none;
 }
 
 .avatar-icon {
+  transition: $transition-avatar;
   margin-right: -8px;
 }
 
+.avatar-icon:hover.animation {
+  transform: translateY(-5px);
+}
+
 .splitter {
-  border-top: 1px solid $color-gray-100;
-  margin: 0 1rem;
+  border-top: 1px solid $color-gray-200;
+  padding-bottom: 1rem;
+  margin-top: 1rem;
 }

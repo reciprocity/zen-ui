@@ -9,8 +9,6 @@ export type TextVariant = null | 'heading' | 'label' | 'support';
 
 export type NotificationVariant = 'success' | 'info' | 'warning' | 'error';
 
-export type AvatarIconSize = 'sm' | 'md' | 'lg';
-
 export type TextSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';
 
 export type IconSizes = 'sm' | 'md' | 'lg';
@@ -32,6 +30,7 @@ export interface Avatar {
 export interface AvatarData extends Avatar {
   background?: string;
   color?: string;
+  size?: string;
 }
 
 export interface AvatarColor {

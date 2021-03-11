@@ -1,0 +1,46 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
+import { html } from 'lit-html';
+import { getArgTypes, getDefaultArgs, getComponentData, spreadArgs } from '../../../.storybook/helpers/argTypes';
+import data from '../../../stencilDocs.json';
+const compData = data.components.find(n => n.tag === 'zen-avatar-details');
+const argTypes = getArgTypes(compData);
+argTypes['iconBackground'].control = 'color';
+argTypes['iconColor'].control = 'color';
+
+<Meta title="Icons/Avatar/Avatar Details" component="zen-avatar-details" argTypes={argTypes} />
+
+export const StoryWithControls = args => {
+  return html/*html*/ `
+    <sb-zen-space vertical-align="center" horizontal-align="center">
+      <sb-zen-avatar-details
+        style="border: 1px solid lightgray"
+        ...="${spreadArgs(args, argTypes)}"
+      ></sb-zen-avatar-details>
+    </sb-zen-space>
+  `;
+};
+
+# Avatar icon, username and email
+
+Avatar details component
+
+## Properties
+
+<Canvas>
+  <Story
+    name="default"
+    args={{
+      ...getDefaultArgs(argTypes),
+      userName: 'Shelley Fluke',
+      email: 'shelley@reciprocitylabs.com',
+      iconColor: '#00528C',
+      iconBackground: '#D5E9FA',
+    }}
+  >
+    {StoryWithControls.bind({})}
+  </Story>
+</Canvas>
+
+<ArgsTable story="default" />
+
+<docs-table docs={JSON.stringify(getComponentData('zen-avatar-details'))}></docs-table>

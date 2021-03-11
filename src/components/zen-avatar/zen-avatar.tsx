@@ -16,63 +16,60 @@ export class ZenAvatar {
   /** Show icon animation  */
   @Prop({ reflect: true }) readonly animation: boolean = false;
 
-  getUserValue(property: string): string {
+  userValue(property: string): string {
     return this.users[0] ? this.users[0][property] : '';
   }
 
-  getUserName(): string {
-    return this.users.length == 1 ? this.getUserValue('userName') : '+' + this.users.length;
+  userName(): string {
+    return this.users.length == 1 ? this.userValue('userName') : '+' + this.users.length;
   }
 
-  getEmail(): string {
-    return this.getUserValue('email');
+  email(): string {
+    return this.userValue('email');
   }
 
-  getBackground(): string {
-    return this.users.length == 1 ? this.getUserValue('background') : '#CED4DA';
+  background(): string {
+    return this.users.length == 1 ? this.userValue('background') : '#CED4DA';
   }
 
-  getColor(): string {
-    return this.users.length == 1 ? this.getUserValue('color') : '#3E464C';
+  color(): string {
+    return this.users.length == 1 ? this.userValue('color') : '#3E464C';
+  }
+
+  size(): string {
+    return this.userValue('size');
   }
 
   render(): HTMLElement {
     const ZenAvatarIcon = applyPrefix('zen-avatar-icon', this.host);
+    const ZenAvatarDetails = applyPrefix('zen-avatar-details', this.host);
     const ZenTooltip = applyPrefix('zen-tooltip', this.host);
-    const ZenSpace = applyPrefix('zen-space', this.host);
-    const ZenText = applyPrefix('zen-text', this.host);
     return (
       <Host>
         <ZenAvatarIcon
-          class="avatar-icon"
-          user-name={this.getUserName()}
-          email={this.getEmail()}
-          background={this.getBackground()}
-          color={this.getColor()}
+          class={{ 'avatar-icon': true, animation: this.animation }}
+          user-name={this.userName()}
+          email={this.email()}
+          background={this.background()}
+          color={this.color()}
+          size={this.size()}
         />
         <ZenTooltip variant="light" show-delay="0" max-height={this.users.length > 4 ? '250px' : null}>
           {this.users.map((user, index) => (
-            <div slot="content">
-              <ZenSpace no-wrap padding="lg" vertical-align="start" spacing="lg">
-                <ZenAvatarIcon
-                  class="avatar"
-                  user-name={user.userName}
-                  color={user.color}
-                  background={user.background}
-                />
-                <ZenSpace vertical padding="xs" spacing="sm">
-                  <ZenText size="md" bold>
-                    {user.userName}
-                  </ZenText>
-                  <ZenText size="sm">{user.email}</ZenText>
-                </ZenSpace>
-              </ZenSpace>
+            <div>
+              <ZenAvatarDetails
+                user-name={user.userName}
+                email={user.email}
+                icon-color={user.color}
+                icon-background={user.background}
+                padding="none"
+              />
               <div
                 class={{
                   splitter: true,
                   hidden: index == this.users.length - 1 || this.users.length == 1,
                 }}
-              ></div>
+              />
             </div>
           ))}
         </ZenTooltip>

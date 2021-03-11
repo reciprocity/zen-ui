@@ -1,6 +1,7 @@
 import { newSpecPage } from '@stencil/core/testing';
 import { ZenAvatar } from '../../zen-avatar/zen-avatar';
 import { ZenAvatarIcon } from '../../zen-avatar-icon/zen-avatar-icon';
+import { ZenTooltip } from '../../zen-tooltip/zen-tooltip';
 
 export const user = [
   {
@@ -52,7 +53,7 @@ export const users = [
 describe('zen-avatar', () => {
   it('should render avatar icon and tooltip', async () => {
     const page = await newSpecPage({
-      components: [ZenAvatar, ZenAvatarIcon],
+      components: [ZenAvatar, ZenAvatarIcon, ZenTooltip],
       html: `<zen-avatar />`,
     });
     page.root.users = user;
@@ -60,25 +61,32 @@ describe('zen-avatar', () => {
     expect(page.root.shadowRoot.querySelector('zen-tooltip')).toBeTruthy();
   });
 
-  it('should render single avatar icon', async () => {
+  it('should render single avatar icon with single avatar details tooltip', async () => {
     const page = await newSpecPage({
-      components: [ZenAvatar, ZenAvatarIcon],
+      components: [ZenAvatar, ZenAvatarIcon, ZenTooltip],
       html: `<zen-avatar />`,
     });
     page.root.users = user;
+    const expectedAvatarDetails = 1;
     await page.waitForChanges();
-    const expectedAvatarIcons = 2; // 1 + 1 since tooltip includes one avatar icon as well
-    expect(page.root.shadowRoot.querySelectorAll('zen-avatar-icon').length).toEqual(expectedAvatarIcons);
+
+    const tooltip = page.root.shadowRoot.querySelector('zen-tooltip');
+    expect(tooltip.children.length).toEqual(expectedAvatarDetails);
   });
 
-  it('should render multiple avatar icons', async () => {
+  it('should render single icon with multiple avatar details tooltip', async () => {
     const page = await newSpecPage({
-      components: [ZenAvatar, ZenAvatarIcon],
+      components: [ZenAvatar, ZenAvatarIcon, ZenTooltip],
       html: `<zen-avatar />`,
     });
+    const expectedAvatarDetails = 5;
     page.root.users = users;
     await page.waitForChanges();
-    const expectedAvatarIcons = 6; // 5 + 1 since tooltip includes one avatar icon as well
-    expect(page.root.shadowRoot.querySelectorAll('zen-avatar-icon').length).toEqual(expectedAvatarIcons);
+
+    const target = page.root.shadowRoot.querySelector('zen-avatar-icon');
+    expect(target.shadowRoot.lastChild.textContent).toEqual('+5');
+
+    const tooltip = page.root.shadowRoot.querySelector('zen-tooltip');
+    expect(tooltip.children.length).toEqual(expectedAvatarDetails);
   });
 });
