@@ -4,8 +4,8 @@ import { getArgTypes, getDefaultArgs, getComponentData, spreadArgs } from '../..
 import data from '../../../stencilDocs.json';
 const compData = data.components.find(n => n.tag === 'zen-avatar-details');
 const argTypes = getArgTypes(compData);
-argTypes['background'].control = 'color';
-argTypes['color'].control = 'color';
+argTypes['iconBackground'].control = 'color';
+argTypes['iconColor'].control = 'color';
 
 <Meta title="Icons/Avatar/Avatar Details" component="zen-avatar-details" argTypes={argTypes} />
 
@@ -33,8 +33,8 @@ Avatar details component
       ...getDefaultArgs(argTypes),
       userName: 'Shelley Fluke',
       email: 'shelley@reciprocitylabs.com',
-      color: '#00528C',
-      background: '#D5E9FA',
+      iconColor: '#00528C',
+      iconBackground: '#D5E9FA',
     }}
   >
     {StoryWithControls.bind({})}

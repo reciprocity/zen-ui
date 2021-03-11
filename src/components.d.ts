@@ -76,17 +76,17 @@ export namespace Components {
     }
     interface ZenAvatarDetails {
         /**
-          * Icon background color
-         */
-        "background": string;
-        /**
-          * Icon color
-         */
-        "color": string;
-        /**
           * User email
          */
         "email": string;
+        /**
+          * Icon background color
+         */
+        "iconBackground": string;
+        /**
+          * Icon color
+         */
+        "iconColor": string;
         /**
           * Padding
          */
@@ -1037,17 +1037,17 @@ declare namespace LocalJSX {
     }
     interface ZenAvatarDetails {
         /**
-          * Icon background color
-         */
-        "background"?: string;
-        /**
-          * Icon color
-         */
-        "color"?: string;
-        /**
           * User email
          */
         "email"?: string;
+        /**
+          * Icon background color
+         */
+        "iconBackground"?: string;
+        /**
+          * Icon color
+         */
+        "iconColor"?: string;
         /**
           * Padding
          */

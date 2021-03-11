@@ -17,10 +17,10 @@ export class ZenAvatarDetails {
   @Prop() readonly email: string = '';
 
   /** Icon color  */
-  @Prop() readonly color: string = '#00528C';
+  @Prop() readonly iconColor: string = '#00528C';
 
   /** Icon background color  */
-  @Prop() readonly background: string = '#D5E9FA';
+  @Prop() readonly iconBackground: string = '#D5E9FA';
 
   /** Padding */
   @Prop() readonly padding: PaddingShorthand = 'lg';
@@ -34,11 +34,11 @@ export class ZenAvatarDetails {
     const ZenText = applyPrefix('zen-text', this.host);
     return (
       <Host>
-        <ZenSpace no-wrap padding={this.padding} vertical-align="start" spacing={this.spacing}>
+        <ZenSpace no-wrap padding={this.padding} vertical-align="middle" spacing={this.spacing}>
           <ZenAvatarIcon
             user-name={this.userName}
-            color={this.color}
-            background={this.background}
+            color={this.iconColor}
+            background={this.iconBackground}
             data-test="avatar-icon"
           />
           <ZenSpace vertical padding="xs" spacing="sm">
