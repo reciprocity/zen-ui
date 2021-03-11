@@ -17,7 +17,7 @@ const argTypes = getArgTypes(compData);
 argTypes.value.type.name = 'string';
 delete argTypes.value.control;
 
-<Meta title="Forms/Dropdown" component="zen-dropdown" argTypes={argTypes} />
+<Meta title="Forms/Dropdown/Dropdown" component="zen-dropdown" argTypes={argTypes} />
 
 export const Template = args => {
   waitForElement('#icon1', element => {
@@ -41,7 +41,7 @@ export const Template = args => {
         padding: 0 1rem;
       }
     </style>
-    <sb-zen-dropdown id="dropdown-controls" style="max-width: 300px;" ...="${spread(camelKeysToKebab(args))}">
+    <sb-zen-dropdown id="dropdown-controls" style="width: 20rem" ...="${spread(camelKeysToKebab(args))}">
       <div class="separator">Some custom title</div>
       <sb-zen-option value="1">Item 1</sb-zen-option>
       <sb-zen-option default-padding="false" value="2">
@@ -71,7 +71,7 @@ export const CustomIcons = args => {
     });
   });
   return html/*html*/ `
-    <sb-zen-dropdown id="dropdown-with-options-slot" style="min-height: 3.2rem; max-width: 300px;">
+    <sb-zen-dropdown id="dropdown-with-options-slot" style="min-height: 3.2rem; width: 20rem">
       <div class="separator">Group 1</div>
       <sb-zen-option default-padding="false" value="1">
         <div class="content">
@@ -108,7 +108,7 @@ export const InvitePeople = () => {
   function onDropdownBlur() {
     document.querySelector('#input1').hasFocus = false;
   }
-  return html/*html*/ `<sb-zen-input id="input1" placeholder="Username" style="max-width: 500px">
+  return html/*html*/ `<sb-zen-input id="input1" placeholder="Username" style="width: 20rem">
     <sb-zen-dropdown
       id="dropdown1"
       slot="trailingSlot"
@@ -129,32 +129,27 @@ export const InvitePeople = () => {
 
 export const StoryFormGroup = () =>
   html/*html*/ `
-    <sb-zen-form-group>
-      <sb-zen-space vertical spacing="md">
-        <sb-zen-space vertical>
-          <sb-zen-text variant="label">Name</sb-zen-text>
-          <sb-zen-input></sb-zen-input>
-        </sb-zen-space>
-        <sb-zen-space vertical>
-          <sb-zen-text variant="label">Lastname</sb-zen-text>
-          <sb-zen-input></sb-zen-input>
-        </sb-zen-space>
-        <sb-zen-space vertical>
-          <sb-zen-text variant="label">Select country</sb-zen-text>
-          <sb-zen-dropdown>
-            <sb-zen-option value="Argentina">Argentina</sb-zen-option>
-            <sb-zen-option value="Slovenia">Slovenia</sb-zen-option>
-            <sb-zen-option value="United States">United States</sb-zen-option>
-          </sb-zen-dropdown>
-        </sb-zen-space>
-        <sb-zen-space vertical>
-          <sb-zen-textarea placeholder="Describe yourself"></sb-zen-textarea>
-        </sb-zen-space>
-        <sb-zen-space vertical>
-          <sb-zen-button>Save</sb-zen-button>
-        </sb-zen-space>
+    <sb-zen-space vertical spacing="md" horizontal-align="stretch" style="width: 20rem">
+      <sb-zen-space vertical>
+        <sb-zen-text variant="label">Name</sb-zen-text>
+        <sb-zen-input style="width: 100%"></sb-zen-input>
       </sb-zen-space>
-    </sb-zen-form-group>
+      <sb-zen-space vertical>
+        <sb-zen-text variant="label">Select country</sb-zen-text>
+        <sb-zen-dropdown>
+          <sb-zen-option value="Argentina">Argentina</sb-zen-option>
+          <sb-zen-option value="Slovenia">Slovenia</sb-zen-option>
+          <sb-zen-option value="United States">United States</sb-zen-option>
+        </sb-zen-dropdown>
+      </sb-zen-space>
+      <sb-zen-space vertical>
+        <sb-zen-text variant="label">About you</sb-zen-text>
+        <sb-zen-textarea placeholder="Describe yourself" style="width: 100%"></sb-zen-textarea>
+      </sb-zen-space>
+      <sb-zen-space vertical>
+        <sb-zen-button>Save</sb-zen-button>
+      </sb-zen-space>
+    </sb-zen-space>
   `;
 
 # Dropdown
@@ -191,7 +186,7 @@ Click `Show code` for more details.
   <Story name="InvitePeople">{InvitePeople.bind({})}</Story>
 </Canvas>
 
-### 3. In a Form Group
+### 3. In a form group
 
 <Canvas>
   <Story name="StoryFormGroup">{StoryFormGroup.bind({})}</Story>

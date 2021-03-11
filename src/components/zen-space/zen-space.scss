@@ -151,3 +151,9 @@ $spacings: (
 ::slotted([fill-xl]) {
   flex-grow: 4 !important;
 }
+
+// Form group --------------------------------------
+
+::slotted([variant='label']) {
+  margin-bottom: 0.5rem !important;
+}

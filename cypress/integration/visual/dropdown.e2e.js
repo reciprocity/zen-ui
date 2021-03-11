@@ -1,12 +1,12 @@
 /// <reference types="cypress" />
 
 describe.skip('Dropdown visual tests', { scrollBehavior: 'center' }, () => {
-  const pageId = 'forms-dropdown--button';
+  const pageId = 'forms-dropdown-dropdown--button';
   const stories = [
-    'story--forms-dropdown--button',
-    'story--forms-dropdown--invite-people',
-    'story--forms-dropdown--story-form-group',
-    'story--forms-dropdown--default-story',
+    'story--forms-dropdown-dropdown--button',
+    'story--forms-dropdown-dropdown--invite-people',
+    'story--forms-dropdown-dropdown--story-form-group',
+    'story--forms-dropdown-dropdown--default-story',
   ];
 
   before(() => {

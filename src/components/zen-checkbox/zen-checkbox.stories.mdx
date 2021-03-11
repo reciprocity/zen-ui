@@ -11,14 +11,12 @@ const argTypes = getArgTypes(compData);
 
 export const StoryFormGroup = args =>
   html/*html*/ `
-    <sb-zen-form-group>
-      <sb-zen-space vertical spacing="md">
-        <sb-zen-text size="lg" bold>Pizza toppings</sb-zen-text>
-        <sb-zen-checkbox label="Pepperoni"></sb-zen-checkbox>
-        <sb-zen-checkbox label="Black olives"></sb-zen-checkbox>
-        <sb-zen-checkbox label="Veggies"></sb-zen-checkbox>
-      </sb-zen-space>
-    </sb-zen-form-group>
+    <sb-zen-space vertical spacing="md">
+      <sb-zen-text variant="label">Pizza toppings</sb-zen-text>
+      <sb-zen-checkbox label="Pepperoni"></sb-zen-checkbox>
+      <sb-zen-checkbox label="Black olives"></sb-zen-checkbox>
+      <sb-zen-checkbox label="Veggies"></sb-zen-checkbox>
+    </sb-zen-space>
   `;
 
 export const StoryWithControls = args => html/*html*/ `
@@ -34,7 +32,7 @@ Simple checkbox component with label and required properties
 
 <br />
 
-### 1. In a Form Group
+### 1. In a form group
 
 <Canvas>
   <Story name="StoryFormGroup">{StoryFormGroup.bind({})}</Story>

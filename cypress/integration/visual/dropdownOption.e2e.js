@@ -2,10 +2,10 @@
 import { createVisualTests } from '../../support/utils/visualTesting';
 
 describe('Dropdown option visual tests', () => {
-  const pageId = 'forms-zfragments-dropdown-option--slots';
+  const pageId = 'forms-dropdown-dropdown-option--slots';
   const stories = [
-    'story--forms-zfragments-dropdown-option--slots',
-    'story--forms-zfragments-dropdown-option--default-story',
+    'story--forms-dropdown-dropdown-option--slots',
+    'story--forms-dropdown-dropdown-option--default-story',
   ];
 
   // Example how to skip testing for some user stories

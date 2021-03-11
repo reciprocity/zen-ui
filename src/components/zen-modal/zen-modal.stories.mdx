@@ -56,11 +56,11 @@ export const StoryMultipleModals = () => {
     </div>
     <sb-zen-modal id="editor" label="Risk score editor" @cancel="${closeEditor}">
       <sb-zen-text>This is a modal window editor example.</sb-zen-text>
-      <sb-zen-form-group>
-        <sb-zen-label label="Username" required></sb-zen-label>
+      <sb-zen-space vertical>
+        <sb-zen-text variant="label" required>Username</sb-zen-text>
         <sb-zen-input></sb-zen-input>
-        <sb-zen-input-support-text text="This field should be unique"></sb-zen-input-support-text>
-      </sb-zen-form-group>
+        <sb-zen-text variant="support"> This field should be unique </sb-zen-text>
+      </sb-zen-space>
       <div slot="buttons">
         <sb-zen-button @click="${closeEditor}" variant="secondary">Cancel</sb-zen-button>
         <sb-zen-button @click="${showConfirm}" class="ml-4" variant="secondary">Delete</sb-zen-button>
