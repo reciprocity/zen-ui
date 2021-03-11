@@ -642,6 +642,10 @@ export namespace Components {
     }
     interface ZenTextarea {
         /**
+          * Columns (size)
+         */
+        "cols": number;
+        /**
           * Appends attribute disabled.
          */
         "disabled": false;
@@ -657,6 +661,14 @@ export namespace Components {
           * Appends attribute required.
          */
         "required": false;
+        /**
+          * Can be resized.
+         */
+        "resizable": boolean;
+        /**
+          * Rows (size)
+         */
+        "rows": number;
         /**
           * Prefilled text content
          */
@@ -1595,6 +1607,10 @@ declare namespace LocalJSX {
     }
     interface ZenTextarea {
         /**
+          * Columns (size)
+         */
+        "cols"?: number;
+        /**
           * Appends attribute disabled.
          */
         "disabled"?: false;
@@ -1610,6 +1626,14 @@ declare namespace LocalJSX {
           * Appends attribute required.
          */
         "required"?: false;
+        /**
+          * Can be resized.
+         */
+        "resizable"?: boolean;
+        /**
+          * Rows (size)
+         */
+        "rows"?: number;
         /**
           * Prefilled text content
          */
