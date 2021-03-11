@@ -1,0 +1,35 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
+import { html } from 'lit-html';
+import { getArgTypes, getDefaultArgs, getComponentData, spreadArgs } from '../../../.storybook/helpers/argTypes';
+
+import { waitForElement } from '../../../.storybook/helpers/utils';
+import data from '../../../stencilDocs.json';
+const compData = data.components.find(n => n.tag === 'zen-skeleton');
+let argTypes = getArgTypes(compData);
+
+<Meta title="Layout/Skeleton" component="zen-skeleton" argTypes={argTypes} />
+
+export const StorySkeleton = args => {
+  return html/*html*/ `
+  <sb-zen-space vertical spacing="lg">
+    <sb-zen-skeleton width="1" height="1"></sb-zen-skeleton>
+    <sb-zen-skeleton></sb-zen-skeleton>
+    <sb-zen-skeleton></sb-zen-skeleton>
+    <sb-zen-skeleton></sb-zen-skeleton>
+  </sb-zen-space>
+  `;
+};
+
+# Skeleton
+
+Skeleton placeholder
+
+## Component previews
+
+<br />
+
+### 1. Skeleton
+
+<Canvas>
+  <Story name="StorySkeleton">{StorySkeleton.bind({})}</Story>
+</Canvas>

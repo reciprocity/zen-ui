@@ -504,6 +504,20 @@ export namespace Components {
          */
         "value": string;
     }
+    interface ZenSkeleton {
+        /**
+          * Height in rem
+         */
+        "height": string;
+        /**
+          * Width in rem
+         */
+        "width": string;
+    }
+    interface ZenSkeletonCircle {
+    }
+    interface ZenSkeletonText {
+    }
     interface ZenSpace {
         /**
           * Horizontal align of items
@@ -918,6 +932,24 @@ declare global {
         prototype: HTMLZenRadioElement;
         new (): HTMLZenRadioElement;
     };
+    interface HTMLZenSkeletonElement extends Components.ZenSkeleton, HTMLStencilElement {
+    }
+    var HTMLZenSkeletonElement: {
+        prototype: HTMLZenSkeletonElement;
+        new (): HTMLZenSkeletonElement;
+    };
+    interface HTMLZenSkeletonCircleElement extends Components.ZenSkeletonCircle, HTMLStencilElement {
+    }
+    var HTMLZenSkeletonCircleElement: {
+        prototype: HTMLZenSkeletonCircleElement;
+        new (): HTMLZenSkeletonCircleElement;
+    };
+    interface HTMLZenSkeletonTextElement extends Components.ZenSkeletonText, HTMLStencilElement {
+    }
+    var HTMLZenSkeletonTextElement: {
+        prototype: HTMLZenSkeletonTextElement;
+        new (): HTMLZenSkeletonTextElement;
+    };
     interface HTMLZenSpaceElement extends Components.ZenSpace, HTMLStencilElement {
     }
     var HTMLZenSpaceElement: {
@@ -1019,6 +1051,9 @@ declare global {
         "zen-popover": HTMLZenPopoverElement;
         "zen-progress-tracker": HTMLZenProgressTrackerElement;
         "zen-radio": HTMLZenRadioElement;
+        "zen-skeleton": HTMLZenSkeletonElement;
+        "zen-skeleton-circle": HTMLZenSkeletonCircleElement;
+        "zen-skeleton-text": HTMLZenSkeletonTextElement;
         "zen-space": HTMLZenSpaceElement;
         "zen-spinner": HTMLZenSpinnerElement;
         "zen-table": HTMLZenTableElement;
@@ -1506,6 +1541,20 @@ declare namespace LocalJSX {
          */
         "value"?: string;
     }
+    interface ZenSkeleton {
+        /**
+          * Height in rem
+         */
+        "height"?: string;
+        /**
+          * Width in rem
+         */
+        "width"?: string;
+    }
+    interface ZenSkeletonCircle {
+    }
+    interface ZenSkeletonText {
+    }
     interface ZenSpace {
         /**
           * Horizontal align of items
@@ -1779,6 +1828,9 @@ declare namespace LocalJSX {
         "zen-popover": ZenPopover;
         "zen-progress-tracker": ZenProgressTracker;
         "zen-radio": ZenRadio;
+        "zen-skeleton": ZenSkeleton;
+        "zen-skeleton-circle": ZenSkeletonCircle;
+        "zen-skeleton-text": ZenSkeletonText;
         "zen-space": ZenSpace;
         "zen-spinner": ZenSpinner;
         "zen-table": ZenTable;
@@ -1825,6 +1877,9 @@ declare module "@stencil/core" {
             "zen-popover": LocalJSX.ZenPopover & JSXBase.HTMLAttributes<HTMLZenPopoverElement>;
             "zen-progress-tracker": LocalJSX.ZenProgressTracker & JSXBase.HTMLAttributes<HTMLZenProgressTrackerElement>;
             "zen-radio": LocalJSX.ZenRadio & JSXBase.HTMLAttributes<HTMLZenRadioElement>;
+            "zen-skeleton": LocalJSX.ZenSkeleton & JSXBase.HTMLAttributes<HTMLZenSkeletonElement>;
+            "zen-skeleton-circle": LocalJSX.ZenSkeletonCircle & JSXBase.HTMLAttributes<HTMLZenSkeletonCircleElement>;
+            "zen-skeleton-text": LocalJSX.ZenSkeletonText & JSXBase.HTMLAttributes<HTMLZenSkeletonTextElement>;
             "zen-space": LocalJSX.ZenSpace & JSXBase.HTMLAttributes<HTMLZenSpaceElement>;
             "zen-spinner": LocalJSX.ZenSpinner & JSXBase.HTMLAttributes<HTMLZenSpinnerElement>;
             "zen-table": LocalJSX.ZenTable & JSXBase.HTMLAttributes<HTMLZenTableElement>;

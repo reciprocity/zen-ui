@@ -1,0 +1,33 @@
+@import '../../zen-styles/component-helpers.scss';
+
+:host {
+  display: block;
+  width: 100%;
+  height: inherit;
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+  background: $color-gray-100;
+  line-height: 1rem;
+  user-select: none;
+  pointer-events: none;
+
+  background: linear-gradient(to right, $color-gray-100 8%, $color-gray-200 18%, $color-gray-100 33%);
+  background-size: 100%;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-name: shimmer;
+  animation-timing-function: linear;
+}
+
+/* stylelint-disable property-blacklist */
+@keyframes shimmer {
+  0% {
+    background-position: -500px 0
+  }
+
+  100% {
+    background-position: 500px 0
+  }
+}
+/* stylelint-enable property-blacklist */
