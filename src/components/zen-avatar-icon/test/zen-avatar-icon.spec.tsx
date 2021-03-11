@@ -2,21 +2,6 @@ import { newSpecPage } from '@stencil/core/testing';
 import { ZenAvatarIcon } from '../zen-avatar-icon';
 
 describe('zen-avatar-icon', () => {
-  it('should render', async () => {
-    const page = await newSpecPage({
-      components: [ZenAvatarIcon],
-      html: `<zen-avatar-icon></zen-avatar-icon>`,
-    });
-    expect(page.root).toEqualHtml(`
-      <zen-avatar-icon size="md" style="background: #abd2f5; color: #00528c;">
-        <mock:shadow-root>
-          <img class="hidden" src="">
-          <div class="initials"></div>
-        </mock:shadow-root>
-      </zen-avatar-icon>
-    `);
-  });
-
   it('should hide image and show label', async () => {
     const page = await newSpecPage({
       components: [ZenAvatarIcon],

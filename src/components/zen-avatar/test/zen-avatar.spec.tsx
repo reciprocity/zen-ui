@@ -67,12 +67,9 @@ describe('zen-avatar', () => {
       html: `<zen-avatar />`,
     });
     page.root.users = user;
+    const expectedAvatarDetails = 1;
     await page.waitForChanges();
 
-    const target = page.root.shadowRoot.querySelector('zen-avatar-icon');
-    expect(target.shadowRoot.lastChild.textContent).toEqual('MA');
-
-    const expectedAvatarDetails = 1;
     const tooltip = page.root.shadowRoot.querySelector('zen-tooltip');
     expect(tooltip.children.length).toEqual(expectedAvatarDetails);
   });

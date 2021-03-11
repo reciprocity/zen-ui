@@ -60,8 +60,8 @@ export class ZenAvatar {
               <ZenAvatarDetails
                 user-name={user.userName}
                 email={user.email}
-                color={user.color}
-                background={user.background}
+                icon-color={user.color}
+                icon-background={user.background}
                 padding="none"
               />
               <div
