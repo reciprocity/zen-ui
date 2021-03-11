@@ -28,15 +28,28 @@ export class ZenCheckbox {
   /** Shows a red asterisk after label. */
   @Prop() readonly required = false;
 
+  /** Shows the checkbox in indeterminate state */
+  @Prop({ mutable: true }) indeterminate = false;
+
   @Watch('checked')
   checkedChanged(): void {
     this.host.dispatchEvent(new window.Event('change'));
   }
 
+  componentDidLoad(): void {
+    if (this.indeterminate) this.host.shadowRoot.querySelector('input').indeterminate = true;
+  }
+
   private onClick = (ev: MouseEvent) => {
     ev.preventDefault();
     if (this.disabled) return;
-    this.checked = !this.checked;
+    if (this.indeterminate) {
+      this.checked = true;
+      this.indeterminate = false;
+      this.host.shadowRoot.querySelector('input').indeterminate = false;
+    } else {
+      this.checked = !this.checked;
+    }
   };
 
   render(): HTMLElement {

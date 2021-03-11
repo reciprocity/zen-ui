@@ -19,6 +19,17 @@ export const StoryFormGroup = args =>
     </sb-zen-space>
   `;
 
+export const StoryIndeterminate = args =>
+  html/*html*/ `
+    <sb-zen-space vertical spacing="md">
+      <sb-zen-text variant="label">Books</sb-zen-text>
+      <sb-zen-checkbox label="Clean Code" indeterminate></sb-zen-checkbox>
+      <sb-zen-checkbox label="The Pragmatic Programmer" indeterminate></sb-zen-checkbox>
+      <sb-zen-checkbox label="Learning Rust" checked></sb-zen-checkbox>
+      <sb-zen-checkbox label="Effective Java"></sb-zen-checkbox>
+    </sb-zen-space>
+  `;
+
 export const StoryWithControls = args => html/*html*/ `
   <sb-zen-checkbox id="story-with-ctrls-element" ...="${spreadArgs(args, argTypes)}"></sb-zen-checkbox>
   ${action('#story-with-ctrls-element', ['change', 'click'])}
@@ -36,6 +47,12 @@ Simple checkbox component with label and required properties
 
 <Canvas>
   <Story name="StoryFormGroup">{StoryFormGroup.bind({})}</Story>
+</Canvas>
+
+### 2. Indeterminate state
+
+<Canvas>
+  <Story name="StoryIndeterminate">{StoryIndeterminate.bind({})}</Story>
 </Canvas>
 
 ## Properties

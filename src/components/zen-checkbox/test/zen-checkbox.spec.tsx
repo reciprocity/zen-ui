@@ -60,4 +60,15 @@ describe('zen-checkbox', () => {
     await page.waitForChanges();
     expect(page.root.shadowRoot.querySelector('input').getAttribute('checked')).toBeFalsy();
   });
+
+  it('should toggle to checked when click on indeterminate', async () => {
+    const page = await newSpecPage({
+      components: [ZenCheckbox],
+      html: `<zen-checkbox indeterminate></zen-checkbox>`,
+      supportsShadowDom: true,
+    });
+    page.root.click();
+    await page.waitForChanges();
+    expect(page.root.shadowRoot.querySelector('input').getAttribute('checked')).toBe('');
+  });
 });

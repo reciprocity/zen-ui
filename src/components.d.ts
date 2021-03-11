@@ -184,6 +184,10 @@ export namespace Components {
          */
         "disabled": false;
         /**
+          * Shows the checkbox in indeterminate state
+         */
+        "indeterminate": boolean;
+        /**
           * Label of the checkbox.
          */
         "label": string;
@@ -1144,6 +1148,10 @@ declare namespace LocalJSX {
           * Disables checkbox.
          */
         "disabled"?: false;
+        /**
+          * Shows the checkbox in indeterminate state
+         */
+        "indeterminate"?: boolean;
         /**
           * Label of the checkbox.
          */
