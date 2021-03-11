@@ -35,12 +35,19 @@ export class ZenAvatarDetails {
     return (
       <Host>
         <ZenSpace no-wrap padding={this.padding} vertical-align="start" spacing={this.spacing}>
-          <ZenAvatarIcon user-name={this.userName} color={this.color} background={this.background} />
+          <ZenAvatarIcon
+            user-name={this.userName}
+            color={this.color}
+            background={this.background}
+            data-test="avatar-icon"
+          />
           <ZenSpace vertical padding="xs" spacing="sm">
-            <ZenText size="md" bold>
+            <ZenText size="md" bold data-test="username">
               {this.userName}
             </ZenText>
-            <ZenText size="sm">{this.email}</ZenText>
+            <ZenText size="sm" data-test="email">
+              {this.email}
+            </ZenText>
           </ZenSpace>
         </ZenSpace>
       </Host>
