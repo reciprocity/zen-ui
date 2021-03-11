@@ -164,6 +164,14 @@ export namespace Components {
     }
     interface ZenDatePicker {
         /**
+          * If user can clear the date.
+         */
+        "allowEmpty": boolean;
+        /**
+          * Set value to invalid date and formattedDate to empty string.
+         */
+        "clearDate": () => Promise<void>;
+        /**
           * Close calendar after picking a date
          */
         "closeOnClick": boolean;
@@ -1084,6 +1092,10 @@ declare namespace LocalJSX {
         "required"?: false;
     }
     interface ZenDatePicker {
+        /**
+          * If user can clear the date.
+         */
+        "allowEmpty"?: boolean;
         /**
           * Close calendar after picking a date
          */

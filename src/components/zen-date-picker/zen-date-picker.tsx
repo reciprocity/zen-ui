@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, Watch, State, Element, Listen } from '@stencil/core';
+import { Component, Host, h, Prop, Watch, State, Element, Listen, Method } from '@stencil/core';
 import { getDayNumbers, helpers, getMonthName, parseDate } from './date-helpers';
 import getYear from 'date-fns/getYear';
 import addMonths from 'date-fns/addMonths';
@@ -14,6 +14,7 @@ import {
   faChevronLeft,
   faChevronRight,
   faChevronDoubleRight,
+  faTimes,
 } from '@fortawesome/pro-regular-svg-icons';
 import { applyPrefix } from '../helpers/helpers';
 
@@ -62,10 +63,13 @@ export class ZenDatePicker {
   /** Close calendar after picking a date */
   @Prop() readonly closeOnClick: boolean = true;
 
+  /** If user can clear the date. */
+  @Prop() readonly allowEmpty: boolean = true;
+
   @Watch('value')
   async dateChanged(value: Date): Promise<void> {
     this.ensureValidFormatString();
-    this.formattedDate = format(value, this.format);
+    this.formattedDate = isValid(value) ? format(value, this.format) : '';
     if (this.input) {
       this.input.value = this.formattedDate;
     }
@@ -84,9 +88,12 @@ export class ZenDatePicker {
 
   @Watch('calendarMonth')
   async monthViewedInCalendarChanged(calendarMonth: Date): Promise<void> {
-    this.dayNums = getDayNumbers(calendarMonth);
-    this.calendarMonthName = getMonthName(calendarMonth);
-    this.calendarYear = getYear(calendarMonth);
+    if (!isValid(calendarMonth)) {
+      this.calendarMonth = helpers.today();
+    }
+    this.dayNums = getDayNumbers(this.calendarMonth);
+    this.calendarMonthName = getMonthName(this.calendarMonth);
+    this.calendarYear = getYear(this.calendarMonth);
   }
 
   @Listen('keydown')
@@ -100,6 +107,13 @@ export class ZenDatePicker {
       ev.preventDefault();
       return false;
     }
+  }
+
+  /** Set value to invalid date and formattedDate to empty string. */
+  @Method()
+  async clearDate(): Promise<void> {
+    this.value = new Date(NaN);
+    this.host.dispatchEvent(new window.Event('change'));
   }
 
   ensureValidFormatString(fallback = 'MM/dd/yyyy'): void {
@@ -143,11 +157,21 @@ export class ZenDatePicker {
 
     const itemDate = setDate(this.calendarMonth, day);
     const itemDateFormatted = format(itemDate, this.format);
-    return itemDateFormatted === this.formattedDate;
+    if (isValid(this.value)) {
+      return itemDateFormatted === this.formattedDate;
+    } else {
+      const todayFormatted = format(helpers.today(), this.format);
+      return itemDateFormatted === todayFormatted;
+    }
   }
 
   onInputChange(event: Event): void {
     const input = event.target as HTMLInputElement;
+    if (!input.value && this.allowEmpty) {
+      this.clearDate();
+      return;
+    }
+
     const date = parseDate(input.value, this.format);
 
     if (isValid(date)) {
@@ -161,6 +185,11 @@ export class ZenDatePicker {
 
   onOpenToggle(popup: HTMLZenPopoverElement): void {
     this.opened = popup.visible;
+  }
+
+  onClearClick(event: Event): void {
+    this.clearDate();
+    event.stopPropagation();
   }
 
   componentDidLoad(): void {
@@ -184,9 +213,16 @@ export class ZenDatePicker {
           has-focus={this.opened}
           onChange={e => this.onInputChange(e)}
         >
-          <ZenSpace padding="md none md md" slot="leadingSlot">
-            <ZenIcon class="icon" icon={faCalendarAlt}></ZenIcon>
-          </ZenSpace>
+          <ZenIcon slot="leadingSlot" padding="md none md md" class="icon" icon={faCalendarAlt}></ZenIcon>
+          {this.allowEmpty && (
+            <ZenIcon
+              slot="trailingSlot"
+              padding="md md md none"
+              class="icon clear"
+              icon={faTimes}
+              onMousedown={event => this.onClearClick(event)}
+            ></ZenIcon>
+          )}
         </ZenInput>
         <ZenPopover
           class="calendar"
