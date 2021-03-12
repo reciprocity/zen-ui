@@ -6,7 +6,7 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { StringifiedJson } from "./stories/components/color-swatch-group/color-swatch-group";
-import { Align, Avatar, AvatarData, IconSizes, None, NotificationVariant, PaddingShorthand, Position, Size, TextSize, TextVariant, TooltipVariant, TriggerEvent } from "./components/helpers/types";
+import { Align, Avatar, AvatarData, IconSizes, None, NotificationVariant, PaddingShorthand, Position, Resize, Size, TextSize, TextVariant, TooltipVariant, TriggerEvent } from "./components/helpers/types";
 import { ButtonVariants } from "./components/zen-button/types";
 import { OptionValue } from "./components/zen-menu-item/zen-option";
 import { IconDefinition } from "@fortawesome/pro-light-svg-icons";
@@ -642,6 +642,10 @@ export namespace Components {
     }
     interface ZenTextarea {
         /**
+          * Columns (size)
+         */
+        "cols": number;
+        /**
           * Appends attribute disabled.
          */
         "disabled": false;
@@ -657,6 +661,14 @@ export namespace Components {
           * Appends attribute required.
          */
         "required": false;
+        /**
+          * Resize (variants)
+         */
+        "resize": Resize;
+        /**
+          * Rows (size)
+         */
+        "rows": number;
         /**
           * Prefilled text content
          */
@@ -1595,6 +1607,10 @@ declare namespace LocalJSX {
     }
     interface ZenTextarea {
         /**
+          * Columns (size)
+         */
+        "cols"?: number;
+        /**
           * Appends attribute disabled.
          */
         "disabled"?: false;
@@ -1610,6 +1626,14 @@ declare namespace LocalJSX {
           * Appends attribute required.
          */
         "required"?: false;
+        /**
+          * Resize (variants)
+         */
+        "resize"?: Resize;
+        /**
+          * Rows (size)
+         */
+        "rows"?: number;
         /**
           * Prefilled text content
          */

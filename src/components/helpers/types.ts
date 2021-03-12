@@ -21,6 +21,8 @@ export type None = 'none';
 
 export type TriggerEvent = 'click' | 'hover';
 
+export type Resize = 'none' | 'both' | 'horizontal' | 'vertical' | 'initial' | 'inherit';
+
 export interface Avatar {
   userName?: string;
   email?: string;
