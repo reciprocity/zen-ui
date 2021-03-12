@@ -1,4 +1,5 @@
 import { Component, Host, h, Prop, Element } from '@stencil/core';
+import { Resize } from '../helpers/types';
 
 @Component({
   tag: 'zen-textarea',
@@ -26,8 +27,8 @@ export class ZenTextarea {
   /** Placeholder of the textarea. */
   @Prop() readonly placeholder: string = null;
 
-  /** Can be resized. */
-  @Prop() readonly resizable: boolean = false;
+  /** Resize (variants) */
+  @Prop() readonly resize: Resize = 'none';
 
   /** Prefilled text content */
   @Prop({ mutable: true }) text?: string | null = '';
@@ -50,7 +51,7 @@ export class ZenTextarea {
 
   render(): HTMLElement {
     const text = this.text;
-    const style = this.resizable ? { resize: 'both' } : { resize: 'none' };
+    const style = { resize: this.resize };
     return (
       <Host>
         <textarea
