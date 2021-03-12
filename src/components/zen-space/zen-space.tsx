@@ -33,10 +33,10 @@ export class ZenSpace {
   @Prop({ reflect: true }) readonly horizontalAlign: FlexAlign = 'start';
 
   /** Spacing between items */
-  @Prop({ reflect: true }) readonly spacing: Size | None = 'sm';
+  @Prop({ reflect: true }) readonly spacing: Size | None = 'none';
 
   /** Inner spacing of container */
-  @Prop() readonly padding: PaddingShorthand = 'sm';
+  @Prop() readonly padding: PaddingShorthand = 'none';
 
   /** Break row/column if content doesn't fit */
   @Prop({ reflect: true }) readonly noWrap: boolean = false;
