@@ -3,8 +3,9 @@
 
 :host {
   display: inline-flex;
-  height: 5rem;
   font-size: $text-md;
+  max-width: 100%;
+  max-height: 100%;
 }
 
 textarea.input-control {
