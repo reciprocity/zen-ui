@@ -38,7 +38,7 @@ export class ZenPanel {
     return (
       <Host>
         <ZenText class="header-container" size="md" onClick={() => this.toggleContent()}>
-          <ZenIcon icon={this.icon()} size="sm" class="icon fill chevron" />
+          <ZenIcon icon={this.icon()} size="sm" padding="sm" class="icon fill chevron" />
           <slot name="header" />
         </ZenText>
         <div class={this.contentClasses()}>
