@@ -274,7 +274,7 @@ export class ZenDropdown {
               <div class="placeholder">{this.placeholder}</div>
             </slot>
           </div>
-          <ZenIcon class="arrow" icon={faChevronDown}></ZenIcon>
+          <ZenIcon class="arrow" padding="sm" icon={faChevronDown}></ZenIcon>
         </div>
         <ZenPopover
           class="list"

@@ -243,6 +243,7 @@ export class ZenDatePicker {
             <ZenIcon
               icon={faChevronLeft}
               size="sm"
+              padding="sm"
               class="icon fill"
               onClick={() => this.navigate(Navigate.prevMonth)}
             ></ZenIcon>
@@ -252,6 +253,7 @@ export class ZenDatePicker {
             <ZenIcon
               icon={faChevronRight}
               size="sm"
+              padding="sm"
               class="icon fill"
               onClick={() => this.navigate(Navigate.nextMonth)}
             ></ZenIcon>
@@ -259,6 +261,7 @@ export class ZenDatePicker {
               class="icon"
               icon={faChevronDoubleRight}
               size="sm"
+              padding="sm"
               onClick={() => this.navigate(Navigate.nextYear)}
             ></ZenIcon>
           </ZenSpace>
