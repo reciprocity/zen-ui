@@ -11,7 +11,7 @@ argTypes['iconColor'].control = 'color';
 
 export const StoryWithControls = args => {
   return html/*html*/ `
-    <sb-zen-space vertical-align="center" horizontal-align="center">
+    <sb-zen-space spacing="sm" vertical-align="center" horizontal-align="center">
       <sb-zen-avatar-details
         style="border: 1px solid lightgray"
         ...="${spreadArgs(args, argTypes)}"

@@ -34,22 +34,27 @@ export const TemplateSlot = () => {
       <div>
         <sb-zen-button label="User" variant="secondary"></sb-zen-button>
         <sb-zen-tooltip position="top" variant="light">
-            <sb-zen-space slot="content" no-wrap padding="lg" spacing="lg">
-              <sb-zen-avatar-icon user-name="Niki Franklin" background="#FFEED2" color="#A26900" size="lg"></sb-zen-avatar-icon>
-              <sb-zen-space padding="none" spacing="xs">
-                  <sb-zen-text size="sm" bold>Niki Franklin</sb-zen-text>
-                  <sb-zen-text size="sm">niki.franklin@reciprocitylabs.com</sb-zen-text>
-              <sb-zen-space>
-              </sb-zen-tooltip>
+          <sb-zen-space slot="content" no-wrap padding="lg" spacing="lg">
+            <sb-zen-avatar-icon
+              user-name="Niki Franklin"
+              background="#FFEED2"
+              color="#A26900"
+              size="lg"
+            ></sb-zen-avatar-icon>
+            <sb-zen-space spacing="xs">
+              <sb-zen-text size="sm" bold>Niki Franklin</sb-zen-text>
+              <sb-zen-text size="sm">niki.franklin@reciprocitylabs.com</sb-zen-text>
             </sb-zen-space>
-        </div>
+          </sb-zen-space>
+        </sb-zen-tooltip>
+      </div>
     </sb-zen-space>
   `;
 };
 
 export const TemplateVariants = () => {
   return html/*html*/ `
-    <sb-zen-space nowrap horizontal-align="space-evenly" vertical-align="end">
+    <sb-zen-space nowrap horizontal-align="space-evenly" vertical-align="end" spacing="sm">
       <div>
           <sb-zen-button label="Example" variant="primary"></sb-zen-button>
           <sb-zen-tooltip position="top" variant="dark">
@@ -77,7 +82,7 @@ export const Scrollable = () => {
     <sb-zen-space nowrap horizontal-align="space-evenly" vertical-align="end">
       <div>
         <sb-zen-button label="Info" variant="secondary">Hover</sb-zen-button>
-        <sb-zen-tooltip position="top" variant="light" label="Override text" max-height="10rem">
+        <sb-zen-tooltip position="top" variant="light" label="Override text" max-height="5rem">
           <sb-zen-text size="sm"
             >Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
             industry's standard dummy text ever since the 1500s. Lorem Ipsum is simply dummy text of the printing and

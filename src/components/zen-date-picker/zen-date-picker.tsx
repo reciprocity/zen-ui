@@ -233,7 +233,7 @@ export class ZenDatePicker {
           close-on-target-click="false"
           onVisibleChange={e => this.onOpenToggle(e.target)}
         >
-          <ZenSpace class="navigation" padding="sm lg" horizontal-align="center" vertical-align="stretch">
+          <ZenSpace class="navigation" spacing="sm" padding="sm lg" horizontal-align="center" vertical-align="stretch">
             <ZenIcon
               class="icon"
               icon={faChevronDoubleLeft}
@@ -243,6 +243,7 @@ export class ZenDatePicker {
             <ZenIcon
               icon={faChevronLeft}
               size="sm"
+              padding="sm"
               class="icon fill"
               onClick={() => this.navigate(Navigate.prevMonth)}
             ></ZenIcon>
@@ -252,6 +253,7 @@ export class ZenDatePicker {
             <ZenIcon
               icon={faChevronRight}
               size="sm"
+              padding="sm"
               class="icon fill"
               onClick={() => this.navigate(Navigate.nextMonth)}
             ></ZenIcon>
@@ -259,17 +261,18 @@ export class ZenDatePicker {
               class="icon"
               icon={faChevronDoubleRight}
               size="sm"
+              padding="sm"
               onClick={() => this.navigate(Navigate.nextYear)}
             ></ZenIcon>
           </ZenSpace>
           <div class="days">
-            <ZenSpace padding="lg" horizontal-align="space-around">
+            <ZenSpace padding="lg" horizontal-align="space-around" spacing="sm">
               {this.daysShort.map(dayName => (
                 <ZenText class="day-name">{dayName}</ZenText>
               ))}
             </ZenSpace>
           </div>
-          <ZenSpace padding="xs lg lg" spacing="none">
+          <ZenSpace padding="xs lg lg">
             {this.dayNums.map(num => (
               <ZenText
                 class={{

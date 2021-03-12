@@ -11,12 +11,7 @@ export const Template = args => {
     document.querySelector('#drawer1').opened = true;
   }
   return html/*html*/ `
-    <sb-zen-space
-      padding="none"
-      spacing="none"
-      horizontal-align="center"
-      style="border: 1px solid lightgrey; position:relative; height: 400px"
-    >
+    <sb-zen-space horizontal-align="center" style="border: 1px solid lightgrey; position:relative; height: 400px">
       <sb-zen-button @click="${openDrawer}">Open Drawer</sb-zen-button>
       <sb-zen-drawer
         @close="${e => {
@@ -25,7 +20,7 @@ export const Template = args => {
         id="drawer1"
         ...="${spreadArgs(args, argTypes)}"
       >
-        <sb-zen-space vertical="true" padding="lg" space="lg">
+        <sb-zen-space vertical="true" padding="lg" spacing="sm">
           <sb-zen-text variant="label" size="sm">Title</sb-zen-text>
           <sb-zen-text size="sm">
             Lorem Ipsum is simply dummy text of the printing and typesetting industry.

@@ -12,7 +12,7 @@ export const StoryWithControls = args => {
     element.offset = args.offset;
   });
   return html/*html*/ `
-    <sb-zen-space no-wrap spacing="sm" horizontal-align="center" vertical-align="center">
+    <sb-zen-space no-wrap spacing="sm" horizontal-align="center">
       <sb-zen-button variant="primary"> Button </sb-zen-button>
       <sb-zen-popover id="control" ...="${spreadArgs(args, argTypes)}">
         <sb-zen-space padding="md">
@@ -82,7 +82,7 @@ export const StoryPositionVariants = args => {
 
 export const StoryTriggerEvents = args => {
   return html/*html*/ `
-    <sb-zen-space no-wrap horizontal-align="space-evenly" vertical-align="start">
+    <sb-zen-space spacing="sm" no-wrap horizontal-align="space-evenly" vertical-align="start">
       <sb-zen-button variant="primary">Click toggle</sb-zen-button>
       <sb-zen-popover>
         <sb-zen-space padding="md">
@@ -114,7 +114,7 @@ export const StoryTriggerEvents = args => {
 export const StoryScrollable = args => {
   return html/*html*/ `
     <div style="height: 200px; overflow: auto;">
-      <sb-zen-space no-wrap padding="none" horizontal-align="center" vertical-align="center" style="height: 400px;">
+      <sb-zen-space no-wrap horizontal-align="center" vertical-align="center" style="height: 400px;">
         <sb-zen-button variant="primary"> Top Start </sb-zen-button>
         <sb-zen-popover position="bottom-end" visible="true" close-on-click-out="false">
           <sb-zen-space padding="md">
@@ -163,7 +163,7 @@ export const StoryFilters = args => {
         Filter
       </sb-zen-button>
       <sb-zen-popover position="bottom-start" interactive="true" style="width: fit-content">
-        <sb-zen-space vertical padding="none">
+        <sb-zen-space vertical>
           <sb-zen-space horizontal-align="start" padding="lg">
             <sb-zen-text size="xs" variant="heading">Filters</sb-zen-text>
           </sb-zen-space>

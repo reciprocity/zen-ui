@@ -33,6 +33,9 @@ Note also that if `event.composed` is false, it will not bubble out of shadow do
 For size variations always use conventional shorthands:
 `xs`, `sm`, `md`, `lg`, `xl`, `2xl`,...
 
+### Padding properties
+Padding prop of each component should always default to `none`! Consumers should be aware of introducing additional paddings.
+
 ## Writing stories
 Template for a new component's story page can be found here:
 `/src/components/zen-spinner/template.stories.mdx.sample`

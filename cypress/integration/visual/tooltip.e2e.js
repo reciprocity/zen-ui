@@ -34,7 +34,7 @@ describe('Tooltip visual tests', { scrollBehavior: 'center' }, () => {
     cy.get(`#${story[2]}`)
       .within(() => {
         cy.get('sb-zen-button').trigger('mouseover');
-        findPopup(cy).should('be.visible');
+        findPopup(cy).should('be.visible').wait(300);
       })
       .parents('.innerZoomElementWrapper')
       .matchImageSnapshot();
@@ -44,7 +44,7 @@ describe('Tooltip visual tests', { scrollBehavior: 'center' }, () => {
     cy.get(`#${story[3]}`)
       .within(() => {
         cy.get('sb-zen-button').trigger('mouseover');
-        findPopup(cy).should('be.visible');
+        findPopup(cy).should('be.visible').wait(300);
       })
       .parents('.innerZoomElementWrapper')
       .matchImageSnapshot();

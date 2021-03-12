@@ -21,7 +21,7 @@ export function createVisualTests(stories, skipedStories = [], selector) {
     it.skip('Verifies ' + `${story}`, () => {
       cy.get(`#${story}`).scrollIntoView();
       if (selector) {
-        cy.get(`#${story} ${selector}`).should('be.visible');
+        cy.get(`#${story} ${selector}`).should('be.visible').wait(300);
       }
       cy.get(`#${story}`).matchImageSnapshot();
     });

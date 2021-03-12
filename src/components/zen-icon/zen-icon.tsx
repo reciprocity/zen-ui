@@ -18,7 +18,7 @@ export class ZenIcon {
   @Prop({ reflect: true }) readonly size: IconSizes = 'md';
 
   /** Inner spacing of container */
-  @Prop() readonly padding: PaddingShorthand = 'sm';
+  @Prop() readonly padding: PaddingShorthand = 'none';
 
   /** Icon data (js file) imported from Font Awesome SVG package. */
   @Prop() readonly icon: IconDefinition = null;
