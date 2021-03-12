@@ -12,8 +12,6 @@ export const Template = args => {
   }
   return html/*html*/ `
     <sb-zen-space
-      padding="none"
-      spacing="none"
       horizontal-align="center"
       style="border: 1px solid lightgrey; position:relative; height: 400px"
     >
@@ -25,7 +23,7 @@ export const Template = args => {
         id="drawer1"
         ...="${spreadArgs(args, argTypes)}"
       >
-        <sb-zen-space vertical="true" padding="lg" space="lg">
+        <sb-zen-space vertical="true" padding="lg" spacing="sm">
           <sb-zen-text variant="label" size="sm">Title</sb-zen-text>
           <sb-zen-text size="sm">
             Lorem Ipsum is simply dummy text of the printing and typesetting industry.

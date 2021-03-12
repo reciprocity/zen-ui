@@ -63,15 +63,15 @@ export const StoryWithLeadingAndTrailingSlots = () => {
 export const StoryFormGroup = args =>
   html/*html*/ `
     <sb-zen-space vertical spacing="md" horizontal-align="stretch" style="width: 20rem">
-      <sb-zen-space vertical>
+      <sb-zen-space vertical padding="sm none" spacing="sm">
         <sb-zen-text variant="label">Username</sb-zen-text>
         <sb-zen-input style="width: 100%"></sb-zen-input>
       </sb-zen-space>
-      <sb-zen-space vertical>
+      <sb-zen-space vertical padding="sm none" spacing="sm">
         <sb-zen-text variant="label">Password</sb-zen-text>
         <sb-zen-input style="width: 100%"></sb-zen-input>
       </sb-zen-space>
-      <sb-zen-space>
+      <sb-zen-space padding="sm none" spacing="sm">
         <sb-zen-button>Log In</sb-zen-button>
       </sb-zen-space>
     </sb-zen-space>

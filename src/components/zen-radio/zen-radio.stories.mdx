@@ -13,9 +13,9 @@ export const StoryRadiosGroup = () => {
     document.querySelector('#selected-radio').textContent = event.target.selected;
   }
   return html/*html*/ `
-    <sb-zen-space vertical padding="md none">
+    <sb-zen-space vertical padding="md none" spacing="sm">
       <sb-zen-text variant="label">Group 1</sb-zen-text>
-      <sb-zen-space vertical padding="none">
+      <sb-zen-space vertical spacing="sm">
         <sb-zen-radio group="first" value="1" @change="${changed}">Option 1</sb-zen-radio>
         <sb-zen-radio group="first" value="2">Option 2</sb-zen-radio>
         <sb-zen-radio group="first" value="3">Option 3</sb-zen-radio>
@@ -26,9 +26,9 @@ export const StoryRadiosGroup = () => {
         Selected: <b><span id="selected-radio"></span></b>
       </sb-zen-text>
     </sb-zen-space>
-    <sb-zen-space vertical padding="md none">
+    <sb-zen-space vertical padding="md none" spacing="sm">
       <sb-zen-text variant="label">Group 2</sb-zen-text>
-      <sb-zen-space vertical padding="none">
+      <sb-zen-space vertical spacing="sm">
         <sb-zen-radio group="second" value="a">Option A</sb-zen-radio>
         <sb-zen-radio group="second" checked value="b">Prechecked B</sb-zen-radio>
       </sb-zen-space>
@@ -47,15 +47,15 @@ export const StoryButtonControl = () => {
     document.querySelector(`#button-radios sb-zen-radio`).selected = '';
   }
   return html/*html*/ `
-    <sb-zen-space id="button-radios" vertical padding="none">
+    <sb-zen-space id="button-radios" vertical spacing="sm">
       <sb-zen-text variant="label">First group</sb-zen-text>
-      <sb-zen-space vertical padding="none">
+      <sb-zen-space vertical spacing="sm">
         <sb-zen-radio group="third" value="1" @change="${changed}">Option 1</sb-zen-radio>
         <sb-zen-radio group="third" value="2">Option 2</sb-zen-radio>
         <sb-zen-radio group="third" value="3">Option 3</sb-zen-radio>
       <sb-zen-space>
     </sb-zen-space>
-    <sb-zen-space padding="none">
+    <sb-zen-space spacing="sm">
       <sb-zen-button @click="${() => select('1', true)}">Check 1</sb-zen-button>
       <sb-zen-button @click="${() => select('3', true)}">Check 3</sb-zen-button>
       <sb-zen-button @click="${() => clear('')}">Clear</zen-button>

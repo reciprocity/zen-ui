@@ -40,13 +40,13 @@ export class ZenNotification {
           }}
           icon={faTimes}
         />
-        <ZenSpace spacing="sm" padding="none">
+        <ZenSpace spacing="sm" padding="sm">
           <ZenIcon class="icon" icon={getIcon(this.variant)} />
           <ZenText bold class="title">
             {this.heading}
           </ZenText>
         </ZenSpace>
-        <ZenSpace class="content">
+        <ZenSpace class="content" padding="sm">
           <slot />
         </ZenSpace>
       </Host>
