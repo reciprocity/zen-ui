@@ -11,10 +11,7 @@ export const Template = args => {
     document.querySelector('#drawer1').opened = true;
   }
   return html/*html*/ `
-    <sb-zen-space
-      horizontal-align="center"
-      style="border: 1px solid lightgrey; position:relative; height: 400px"
-    >
+    <sb-zen-space horizontal-align="center" style="border: 1px solid lightgrey; position:relative; height: 400px">
       <sb-zen-button @click="${openDrawer}">Open Drawer</sb-zen-button>
       <sb-zen-drawer
         @close="${e => {
