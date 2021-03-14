@@ -36,11 +36,6 @@ export class ZenCheckbox {
     this.host.dispatchEvent(new window.Event('change'));
   }
 
-  @Watch('indeterminate')
-  indeterminateChanged(): void {
-    this.host.shadowRoot.querySelector('input').indeterminate = this.indeterminate;
-  }
-
   componentDidLoad(): void {
     if (this.indeterminate) this.host.shadowRoot.querySelector('input').indeterminate = true;
   }
@@ -66,6 +61,7 @@ export class ZenCheckbox {
           disabled={this.disabled}
           checked={this.checked}
           required={this.required}
+          indeterminate={this.indeterminate}
         />
         <label class={{ disabled: this.disabled }}>
           {this.label} {this.required ? <span class="required">*</span> : null}

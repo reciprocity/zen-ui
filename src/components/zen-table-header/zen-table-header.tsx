@@ -1,4 +1,4 @@
-import { h, Component, Element, Host, Prop, State } from '@stencil/core';
+import { h, Component, Element, Host, Prop, State, Event, EventEmitter } from '@stencil/core';
 import { applyPrefix } from '../helpers/helpers';
 
 @Component({
@@ -8,28 +8,44 @@ import { applyPrefix } from '../helpers/helpers';
 })
 export class ZenTableHeader {
   @State() expandable = false;
+  @State() indeterminate = false;
 
   @Element() host: HTMLZenTableHeaderElement;
 
   /** Remains fixed at the top of the table during vertical scrolling */
-  @Prop() readonly sticky = false;
+  @Prop() readonly sticky: boolean = false;
 
   /** Show checkbox */
-  @Prop() readonly selectable = false;
+  @Prop() readonly selectable: boolean = false;
 
   /** Select all rows */
-  @Prop({ mutable: true }) selected = false;
+  @Prop() readonly selected: boolean = false;
+
+  /** Row selected */
+  @Event() headerSelected: EventEmitter<boolean>;
 
   hasExpandableRows(): boolean {
-    let expandable = false;
-    const children = Array.from(this.host.parentElement.children);
-    children.forEach(child => {
-      if (child.classList.contains('expandable')) {
-        expandable = true;
-        return;
+    let next = this.host.nextElementSibling as HTMLZenTableRowElement;
+    while (next) {
+      if (next.expandable) {
+        return true;
+      } else {
+        next = next.nextElementSibling as HTMLZenTableRowElement;
       }
-    });
-    return expandable;
+    }
+    return false;
+  }
+
+  hasSelectedRows(): boolean {
+    let next = this.host.nextElementSibling as HTMLZenTableRowElement;
+    while (next) {
+      if (next.selected) {
+        return true;
+      } else {
+        next = next.nextElementSibling as HTMLZenTableRowElement;
+      }
+    }
+    return false;
   }
 
   setSticky(): void {
@@ -41,26 +57,10 @@ export class ZenTableHeader {
     forEach(elements, setSticky);
   }
 
-  descendants(): HTMLZenTableRowElement[] {
-    const descendants = [];
-    let next = this.host.nextElementSibling as HTMLZenTableRowElement;
-
-    while (next) {
-      descendants.push(next as HTMLZenTableRowElement);
-      next = next.nextElementSibling as HTMLZenTableRowElement;
-    }
-
-    return descendants;
-  }
-
   onSelect(): void {
-    this.selected = !this.selected;
-    this.descendants().forEach(n => {
-      const row = n.shadowRoot.firstElementChild as HTMLZenTableRowElement;
-      if (row) row.selected = this.selected;
-      const checkbox = n.shadowRoot.firstElementChild.firstElementChild as HTMLZenCheckboxElement;
-      if (checkbox) checkbox.checked = this.selected;
-    });
+    console.log('on select');
+    this.indeterminate = false;
+    this.headerSelected.emit(!this.selected);
   }
 
   componentWillLoad(): void {
@@ -71,16 +71,22 @@ export class ZenTableHeader {
 
   componentDidLoad(): void {
     this.expandable = this.hasExpandableRows();
+    this.indeterminate = this.hasSelectedRows();
+
+    this.host.parentElement.addEventListener('rowSelected', () => {
+      // Check also if all selected.
+      this.indeterminate = !this.selected && this.hasSelectedRows();
+    });
   }
 
-  render(): HTMLTableRowElement {
+  render(): HTMLElement {
     const ZenTableHeaderCell = applyPrefix('zen-table-header-cell', this.host);
     const ZenCheckBox = applyPrefix('zen-checkbox', this.host);
     return (
       <Host>
         {this.selectable && (
           <ZenTableHeaderCell class={{ widgets: true, selectable: this.selectable, expandable: this.expandable }}>
-            <ZenCheckBox onChange={() => this.onSelect()} checked={this.selected} />
+            <ZenCheckBox indeterminate={this.indeterminate} onClick={() => this.onSelect()}></ZenCheckBox>
           </ZenTableHeaderCell>
         )}
         <slot></slot>

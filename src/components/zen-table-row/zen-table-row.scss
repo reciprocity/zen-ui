@@ -37,16 +37,12 @@ $select-transition: 0.5s;
 }
 
 .expanded {
-  background: $color-blue-50;
-
   .expand-icon {
     transform: rotate(90deg);
   }
 }
 
 :host(.expanded) {
-  background: $color-blue-50;
-
   .expand-icon {
     transform: rotate(90deg);
   }

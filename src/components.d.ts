@@ -538,7 +538,7 @@ export namespace Components {
         /**
           * Show checkbox
          */
-        "selectable": false;
+        "selectable": boolean;
         /**
           * Select all rows
          */
@@ -546,7 +546,7 @@ export namespace Components {
         /**
           * Remains fixed at the top of the table during vertical scrolling
          */
-        "sticky": false;
+        "sticky": boolean;
     }
     interface ZenTableHeaderCell {
         /**
@@ -559,6 +559,10 @@ export namespace Components {
           * Depth position of row (read-only)
          */
         "depth": number;
+        /**
+          * Can be expanded
+         */
+        "expandable": boolean;
         /**
           * Is row expanded
          */
@@ -1509,9 +1513,13 @@ declare namespace LocalJSX {
     }
     interface ZenTableHeader {
         /**
+          * Row selected
+         */
+        "onHeaderSelected"?: (event: CustomEvent<boolean>) => void;
+        /**
           * Show checkbox
          */
-        "selectable"?: false;
+        "selectable"?: boolean;
         /**
           * Select all rows
          */
@@ -1519,7 +1527,7 @@ declare namespace LocalJSX {
         /**
           * Remains fixed at the top of the table during vertical scrolling
          */
-        "sticky"?: false;
+        "sticky"?: boolean;
     }
     interface ZenTableHeaderCell {
         /**
@@ -1533,6 +1541,10 @@ declare namespace LocalJSX {
          */
         "depth"?: number;
         /**
+          * Can be expanded
+         */
+        "expandable"?: boolean;
+        /**
           * Is row expanded
          */
         "expanded"?: boolean;
@@ -1540,6 +1552,14 @@ declare namespace LocalJSX {
           * Is cell full span (colspan=number of cells)
          */
         "fullSpan"?: false;
+        /**
+          * Row expanded
+         */
+        "onRowExpanded"?: (event: CustomEvent<boolean>) => void;
+        /**
+          * Row selected
+         */
+        "onRowSelected"?: (event: CustomEvent<boolean>) => void;
         /**
           * Show checkbox (read-only)
          */
