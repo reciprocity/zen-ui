@@ -113,15 +113,15 @@ $spacings: (
 );
 
 @each $key, $value in $spacings {
-  :host([spacing='#{$key}']) ::slotted(*:not(:first-child)) {
-    margin-left: #{$value};
+  :host([spacing='#{$key}']) ::slotted(*:not(:last-child)) {
+    margin-right: #{$value};
   }
 }
 
 @each $key, $value in $spacings {
-  :host([spacing='#{$key}'][vertical]) ::slotted(*:not(:first-child)) {
+  :host([spacing='#{$key}'][vertical]) ::slotted(*:not(:last-child)) {
     margin-left: 0;
-    margin-top: #{$value};
+    margin-bottom: #{$value};
   }
 }
 
