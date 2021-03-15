@@ -7,6 +7,7 @@ import { applyPrefix } from '../helpers/helpers';
   shadow: true,
 })
 export class ZenTableHeader {
+  private checked = false;
   @State() expandable = false;
   @State() indeterminate = false;
 
@@ -24,28 +25,26 @@ export class ZenTableHeader {
   /** Row selected */
   @Event() headerSelected: EventEmitter<boolean>;
 
-  hasExpandableRows(): boolean {
+  rows(): HTMLZenTableRowElement[] {
+    const rows = [];
     let next = this.host.nextElementSibling as HTMLZenTableRowElement;
     while (next) {
-      if (next.expandable) {
-        return true;
-      } else {
-        next = next.nextElementSibling as HTMLZenTableRowElement;
-      }
+      rows.push(next);
+      next = next.nextElementSibling as HTMLZenTableRowElement;
     }
-    return false;
+    return rows;
+  }
+
+  hasExpandableRows(): boolean {
+    return this.rows().some(row => row.expandable);
   }
 
   hasSelectedRows(): boolean {
-    let next = this.host.nextElementSibling as HTMLZenTableRowElement;
-    while (next) {
-      if (next.selected) {
-        return true;
-      } else {
-        next = next.nextElementSibling as HTMLZenTableRowElement;
-      }
-    }
-    return false;
+    return this.rows().some(row => row.selected);
+  }
+
+  allSelectedRows(): boolean {
+    return this.rows().every(row => row.selected);
   }
 
   setSticky(): void {
@@ -58,7 +57,6 @@ export class ZenTableHeader {
   }
 
   onSelect(): void {
-    console.log('on select');
     this.indeterminate = false;
     this.headerSelected.emit(!this.selected);
   }
@@ -74,8 +72,10 @@ export class ZenTableHeader {
     this.indeterminate = this.hasSelectedRows();
 
     this.host.parentElement.addEventListener('rowSelected', () => {
-      // Check also if all selected.
-      this.indeterminate = !this.selected && this.hasSelectedRows();
+      const allSelected = this.allSelectedRows();
+
+      this.indeterminate = !this.selected && this.hasSelectedRows() && !allSelected;
+      this.checked = allSelected;
     });
   }
 
@@ -86,7 +86,11 @@ export class ZenTableHeader {
       <Host>
         {this.selectable && (
           <ZenTableHeaderCell class={{ widgets: true, selectable: this.selectable, expandable: this.expandable }}>
-            <ZenCheckBox indeterminate={this.indeterminate} onClick={() => this.onSelect()}></ZenCheckBox>
+            <ZenCheckBox
+              checked={this.checked}
+              indeterminate={this.indeterminate}
+              onClick={() => this.onSelect()}
+            ></ZenCheckBox>
           </ZenTableHeaderCell>
         )}
         <slot></slot>
