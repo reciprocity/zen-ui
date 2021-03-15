@@ -8,6 +8,7 @@ import { applyPrefix } from '../helpers/helpers';
 })
 export class ZenTableHeader {
   observer: MutationObserver = null;
+  @State() indeterminate = false;
 
   @Element() host: HTMLZenTableHeaderElement;
   @State() expandable = false;
@@ -58,6 +59,7 @@ export class ZenTableHeader {
   }
 
   onSelect(): void {
+ 	this.indeterminate = false;
     this.selected = !this.selected;
     this.headerSelectedChange.emit(this.selected);
   }
@@ -68,6 +70,14 @@ export class ZenTableHeader {
 
   componentDidLoad(): void {
     this.stickyChanged(this.sticky);
+   	this.indeterminate = this.hasSelectedRows();
+
+    this.host.parentElement.addEventListener('rowSelected', () => {
+      const allSelected = this.allSelectedRows();
+      this.indeterminate = !this.selected && this.hasSelectedRows() && !allSelected;
+      this.checked = this.selected || allSelected;
+    });
+
     this.observer = new MutationObserver(() => this.onTableChildChanged());
 
     const table = this.host.parentElement;
@@ -87,7 +97,7 @@ export class ZenTableHeader {
       <Host class={{ selectable: this.selectable, expandable: this.expandable }}>
         {this.selectable && (
           <div class="widgets">
-            <ZenCheckBox class="checkbox" checked={this.selected} onClick={() => this.onSelect()}></ZenCheckBox>
+            <ZenCheckBox class="checkbox" indeterminate={this.indeterminate} checked={this.selected} onClick={() => this.onSelect()}></ZenCheckBox>
           </div>
         )}
         <slot></slot>
