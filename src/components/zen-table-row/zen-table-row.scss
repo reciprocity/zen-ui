@@ -59,6 +59,12 @@ $select-transition: 0.5s;
   padding-left: 0.5rem;
 }
 
+:host(.expanded) {
+  .widgets {
+    background-color: $color-blue-50;
+  }
+}
+
 .widgets.hidden,
 .checkbox.hidden,
 .expand-icon.hidden {
