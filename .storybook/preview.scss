@@ -121,6 +121,13 @@ h1.sbdocs-h1 {
   overflow: visible !important;
 }
 
+// On FF for some strange reason this div's height gets calculated as a fixed
+// value that is in fact wrong and content sometimes extends ouside canvas
+// boundaries:
+.css-1wjen9k > div {
+  height: auto !important;
+}
+
 .css-25bv1u { // show code button
   bottom: 10px !important;
 }
