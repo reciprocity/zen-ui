@@ -102,7 +102,7 @@ export class ZenTableRow {
         {this.showWidgets() && (
           <ZenTableCell class="widgets">
             {this.selectable && (
-              <ZenCheckBox checked={this.selected} onClick={() => this.onSelect()} class="checkbox" />
+              <ZenCheckBox class="checkbox" checked={this.selected} onClick={() => this.onSelect()} />
             )}
             {this.expandable && (
               <ZenIcon

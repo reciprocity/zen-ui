@@ -21,6 +21,10 @@ $select-transition: 0.5s;
   border: 1px solid $color-blue-700 !important;
 }
 
+:host([full-span-parent]) ::slotted(*:first-child) {
+  padding-left: 1.5rem;
+}
+
 :host([full-span]) ::slotted(*:first-child) {
   position: absolute;
   left: 0;
@@ -59,10 +63,12 @@ $select-transition: 0.5s;
   padding-left: 0.5rem;
 }
 
-:host(.expanded) {
-  .widgets {
-    background-color: $color-blue-50;
-  }
+:host(.expanded) .widgets {
+  background-color: $color-blue-50;
+}
+
+:host(.selected) .widgets {
+  background-color: $color-blue-50;
 }
 
 .widgets.hidden,
