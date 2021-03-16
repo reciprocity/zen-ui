@@ -4,7 +4,7 @@ import { PositionVariant, Notification } from '../helpers/types';
 
 declare global {
   interface Window {
-    ZenUINotificationsWrapper: HTMLZenNotificationsWrapperElement;
+    ZenUINotificationsWrapper?: HTMLZenNotificationsWrapperElement;
   }
 }
 
@@ -20,38 +20,37 @@ export class ZenNotificationsWrapper {
   @Prop({ reflect: true }) readonly position: PositionVariant = 'top-right';
 
   /** Returns the notification wrapper reference */
-  private notificationWrapper(): HTMLZenNotificationsWrapperElement {
-    return global.window.ZenUINotificationsWrapper ? global.window.ZenUINotificationsWrapper : this.host;
+  private getNotificationWrapper(): HTMLZenNotificationsWrapperElement {
+    return global.window.ZenUINotificationsWrapper || this.host;
   }
 
   /** Displays a notification */
   @Method()
-  async displayNotification(n: Notification): Promise<void> {
-    const { heading, content, variant, position } = n;
-
-    const notification = document.createElement(
+  async displayNotification({ heading, content, variant, position }: Notification): Promise<void> {
+    const notificationElement = document.createElement(
       applyPrefix('zen-notification', this.host),
     ) as HTMLZenNotificationElement;
 
-    notification.setAttribute('heading', heading);
-    notification.setAttribute('variant', variant);
-    notification.setAttribute('dismiss', 'true');
-    notification.innerText = content;
+    notificationElement.setAttribute('heading', heading);
+    notificationElement.setAttribute('variant', variant);
+    notificationElement.setAttribute('dismiss', 'true');
+    notificationElement.innerText = content;
 
-    global.window.ZenUINotificationsWrapper.setAttribute('position', position);
-    global.window.ZenUINotificationsWrapper.appendChild(notification);
+    const wrapper = this.getNotificationWrapper();
+    wrapper.setAttribute('position', position);
+    wrapper.appendChild(notificationElement);
   }
 
   render(): HTMLElement | null {
-    if (this.notificationWrapper() === this.host) {
+    const wrapper = this.getNotificationWrapper();
+    if (wrapper && wrapper !== this.host) return null;
+    if (!wrapper) {
       global.window.ZenUINotificationsWrapper = this.host;
-      return (
-        <Host>
-          <slot></slot>
-        </Host>
-      );
-    } else {
-      return null;
     }
+    return (
+      <Host>
+        <slot></slot>
+      </Host>
+    );
   }
 }

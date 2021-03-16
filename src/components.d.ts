@@ -364,7 +364,7 @@ export namespace Components {
         /**
           * Displays a notification
          */
-        "displayNotification": (n: Notification) => Promise<void>;
+        "displayNotification": ({ heading, content, variant, position }: Notification) => Promise<void>;
         /**
           * Position of the notification
          */
