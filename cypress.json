@@ -2,5 +2,6 @@
   "projectId": "iqmzqy",
   "baseUrl": "http://localhost:6006",
   "includeShadowDom": true,
-  "video": false
+  "video": false,
+  "waitForAnimations": true
 }
