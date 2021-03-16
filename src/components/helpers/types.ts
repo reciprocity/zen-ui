@@ -42,7 +42,7 @@ export interface AvatarColor {
   color?: string;
 }
 
-export interface Sortable {
+export interface SortableData {
   name: string;
   selected: boolean;
 

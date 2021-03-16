@@ -6,7 +6,7 @@ const { argTypes } = getArgTypesAndArgs('zen-sortable');
 
 <Meta title="In progress/Sortable" component="zen-sortable" argTypes={argTypes} />
 
-export const data = [
+export let data = [
   {
     name: 'Title',
     selected: true,
@@ -28,6 +28,9 @@ export const data = [
 export const StorySortable = () => {
   waitForElement('#sortable', element => {
     element.data = data;
+    element.addEventListener('onUpdate', ev => {
+      console.log('data: ', data, ev);
+    });
   });
   return html/*html*/ `<sb-zen-sortable
     style="width:320px;border: 1px solid lightgray;"

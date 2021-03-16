@@ -9,7 +9,12 @@
   width: 100%;
 }
 
+.ghost {
+  background-color: $color-white;
+  opacity: 0.2;
+}
+
 .handle {
   color: $color-gray-400;
-  cursor: grab;
+  cursor: move;
 }

@@ -1,8 +1,8 @@
-import { Component, Host, h, Element, Prop } from '@stencil/core';
+import { Component, Host, h, Element, Prop, Listen } from '@stencil/core';
 import Sortable from 'sortablejs';
 import { applyPrefix } from '../helpers/helpers';
 import { faGripVertical } from '@fortawesome/pro-solid-svg-icons';
-import { PaddingShorthand } from '../helpers/types';
+import { PaddingShorthand, SortableData } from '../helpers/types';
 
 @Component({
   tag: 'zen-sortable',
@@ -13,7 +13,7 @@ export class ZenSortable {
   @Element() host: HTMLZenSortableElement;
 
   /** Array of sortable items */
-  @Prop() readonly data: Sortable[] = [];
+  @Prop() readonly data: SortableData[] = [];
 
   /** Container padding */
   @Prop() readonly padding: PaddingShorthand = 'md';
@@ -21,8 +21,21 @@ export class ZenSortable {
   /** Container item spacing */
   @Prop() readonly spacing: PaddingShorthand = 'md';
 
+  @Listen('onUpdate')
+  update(evt: any): void {
+    console.log('Item position changed', evt);
+  }
+
   componentDidLoad(): void {
-    Sortable.create(this.host.shadowRoot.firstElementChild, { animation: 150, handle: '.handle' });
+    const host = this.host;
+    Sortable.create(this.host.shadowRoot.firstElementChild, {
+      animation: 150,
+      ghostClass: 'ghost',
+      handle: '.handle',
+      onUpdate: function (evt) {
+        host.dispatchEvent(new window.Event('onUpdate', evt));
+      },
+    });
   }
   render(): HTMLElement {
     const ZenSpace = applyPrefix('zen-space', this.host);
