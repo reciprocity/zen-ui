@@ -4,7 +4,7 @@ import { PositionVariant, Notification } from '../helpers/types';
 
 declare global {
   interface Window {
-    ZenUINotificationWrapper: HTMLZenNotificationsWrapperElement;
+    ZenUINotificationsWrapper: HTMLZenNotificationsWrapperElement;
   }
 }
 
@@ -21,7 +21,7 @@ export class ZenNotificationsWrapper {
 
   /** Returns the notification wrapper reference */
   private notificationWrapper(): HTMLZenNotificationsWrapperElement {
-    return global.window.ZenUINotificationWrapper ? global.window.ZenUINotificationWrapper : this.host;
+    return global.window.ZenUINotificationsWrapper ? global.window.ZenUINotificationsWrapper : this.host;
   }
 
   /** Displays a notification */
@@ -38,19 +38,21 @@ export class ZenNotificationsWrapper {
     notification.setAttribute('dismiss', 'true');
     notification.innerText = content;
 
-    global.window.ZenUINotificationWrapper.setAttribute('position', position);
-    global.window.ZenUINotificationWrapper.appendChild(notification);
+    global.window.ZenUINotificationsWrapper.setAttribute('position', position);
+    global.window.ZenUINotificationsWrapper.appendChild(notification);
   }
 
-  render(): HTMLElement {
+  render(): HTMLElement | null {
     if (this.notificationWrapper() === this.host) {
-      global.window.ZenUINotificationWrapper = this.host;
+      global.window.ZenUINotificationsWrapper = this.host;
+      console.log('Me fui por SI');
       return (
         <Host>
           <slot></slot>
         </Host>
       );
     } else {
+      console.log('Me fui por NM=ULL');
       return null;
     }
   }
