@@ -19,11 +19,6 @@ export class ZenNotificationsWrapper {
   /** Position of the notification */
   @Prop({ reflect: true }) readonly position: PositionVariant = 'top-right';
 
-  /** Returns the notification wrapper reference */
-  private getNotificationWrapper(): HTMLZenNotificationsWrapperElement {
-    return global.window.ZenUINotificationsWrapper || this.host;
-  }
-
   /** Displays a notification */
   @Method()
   async displayNotification({ heading, content, variant, position }: Notification): Promise<void> {
@@ -36,13 +31,13 @@ export class ZenNotificationsWrapper {
     notificationElement.setAttribute('dismiss', 'true');
     notificationElement.innerText = content;
 
-    const wrapper = this.getNotificationWrapper();
+    const wrapper = global.window.ZenUINotificationsWrapper || this.host;
     wrapper.setAttribute('position', position);
     wrapper.appendChild(notificationElement);
   }
 
   render(): HTMLElement | null {
-    const wrapper = this.getNotificationWrapper();
+    const wrapper = global.window.ZenUINotificationsWrapper;
     if (wrapper && wrapper !== this.host) return null;
     if (!wrapper) {
       global.window.ZenUINotificationsWrapper = this.host;
