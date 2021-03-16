@@ -1,7 +1,8 @@
 import { getIcon } from '../helpers';
+import { NotificationVariant } from '../../helpers/types';
 
 describe('zen-notification', () => {
-  it.each(['success', 'info', 'warning', 'error'])('should set title and message', async variant => {
+  it.each(['success', 'info', 'warning', 'error'])('should set title and message', (variant: NotificationVariant) => {
     const iconObject = getIcon(variant);
     switch (variant) {
       case 'success':
