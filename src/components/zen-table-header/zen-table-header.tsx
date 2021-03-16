@@ -7,6 +7,8 @@ import { applyPrefix } from '../helpers/helpers';
   shadow: true,
 })
 export class ZenTableHeader {
+  observer: MutationObserver = null;
+
   @State() expandable = false;
 
   @Element() host: HTMLZenTableHeaderElement;
@@ -59,25 +61,38 @@ export class ZenTableHeader {
   }
 
   componentWillLoad(): void {
-    this.expandable = this.hasExpandableRows();
     if (this.sticky) {
       this.setSticky();
     }
   }
 
-  componentDidLoad(): void {
+  onTableChildChanged(): void {
     this.expandable = this.hasExpandableRows();
   }
 
+  componentDidLoad(): void {
+    this.observer = new MutationObserver(() => this.onTableChildChanged());
+
+    const table = this.host.parentElement;
+    this.observer.observe(table, {
+      childList: true,
+      attributes: true,
+      subtree: true,
+    });
+  }
+
+  disconnectedCallback(): void {
+    this.observer.disconnect();
+  }
+
   render(): HTMLElement {
-    const ZenTableHeaderCell = applyPrefix('zen-table-header-cell', this.host);
     const ZenCheckBox = applyPrefix('zen-checkbox', this.host);
     return (
-      <Host>
+      <Host class={{ selectable: this.selectable, expandable: this.expandable }}>
         {this.selectable && (
-          <ZenTableHeaderCell class={{ widgets: true, selectable: this.selectable, expandable: this.expandable }}>
+          <div class="widgets">
             <ZenCheckBox class="checkbox" onClick={() => this.onSelect()}></ZenCheckBox>
-          </ZenTableHeaderCell>
+          </div>
         )}
         <slot></slot>
       </Host>

@@ -1,20 +1,29 @@
+$checkbox-width: 2rem;
+$arrow-width: 2rem;
+
 :host {
   display: table-row;
   position: relative;
+  transform: scale(1); // hack to apply position relative for widgets (tested in chrome & ff)
 }
 
 .widgets {
+  position: absolute;
   padding-left: 0.5rem;
+  inset: 0 auto 0 0;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
 }
 
-.selectable {
-  width: 1rem;
+:host(.expandable) .widgets + ::slotted(*:nth-child(1)) {
+  padding-left: #{$arrow-width};
 }
 
-.expandable {
-  width: 2rem;
+:host(.selectable) .widgets + ::slotted(*:nth-child(1)) {
+  padding-left: #{$checkbox-width};
 }
 
-.selectable.expandable {
-  width: 3rem;
+:host(.expandable.selectable) .widgets + ::slotted(*:nth-child(1)) {
+  padding-left: #{$checkbox-width + $arrow-width};
 }

@@ -1,6 +1,11 @@
 @import '../../zen-styles/component-helpers.scss';
 @import '../../zen-styles/mixins/forms.scss';
 
+// Checkboxes and expand arrow padding:
+$checkbox-width: 2rem;
+$arrow-width: 2rem;
+$depth-padding: 1.8rem;
+
 $expand-icon-transition: 0.2s;
 $select-transition: 0.5s;
 
@@ -19,10 +24,6 @@ $select-transition: 0.5s;
 
 :host(.selected) {
   border: 1px solid $color-blue-700;
-}
-
-:host([full-span-parent]) ::slotted(*:first-child) {
-  padding-left: 1.5rem;
 }
 
 :host([full-span]) ::slotted(*:first-child) {
@@ -54,22 +55,12 @@ $select-transition: 0.5s;
 }
 
 .widgets {
+  position: absolute;
+  inset: 1px auto 1px 1px; // 1px offset to render selected border on FF
   box-sizing: border-box;
   display: flex;
-  flex-direction: row;
-  justify-content: left;
   align-items: center;
-  position: absolute;
-  inset: 0 auto 0 0;
   padding-left: 0.5rem;
-}
-
-:host(.expanded) .widgets {
-  background-color: $color-blue-50;
-}
-
-:host(.selected) .widgets {
-  background-color: $color-blue-50;
 }
 
 .widgets.hidden,
@@ -78,33 +69,23 @@ $select-transition: 0.5s;
   display: none;
 }
 
-// Checkboxes and expand arrow padding:
-$arrow-width: 1rem;
-$checkbox-width: 2rem;
-$default-padding: 0.3rem;
-
-:host(:not([depth]):not([full-span-parent]).expandable) ::slotted(*:first-child) {
-  padding-left: #{$arrow-width * 2};
+:host(:not([depth]).expandable) ::slotted(*:first-child),
+:host(:not([depth]).selectable) ::slotted(*:first-child) {
+  padding-left: #{$arrow-width};
 }
 
-:host(:not([depth]):not([full-span-parent]).expandable.selectable) ::slotted(*:first-child) {
-  padding-left: #{$default-padding + $checkbox-width + $arrow-width};
+:host(:not([depth]).expandable.selectable) ::slotted(*:first-child) {
+  padding-left: #{$checkbox-width + $arrow-width};
 }
 
 @for $i from 0 through 32 {
   :host([depth='#{$i}']) .widgets {
-    padding-left: #{$i * 3}rem;
+    padding-left: #{0.5rem + $i * $depth-padding};
   }
 
-  :host([depth='#{$i}'].expandable) ::slotted(*:first-child) {
-    padding-left: #{($i + 1) * ($default-padding + $arrow-width)};
-  }
-
-  :host([depth='#{$i}'].selectable) ::slotted(*:first-child) {
-    padding-left: #{($i + 1) * ($checkbox-width + 1)};
-  }
-
+  :host([depth='#{$i}'].expandable) ::slotted(*:first-child),
+  :host([depth='#{$i}'].selectable) ::slotted(*:first-child),
   :host([depth='#{$i}'].selectable.expandable) ::slotted(*:first-child) {
-    padding-left: #{($i + 1) * ($checkbox-width + $arrow-width)};
+    padding-left: #{($i) * $depth-padding + ($checkbox-width + $arrow-width)};
   }
 }

@@ -89,7 +89,6 @@ export class ZenTableRow {
   render(): HTMLTableRowElement {
     const ZenCheckBox = applyPrefix('zen-checkbox', this.host);
     const ZenIcon = applyPrefix('zen-icon', this.host);
-    const ZenTableCell = applyPrefix('zen-table-cell', this.host);
     const hostClass = {
       hidden: !this.visible,
       selectable: this.selectable,
@@ -100,7 +99,7 @@ export class ZenTableRow {
     return (
       <Host class={hostClass}>
         {this.showWidgets() && (
-          <ZenTableCell class="widgets">
+          <div class="widgets">
             {this.selectable && (
               <ZenCheckBox class="checkbox" checked={this.selected} onClick={() => this.onSelect()} />
             )}
@@ -108,12 +107,12 @@ export class ZenTableRow {
               <ZenIcon
                 class="expand-icon"
                 size="sm"
-                padding="sm"
+                padding="lg"
                 icon={faChevronRight}
                 onClick={() => this.onExpand()}
               />
             )}
-          </ZenTableCell>
+          </div>
         )}
         <slot></slot>
       </Host>
