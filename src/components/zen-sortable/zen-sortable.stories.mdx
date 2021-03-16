@@ -1,51 +1,50 @@
 import { html } from 'lit-html';
 import { Meta, Description, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
-import { faGripVertical } from '@fortawesome/pro-light-svg-icons';
 import { waitForElement } from '../../../.storybook/helpers/utils';
 import { getArgTypesAndArgs, getDefaultArgs, getComponentData, spreadArgs } from '../../../.storybook/helpers/argTypes';
 const { argTypes } = getArgTypesAndArgs('zen-sortable');
 
 <Meta title="In progress/Sortable" component="zen-sortable" argTypes={argTypes} />
 
+export const data = [
+  {
+    name: 'Title',
+    selected: true,
+  },
+  {
+    name: 'Description',
+    selected: true,
+  },
+  {
+    name: 'Status',
+    selected: true,
+  },
+  {
+    name: 'Manager',
+    selected: false,
+  },
+];
+
 export const StorySortable = () => {
-  ['#icon1', '#icon2', '#icon3', '#icon4', '#icon5'].forEach(id => {
-    waitForElement(id, element => {
-      element.icon = faGripVertical;
-    });
+  waitForElement('#sortable', element => {
+    element.data = data;
   });
-  return html/*html*/ `
-    <style>
-      .item {
-        width: 250px;
-        border: 1px solid lightgray;
-        cursor: grab;
-      }
-    </style>
-    <sb-zen-space vertical padding="md" spacing="none" horizontal-align="center" vertical-align="center">
-      <sb-zen-sortable>
-        <sb-zen-space spacing="lg" padding="md" class="item">
-          <sb-zen-icon id="icon1"></sb-zen-icon>
-          <sb-zen-text>Item 1</sb-zen-text>
-        </sb-zen-space>
-        <sb-zen-space spacing="lg" padding="md" class="item">
-          <sb-zen-icon id="icon2"></sb-zen-icon>
-          <sb-zen-text>Item 2</sb-zen-text>
-        </sb-zen-space>
-        <sb-zen-space spacing="lg" padding="md" class="item">
-          <sb-zen-icon id="icon3"></sb-zen-icon>
-          <sb-zen-text>Item 3</sb-zen-text>
-        </sb-zen-space>
-        <sb-zen-space spacing="lg" padding="md" class="item">
-          <sb-zen-icon id="icon4"></sb-zen-icon>
-          <sb-zen-text>Item 4</sb-zen-text>
-        </sb-zen-space>
-        <sb-zen-space spacing="lg" padding="md" class="item">
-          <sb-zen-icon id="icon5"></sb-zen-icon>
-          <sb-zen-text>Item 5</sb-zen-text>
-        </sb-zen-space>
-      </sb-zen-sortable>
-    </sb-zen-space>
-  `;
+  return html/*html*/ `<sb-zen-sortable
+    style="width:320px;border: 1px solid lightgray;"
+    id="sortable"
+  ></sb-zen-sortable>`;
+};
+
+export const StoryWithControls = args => {
+  waitForElement('#control', element => {
+    element.data = data;
+  });
+  return html/*html*/ `<sb-zen-sortable
+    style="border: 1px solid lightgray;"
+    padddig="md"
+    id="control"
+    ...="${spreadArgs(args, argTypes)}"
+  ></sb-zen-sortable>`;
 };
 
 # Zen Sortable
@@ -61,5 +60,21 @@ Slotted content becomes draggable.
 <Canvas>
   <Story name="Sortable">{StorySortable.bind({})}</Story>
 </Canvas>
+
+## Properties
+
+<Canvas>
+  <Story
+    name="default"
+    args={{
+      ...getDefaultArgs(argTypes),
+      data: data,
+    }}
+  >
+    {StoryWithControls.bind({})}
+  </Story>
+</Canvas>
+
+<ArgsTable story="default" />
 
 <docs-table docs={JSON.stringify(getComponentData('zen-sortable'))}></docs-table>

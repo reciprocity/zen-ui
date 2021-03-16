@@ -42,6 +42,10 @@ export interface AvatarColor {
   color?: string;
 }
 
+export interface Sortable {
+  name: string;
+  selected: boolean;
+
 export interface Notification {
   heading: string;
   content: string;

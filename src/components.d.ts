@@ -505,6 +505,18 @@ export namespace Components {
         "value": string;
     }
     interface ZenSortable {
+        /**
+          * Array of sortable items
+         */
+        "data": Sortable[];
+        /**
+          * Container padding
+         */
+        "padding": PaddingShorthand;
+        /**
+          * Container item spacing
+         */
+        "spacing": PaddingShorthand;
     }
     interface ZenSpace {
         /**
@@ -1516,6 +1528,18 @@ declare namespace LocalJSX {
         "value"?: string;
     }
     interface ZenSortable {
+        /**
+          * Array of sortable items
+         */
+        "data"?: Sortable[];
+        /**
+          * Container padding
+         */
+        "padding"?: PaddingShorthand;
+        /**
+          * Container item spacing
+         */
+        "spacing"?: PaddingShorthand;
     }
     interface ZenSpace {
         /**
