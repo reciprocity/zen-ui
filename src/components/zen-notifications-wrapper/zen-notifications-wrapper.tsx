@@ -1,5 +1,12 @@
-import { Component, Host, h, Prop, Element } from '@stencil/core';
-import { PositionVariant } from '../helpers/types';
+import { Component, Host, h, Prop, Element, Method } from '@stencil/core';
+import { applyPrefix } from '../helpers/helpers';
+import { PositionVariant, Notification } from '../helpers/types';
+
+declare global {
+  interface Window {
+    ZenUINotificationWrapper: HTMLZenNotificationsWrapperElement;
+  }
+}
 
 @Component({
   tag: 'zen-notifications-wrapper',
@@ -9,14 +16,42 @@ import { PositionVariant } from '../helpers/types';
 export class ZenNotificationsWrapper {
   @Element() host: HTMLZenNotificationsWrapperElement;
 
-  /** Variant  */
+  /** Position of the notification */
   @Prop({ reflect: true }) readonly position: PositionVariant = 'top-right';
 
+  /** Returns the notification wrapper reference */
+  private notificationWrapper(): HTMLZenNotificationsWrapperElement {
+    return global.window.ZenUINotificationWrapper ? global.window.ZenUINotificationWrapper : this.host;
+  }
+
+  /** Displays a notification */
+  @Method()
+  async displayNotification(n: Notification): Promise<void> {
+    const { heading, content, variant, position } = n;
+
+    const notification = document.createElement(
+      applyPrefix('zen-notification', this.host),
+    ) as HTMLZenNotificationElement;
+
+    notification.setAttribute('heading', heading);
+    notification.setAttribute('variant', variant);
+    notification.setAttribute('dismiss', 'true');
+    notification.innerText = content;
+
+    global.window.ZenUINotificationWrapper.setAttribute('position', position);
+    global.window.ZenUINotificationWrapper.appendChild(notification);
+  }
+
   render(): HTMLElement {
-    return (
-      <Host>
-        <slot></slot>
-      </Host>
-    );
+    if (this.notificationWrapper() === this.host) {
+      global.window.ZenUINotificationWrapper = this.host;
+      return (
+        <Host>
+          <slot></slot>
+        </Host>
+      );
+    } else {
+      return null;
+    }
   }
 }

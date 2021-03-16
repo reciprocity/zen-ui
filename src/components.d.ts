@@ -6,7 +6,7 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { StringifiedJson } from "./stories/components/color-swatch-group/color-swatch-group";
-import { Align, Avatar, AvatarData, IconSizes, None, NotificationVariant, PaddingShorthand, Position, PositionVariant, Resize, Size, TextSize, TextVariant, TooltipVariant, TriggerEvent } from "./components/helpers/types";
+import { Align, Avatar, AvatarData, IconSizes, None, Notification, NotificationVariant, PaddingShorthand, Position, PositionVariant, Resize, Size, TextSize, TextVariant, TooltipVariant, TriggerEvent } from "./components/helpers/types";
 import { ButtonVariants } from "./components/zen-button/types";
 import { OptionValue } from "./components/zen-menu-item/zen-option";
 import { IconDefinition } from "@fortawesome/pro-light-svg-icons";
@@ -362,7 +362,11 @@ export namespace Components {
     }
     interface ZenNotificationsWrapper {
         /**
-          * Variant
+          * Displays a notification
+         */
+        "displayNotification": (n: Notification) => Promise<void>;
+        /**
+          * Position of the notification
          */
         "position": PositionVariant;
     }
@@ -1360,7 +1364,7 @@ declare namespace LocalJSX {
     }
     interface ZenNotificationsWrapper {
         /**
-          * Variant
+          * Position of the notification
          */
         "position"?: PositionVariant;
     }
