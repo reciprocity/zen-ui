@@ -4,6 +4,7 @@ import { getNextField } from '../helpers/helpers';
 /**
  * @slot leadingSlot - Slot placed at the left
  * @slot trailingSlot - Slot placed at the right
+ * @event change | ActiveIndex changed
  */
 @Component({
   tag: 'zen-input',
