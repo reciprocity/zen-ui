@@ -19,4 +19,25 @@ describe('zen-notification', () => {
 
     expect(page.root.shadowRoot.querySelector('.close')).not.toBeNull();
   });
+
+  it('should call close function', async () => {
+    const page = await newSpecPage({
+      components: [ZenNotification],
+      html: `<zen-notification heading="Test Heading" dismiss="true">Test Message</zen-notification>`,
+    });
+    page.rootInstance.close = jest.fn();
+    page.root.shadowRoot.querySelector('.close').click();
+
+    expect(page.rootInstance.close).toHaveBeenCalled();
+  });
+
+  it('should dismiss notification', async () => {
+    const page = await newSpecPage({
+      components: [ZenNotification],
+      html: `<zen-notification heading="Test Heading" dismiss="true">Test Message</zen-notification>`,
+    });
+    page.rootInstance.close();
+
+    expect(Object.entries(page.rootInstance)).toStrictEqual([]);
+  });
 });
