@@ -18,7 +18,7 @@ $select-transition: 0.5s;
 }
 
 :host(.selected) {
-  border: 1px solid $color-blue-700 !important;
+  border: 1px solid $color-blue-700;
 }
 
 :host([full-span-parent]) ::slotted(*:first-child) {
@@ -48,8 +48,9 @@ $select-transition: 0.5s;
 
 .expanded ::slotted(*),
 :host(.selected) ::slotted(*),
-:host(.expanded) ::slotted(*) {
-  background-color: $color-blue-50;
+:host(.expanded) ::slotted(*),
+:host(.expanded-bg) ::slotted(*) {
+  background-color: $color-blue-50 !important;
 }
 
 .widgets {

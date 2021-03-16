@@ -11,10 +11,18 @@ export class ZenTable {
   expandedChanged(target: HTMLZenTableRowElement, expanded: boolean): void {
     target.expanded = expanded;
 
-    this.descendants(target).forEach(n => {
-      n.visible = expanded;
-      n.expanded = expanded;
-    });
+    if (expanded) {
+      this.children(target).forEach(n => {
+        n.visible = true;
+        n.classList.add('expanded-bg');
+      });
+    } else {
+      this.descendants(target).forEach(n => {
+        n.visible = false;
+        n.expanded = false;
+        n.classList.remove('expanded-bg');
+      });
+    }
   }
 
   selectedChanged(target: HTMLZenTableRowElement, selected: boolean): void {
@@ -33,6 +41,22 @@ export class ZenTable {
       next.selected = selected;
       next = next.nextElementSibling as HTMLZenTableRowElement;
     }
+  }
+
+  children(target: HTMLZenTableRowElement): HTMLZenTableRowElement[] {
+    const children = [];
+    let next = target.nextElementSibling as HTMLZenTableRowElement;
+
+    // Get all rows that have depth greater then the parent
+    while (next) {
+      if (next.depth <= target.depth) break;
+      if (next.depth === target.depth + 1) {
+        children.push(next as HTMLZenTableRowElement);
+      }
+      next = next.nextElementSibling as HTMLZenTableRowElement;
+    }
+
+    return children;
   }
 
   descendants(target: HTMLZenTableRowElement): HTMLZenTableRowElement[] {
