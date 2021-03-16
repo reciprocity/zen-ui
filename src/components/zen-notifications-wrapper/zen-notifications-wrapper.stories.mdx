@@ -8,46 +8,201 @@ const argTypes = getArgTypes(compData);
 
 <Meta title="Notifications/Notification Wrapper" component="zen-notifications-wrapper" argTypes={argTypes} />
 
-export const StoryWithControls = args =>
-  html/*html*/ `<sb-zen-notification ...="${spreadArgs(args, argTypes)}"
-    >Settings successfully saved!</sb-zen-notification
-  >`;
-
-export const StoryVariants = () => {
+export const StoryTopLeftVariants = () => {
   const displayNotification = (params) => {
-    const wrapper = document.getElementById('wrapper');
+    const wrapper = document.getElementById('wrapper1');
     wrapper.displayNotification(params);
   }
   return html/*html*/ `
-    <sb-zen-space vertical spacing="lg">
+    <sb-zen-space spacing="lg">
       <sb-zen-button
-        @click="${() =>
-          displayNotification({
-            heading: 'News of the week',
-            content: 'Look, its the eiffel tower',
-            variant: 'warning',
-            position: 'bottom-right',
-          })}"
-      ></sb-zen-button>
-      <sb-zen-button
-        variant="destructive"
         @click="${() =>
           displayNotification({
             heading: 'This is a title',
-            content: 'Content on demand',
-            variant: 'error',
-            position: 'top-right',
+            content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce id justo mattis, hendrerit augue non, ornare libero.',
+            variant: 'success',
+            position: 'top-left',
           })}"
-      ></sb-zen-button>
-      <sb-zen-notifications-wrapper id="wrapper"></sb-zen-notifications-wrapper>
+      >Success</sb-zen-button>
+      <sb-zen-button
+        @click="${() =>
+          displayNotification({
+            heading: 'This is a title',
+            content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce id justo mattis, hendrerit augue non, ornare libero.',
+            variant: 'info',
+            position: 'top-left',
+          })}"
+      >Info</sb-zen-button>
+      <sb-zen-button
+        @click="${() =>
+          displayNotification({
+            heading: 'This is a title',
+            content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce id justo mattis, hendrerit augue non, ornare libero.',
+            variant: 'warning',
+            position: 'top-left',
+          })}"
+      >Warning</sb-zen-button>
+      <sb-zen-button
+        @click="${() =>
+          displayNotification({
+            heading: 'This is a title',
+            content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce id justo mattis, hendrerit augue non, ornare libero.',
+            variant: 'error',
+            position: 'top-left',
+          })}"
+      >Error</sb-zen-button>
+      <sb-zen-notifications-wrapper id="wrapper1"></sb-zen-notifications-wrapper>
     </sb-zen-space>
   `;
 };
 
-# Notification
+export const StoryTopRightVariants = () => {
+  const displayNotification = (params) => {
+    const wrapper = document.getElementById('wrapper2');
+    wrapper.displayNotification(params);
+  }
+  return html/*html*/ `
+    <sb-zen-space spacing="lg">
+      <sb-zen-button
+        @click="${() =>
+          displayNotification({
+            heading: 'This is a title',
+            content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce id justo mattis, hendrerit augue non, ornare libero.',
+            variant: 'success',
+            position: 'top-right',
+          })}"
+      >Success</sb-zen-button>
+      <sb-zen-button
+        @click="${() =>
+          displayNotification({
+            heading: 'This is a title',
+            content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce id justo mattis, hendrerit augue non, ornare libero.',
+            variant: 'info',
+            position: 'top-right',
+          })}"
+      >Info</sb-zen-button>
+      <sb-zen-button
+        @click="${() =>
+          displayNotification({
+            heading: 'This is a title',
+            content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce id justo mattis, hendrerit augue non, ornare libero.',
+            variant: 'warning',
+            position: 'top-right',
+          })}"
+      >Warning</sb-zen-button>
+      <sb-zen-button
+        @click="${() =>
+          displayNotification({
+            heading: 'This is a title',
+            content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce id justo mattis, hendrerit augue non, ornare libero.',
+            variant: 'error',
+            position: 'top-right',
+          })}"
+      >Error</sb-zen-button>
+      <sb-zen-notifications-wrapper id="wrapper2"></sb-zen-notifications-wrapper>
+    </sb-zen-space>
+  `;
+};
 
-Toast notifications. Can be dismissible or permanent.
-Use when you need to notify user, but don't need his direct response.
+export const StoryBottomRightVariants = () => {
+  const displayNotification = (params) => {
+    const wrapper = document.getElementById('wrapper3');
+    wrapper.displayNotification(params);
+  }
+  return html/*html*/ `
+    <sb-zen-space spacing="lg">
+      <sb-zen-button
+        @click="${() =>
+          displayNotification({
+            heading: 'This is a title',
+            content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce id justo mattis, hendrerit augue non, ornare libero.',
+            variant: 'success',
+            position: 'bottom-right',
+          })}"
+      >Success</sb-zen-button>
+      <sb-zen-button
+        @click="${() =>
+          displayNotification({
+            heading: 'This is a title',
+            content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce id justo mattis, hendrerit augue non, ornare libero.',
+            variant: 'info',
+            position: 'bottom-right',
+          })}"
+      >Info</sb-zen-button>
+      <sb-zen-button
+        @click="${() =>
+          displayNotification({
+            heading: 'This is a title',
+            content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce id justo mattis, hendrerit augue non, ornare libero.',
+            variant: 'warning',
+            position: 'bottom-right',
+          })}"
+      >Warning</sb-zen-button>
+      <sb-zen-button
+        @click="${() =>
+          displayNotification({
+            heading: 'This is a title',
+            content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce id justo mattis, hendrerit augue non, ornare libero.',
+            variant: 'error',
+            position: 'bottom-right',
+          })}"
+      >Error</sb-zen-button>
+      <sb-zen-notifications-wrapper id="wrapper3"></sb-zen-notifications-wrapper>
+    </sb-zen-space>
+  `;
+};
+
+export const StoryBottomLeftVariants = () => {
+  const displayNotification = (params) => {
+    const wrapper = document.getElementById('wrapper4');
+    wrapper.displayNotification(params);
+  }
+  return html/*html*/ `
+    <sb-zen-space spacing="lg">
+      <sb-zen-button
+        @click="${() =>
+          displayNotification({
+            heading: 'This is a title',
+            content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce id justo mattis, hendrerit augue non, ornare libero.',
+            variant: 'success',
+            position: 'bottom-left',
+          })}"
+      >Success</sb-zen-button>
+      <sb-zen-button
+        @click="${() =>
+          displayNotification({
+            heading: 'This is a title',
+            content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce id justo mattis, hendrerit augue non, ornare libero.',
+            variant: 'info',
+            position: 'bottom-left',
+          })}"
+      >Info</sb-zen-button>
+      <sb-zen-button
+        @click="${() =>
+          displayNotification({
+            heading: 'This is a title',
+            content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce id justo mattis, hendrerit augue non, ornare libero.',
+            variant: 'warning',
+            position: 'bottom-left',
+          })}"
+      >Warning</sb-zen-button>
+      <sb-zen-button
+        @click="${() =>
+          displayNotification({
+            heading: 'This is a title',
+            content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce id justo mattis, hendrerit augue non, ornare libero.',
+            variant: 'error',
+            position: 'bottom-left',
+          })}"
+      >Error</sb-zen-button>
+      <sb-zen-notifications-wrapper id="wrapper4"></sb-zen-notifications-wrapper>
+    </sb-zen-space>
+  `;
+};
+
+# NotificationWrapper
+
+This component is in charge of positioning and render notifications through a public method called displayNotification.
 
 <br />
 
@@ -55,8 +210,26 @@ Use when you need to notify user, but don't need his direct response.
 
 <br />
 
-### Variants
+### top-left position
 
 <Canvas>
-  <Story name="variants">{StoryVariants.bind({})}</Story>
+  <Story name="StoryTopLeftVariants">{StoryTopLeftVariants.bind({})}</Story>
+</Canvas>
+
+### top-right position
+
+<Canvas>
+  <Story name="StoryTopRightVariants">{StoryTopRightVariants.bind({})}</Story>
+</Canvas>
+
+### bottom-right position
+
+<Canvas>
+  <Story name="StoryBottomRightVariants">{StoryBottomRightVariants.bind({})}</Story>
+</Canvas>
+
+### bottom-left position
+
+<Canvas>
+  <Story name="StoryBottomLeftVariants">{StoryBottomLeftVariants.bind({})}</Story>
 </Canvas>

@@ -12,11 +12,6 @@
   left: 1rem;
 }
 
-:host([position='top-center']) {
-  top: 1rem;
-  left: 50%;
-}
-
 :host([position='top-right']) {
   top: 1rem;
   right: 1rem;
@@ -25,11 +20,6 @@
 :host([position='bottom-left']) {
   bottom: 1rem;
   left: 1rem;
-}
-
-:host([position='bottom-center']) {
-  bottom: 1rem;
-  left: 50%;
 }
 
 :host([position='bottom-right']) {
