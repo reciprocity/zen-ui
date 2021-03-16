@@ -3,11 +3,11 @@ import { Meta, Description, Story, Canvas, ArgsTable } from '@storybook/addon-do
 import { faGripVertical } from '@fortawesome/pro-light-svg-icons';
 import { waitForElement } from '../../../.storybook/helpers/utils';
 import { getArgTypesAndArgs, getDefaultArgs, getComponentData, spreadArgs } from '../../../.storybook/helpers/argTypes';
-const { argTypes } = getArgTypesAndArgs('zen-draggable');
+const { argTypes } = getArgTypesAndArgs('zen-sortable');
 
-<Meta title="In progress/Draggable" component="zen-draggable" argTypes={argTypes} />
+<Meta title="In progress/Sortable" component="zen-sortable" argTypes={argTypes} />
 
-export const StoryDraggable = args => {
+export const StorySortable = () => {
   ['#icon1', '#icon2', '#icon3', '#icon4', '#icon5'].forEach(id => {
     waitForElement(id, element => {
       element.icon = faGripVertical;
@@ -22,7 +22,7 @@ export const StoryDraggable = args => {
       }
     </style>
     <sb-zen-space vertical padding="md" spacing="none" horizontal-align="center" vertical-align="center">
-      <sb-zen-draggable>
+      <sb-zen-sortable>
         <sb-zen-space spacing="lg" padding="md" class="item">
           <sb-zen-icon id="icon1"></sb-zen-icon>
           <sb-zen-text>Item 1</sb-zen-text>
@@ -43,12 +43,12 @@ export const StoryDraggable = args => {
           <sb-zen-icon id="icon5"></sb-zen-icon>
           <sb-zen-text>Item 5</sb-zen-text>
         </sb-zen-space>
-      </sb-zen-draggable>
+      </sb-zen-sortable>
     </sb-zen-space>
   `;
 };
 
-# Zen Draggable
+# Zen Sortable
 
 Slotted content becomes draggable.
 
@@ -56,10 +56,10 @@ Slotted content becomes draggable.
 
 <br />
 
-### 1. Draggable items
+### 1. Sortable items
 
 <Canvas>
-  <Story name="Draggable">{StoryDraggable.bind({})}</Story>
+  <Story name="Sortable">{StorySortable.bind({})}</Story>
 </Canvas>
 
-<docs-table docs={JSON.stringify(getComponentData('zen-draggable'))}></docs-table>
+<docs-table docs={JSON.stringify(getComponentData('zen-sortable'))}></docs-table>

@@ -232,8 +232,6 @@ export namespace Components {
     }
     interface ZenDivider {
     }
-    interface ZenDraggable {
-    }
     interface ZenDrawer {
         /**
           * Is drawer visible
@@ -506,11 +504,7 @@ export namespace Components {
          */
         "value": string;
     }
-    interface ZenSkeleton {
-        /**
-          * Makes the skeleton rounded
-         */
-        "rounded": boolean;
+    interface ZenSortable {
     }
     interface ZenSpace {
         /**
@@ -854,12 +848,6 @@ declare global {
         prototype: HTMLZenDividerElement;
         new (): HTMLZenDividerElement;
     };
-    interface HTMLZenDraggableElement extends Components.ZenDraggable, HTMLStencilElement {
-    }
-    var HTMLZenDraggableElement: {
-        prototype: HTMLZenDraggableElement;
-        new (): HTMLZenDraggableElement;
-    };
     interface HTMLZenDrawerElement extends Components.ZenDrawer, HTMLStencilElement {
     }
     var HTMLZenDrawerElement: {
@@ -932,11 +920,11 @@ declare global {
         prototype: HTMLZenRadioElement;
         new (): HTMLZenRadioElement;
     };
-    interface HTMLZenSkeletonElement extends Components.ZenSkeleton, HTMLStencilElement {
+    interface HTMLZenSortableElement extends Components.ZenSortable, HTMLStencilElement {
     }
-    var HTMLZenSkeletonElement: {
-        prototype: HTMLZenSkeletonElement;
-        new (): HTMLZenSkeletonElement;
+    var HTMLZenSortableElement: {
+        prototype: HTMLZenSortableElement;
+        new (): HTMLZenSortableElement;
     };
     interface HTMLZenSpaceElement extends Components.ZenSpace, HTMLStencilElement {
     }
@@ -1027,7 +1015,6 @@ declare global {
         "zen-checkbox": HTMLZenCheckboxElement;
         "zen-date-picker": HTMLZenDatePickerElement;
         "zen-divider": HTMLZenDividerElement;
-        "zen-draggable": HTMLZenDraggableElement;
         "zen-drawer": HTMLZenDrawerElement;
         "zen-dropdown": HTMLZenDropdownElement;
         "zen-icon": HTMLZenIconElement;
@@ -1040,7 +1027,7 @@ declare global {
         "zen-popover": HTMLZenPopoverElement;
         "zen-progress-tracker": HTMLZenProgressTrackerElement;
         "zen-radio": HTMLZenRadioElement;
-        "zen-skeleton": HTMLZenSkeletonElement;
+        "zen-sortable": HTMLZenSortableElement;
         "zen-space": HTMLZenSpaceElement;
         "zen-spinner": HTMLZenSpinnerElement;
         "zen-table": HTMLZenTableElement;
@@ -1267,8 +1254,6 @@ declare namespace LocalJSX {
         "value"?: Date;
     }
     interface ZenDivider {
-    }
-    interface ZenDraggable {
     }
     interface ZenDrawer {
         /**
@@ -1530,11 +1515,7 @@ declare namespace LocalJSX {
          */
         "value"?: string;
     }
-    interface ZenSkeleton {
-        /**
-          * Makes the skeleton rounded
-         */
-        "rounded"?: boolean;
+    interface ZenSortable {
     }
     interface ZenSpace {
         /**
@@ -1797,7 +1778,6 @@ declare namespace LocalJSX {
         "zen-checkbox": ZenCheckbox;
         "zen-date-picker": ZenDatePicker;
         "zen-divider": ZenDivider;
-        "zen-draggable": ZenDraggable;
         "zen-drawer": ZenDrawer;
         "zen-dropdown": ZenDropdown;
         "zen-icon": ZenIcon;
@@ -1810,7 +1790,7 @@ declare namespace LocalJSX {
         "zen-popover": ZenPopover;
         "zen-progress-tracker": ZenProgressTracker;
         "zen-radio": ZenRadio;
-        "zen-skeleton": ZenSkeleton;
+        "zen-sortable": ZenSortable;
         "zen-space": ZenSpace;
         "zen-spinner": ZenSpinner;
         "zen-table": ZenTable;
@@ -1845,7 +1825,6 @@ declare module "@stencil/core" {
             "zen-checkbox": LocalJSX.ZenCheckbox & JSXBase.HTMLAttributes<HTMLZenCheckboxElement>;
             "zen-date-picker": LocalJSX.ZenDatePicker & JSXBase.HTMLAttributes<HTMLZenDatePickerElement>;
             "zen-divider": LocalJSX.ZenDivider & JSXBase.HTMLAttributes<HTMLZenDividerElement>;
-            "zen-draggable": LocalJSX.ZenDraggable & JSXBase.HTMLAttributes<HTMLZenDraggableElement>;
             "zen-drawer": LocalJSX.ZenDrawer & JSXBase.HTMLAttributes<HTMLZenDrawerElement>;
             "zen-dropdown": LocalJSX.ZenDropdown & JSXBase.HTMLAttributes<HTMLZenDropdownElement>;
             "zen-icon": LocalJSX.ZenIcon & JSXBase.HTMLAttributes<HTMLZenIconElement>;
@@ -1858,7 +1837,7 @@ declare module "@stencil/core" {
             "zen-popover": LocalJSX.ZenPopover & JSXBase.HTMLAttributes<HTMLZenPopoverElement>;
             "zen-progress-tracker": LocalJSX.ZenProgressTracker & JSXBase.HTMLAttributes<HTMLZenProgressTrackerElement>;
             "zen-radio": LocalJSX.ZenRadio & JSXBase.HTMLAttributes<HTMLZenRadioElement>;
-            "zen-skeleton": LocalJSX.ZenSkeleton & JSXBase.HTMLAttributes<HTMLZenSkeletonElement>;
+            "zen-sortable": LocalJSX.ZenSortable & JSXBase.HTMLAttributes<HTMLZenSortableElement>;
             "zen-space": LocalJSX.ZenSpace & JSXBase.HTMLAttributes<HTMLZenSpaceElement>;
             "zen-spinner": LocalJSX.ZenSpinner & JSXBase.HTMLAttributes<HTMLZenSpinnerElement>;
             "zen-table": LocalJSX.ZenTable & JSXBase.HTMLAttributes<HTMLZenTableElement>;

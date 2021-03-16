@@ -2,12 +2,12 @@ import { Component, Host, h, Element } from '@stencil/core';
 import Sortable from 'sortablejs';
 
 @Component({
-  tag: 'zen-draggable',
-  styleUrl: 'zen-draggable.scss',
+  tag: 'zen-sortable',
+  styleUrl: 'zen-sortable.scss',
   shadow: true,
 })
-export class ZenDraggable {
-  @Element() host: HTMLZenDraggableElement;
+export class ZenSortable {
+  @Element() host: HTMLZenSortableElement;
 
   componentDidLoad(): void {
     Sortable.create(this.host, { animation: 150 });
