@@ -45,14 +45,12 @@ export class ZenNotificationsWrapper {
   render(): HTMLElement | null {
     if (this.notificationWrapper() === this.host) {
       global.window.ZenUINotificationsWrapper = this.host;
-      console.log('Me fui por SI');
       return (
         <Host>
           <slot></slot>
         </Host>
       );
     } else {
-      console.log('Me fui por NM=ULL');
       return null;
     }
   }
