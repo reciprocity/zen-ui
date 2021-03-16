@@ -20,7 +20,7 @@ describe('zen-notifications-wrapper', () => {
       content: 'Content',
       variant: 'success',
       position: 'top-left',
-    }
+    };
     page.rootInstance.displayNotification(notification);
     expect(page.rootInstance.position).toBe('top-left');
     expect(page.root.querySelector('zen-notification')).toBeTruthy();
