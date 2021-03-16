@@ -61,4 +61,4 @@ Click `Show code` for more details.
 
 <ArgsTable story="default" />
 
-<docs-table docs={JSON.stringify(getComponentData('zen-button'))}></docs-table>
+<sb-docs-table docs={JSON.stringify(getComponentData('zen-button'))}></sb-docs-table>
