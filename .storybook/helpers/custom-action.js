@@ -20,7 +20,7 @@ export function action (compName, eventNames) {
             cancelable: true,
             view: window
           });
-          console.log('--------- ${eventName} emitted ------------');
+          console.log('Triggered: %c${eventName}', 'background: #0078cd; color: #fff; padding: 3px; border-radius: 2px');
           console.log(event);
           // comp.dispatchEvent(evt);
         });
