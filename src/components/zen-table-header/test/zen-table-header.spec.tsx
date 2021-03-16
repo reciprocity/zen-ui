@@ -1,4 +1,14 @@
 import { newSpecPage } from '@stencil/core/testing';
+
+// TODO: this should be improved, to be able to test mutation observers:
+global.MutationObserver = class {
+  constructor() {
+    return this;
+  }
+  observe = jest.fn();
+  disconnect = jest.fn();
+};
+
 import { ZenTableHeader } from '../zen-table-header';
 
 describe('zen-table-header', () => {
