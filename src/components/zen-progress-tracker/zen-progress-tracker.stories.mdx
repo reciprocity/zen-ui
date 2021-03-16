@@ -1,6 +1,6 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
 import { html } from 'lit-html';
-import { action } from '../../../.storybook/helpers/custom-action';
+import { logEvents } from '../../../.storybook/helpers/log-events';
 import { getArgTypes, getDefaultArgs, getComponentData, spreadArgs } from '../../../.storybook/helpers/argTypes';
 import { waitForElement } from '../../../.storybook/helpers/utils';
 
@@ -16,7 +16,7 @@ export const StoryWithControls = args => {
   });
   return html/*html*/ `
     <sb-zen-progress-tracker id="tracker" ...="${spreadArgs(args, argTypes)}" />
-    ${action('#tracker', ['blur', 'focus', 'click', 'change'])}
+    ${logEvents('#tracker', ['blur', 'focus', 'click', 'change'])}
   `;
 };
 

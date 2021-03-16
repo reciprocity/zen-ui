@@ -1,7 +1,7 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
 import { html } from 'lit-html';
 
-import { eventHandles, action } from '../../../.storybook/helpers/custom-action';
+import { eventHandles, logEvents } from '../../../.storybook/helpers/log-events';
 import { getArgTypes, getDefaultArgs, getComponentData, spreadArgs } from '../../../.storybook/helpers/argTypes';
 
 import data from '../../../stencilDocs.json';
@@ -30,7 +30,7 @@ export const StoryWithControls = args => html/*html*/ `
   <sb-zen-card id="card0" ...="${spreadArgs(args, argTypes)}">
     <div style="padding: 1rem;">Content</div>
   </sb-zen-card>
-  ${action('#card1', eventHandles(['click']))}
+  ${logEvents('#card1', eventHandles(['click']))}
 `;
 
 # ZenCard

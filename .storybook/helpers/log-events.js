@@ -9,7 +9,7 @@ export const eventHandles = (eventNames) => {
   return eventNames.map(eventName => `on${capitalize(eventName)}`);
 };
 
-export function action (compName, eventNames) {
+export function logEvents(compName, eventNames) {
   return script(`
     (function(){
       const comp = document.querySelector('${compName}');
@@ -20,8 +20,7 @@ export function action (compName, eventNames) {
             cancelable: true,
             view: window
           });
-          console.log('Triggered: %c${eventName}', 'background: #0078cd; color: #fff; padding: 3px; border-radius: 2px');
-          console.log(event);
+          console.log('Triggered: %c${eventName}', 'background: #0078cd; color: #fff; padding: 3px; border-radius: 2px', event);
           // comp.dispatchEvent(evt);
         });
       `).join('')}

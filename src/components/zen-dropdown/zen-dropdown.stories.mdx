@@ -1,7 +1,7 @@
 import { html } from 'lit-html';
 import { spread } from '@open-wc/lit-helpers';
 import { Meta, Description, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
-import { action } from '../../../.storybook/helpers/custom-action';
+import { logEvents } from '../../../.storybook/helpers/log-events';
 import { getArgTypes, getDefaultArgs, getComponentData } from '../../../.storybook/helpers/argTypes';
 import { camelKeysToKebab, waitForElement } from '../../../.storybook/helpers/utils';
 
@@ -60,7 +60,7 @@ export const Template = args => {
       <sb-zen-option value="8">Item 8</sb-zen-option>
       <sb-zen-option value="9">Item 9</sb-zen-option>
     </sb-zen-dropdown>
-    ${action('#dropdown-controls', ['change'])}
+    ${logEvents('#dropdown-controls', ['change'])}
   `;
 };
 
@@ -96,7 +96,7 @@ export const CustomIcons = args => {
         </div>
       </sb-zen-option>
     </sb-zen-dropdown>
-    ${action('#dropdown-with-options-slot', ['change'])}
+    ${logEvents('#dropdown-with-options-slot', ['change'])}
   `;
 };
 
