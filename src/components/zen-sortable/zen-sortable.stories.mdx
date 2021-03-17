@@ -4,50 +4,62 @@ import { waitForElement } from '../../../.storybook/helpers/utils';
 import { getArgTypesAndArgs, getDefaultArgs, getComponentData, spreadArgs } from '../../../.storybook/helpers/argTypes';
 const { argTypes } = getArgTypesAndArgs('zen-sortable');
 
-<Meta title="In progress/Sortable" component="zen-sortable" argTypes={argTypes} />
-
-export let data = [
-  {
-    name: 'Title',
-    selected: true,
-  },
-  {
-    name: 'Description',
-    selected: true,
-  },
-  {
-    name: 'Status',
-    selected: true,
-  },
-  {
-    name: 'Manager',
-    selected: false,
-  },
-];
+<Meta title="In progress/Sortable/Sortable" component="zen-sortable" argTypes={argTypes} />
 
 export const StorySortable = () => {
   waitForElement('#sortable', element => {
-    element.data = data;
     element.addEventListener('onUpdate', ev => {
-      console.log('data: ', data, ev);
+      console.log('data: ', ev);
     });
   });
-  return html/*html*/ `<sb-zen-sortable
-    style="width:320px;border: 1px solid lightgray;"
+  return html/*html*/ ` <sb-zen-sortable
     id="sortable"
-  ></sb-zen-sortable>`;
+    padding="lg"
+    spacing="lg"
+    style="width:230px;border:1px solid lightgray"
+  >
+    <sb-zen-sortable-item key="1">
+      <sb-zen-space fill horizontal-align="space-between" vertical-align="center">
+        <sb-zen-text>Title</sb-zen-text>
+        <sb-zen-toggle></sb-zen-toggle>
+      </sb-zen-space>
+    </sb-zen-sortable-item>
+    <sb-zen-sortable-item key="2">
+      <sb-zen-space fill horizontal-align="space-between" vertical-align="center">
+        <sb-zen-text>Description</sb-zen-text>
+        <sb-zen-toggle></sb-zen-toggle>
+      </sb-zen-space>
+    </sb-zen-sortable-item>
+    <sb-zen-sortable-item key="3">
+      <sb-zen-space fill horizontal-align="space-between" vertical-align="center">
+        <sb-zen-text>Status</sb-zen-text>
+        <sb-zen-toggle></sb-zen-toggle>
+      </sb-zen-space>
+    </sb-zen-sortable-item>
+    <sb-zen-sortable-item key="4">
+      <sb-zen-space fill horizontal-align="space-between" vertical-align="center">
+        <sb-zen-text>Manager</sb-zen-text>
+        <sb-zen-toggle></sb-zen-toggle>
+      </sb-zen-space>
+    </sb-zen-sortable-item>
+  </sb-zen-sortable>`;
 };
 
 export const StoryWithControls = args => {
-  waitForElement('#control', element => {
-    element.data = data;
-  });
-  return html/*html*/ `<sb-zen-sortable
-    style="border: 1px solid lightgray;"
-    padddig="md"
-    id="control"
-    ...="${spreadArgs(args, argTypes)}"
-  ></sb-zen-sortable>`;
+  return html/*html*/ ` <sb-zen-sortable ...="${spreadArgs(args, argTypes)}" style="border:1px solid lightgray">
+    <sb-zen-sortable-item key="1">
+      <sb-zen-text>Title</sb-zen-text>
+    </sb-zen-sortable-item>
+    <sb-zen-sortable-item key="2">
+      <sb-zen-text>Description</sb-zen-text>
+    </sb-zen-sortable-item>
+    <sb-zen-sortable-item key="3">
+      <sb-zen-text>Status</sb-zen-text>
+    </sb-zen-sortable-item>
+    <sb-zen-sortable-item key="4">
+      <sb-zen-text>Manager</sb-zen-text>
+    </sb-zen-sortable-item>
+  </sb-zen-sortable>`;
 };
 
 # Zen Sortable
@@ -71,7 +83,8 @@ Slotted content becomes draggable.
     name="default"
     args={{
       ...getDefaultArgs(argTypes),
-      data: data,
+      padding: 'lg',
+      spacing: 'lg',
     }}
   >
     {StoryWithControls.bind({})}

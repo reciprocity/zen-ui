@@ -1,9 +1,12 @@
 import { Component, Host, h, Element, Prop, Listen } from '@stencil/core';
 import Sortable from 'sortablejs';
 import { applyPrefix } from '../helpers/helpers';
-import { faGripVertical } from '@fortawesome/pro-solid-svg-icons';
-import { PaddingShorthand, SortableData } from '../helpers/types';
+import { PaddingShorthand } from '../helpers/types';
 
+/**
+ * @slot defaultSlot - Slot for ex. zen-sortable-item with possibility to set padding and spacing
+ * @event update | Called on any selection change
+ */
 @Component({
   tag: 'zen-sortable',
   styleUrl: 'zen-sortable.scss',
@@ -12,14 +15,11 @@ import { PaddingShorthand, SortableData } from '../helpers/types';
 export class ZenSortable {
   @Element() host: HTMLZenSortableElement;
 
-  /** Array of sortable items */
-  @Prop() readonly data: SortableData[] = [];
-
   /** Container padding */
-  @Prop() readonly padding: PaddingShorthand = 'md';
+  @Prop() readonly padding: PaddingShorthand = 'none';
 
   /** Container item spacing */
-  @Prop() readonly spacing: PaddingShorthand = 'md';
+  @Prop() readonly spacing: PaddingShorthand = 'none';
 
   @Listen('onUpdate')
   update(evt: any): void {
@@ -28,7 +28,7 @@ export class ZenSortable {
 
   componentDidLoad(): void {
     const host = this.host;
-    Sortable.create(this.host.shadowRoot.firstElementChild, {
+    Sortable.create(this.host, {
       animation: 150,
       ghostClass: 'ghost',
       handle: '.handle',
@@ -39,21 +39,10 @@ export class ZenSortable {
   }
   render(): HTMLElement {
     const ZenSpace = applyPrefix('zen-space', this.host);
-    const ZenToggle = applyPrefix('zen-toggle', this.host);
-    const ZenIcon = applyPrefix('zen-icon', this.host);
-    const ZenText = applyPrefix('zen-text', this.host);
     return (
       <Host>
-        <ZenSpace vertical spacing={this.spacing} padding={this.padding}>
-          {this.data.map(item => (
-            <ZenSpace class="item" padding="md" horizontal-align="space-between" vertical-align="top">
-              <ZenSpace spacing="md">
-                <ZenIcon icon={faGripVertical} size="sm" class="handle"></ZenIcon>
-                <ZenText>{item.name}</ZenText>
-              </ZenSpace>
-              <ZenToggle checked={item.selected}></ZenToggle>
-            </ZenSpace>
-          ))}
+        <ZenSpace vertical padding={this.padding} spacing={this.spacing}>
+          <slot></slot>
         </ZenSpace>
       </Host>
     );

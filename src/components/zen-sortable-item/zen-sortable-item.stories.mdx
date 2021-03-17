@@ -9,21 +9,21 @@ const { argTypes } = getArgTypesAndArgs('zen-sortable-item');
 export const StoryCustomContent = args => {
   return html/*html*/ `
     <sb-zen-sortable-item padding="lg" spacing="md" ...="${spreadArgs(args, argTypes)}">
-        <sb-zen-space fill>
-          <sb-zen-checkbox></sb-zen-checkbox>
-          <sb-zen-text>Title</sb-zen-text>
-          <sb-zen-toggle></sb-zen-toggle>
-        </sb-zen-space>
+      <sb-zen-space fill>
+        <sb-zen-checkbox></sb-zen-checkbox>
+        <sb-zen-text>Title</sb-zen-text>
+        <sb-zen-toggle></sb-zen-toggle>
+      </sb-zen-space>
     </sb-zen-sortable-item>
-`;
+  `;
 };
 
 export const StoryWithControls = args => {
   return html/*html*/ `
     <sb-zen-sortable-item ...="${spreadArgs(args, argTypes)}">
-        <sb-zen-text>Title</sb-zen-text>
+      <sb-zen-text>Title</sb-zen-text>
     </sb-zen-sortable-item>
-`;
+  `;
 };
 
 # Zen Sortable Item
@@ -39,7 +39,6 @@ A sortable fragment for use in zen-sortable.
 <Canvas>
   <Story name="CustomContent">{StoryCustomContent.bind({})}</Story>
 </Canvas>
-
 
 ## Properties
 
