@@ -40,4 +40,16 @@ describe('zen-table-header', () => {
 
     expect(isPropSetOnEveryChildElement).toEqual(true);
   });
+
+  it('should render checkbox', async () => {
+    const page = await newSpecPage({
+      components: [ZenTableHeader],
+      html: `<zen-table-header selectable>
+                <zen-table-header-cell>Header 1</zen-table-header-cell>
+                <zen-table-header-cell>Header 2</zen-table-header-cell>
+            </zen-table-header>`,
+    });
+
+    expect(page.root.shadowRoot.querySelector('zen-checkbox')).toBeTruthy();
+  });
 });
