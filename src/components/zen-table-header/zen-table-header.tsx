@@ -9,9 +9,8 @@ import { applyPrefix } from '../helpers/helpers';
 export class ZenTableHeader {
   observer: MutationObserver = null;
 
-  @State() expandable = false;
-
   @Element() host: HTMLZenTableHeaderElement;
+  @State() expandable = false;
 
   /** Remains fixed at the top of the table during vertical scrolling */
   @Prop() readonly sticky: boolean = false;
@@ -20,7 +19,7 @@ export class ZenTableHeader {
   @Prop() readonly selectable: boolean = false;
 
   /** Select all rows */
-  @Prop() readonly selected: boolean = false;
+  @Prop({ mutable: true }) selected = false;
 
   /** Row selected */
   @Event() headerSelected: EventEmitter<boolean>;
@@ -57,7 +56,8 @@ export class ZenTableHeader {
   }
 
   onSelect(): void {
-    this.headerSelected.emit(!this.selected);
+    this.selected = !this.selected;
+    this.headerSelected.emit(this.selected);
   }
 
   componentWillLoad(): void {

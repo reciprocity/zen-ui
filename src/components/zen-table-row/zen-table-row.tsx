@@ -20,10 +20,10 @@ export class ZenTableRow {
   @Prop({ mutable: true }) visible = true;
 
   /** Is row selected */
-  @Prop() readonly selected: boolean = false;
+  @Prop({ mutable: true }) selected = false;
 
   /** Is row expanded */
-  @Prop() readonly expanded: boolean = false;
+  @Prop({ mutable: true }) expanded = false;
 
   /** Is cell full span (colspan=number of cells) */
   @Prop() readonly fullSpan = false;
@@ -73,11 +73,13 @@ export class ZenTableRow {
   }
 
   onExpand(): void {
-    this.rowExpanded.emit(!this.expanded);
+    this.expanded = !this.expanded;
+    this.rowExpanded.emit(this.expanded);
   }
 
   onSelect(): void {
-    this.rowSelected.emit(!this.selected);
+    this.selected = !this.selected;
+    this.rowSelected.emit(this.selected);
   }
 
   componentDidLoad(): void {

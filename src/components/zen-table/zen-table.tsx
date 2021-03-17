@@ -8,8 +8,20 @@ import { h, Component, Host, Element, Listen } from '@stencil/core';
 export class ZenTable {
   @Element() host: HTMLZenTableElement;
 
-  expandedChanged(target: HTMLZenTableRowElement, expanded: boolean): void {
-    target.expanded = expanded;
+  @Listen('rowSelected')
+  handleRowSelected(ev: CustomEvent): void {
+    const target = ev.target as HTMLZenTableRowElement;
+    const selected = ev.detail;
+
+    this.rowDescendants(target).forEach((n: HTMLZenTableRowElement) => {
+      n.selected = selected;
+    });
+  }
+
+  @Listen('rowExpanded')
+  handleRowExpanded(ev: CustomEvent): void {
+    const target = ev.target as HTMLZenTableRowElement;
+    const expanded = ev.detail;
 
     if (expanded) {
       this.children(target).forEach(n => {
@@ -17,7 +29,7 @@ export class ZenTable {
         n.classList.add('expanded-bg');
       });
     } else {
-      this.descendants(target).forEach(n => {
+      this.rowDescendants(target).forEach(n => {
         n.visible = false;
         n.expanded = false;
         n.classList.remove('expanded-bg');
@@ -25,16 +37,10 @@ export class ZenTable {
     }
   }
 
-  selectedChanged(target: HTMLZenTableRowElement, selected: boolean): void {
-    target.selected = selected;
-
-    this.descendants(target).forEach((n: HTMLZenTableRowElement) => {
-      n.selected = selected;
-    });
-  }
-
-  headerSelectedChanged(target: HTMLZenTableHeaderElement, selected: boolean): void {
-    target.selected = selected;
+  @Listen('headerSelected')
+  handleHeaderSelected(ev: CustomEvent): void {
+    const target = ev.target as HTMLZenTableHeaderElement;
+    const selected = ev.detail;
 
     let next = target.nextElementSibling as HTMLZenTableRowElement;
     while (next) {
@@ -59,7 +65,7 @@ export class ZenTable {
     return children;
   }
 
-  descendants(target: HTMLZenTableRowElement): HTMLZenTableRowElement[] {
+  rowDescendants(target: HTMLZenTableRowElement): HTMLZenTableRowElement[] {
     const descendants = [];
     let next = target.nextElementSibling as HTMLZenTableRowElement;
 
@@ -72,21 +78,6 @@ export class ZenTable {
     }
 
     return descendants;
-  }
-
-  @Listen('rowSelected')
-  handleRowSelected(ev: MouseEvent): void {
-    this.selectedChanged(ev.target as HTMLZenTableRowElement, Boolean(ev.detail));
-  }
-
-  @Listen('rowExpanded')
-  handleRowExpanded(ev: MouseEvent): void {
-    this.expandedChanged(ev.target as HTMLZenTableRowElement, Boolean(ev.detail));
-  }
-
-  @Listen('headerSelected')
-  handleHeaderSelected(ev: MouseEvent): void {
-    this.headerSelectedChanged(ev.target as HTMLZenTableHeaderElement, Boolean(ev.detail));
   }
 
   render(): HTMLTableElement {
