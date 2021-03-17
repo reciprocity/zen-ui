@@ -568,10 +568,6 @@ export namespace Components {
          */
         "expanded": boolean;
         /**
-          * Is cell full span (colspan=number of cells)
-         */
-        "fullSpan": false;
-        /**
           * Show checkbox (read-only)
          */
         "selectable": false;
@@ -1548,10 +1544,6 @@ declare namespace LocalJSX {
           * Is row expanded
          */
         "expanded"?: boolean;
-        /**
-          * Is cell full span (colspan=number of cells)
-         */
-        "fullSpan"?: false;
         /**
           * Row expanded
          */

@@ -25,9 +25,6 @@ export class ZenTableRow {
   /** Is row expanded */
   @Prop({ mutable: true }) expanded = false;
 
-  /** Is cell full span (colspan=number of cells) */
-  @Prop() readonly fullSpan = false;
-
   /** Depth position of row (read-only) */
   @Prop() readonly depth: number = 0;
 

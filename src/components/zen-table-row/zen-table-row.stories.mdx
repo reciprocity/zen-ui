@@ -5,7 +5,7 @@ import { getArgTypes, getDefaultArgs, getComponentData, spreadArgs } from '../..
 import data from '../../../stencilDocs.json';
 const compData = data.components.find(n => n.tag === 'zen-table-row');
 const argTypes = getArgTypes(compData);
-argTypes['fullSpan'].table.disable = true;
+argTypes['depth'].table.disable = true;
 argTypes['expandable'].table.disable = true;
 argTypes['expanded'].table.disable = true;
 argTypes['visible'].table.disable = true;
