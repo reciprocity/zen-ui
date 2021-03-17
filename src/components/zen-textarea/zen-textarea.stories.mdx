@@ -11,7 +11,7 @@ const argTypes = getArgTypes(compData);
 
 export const StoryWithControls = args => html/*html*/ `
   <sb-zen-textarea id="textarea1" ...="${spreadArgs(args, argTypes)}" />
-  ${logEvents('#textarea1', ['blur', 'focus', 'input', 'change'])}
+  ${logEvents('#textarea1', getComponentData('zen-textarea'))}
 `;
 
 export const StoryWithLabelAndTextarea = () => {

@@ -32,7 +32,7 @@ export const StoryWithControls = args => {
         iaculis aliquam pharetra.</sb-zen-text
       >
     </sb-zen-modal>
-    ${logEvents('#modal1', ['cancel', 'ok'])}
+    ${logEvents('#modal1', getComponentData('zen-modal'))}
   `;
 };
 

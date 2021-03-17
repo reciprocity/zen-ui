@@ -60,7 +60,7 @@ export const Template = args => {
       <sb-zen-option value="8">Item 8</sb-zen-option>
       <sb-zen-option value="9">Item 9</sb-zen-option>
     </sb-zen-dropdown>
-    ${logEvents('#dropdown-controls', ['change'])}
+    ${logEvents('#dropdown-controls', getComponentData('zen-dropdown'))}
   `;
 };
 
@@ -96,7 +96,6 @@ export const CustomIcons = args => {
         </div>
       </sb-zen-option>
     </sb-zen-dropdown>
-    ${logEvents('#dropdown-with-options-slot', ['change'])}
   `;
 };
 

@@ -27,10 +27,6 @@ const getDocumentedEvents = (componentData) => {
   return componentData.events.concat(customEvents);
 };
 
-export const eventHandles = (eventNames) => {
-  return eventNames.map(eventName => `on${capitalize(eventName)}`);
-};
-
 export function logEvents(selector, componentData) {
   const eventNames = getDocumentedEvents(componentData).map(n => n.event);
   return script(`

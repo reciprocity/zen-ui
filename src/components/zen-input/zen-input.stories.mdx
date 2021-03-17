@@ -15,7 +15,7 @@ import { faUser, faKey, faSearch } from '@fortawesome/pro-light-svg-icons';
 
 export const StoryWithControls = args => html/*html*/ `
   <sb-zen-input id="input1" style="width: 20rem" ...="${spreadArgs(args, argTypes)}"></sb-zen-input>
-  ${logEvents('#input1', ['blur', 'focus', 'input', 'change'])}
+  ${logEvents('#input1', getComponentData('zen-input'))}
 `;
 
 export const StoryWithLeadingSlot = () => {

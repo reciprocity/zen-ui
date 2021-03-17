@@ -32,7 +32,7 @@ export const StoryIndeterminate = args =>
 
 export const StoryWithControls = args => html/*html*/ `
   <sb-zen-checkbox id="story-with-ctrls-element" ...="${spreadArgs(args, argTypes)}"></sb-zen-checkbox>
-  ${logEvents('#story-with-ctrls-element', ['blur', 'focus', 'click', 'change'])}
+  ${logEvents('#story-with-ctrls-element', getComponentData('zen-checkbox'))}
 `;
 
 # Checkbox
