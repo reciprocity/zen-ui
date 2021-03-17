@@ -32,10 +32,10 @@ export class ZenTableRow {
   @Prop() readonly depth: number = 0;
 
   /** Row selected */
-  @Event() rowSelected: EventEmitter<boolean>;
+  @Event() rowSelectChanged: EventEmitter<boolean>;
 
   /** Row expanded */
-  @Event() rowExpanded: EventEmitter<boolean>;
+  @Event() rowExpandChange: EventEmitter<boolean>;
 
   children(): HTMLZenTableRowElement[] {
     const children = [];
@@ -74,12 +74,12 @@ export class ZenTableRow {
 
   onExpand(): void {
     this.expanded = !this.expanded;
-    this.rowExpanded.emit(this.expanded);
+    this.rowExpandChange.emit(this.expanded);
   }
 
   onSelect(): void {
     this.selected = !this.selected;
-    this.rowSelected.emit(this.selected);
+    this.rowSelectChanged.emit(this.selected);
   }
 
   componentDidLoad(): void {

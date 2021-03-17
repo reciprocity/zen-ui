@@ -13,10 +13,10 @@ export class ZenTableHeader {
   @State() expandable = false;
 
   /** Remains fixed at the top of the table during vertical scrolling */
-  @Prop() readonly sticky: boolean = false;
+  @Prop({ mutable: true }) sticky = false;
 
   /** Show checkbox */
-  @Prop() readonly selectable: boolean = false;
+  @Prop({ mutable: true }) selectable = false;
 
   /** Select all rows */
   @Prop({ mutable: true }) selected = false;
@@ -38,21 +38,16 @@ export class ZenTableHeader {
     return this.rows().some(row => row.expandable);
   }
 
-  hasSelectedRows(): boolean {
+  hasRowsSelected(): boolean {
     return this.rows().some(row => row.selected);
   }
 
-  allSelectedRows(): boolean {
+  hasAllRowsSelected(): boolean {
     return this.rows().every(row => row.selected);
   }
 
   setSticky(): void {
-    const forEach = (arr, fn) => arr.forEach(fn);
-
-    const elements = this.host.children;
-    const setSticky = (c: HTMLElement) => c.setAttribute('sticky', '');
-
-    forEach(elements, setSticky);
+    Array.from(this.host.children).forEach(cell => cell.setAttribute('sticky', ''));
   }
 
   onSelect(): void {
@@ -60,14 +55,14 @@ export class ZenTableHeader {
     this.headerSelectedChange.emit(this.selected);
   }
 
+  onTableChildChanged(): void {
+    this.expandable = this.hasExpandableRows();
+  }
+
   componentWillLoad(): void {
     if (this.sticky) {
       this.setSticky();
     }
-  }
-
-  onTableChildChanged(): void {
-    this.expandable = this.hasExpandableRows();
   }
 
   componentDidLoad(): void {

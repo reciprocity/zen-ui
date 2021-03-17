@@ -8,7 +8,7 @@ import { h, Component, Host, Element, Listen } from '@stencil/core';
 export class ZenTable {
   @Element() host: HTMLZenTableElement;
 
-  @Listen('rowSelected')
+  @Listen('rowSelectChanged')
   handleRowSelected(ev: CustomEvent): void {
     const target = ev.target as HTMLZenTableRowElement;
     const selected = ev.detail;
@@ -18,7 +18,7 @@ export class ZenTable {
     });
   }
 
-  @Listen('rowExpanded')
+  @Listen('rowExpandChange')
   handleRowExpanded(ev: CustomEvent): void {
     const target = ev.target as HTMLZenTableRowElement;
     const expanded = ev.detail;
@@ -37,7 +37,7 @@ export class ZenTable {
     }
   }
 
-  @Listen('headerSelected')
+  @Listen('headerSelectedChange')
   handleHeaderSelected(ev: CustomEvent): void {
     const target = ev.target as HTMLZenTableHeaderElement;
     const selected = ev.detail;

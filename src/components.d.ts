@@ -1555,11 +1555,11 @@ declare namespace LocalJSX {
         /**
           * Row expanded
          */
-        "onRowExpanded"?: (event: CustomEvent<boolean>) => void;
+        "onRowExpandChange"?: (event: CustomEvent<boolean>) => void;
         /**
           * Row selected
          */
-        "onRowSelected"?: (event: CustomEvent<boolean>) => void;
+        "onRowSelectChanged"?: (event: CustomEvent<boolean>) => void;
         /**
           * Show checkbox (read-only)
          */
