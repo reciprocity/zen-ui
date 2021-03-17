@@ -42,11 +42,9 @@ export class ZenTable {
     const target = ev.target as HTMLZenTableHeaderElement;
     const selected = ev.detail;
 
-    let next = target.nextElementSibling as HTMLZenTableRowElement;
-    while (next) {
-      next.selected = selected;
-      next = next.nextElementSibling as HTMLZenTableRowElement;
-    }
+    this.allRows(target).forEach(n => {
+      n.selected = selected;
+    });
   }
 
   children(target: HTMLZenTableRowElement): HTMLZenTableRowElement[] {
@@ -78,6 +76,16 @@ export class ZenTable {
     }
 
     return descendants;
+  }
+
+  allRows(target: HTMLZenTableHeaderElement): HTMLZenTableRowElement[] {
+    const allRows = [];
+    let next = target.nextElementSibling as HTMLZenTableRowElement;
+    while (next) {
+      allRows.push(next);
+      next = next.nextElementSibling as HTMLZenTableRowElement;
+    }
+    return allRows;
   }
 
   render(): HTMLTableElement {
