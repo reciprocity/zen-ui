@@ -12,6 +12,8 @@ export interface OptionItem {
  * @slot [default] - Content for dropdown menu
  * @slot placeholder - Slot visible in field when nothing is selected
  * @event change | Called on any selection change
+ * @event focus | Focused
+ * @event blur | Focus lost
  */
 
 @Component({

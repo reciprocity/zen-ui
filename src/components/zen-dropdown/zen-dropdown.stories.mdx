@@ -165,15 +165,7 @@ A standard dropdown component
 - Because option is taller than usually, we have to specify dropdown's height manually, to match the option height.
 
 <Canvas>
-  <Story
-    name="button"
-    args={{
-      ...getDefaultArgs(argTypes),
-      icon: faCheck,
-    }}
-  >
-    {CustomIcons.bind({})}
-  </Story>
+  <Story name="button">{CustomIcons.bind({})}</Story>
 </Canvas>
 
 ### 2. Invite people dropdown
