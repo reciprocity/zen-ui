@@ -1,6 +1,13 @@
 import { Component, Host, h, Prop, Element } from '@stencil/core';
 import { Resize } from '../helpers/types';
 
+/**
+ * @event change | Content change applied
+ * @event input | Content changed
+ * @event focus | Focused
+ * @event blur | Focus lost
+ */
+
 @Component({
   tag: 'zen-textarea',
   styleUrl: 'zen-textarea.scss',
