@@ -72,7 +72,6 @@ export class ZenTableHeader {
     this.observer.observe(table, {
       childList: true,
       attributes: true,
-      subtree: true,
     });
   }
 
