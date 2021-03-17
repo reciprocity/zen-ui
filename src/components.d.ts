@@ -1515,7 +1515,7 @@ declare namespace LocalJSX {
         /**
           * Row selected
          */
-        "onHeaderSelected"?: (event: CustomEvent<boolean>) => void;
+        "onHeaderSelectedChange"?: (event: CustomEvent<boolean>) => void;
         /**
           * Show checkbox
          */

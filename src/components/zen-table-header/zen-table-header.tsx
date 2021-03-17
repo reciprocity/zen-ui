@@ -22,7 +22,7 @@ export class ZenTableHeader {
   @Prop({ mutable: true }) selected = false;
 
   /** Row selected */
-  @Event() headerSelected: EventEmitter<boolean>;
+  @Event() headerSelectedChange: EventEmitter<boolean>;
 
   rows(): HTMLZenTableRowElement[] {
     const rows = [];
@@ -57,7 +57,7 @@ export class ZenTableHeader {
 
   onSelect(): void {
     this.selected = !this.selected;
-    this.headerSelected.emit(this.selected);
+    this.headerSelectedChange.emit(this.selected);
   }
 
   componentWillLoad(): void {
