@@ -1,6 +1,7 @@
 import { Component, Host, h, Prop, Element } from '@stencil/core';
-import { JsonDocsComponent, JsonDocsEvent, JsonDocsTag } from '@stencil/core/internal/stencil-public-docs';
+import { JsonDocsComponent, JsonDocsEvent } from '@stencil/core/internal/stencil-public-docs';
 import { applyPrefix } from 'src/components/helpers/helpers';
+import { getDocumentedEvents } from './helpers';
 
 @Component({
   tag: 'docs-table',
@@ -9,31 +10,16 @@ import { applyPrefix } from 'src/components/helpers/helpers';
 })
 export class DocsTable {
   data: JsonDocsComponent;
+  events: JsonDocsEvent[];
 
   @Element() host: HTMLDocsTableElement;
 
   /** Data from stencilDocs.json */
   @Prop() readonly docs: string;
 
-  docTagToCustomEvent(docTag: JsonDocsTag): JsonDocsEvent {
-    const params = docTag.text.split('|');
-    return {
-      event: (params[0] || '').trim(),
-      bubbles: true,
-      cancelable: true,
-      composed: true,
-      docs: (params[1] || '').trim(),
-      docsTags: [],
-      detail: '',
-    };
-  }
-
   componentWillLoad(): void {
     this.data = JSON.parse(this.docs);
-    const customEvents = this.data.docsTags
-      ? this.data.docsTags.filter(n => n.name === 'event').map(n => this.docTagToCustomEvent(n))
-      : [];
-    this.data.events = this.data.events.concat(customEvents);
+    this.events = getDocumentedEvents(this.data);
   }
 
   render(): HTMLElement {
@@ -41,7 +27,7 @@ export class DocsTable {
     const ZenSpace = applyPrefix('zen-space', this.host);
     return (
       <Host class="docs-table">
-        {this.data.events.length ? (
+        {this.events.length ? (
           <div>
             <h2 class="css-d83bdw">Events</h2>
             <ZenSpace vertical padding="none none lg" spacing="sm">
@@ -63,7 +49,7 @@ export class DocsTable {
                 </tr>
               </thead>
               <tbody>
-                {this.data.events.map(event => (
+                {this.events.map(event => (
                   <tr>
                     <td>
                       <code class="sbdocs sbdocs-code css-kw9izp">{event.event}</code>
