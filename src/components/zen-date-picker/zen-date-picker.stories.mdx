@@ -14,8 +14,7 @@ export const StoryWithControls = args => {
     console.log('changed', event.target.value);
   }
   return html/*html*/ `
-    <sb-zen-date-picker id="date-1" style="width: 192px" ...="${spreadArgs(args, argTypes)}">
-    </sb-zen-date-picker>
+    <sb-zen-date-picker id="date-1" style="width: 192px" ...="${spreadArgs(args, argTypes)}"> </sb-zen-date-picker>
     ${logEvents('#date-1', getComponentData('zen-date-picker'))}
   `;
 };
