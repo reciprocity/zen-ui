@@ -23,6 +23,7 @@ export class DocsTable {
   }
 
   render(): HTMLElement {
+    console.log(this.data.methods);
     const ZenText = applyPrefix('zen-text', this.host);
     const ZenSpace = applyPrefix('zen-space', this.host);
     return (
@@ -70,37 +71,32 @@ export class DocsTable {
         {this.data.methods.length ? (
           <div>
             <h2 class="css-d83bdw">Methods</h2>
-            {this.data.methods.map(method => (
-              <table class="methods">
-                <thead>
+            <table class="sbdocs sbdocs-table css-thhe2u">
+              <thead>
+                <tr>
+                  <th>Method</th>
+                  <th>Description</th>
+                  <th>Returns</th>
+                  <th>Arguments</th>
+                </tr>
+              </thead>
+              <tbody>
+                {this.data.methods.map(method => (
                   <tr>
-                    <th colSpan={2}>
-                      <h3 class="css-1cnn4xm">{method.name}</h3>
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th>Description</th>
                     <td>
-                      <p>{method.docs}</p>
+                      <code class="sbdocs sbdocs-code css-kw9izp">{method.name}</code>
                     </td>
-                  </tr>
-                  <tr>
-                    <th>Returns</th>
+                    <td>{method.docs}</td>
                     <td>
                       <code>{method.returns.type}</code>
                     </td>
-                  </tr>
-                  <tr>
-                    <th>Signature</th>
                     <td>
-                      <code>dismiss(data?: any, role?: string | undefined) =&gt; Promise&lt;boolean&gt;</code>
+                      <small>{method.signature}</small>
                     </td>
                   </tr>
-                </tbody>
-              </table>
-            ))}
+                ))}
+              </tbody>
+            </table>
           </div>
         ) : (
           ''
