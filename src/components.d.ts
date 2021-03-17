@@ -538,7 +538,7 @@ export namespace Components {
         /**
           * Show checkbox
          */
-        "selectable": boolean;
+        "selectable": false;
         /**
           * Select all rows
          */
@@ -546,7 +546,7 @@ export namespace Components {
         /**
           * Remains fixed at the top of the table during vertical scrolling
          */
-        "sticky": boolean;
+        "sticky": false;
     }
     interface ZenTableHeaderCell {
         /**
@@ -1515,7 +1515,7 @@ declare namespace LocalJSX {
         /**
           * Show checkbox
          */
-        "selectable"?: boolean;
+        "selectable"?: false;
         /**
           * Select all rows
          */
@@ -1523,7 +1523,7 @@ declare namespace LocalJSX {
         /**
           * Remains fixed at the top of the table during vertical scrolling
          */
-        "sticky"?: boolean;
+        "sticky"?: false;
     }
     interface ZenTableHeaderCell {
         /**

@@ -13,10 +13,10 @@ export class ZenTableHeader {
   @State() expandable = false;
 
   /** Remains fixed at the top of the table during vertical scrolling */
-  @Prop({ mutable: true }) sticky = false;
+  @Prop() readonly sticky = false;
 
   /** Show checkbox */
-  @Prop({ mutable: true }) selectable = false;
+  @Prop() readonly selectable = false;
 
   /** Select all rows */
   @Prop({ mutable: true }) selected = false;
