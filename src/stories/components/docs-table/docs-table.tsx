@@ -1,5 +1,6 @@
-import { Component, Host, h, Prop } from '@stencil/core';
+import { Component, Host, h, Prop, Element } from '@stencil/core';
 import { JsonDocsComponent, JsonDocsEvent, JsonDocsTag } from '@stencil/core/internal/stencil-public-docs';
+import { applyPrefix } from 'src/components/helpers/helpers';
 
 @Component({
   tag: 'docs-table',
@@ -8,6 +9,8 @@ import { JsonDocsComponent, JsonDocsEvent, JsonDocsTag } from '@stencil/core/int
 })
 export class DocsTable {
   data: JsonDocsComponent;
+
+  @Element() host: HTMLDocsTableElement;
 
   /** Data from stencilDocs.json */
   @Prop() readonly docs: string;
@@ -34,11 +37,23 @@ export class DocsTable {
   }
 
   render(): HTMLElement {
+    const ZenText = applyPrefix('zen-text', this.host);
+    const ZenSpace = applyPrefix('zen-space', this.host);
     return (
       <Host class="docs-table">
         {this.data.events.length ? (
           <div>
             <h2 class="css-d83bdw">Events</h2>
+            <ZenSpace vertical padding="none none lg" spacing="sm">
+              <ZenText>
+                All components supports standard events such as
+                <code>change</code>, <code>input</code>, <code>click</code>, <code>focus</code>, <code>blur</code>, ...
+              </ZenText>
+              <ZenText>
+                Control in story&nbsp;<b>Properties</b>&nbsp;also logs all events from table below.
+              </ZenText>
+              <ZenText>So check the console, to see when an event is triggered and what is its payload.</ZenText>
+            </ZenSpace>
             <table class="sbdocs sbdocs-table css-thhe2u">
               <thead>
                 <tr>
