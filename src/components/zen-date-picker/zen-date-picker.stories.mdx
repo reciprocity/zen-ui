@@ -1,6 +1,7 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
 import { html } from 'lit-html';
 import { getArgTypes, getDefaultArgs, getComponentData, spreadArgs } from '../../../.storybook/helpers/argTypes';
+import { logEvents } from '../../../.storybook/helpers/log-events';
 
 import data from '../../../stencilDocs.json';
 const compData = data.components.find(n => n.tag === 'zen-date-picker');
@@ -13,8 +14,8 @@ export const StoryWithControls = args => {
     console.log('changed', event.target.value);
   }
   return html/*html*/ `
-    <sb-zen-date-picker style="width: 192px" ...="${spreadArgs(args, argTypes)}" @change="${changed}">
-    </sb-zen-date-picker>
+    <sb-zen-date-picker id="date-1" style="width: 192px" ...="${spreadArgs(args, argTypes)}"> </sb-zen-date-picker>
+    ${logEvents('#date-1', getComponentData('zen-date-picker'))}
   `;
 };
 
@@ -37,4 +38,4 @@ Zen date picker component
 
 <ArgsTable story="default" />
 
-<docs-table docs={JSON.stringify(getComponentData('zen-date-picker'))}></docs-table>
+<sb-docs-table docs={JSON.stringify(getComponentData('zen-date-picker'))}></sb-docs-table>

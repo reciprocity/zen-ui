@@ -16,6 +16,10 @@ export interface StepEvent {
   step: StepItem;
 }
 
+/**
+ * @event change | ActiveIndex changed
+ */
+
 @Component({
   tag: 'zen-progress-tracker',
   styleUrl: 'zen-progress-tracker.scss',

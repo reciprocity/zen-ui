@@ -1,6 +1,6 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
 import { html } from 'lit-html';
-import { action } from '../../../.storybook/helpers/custom-action';
+import { logEvents } from '../../../.storybook/helpers/log-events';
 import { getArgTypes, getDefaultArgs, getComponentData, spreadArgs } from '../../../.storybook/helpers/argTypes';
 import { waitForElement } from '../../../.storybook/helpers/utils';
 
@@ -15,7 +15,7 @@ import { faUser, faKey, faSearch } from '@fortawesome/pro-light-svg-icons';
 
 export const StoryWithControls = args => html/*html*/ `
   <sb-zen-input id="input1" style="width: 20rem" ...="${spreadArgs(args, argTypes)}"></sb-zen-input>
-  ${action('#input1', ['blur', 'focus', 'input', 'change'])}
+  ${logEvents('#input1', getComponentData('zen-input'))}
 `;
 
 export const StoryWithLeadingSlot = () => {
@@ -132,4 +132,4 @@ Form input component with slots capabilities
 
 <ArgsTable story="default" />
 
-<docs-table docs={JSON.stringify(getComponentData('zen-input'))}></docs-table>
+<sb-docs-table docs={JSON.stringify(getComponentData('zen-input'))}></sb-docs-table>

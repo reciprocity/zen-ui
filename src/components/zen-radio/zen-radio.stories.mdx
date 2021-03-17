@@ -1,5 +1,6 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
 import { html } from 'lit-html';
+import { logEvents } from '../../../.storybook/helpers/log-events';
 import { getArgTypes, getDefaultArgs, getComponentData, spreadArgs } from '../../../.storybook/helpers/argTypes';
 
 import data from '../../../stencilDocs.json';
@@ -64,7 +65,10 @@ export const StoryButtonControl = () => {
 };
 
 export const StoryWithControls = args => {
-  return html/*html*/ ` <sb-zen-radio ...="${spreadArgs(args, argTypes)}">Option 1</sb-zen-radio> `;
+  return html/*html*/ ` <sb-zen-radio id="radio-with-ctrls-1" ...="${spreadArgs(args, argTypes)}"
+      >Option 1</sb-zen-radio
+    >
+    ${logEvents('#radio-with-ctrls-1', getComponentData('zen-radio'))}`;
 };
 
 # Radio
@@ -107,4 +111,4 @@ Standard radio input component
 
 <ArgsTable story="default" />
 
-<docs-table docs={JSON.stringify(getComponentData('zen-radio'))}></docs-table>
+<sb-docs-table docs={JSON.stringify(getComponentData('zen-radio'))}></sb-docs-table>

@@ -1,5 +1,10 @@
 import { Component, Host, h, Element, Prop, Watch, State } from '@stencil/core';
 
+/**
+ * @event change | Checked changed
+ * @event click | Element clicked
+ */
+
 @Component({
   tag: 'zen-toggle',
   styleUrl: 'zen-toggle.scss',

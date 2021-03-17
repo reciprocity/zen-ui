@@ -1,6 +1,7 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
 import { html } from 'lit-html';
 import { getArgTypes, getDefaultArgs, getComponentData, spreadArgs } from '../../../.storybook/helpers/argTypes';
+import { logEvents } from '../../../.storybook/helpers/log-events';
 
 import data from '../../../stencilDocs.json';
 const compData = data.components.find(n => n.tag === 'zen-toggle');
@@ -31,7 +32,8 @@ export const StoryWithVariants = args =>
   `;
 
 export const StoryWithControls = args =>
-  html/*html*/ ` <sb-zen-toggle ...="${spreadArgs(args, argTypes)}"></sb-zen-toggle> `;
+  html/*html*/ ` <sb-zen-toggle id="toggle-with-controls" ...="${spreadArgs(args, argTypes)}"></sb-zen-toggle>
+    ${logEvents('#toggle-with-controls', getComponentData('zen-toggle'))}`;
 
 # Toggle
 
@@ -71,4 +73,4 @@ Simple toggle component
 
 <ArgsTable story="default" />
 
-<docs-table docs={JSON.stringify(getComponentData('zen-toggle'))}></docs-table>
+<sb-docs-table docs={JSON.stringify(getComponentData('zen-toggle'))}></sb-docs-table>

@@ -1,7 +1,7 @@
 import { html } from 'lit-html';
 import { spread } from '@open-wc/lit-helpers';
 import { Meta, Description, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
-import { action } from '../../../.storybook/helpers/custom-action';
+import { logEvents } from '../../../.storybook/helpers/log-events';
 import { getArgTypes, getDefaultArgs, getComponentData } from '../../../.storybook/helpers/argTypes';
 import { camelKeysToKebab, waitForElement } from '../../../.storybook/helpers/utils';
 
@@ -60,7 +60,7 @@ export const Template = args => {
       <sb-zen-option value="8">Item 8</sb-zen-option>
       <sb-zen-option value="9">Item 9</sb-zen-option>
     </sb-zen-dropdown>
-    ${action('#dropdown-controls', ['change'])}
+    ${logEvents('#dropdown-controls', getComponentData('zen-dropdown'))}
   `;
 };
 
@@ -96,7 +96,6 @@ export const CustomIcons = args => {
         </div>
       </sb-zen-option>
     </sb-zen-dropdown>
-    ${action('#dropdown-with-options-slot', ['change'])}
   `;
 };
 
@@ -166,15 +165,7 @@ A standard dropdown component
 - Because option is taller than usually, we have to specify dropdown's height manually, to match the option height.
 
 <Canvas>
-  <Story
-    name="button"
-    args={{
-      ...getDefaultArgs(argTypes),
-      icon: faCheck,
-    }}
-  >
-    {CustomIcons.bind({})}
-  </Story>
+  <Story name="button">{CustomIcons.bind({})}</Story>
 </Canvas>
 
 ### 2. Invite people dropdown
@@ -209,4 +200,4 @@ Click `Show code` for more details.
 
 <ArgsTable story="default" />
 
-<docs-table docs={JSON.stringify(getComponentData('zen-dropdown'))}></docs-table>
+<sb-docs-table docs={JSON.stringify(getComponentData('zen-dropdown'))}></sb-docs-table>

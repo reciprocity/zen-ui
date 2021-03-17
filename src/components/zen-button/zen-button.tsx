@@ -5,6 +5,7 @@ import { ButtonVariants } from './types';
 /**
  * @slot leadingIcon - Slot for the icon on the left
  * @slot trailingIcon - Slot for the icon on the right
+ * @event click | Button clicked
  */
 @Component({
   tag: 'zen-button',

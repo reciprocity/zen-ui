@@ -1,6 +1,7 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
 import { html } from 'lit-html';
 import { getArgTypes, getDefaultArgs, getComponentData, spreadArgs } from '../../../.storybook/helpers/argTypes';
+import { logEvents } from '../../../.storybook/helpers/log-events';
 import { waitForElement } from '../../../.storybook/helpers/utils';
 
 import data from '../../../stencilDocs.json';
@@ -12,7 +13,8 @@ import { faChevronDown, faUser } from '@fortawesome/pro-light-svg-icons';
 <Meta title="Forms/Button" component="zen-button" argTypes={argTypes} />
 
 export const StoryWithControls = args =>
-  html/*html*/ ` <sb-zen-button ...="${spreadArgs(args, argTypes)}">Button</sb-zen-button>`;
+  html/*html*/ ` <sb-zen-button id="btn-with-ctrls-1" ...="${spreadArgs(args, argTypes)}">Button</sb-zen-button>
+    ${logEvents('#btn-with-ctrls-1', getComponentData('zen-button'))}`;
 
 export const StorySimple = () =>
   html/*html*/ `
@@ -133,4 +135,4 @@ Button component with slots capabilities
 
 <ArgsTable story="default" />
 
-<docs-table docs={JSON.stringify(getComponentData('zen-button'))}></docs-table>
+<sb-docs-table docs={JSON.stringify(getComponentData('zen-button'))}></sb-docs-table>

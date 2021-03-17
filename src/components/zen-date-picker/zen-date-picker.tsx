@@ -27,6 +27,9 @@ enum Navigate {
 
 /**
  * @event change | Called on date change
+ * @event focus | Focused
+ * @event blur | Focus lost
+ * @event click | Clicked
  */
 
 @Component({

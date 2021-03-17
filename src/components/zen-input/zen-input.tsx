@@ -4,6 +4,10 @@ import { getNextField } from '../helpers/helpers';
 /**
  * @slot leadingSlot - Slot placed at the left
  * @slot trailingSlot - Slot placed at the right
+ * @event change | Content change applied
+ * @event input | Content changed
+ * @event focus | Focused
+ * @event blur | Focus lost
  */
 @Component({
   tag: 'zen-input',

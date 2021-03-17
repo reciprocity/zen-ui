@@ -1,5 +1,7 @@
-import { Component, Host, h, Prop } from '@stencil/core';
-import { JsonDocsComponent, JsonDocsEvent, JsonDocsTag } from '@stencil/core/internal/stencil-public-docs';
+import { Component, Host, h, Prop, Element } from '@stencil/core';
+import { JsonDocsComponent, JsonDocsEvent } from '@stencil/core/internal/stencil-public-docs';
+import { applyPrefix } from 'src/components/helpers/helpers';
+import { getDocumentedEvents } from './helpers';
 
 @Component({
   tag: 'docs-table',
@@ -8,37 +10,37 @@ import { JsonDocsComponent, JsonDocsEvent, JsonDocsTag } from '@stencil/core/int
 })
 export class DocsTable {
   data: JsonDocsComponent;
+  events: JsonDocsEvent[];
+
+  @Element() host: HTMLDocsTableElement;
 
   /** Data from stencilDocs.json */
   @Prop() readonly docs: string;
 
-  docTagToCustomEvent(docTag: JsonDocsTag): JsonDocsEvent {
-    const params = docTag.text.split('|');
-    return {
-      event: (params[0] || '').trim(),
-      bubbles: true,
-      cancelable: true,
-      composed: true,
-      docs: (params[1] || '').trim(),
-      docsTags: [],
-      detail: '',
-    };
-  }
-
   componentWillLoad(): void {
     this.data = JSON.parse(this.docs);
-    const customEvents = this.data.docsTags
-      ? this.data.docsTags.filter(n => n.name === 'event').map(n => this.docTagToCustomEvent(n))
-      : [];
-    this.data.events = this.data.events.concat(customEvents);
+    this.events = getDocumentedEvents(this.data);
   }
 
   render(): HTMLElement {
+    console.log(this.data.methods);
+    const ZenText = applyPrefix('zen-text', this.host);
+    const ZenSpace = applyPrefix('zen-space', this.host);
     return (
       <Host class="docs-table">
-        {this.data.events.length ? (
+        {this.events.length ? (
           <div>
             <h2 class="css-d83bdw">Events</h2>
+            <ZenSpace vertical padding="none none lg" spacing="sm">
+              <ZenText>
+                All components supports standard events such as
+                <code>change</code>, <code>input</code>, <code>click</code>, <code>focus</code>, <code>blur</code>, ...
+              </ZenText>
+              <ZenText>
+                Control in story&nbsp;<b>Properties</b>&nbsp;also logs all events from table below.
+              </ZenText>
+              <ZenText>So check the console, to see when an event is triggered and what is its payload.</ZenText>
+            </ZenSpace>
             <table class="sbdocs sbdocs-table css-thhe2u">
               <thead>
                 <tr>
@@ -48,7 +50,7 @@ export class DocsTable {
                 </tr>
               </thead>
               <tbody>
-                {this.data.events.map(event => (
+                {this.events.map(event => (
                   <tr>
                     <td>
                       <code class="sbdocs sbdocs-code css-kw9izp">{event.event}</code>
@@ -69,37 +71,32 @@ export class DocsTable {
         {this.data.methods.length ? (
           <div>
             <h2 class="css-d83bdw">Methods</h2>
-            {this.data.methods.map(method => (
-              <table class="methods">
-                <thead>
+            <table class="sbdocs sbdocs-table css-thhe2u">
+              <thead>
+                <tr>
+                  <th>Method</th>
+                  <th>Description</th>
+                  <th>Returns</th>
+                  <th>Arguments</th>
+                </tr>
+              </thead>
+              <tbody>
+                {this.data.methods.map(method => (
                   <tr>
-                    <th colSpan={2}>
-                      <h3 class="css-1cnn4xm">{method.name}</h3>
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th>Description</th>
                     <td>
-                      <p>{method.docs}</p>
+                      <code class="sbdocs sbdocs-code css-kw9izp">{method.name}</code>
                     </td>
-                  </tr>
-                  <tr>
-                    <th>Returns</th>
+                    <td>{method.docs}</td>
                     <td>
                       <code>{method.returns.type}</code>
                     </td>
-                  </tr>
-                  <tr>
-                    <th>Signature</th>
                     <td>
-                      <code>dismiss(data?: any, role?: string | undefined) =&gt; Promise&lt;boolean&gt;</code>
+                      <small>{method.signature}</small>
                     </td>
                   </tr>
-                </tbody>
-              </table>
-            ))}
+                ))}
+              </tbody>
+            </table>
           </div>
         ) : (
           ''
