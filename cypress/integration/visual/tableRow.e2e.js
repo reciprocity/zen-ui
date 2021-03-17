@@ -3,14 +3,14 @@
 import { createVisualTests } from '../../support/utils/visualTesting';
 
 describe('Table row visual tests', () => {
-  const pageId = 'tables-table-row--default';
+  const pageId = 'lists-table-row--default';
 
-  const stories = ['story--tables-table-row--default-story'];
+  const stories = ['story--lists-table-row--default-story'];
 
   const skippedStories = [
-    'story--tables-table-row--story-row',
-    'story--tables-table-row--story-rows-selectable',
-    'story--tables-table-row--story-row-expandable',
+    'story--lists-table-row--story-row',
+    'story--lists-table-row--story-rows-selectable',
+    'story--lists-table-row--story-row-expandable',
   ];
 
   before(() => {

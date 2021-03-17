@@ -3,13 +3,13 @@
 import { createVisualTests } from '../../support/utils/visualTesting';
 
 describe('Table header visual tests', () => {
-  const pageId = 'tables-table-header--default';
+  const pageId = 'lists-table-header--default';
 
-  const stories = ['story--tables-table-header--default-story'];
+  const stories = ['story--lists-table-header--default-story'];
 
   const skippedStories = [
-    'story--tables-table-header--story-header-selectable',
-    'story--tables-table-header--story-header',
+    'story--lists-table-header--story-header-selectable',
+    'story--lists-table-header--story-header',
   ];
 
   before(() => {
