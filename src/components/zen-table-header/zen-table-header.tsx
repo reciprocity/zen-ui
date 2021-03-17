@@ -91,7 +91,7 @@ export class ZenTableHeader {
       <Host class={{ selectable: this.selectable, expandable: this.expandable }}>
         {this.selectable && (
           <div class="widgets">
-            <ZenCheckBox class="checkbox" onClick={() => this.onSelect()}></ZenCheckBox>
+            <ZenCheckBox class="checkbox" checked={this.selected} onClick={() => this.onSelect()}></ZenCheckBox>
           </div>
         )}
         <slot></slot>
