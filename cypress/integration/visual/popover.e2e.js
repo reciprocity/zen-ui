@@ -60,7 +60,6 @@ describe('Popover visual tests', { scrollBehavior: 'center' }, () => {
     });
     cy.matchImageSnapshot({
       capture: 'viewport',
-      clip: { x: 0, y: 300, width: 950, height: 600 },
       disableTimersAndAnimations: true,
     });
   });
