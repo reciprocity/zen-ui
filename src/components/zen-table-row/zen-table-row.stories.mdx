@@ -28,35 +28,11 @@ export const StoryRow = () => {
 export const StoryRowsSelectable = () => {
   return html/*html*/ `
     <sb-zen-table>
-      <sb-zen-table-header selectable>
-        <sb-zen-table-header-cell>Title 1</sb-zen-table-header-cell>
-        <sb-zen-table-header-cell>Title 2</sb-zen-table-header-cell>
-        <sb-zen-table-header-cell>Title 3</sb-zen-table-header-cell>
-        <sb-zen-table-header-cell>Title 4</sb-zen-table-header-cell>
-      </sb-zen-table-header>
       <sb-zen-table-row selectable>
         <sb-zen-table-cell>Row 1, Cell 1</sb-zen-table-cell>
         <sb-zen-table-cell>Row 1, Cell 2</sb-zen-table-cell>
         <sb-zen-table-cell>Row 1, Cell 3</sb-zen-table-cell>
         <sb-zen-table-cell>Row 1, Cell 4</sb-zen-table-cell>
-      </sb-zen-table-row>
-      <sb-zen-table-row selectable>
-        <sb-zen-table-cell>Row 2, Cell 1</sb-zen-table-cell>
-        <sb-zen-table-cell>Row 2, Cell 2</sb-zen-table-cell>
-        <sb-zen-table-cell>Row 2, Cell 3</sb-zen-table-cell>
-        <sb-zen-table-cell>Row 2, Cell 4</sb-zen-table-cell>
-      </sb-zen-table-row>
-      <sb-zen-table-row selectable>
-        <sb-zen-table-cell>Row 3, Cell 1</sb-zen-table-cell>
-        <sb-zen-table-cell>Row 3, Cell 2</sb-zen-table-cell>
-        <sb-zen-table-cell>Row 3, Cell 3</sb-zen-table-cell>
-        <sb-zen-table-cell>Row 3, Cell 4</sb-zen-table-cell>
-      </sb-zen-table-row>
-      <sb-zen-table-row selectable>
-        <sb-zen-table-cell>Row 4, Cell 1</sb-zen-table-cell>
-        <sb-zen-table-cell>Row 4, Cell 2</sb-zen-table-cell>
-        <sb-zen-table-cell>Row 4, Cell 3</sb-zen-table-cell>
-        <sb-zen-table-cell>Row 4, Cell 4</sb-zen-table-cell>
       </sb-zen-table-row>
     </sb-zen-table>
   `;
@@ -117,7 +93,7 @@ A fragment `ZenTableRow`
   <Story name="StoryRow">{StoryRow.bind({})}</Story>
 </Canvas>
 
-### 2. Rows that can be selected
+### 2. Single row that can be selected
 
 `ZenTableRow` fragment component with selectable enabled.
 
