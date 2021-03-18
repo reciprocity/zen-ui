@@ -2,26 +2,54 @@ import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
 import { html } from 'lit-html';
 import { getArgTypes, getDefaultArgs, getComponentData, spreadArgs } from '../../../.storybook/helpers/argTypes';
 import { logEvents } from '../../../.storybook/helpers/log-events';
+import { waitForElement } from '../../../.storybook/helpers/utils';
 
 import data from '../../../stencilDocs.json';
 const compData = data.components.find(n => n.tag === 'zen-date-picker');
 const argTypes = getArgTypes(compData);
+argTypes.value.control = {
+  type: 'date',
+}
 
 <Meta title="Forms/Date picker" component="zen-date-picker" argTypes={argTypes} />
 
 export const StoryWithControls = args => {
-  function changed(event) {
-    console.log('changed', event.target.value);
-  }
+  waitForElement('#date-1', element => {
+    if (args.formattedDate !== 'null') return; // take formatted date if it's set
+    element.value = new Date(args.value);
+  });
   return html/*html*/ `
     <sb-zen-date-picker id="date-1" style="width: 192px" ...="${spreadArgs(args, argTypes)}"> </sb-zen-date-picker>
     ${logEvents('#date-1', getComponentData('zen-date-picker'))}
   `;
 };
 
+export const initialValue = () => {
+  return html/*html*/ `
+  <sb-zen-space spacing="lg">
+    <sb-zen-date-picker style="width: 192px" formatted-date="01/31/1970"></sb-zen-date-picker>
+    <sb-zen-date-picker style="width: 192px" formatted-date=""></sb-zen-date-picker>
+    <sb-zen-date-picker style="width: 192px" formatted-date="" allow-empty="false"></sb-zen-date-picker>
+  </sb-zen-space>
+  `;
+};
+
 # Date picker
 
 Zen date picker component
+
+## Component previews
+
+<br />
+
+### 1. Initial value
+
+- Set prop `formatted-date` to some string in format defined in prop `format` (*MM/dd/yyyy* by default).
+- If prop `formatted-date` is an empty string or it is in an incorrect format, picker will be empty... but only if prop `allow-empty` is `true`! If empty isn't allowed, it converts invalid date into today's date!
+
+<Canvas>
+  <Story name="initial">{initialValue.bind({})}</Story>
+</Canvas>
 
 ## Properties
 
@@ -30,6 +58,7 @@ Zen date picker component
     name="default"
     args={{
       ...getDefaultArgs(argTypes),
+      value: new Date().getTime()
     }}
   >
     {StoryWithControls.bind({})}
