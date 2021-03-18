@@ -1,12 +1,13 @@
 @import '../../zen-styles/component-helpers.scss';
 
 :host {
-  display: block;
+  display: flex;
   width: 100%;
+  align-items: center;
+  justify-content: start;
 }
 
 .handle {
-  padding-right: 0.3rem;
   color: $color-gray-400;
   cursor: grab;
 }

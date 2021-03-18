@@ -13,14 +13,11 @@ import { applyPrefix } from '../helpers/helpers';
 export class ZenSortableItem {
   @Element() host: HTMLZenSortableItemElement;
   render(): HTMLElement {
-    const ZenSpace = applyPrefix('zen-space', this.host);
     const ZenIcon = applyPrefix('zen-icon', this.host);
     return (
       <Host>
-        <ZenSpace class="item" horizontal-align="start" vertical-align="center">
-          <ZenIcon icon={faGripVertical} size="sm" class="handle" />
-          <slot></slot>
-        </ZenSpace>
+        <ZenIcon icon={faGripVertical} padding="md" size="sm" class="handle" />
+        <slot></slot>
       </Host>
     );
   }
