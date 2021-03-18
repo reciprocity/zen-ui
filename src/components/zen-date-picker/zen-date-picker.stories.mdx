@@ -9,7 +9,7 @@ const compData = data.components.find(n => n.tag === 'zen-date-picker');
 const argTypes = getArgTypes(compData);
 argTypes.value.control = {
   type: 'date',
-}
+};
 
 <Meta title="Forms/Date picker" component="zen-date-picker" argTypes={argTypes} />
 
@@ -26,11 +26,16 @@ export const StoryWithControls = args => {
 
 export const initialValue = () => {
   return html/*html*/ `
-  <sb-zen-space spacing="lg">
-    <sb-zen-date-picker style="width: 192px" formatted-date="01/31/1970"></sb-zen-date-picker>
-    <sb-zen-date-picker style="width: 192px" formatted-date=""></sb-zen-date-picker>
-    <sb-zen-date-picker data-test="initial-today" style="width: 192px" formatted-date="" allow-empty="false"></sb-zen-date-picker>
-  </sb-zen-space>
+    <sb-zen-space spacing="lg">
+      <sb-zen-date-picker style="width: 192px" formatted-date="01/31/1970"></sb-zen-date-picker>
+      <sb-zen-date-picker style="width: 192px" formatted-date=""></sb-zen-date-picker>
+      <sb-zen-date-picker
+        data-test="initial-today"
+        style="width: 192px"
+        formatted-date=""
+        allow-empty="false"
+      ></sb-zen-date-picker>
+    </sb-zen-space>
   `;
 };
 
@@ -44,7 +49,7 @@ Zen date picker component
 
 ### 1. Initial value
 
-- Set prop `formatted-date` to some string in format defined in prop `format` (*MM/dd/yyyy* by default).
+- Set prop `formatted-date` to some string in format defined in prop `format` (_MM/dd/yyyy_ by default).
 - If prop `formatted-date` is an empty string or it is in an incorrect format, picker will be empty... but only if prop `allow-empty` is `true`! If empty isn't allowed, it converts invalid date into today's date!
 
 <Canvas>
@@ -58,7 +63,7 @@ Zen date picker component
     name="default"
     args={{
       ...getDefaultArgs(argTypes),
-      value: new Date().getTime()
+      value: new Date().getTime(),
     }}
   >
     {StoryWithControls.bind({})}
