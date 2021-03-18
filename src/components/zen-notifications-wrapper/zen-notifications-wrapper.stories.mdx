@@ -6,7 +6,11 @@ import data from '../../../stencilDocs.json';
 const compData = data.components.find(n => n.tag === 'zen-notifications-wrapper');
 const argTypes = getArgTypes(compData);
 
-<Meta title="Notifications/Notification/Notification Wrapper" component="zen-notifications-wrapper" argTypes={argTypes} />
+<Meta
+  title="Notifications/Notification/Notification Wrapper"
+  component="zen-notifications-wrapper"
+  argTypes={argTypes}
+/>
 
 export const StoryDefault = () => {
   const displayNotification = params => {
