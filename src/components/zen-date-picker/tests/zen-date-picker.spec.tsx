@@ -169,10 +169,10 @@ describe('zen-date-picker', () => {
   });
 
   it('should fallback to default format if format invalid', async () => {
-    await render('format="dd.mm.yyyy"');
-    expect(datepicker.format).toBe('dd.mm.yyyy');
+    await render('format="dd.MM.yyyy"');
+    expect(datepicker.format).toBe('dd.MM.yyyy');
     datepicker.format = '';
-    expect(datepicker.format).toBe('dd.mm.yyyy');
+    expect(datepicker.format).toBe('dd.MM.yyyy');
   });
 
   it('should clear value on x button click', async () => {
@@ -202,6 +202,21 @@ describe('zen-date-picker', () => {
     expect(datepicker.value).toEqual(new Date(1972, 2 - 1, 18));
 
     setInputValue('');
+    expect(datepicker.value).toEqual(new Date(1972, 2 - 1, 18));
+  });
+
+  it('should parse formattedDate', async () => {
+    await render('format="dd.MM.yyyy" formatted-date="13.9.1900"');
+    expect(datepicker.value).toEqual(new Date(1900, 9 - 1, 13));
+  });
+
+  it('should render empty date if invalid formatted-date', async () => {
+    await render('formatted-date=""');
+    expect(JSON.stringify(datepicker.value)).toEqual('null');
+  });
+
+  it('should render today if invalid formatted-date and not allow-empty', async () => {
+    await render('formatted-date="" allow-empty="false"');
     expect(datepicker.value).toEqual(new Date(1972, 2 - 1, 18));
   });
 });
