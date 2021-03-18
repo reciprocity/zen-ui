@@ -8,7 +8,7 @@ const { argTypes } = getArgTypesAndArgs('zen-sortable');
 
 export const StorySortable = () => {
   waitForElement('#sortable', element => {
-    element.addEventListener('onChange', ev => {
+    element.addEventListener('change', ev => {
       console.log('event: ', ev);
     });
   });
@@ -47,7 +47,7 @@ export const StorySortable = () => {
 
 export const StoryWithControls = args => {
   waitForElement('#controls', element => {
-    element.addEventListener('onChange', ev => {
+    element.addEventListener('change', ev => {
       console.log('event: ', ev);
     });
   });
@@ -97,7 +97,7 @@ A composition of `ZenSortable` component and fragment `ZenSortableItem` componen
     args={{
       ...getDefaultArgs(argTypes),
       padding: 'lg',
-      spacing: 'lg',
+      spacing: 'md',
     }}
   >
     {StoryWithControls.bind({})}

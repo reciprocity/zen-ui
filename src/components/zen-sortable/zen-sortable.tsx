@@ -22,23 +22,18 @@ export class ZenSortable {
   @Prop() readonly spacing: PaddingShorthand = 'none';
 
   getKeys(): string[] {
-    const ids = [];
-    Array.from(getDefaultSlotContent(this.host)).forEach(item => {
-      const sortableItem = item as HTMLZenSortableItemElement;
-      ids.push(sortableItem.getAttribute('key'));
-    });
-    return ids;
+    return Array.from(getDefaultSlotContent(this.host)).map((item: HTMLZenSortableItemElement) =>
+      item.getAttribute('key'),
+    );
   }
 
   componentDidLoad(): void {
-    // eslint-disable-next-line @typescript-eslint/no-this-alias
-    const self = this;
     Sortable.create(this.host, {
       animation: 150,
       handle: '.handle',
-      onUpdate: function () {
-        const onChange = new CustomEvent('onChange', { detail: self.getKeys() });
-        self.host.dispatchEvent(onChange);
+      onUpdate: evt => {
+        evt.stopPropagation();
+        this.host.dispatchEvent(new CustomEvent('change', { detail: this.getKeys() }));
       },
     });
   }
