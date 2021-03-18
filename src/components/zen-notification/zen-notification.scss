@@ -11,7 +11,7 @@
   box-shadow: $shadow-drop-200;
   border-radius: 0.1rem;
   background: $color-white;
-  animation: appear 0.5s;
+  animation: appear 0.3s;
 }
 
 .hidden {
@@ -83,23 +83,27 @@
 
 :host(.closing) {
   height: 100%;
-  animation: disappear 0.5s;
+  animation: disappear 0.3s;
 }
 
 @keyframes appear {
   0% {
     opacity: 0;
+    transform: translate(0, 3rem);
   }
   100% {
     opacity: 1;
+    transform: none;
   }
 }
 
 @keyframes disappear {
   0% {
     opacity: 1;
+    transform: none;
   }
   100% {
     opacity: 0;
+    transform: translate(0, -3rem);
   }
 }

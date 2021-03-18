@@ -30,7 +30,6 @@ describe('zen-notifications-wrapper', () => {
 
     page.rootInstance.displayNotification(notification);
 
-    expect(page.rootInstance.position).toBe('top-left');
     expect(page.root.querySelector('zen-notification').getAttribute('heading')).toBe('Title');
     expect(page.root.querySelector('zen-notification').getAttribute('variant')).toBe('success');
     expect(page.root.querySelector('zen-notification').innerText).toBe('Content');

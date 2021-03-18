@@ -6,7 +6,7 @@ import data from '../../../stencilDocs.json';
 const compData = data.components.find(n => n.tag === 'zen-notification');
 const argTypes = getArgTypes(compData);
 
-<Meta title="Notifications/Notification" component="zen-notification" argTypes={argTypes} />
+<Meta title="Notifications/Notification/Notification" component="zen-notification" argTypes={argTypes} />
 
 export const StoryWithControls = args =>
   html/*html*/ `<sb-zen-notification ...="${spreadArgs(args, argTypes)}"

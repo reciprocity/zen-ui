@@ -1,28 +1,10 @@
 :host {
   position: fixed;
+  top: 1rem;
+  right: 1rem;
   z-index: 9999;
 }
 
 ::slotted(*) {
   margin-bottom: 1rem;
-}
-
-:host([position='top-left']) {
-  top: 1rem;
-  left: 1rem;
-}
-
-:host([position='top-right']) {
-  top: 1rem;
-  right: 1rem;
-}
-
-:host([position='bottom-left']) {
-  bottom: 1rem;
-  left: 1rem;
-}
-
-:host([position='bottom-right']) {
-  bottom: 1rem;
-  right: 1rem;
 }
