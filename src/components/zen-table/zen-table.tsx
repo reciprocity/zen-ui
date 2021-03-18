@@ -26,13 +26,11 @@ export class ZenTable {
     if (expanded) {
       this.children(target).forEach(n => {
         n.visible = true;
-        n.classList.add('expanded-bg');
       });
     } else {
       this.rowDescendants(target).forEach(n => {
         n.visible = false;
         n.expanded = false;
-        n.classList.remove('expanded-bg');
       });
     }
   }

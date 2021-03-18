@@ -50,7 +50,8 @@ $select-transition: 0.5s;
 .expanded ::slotted(*),
 :host(.selected) ::slotted(*),
 :host(.expanded) ::slotted(*),
-:host(.expanded-bg) ::slotted(*) {
+:host(.expanded-bg) ::slotted(*),
+:host([depth]:not([depth='0'])) {
   background-color: $color-blue-50 !important;
 }
 
