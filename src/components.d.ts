@@ -220,7 +220,7 @@ export namespace Components {
         /**
           * Selected date
          */
-        "formattedDate": string;
+        "formattedDate": string | null;
         /**
           * Placeholder
          */
@@ -1193,7 +1193,7 @@ declare namespace LocalJSX {
         /**
           * Selected date
          */
-        "formattedDate"?: string;
+        "formattedDate"?: string | null;
         /**
           * Placeholder
          */

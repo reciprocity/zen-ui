@@ -8,6 +8,7 @@ import subYears from 'date-fns/subYears';
 import format from 'date-fns/format';
 import setDate from 'date-fns/setDate';
 import isValid from 'date-fns/isValid';
+import isSameDay from 'date-fns/isSameDay';
 import {
   faCalendarAlt,
   faChevronDoubleLeft,
@@ -52,7 +53,7 @@ export class ZenDatePicker {
   @State() opened = false;
 
   /** Selected date */
-  @Prop({ mutable: true }) formattedDate = '';
+  @Prop({ mutable: true }) formattedDate: string | null = null;
 
   /** Placeholder */
   @Prop() readonly placeholder = 'Select date';
@@ -69,6 +70,22 @@ export class ZenDatePicker {
   /** If user can clear the date. */
   @Prop() readonly allowEmpty: boolean = true;
 
+  @Watch('formattedDate')
+  async formattedDateChanged(formatted: string): Promise<void> {
+    const parsedDate = parseDate(formatted, this.format);
+    if (isSameDay(parsedDate, this.value)) return;
+
+    if (isValid(parsedDate)) {
+      this.value = parsedDate;
+    } else if (this.allowEmpty) {
+      this.clearDate();
+      return;
+    } else {
+      this.value = helpers.today();
+    }
+    this.host.dispatchEvent(new window.Event('change'));
+  }
+
   @Watch('value')
   async dateChanged(value: Date): Promise<void> {
     this.ensureValidFormatString();
@@ -77,7 +94,7 @@ export class ZenDatePicker {
       this.input.value = this.formattedDate;
     }
     this.calendarMonth = value;
-    if (this.popover.visible && this.closeOnClick) {
+    if (this.popover && this.popover.visible && this.closeOnClick) {
       this.popover.visible = false;
       this.input.focusInput();
     }
@@ -196,7 +213,11 @@ export class ZenDatePicker {
   }
 
   componentDidLoad(): void {
-    this.dateChanged(this.value);
+    if (this.formattedDate !== 'null') {
+      this.formattedDateChanged(this.formattedDate);
+    } else {
+      this.dateChanged(this.value); // set today date
+    }
     this.host.addEventListener('focusin', e => this.focusChanged(e));
   }
 
