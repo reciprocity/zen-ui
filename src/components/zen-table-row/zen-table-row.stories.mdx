@@ -1,0 +1,127 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
+import { html } from 'lit-html';
+import { getArgTypes, getDefaultArgs, getComponentData, spreadArgs } from '../../../.storybook/helpers/argTypes';
+
+import data from '../../../stencilDocs.json';
+const compData = data.components.find(n => n.tag === 'zen-table-row');
+const argTypes = getArgTypes(compData);
+argTypes['depth'].table.disable = true;
+argTypes['expandable'].table.disable = true;
+argTypes['expanded'].table.disable = true;
+argTypes['visible'].table.disable = true;
+
+<Meta title="Lists/Table/Row" component="zen-table-row" argTypes={argTypes} />
+
+export const StoryRow = () => {
+  return html/*html*/ `
+    <sb-zen-table>
+      <sb-zen-table-row>
+        <sb-zen-table-cell>Row 1, Cell 1</sb-zen-table-cell>
+        <sb-zen-table-cell>Row 1, Cell 2</sb-zen-table-cell>
+        <sb-zen-table-cell>Row 1, Cell 3</sb-zen-table-cell>
+        <sb-zen-table-cell>Row 1, Cell 4</sb-zen-table-cell>
+      </sb-zen-table-row>
+    </sb-zen-table>
+  `;
+};
+
+export const StoryRowsSelectable = () => {
+  return html/*html*/ `
+    <sb-zen-table>
+      <sb-zen-table-row selectable>
+        <sb-zen-table-cell>Row 1, Cell 1</sb-zen-table-cell>
+        <sb-zen-table-cell>Row 1, Cell 2</sb-zen-table-cell>
+        <sb-zen-table-cell>Row 1, Cell 3</sb-zen-table-cell>
+        <sb-zen-table-cell>Row 1, Cell 4</sb-zen-table-cell>
+      </sb-zen-table-row>
+    </sb-zen-table>
+  `;
+};
+
+export const StoryRowExpandable = () => {
+  return html/*html*/ `
+    <sb-zen-table>
+      <sb-zen-table-row depth="0">
+        <sb-zen-table-cell>Row 1, Cell 1</sb-zen-table-cell>
+        <sb-zen-table-cell>Row 1, Cell 2</sb-zen-table-cell>
+        <sb-zen-table-cell>Row 1, Cell 3</sb-zen-table-cell>
+        <sb-zen-table-cell>Row 1, Cell 4</sb-zen-table-cell>
+      </sb-zen-table-row>
+      <sb-zen-table-row full-span depth="1" style="height:100px;">
+        <sb-zen-table-cell>
+          <sb-zen-space vertical no-wrap spacing="lg" padding="lg">
+            <sb-zen-dropdown style="width: 200px">
+              <sb-zen-option value="1" disabled="true">Option 1</sb-zen-option>
+              <sb-zen-option value="2">Option 2</sb-zen-option>
+              <sb-zen-option value="3">Option 3</sb-zen-option>
+            </sb-zen-dropdown>
+          </sb-zen-space>
+        </sb-zen-table-cell>
+        <sb-zen-table-cell></sb-zen-table-cell>
+        <sb-zen-table-cell></sb-zen-table-cell>
+        <sb-zen-table-cell></sb-zen-table-cell>
+        <sb-zen-table-cell></sb-zen-table-cell>
+      </sb-zen-table-row>
+    </sb-zen-table>
+  `;
+};
+
+export const StoryWithControls = args => html/*html*/ `
+  <sb-zen-table>
+    <sb-zen-table-row ...="${spreadArgs(args, argTypes)}">
+      <sb-zen-table-cell>Row 1, Cell 1</sb-zen-table-cell>
+      <sb-zen-table-cell>Row 1, Cell 2</sb-zen-table-cell>
+      <sb-zen-table-cell>Row 1, Cell 3</sb-zen-table-cell>
+      <sb-zen-table-cell>Row 1, Cell 4</sb-zen-table-cell>
+    </sb-zen-table-row>
+  </sb-zen-table>
+`;
+
+# ZenTableRow
+
+Single table row.
+
+## Component previews
+
+<br />
+
+### 1. Single row
+
+A fragment `ZenTableRow`
+
+<Canvas>
+  <Story name="StoryRow">{StoryRow.bind({})}</Story>
+</Canvas>
+
+### 2. Single row that can be selected
+
+`ZenTableRow` fragment component with selectable enabled.
+
+<Canvas>
+  <Story name="StoryRowsSelectable">{StoryRowsSelectable.bind({})}</Story>
+</Canvas>
+
+### 3. Row that can be expanded and has a "full-span" attribute ("slotted content") row
+
+`ZenTableRow` fragment component that can be expanded. Parent row has to have "full-span-parent" attribute, and the child row "full-span"
+
+<Canvas>
+  <Story name="StoryRowExpandable">{StoryRowExpandable.bind({})}</Story>
+</Canvas>
+
+## Properties
+
+<Canvas>
+  <Story
+    name="default"
+    args={{
+      ...getDefaultArgs(argTypes),
+    }}
+  >
+    {StoryWithControls.bind({})}
+  </Story>
+</Canvas>
+
+<ArgsTable story="default" />
+
+<docs-table docs={JSON.stringify(getComponentData('zen-table-row'))}></docs-table>

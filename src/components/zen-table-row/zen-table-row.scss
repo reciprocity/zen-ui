@@ -1,9 +1,19 @@
 @import '../../zen-styles/component-helpers.scss';
+@import '../../zen-styles/mixins/forms.scss';
+
+// Checkboxes and expand arrow padding:
+$checkbox-width: 2rem;
+$arrow-width: 2rem;
+$depth-padding: 1.8rem;
+
+$expand-icon-transition: 0.2s;
+$select-transition: 0.5s;
 
 :host {
   display: table-row;
   border-top: 1px solid $color-gray-200;
-  border-bottom: 1px solid $color-gray-200;
+  border-left: 1px solid $color-white;
+  border-right: 1px solid $color-white;
   position: relative;
   transform: scale(1); // hack to apply position relative (tested in chrome & ff)
 }
@@ -12,15 +22,8 @@
   display: none;
 }
 
-.expand-icon {
-  cursor: pointer;
-  transition: transform 0.25s ease-in-out;
-}
-
-.expanded {
-  .expand-icon {
-    transform: rotate(90deg);
-  }
+:host(.selected) {
+  border: 1px solid $color-blue-700;
 }
 
 :host([full-span]) ::slotted(*:first-child) {
@@ -28,45 +31,62 @@
   left: 0;
   width: 100%;
   inset: 0 0 auto 0;
+  border-top: none;
+}
+
+.expand-icon {
+  cursor: pointer;
+  transition: transform $expand-icon-transition;
+}
+
+.expanded .expand-icon {
+  transform: rotate(90deg);
+}
+
+:host(.expanded) .expand-icon {
+  transform: rotate(90deg);
+}
+
+.expanded ::slotted(*),
+:host(.selected) ::slotted(*),
+:host(.expanded) ::slotted(*),
+:host(.expanded-bg) ::slotted(*),
+:host([depth]:not([depth='0'])) {
+  background-color: $color-blue-50 !important;
 }
 
 .widgets {
+  position: absolute;
+  inset: 1px auto 1px 1px; // 1px offset to render selected border on FF
   box-sizing: border-box;
   display: flex;
-  flex-direction: row;
-  justify-content: left;
   align-items: center;
-  position: absolute;
-  inset: 0 auto 0 0;
-
-  &.hidden {
-    display: none;
-  }
+  padding-left: 0.5rem;
 }
 
+.widgets.hidden,
 .checkbox.hidden,
 .expand-icon.hidden {
   display: none;
 }
 
-// Checkboxes and expand arrow padding:
-$arrow-width: 1rem;
-$checkbox-width: 2rem;
+:host(:not([depth]).expandable) ::slotted(*:first-child),
+:host(:not([depth]).selectable) ::slotted(*:first-child) {
+  padding-left: #{$arrow-width};
+}
 
-:host(:not([depth]):not([full-span-parent]).expandable.selectable) ::slotted(*:first-child) {
+:host(:not([depth]).expandable.selectable) ::slotted(*:first-child) {
   padding-left: #{$checkbox-width + $arrow-width};
 }
 
 @for $i from 0 through 32 {
-  :host([depth='#{$i}']:not([full-span])) ::slotted(*:first-child) {
-    padding-left: #{($i + 1) * 2}rem;
-  }
-
   :host([depth='#{$i}']) .widgets {
-    padding-left: #{$i * 1.5}rem;
+    padding-left: #{0.5rem + $i * $depth-padding};
   }
 
-  :host([depth='#{$i}'].expandable) ::slotted(*:first-child) {
-    padding-left: #{($i + 1) * $checkbox-width + $arrow-width};
+  :host([depth='#{$i}'].expandable) ::slotted(*:first-child),
+  :host([depth='#{$i}'].selectable) ::slotted(*:first-child),
+  :host([depth='#{$i}'].selectable.expandable) ::slotted(*:first-child) {
+    padding-left: #{($i) * $depth-padding + ($checkbox-width + $arrow-width)};
   }
 }

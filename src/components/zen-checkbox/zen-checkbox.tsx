@@ -61,10 +61,13 @@ export class ZenCheckbox {
           disabled={this.disabled}
           checked={this.checked}
           required={this.required}
+          indeterminate={this.indeterminate}
         />
-        <label class={{ disabled: this.disabled }}>
-          {this.label} {this.required ? <span class="required">*</span> : null}
-        </label>
+        {this.label && (
+          <label class={{ disabled: this.disabled }}>
+            {this.label} {this.required ? <span class="required">*</span> : null}
+          </label>
+        )}
       </Host>
     );
   }

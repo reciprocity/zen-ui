@@ -1,4 +1,14 @@
 import { newSpecPage } from '@stencil/core/testing';
+
+// TODO: this should be improved, to be able to test mutation observers:
+global.MutationObserver = class {
+  constructor() {
+    return this;
+  }
+  observe = jest.fn();
+  disconnect = jest.fn();
+};
+
 import { ZenTableHeader } from '../zen-table-header';
 
 describe('zen-table-header', () => {
@@ -29,5 +39,17 @@ describe('zen-table-header', () => {
       .every(value => value === true);
 
     expect(isPropSetOnEveryChildElement).toEqual(true);
+  });
+
+  it('should render checkbox', async () => {
+    const page = await newSpecPage({
+      components: [ZenTableHeader],
+      html: `<zen-table-header selectable>
+                <zen-table-header-cell>Header 1</zen-table-header-cell>
+                <zen-table-header-cell>Header 2</zen-table-header-cell>
+            </zen-table-header>`,
+    });
+
+    expect(page.root.shadowRoot.querySelector('zen-checkbox')).toBeTruthy();
   });
 });

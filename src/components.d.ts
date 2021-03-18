@@ -540,6 +540,10 @@ export namespace Components {
          */
         "selectable": false;
         /**
+          * Select all rows
+         */
+        "selected": boolean;
+        /**
           * Remains fixed at the top of the table during vertical scrolling
          */
         "sticky": false;
@@ -556,17 +560,21 @@ export namespace Components {
          */
         "depth": number;
         /**
+          * Can be expanded
+         */
+        "expandable": boolean;
+        /**
           * Is row expanded
          */
         "expanded": boolean;
         /**
-          * Is cell full span (colspan=number of cells)
-         */
-        "fullSpan": false;
-        /**
           * Show checkbox (read-only)
          */
         "selectable": false;
+        /**
+          * Is row selected
+         */
+        "selected": boolean;
         /**
           * Visible if no depth or parent.expanded
          */
@@ -1501,9 +1509,17 @@ declare namespace LocalJSX {
     }
     interface ZenTableHeader {
         /**
+          * Row selected
+         */
+        "onHeaderSelectedChange"?: (event: CustomEvent<boolean>) => void;
+        /**
           * Show checkbox
          */
         "selectable"?: false;
+        /**
+          * Select all rows
+         */
+        "selected"?: boolean;
         /**
           * Remains fixed at the top of the table during vertical scrolling
          */
@@ -1521,17 +1537,29 @@ declare namespace LocalJSX {
          */
         "depth"?: number;
         /**
+          * Can be expanded
+         */
+        "expandable"?: boolean;
+        /**
           * Is row expanded
          */
         "expanded"?: boolean;
         /**
-          * Is cell full span (colspan=number of cells)
+          * Row expanded
          */
-        "fullSpan"?: false;
+        "onRowExpandChange"?: (event: CustomEvent<boolean>) => void;
+        /**
+          * Row selected
+         */
+        "onRowSelectChanged"?: (event: CustomEvent<boolean>) => void;
         /**
           * Show checkbox (read-only)
          */
         "selectable"?: false;
+        /**
+          * Is row selected
+         */
+        "selected"?: boolean;
         /**
           * Visible if no depth or parent.expanded
          */

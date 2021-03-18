@@ -1,4 +1,5 @@
 :host {
   display: table-cell;
+  background-clip: padding-box !important;
   padding: 1rem 0;
 }
