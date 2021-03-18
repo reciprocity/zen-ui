@@ -38,7 +38,6 @@ export class ZenTableRow {
     const children = [];
     let next = this.host.nextElementSibling as HTMLZenTableRowElement;
 
-    // Get all rows that have depth greater then the parent
     while (next) {
       if (next.depth <= this.depth) break;
       if (next.depth === this.depth + 1) {

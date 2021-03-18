@@ -1,4 +1,4 @@
-import { h, Component, Element, Host, Prop, State, Event, EventEmitter } from '@stencil/core';
+import { h, Component, Element, Host, Prop, State, Event, EventEmitter, Watch } from '@stencil/core';
 import { applyPrefix } from '../helpers/helpers';
 
 @Component({
@@ -24,6 +24,17 @@ export class ZenTableHeader {
   /** Row selected */
   @Event() headerSelectedChange: EventEmitter<boolean>;
 
+  @Watch('sticky')
+  async stickyChanged(sticky: boolean): Promise<void> {
+    Array.from(this.host.children).forEach(cell => {
+      if (sticky) {
+        cell.setAttribute('sticky', '');
+      } else {
+        cell.removeAttribute('sticky');
+      }
+    });
+  }
+
   rows(): HTMLZenTableRowElement[] {
     const rows = [];
     let next = this.host.nextElementSibling as HTMLZenTableRowElement;
@@ -46,10 +57,6 @@ export class ZenTableHeader {
     return this.rows().every(row => row.selected);
   }
 
-  setSticky(): void {
-    Array.from(this.host.children).forEach(cell => cell.setAttribute('sticky', ''));
-  }
-
   onSelect(): void {
     this.selected = !this.selected;
     this.headerSelectedChange.emit(this.selected);
@@ -59,13 +66,8 @@ export class ZenTableHeader {
     this.expandable = this.hasExpandableRows();
   }
 
-  componentWillLoad(): void {
-    if (this.sticky) {
-      this.setSticky();
-    }
-  }
-
   componentDidLoad(): void {
+    this.stickyChanged(this.sticky);
     this.observer = new MutationObserver(() => this.onTableChildChanged());
 
     const table = this.host.parentElement;
