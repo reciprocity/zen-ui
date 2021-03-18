@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-describe.skip('Dropdown visual tests', { scrollBehavior: 'center' }, () => {
+describe('Dropdown visual tests', { scrollBehavior: 'center' }, () => {
   const pageId = 'forms-dropdown-dropdown--button';
   const stories = [
     'story--forms-dropdown-dropdown--button',
@@ -20,16 +20,10 @@ describe.skip('Dropdown visual tests', { scrollBehavior: 'center' }, () => {
       cy.get(dropdown).click();
 
       // field screenshot:
-      cy.get(dropdown)
-        .shadow()
-        .find('sb-zen-popover')
-        .shadow()
-        .find('.popup-wrap')
-        .should('be.visible')
-        .matchImageSnapshot();
+      cy.get(dropdown).should('be.visible').matchImageSnapshot(`field-${story}`);
 
       // menu screenshot:
-      cy.get(dropdown).should('be.visible').matchImageSnapshot(`field-${story}`);
+      cy.get(dropdown).find('.popup').should('be.visible').matchImageSnapshot();
     });
   });
 });
