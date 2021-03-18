@@ -47,18 +47,12 @@ yarn run test:e2e
 For more details on testing (including visual testing) check the [Testing doc](./docs/testing.md).
 
 #### Linting and Formatting
-Both `lint` and `format` commands will run before the changes are pushed to the repository using a [Husky](https://github.com/typicode/husky) pre-push hook.
+
+The code is both linted and formatted with [ESlint](https://eslint.org) and [Prettier](https://prettier.io) on every commit, using a [Husky](https://github.com/typicode/husky) hook, but you can also manually run the `lint:check` and/or `format:check` to validate possible errors:
 
 ```bash
-# Checks and fixes linting errors
-yarn lint
 # Only checks for linting errors
 yarn lint:check
-```
-
-```bash
-# Checks and fixes formatting errors
-yarn format
 # Only checks for formatting errors
 yarn format:check
 ```
