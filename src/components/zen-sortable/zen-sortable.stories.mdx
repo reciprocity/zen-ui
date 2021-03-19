@@ -8,7 +8,7 @@ const { argTypes } = getArgTypesAndArgs('zen-sortable');
 
 export const StorySortable = () => {
   waitForElement('#sortable', element => {
-    element.addEventListener('change', ev => {
+    element.addEventListener('onChange', ev => {
       console.log('event: ', ev);
     });
   });
@@ -18,25 +18,25 @@ export const StorySortable = () => {
       }
     </style>
     <sb-zen-sortable id="sortable" padding="lg" spacing="lg" style="width:230px;border:1px solid lightgray">
-      <sb-zen-sortable-item key="1">
+      <sb-zen-sortable-item data-id="1">
         <sb-zen-space class="container" fill horizontal-align="space-between" vertical-align="center">
           <sb-zen-text>Title</sb-zen-text>
           <sb-zen-toggle></sb-zen-toggle>
         </sb-zen-space>
       </sb-zen-sortable-item>
-      <sb-zen-sortable-item key="2">
+      <sb-zen-sortable-item data-id="2">
         <sb-zen-space class="container" fill horizontal-align="space-between" vertical-align="center">
           <sb-zen-text>Description</sb-zen-text>
           <sb-zen-toggle></sb-zen-toggle>
         </sb-zen-space>
       </sb-zen-sortable-item>
-      <sb-zen-sortable-item key="3">
+      <sb-zen-sortable-item data-id="3">
         <sb-zen-space class="container" fill horizontal-align="space-between" vertical-align="center">
           <sb-zen-text>Status</sb-zen-text>
           <sb-zen-toggle></sb-zen-toggle>
         </sb-zen-space>
       </sb-zen-sortable-item>
-      <sb-zen-sortable-item key="4">
+      <sb-zen-sortable-item data-id="4">
         <sb-zen-space class="container" fill horizontal-align="space-between" vertical-align="center">
           <sb-zen-text>Manager</sb-zen-text>
           <sb-zen-toggle></sb-zen-toggle>
@@ -47,7 +47,7 @@ export const StorySortable = () => {
 
 export const StoryWithControls = args => {
   waitForElement('#controls', element => {
-    element.addEventListener('change', ev => {
+    element.addEventListener('onChange', ev => {
       console.log('event: ', ev);
     });
   });
@@ -56,16 +56,16 @@ export const StoryWithControls = args => {
     ...="${spreadArgs(args, argTypes)}"
     style="border:1px solid lightgray"
   >
-    <sb-zen-sortable-item key="1">
+    <sb-zen-sortable-item data-id="1">
       <sb-zen-text>Item 1</sb-zen-text>
     </sb-zen-sortable-item>
-    <sb-zen-sortable-item key="2">
+    <sb-zen-sortable-item data-id="2">
       <sb-zen-text>Item 2</sb-zen-text>
     </sb-zen-sortable-item>
-    <sb-zen-sortable-item key="3">
+    <sb-zen-sortable-item data-id="3">
       <sb-zen-text>Item 3</sb-zen-text>
     </sb-zen-sortable-item>
-    <sb-zen-sortable-item key="4">
+    <sb-zen-sortable-item data-id="4">
       <sb-zen-text>Item 4</sb-zen-text>
     </sb-zen-sortable-item>
   </sb-zen-sortable>`;
@@ -73,7 +73,7 @@ export const StoryWithControls = args => {
 
 # Zen Sortable
 
-Slotted content becomes draggable.
+Slotted content becomes draggable. On change position it returns an "onChange" custom event that contains list of "data-id" attributes value.
 
 <br />
 

@@ -1,6 +1,6 @@
 import { Component, Host, h, Element, Prop } from '@stencil/core';
 import Sortable from 'sortablejs';
-import { applyPrefix, getDefaultSlotContent } from '../helpers/helpers';
+import { applyPrefix } from '../helpers/helpers';
 import { PaddingShorthand } from '../helpers/types';
 
 /**
@@ -21,19 +21,13 @@ export class ZenSortable {
   /** Container item spacing */
   @Prop() readonly spacing: PaddingShorthand = 'none';
 
-  getKeys(): string[] {
-    return Array.from(getDefaultSlotContent(this.host)).map((item: HTMLZenSortableItemElement) =>
-      item.getAttribute('key'),
-    );
-  }
-
   componentDidLoad(): void {
     Sortable.create(this.host, {
       animation: 150,
       handle: '.handle',
-      onUpdate: evt => {
+      onEnd: function (evt) {
         evt.stopPropagation();
-        this.host.dispatchEvent(new CustomEvent('change', { detail: this.getKeys() }));
+        evt.target.dispatchEvent(new CustomEvent('onChange', { detail: this.toArray() }));
       },
     });
   }
