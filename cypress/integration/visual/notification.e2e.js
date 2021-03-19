@@ -2,8 +2,11 @@
 import { createVisualTests } from '../../support/utils/visualTesting';
 
 describe('Notification visual tests', () => {
-  const pageId = 'notifications-notification--variants';
-  const stories = ['story--notifications-notification--variants', 'story--notifications-notification--default-story'];
+  const pageId = 'notifications-notification-notification--variants';
+  const stories = [
+    'story--notifications-notification-notification--variants',
+    'story--notifications-notification-notification--default-story',
+  ];
 
   // Example how to skip testing for some user stories
   const skipedStories = [];

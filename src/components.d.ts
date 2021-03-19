@@ -6,7 +6,7 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { StringifiedJson } from "./stories/components/color-swatch-group/color-swatch-group";
-import { Align, Avatar, AvatarData, IconSizes, None, NotificationVariant, PaddingShorthand, Position, Resize, Size, TextSize, TextVariant, TooltipVariant, TriggerEvent } from "./components/helpers/types";
+import { Align, Avatar, AvatarData, IconSizes, None, Notification, NotificationVariant, PaddingShorthand, Position, Resize, Size, TextSize, TextVariant, TooltipVariant, TriggerEvent } from "./components/helpers/types";
 import { ButtonVariants } from "./components/zen-button/types";
 import { OptionValue } from "./components/zen-menu-item/zen-option";
 import { IconDefinition } from "@fortawesome/pro-light-svg-icons";
@@ -350,7 +350,7 @@ export namespace Components {
         /**
           * Can dismiss
          */
-        "dismiss": boolean;
+        "dismissable": boolean;
         /**
           * Title
          */
@@ -359,6 +359,12 @@ export namespace Components {
           * Variant
          */
         "variant": NotificationVariant;
+    }
+    interface ZenNotificationsWrapper {
+        /**
+          * Displays a notification
+         */
+        "displayNotification": ({ heading, content, variant }: Notification) => Promise<void>;
     }
     interface ZenOption {
         /**
@@ -876,6 +882,12 @@ declare global {
         prototype: HTMLZenNotificationElement;
         new (): HTMLZenNotificationElement;
     };
+    interface HTMLZenNotificationsWrapperElement extends Components.ZenNotificationsWrapper, HTMLStencilElement {
+    }
+    var HTMLZenNotificationsWrapperElement: {
+        prototype: HTMLZenNotificationsWrapperElement;
+        new (): HTMLZenNotificationsWrapperElement;
+    };
     interface HTMLZenOptionElement extends Components.ZenOption, HTMLStencilElement {
     }
     var HTMLZenOptionElement: {
@@ -1001,6 +1013,7 @@ declare global {
         "zen-input": HTMLZenInputElement;
         "zen-modal": HTMLZenModalElement;
         "zen-notification": HTMLZenNotificationElement;
+        "zen-notifications-wrapper": HTMLZenNotificationsWrapperElement;
         "zen-option": HTMLZenOptionElement;
         "zen-panel": HTMLZenPanelElement;
         "zen-popover": HTMLZenPopoverElement;
@@ -1355,7 +1368,7 @@ declare namespace LocalJSX {
         /**
           * Can dismiss
          */
-        "dismiss"?: boolean;
+        "dismissable"?: boolean;
         /**
           * Title
          */
@@ -1364,6 +1377,8 @@ declare namespace LocalJSX {
           * Variant
          */
         "variant"?: NotificationVariant;
+    }
+    interface ZenNotificationsWrapper {
     }
     interface ZenOption {
         /**
@@ -1758,6 +1773,7 @@ declare namespace LocalJSX {
         "zen-input": ZenInput;
         "zen-modal": ZenModal;
         "zen-notification": ZenNotification;
+        "zen-notifications-wrapper": ZenNotificationsWrapper;
         "zen-option": ZenOption;
         "zen-panel": ZenPanel;
         "zen-popover": ZenPopover;
@@ -1803,6 +1819,7 @@ declare module "@stencil/core" {
             "zen-input": LocalJSX.ZenInput & JSXBase.HTMLAttributes<HTMLZenInputElement>;
             "zen-modal": LocalJSX.ZenModal & JSXBase.HTMLAttributes<HTMLZenModalElement>;
             "zen-notification": LocalJSX.ZenNotification & JSXBase.HTMLAttributes<HTMLZenNotificationElement>;
+            "zen-notifications-wrapper": LocalJSX.ZenNotificationsWrapper & JSXBase.HTMLAttributes<HTMLZenNotificationsWrapperElement>;
             "zen-option": LocalJSX.ZenOption & JSXBase.HTMLAttributes<HTMLZenOptionElement>;
             "zen-panel": LocalJSX.ZenPanel & JSXBase.HTMLAttributes<HTMLZenPanelElement>;
             "zen-popover": LocalJSX.ZenPopover & JSXBase.HTMLAttributes<HTMLZenPopoverElement>;

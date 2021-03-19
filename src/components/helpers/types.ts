@@ -23,6 +23,8 @@ export type TriggerEvent = 'click' | 'hover';
 
 export type Resize = 'none' | 'both' | 'horizontal' | 'vertical' | 'initial' | 'inherit';
 
+export type PositionVariant = 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
+
 export interface Avatar {
   userName?: string;
   email?: string;
@@ -38,4 +40,11 @@ export interface AvatarData extends Avatar {
 export interface AvatarColor {
   background?: string;
   color?: string;
+}
+
+export interface Notification {
+  heading: string;
+  content: string;
+  variant: NotificationVariant;
+  position: PositionVariant;
 }

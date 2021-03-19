@@ -21,10 +21,13 @@ export class ZenNotification {
   @Prop() readonly heading: string = '';
 
   /** Can dismiss */
-  @Prop() readonly dismiss: boolean = false;
+  @Prop() readonly dismissable: boolean = false;
 
   close(): void {
-    this.visible = false;
+    this.host.classList.add('closing');
+    this.host.onanimationend = () => {
+      this.host.remove();
+    };
   }
 
   render(): HTMLElement {
@@ -34,7 +37,7 @@ export class ZenNotification {
     return (
       <Host class={{ hidden: !this.visible }}>
         <ZenIcon
-          class={{ close: true, hidden: !this.dismiss }}
+          class={{ close: true, hidden: !this.dismissable }}
           onClick={() => {
             this.close();
           }}

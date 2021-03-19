@@ -1,0 +1,10 @@
+:host {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 9999;
+}
+
+::slotted(*) {
+  margin-bottom: 1rem;
+}

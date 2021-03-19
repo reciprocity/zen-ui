@@ -1,0 +1,92 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
+import { html } from 'lit-html';
+import { getArgTypes, getDefaultArgs, getComponentData, spreadArgs } from '../../../.storybook/helpers/argTypes';
+
+import data from '../../../stencilDocs.json';
+const compData = data.components.find(n => n.tag === 'zen-notifications-wrapper');
+const argTypes = getArgTypes(compData);
+
+<Meta
+  title="Notifications/Notification/Notification Wrapper"
+  component="zen-notifications-wrapper"
+  argTypes={argTypes}
+/>
+
+export const StoryDefault = () => {
+  const displayNotification = params => {
+    console.log(window.ZenUINotificationsWrapper);
+    global.window.ZenUINotificationsWrapper.displayNotification(params);
+  };
+  return html/*html*/ `
+    <sb-zen-space spacing="lg">
+      <sb-zen-button
+        @click="${() =>
+          displayNotification({
+            heading: 'Success',
+            content:
+              'This is the notification message. There may be a number of things to add to this message, but try to keep it to three lines. Links underlined.',
+            variant: 'success',
+          })}"
+        >Success</sb-zen-button
+      >
+      <sb-zen-button
+        @click="${() =>
+          displayNotification({
+            heading: 'Info',
+            content:
+              'This is the notification message. There may be a number of things to add to this message, but try to keep it to three lines. Links underlined.',
+            variant: 'info',
+          })}"
+        >Info</sb-zen-button
+      >
+      <sb-zen-button
+        @click="${() =>
+          displayNotification({
+            heading: 'Warning',
+            content:
+              'This is the notification message. There may be a number of things to add to this message, but try to keep it to three lines. Links underlined.',
+            variant: 'warning',
+          })}"
+        >Warning</sb-zen-button
+      >
+      <sb-zen-button
+        @click="${() =>
+          displayNotification({
+            heading: 'Error',
+            content:
+              'This is the notification message. There may be a number of things to add to this message, but try to keep it to three lines. Links underlined.',
+            variant: 'error',
+          })}"
+        >Error</sb-zen-button
+      >
+      <sb-zen-notifications-wrapper></sb-zen-notifications-wrapper>
+    </sb-zen-space>
+  `;
+};
+
+# NotificationWrapper
+
+This component is in charge of positioning and render notifications through a public method called displayNotification.
+
+<br />
+
+## Component previews
+
+<br />
+
+### Variants
+
+<Canvas>
+  <Story name="StoryDefault">{StoryDefault.bind({})}</Story>
+</Canvas>
+
+## How to display notifications
+
+Add **NotificationWrapper** component in your application, before DOM body ends is a good place.
+This component will internally check if a global **NotificationWrapper** already exists, if that's the case will keep the reference in a global attribute.
+If not, it will render the component and create the global reference for future usage. <br /><br />
+Notifications can be displayed by calling **displayNotification** method using the global reference. <br />
+The global reference is: **window.ZenUINotificationsWrapper.displayNotification(payload)**. <br />
+The payload is an object with these attributes: **{ heading: string, content: string, variant: string }**.
+
+<sb-docs-table docs={JSON.stringify(getComponentData('zen-notifications-wrapper'))}></sb-docs-table>
