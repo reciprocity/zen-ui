@@ -13,9 +13,7 @@ export class ZenTable {
     const target = ev.target as HTMLZenTableRowElement;
     const selected = ev.detail;
 
-    this.rowDescendants(target).forEach((n: HTMLZenTableRowElement) => {
-      n.selected = selected;
-    });
+    this.rowDescendants(target).forEach(n => (n.selected = selected));
   }
 
   @Listen('rowExpandChange')
@@ -24,9 +22,7 @@ export class ZenTable {
     const expanded = ev.detail;
 
     if (expanded) {
-      this.children(target).forEach(n => {
-        n.visible = true;
-      });
+      this.children(target).forEach(n => (n.visible = true));
     } else {
       this.rowDescendants(target).forEach(n => {
         n.visible = false;
