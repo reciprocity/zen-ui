@@ -75,8 +75,9 @@ export class ZenTableHeader {
 
     this.host.parentElement.addEventListener('rowSelectChanged', () => {
       const allSelected = this.hasAllRowsSelected();
+
+      this.indeterminate = this.hasRowsSelected() && !allSelected;
       this.selected = allSelected;
-      this.indeterminate = !this.selected && this.hasRowsSelected() && !allSelected;
     });
 
     this.observer = new MutationObserver(() => this.onTableChildChanged());

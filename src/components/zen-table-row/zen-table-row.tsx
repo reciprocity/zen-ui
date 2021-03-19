@@ -47,8 +47,8 @@ export class ZenTableRow {
       const hasAllSelected = await parenRow.hasAllRowsSelected();
       const hasRowsSelected = await parenRow.hasRowsSelected();
 
+      parenRow.indeterminate = hasRowsSelected && !hasAllSelected;
       parenRow.selected = hasAllSelected;
-      parenRow.indeterminate = !parenRow.selected && hasRowsSelected && !hasAllSelected;
 
       parenRow = await parenRow.parentRow();
     }
