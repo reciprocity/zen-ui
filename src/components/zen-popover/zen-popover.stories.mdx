@@ -91,7 +91,7 @@ export const StoryTriggerEvents = args => {
           >
         </sb-zen-space>
       </sb-zen-popover>
-      <sb-zen-button variant="primary">Click</sb-zen-button>
+      <sb-zen-button variant="primary">Click outside</sb-zen-button>
       <sb-zen-popover close-on-target-click="false">
         <sb-zen-space padding="md">
           <sb-zen-text size="sm"
@@ -113,7 +113,7 @@ export const StoryTriggerEvents = args => {
 
 export const StoryScrollable = args => {
   return html/*html*/ `
-    <div style="height: 200px; overflow: auto;">
+    <div style="height: 200px; overflow: auto;" data-test="scroll">
       <sb-zen-space no-wrap horizontal-align="center" vertical-align="center" style="height: 400px;">
         <sb-zen-button variant="primary"> Top Start </sb-zen-button>
         <sb-zen-popover position="bottom-end" visible="true" close-on-click-out="false">
@@ -163,7 +163,7 @@ export const StoryFilters = args => {
         Filter
       </sb-zen-button>
       <sb-zen-popover position="bottom-start" interactive="true" style="width: fit-content">
-        <sb-zen-space vertical>
+        <sb-zen-space vertical data-test="filter">
           <sb-zen-space horizontal-align="start" padding="lg">
             <sb-zen-text size="xs" variant="heading">Filters</sb-zen-text>
           </sb-zen-space>
