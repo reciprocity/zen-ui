@@ -32,7 +32,7 @@ export class ZenProgressTracker {
   /** Ordered array of possible steps */
   @Prop({ reflect: true }) readonly steps: Array<StepItem> = [];
   /** Index of currently active step */
-  @Prop({ reflect: true }) readonly activeIndex: number = 0;
+  @Prop({ reflect: true, mutable: true }) activeIndex = 0;
   /** User can click step to go to step */
   @Prop({ reflect: true }) readonly clickable: StepsFilter = 'completed';
   /** Max label width */
@@ -45,7 +45,7 @@ export class ZenProgressTracker {
 
   /** User clicked a step */
   selectStep(index: number): void {
-    this.internalActiveIndex = index;
+    this.activeIndex = index;
     this.host.dispatchEvent(new window.Event('change'));
   }
 
