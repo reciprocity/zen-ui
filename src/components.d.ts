@@ -536,6 +536,10 @@ export namespace Components {
     }
     interface ZenTableHeader {
         /**
+          * Checkbox indeterminate state
+         */
+        "indeterminate": boolean;
+        /**
           * Show checkbox
          */
         "selectable": false;
@@ -567,6 +571,22 @@ export namespace Components {
           * Is row expanded
          */
         "expanded": boolean;
+        /**
+          * Returns true if all children rows are selected *
+         */
+        "hasAllRowsSelected": () => Promise<boolean>;
+        /**
+          * Returns true if descendent rows have a row selected *
+         */
+        "hasRowsSelected": () => Promise<boolean>;
+        /**
+          * Checkbox indeterminate state
+         */
+        "indeterminate": boolean;
+        /**
+          * Returns elements parent row (depth -1) *
+         */
+        "parentRow": () => Promise<HTMLZenTableRowElement>;
         /**
           * Show checkbox (read-only)
          */
@@ -1509,6 +1529,10 @@ declare namespace LocalJSX {
     }
     interface ZenTableHeader {
         /**
+          * Checkbox indeterminate state
+         */
+        "indeterminate"?: boolean;
+        /**
           * Row selected
          */
         "onHeaderSelectedChange"?: (event: CustomEvent<boolean>) => void;
@@ -1544,6 +1568,10 @@ declare namespace LocalJSX {
           * Is row expanded
          */
         "expanded"?: boolean;
+        /**
+          * Checkbox indeterminate state
+         */
+        "indeterminate"?: boolean;
         /**
           * Row expanded
          */

@@ -1,4 +1,4 @@
-import { h, Component, Host, Prop, Element, Event, EventEmitter } from '@stencil/core';
+import { h, Component, Host, Prop, Element, Event, EventEmitter, Method, Watch } from '@stencil/core';
 import { applyPrefix } from '../helpers/helpers';
 import { faChevronRight } from '@fortawesome/pro-light-svg-icons';
 
@@ -25,6 +25,9 @@ export class ZenTableRow {
   /** Is row expanded */
   @Prop({ mutable: true }) expanded = false;
 
+  /** Checkbox indeterminate state  */
+  @Prop({ mutable: true, reflect: true }) indeterminate = false;
+
   /** Depth position of row (read-only) */
   @Prop() readonly depth: number = 0;
 
@@ -34,7 +37,49 @@ export class ZenTableRow {
   /** Row expanded */
   @Event() rowExpandChange: EventEmitter<boolean>;
 
-  children(): HTMLZenTableRowElement[] {
+  @Watch('selected')
+  async selectedChanged(): Promise<void> {
+    let parenRow = await this.parentRow();
+
+    // Get all expandable parent rows
+    while (parenRow && parenRow.expandable) {
+      // Set checkbox indeterminate state on parent rows
+      const hasAllSelected = await parenRow.hasAllRowsSelected();
+      const hasRowsSelected = await parenRow.hasRowsSelected();
+
+      parenRow.indeterminate = hasRowsSelected && !hasAllSelected;
+      parenRow.selected = hasAllSelected;
+
+      parenRow = await parenRow.parentRow();
+    }
+  }
+
+  /** Returns true if descendent rows have a row selected **/
+  @Method()
+  async hasRowsSelected(): Promise<boolean> {
+    return this.rowDescendants().some(row => row.selected);
+  }
+
+  /** Returns true if all children rows are selected **/
+  @Method()
+  async hasAllRowsSelected(): Promise<boolean> {
+    return this.rowChildren().every(row => row.selected);
+  }
+
+  /** Returns elements parent row (depth -1) **/
+  @Method()
+  async parentRow(): Promise<HTMLZenTableRowElement> {
+    // find first prev sibling with depth 1 smaller than ours:
+    let prev = this.host.previousElementSibling as HTMLZenTableRowElement;
+
+    while (prev) {
+      if (prev.depth === this.depth - 1) return prev;
+      prev = prev.previousElementSibling as HTMLZenTableRowElement;
+    }
+    return null;
+  }
+
+  rowChildren(): HTMLZenTableRowElement[] {
     const children = [];
     let next = this.host.nextElementSibling as HTMLZenTableRowElement;
 
@@ -49,23 +94,27 @@ export class ZenTableRow {
     return children;
   }
 
-  getParentRow(): HTMLZenTableRowElement {
-    // find first prev sibling with depth 1 smaller than ours:
-    let prev = this.host.previousElementSibling as HTMLZenTableRowElement;
+  rowDescendants(): HTMLZenTableRowElement[] {
+    const descendants = [];
+    let next = this.host.nextElementSibling as HTMLZenTableRowElement;
 
-    while (prev) {
-      if (prev.depth === this.depth - 1) return prev;
-      prev = prev.previousElementSibling as HTMLZenTableRowElement;
+    while (next) {
+      if (next.depth <= this.depth) break;
+      if (next.depth > this.depth) {
+        descendants.push(next as HTMLZenTableRowElement);
+      }
+      next = next.nextElementSibling as HTMLZenTableRowElement;
     }
-    return null;
+
+    return descendants;
+  }
+
+  hasChildren(): boolean {
+    return !!this.rowChildren().length;
   }
 
   showWidgets(): boolean {
     return this.selectable || this.expandable;
-  }
-
-  hasChildren(): boolean {
-    return !!this.children().length;
   }
 
   onExpand(): void {
@@ -78,10 +127,13 @@ export class ZenTableRow {
     this.rowSelectChanged.emit(this.selected);
   }
 
-  componentDidLoad(): void {
-    const parentRow = this.getParentRow();
+  async componentDidLoad(): Promise<void> {
+    const parentRow = await this.parentRow();
+    const hasRowsSelected = await this.hasRowsSelected();
+
     this.visible = !parentRow || parentRow.expanded;
     this.expandable = this.hasChildren();
+    this.indeterminate = hasRowsSelected;
   }
 
   render(): HTMLTableRowElement {
@@ -99,7 +151,12 @@ export class ZenTableRow {
         {this.showWidgets() && (
           <div class="widgets">
             {this.selectable && (
-              <ZenCheckBox class="checkbox" checked={this.selected} onClick={() => this.onSelect()} />
+              <ZenCheckBox
+                indeterminate={this.indeterminate}
+                class="checkbox"
+                checked={this.selected}
+                onClick={() => this.onSelect()}
+              />
             )}
             {this.expandable && (
               <ZenIcon

@@ -21,6 +21,9 @@ export class ZenTableHeader {
   /** Select all rows */
   @Prop({ mutable: true }) selected = false;
 
+  /** Checkbox indeterminate state  */
+  @Prop({ mutable: true }) indeterminate = false;
+
   /** Row selected */
   @Event() headerSelectedChange: EventEmitter<boolean>;
 
@@ -68,6 +71,15 @@ export class ZenTableHeader {
 
   componentDidLoad(): void {
     this.stickyChanged(this.sticky);
+    this.indeterminate = this.hasRowsSelected();
+
+    this.host.parentElement.addEventListener('rowSelectChanged', () => {
+      const allSelected = this.hasAllRowsSelected();
+
+      this.indeterminate = this.hasRowsSelected() && !allSelected;
+      this.selected = allSelected;
+    });
+
     this.observer = new MutationObserver(() => this.onTableChildChanged());
 
     const table = this.host.parentElement;
@@ -78,7 +90,7 @@ export class ZenTableHeader {
   }
 
   disconnectedCallback(): void {
-    this.observer.disconnect();
+    if (this.observer) this.observer.disconnect();
   }
 
   render(): HTMLElement {
@@ -87,7 +99,12 @@ export class ZenTableHeader {
       <Host class={{ selectable: this.selectable, expandable: this.expandable }}>
         {this.selectable && (
           <div class="widgets">
-            <ZenCheckBox class="checkbox" checked={this.selected} onClick={() => this.onSelect()}></ZenCheckBox>
+            <ZenCheckBox
+              class="checkbox"
+              indeterminate={this.indeterminate}
+              checked={this.selected}
+              onClick={() => this.onSelect()}
+            ></ZenCheckBox>
           </div>
         )}
         <slot></slot>

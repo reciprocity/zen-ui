@@ -22,7 +22,8 @@ $select-transition: 0.5s;
   display: none;
 }
 
-:host(.selected) {
+:host(.selected),
+:host([indeterminate]) {
   border: 1px solid $color-blue-700;
 }
 
@@ -51,7 +52,7 @@ $select-transition: 0.5s;
 :host(.selected) ::slotted(*),
 :host(.expanded) ::slotted(*),
 :host(.expanded-bg) ::slotted(*),
-:host([depth]:not([depth='0'])) {
+:host([depth]:not([depth='0'])) ::slotted(*) {
   background-color: $color-blue-50 !important;
 }
 
