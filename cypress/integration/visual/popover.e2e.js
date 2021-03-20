@@ -49,8 +49,7 @@ describe('Popover visual tests', { scrollBehavior: 'center' }, () => {
         cy.get('[data-popper-placement="top-end"]').should('be.visible');
         cy.wrap(doc).matchImageSnapshot('top-end');
         cy.get('[data-test="scroll"]').scrollTo('bottom');
-        cy.wait(1000);
-        cy.get('[data-popper-placement="bottom-end"]').should('be.visible');
+        cy.wait(500);
         cy.wrap(doc).matchImageSnapshot('bottom-end');
       });
   });
