@@ -40,7 +40,7 @@ describe('Popover visual tests', { scrollBehavior: 'center' }, () => {
       });
   });
 
-  it.only('Verifies ' + `${story[2]}`, () => {
+  it('Verifies ' + `${story[2]}`, () => {
     cy.get(`#${story[2]}`)
       .parents('.docs-story')
       .scrollIntoView()
@@ -49,6 +49,7 @@ describe('Popover visual tests', { scrollBehavior: 'center' }, () => {
         cy.get('[data-popper-placement="top-end"]').should('be.visible');
         cy.wrap(doc).matchImageSnapshot('top-end');
         cy.get('[data-test="scroll"]').scrollTo('bottom');
+        cy.wait(500);
         cy.get('[data-popper-placement="bottom-end"]', { timeout: 10000 }).should('be.visible');
         cy.wrap(doc).matchImageSnapshot('bottom-end');
       });
