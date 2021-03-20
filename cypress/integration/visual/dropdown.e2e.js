@@ -33,7 +33,7 @@ describe('Dropdown visual tests', { scrollBehavior: false }, () => {
     it('Verifies opened dropdown in ' + `${el.storie}`, () => {
       cy.get(el.id).scrollIntoView().matchImageSnapshot(`field-${el.storie}`);
       cy.get(el.id).scrollIntoView().click();
-      cy.wait(1000);
+      cy.wait(500);
       cy.get(el.id).find(`[data-popper-placement="${el.position}"]`).matchImageSnapshot();
     });
   });
