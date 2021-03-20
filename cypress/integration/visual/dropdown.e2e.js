@@ -33,9 +33,7 @@ describe('Dropdown visual tests', { scrollBehavior: false }, () => {
     it('Verifies opened dropdown in ' + `${el.storie}`, () => {
       cy.get(el.id).scrollIntoView().matchImageSnapshot(`field-${el.storie}`);
       cy.get(el.id).scrollIntoView().click();
-      cy.get(el.id)
-        .find(`[data-position="${el.position}"]`)
-        .should('have.css', 'background-color', 'rgb(255, 255, 255)');
+      cy.wait(1000);
       cy.get(el.id).find(`[data-popper-placement="${el.position}"]`).matchImageSnapshot();
     });
   });
