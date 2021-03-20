@@ -27,11 +27,11 @@ describe('Dropdown visual tests', { scrollBehavior: false }, () => {
 
   before(() => {
     cy.visitStorybookIframe(pageId);
-    // cy.verifyAllStoriesHaveVRT(stories);
+    cy.verifyAllStoriesHaveVRT(dropdown);
   });
   dropdown.forEach(el => {
-    it('Verifies opened dropdown in ' + `${el.storie[0]}`, () => {
-      cy.get(el.id).scrollIntoView().matchImageSnapshot(`field-${el.storie[0]}`);
+    it('Verifies opened dropdown in ' + `${el.storie}`, () => {
+      cy.get(el.id).scrollIntoView().matchImageSnapshot(`field-${el.storie}`);
       cy.get(el.id).scrollIntoView().click();
       cy.get(el.id)
         .find(`[data-popper-placement="${el.position}"]`)
