@@ -33,9 +33,9 @@ describe('Dropdown visual tests', { scrollBehavior: false }, () => {
     it('Verifies opened dropdown in ' + `${el.storie}`, () => {
       cy.get(el.id).scrollIntoView().matchImageSnapshot(`field-${el.storie}`);
       cy.get(el.id).scrollIntoView().click();
+      cy.get(el.id).find(`[data-position="${el.position}"]`).should('have.attr', 'animate', 'in-end');
       cy.get(el.id)
         .find(`[data-popper-placement="${el.position}"]`)
-        .should('be.visible')
         .matchImageSnapshot({ disableTimersAndAnimations: true });
     });
   });
