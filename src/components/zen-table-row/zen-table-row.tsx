@@ -33,7 +33,7 @@ export class ZenTableRow {
   @Prop({ mutable: true }) expanded = false;
 
   /** Checkbox indeterminate state  */
-  @Prop({ mutable: true, reflect: true }) indeterminate = false;
+  @Prop({ reflect: true }) readonly indeterminate: boolean = false;
 
   /** Depth position of row (read-only) */
   @Prop() readonly depth: number = 0;
@@ -60,7 +60,7 @@ export class ZenTableRow {
       parenRow = await parenRow.parentRow();
     }
 
-    // Emit event that header checkbox state is applied
+    // Emit event that header checkbox state can be applied
     this.rowSelectChanged.emit(this.selected);
   }
 
