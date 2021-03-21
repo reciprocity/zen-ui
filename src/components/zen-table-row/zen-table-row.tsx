@@ -62,7 +62,7 @@ export class ZenTableRow {
 
   @Watch('expanded')
   async expandedChanged(expanded: boolean): Promise<void> {
-    // Set rows children expanded state
+    // Set rows children/descendents expanded state
     if (this.expandable && expanded) {
       this.rowChildren().forEach(n => {
         n.visible = true;
