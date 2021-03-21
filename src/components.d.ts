@@ -1709,10 +1709,6 @@ declare namespace LocalJSX {
          */
         "indeterminate"?: boolean;
         /**
-          * Row selected
-         */
-        "onHeaderSelectedChange"?: (event: CustomEvent<boolean>) => void;
-        /**
           * Show checkbox
          */
         "selectable"?: false;
@@ -1748,10 +1744,6 @@ declare namespace LocalJSX {
           * Checkbox indeterminate state
          */
         "indeterminate"?: boolean;
-        /**
-          * Row expanded
-         */
-        "onRowExpandChange"?: (event: CustomEvent<boolean>) => void;
         /**
           * Row selected
          */

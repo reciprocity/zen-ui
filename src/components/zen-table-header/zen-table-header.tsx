@@ -1,4 +1,4 @@
-import { h, Component, Element, Host, Prop, State, Event, EventEmitter, Watch } from '@stencil/core';
+import { h, Component, Element, Host, Prop, State, Watch } from '@stencil/core';
 import { applyPrefix } from '../helpers/helpers';
 
 @Component({
@@ -10,6 +10,7 @@ export class ZenTableHeader {
   observer: MutationObserver = null;
 
   @Element() host: HTMLZenTableHeaderElement;
+
   @State() expandable = false;
 
   /** Remains fixed at the top of the table during vertical scrolling */
@@ -23,9 +24,6 @@ export class ZenTableHeader {
 
   /** Checkbox indeterminate state  */
   @Prop({ mutable: true }) indeterminate = false;
-
-  /** Row selected */
-  @Event() headerSelectedChange: EventEmitter<boolean>;
 
   @Watch('selected')
   async selectedChanged(selected: boolean): Promise<void> {

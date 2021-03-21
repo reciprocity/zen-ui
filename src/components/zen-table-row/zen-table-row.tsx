@@ -34,9 +34,6 @@ export class ZenTableRow {
   /** Row selected */
   @Event() rowSelectChanged: EventEmitter<boolean>;
 
-  /** Row expanded */
-  @Event() rowExpandChange: EventEmitter<boolean>;
-
   @Watch('selected')
   async selectedChanged(selected: boolean): Promise<void> {
     // Set rows children selected state
@@ -44,7 +41,7 @@ export class ZenTableRow {
       this.rowChildren().forEach(n => (n.selected = selected));
     }
 
-    // Set parent rows checkbox indeterminate state
+    // Set parents rows checkbox indeterminate state
     let parenRow = await this.parentRow();
     while (parenRow && parenRow.selectable && parenRow.expandable) {
       const hasAllSelected = await parenRow.hasAllRowsSelected();
@@ -64,11 +61,13 @@ export class ZenTableRow {
   async expandedChanged(expanded: boolean): Promise<void> {
     // Set rows children/descendents expanded state
     if (this.expandable && expanded) {
+      // On expanding set only direct children to visible
       this.rowChildren().forEach(n => {
         n.visible = true;
       });
     } else {
       this.rowDescendants().forEach(n => {
+        // On closing set all descendants to not visible
         n.visible = false;
         n.expanded = false;
       });
