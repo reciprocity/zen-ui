@@ -27,12 +27,19 @@ export class ZenTableHeader {
   /** Row selected */
   @Event() headerSelectedChange: EventEmitter<boolean>;
 
+  @Watch('selected')
+  async selectedChanged(selected: boolean): Promise<void> {
+    this.allRows().forEach(n => {
+      n.selected = selected;
+    });
+  }
+
   @Watch('sticky')
   async stickyChanged(sticky: boolean): Promise<void> {
     this.toggleStickyChildren(sticky);
   }
 
-  rows(): HTMLZenTableRowElement[] {
+  allRows(): HTMLZenTableRowElement[] {
     const rows = [];
     let next = this.host.nextElementSibling as HTMLZenTableRowElement;
     while (next) {
@@ -43,20 +50,19 @@ export class ZenTableHeader {
   }
 
   hasExpandableRows(): boolean {
-    return this.rows().some(row => row.expandable);
+    return this.allRows().some(row => row.expandable);
   }
 
   hasRowsSelected(): boolean {
-    return this.rows().some(row => row.selected);
+    return this.allRows().some(row => row.selected);
   }
 
   hasAllRowsSelected(): boolean {
-    return this.rows().every(row => row.selected);
+    return this.allRows().every(row => row.selected);
   }
 
   onSelect(): void {
     this.selected = !this.selected;
-    this.headerSelectedChange.emit(this.selected);
   }
 
   onTableChildChanged(): void {
@@ -71,6 +77,8 @@ export class ZenTableHeader {
 
   componentDidLoad(): void {
     this.toggleStickyChildren(this.sticky);
+  async componentDidLoad(): Promise<void> {
+    await this.stickyChanged(this.sticky);
     this.indeterminate = this.hasRowsSelected();
 
     this.host.parentElement.addEventListener('rowSelectChanged', () => {
