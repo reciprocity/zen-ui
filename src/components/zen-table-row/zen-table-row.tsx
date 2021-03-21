@@ -60,6 +60,21 @@ export class ZenTableRow {
     this.rowSelectChanged.emit(this.selected);
   }
 
+  @Watch('expanded')
+  async expandedChanged(expanded: boolean): Promise<void> {
+    // Set rows children expanded state
+    if (this.expandable && expanded) {
+      this.rowChildren().forEach(n => {
+        n.visible = true;
+      });
+    } else {
+      this.rowDescendants().forEach(n => {
+        n.visible = false;
+        n.expanded = false;
+      });
+    }
+  }
+
   /** Returns true if descendent rows have a row selected **/
   @Method()
   async hasRowsSelected(): Promise<boolean> {
@@ -127,7 +142,6 @@ export class ZenTableRow {
 
   onExpand(): void {
     this.expanded = !this.expanded;
-    this.rowExpandChange.emit(this.expanded);
   }
 
   onSelect(): void {
