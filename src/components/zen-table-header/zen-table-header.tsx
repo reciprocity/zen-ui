@@ -1,6 +1,9 @@
 import { h, Component, Element, Host, Prop, State, Watch } from '@stencil/core';
 import { applyPrefix } from '../helpers/helpers';
 
+/**
+ * @slot [default] - Content for table header cells
+ */
 @Component({
   tag: 'zen-table-header',
   styleUrl: 'zen-table-header.scss',
