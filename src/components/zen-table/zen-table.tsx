@@ -8,21 +8,13 @@ import { h, Component, Host, Element, Listen } from '@stencil/core';
 export class ZenTable {
   @Element() host: HTMLZenTableElement;
 
-  @Listen('rowSelectChanged')
-  handleRowSelected(ev: CustomEvent): void {
-    const target = ev.target as HTMLZenTableRowElement;
-    const selected = ev.detail;
-
-    this.rowDescendants(target).forEach(n => (n.selected = selected));
-  }
-
   @Listen('rowExpandChange')
   handleRowExpanded(ev: CustomEvent): void {
     const target = ev.target as HTMLZenTableRowElement;
     const expanded = ev.detail;
 
     if (expanded) {
-      this.children(target).forEach(n => (n.visible = true));
+      this.rowChildren(target).forEach(n => (n.visible = true));
     } else {
       this.rowDescendants(target).forEach(n => {
         n.visible = false;
@@ -41,7 +33,7 @@ export class ZenTable {
     });
   }
 
-  children(target: HTMLZenTableRowElement): HTMLZenTableRowElement[] {
+  rowChildren(target: HTMLZenTableRowElement): HTMLZenTableRowElement[] {
     const children = [];
     let next = target.nextElementSibling as HTMLZenTableRowElement;
 
