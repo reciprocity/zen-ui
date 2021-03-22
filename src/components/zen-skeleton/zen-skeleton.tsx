@@ -6,11 +6,14 @@ import { Component, Host, h, Prop } from '@stencil/core';
   shadow: true,
 })
 export class ZenSkeleton {
-  /** Width in rem */
-  @Prop() readonly width: string = '10';
+  /** Width in any CSS width unit */
+  @Prop() readonly width: string = '100%';
 
-  /** Height in rem */
-  @Prop() readonly height: string = '1';
+  /** Height in any CSS height unit */
+  @Prop() readonly height: string = '100%';
+
+  /** Makes the skeleton rounded */
+  @Prop({ reflect: true }) readonly isRounded: boolean = false;
 
   render(): HTMLElement {
     return (

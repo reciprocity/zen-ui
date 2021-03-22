@@ -9,14 +9,24 @@ let argTypes = getArgTypes(compData);
 
 <Meta title="Layout/Skeleton" component="zen-skeleton" argTypes={argTypes} />
 
+export const StoryWithControls = args => {
+  return html/*html*/ ` <sb-zen-skeleton ...="${spreadArgs(args, argTypes)}"></sb-zen-skeleton> `;
+};
+
 export const StorySkeleton = args => {
   return html/*html*/ `
-  <sb-zen-space vertical spacing="lg">
-    <sb-zen-skeleton width="1" height="1"></sb-zen-skeleton>
-    <sb-zen-skeleton></sb-zen-skeleton>
-    <sb-zen-skeleton></sb-zen-skeleton>
-    <sb-zen-skeleton></sb-zen-skeleton>
-  </sb-zen-space>
+    <sb-zen-space vertical spacing="lg">
+      <sb-zen-skeleton width="4rem" height="4rem" is-rounded></sb-zen-skeleton>
+      <sb-zen-skeleton width="15rem" height="0.5rem"></sb-zen-skeleton>
+      <sb-zen-skeleton></sb-zen-skeleton>
+      <sb-zen-skeleton></sb-zen-skeleton>
+      <sb-zen-skeleton width="10rem" height="10rem"></sb-zen-skeleton>
+      <sb-zen-skeleton width="10rem" height="0.5rem"></sb-zen-skeleton>
+      <sb-zen-skeleton></sb-zen-skeleton>
+      <sb-zen-skeleton></sb-zen-skeleton>
+      <sb-zen-skeleton></sb-zen-skeleton>
+      <sb-zen-skeleton></sb-zen-skeleton>
+    </sb-zen-space>
   `;
 };
 
@@ -28,8 +38,25 @@ Skeleton placeholder
 
 <br />
 
-### 1. Skeleton
+### 1. Different variations
 
 <Canvas>
   <Story name="StorySkeleton">{StorySkeleton.bind({})}</Story>
 </Canvas>
+
+## Properties
+
+<Canvas>
+  <Story
+    name="default"
+    args={{
+      ...getDefaultArgs(argTypes),
+    }}
+  >
+    {StoryWithControls.bind({})}
+  </Story>
+</Canvas>
+
+<ArgsTable story="default" />
+
+<sb-docs-table docs={JSON.stringify(getComponentData('zen-skeleton'))}></sb-docs-table>
