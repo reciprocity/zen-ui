@@ -144,9 +144,12 @@ export class ZenDatePicker {
     }
   }
 
-  focusChanged(e: Event): void {
-    const show = e.target === (this.host as HTMLElement);
-    this.popover.toggle(show);
+  onBlur(): void {
+    this.popover.toggle(false);
+  }
+
+  onFocus(): void {
+    this.popover.toggle(true);
   }
 
   navigate(type: Navigate): void {
@@ -218,7 +221,6 @@ export class ZenDatePicker {
     } else {
       this.dateChanged(this.value); // set today date
     }
-    this.host.addEventListener('focusin', e => this.focusChanged(e));
   }
 
   render(): HTMLElement {
@@ -228,7 +230,7 @@ export class ZenDatePicker {
     const ZenIcon = applyPrefix('zen-icon', this.host);
     const ZenPopover = applyPrefix('zen-popover', this.host);
     return (
-      <Host>
+      <Host onFocus={() => this.onFocus()} onBlur={() => this.onBlur()}>
         <ZenInput
           id="date-input"
           ref={el => (this.input = el)}

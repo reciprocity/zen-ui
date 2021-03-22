@@ -114,9 +114,12 @@ export class ZenDropdown {
     }
   }
 
-  focusChanged(e: Event): void {
-    const show = e.target === (this.host as HTMLElement);
-    this.popover.toggle(show);
+  onBlur(): void {
+    this.popover.toggle(false);
+  }
+
+  onFocus(): void {
+    this.popover.toggle(true);
   }
 
   cloneSelectedToField(): void {
@@ -236,7 +239,6 @@ export class ZenDropdown {
 
   componentDidLoad(): void {
     this.valueChanged();
-    document.addEventListener('focusin', e => this.focusChanged(e));
   }
 
   render(): HTMLElement {
@@ -259,7 +261,7 @@ export class ZenDropdown {
     }
 
     return (
-      <Host tabindex={this.disabled ? null : 0}>
+      <Host tabindex={this.disabled ? null : 0} onFocus={() => this.onFocus()} onBlur={() => this.onBlur()}>
         <div
           class={{
             field: true,
