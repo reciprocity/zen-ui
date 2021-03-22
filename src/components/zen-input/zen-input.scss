@@ -5,7 +5,7 @@
 :host {
   @include zenInputBorder;
   @include zenInputBase;
-  display: inline-flex;
+  display: flex;
   align-items: center;
   font-size: $text-md;
   min-width: 1rem;
