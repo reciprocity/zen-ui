@@ -1,6 +1,7 @@
 import { Component, Prop, Host, h, Watch, Element, Event, EventEmitter } from '@stencil/core';
 import { applyPrefix } from '../helpers/helpers';
 import { modalsService } from './zen-modals-service';
+import { faTimes } from '@fortawesome/pro-regular-svg-icons';
 
 /**
  * @slot header - Totally custom header
@@ -59,6 +60,7 @@ export class ZenModal {
     const ZenButton = applyPrefix('zen-button', this.host);
     const ZenText = applyPrefix('zen-text', this.host);
     const ZenSpace = applyPrefix('zen-space', this.host);
+    const ZenIcon = applyPrefix('zen-icon', this.host);
     return (
       <Host>
         <ZenAnimate show={this.show}>
@@ -70,9 +72,7 @@ export class ZenModal {
                   {this.label}
                 </ZenText>
                 {!this.hideCancel ? (
-                  <div class="x-button" onClick={() => this.onCancelClicked()}>
-                    x
-                  </div>
+                  <ZenIcon class="x-button" icon={faTimes} size="lg" onClick={() => this.onCancelClicked()}></ZenIcon>
                 ) : (
                   ''
                 )}

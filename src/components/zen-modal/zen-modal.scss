@@ -58,12 +58,9 @@ $show-time: 0.3s;
 }
 
 .x-button {
-  margin-left: auto;
-  font-size: $text-xl;
+  color: $color-gray-200;
   cursor: pointer;
-  color: $color-gray-300;
-  padding: 0.2rem 1rem;
-
+  margin-left: auto;
   @include noselect;
 }
 
