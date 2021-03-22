@@ -1,7 +1,6 @@
 @import '../../zen-styles/variables.scss';
 @import '../../zen-styles/shadows.scss';
 
-$padding-x: 1.6rem;
 $show-time: 0.3s;
 
 :host {
@@ -10,7 +9,6 @@ $show-time: 0.3s;
   left: 0;
   width: 100vw;
   min-height: 100vh;
-
   display: flex;
   align-items: center;
   justify-content: center;
@@ -48,6 +46,7 @@ $show-time: 0.3s;
     opacity: 0;
     transform: translate(0, 30px);
   }
+
   &[animate='out-end'] {
     opacity: 0;
     transform: translate(0, -30px);
@@ -55,9 +54,7 @@ $show-time: 0.3s;
 }
 
 .header {
-  display: flex;
-  align-items: center;
-  padding: 1rem 0 1rem $padding-x;
+  border-bottom: 1px solid $color-gray-200;
 }
 
 .x-button {
@@ -65,12 +62,9 @@ $show-time: 0.3s;
   font-size: $text-xl;
   cursor: pointer;
   color: $color-gray-300;
-  @include noselect;
   padding: 0.2rem 1rem;
-}
 
-.content {
-  padding: 1.6rem $padding-x;
+  @include noselect;
 }
 
 .buttons-row,
@@ -87,8 +81,5 @@ zen-button {
 }
 
 .footer {
-  padding: 0.8rem $padding-x;
   border-top: 1px solid $color-gray-200;
-  display: flex;
-  justify-content: flex-end;
 }

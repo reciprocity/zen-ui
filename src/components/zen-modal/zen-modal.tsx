@@ -58,14 +58,15 @@ export class ZenModal {
     const ZenAnimate = applyPrefix('zen-animate', this.host);
     const ZenButton = applyPrefix('zen-button', this.host);
     const ZenText = applyPrefix('zen-text', this.host);
+    const ZenSpace = applyPrefix('zen-space', this.host);
     return (
       <Host>
         <ZenAnimate show={this.show}>
           <div class="dimmer"></div>
           <div class="window">
-            <div class="header">
+            <ZenSpace class="header" padding="lg xl">
               <slot name="header">
-                <ZenText class="title" size="2xl">
+                <ZenText variant="heading" size="sm">
                   {this.label}
                 </ZenText>
                 {!this.hideCancel ? (
@@ -76,12 +77,12 @@ export class ZenModal {
                   ''
                 )}
               </slot>
-            </div>
-            <div class="content">
+            </ZenSpace>
+            <ZenSpace vertical padding="xl">
               <slot>Zen-ui Modal</slot>
-            </div>
+            </ZenSpace>
             <slot name="footer">
-              <div class="footer">
+              <ZenSpace class="footer" padding="lg xl" horizontalAlign="end">
                 <slot name="buttons">
                   <div class="buttons-row">
                     {!this.hideCancel ? (
@@ -96,7 +97,7 @@ export class ZenModal {
                     </ZenButton>
                   </div>
                 </slot>
-              </div>
+              </ZenSpace>
             </slot>
           </div>
         </ZenAnimate>
