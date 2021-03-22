@@ -4,9 +4,11 @@ import { modalsService } from './zen-modals-service';
 import { faTimes } from '@fortawesome/pro-regular-svg-icons';
 
 /**
- * @slot header - Totally custom header
+ * @slot header - Custom header content
  * @slot buttons - Standard buttons in the footer
  * @slot footer - Totally custom footer
+ * @slot paddingless-header - Same as `header` but without default padding
+ * @slot paddingless-content - Same as default slot but without default padding
  */
 
 @Component({
@@ -66,21 +68,25 @@ export class ZenModal {
         <ZenAnimate show={this.show}>
           <div class="dimmer"></div>
           <div class="window">
-            <ZenSpace class="header" padding="lg xl">
-              <slot name="header">
-                <ZenText variant="heading" size="sm">
-                  {this.label}
-                </ZenText>
-                {!this.hideCancel ? (
-                  <ZenIcon class="x-button" icon={faTimes} size="lg" onClick={() => this.onCancelClicked()}></ZenIcon>
-                ) : (
-                  ''
-                )}
-              </slot>
-            </ZenSpace>
-            <ZenSpace vertical padding="xl">
-              <slot>Zen-ui Modal</slot>
-            </ZenSpace>
+            <slot name="paddingless-header">
+              <ZenSpace class="header" padding="lg xl">
+                <slot name="header">
+                  <ZenText variant="heading" size="sm">
+                    {this.label}
+                  </ZenText>
+                  {!this.hideCancel ? (
+                    <ZenIcon class="x-button" icon={faTimes} size="lg" onClick={() => this.onCancelClicked()}></ZenIcon>
+                  ) : (
+                    ''
+                  )}
+                </slot>
+              </ZenSpace>
+            </slot>
+            <slot name="paddingless-content">
+              <ZenSpace vertical padding="xl">
+                <slot>Zen-ui Modal</slot>
+              </ZenSpace>
+            </slot>
             <slot name="footer">
               <ZenSpace class="footer" padding="lg xl" horizontalAlign="end">
                 <slot name="buttons">
