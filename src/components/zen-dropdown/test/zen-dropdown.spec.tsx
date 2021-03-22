@@ -45,7 +45,7 @@ describe('zen-dropdown', () => {
         <zen-option value="contributor">Contributor</zen-option>`);
 
     await page.waitForChanges();
-    const focusin = new Event('focusin', { bubbles: true, composed: true });
+    const focusin = new Event('focus', { bubbles: true, composed: true });
     dropdown.dispatchEvent(focusin);
   });
 
