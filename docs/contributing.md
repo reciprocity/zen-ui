@@ -2,7 +2,7 @@
 
 ## Commit Guidelines
 
-We use [Conventional Commits](https://www.conventionalcommits.org/).
+We format our commits' messages following [Conventional Commits](https://www.conventionalcommits.org) and we validate them with [`commitlint`](https://commitlint.js.org/) using a [Husky](https://github.com/typicode/husky) hook.
 
 ## Components Guidelines
 
