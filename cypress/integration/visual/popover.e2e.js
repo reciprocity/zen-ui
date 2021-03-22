@@ -12,7 +12,7 @@ describe('Popover visual tests', { scrollBehavior: 'center' }, () => {
 
   beforeEach(() => {
     cy.visitStorybookIframe(pageId);
-    // cy.verifyAllStoriesHaveVRT(story);
+    cy.verifyAllStoriesHaveVRT(story);
     cy.get('sb-zen-button').should('be.visible');
   });
 
@@ -43,12 +43,13 @@ describe('Popover visual tests', { scrollBehavior: 'center' }, () => {
   it('Verifies ' + `${story[2]}`, () => {
     cy.get(`#${story[2]}`)
       .parents('.docs-story')
+      .scrollIntoView()
       .within(doc => {
-        cy.get('[data-test="scroll"]').scrollTo('bottom');
+        cy.get('[data-test="scroll"]').scrollTo('top');
         cy.get('[data-popper-placement="top-end"]').should('be.visible');
         cy.wrap(doc).matchImageSnapshot('top-end');
         cy.get('[data-test="scroll"]').scrollTo('bottom');
-        cy.get('[data-popper-placement="bottom-end"]').should('be.visible');
+        cy.wait(500);
         cy.wrap(doc).matchImageSnapshot('bottom-end');
       });
   });
@@ -60,7 +61,6 @@ describe('Popover visual tests', { scrollBehavior: 'center' }, () => {
     });
     cy.matchImageSnapshot({
       capture: 'viewport',
-      disableTimersAndAnimations: true,
     });
   });
 

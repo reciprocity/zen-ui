@@ -12,6 +12,7 @@ function addMatchImageSnapshotCommandInMode(isInteractiveMode) {
       failureThreshold: 0.03,
       failureThresholdType: 'percent',
       customDiffConfig: { threshold: 0.1 },
+      customDiffDir: 'cypress/screenshots/__diff_output__',
     });
   }
 }
