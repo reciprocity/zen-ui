@@ -5,10 +5,11 @@ import { faTimes } from '@fortawesome/pro-regular-svg-icons';
 
 /**
  * @slot header - Custom header content
- * @slot buttons - Standard buttons in the footer
- * @slot footer - Totally custom footer
+ * @slot footer - Footer content (buttons usually)
+ * @slot (default) - Window content
  * @slot paddingless-header - Same as `header` but without default padding
  * @slot paddingless-content - Same as default slot but without default padding
+ * @slot paddingless-footer - Same as `footer` but without default padding
  */
 
 @Component({
@@ -87,9 +88,9 @@ export class ZenModal {
                 <slot>Zen-ui Modal</slot>
               </ZenSpace>
             </slot>
-            <slot name="footer">
+            <slot name="paddingless-footer">
               <ZenSpace class="footer" padding="lg xl" horizontalAlign="end">
-                <slot name="buttons">
+                <slot name="footer">
                   <div class="buttons-row">
                     {!this.hideCancel ? (
                       <ZenButton class="btn-cancel" variant="secondary" onClick={() => this.onCancelClicked()}>
