@@ -6,7 +6,7 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { StringifiedJson } from "./stories/components/color-swatch-group/color-swatch-group";
-import { Align, Avatar, AvatarData, IconSizes, None, NotificationVariant, PaddingShorthand, Position, Resize, Size, TextSize, TextVariant, TooltipVariant, TriggerEvent } from "./components/helpers/types";
+import { Align, Avatar, AvatarData, IconSizes, None, Notification, NotificationVariant, PaddingShorthand, Position, Resize, Size, TextSize, TextVariant, TooltipVariant, TriggerEvent } from "./components/helpers/types";
 import { ButtonVariants } from "./components/zen-button/types";
 import { OptionValue } from "./components/zen-menu-item/zen-option";
 import { IconDefinition } from "@fortawesome/pro-light-svg-icons";
@@ -220,7 +220,7 @@ export namespace Components {
         /**
           * Selected date
          */
-        "formattedDate": string;
+        "formattedDate": string | null;
         /**
           * Placeholder
          */
@@ -350,7 +350,7 @@ export namespace Components {
         /**
           * Can dismiss
          */
-        "dismiss": boolean;
+        "dismissable": boolean;
         /**
           * Title
          */
@@ -359,6 +359,12 @@ export namespace Components {
           * Variant
          */
         "variant": NotificationVariant;
+    }
+    interface ZenNotificationsWrapper {
+        /**
+          * Displays a notification
+         */
+        "displayNotification": ({ heading, content, variant }: Notification) => Promise<void>;
     }
     interface ZenOption {
         /**
@@ -548,9 +554,17 @@ export namespace Components {
     }
     interface ZenTableHeader {
         /**
+          * Checkbox indeterminate state
+         */
+        "indeterminate": boolean;
+        /**
           * Show checkbox
          */
         "selectable": false;
+        /**
+          * Select all rows
+         */
+        "selected": boolean;
         /**
           * Remains fixed at the top of the table during vertical scrolling
          */
@@ -568,17 +582,37 @@ export namespace Components {
          */
         "depth": number;
         /**
+          * Can be expanded
+         */
+        "expandable": boolean;
+        /**
           * Is row expanded
          */
         "expanded": boolean;
         /**
-          * Is cell full span (colspan=number of cells)
+          * Returns true if all children rows are selected *
          */
-        "fullSpan": false;
+        "hasAllRowsSelected": () => Promise<boolean>;
+        /**
+          * Returns true if descendent rows have a row selected *
+         */
+        "hasRowsSelected": () => Promise<boolean>;
+        /**
+          * Checkbox indeterminate state
+         */
+        "indeterminate": boolean;
+        /**
+          * Returns elements parent row (depth -1) *
+         */
+        "parentRow": () => Promise<HTMLZenTableRowElement>;
         /**
           * Show checkbox (read-only)
          */
         "selectable": false;
+        /**
+          * Is row selected
+         */
+        "selected": boolean;
         /**
           * Visible if no depth or parent.expanded
          */
@@ -860,6 +894,12 @@ declare global {
         prototype: HTMLZenNotificationElement;
         new (): HTMLZenNotificationElement;
     };
+    interface HTMLZenNotificationsWrapperElement extends Components.ZenNotificationsWrapper, HTMLStencilElement {
+    }
+    var HTMLZenNotificationsWrapperElement: {
+        prototype: HTMLZenNotificationsWrapperElement;
+        new (): HTMLZenNotificationsWrapperElement;
+    };
     interface HTMLZenOptionElement extends Components.ZenOption, HTMLStencilElement {
     }
     var HTMLZenOptionElement: {
@@ -997,6 +1037,7 @@ declare global {
         "zen-input": HTMLZenInputElement;
         "zen-modal": HTMLZenModalElement;
         "zen-notification": HTMLZenNotificationElement;
+        "zen-notifications-wrapper": HTMLZenNotificationsWrapperElement;
         "zen-option": HTMLZenOptionElement;
         "zen-panel": HTMLZenPanelElement;
         "zen-popover": HTMLZenPopoverElement;
@@ -1219,7 +1260,7 @@ declare namespace LocalJSX {
         /**
           * Selected date
          */
-        "formattedDate"?: string;
+        "formattedDate"?: string | null;
         /**
           * Placeholder
          */
@@ -1353,7 +1394,7 @@ declare namespace LocalJSX {
         /**
           * Can dismiss
          */
-        "dismiss"?: boolean;
+        "dismissable"?: boolean;
         /**
           * Title
          */
@@ -1362,6 +1403,8 @@ declare namespace LocalJSX {
           * Variant
          */
         "variant"?: NotificationVariant;
+    }
+    interface ZenNotificationsWrapper {
     }
     interface ZenOption {
         /**
@@ -1539,9 +1582,21 @@ declare namespace LocalJSX {
     }
     interface ZenTableHeader {
         /**
+          * Checkbox indeterminate state
+         */
+        "indeterminate"?: boolean;
+        /**
+          * Row selected
+         */
+        "onHeaderSelectedChange"?: (event: CustomEvent<boolean>) => void;
+        /**
           * Show checkbox
          */
         "selectable"?: false;
+        /**
+          * Select all rows
+         */
+        "selected"?: boolean;
         /**
           * Remains fixed at the top of the table during vertical scrolling
          */
@@ -1559,17 +1614,33 @@ declare namespace LocalJSX {
          */
         "depth"?: number;
         /**
+          * Can be expanded
+         */
+        "expandable"?: boolean;
+        /**
           * Is row expanded
          */
         "expanded"?: boolean;
         /**
-          * Is cell full span (colspan=number of cells)
+          * Checkbox indeterminate state
          */
-        "fullSpan"?: false;
+        "indeterminate"?: boolean;
+        /**
+          * Row expanded
+         */
+        "onRowExpandChange"?: (event: CustomEvent<boolean>) => void;
+        /**
+          * Row selected
+         */
+        "onRowSelectChanged"?: (event: CustomEvent<boolean>) => void;
         /**
           * Show checkbox (read-only)
          */
         "selectable"?: false;
+        /**
+          * Is row selected
+         */
+        "selected"?: boolean;
         /**
           * Visible if no depth or parent.expanded
          */
@@ -1740,6 +1811,7 @@ declare namespace LocalJSX {
         "zen-input": ZenInput;
         "zen-modal": ZenModal;
         "zen-notification": ZenNotification;
+        "zen-notifications-wrapper": ZenNotificationsWrapper;
         "zen-option": ZenOption;
         "zen-panel": ZenPanel;
         "zen-popover": ZenPopover;
@@ -1787,6 +1859,7 @@ declare module "@stencil/core" {
             "zen-input": LocalJSX.ZenInput & JSXBase.HTMLAttributes<HTMLZenInputElement>;
             "zen-modal": LocalJSX.ZenModal & JSXBase.HTMLAttributes<HTMLZenModalElement>;
             "zen-notification": LocalJSX.ZenNotification & JSXBase.HTMLAttributes<HTMLZenNotificationElement>;
+            "zen-notifications-wrapper": LocalJSX.ZenNotificationsWrapper & JSXBase.HTMLAttributes<HTMLZenNotificationsWrapperElement>;
             "zen-option": LocalJSX.ZenOption & JSXBase.HTMLAttributes<HTMLZenOptionElement>;
             "zen-panel": LocalJSX.ZenPanel & JSXBase.HTMLAttributes<HTMLZenPanelElement>;
             "zen-popover": LocalJSX.ZenPopover & JSXBase.HTMLAttributes<HTMLZenPopoverElement>;
