@@ -21,15 +21,23 @@ export class ZenSortable {
   /** Container item spacing */
   @Prop() readonly spacing: PaddingShorthand = 'none';
 
+  hasItemDataId(): boolean {
+    return Array.from(this.host.children).every(item => item.hasAttribute('data-id'));
+  }
+
   componentDidLoad(): void {
-    Sortable.create(this.host, {
-      animation: 150,
-      handle: '.handle',
-      onEnd: function (evt) {
-        evt.stopPropagation();
-        evt.target.dispatchEvent(new CustomEvent('onChange', { detail: this.toArray() }));
-      },
-    });
+    if (this.hasItemDataId()) {
+      Sortable.create(this.host, {
+        animation: 150,
+        handle: '.handle',
+        onEnd: function (evt) {
+          evt.stopPropagation();
+          evt.target.dispatchEvent(new CustomEvent('onChange', { detail: this.toArray() }));
+        },
+      });
+    } else {
+      console.error("The property 'data-id' was not set for one of the slotted items!");
+    }
   }
   render(): HTMLElement {
     const ZenSpace = applyPrefix('zen-space', this.host);
