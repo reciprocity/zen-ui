@@ -1,10 +1,8 @@
 @import '../../zen-styles/component-helpers.scss';
 
 :host {
-  display: flex;
+  display: block;
   width: 100%;
-  align-items: center;
-  justify-content: start;
 }
 
 .handle {

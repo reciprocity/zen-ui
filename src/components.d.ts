@@ -515,6 +515,10 @@ export namespace Components {
         "spacing": PaddingShorthand;
     }
     interface ZenSortableItem {
+        /**
+          * Container padding
+         */
+        "padding": PaddingShorthand;
     }
     interface ZenSpace {
         /**
@@ -1543,6 +1547,10 @@ declare namespace LocalJSX {
         "spacing"?: PaddingShorthand;
     }
     interface ZenSortableItem {
+        /**
+          * Container padding
+         */
+        "padding"?: PaddingShorthand;
     }
     interface ZenSpace {
         /**
