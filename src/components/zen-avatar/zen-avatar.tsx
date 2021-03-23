@@ -62,7 +62,7 @@ export class ZenAvatar {
                 email={user.email}
                 icon-color={user.color}
                 icon-background={user.background}
-                padding="none"
+                p="none"
               />
               <div
                 class={{

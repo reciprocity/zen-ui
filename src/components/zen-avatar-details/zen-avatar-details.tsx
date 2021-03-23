@@ -1,6 +1,6 @@
 import { Component, Host, h, Element, Prop } from '@stencil/core';
 import { applyPrefix } from '../helpers/helpers';
-import { PaddingShorthand, Size } from '../helpers/types';
+import { PaddingShorthand, Size, Spacings } from '../helpers/types';
 
 @Component({
   tag: 'zen-avatar-details',
@@ -22,8 +22,20 @@ export class ZenAvatarDetails {
   /** Icon background color  */
   @Prop() readonly iconBackground: string = '#D5E9FA';
 
-  /** Padding */
-  @Prop() readonly padding: PaddingShorthand = 'lg';
+  /** <Description generated in helper file> */
+  @Prop({ reflect: true }) readonly p: PaddingShorthand = 'lg';
+  /** Skipped */
+  @Prop({ reflect: true }) readonly px: Spacings = null;
+  /** Skipped */
+  @Prop({ reflect: true }) readonly py: Spacings = null;
+  /** Skipped */
+  @Prop({ reflect: true }) readonly pt: Spacings = null;
+  /** Skipped */
+  @Prop({ reflect: true }) readonly pr: Spacings = null;
+  /** Skipped */
+  @Prop({ reflect: true }) readonly pb: Spacings = null;
+  /** Skipped */
+  @Prop({ reflect: true }) readonly pl: Spacings = null;
 
   /** Spacing between icon and username  */
   @Prop() readonly spacing: Size = 'md';
@@ -34,7 +46,18 @@ export class ZenAvatarDetails {
     const ZenText = applyPrefix('zen-text', this.host);
     return (
       <Host>
-        <ZenSpace no-wrap padding={this.padding} vertical-align="middle" spacing={this.spacing}>
+        <ZenSpace
+          no-wrap
+          p={this.p}
+          px={this.px}
+          py={this.py}
+          pt={this.pt}
+          pr={this.pr}
+          pb={this.pb}
+          pl={this.pl}
+          vertical-align="middle"
+          spacing={this.spacing}
+        >
           <ZenAvatarIcon
             user-name={this.userName}
             color={this.iconColor}
