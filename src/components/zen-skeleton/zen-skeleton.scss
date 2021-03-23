@@ -1,0 +1,34 @@
+@import '../../zen-styles/component-helpers.scss';
+
+:host {
+  border-radius: 2px;
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  background: $color-gray-100;
+
+  &::before {
+    @keyframes load {
+      from {
+        left: -300px;
+      }
+      to {
+        left: 100%;
+      }
+    }
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -300px;
+    width: 300px;
+    height: 100%;
+    background: linear-gradient(270deg, $color-gray-100 0%, $color-gray-200 52.08%, $color-gray-100 100%);
+    animation: load 1.6s infinite cubic-bezier(0.4, 0.14, 0.3, 1);
+  }
+}
+
+:host([rounded]) {
+  border-radius: 9999px;
+}

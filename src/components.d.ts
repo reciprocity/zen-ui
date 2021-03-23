@@ -504,6 +504,12 @@ export namespace Components {
          */
         "value": string;
     }
+    interface ZenSkeleton {
+        /**
+          * Makes the skeleton rounded
+         */
+        "rounded": boolean;
+    }
     interface ZenSpace {
         /**
           * Horizontal align of items
@@ -918,6 +924,12 @@ declare global {
         prototype: HTMLZenRadioElement;
         new (): HTMLZenRadioElement;
     };
+    interface HTMLZenSkeletonElement extends Components.ZenSkeleton, HTMLStencilElement {
+    }
+    var HTMLZenSkeletonElement: {
+        prototype: HTMLZenSkeletonElement;
+        new (): HTMLZenSkeletonElement;
+    };
     interface HTMLZenSpaceElement extends Components.ZenSpace, HTMLStencilElement {
     }
     var HTMLZenSpaceElement: {
@@ -1019,6 +1031,7 @@ declare global {
         "zen-popover": HTMLZenPopoverElement;
         "zen-progress-tracker": HTMLZenProgressTrackerElement;
         "zen-radio": HTMLZenRadioElement;
+        "zen-skeleton": HTMLZenSkeletonElement;
         "zen-space": HTMLZenSpaceElement;
         "zen-spinner": HTMLZenSpinnerElement;
         "zen-table": HTMLZenTableElement;
@@ -1506,6 +1519,12 @@ declare namespace LocalJSX {
          */
         "value"?: string;
     }
+    interface ZenSkeleton {
+        /**
+          * Makes the skeleton rounded
+         */
+        "rounded"?: boolean;
+    }
     interface ZenSpace {
         /**
           * Horizontal align of items
@@ -1779,6 +1798,7 @@ declare namespace LocalJSX {
         "zen-popover": ZenPopover;
         "zen-progress-tracker": ZenProgressTracker;
         "zen-radio": ZenRadio;
+        "zen-skeleton": ZenSkeleton;
         "zen-space": ZenSpace;
         "zen-spinner": ZenSpinner;
         "zen-table": ZenTable;
@@ -1825,6 +1845,7 @@ declare module "@stencil/core" {
             "zen-popover": LocalJSX.ZenPopover & JSXBase.HTMLAttributes<HTMLZenPopoverElement>;
             "zen-progress-tracker": LocalJSX.ZenProgressTracker & JSXBase.HTMLAttributes<HTMLZenProgressTrackerElement>;
             "zen-radio": LocalJSX.ZenRadio & JSXBase.HTMLAttributes<HTMLZenRadioElement>;
+            "zen-skeleton": LocalJSX.ZenSkeleton & JSXBase.HTMLAttributes<HTMLZenSkeletonElement>;
             "zen-space": LocalJSX.ZenSpace & JSXBase.HTMLAttributes<HTMLZenSpaceElement>;
             "zen-spinner": LocalJSX.ZenSpinner & JSXBase.HTMLAttributes<HTMLZenSpinnerElement>;
             "zen-table": LocalJSX.ZenTable & JSXBase.HTMLAttributes<HTMLZenTableElement>;
