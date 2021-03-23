@@ -6,7 +6,7 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { StringifiedJson } from "./stories/components/color-swatch-group/color-swatch-group";
-import { Align, AvatarData, IconSizes, None, Notification, NotificationVariant, PaddingShorthand, Position, Resize, Size, TextSize, TextVariant, TooltipVariant, TriggerEvent } from "./components/helpers/types";
+import { Align, AvatarData, IconSizes, None, Notification, NotificationVariant, PaddingShorthand, Position, Resize, Size, Spacing, SpacingShorthand, TextSize, TextVariant, TooltipVariant, TriggerEvent } from "./components/helpers/types";
 import { ButtonVariants } from "./components/zen-button/types";
 import { OptionValue } from "./components/zen-menu-item/zen-option";
 import { IconDefinition } from "@fortawesome/pro-light-svg-icons";
@@ -88,9 +88,33 @@ export namespace Components {
          */
         "iconColor": string;
         /**
-          * Padding
+          * <Description generated in helper file>
          */
-        "padding": PaddingShorthand;
+        "p": SpacingShorthand;
+        /**
+          * Skipped
+         */
+        "pb": Spacing;
+        /**
+          * Skipped
+         */
+        "pl": Spacing;
+        /**
+          * Skipped
+         */
+        "pr": Spacing;
+        /**
+          * Skipped
+         */
+        "pt": Spacing;
+        /**
+          * Skipped
+         */
+        "px": Spacing;
+        /**
+          * Skipped
+         */
+        "py": Spacing;
         /**
           * Spacing between icon and username
          */
@@ -290,9 +314,33 @@ export namespace Components {
          */
         "icon": IconDefinition;
         /**
-          * Inner spacing of container
+          * <Description generated in helper file>
          */
-        "padding": PaddingShorthand;
+        "p": SpacingShorthand;
+        /**
+          * Skipped
+         */
+        "pb": Spacing;
+        /**
+          * Skipped
+         */
+        "pl": Spacing;
+        /**
+          * Skipped
+         */
+        "pr": Spacing;
+        /**
+          * Skipped
+         */
+        "pt": Spacing;
+        /**
+          * Skipped
+         */
+        "px": Spacing;
+        /**
+          * Skipped
+         */
+        "py": Spacing;
         /**
           * Size of the icon.
          */
@@ -536,9 +584,33 @@ export namespace Components {
          */
         "noWrap": boolean;
         /**
-          * Inner spacing of container
+          * <Description generated in helper file>
          */
-        "padding": PaddingShorthand;
+        "p": SpacingShorthand;
+        /**
+          * Skipped
+         */
+        "pb": Spacing;
+        /**
+          * Skipped
+         */
+        "pl": Spacing;
+        /**
+          * Skipped
+         */
+        "pr": Spacing;
+        /**
+          * Skipped
+         */
+        "pt": Spacing;
+        /**
+          * Skipped
+         */
+        "px": Spacing;
+        /**
+          * Skipped
+         */
+        "py": Spacing;
         /**
           * Spacing between items
          */
@@ -1149,9 +1221,33 @@ declare namespace LocalJSX {
          */
         "iconColor"?: string;
         /**
-          * Padding
+          * <Description generated in helper file>
          */
-        "padding"?: PaddingShorthand;
+        "p"?: SpacingShorthand;
+        /**
+          * Skipped
+         */
+        "pb"?: Spacing;
+        /**
+          * Skipped
+         */
+        "pl"?: Spacing;
+        /**
+          * Skipped
+         */
+        "pr"?: Spacing;
+        /**
+          * Skipped
+         */
+        "pt"?: Spacing;
+        /**
+          * Skipped
+         */
+        "px"?: Spacing;
+        /**
+          * Skipped
+         */
+        "py"?: Spacing;
         /**
           * Spacing between icon and username
          */
@@ -1347,9 +1443,33 @@ declare namespace LocalJSX {
          */
         "icon"?: IconDefinition;
         /**
-          * Inner spacing of container
+          * <Description generated in helper file>
          */
-        "padding"?: PaddingShorthand;
+        "p"?: SpacingShorthand;
+        /**
+          * Skipped
+         */
+        "pb"?: Spacing;
+        /**
+          * Skipped
+         */
+        "pl"?: Spacing;
+        /**
+          * Skipped
+         */
+        "pr"?: Spacing;
+        /**
+          * Skipped
+         */
+        "pt"?: Spacing;
+        /**
+          * Skipped
+         */
+        "px"?: Spacing;
+        /**
+          * Skipped
+         */
+        "py"?: Spacing;
         /**
           * Size of the icon.
          */
@@ -1581,9 +1701,33 @@ declare namespace LocalJSX {
          */
         "noWrap"?: boolean;
         /**
-          * Inner spacing of container
+          * <Description generated in helper file>
          */
-        "padding"?: PaddingShorthand;
+        "p"?: SpacingShorthand;
+        /**
+          * Skipped
+         */
+        "pb"?: Spacing;
+        /**
+          * Skipped
+         */
+        "pl"?: Spacing;
+        /**
+          * Skipped
+         */
+        "pr"?: Spacing;
+        /**
+          * Skipped
+         */
+        "pt"?: Spacing;
+        /**
+          * Skipped
+         */
+        "px"?: Spacing;
+        /**
+          * Skipped
+         */
+        "py"?: Spacing;
         /**
           * Spacing between items
          */
