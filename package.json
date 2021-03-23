@@ -38,7 +38,7 @@
     "storybook:build": "build-storybook --docs -o public --quiet",
     "storybook:theme": "start-storybook --docs -p 6006 --no-manager-cache",
     "lint:check": "eslint --ext .js,.ts,.tsx cypress/ src/",
-    "lint": "eslint --fix --ext .js,.ts,.tsx $@",
+    "lint": "eslint --fix $@",
     "lint:ci": "yarn lint:check",
     "format:check": "prettier --check cypress/ src/",
     "format": "prettier --write $@",
