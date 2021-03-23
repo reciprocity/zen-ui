@@ -162,7 +162,7 @@ export class ZenTableRow {
               <ZenIcon
                 class="expand-icon"
                 size="sm"
-                padding="lg"
+                p="lg"
                 icon={faChevronRight}
                 onClick={() => this.onExpand()}
               />
