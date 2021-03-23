@@ -8,6 +8,6 @@ describe('zen-sortable-item', () => {
       html: `<zen-sortable-item>Content</zen-sortable-item>`,
     });
 
-    expect(page.root).toBeTruthy();
+    expect(page.root.shadowRoot).toBeTruthy();
   });
 });
