@@ -54,12 +54,12 @@ export class ZenSpace {
   @Prop({ reflect: true }) readonly noWrap: boolean = false;
 
   @Watch('p')
-  spacePaddingChanged(p: string): void {
+  paddingChanged(p: string): void {
     this.paddingClasses = parsePadding(p);
   }
 
   componentDidLoad(): void {
-    this.spacePaddingChanged(this.p);
+    this.paddingChanged(this.p);
   }
 
   render(): HTMLElement {

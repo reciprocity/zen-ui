@@ -21,7 +21,6 @@ export const StoryDefault = args => {
   waitForElement('#zen-icon-element', element => {
     element.icon = args.icon;
     argTypes['size'].control = 'select';
-    argTypes['padding'].control = 'select';
   });
   return html/*html*/ `
     <sb-zen-icon class="icon" id="zen-icon-element" ...="${spreadArgs(args, argTypes)}"></sb-zen-icon>

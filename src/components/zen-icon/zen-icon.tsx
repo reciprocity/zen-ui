@@ -1,7 +1,7 @@
 import { IconDefinition } from '@fortawesome/pro-light-svg-icons';
 import { Component, Host, h, Prop, Element, Watch, State } from '@stencil/core';
 import { renderIcon } from '../helpers/fa-icons';
-import { IconSizes, PaddingShorthand } from '../helpers/types';
+import { IconSizes, PaddingShorthand, Spacings } from '../helpers/types';
 import { parsePadding } from '../helpers/helpers';
 
 @Component({
@@ -17,19 +17,31 @@ export class ZenIcon {
   /** Size of the icon. */
   @Prop({ reflect: true }) readonly size: IconSizes = 'md';
 
-  /** Inner spacing of container */
-  @Prop() readonly padding: PaddingShorthand = 'none';
+  /** <Description generated in helper file> */
+  @Prop({ reflect: true }) readonly p: PaddingShorthand = null;
+  /** Skipped */
+  @Prop({ reflect: true }) readonly px: Spacings = null;
+  /** Skipped */
+  @Prop({ reflect: true }) readonly py: Spacings = null;
+  /** Skipped */
+  @Prop({ reflect: true }) readonly pt: Spacings = null;
+  /** Skipped */
+  @Prop({ reflect: true }) readonly pr: Spacings = null;
+  /** Skipped */
+  @Prop({ reflect: true }) readonly pb: Spacings = null;
+  /** Skipped */
+  @Prop({ reflect: true }) readonly pl: Spacings = null;
 
   /** Icon data (js file) imported from Font Awesome SVG package. */
   @Prop() readonly icon: IconDefinition = null;
 
-  @Watch('padding')
-  iconPaddingChanged(padding: string): void {
-    this.paddingClasses = parsePadding(padding);
+  @Watch('p')
+  paddingChanged(p: string): void {
+    this.paddingClasses = parsePadding(p);
   }
 
   componentDidLoad(): void {
-    this.iconPaddingChanged(this.padding);
+    this.paddingChanged(this.p);
   }
 
   render(): HTMLElement {
