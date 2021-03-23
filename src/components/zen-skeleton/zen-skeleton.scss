@@ -29,6 +29,6 @@
   }
 }
 
-:host([is-rounded]) {
+:host([rounded]) {
   border-radius: 9999px;
 }

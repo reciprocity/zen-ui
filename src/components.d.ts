@@ -506,17 +506,9 @@ export namespace Components {
     }
     interface ZenSkeleton {
         /**
-          * Height in any CSS height unit
-         */
-        "height": string;
-        /**
           * Makes the skeleton rounded
          */
-        "isRounded": boolean;
-        /**
-          * Width in any CSS width unit
-         */
-        "width": string;
+        "rounded": boolean;
     }
     interface ZenSpace {
         /**
@@ -1529,17 +1521,9 @@ declare namespace LocalJSX {
     }
     interface ZenSkeleton {
         /**
-          * Height in any CSS height unit
-         */
-        "height"?: string;
-        /**
           * Makes the skeleton rounded
          */
-        "isRounded"?: boolean;
-        /**
-          * Width in any CSS width unit
-         */
-        "width"?: string;
+        "rounded"?: boolean;
     }
     interface ZenSpace {
         /**
