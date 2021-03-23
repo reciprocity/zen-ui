@@ -31,7 +31,7 @@ export class DocsTable {
         {this.events.length ? (
           <div>
             <h2 class="css-d83bdw">Events</h2>
-            <ZenSpace vertical padding="none none lg" spacing="sm">
+            <ZenSpace vertical p="none none lg" spacing="sm">
               <ZenText>
                 All components supports standard events such as
                 <code>change</code>, <code>input</code>, <code>click</code>, <code>focus</code>, <code>blur</code>, ...

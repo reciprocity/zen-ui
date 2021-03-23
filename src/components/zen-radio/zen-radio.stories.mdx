@@ -14,7 +14,7 @@ export const StoryRadiosGroup = () => {
     document.querySelector('#selected-radio').textContent = event.target.selected;
   }
   return html/*html*/ `
-    <sb-zen-space vertical padding="md none" spacing="sm">
+    <sb-zen-space vertical p="md none" spacing="sm">
       <sb-zen-text variant="label">Group 1</sb-zen-text>
       <sb-zen-space vertical spacing="sm">
         <sb-zen-radio group="first" value="1" @change="${changed}">Option 1</sb-zen-radio>
@@ -27,7 +27,7 @@ export const StoryRadiosGroup = () => {
         Selected: <b><span id="selected-radio"></span></b>
       </sb-zen-text>
     </sb-zen-space>
-    <sb-zen-space vertical padding="md none" spacing="sm">
+    <sb-zen-space vertical p="md none" spacing="sm">
       <sb-zen-text variant="label">Group 2</sb-zen-text>
       <sb-zen-space vertical spacing="sm">
         <sb-zen-radio group="second" value="a">Option A</sb-zen-radio>

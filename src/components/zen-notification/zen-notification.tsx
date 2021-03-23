@@ -44,13 +44,13 @@ export class ZenNotification {
           icon={faTimes}
           padding="sm"
         />
-        <ZenSpace spacing="sm" padding="sm">
+        <ZenSpace spacing="sm" p="sm">
           <ZenIcon class="icon" icon={getIcon(this.variant)} padding="sm" />
           <ZenText bold class="title">
             {this.heading}
           </ZenText>
         </ZenSpace>
-        <ZenSpace class="content" padding="sm">
+        <ZenSpace class="content" p="sm">
           <slot />
         </ZenSpace>
       </Host>
