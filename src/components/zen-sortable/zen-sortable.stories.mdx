@@ -1,6 +1,5 @@
 import { html } from 'lit-html';
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
-import { waitForElement } from '../../../.storybook/helpers/utils';
 import { logEvents } from '../../../.storybook/helpers/log-events';
 import { getArgTypesAndArgs, getDefaultArgs, getComponentData, spreadArgs } from '../../../.storybook/helpers/argTypes';
 const { argTypes } = getArgTypesAndArgs('zen-sortable');
@@ -43,11 +42,6 @@ export const StorySortable = () => {
 };
 
 export const StoryWithControls = args => {
-  waitForElement('#controls', element => {
-    element.addEventListener('onChange', ev => {
-      console.log('event: ', ev);
-    });
-  });
   return html/*html*/ ` <sb-zen-sortable
     id="controls"
     ...="${spreadArgs(args, argTypes)}"
@@ -71,7 +65,7 @@ export const StoryWithControls = args => {
 
 # Zen Sortable
 
-Slotted content becomes draggable. On change position it returns an "onChange" custom event that contains list of "data-id" attributes value.
+Slotted `zen-sortable-items` becomes draggable. Each draggable item should have unique attribute defined by prop `key`. On item drag&drop `drop` event is triggered. It contains list of item keys that resembles new order.
 
 <br />
 
