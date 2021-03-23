@@ -5,9 +5,10 @@
 :host {
   @include zenInputBorder;
   @include zenInputBase;
-  display: inline-flex;
+  display: flex;
   align-items: center;
   font-size: $text-md;
+  min-width: 1rem;
 }
 
 :host(:hover) {
@@ -38,6 +39,7 @@ input {
   display: flex;
   border: none;
   flex: 1 1 auto;
+  min-width: 1rem;
 
   &:disabled {
     opacity: 0.5;
