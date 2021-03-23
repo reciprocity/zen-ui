@@ -3,20 +3,27 @@
 @mixin paddingSizes {
   $paddings: (
     'none': 0,
-    'xs': 1px,
-    'sm': 0.25rem,
-    'md': 0.5rem,
-    'lg': 1rem,
-    'xl': 2rem,
+    'xs': 1px,      // 1 px
+    'sm': 0.25rem,  // 4 px
+    'md': 0.5rem,   // 8 px
+    'lg': 1rem,     // 16 px
+    'xl': 1.5rem,   // 24 px
+    '2xl': 2rem,    // 32 px
+    '3xl': 2.5rem,  // 40 px
+    '4xl': 3rem,    // 48 px
+    '5xl': 3.5rem,  // 56 px
+    '6xl': 4rem,    // 64 px
   );
 
   @each $key, $value in $paddings {
+    :host([p="#{$key}"]),
     :host(.p-#{$key}) {
       padding: #{$value};
     }
   }
 
   @each $key, $value in $paddings {
+    :host([px="#{$key}"]),
     :host(.px-#{$key}) {
       padding-left: #{$value};
       padding-right: #{$value};
@@ -24,6 +31,7 @@
   }
 
   @each $key, $value in $paddings {
+    :host([py="#{$key}"]),
     :host(.py-#{$key}) {
       padding-top: #{$value};
       padding-bottom: #{$value};
@@ -38,6 +46,7 @@
     $side: nth($sides, $i);
 
     @each $key, $value in $paddings {
+      :host([p#{$side-short}="#{$key}"]),
       :host(.p#{$side-short}-#{$key}) {
         padding-#{$side}: #{$value};
       }
