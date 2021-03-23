@@ -1,7 +1,7 @@
 import { IconDefinition } from '@fortawesome/pro-light-svg-icons';
 import { Component, Host, h, Prop, Element, Watch, State } from '@stencil/core';
 import { renderIcon } from '../helpers/fa-icons';
-import { IconSizes, PaddingShorthand, Spacings } from '../helpers/types';
+import { IconSizes, PaddingShorthand, Spacing } from '../helpers/types';
 import { parsePadding } from '../helpers/helpers';
 
 @Component({
@@ -20,17 +20,17 @@ export class ZenIcon {
   /** <Description generated in helper file> */
   @Prop({ reflect: true }) readonly p: PaddingShorthand = null;
   /** Skipped */
-  @Prop({ reflect: true }) readonly px: Spacings = null;
+  @Prop({ reflect: true }) readonly px: Spacing = null;
   /** Skipped */
-  @Prop({ reflect: true }) readonly py: Spacings = null;
+  @Prop({ reflect: true }) readonly py: Spacing = null;
   /** Skipped */
-  @Prop({ reflect: true }) readonly pt: Spacings = null;
+  @Prop({ reflect: true }) readonly pt: Spacing = null;
   /** Skipped */
-  @Prop({ reflect: true }) readonly pr: Spacings = null;
+  @Prop({ reflect: true }) readonly pr: Spacing = null;
   /** Skipped */
-  @Prop({ reflect: true }) readonly pb: Spacings = null;
+  @Prop({ reflect: true }) readonly pb: Spacing = null;
   /** Skipped */
-  @Prop({ reflect: true }) readonly pl: Spacings = null;
+  @Prop({ reflect: true }) readonly pl: Spacing = null;
 
   /** Icon data (js file) imported from Font Awesome SVG package. */
   @Prop() readonly icon: IconDefinition = null;

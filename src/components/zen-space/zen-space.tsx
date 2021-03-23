@@ -1,5 +1,5 @@
 import { Component, Host, h, Prop, Watch, State } from '@stencil/core';
-import { Size, None, PaddingShorthand, Spacings } from '../helpers/types';
+import { Size, None, PaddingShorthand, Spacing } from '../helpers/types';
 import { parsePadding } from '../helpers/helpers';
 
 type FlexAlign =
@@ -38,17 +38,17 @@ export class ZenSpace {
   /** <Description generated in helper file> */
   @Prop({ reflect: true }) readonly p: PaddingShorthand = null;
   /** Skipped */
-  @Prop({ reflect: true }) readonly px: Spacings = null;
+  @Prop({ reflect: true }) readonly px: Spacing = null;
   /** Skipped */
-  @Prop({ reflect: true }) readonly py: Spacings = null;
+  @Prop({ reflect: true }) readonly py: Spacing = null;
   /** Skipped */
-  @Prop({ reflect: true }) readonly pt: Spacings = null;
+  @Prop({ reflect: true }) readonly pt: Spacing = null;
   /** Skipped */
-  @Prop({ reflect: true }) readonly pr: Spacings = null;
+  @Prop({ reflect: true }) readonly pr: Spacing = null;
   /** Skipped */
-  @Prop({ reflect: true }) readonly pb: Spacings = null;
+  @Prop({ reflect: true }) readonly pb: Spacing = null;
   /** Skipped */
-  @Prop({ reflect: true }) readonly pl: Spacings = null;
+  @Prop({ reflect: true }) readonly pl: Spacing = null;
 
   /** Break row/column if content doesn't fit */
   @Prop({ reflect: true }) readonly noWrap: boolean = false;

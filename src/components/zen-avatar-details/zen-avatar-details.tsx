@@ -1,6 +1,6 @@
 import { Component, Host, h, Element, Prop } from '@stencil/core';
 import { applyPrefix } from '../helpers/helpers';
-import { PaddingShorthand, Size, Spacings } from '../helpers/types';
+import { PaddingShorthand, Size, Spacing } from '../helpers/types';
 
 @Component({
   tag: 'zen-avatar-details',
@@ -25,17 +25,17 @@ export class ZenAvatarDetails {
   /** <Description generated in helper file> */
   @Prop({ reflect: true }) readonly p: PaddingShorthand = 'lg';
   /** Skipped */
-  @Prop({ reflect: true }) readonly px: Spacings = null;
+  @Prop({ reflect: true }) readonly px: Spacing = null;
   /** Skipped */
-  @Prop({ reflect: true }) readonly py: Spacings = null;
+  @Prop({ reflect: true }) readonly py: Spacing = null;
   /** Skipped */
-  @Prop({ reflect: true }) readonly pt: Spacings = null;
+  @Prop({ reflect: true }) readonly pt: Spacing = null;
   /** Skipped */
-  @Prop({ reflect: true }) readonly pr: Spacings = null;
+  @Prop({ reflect: true }) readonly pr: Spacing = null;
   /** Skipped */
-  @Prop({ reflect: true }) readonly pb: Spacings = null;
+  @Prop({ reflect: true }) readonly pb: Spacing = null;
   /** Skipped */
-  @Prop({ reflect: true }) readonly pl: Spacings = null;
+  @Prop({ reflect: true }) readonly pl: Spacing = null;
 
   /** Spacing between icon and username  */
   @Prop() readonly spacing: Size = 'md';
