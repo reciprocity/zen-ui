@@ -1,5 +1,5 @@
 import { Component, Host, h, Prop, Watch, State } from '@stencil/core';
-import { Size, None, PaddingShorthand, Spacing } from '../helpers/types';
+import { Size, None, SpacingShorthand, Spacing } from '../helpers/types';
 import { parsePadding } from '../helpers/helpers';
 
 type FlexAlign =
@@ -36,7 +36,7 @@ export class ZenSpace {
   @Prop({ reflect: true }) readonly spacing: Size | None = 'none';
 
   /** <Description generated in helper file> */
-  @Prop({ reflect: true }) readonly p: PaddingShorthand = null;
+  @Prop({ reflect: true }) readonly p: SpacingShorthand = null;
   /** Skipped */
   @Prop({ reflect: true }) readonly px: Spacing = null;
   /** Skipped */

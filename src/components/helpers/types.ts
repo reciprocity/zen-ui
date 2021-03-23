@@ -17,7 +17,7 @@ export type Size = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
 export type Spacing = Size | null | '2xl' | '3xl' | '4xl' | '5xl' | '6xl';
 
-export type PaddingShorthand = Spacing | None | string;
+export type SpacingShorthand = Spacing | None | string;
 
 export type None = 'none';
 

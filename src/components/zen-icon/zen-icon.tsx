@@ -1,7 +1,7 @@
 import { IconDefinition } from '@fortawesome/pro-light-svg-icons';
 import { Component, Host, h, Prop, Element, Watch, State } from '@stencil/core';
 import { renderIcon } from '../helpers/fa-icons';
-import { IconSizes, PaddingShorthand, Spacing } from '../helpers/types';
+import { IconSizes, SpacingShorthand, Spacing } from '../helpers/types';
 import { parsePadding } from '../helpers/helpers';
 
 @Component({
@@ -18,7 +18,7 @@ export class ZenIcon {
   @Prop({ reflect: true }) readonly size: IconSizes = 'md';
 
   /** <Description generated in helper file> */
-  @Prop({ reflect: true }) readonly p: PaddingShorthand = null;
+  @Prop({ reflect: true }) readonly p: SpacingShorthand = null;
   /** Skipped */
   @Prop({ reflect: true }) readonly px: Spacing = null;
   /** Skipped */
