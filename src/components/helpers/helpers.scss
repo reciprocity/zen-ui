@@ -11,28 +11,34 @@
   );
 
   @each $key, $value in $paddings {
-    :host(.padding-#{$key}) {
+    :host(.p-#{$key}) {
       padding: #{$value};
     }
   }
 
   @each $key, $value in $paddings {
-    :host(.padding-x-#{$key}) {
+    :host(.px-#{$key}) {
       padding-left: #{$value};
       padding-right: #{$value};
     }
   }
 
   @each $key, $value in $paddings {
-    :host(.padding-y-#{$key}) {
+    :host(.py-#{$key}) {
       padding-top: #{$value};
       padding-bottom: #{$value};
     }
   }
 
-  @each $side in [ 'top', 'right', 'bottom', 'left' ] {
+  $side-shorts: [ 't', 'r', 'b', 'l' ];
+  $sides: [ 'top', 'right', 'bottom', 'left' ];
+
+  @for $i from 1 through length($sides) {
+    $side-short: nth($side-shorts, $i);
+    $side: nth($sides, $i);
+
     @each $key, $value in $paddings {
-      :host(.padding-#{$side}-#{$key}) {
+      :host(.p#{$side-short}-#{$key}) {
         padding-#{$side}: #{$value};
       }
     }
