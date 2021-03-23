@@ -59,6 +59,8 @@ export function applyPrefix(componentName: string, parentElement: Element): stri
 export function parsePadding(padding: string): Record<string, unknown> {
   let paddingClasses: Record<string, unknown> = {};
 
+  if (!padding) return paddingClasses;
+
   // Support padding shorthands (eg. padding: 12px 1rem 5rem;)
   const values = padding.split(' ');
   switch (values.length) {

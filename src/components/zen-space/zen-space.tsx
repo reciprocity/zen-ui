@@ -35,19 +35,19 @@ export class ZenSpace {
   /** Spacing between items */
   @Prop({ reflect: true }) readonly spacing: Size | None = 'none';
 
-  /** Inner spacing of container */
-  @Prop() readonly padding: PaddingShorthand = 'none';
+  /** Padding (accepts shorthands, eg. `p="sm xl lg"`) */
+  @Prop({ reflect: true }) readonly p: PaddingShorthand = null;
 
   /** Break row/column if content doesn't fit */
   @Prop({ reflect: true }) readonly noWrap: boolean = false;
 
-  @Watch('padding')
-  spacePaddingChanged(padding: string): void {
-    this.paddingClasses = parsePadding(padding);
+  @Watch('p')
+  spacePaddingChanged(p: string): void {
+    this.paddingClasses = parsePadding(p);
   }
 
   componentDidLoad(): void {
-    this.spacePaddingChanged(this.padding);
+    this.spacePaddingChanged(this.p);
   }
 
   render(): HTMLElement {
