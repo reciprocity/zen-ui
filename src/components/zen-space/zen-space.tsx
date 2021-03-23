@@ -35,7 +35,7 @@ export class ZenSpace {
   /** Spacing between items */
   @Prop({ reflect: true }) readonly spacing: Size | None = 'none';
 
-  /** Padding (accepts shorthands, eg. `p="sm xl lg"`) */
+  /** <Description generated in helper file> */
   @Prop({ reflect: true }) readonly p: PaddingShorthand = null;
   /** Skipped */
   @Prop({ reflect: true }) readonly px: Spacings = null;
