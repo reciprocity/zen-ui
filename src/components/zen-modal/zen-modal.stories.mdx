@@ -36,6 +36,36 @@ export const StoryWithControls = args => {
   `;
 };
 
+export const Paddingless = args => {
+  function toggle(show) {
+    document.querySelector('#paddingless').show = show;
+  }
+  return html/*html*/ `
+    <sb-zen-button @click="${() => toggle(true)}">Show Editor</sb-zen-button>
+    <sb-zen-modal
+      id="paddingless"
+      @cancel="${e => {
+        e.target.show = false;
+      }}"
+      @ok="${e => {
+        e.target.show = false;
+      }}"
+      ...="${spreadArgs(args, argTypes)}"
+    >
+      <sb-zen-text slot="paddingless-header" variant="heading" size="sm"> This window has no padding! </sb-zen-text>
+      <sb-zen-text slot="paddingless-content">
+        Nec morbi ullamcorper tellus metus porta habitasse praesent dolor, ipsum netus rhoncus sit velit auctor
+        vestibulum, hac eleifend elit euismod congue risus facilisi. Tortor ornare curabitur consectetur egestas
+        vestibulum hendrerit fringilla leo dictum risus erat, in vehicula mauris euismod magnis ullamcorper nullam
+        iaculis aliquam pharetra.
+      </sb-zen-text>
+      <div slot="paddingless-footer">
+        <sb-zen-button @click="${() => toggle(false)}">Ok</sb-zen-button>
+      </div>
+    </sb-zen-modal>
+  `;
+};
+
 export const StoryMultipleModals = () => {
   function showEditor() {
     // close first to enable infinite loop:
@@ -97,6 +127,14 @@ Modals can be stacked. Last one showed will be the top-most.
 
 <Canvas>
   <Story name="mutiple">{StoryMultipleModals.bind({})}</Story>
+</Canvas>
+
+### 2. Removing default padding
+
+Use `paddingless-` variations of slots to set custom padding.
+
+<Canvas>
+  <Story name="paddingless">{Paddingless.bind({})}</Story>
 </Canvas>
 
 ## Properties
