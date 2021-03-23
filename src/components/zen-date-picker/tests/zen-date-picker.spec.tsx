@@ -42,7 +42,7 @@ describe('zen-date-picker', () => {
   };
 
   async function focusInput() {
-    const focusin = new Event('focusin', { bubbles: true, composed: true });
+    const focusin = new Event('focus', { bubbles: true, composed: true });
     datepicker.dispatchEvent(focusin);
     await page.waitForChanges();
   }
