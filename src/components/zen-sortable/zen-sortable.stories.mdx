@@ -1,17 +1,13 @@
 import { html } from 'lit-html';
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
 import { waitForElement } from '../../../.storybook/helpers/utils';
+import { logEvents } from '../../../.storybook/helpers/log-events';
 import { getArgTypesAndArgs, getDefaultArgs, getComponentData, spreadArgs } from '../../../.storybook/helpers/argTypes';
 const { argTypes } = getArgTypesAndArgs('zen-sortable');
 
 <Meta title="In progress/Sortable/Sortable" component="zen-sortable" argTypes={argTypes} />
 
 export const StorySortable = () => {
-  waitForElement('#sortable', element => {
-    element.addEventListener('onChange', ev => {
-      console.log('event: ', ev);
-    });
-  });
   return html/*html*/ ` <style>
       .container {
         width: 100%;
@@ -42,7 +38,8 @@ export const StorySortable = () => {
           <sb-zen-toggle></sb-zen-toggle>
         </sb-zen-space>
       </sb-zen-sortable-item>
-    </sb-zen-sortable>`;
+    </sb-zen-sortable>
+  ${logEvents('#sortable', getComponentData('zen-sortable'))}`;
 };
 
 export const StoryWithControls = args => {
@@ -68,7 +65,8 @@ export const StoryWithControls = args => {
     <sb-zen-sortable-item data-id="4">
       <sb-zen-text>Item 4</sb-zen-text>
     </sb-zen-sortable-item>
-  </sb-zen-sortable>`;
+  </sb-zen-sortable>
+  ${logEvents('#controls', getComponentData('zen-sortable'))}`;
 };
 
 # Zen Sortable
