@@ -1,3 +1,4 @@
 {
-  "src/**/*": ["yarn lint", "yarn format"]
+  "src/**/*.{js,ts,tsx}": ["yarn lint", "yarn format"],
+  "src/**/*.{scss,md,mdx}": ["yarn format"]
 }
