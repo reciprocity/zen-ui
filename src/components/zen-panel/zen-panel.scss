@@ -21,6 +21,8 @@
   display: none;
 }
 
-.visible {
-  display: block;
+:host([visible]) {
+  .content-wrapper {
+    display: block;
+  }
 }

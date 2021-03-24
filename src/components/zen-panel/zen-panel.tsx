@@ -1,4 +1,4 @@
-import { h, Component, Element, Host, Prop, State } from '@stencil/core';
+import { h, Component, Element, Host, Prop } from '@stencil/core';
 import { faChevronRight, faChevronDown, IconDefinition } from '@fortawesome/pro-regular-svg-icons';
 
 import { applyPrefix } from '../helpers/helpers';
@@ -12,23 +12,14 @@ export class ZenPanel {
   @Element() host: HTMLZenPanelElement;
 
   /** Default visible state */
-  @Prop() readonly visible: boolean = false;
-
-  @State() internalVisible = this.visible;
+  @Prop({ reflect: true, mutable: true }) visible = false;
 
   toggleContent(): void {
-    this.internalVisible = !this.internalVisible;
+    this.visible = !this.visible;
   }
 
   icon(): IconDefinition {
-    return this.internalVisible ? faChevronDown : faChevronRight;
-  }
-
-  contentClasses(): Record<string, boolean> {
-    return {
-      'content-wrapper': true,
-      visible: this.internalVisible,
-    };
+    return this.visible ? faChevronDown : faChevronRight;
   }
 
   render(): HTMLElement {
@@ -41,7 +32,7 @@ export class ZenPanel {
           <ZenIcon icon={this.icon()} size="sm" padding="sm none" class="icon chevron" />
           <slot name="header" />
         </ZenSpace>
-        <ZenSpace padding="md lg" class={this.contentClasses()}>
+        <ZenSpace padding="md lg" class="content-wrapper">
           <div class="content">
             <slot></slot>
           </div>
