@@ -1,6 +1,6 @@
 import { h, Component, Element, Host, Prop, Watch } from '@stencil/core';
 import { faChevronRight } from '@fortawesome/pro-regular-svg-icons';
-import { showWithAnimation, hideWithAnimation } from '../helpers/animations';
+import { showWithAnimation, hideWithAnimation, showInstantly, hideInstantly } from '../helpers/animations';
 
 import { applyPrefix } from '../helpers/helpers';
 
@@ -11,6 +11,7 @@ import { applyPrefix } from '../helpers/helpers';
 })
 export class ZenPanel {
   private content: HTMLElement = null;
+  private initializing = true;
 
   @Element() host: HTMLZenPanelElement;
 
@@ -19,7 +20,11 @@ export class ZenPanel {
 
   @Watch('visible')
   async visibleChanged(visible: boolean): Promise<void> {
-    visible ? showWithAnimation(this.content) : hideWithAnimation(this.content);
+    if (visible) {
+      this.initializing ? showInstantly(this.content) : showWithAnimation(this.content);
+    } else {
+      this.initializing ? hideInstantly(this.content) : hideWithAnimation(this.content);
+    }
   }
 
   toggleContent(): void {
@@ -28,6 +33,7 @@ export class ZenPanel {
 
   componentDidLoad(): void {
     this.visibleChanged(this.visible);
+    this.initializing = false;
   }
 
   render(): HTMLElement {
