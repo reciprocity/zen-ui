@@ -159,13 +159,7 @@ export class ZenTableRow {
               />
             )}
             {this.expandable && (
-              <ZenIcon
-                class="expand-icon"
-                size="sm"
-                p="lg"
-                icon={faChevronRight}
-                onClick={() => this.onExpand()}
-              />
+              <ZenIcon class="expand-icon" size="sm" p="lg" icon={faChevronRight} onClick={() => this.onExpand()} />
             )}
           </div>
         )}
