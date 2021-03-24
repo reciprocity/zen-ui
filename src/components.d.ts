@@ -258,6 +258,10 @@ export namespace Components {
          */
         "formattedDate": string | null;
         /**
+          * Shows invalid styles.
+         */
+        "invalid": false;
+        /**
           * Placeholder
          */
         "placeholder": "Select date";
@@ -1538,6 +1542,10 @@ declare namespace LocalJSX {
           * Selected date
          */
         "formattedDate"?: string | null;
+        /**
+          * Shows invalid styles.
+         */
+        "invalid"?: false;
         /**
           * Placeholder
          */
