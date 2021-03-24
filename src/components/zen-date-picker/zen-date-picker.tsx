@@ -96,7 +96,6 @@ export class ZenDatePicker {
     this.calendarMonth = value;
     if (this.popover && this.popover.visible && this.closeOnClick) {
       this.popover.visible = false;
-      this.input.focusInput();
     }
   }
 
