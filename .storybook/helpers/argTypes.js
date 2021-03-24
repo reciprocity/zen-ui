@@ -27,7 +27,7 @@ function filterPaddingProps(argTypes) {
   const descript = '**Padding** *(accepts shorthands, eg. `p="sm xl lg"`)*. Also supports **quick props** **`px`**,  **`py`**, **`pt`**, **`pr`**, **`pb`**, **`pl`** *(eg. `px="sm" pt="lg"`)*';
   const paddingProps = ['p', 'px', 'py', 'pt', 'pr', 'pb', 'pl'];
 
-  Object.keys(argTypes).forEach(prop => {
+  Object.keys({ ...argTypes }).forEach(prop => {
     if (!paddingProps.includes(prop)) return;
     if (prop === 'p') {
       argTypes[prop].description = descript;
