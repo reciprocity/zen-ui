@@ -7,53 +7,53 @@ const { argTypes } = getArgTypesAndArgs('zen-sortable');
 <Meta title="Lists/Sortable/Sortable" component="zen-sortable" argTypes={argTypes} />
 
 export const StorySortable = () => {
-  return html/*html*/ `
-    <sb-zen-sortable id="sortable" style="width:230px;border:1px solid lightgray;">
+  return html/*html*/ ` <sb-zen-sortable id="sortable" style="width:230px;border:1px solid lightgray;">
       <sb-zen-sortable-item data-id="1">
-          <sb-zen-text>Title</sb-zen-text>
-          <sb-zen-toggle class="space-before"></sb-zen-toggle>
+        <sb-zen-text>Title</sb-zen-text>
+        <sb-zen-toggle class="space-before"></sb-zen-toggle>
       </sb-zen-sortable-item>
       <sb-zen-sortable-item data-id="2">
-          <sb-zen-text>Description</sb-zen-text>
-          <sb-zen-toggle class="space-before"></sb-zen-toggle>
+        <sb-zen-text>Description</sb-zen-text>
+        <sb-zen-toggle class="space-before"></sb-zen-toggle>
       </sb-zen-sortable-item>
       <sb-zen-sortable-item data-id="3">
-          <sb-zen-text>Status</sb-zen-text>
-          <sb-zen-toggle class="space-before"></sb-zen-toggle>
+        <sb-zen-text>Status</sb-zen-text>
+        <sb-zen-toggle class="space-before"></sb-zen-toggle>
       </sb-zen-sortable-item>
       <sb-zen-sortable-item data-id="4">
-          <sb-zen-text>Manager</sb-zen-text>
-          <sb-zen-toggle class="space-before"></sb-zen-toggle>
+        <sb-zen-text>Manager</sb-zen-text>
+        <sb-zen-toggle class="space-before"></sb-zen-toggle>
       </sb-zen-sortable-item>
     </sb-zen-sortable>
-  ${logEvents('#sortable', getComponentData('zen-sortable'))}`;
+    ${logEvents('#sortable', getComponentData('zen-sortable'))}`;
 };
 
 export const StoryWithControls = args => {
   return html/*html*/ ` <sb-zen-sortable
-    id="controls"
-    ...="${spreadArgs(args, argTypes)}"
-    style="border:1px solid lightgray;"
-  >
-    <sb-zen-sortable-item data-id="1">
-      <sb-zen-text>Item 1</sb-zen-text>
-    </sb-zen-sortable-item>
-    <sb-zen-sortable-item data-id="2">
-      <sb-zen-text>Item 2</sb-zen-text>
-    </sb-zen-sortable-item>
-    <sb-zen-sortable-item data-id="3">
-      <sb-zen-text>Item 3</sb-zen-text>
-    </sb-zen-sortable-item>
-    <sb-zen-sortable-item data-id="4">
-      <sb-zen-text>Item 4</sb-zen-text>
-    </sb-zen-sortable-item>
-  </sb-zen-sortable>
-  ${logEvents('#controls', getComponentData('zen-sortable'))}`;
+      id="controls"
+      ...="${spreadArgs(args, argTypes)}"
+      style="border:1px solid lightgray;"
+    >
+      <sb-zen-sortable-item data-id="1">
+        <sb-zen-text>Item 1</sb-zen-text>
+      </sb-zen-sortable-item>
+      <sb-zen-sortable-item data-id="2">
+        <sb-zen-text>Item 2</sb-zen-text>
+      </sb-zen-sortable-item>
+      <sb-zen-sortable-item data-id="3">
+        <sb-zen-text>Item 3</sb-zen-text>
+      </sb-zen-sortable-item>
+      <sb-zen-sortable-item data-id="4">
+        <sb-zen-text>Item 4</sb-zen-text>
+      </sb-zen-sortable-item>
+    </sb-zen-sortable>
+    ${logEvents('#controls', getComponentData('zen-sortable'))}`;
 };
 
 # Zen Sortable
 
-Slotted elements becomes draggable. It's advised to use `zen-sortable-items` for slotted elements.  Each draggable item should have unique `data-id` attribute. On item drag&drop `drop` event is triggered. It contains list of `data-id`s that resembles new order.
+Slotted elements becomes draggable. It's advised to use `zen-sortable-items` for slotted elements. Each draggable item should have unique `data-id` attribute. On item drag&drop `drop` event is triggered. It contains list of `data-id`s that resembles new order.
+
 <br />
 
 ## Component previews

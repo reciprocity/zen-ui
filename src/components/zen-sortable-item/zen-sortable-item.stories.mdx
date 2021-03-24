@@ -1,6 +1,6 @@
 import { html } from 'lit-html';
-import {Meta, Story, Canvas, ArgsTable} from '@storybook/addon-docs/blocks';
-import {getArgTypesAndArgs, getComponentData, getDefaultArgs, spreadArgs} from '../../../.storybook/helpers/argTypes';
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
+import { getArgTypesAndArgs, getComponentData, getDefaultArgs, spreadArgs } from '../../../.storybook/helpers/argTypes';
 const { argTypes } = getArgTypesAndArgs('zen-sortable-item');
 
 <Meta title="Lists/Sortable/Sortable Item" component="zen-sortable-item" argTypes={argTypes} />
@@ -8,8 +8,8 @@ const { argTypes } = getArgTypesAndArgs('zen-sortable-item');
 export const StoryCustomContent = args => {
   return html/*html*/ `
     <sb-zen-sortable-item spacing="lg" padding="md">
-        <sb-zen-checkbox></sb-zen-checkbox>
-        <sb-zen-toggle></sb-zen-toggle>
+      <sb-zen-checkbox></sb-zen-checkbox>
+      <sb-zen-toggle></sb-zen-toggle>
     </sb-zen-sortable-item>
   `;
 };
