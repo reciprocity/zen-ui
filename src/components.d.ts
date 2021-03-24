@@ -504,11 +504,21 @@ export namespace Components {
          */
         "value": string;
     }
-    interface ZenSkeleton {
+    interface ZenSortable {
         /**
-          * Makes the skeleton rounded
+          * Container padding
          */
-        "rounded": boolean;
+        "padding": PaddingShorthand;
+        /**
+          * Container item spacing
+         */
+        "spacing": PaddingShorthand;
+    }
+    interface ZenSortableItem {
+        /**
+          * Container padding
+         */
+        "padding": PaddingShorthand;
     }
     interface ZenSpace {
         /**
@@ -924,11 +934,17 @@ declare global {
         prototype: HTMLZenRadioElement;
         new (): HTMLZenRadioElement;
     };
-    interface HTMLZenSkeletonElement extends Components.ZenSkeleton, HTMLStencilElement {
+    interface HTMLZenSortableElement extends Components.ZenSortable, HTMLStencilElement {
     }
-    var HTMLZenSkeletonElement: {
-        prototype: HTMLZenSkeletonElement;
-        new (): HTMLZenSkeletonElement;
+    var HTMLZenSortableElement: {
+        prototype: HTMLZenSortableElement;
+        new (): HTMLZenSortableElement;
+    };
+    interface HTMLZenSortableItemElement extends Components.ZenSortableItem, HTMLStencilElement {
+    }
+    var HTMLZenSortableItemElement: {
+        prototype: HTMLZenSortableItemElement;
+        new (): HTMLZenSortableItemElement;
     };
     interface HTMLZenSpaceElement extends Components.ZenSpace, HTMLStencilElement {
     }
@@ -1031,7 +1047,8 @@ declare global {
         "zen-popover": HTMLZenPopoverElement;
         "zen-progress-tracker": HTMLZenProgressTrackerElement;
         "zen-radio": HTMLZenRadioElement;
-        "zen-skeleton": HTMLZenSkeletonElement;
+        "zen-sortable": HTMLZenSortableElement;
+        "zen-sortable-item": HTMLZenSortableItemElement;
         "zen-space": HTMLZenSpaceElement;
         "zen-spinner": HTMLZenSpinnerElement;
         "zen-table": HTMLZenTableElement;
@@ -1519,11 +1536,21 @@ declare namespace LocalJSX {
          */
         "value"?: string;
     }
-    interface ZenSkeleton {
+    interface ZenSortable {
         /**
-          * Makes the skeleton rounded
+          * Container padding
          */
-        "rounded"?: boolean;
+        "padding"?: PaddingShorthand;
+        /**
+          * Container item spacing
+         */
+        "spacing"?: PaddingShorthand;
+    }
+    interface ZenSortableItem {
+        /**
+          * Container padding
+         */
+        "padding"?: PaddingShorthand;
     }
     interface ZenSpace {
         /**
@@ -1798,7 +1825,8 @@ declare namespace LocalJSX {
         "zen-popover": ZenPopover;
         "zen-progress-tracker": ZenProgressTracker;
         "zen-radio": ZenRadio;
-        "zen-skeleton": ZenSkeleton;
+        "zen-sortable": ZenSortable;
+        "zen-sortable-item": ZenSortableItem;
         "zen-space": ZenSpace;
         "zen-spinner": ZenSpinner;
         "zen-table": ZenTable;
@@ -1845,7 +1873,8 @@ declare module "@stencil/core" {
             "zen-popover": LocalJSX.ZenPopover & JSXBase.HTMLAttributes<HTMLZenPopoverElement>;
             "zen-progress-tracker": LocalJSX.ZenProgressTracker & JSXBase.HTMLAttributes<HTMLZenProgressTrackerElement>;
             "zen-radio": LocalJSX.ZenRadio & JSXBase.HTMLAttributes<HTMLZenRadioElement>;
-            "zen-skeleton": LocalJSX.ZenSkeleton & JSXBase.HTMLAttributes<HTMLZenSkeletonElement>;
+            "zen-sortable": LocalJSX.ZenSortable & JSXBase.HTMLAttributes<HTMLZenSortableElement>;
+            "zen-sortable-item": LocalJSX.ZenSortableItem & JSXBase.HTMLAttributes<HTMLZenSortableItemElement>;
             "zen-space": LocalJSX.ZenSpace & JSXBase.HTMLAttributes<HTMLZenSpaceElement>;
             "zen-spinner": LocalJSX.ZenSpinner & JSXBase.HTMLAttributes<HTMLZenSpinnerElement>;
             "zen-table": LocalJSX.ZenTable & JSXBase.HTMLAttributes<HTMLZenTableElement>;
