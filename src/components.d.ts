@@ -562,17 +562,17 @@ export namespace Components {
         /**
           * Container padding
          */
-        "padding": PaddingShorthand;
+        "padding": SpacingShorthand;
         /**
           * Container item spacing
          */
-        "spacing": PaddingShorthand;
+        "spacing": Size | None;
     }
     interface ZenSortableItem {
         /**
           * Container padding
          */
-        "padding": PaddingShorthand;
+        "padding": SpacingShorthand;
     }
     interface ZenSpace {
         /**
@@ -1679,17 +1679,17 @@ declare namespace LocalJSX {
         /**
           * Container padding
          */
-        "padding"?: PaddingShorthand;
+        "padding"?: SpacingShorthand;
         /**
           * Container item spacing
          */
-        "spacing"?: PaddingShorthand;
+        "spacing"?: Size | None;
     }
     interface ZenSortableItem {
         /**
           * Container padding
          */
-        "padding"?: PaddingShorthand;
+        "padding"?: SpacingShorthand;
     }
     interface ZenSpace {
         /**
