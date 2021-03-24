@@ -1,5 +1,5 @@
 import { h, Component, Element, Host, Prop } from '@stencil/core';
-import { faChevronRight, faChevronDown, IconDefinition } from '@fortawesome/pro-regular-svg-icons';
+import { faChevronRight } from '@fortawesome/pro-regular-svg-icons';
 
 import { applyPrefix } from '../helpers/helpers';
 
@@ -18,10 +18,6 @@ export class ZenPanel {
     this.visible = !this.visible;
   }
 
-  icon(): IconDefinition {
-    return this.visible ? faChevronDown : faChevronRight;
-  }
-
   render(): HTMLElement {
     const ZenIcon = applyPrefix('zen-icon', this.host);
     const ZenSpace = applyPrefix('zen-space', this.host);
@@ -29,7 +25,7 @@ export class ZenPanel {
     return (
       <Host>
         <ZenSpace class="header" padding="md lg" onClick={() => this.toggleContent()}>
-          <ZenIcon icon={this.icon()} size="sm" padding="sm none" class="icon chevron" />
+          <ZenIcon icon={faChevronRight} size="sm" padding="sm none" class="icon chevron" />
           <slot name="header" />
         </ZenSpace>
         <ZenSpace padding="md lg" class="content-wrapper">

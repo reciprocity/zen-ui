@@ -7,14 +7,13 @@
 
 .header {
   cursor: pointer;
-
-  .icon {
-    margin-right: 0.5rem;
-  }
+  @include noselect();
 }
 
 .chevron {
+  margin-right: 0.5rem;
   color: $color-gray-700;
+  transition: transform $transition-micro-move;
 }
 
 .content-wrapper {
@@ -24,5 +23,9 @@
 :host([visible]) {
   .content-wrapper {
     display: block;
+  }
+
+  .chevron {
+    transform: rotate(90deg);
   }
 }
