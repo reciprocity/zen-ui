@@ -15,7 +15,7 @@ export class ZenSortableItem {
   @Element() host: HTMLZenSortableItemElement;
 
   /** Container padding */
-  @Prop() readonly padding: PaddingShorthand = 'none';
+  @Prop() readonly padding: PaddingShorthand = 'sm lg';
 
   render(): HTMLElement {
     const ZenIcon = applyPrefix('zen-icon', this.host);
@@ -23,7 +23,7 @@ export class ZenSortableItem {
     return (
       <Host>
         <ZenSpace padding={this.padding}>
-          <ZenIcon icon={faGripVertical} padding="md" size="sm" class="handle" />
+          <ZenIcon icon={faGripVertical} padding="md md md none" size="sm" class="handle" />
           <slot></slot>
         </ZenSpace>
       </Host>

@@ -8,22 +8,22 @@ const { argTypes } = getArgTypesAndArgs('zen-sortable');
 
 export const StorySortable = () => {
   return html/*html*/ `
-    <sb-zen-sortable id="sortable" spacing="sm" padding="sm" style="width:230px;border:1px solid lightgray;">
-      <sb-zen-sortable-item padding="md" data-id="1">
+    <sb-zen-sortable id="sortable" style="width:230px;border:1px solid lightgray;">
+      <sb-zen-sortable-item data-id="1">
           <sb-zen-text>Title</sb-zen-text>
-          <sb-zen-toggle></sb-zen-toggle>
+          <sb-zen-toggle class="space-before"></sb-zen-toggle>
       </sb-zen-sortable-item>
-      <sb-zen-sortable-item padding="md" data-id="2">
+      <sb-zen-sortable-item data-id="2">
           <sb-zen-text>Description</sb-zen-text>
-          <sb-zen-toggle></sb-zen-toggle>
+          <sb-zen-toggle class="space-before"></sb-zen-toggle>
       </sb-zen-sortable-item>
-      <sb-zen-sortable-item padding="md" data-id="3">
+      <sb-zen-sortable-item data-id="3">
           <sb-zen-text>Status</sb-zen-text>
-          <sb-zen-toggle style=></sb-zen-toggle>
+          <sb-zen-toggle class="space-before"></sb-zen-toggle>
       </sb-zen-sortable-item>
-      <sb-zen-sortable-item padding="md" data-id="4">
+      <sb-zen-sortable-item data-id="4">
           <sb-zen-text>Manager</sb-zen-text>
-          <sb-zen-toggle></sb-zen-toggle>
+          <sb-zen-toggle class="space-before"></sb-zen-toggle>
       </sb-zen-sortable-item>
     </sb-zen-sortable>
   ${logEvents('#sortable', getComponentData('zen-sortable'))}`;
