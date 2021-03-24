@@ -5,6 +5,7 @@ describe('Avatar group visual tests', () => {
   const pageId = 'icons-avatar-avatar-group--default';
   const stories = [
     'story--icons-avatar-avatar-group--story-avatar-group',
+    'story--icons-avatar-avatar-group--story-avatar-group-colors',
     'story--icons-avatar-avatar-group--default-story',
   ];
 
