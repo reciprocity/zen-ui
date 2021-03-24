@@ -316,6 +316,10 @@ export namespace Components {
          */
         "fieldAlign": Align;
         /**
+          * Shows invalid styles.
+         */
+        "invalid": false;
+        /**
           * To determine if there's enough space under field on open
          */
         "menuHeight": number;
@@ -1596,6 +1600,10 @@ declare namespace LocalJSX {
           * Alignment of field content and menu (if menuWidth set).
          */
         "fieldAlign"?: Align;
+        /**
+          * Shows invalid styles.
+         */
+        "invalid"?: false;
         /**
           * To determine if there's enough space under field on open
          */
