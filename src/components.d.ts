@@ -902,6 +902,10 @@ export namespace Components {
          */
         "disabled": false;
         /**
+          * Shows invalid styles.
+         */
+        "invalid": false;
+        /**
           * Name of element, can be used as reference for form data
          */
         "name": string;
@@ -2162,6 +2166,10 @@ declare namespace LocalJSX {
           * Appends attribute disabled.
          */
         "disabled"?: false;
+        /**
+          * Shows invalid styles.
+         */
+        "invalid"?: false;
         /**
           * Name of element, can be used as reference for form data
          */
