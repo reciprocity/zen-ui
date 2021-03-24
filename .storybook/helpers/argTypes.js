@@ -24,7 +24,7 @@ function getDefaultValue(prop) {
 }
 
 function filterPaddingProps(argTypes) {
-  const descript = '**Padding** *(accepts shorthands, eg. `p="sm xl lg"`)*. Also supports **quick props** **`px`**,  **`py`**, **`pt`**, **`pr`**, **`pb`**, **`pl`** *(eg. `px="sm" pt="lg"`)*';
+  const descript = '**Padding** *(accepts shorthands, eg. `p="sm xl lg"`)*.<br/><br/>Also supports **side variants**: **`px`**,  **`py`**, **`pt`**, **`pr`**, **`pb`**, **`pl`** where \'p\' stands for padding and second char for side (t = top, l = left, x= left & right, …)<br/>*(eg. `px="sm" pt="lg"`)*';
   const paddingProps = ['p', 'px', 'py', 'pt', 'pr', 'pb', 'pl'];
 
   Object.keys({ ...argTypes }).forEach(prop => {
