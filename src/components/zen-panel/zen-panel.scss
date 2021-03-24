@@ -5,22 +5,20 @@
   font-size: 0.875rem;
 }
 
-.header-container {
+.header {
   cursor: pointer;
+
+  .icon {
+    margin-right: 0.5rem;
+  }
 }
 
 .chevron {
   color: $color-gray-700;
 }
 
-.header {
-  margin-left: 4px;
-}
-
-.content {
+.content-wrapper {
   display: none;
-
-  margin-top: 1rem;
 }
 
 .visible {

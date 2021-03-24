@@ -26,24 +26,26 @@ export class ZenPanel {
 
   contentClasses(): Record<string, boolean> {
     return {
-      content: true,
+      'content-wrapper': true,
       visible: this.internalVisible,
     };
   }
 
   render(): HTMLElement {
-    const ZenText = applyPrefix('zen-text', this.host);
     const ZenIcon = applyPrefix('zen-icon', this.host);
+    const ZenSpace = applyPrefix('zen-space', this.host);
 
     return (
       <Host>
-        <ZenText class="header-container" size="md" onClick={() => this.toggleContent()}>
-          <ZenIcon icon={this.icon()} size="sm" padding="sm" class="icon fill chevron" />
+        <ZenSpace class="header" padding="md lg" onClick={() => this.toggleContent()}>
+          <ZenIcon icon={this.icon()} size="sm" padding="sm none" class="icon chevron" />
           <slot name="header" />
-        </ZenText>
-        <div class={this.contentClasses()}>
-          <slot></slot>
-        </div>
+        </ZenSpace>
+        <ZenSpace padding="md lg" class={this.contentClasses()}>
+          <div class="content">
+            <slot></slot>
+          </div>
+        </ZenSpace>
       </Host>
     );
   }

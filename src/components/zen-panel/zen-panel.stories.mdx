@@ -12,7 +12,7 @@ const argTypes = getArgTypes(compData);
 export const StoryWithControls = args => {
   return html/*html*/ `
     <sb-zen-panel ...="${spreadArgs(args, argTypes)}">
-      <div slot="header">Panel title</div>
+      <sb-zen-text slot="header">Panel title</sb-zen-text>
       Content
     </sb-zen-panel>
   `;
@@ -22,7 +22,7 @@ export const StoryText = () => {
   return html/*html*/ `
     <div>
       <sb-zen-panel>
-        <div slot="header">Panel title 1</div>
+        <sb-zen-text slot="header">Panel title 1</sb-zen-text>
         Content
       </sb-zen-panel>
     </div>
@@ -33,7 +33,7 @@ export const StoryDivs = () => {
   return html/*html*/ `
     <div>
       <sb-zen-panel>
-        <div slot="header">Panel title 2</div>
+        <sb-zen-text slot="header">Panel title 2</sb-zen-text>
         <div style="width: 4rem; height: 4rem; background: lightgreen;">Content but in a div</div>
       </sb-zen-panel>
     </div>
@@ -44,7 +44,7 @@ export const StoryFormElement = () => {
   return html/*html*/ `
     <div>
       <sb-zen-panel>
-        <div slot="header">Settings</div>
+        <sb-zen-text slot="header">Settings</sb-zen-text>
         <sb-zen-toggle></sb-zen-toggle>
         <span style="margin-left: 0.25rem;">Enable Jira integration</span>
       </sb-zen-panel>
@@ -56,7 +56,7 @@ export const StoryFormElementVisible = () => {
   return html/*html*/ `
     <div>
       <sb-zen-panel visible>
-        <div slot="header">Settings</div>
+        <sb-zen-text slot="header">Settings</sb-zen-text>
         <sb-zen-toggle></sb-zen-toggle>
         <span style="margin-left: 0.25rem;">Enable Jira integration</span>
       </sb-zen-panel>
