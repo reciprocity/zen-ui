@@ -21,9 +21,8 @@ describe('Date-picker visual tests', { scrollBehavior: 'center' }, () => {
   const skippedStories = [];
   createVisualTests(stories, skippedStories, 'sb-zen-date-picker');
 
-  const story = 'story--forms-date-picker--default-story';
-  it('Verifies opened datepicker in ' + `${story}`, () => {
-    const datepicker = `#${story} sb-zen-date-picker`;
+  it('Verifies opened datepicker in ' + `${stories[0]}`, () => {
+    const datepicker = `#${stories[0]} sb-zen-date-picker`;
     cy.get(datepicker).then(() => {
       cy.get(datepicker).click();
 
@@ -38,7 +37,7 @@ describe('Date-picker visual tests', { scrollBehavior: 'center' }, () => {
         .matchImageSnapshot();
 
       // menu screenshot:
-      cy.get(datepicker).should('be.visible').matchImageSnapshot(`field-${story}`);
+      cy.get(datepicker).should('be.visible').matchImageSnapshot(`field-${stories[0]}`);
     });
   });
 });
