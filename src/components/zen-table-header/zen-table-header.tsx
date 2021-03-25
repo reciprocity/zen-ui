@@ -13,7 +13,7 @@ export class ZenTableHeader {
   @State() expandable = false;
 
   /** Remains fixed at the top of the table during vertical scrolling */
-  @Prop() readonly sticky = false;
+  @Prop({ reflect: true }) readonly sticky = false;
 
   /** Show checkbox */
   @Prop() readonly selectable = false;
@@ -29,13 +29,7 @@ export class ZenTableHeader {
 
   @Watch('sticky')
   async stickyChanged(sticky: boolean): Promise<void> {
-    Array.from(this.host.children).forEach(cell => {
-      if (sticky) {
-        cell.setAttribute('sticky', '');
-      } else {
-        cell.removeAttribute('sticky');
-      }
-    });
+    this.toggleStickyChildren(sticky);
   }
 
   rows(): HTMLZenTableRowElement[] {
@@ -69,8 +63,14 @@ export class ZenTableHeader {
     this.expandable = this.hasExpandableRows();
   }
 
+  toggleStickyChildren(sticky: boolean): void {
+    Array.from(this.host.children).forEach(cell =>
+      sticky ? cell.setAttribute('sticky', '') : cell.removeAttribute('sticky'),
+    );
+  }
+
   componentDidLoad(): void {
-    this.stickyChanged(this.sticky);
+    this.toggleStickyChildren(this.sticky);
     this.indeterminate = this.hasRowsSelected();
 
     this.host.parentElement.addEventListener('rowSelectChanged', () => {
