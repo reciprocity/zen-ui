@@ -49,8 +49,11 @@ export class ZenTableRow {
       const hasAllSelected = await parentRow.hasAllRowsSelected();
       const hasRowsSelected = await parentRow.hasRowsSelected();
 
-      if (selected === false && !hasRowsSelected) {
+      if (!hasRowsSelected) {
         parentRow.selected = false;
+      }
+      if (hasAllSelected) {
+        parentRow.selected = true;
       }
       parentRow.indeterminate = hasRowsSelected && !hasAllSelected;
 
