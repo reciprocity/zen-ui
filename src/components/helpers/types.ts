@@ -25,13 +25,10 @@ export type Resize = 'none' | 'both' | 'horizontal' | 'vertical' | 'initial' | '
 
 export type PositionVariant = 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
 
-export interface Avatar {
+export interface AvatarData {
   userName?: string;
   email?: string;
   imageUrl?: string;
-}
-
-export interface AvatarData extends Avatar {
   background?: string;
   color?: string;
   size?: string;

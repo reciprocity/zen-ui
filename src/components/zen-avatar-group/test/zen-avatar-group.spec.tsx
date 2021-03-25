@@ -41,6 +41,16 @@ export const users = [
   },
 ];
 
+export const usersColor = [
+  {
+    userName: 'Mike Anderson',
+    email: 'mike.anderson@reciprocitylabs.com',
+    imageUrl: '',
+    color: '#FFFFFF',
+    background: '#000000',
+  },
+];
+
 describe('zen-avatar-group', () => {
   it('should render avatar', async () => {
     const page = await newSpecPage({
@@ -82,5 +92,18 @@ describe('zen-avatar-group', () => {
     expect(
       page.root.shadowRoot.querySelectorAll('zen-avatar')[3].shadowRoot.querySelector('zen-tooltip').childElementCount,
     ).toEqual(2);
+  });
+
+  it('should override avatar color and background', async () => {
+    const page = await newSpecPage({
+      components: [ZenAvatarGroup, ZenTooltip, ZenAvatar, ZenAvatarIcon],
+      html: `<zen-avatar-group max-icons="1"  />`,
+    });
+    page.root.users = usersColor;
+    await page.waitForChanges();
+    const avatar = page.root.shadowRoot.querySelector('zen-avatar');
+
+    expect(avatar.shadowRoot.querySelector('.avatar-icon').style.color).toEqual('#FFFFFF');
+    expect(avatar.shadowRoot.querySelector('.avatar-icon').style.background).toEqual('#000000');
   });
 });

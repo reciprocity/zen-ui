@@ -1,6 +1,6 @@
 import { Component, Host, h, Prop, Element } from '@stencil/core';
 import { applyPrefix } from '../helpers/helpers';
-import { Avatar, AvatarColor, AvatarData, IconSizes } from '../helpers/types';
+import { AvatarColor, AvatarData, IconSizes } from '../helpers/types';
 
 @Component({
   tag: 'zen-avatar-group',
@@ -11,7 +11,7 @@ export class ZenAvatarGroup {
   @Element() host: HTMLZenAvatarGroupElement;
 
   /** Array of user's data  */
-  @Prop() readonly users: Avatar[] = [];
+  @Prop() readonly users: AvatarData[] = [];
 
   /** Max number of icons to display  */
   @Prop() readonly maxIcons: number = 4;
@@ -22,22 +22,15 @@ export class ZenAvatarGroup {
   /** If multiple avatars then show icon animation  */
   @Prop({ reflect: true }) readonly animation: boolean = true;
 
-  getUserData(users: Avatar[]): AvatarData[] {
+  getUserData(users: AvatarData[]): AvatarData[] {
     const colors = this.colors();
 
     let index = -1;
     return users.map(user => {
       index = index < colors.length - 1 ? index + 1 : 0;
-
-      return {
-        userName: user.userName,
-        email: user.email,
-        imageUrl: user.imageUrl,
-        color: colors[index].color,
-        background: colors[index].background,
-        size: this.size,
-        animation: this.animation,
-      };
+      user.color = user.color ? user.color : colors[index].color;
+      user.background = user.background ? user.background : colors[index].background;
+      return user;
     });
   }
 

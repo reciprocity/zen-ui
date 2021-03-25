@@ -51,33 +51,60 @@ export const users = [
   },
 ];
 
-export const StoryWithControls = args => {
-  waitForElement('#avatar-group-control', element => {
-    element.users = users;
-  });
-  return html/*html*/ ` <div style="font-size:12px; display: flex; justify-content: space-evenly">
-    <div style="display: flex; flex-direction: column; align-items: center;">
-      <sb-zen-avatar-group id="avatar-group-control" ...="${spreadArgs(args, argTypes)}" />
-    </div>
-  </div>`;
-};
+export const usersColor = [
+  {
+    userName: 'Mike Anderson',
+    email: 'mike.anderson@reciprocitylabs.com',
+    imageUrl: '',
+    color: '#FFFFFF',
+    background: '#000000',
+  },
+  {
+    userName: 'Frank Sinatra',
+    email: 'frank.sinatra@reciprocitylabs.com',
+    imageUrl: '',
+  },
+  {
+    userName: 'Alex Godunov',
+    email: 'alex.godunov@reciprocitylabs.com',
+    imageUrl: '',
+  },
+];
 
 export const StoryAvatarGroup = () => {
   waitForElement('#avatar-group', element => {
     element.users = users;
   });
   return html/*html*/ `
-    <div style="font-size:12px; display: flex; justify-content: space-evenly">
-      <div style="display: flex; flex-direction: column; align-items: center;">
-        <sb-zen-avatar-group id="avatar-group" />
-      </div>
-    </div>
+    <sb-zen-space fill horizontal-align="center" vertical-align="center">
+      <sb-zen-avatar-group id="avatar-group" />
+    </sb-zen-space>
   `;
+};
+
+export const StoryAvatarGroupColors = () => {
+  waitForElement('#avatar-group-colors', element => {
+    element.users = usersColor;
+  });
+  return html/*html*/ `
+    <sb-zen-space fill horizontal-align="center" vertical-align="center">
+      <sb-zen-avatar-group id="avatar-group-colors" max-icons="12" />
+    </sb-zen-space>
+  `;
+};
+
+export const StoryWithControls = args => {
+  waitForElement('#avatar-group-control', element => {
+    element.users = users;
+  });
+  return html/*html*/ ` <sb-zen-space fill horizontal-align="center" vertical-align="center">
+    <sb-zen-avatar-group id="avatar-group-control" ...="${spreadArgs(args, argTypes)}" />
+  </sb-zen-space>`;
 };
 
 # Profile Icons Group
 
-Avatar Group component
+`Avatar Group` component.
 
 ## Component previews
 
@@ -85,10 +112,18 @@ Avatar Group component
 
 ### 1. Avatar group
 
-Avatar Group component that displays max 4 icons
+`Avatar Group` component that displays max 4 icons.
 
 <Canvas>
   <Story name="StoryAvatarGroup">{StoryAvatarGroup.bind({})}</Story>
+</Canvas>
+
+### 2. Avatar group override colors
+
+`Avatar Group` icon colors can be overridden by adding "color" or "background" to `AvatarData` input array.
+
+<Canvas>
+  <Story name="StoryAvatarGroupColors">{StoryAvatarGroupColors.bind({})}</Story>
 </Canvas>
 
 ## Properties
