@@ -23,19 +23,19 @@ export class ZenAvatarDetails {
   @Prop() readonly iconBackground: string = '#D5E9FA';
 
   /** <Description generated in helper file> */
-  @Prop({ reflect: true }) readonly p: SpacingShorthand = 'lg';
+  @Prop({ reflect: true }) readonly padding: SpacingShorthand = 'lg';
   /** Skipped */
-  @Prop({ reflect: true }) readonly px: Spacing = null;
+  @Prop({ reflect: true }) readonly paddingX: Spacing = null;
   /** Skipped */
-  @Prop({ reflect: true }) readonly py: Spacing = null;
+  @Prop({ reflect: true }) readonly paddingY: Spacing = null;
   /** Skipped */
-  @Prop({ reflect: true }) readonly pt: Spacing = null;
+  @Prop({ reflect: true }) readonly paddingTop: Spacing = null;
   /** Skipped */
-  @Prop({ reflect: true }) readonly pr: Spacing = null;
+  @Prop({ reflect: true }) readonly paddingRight: Spacing = null;
   /** Skipped */
-  @Prop({ reflect: true }) readonly pb: Spacing = null;
+  @Prop({ reflect: true }) readonly paddingBottom: Spacing = null;
   /** Skipped */
-  @Prop({ reflect: true }) readonly pl: Spacing = null;
+  @Prop({ reflect: true }) readonly paddingLeft: Spacing = null;
 
   /** Spacing between icon and username  */
   @Prop() readonly spacing: Size = 'md';
@@ -48,13 +48,13 @@ export class ZenAvatarDetails {
       <Host>
         <ZenSpace
           no-wrap
-          p={this.p}
-          px={this.px}
-          py={this.py}
-          pt={this.pt}
-          pr={this.pr}
-          pb={this.pb}
-          pl={this.pl}
+          padding={this.padding}
+          padding-x={this.paddingX}
+          padding-y={this.paddingY}
+          padding-top={this.paddingTop}
+          padding-right={this.paddingRight}
+          padding-bottom={this.paddingBottom}
+          padding-left={this.paddingLeft}
           vertical-align="middle"
           spacing={this.spacing}
         >
