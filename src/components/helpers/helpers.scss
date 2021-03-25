@@ -16,38 +16,32 @@ $spacings: (
 
 @mixin paddingSizes {
   @each $key, $value in $spacings {
-    :host([p='#{$key}']),
-    :host(.p-#{$key}) {
+    :host([padding='#{$key}']),
+    :host(.padding-#{$key}) {
       padding: #{$value};
     }
   }
 
   @each $key, $value in $spacings {
-    :host([px='#{$key}']),
-    :host(.px-#{$key}) {
+    :host([padding-x='#{$key}']),
+    :host(.padding-x-#{$key}) {
       padding-left: #{$value};
       padding-right: #{$value};
     }
   }
 
   @each $key, $value in $spacings {
-    :host([py='#{$key}']),
-    :host(.py-#{$key}) {
+    :host([padding-y='#{$key}']),
+    :host(.padding-y-#{$key}) {
       padding-top: #{$value};
       padding-bottom: #{$value};
     }
   }
 
-  $side-shorts: [ 't', 'r', 'b', 'l' ];
-  $sides: [ 'top', 'right', 'bottom', 'left' ];
-
-  @for $i from 1 through length($sides) {
-    $side-short: nth($side-shorts, $i);
-    $side: nth($sides, $i);
-
+  @each $side in [ 'top', 'right', 'bottom', 'left' ] {
     @each $key, $value in $spacings {
-      :host([p#{$side-short}='#{$key}']),
-      :host(.p#{$side-short}-#{$key}) {
+      :host([padding-#{$side}='#{$key}']),
+      :host(.padding-#{$side}-#{$key}) {
         padding-#{$side}: #{$value};
       }
     }

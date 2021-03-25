@@ -5,33 +5,33 @@ describe('helpers', () => {
   it('should correctly parse padding shorthands', async () => {
     const page = await newSpecPage({
       components: [ZenSpace],
-      html: `<zen-space p="xs sm"></zen-space>`,
+      html: `<zen-space padding="xs sm"></zen-space>`,
     });
     const space = page.root;
 
-    expect(space.classList.contains('px-sm')).toBe(true);
-    expect(space.classList.contains('py-xs')).toBe(true);
+    expect(space.classList.contains('padding-x-sm')).toBe(true);
+    expect(space.classList.contains('padding-y-xs')).toBe(true);
 
-    space.p = 'md';
+    space.padding = 'md';
     await page.waitForChanges();
-    expect(space.classList.contains('p-md')).toBe(true);
+    expect(space.classList.contains('padding-md')).toBe(true);
 
-    space.p = 'lg xl';
+    space.padding = 'lg xl';
     await page.waitForChanges();
-    expect(space.classList.contains('px-xl')).toBe(true);
-    expect(space.classList.contains('py-lg')).toBe(true);
+    expect(space.classList.contains('padding-x-xl')).toBe(true);
+    expect(space.classList.contains('padding-y-lg')).toBe(true);
 
-    space.p = 'sm lg xl';
+    space.padding = 'sm lg xl';
     await page.waitForChanges();
-    expect(space.classList.contains('px-lg')).toBe(true);
-    expect(space.classList.contains('pt-sm')).toBe(true);
-    expect(space.classList.contains('pb-xl')).toBe(true);
+    expect(space.classList.contains('padding-x-lg')).toBe(true);
+    expect(space.classList.contains('padding-top-sm')).toBe(true);
+    expect(space.classList.contains('padding-bottom-xl')).toBe(true);
 
-    space.p = 'none xs sm md';
+    space.padding = 'none xs sm md';
     await page.waitForChanges();
-    expect(space.classList.contains('pt-none')).toBe(true);
-    expect(space.classList.contains('pr-xs')).toBe(true);
-    expect(space.classList.contains('pb-sm')).toBe(true);
-    expect(space.classList.contains('pl-md')).toBe(true);
+    expect(space.classList.contains('padding-top-none')).toBe(true);
+    expect(space.classList.contains('padding-right-xs')).toBe(true);
+    expect(space.classList.contains('padding-bottom-sm')).toBe(true);
+    expect(space.classList.contains('padding-left-md')).toBe(true);
   });
 });

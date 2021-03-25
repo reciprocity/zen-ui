@@ -66,31 +66,31 @@ export function parsePadding(padding: string): Record<string, unknown> {
   switch (values.length) {
     case 1:
       paddingClasses = {
-        [`p-${values[0]}`]: true,
+        [`padding-${values[0]}`]: true,
       };
       break;
 
     case 2:
       paddingClasses = {
-        [`py-${values[0]}`]: true,
-        [`px-${values[1]}`]: true,
+        [`padding-y-${values[0]}`]: true,
+        [`padding-x-${values[1]}`]: true,
       };
       break;
 
     case 3:
       paddingClasses = {
-        [`pt-${values[0]}`]: true,
-        [`px-${values[1]}`]: true,
-        [`pb-${values[2]}`]: true,
+        [`padding-top-${values[0]}`]: true,
+        [`padding-x-${values[1]}`]: true,
+        [`padding-bottom-${values[2]}`]: true,
       };
       break;
 
     default:
       paddingClasses = {
-        [`pt-${values[0]}`]: true,
-        [`pr-${values[1]}`]: true,
-        [`pb-${values[2]}`]: true,
-        [`pl-${values[3]}`]: true,
+        [`padding-top-${values[0]}`]: true,
+        [`padding-right-${values[1]}`]: true,
+        [`padding-bottom-${values[2]}`]: true,
+        [`padding-left-${values[3]}`]: true,
       };
       break;
   }

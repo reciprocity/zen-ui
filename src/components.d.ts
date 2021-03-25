@@ -586,31 +586,31 @@ export namespace Components {
         /**
           * <Description generated in helper file>
          */
-        "p": SpacingShorthand;
+        "padding": SpacingShorthand;
         /**
           * Skipped
          */
-        "pb": Spacing;
+        "paddingBottom": Spacing;
         /**
           * Skipped
          */
-        "pl": Spacing;
+        "paddingLeft": Spacing;
         /**
           * Skipped
          */
-        "pr": Spacing;
+        "paddingRight": Spacing;
         /**
           * Skipped
          */
-        "pt": Spacing;
+        "paddingTop": Spacing;
         /**
           * Skipped
          */
-        "px": Spacing;
+        "paddingX": Spacing;
         /**
           * Skipped
          */
-        "py": Spacing;
+        "paddingY": Spacing;
         /**
           * Spacing between items
          */
@@ -1703,31 +1703,31 @@ declare namespace LocalJSX {
         /**
           * <Description generated in helper file>
          */
-        "p"?: SpacingShorthand;
+        "padding"?: SpacingShorthand;
         /**
           * Skipped
          */
-        "pb"?: Spacing;
+        "paddingBottom"?: Spacing;
         /**
           * Skipped
          */
-        "pl"?: Spacing;
+        "paddingLeft"?: Spacing;
         /**
           * Skipped
          */
-        "pr"?: Spacing;
+        "paddingRight"?: Spacing;
         /**
           * Skipped
          */
-        "pt"?: Spacing;
+        "paddingTop"?: Spacing;
         /**
           * Skipped
          */
-        "px"?: Spacing;
+        "paddingX"?: Spacing;
         /**
           * Skipped
          */
-        "py"?: Spacing;
+        "paddingY"?: Spacing;
         /**
           * Spacing between items
          */

@@ -36,30 +36,30 @@ export class ZenSpace {
   @Prop({ reflect: true }) readonly spacing: Size | None = 'none';
 
   /** <Description generated in helper file> */
-  @Prop({ reflect: true }) readonly p: SpacingShorthand = null;
+  @Prop({ reflect: true }) readonly padding: SpacingShorthand = null;
   /** Skipped */
-  @Prop({ reflect: true }) readonly px: Spacing = null;
+  @Prop({ reflect: true }) readonly paddingX: Spacing = null;
   /** Skipped */
-  @Prop({ reflect: true }) readonly py: Spacing = null;
+  @Prop({ reflect: true }) readonly paddingY: Spacing = null;
   /** Skipped */
-  @Prop({ reflect: true }) readonly pt: Spacing = null;
+  @Prop({ reflect: true }) readonly paddingTop: Spacing = null;
   /** Skipped */
-  @Prop({ reflect: true }) readonly pr: Spacing = null;
+  @Prop({ reflect: true }) readonly paddingRight: Spacing = null;
   /** Skipped */
-  @Prop({ reflect: true }) readonly pb: Spacing = null;
+  @Prop({ reflect: true }) readonly paddingBottom: Spacing = null;
   /** Skipped */
-  @Prop({ reflect: true }) readonly pl: Spacing = null;
+  @Prop({ reflect: true }) readonly paddingLeft: Spacing = null;
 
   /** Break row/column if content doesn't fit */
   @Prop({ reflect: true }) readonly noWrap: boolean = false;
 
-  @Watch('p')
-  paddingChanged(p: string): void {
-    this.paddingClasses = parsePadding(p);
+  @Watch('padding')
+  paddingChanged(padding: string): void {
+    this.paddingClasses = parsePadding(padding);
   }
 
   componentDidLoad(): void {
-    this.paddingChanged(this.p);
+    this.paddingChanged(this.padding);
   }
 
   render(): HTMLElement {
