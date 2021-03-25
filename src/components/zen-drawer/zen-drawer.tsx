@@ -43,7 +43,7 @@ export class ZenDrawer {
       <Host data-position={this.position}>
         <div class="drawer" data-position={this.position} ref={el => (this.drawer = el)}>
           <ZenButton onClick={() => this.onCloseClicked()} class="close-btn" variant="tertiary">
-            <ZenIcon p="sm" size="md" class="close-icon" icon={faArrowToRight}></ZenIcon>
+            <ZenIcon padding="sm" size="md" class="close-icon" icon={faArrowToRight}></ZenIcon>
           </ZenButton>
           <slot></slot>
         </div>
