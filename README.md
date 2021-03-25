@@ -48,7 +48,18 @@ For more details on testing (including visual testing) check the [Testing doc](.
 
 #### Linting and Formatting
 
-The code is both linted and formatted with [ESlint](https://eslint.org) and [Prettier](https://prettier.io) on every commit, using a [Husky](https://github.com/typicode/husky) hook, but you can also manually run the `lint:check` and/or `format:check` to validate possible errors:
+The code is both linted and formatted with [ESlint](https://eslint.org) and [Prettier](https://prettier.io) on every commit, using a [Husky](https://github.com/typicode/husky) hook.
+
+You can fix lint/format errors in `src/*` files with the following commands:
+
+```bash
+# Fix linting errors
+yarn lint:all
+# Fix formatting errors
+yarn format:all
+```
+
+You can also manually run the `lint:check` and/or `format:check` to validate possible errors:
 
 ```bash
 # Only checks for linting errors
