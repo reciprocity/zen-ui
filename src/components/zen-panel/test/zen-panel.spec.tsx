@@ -1,10 +1,7 @@
-import { newSpecPage } from '@stencil/core/testing';
+import { newSpecPage, SpecPage } from '@stencil/core/testing';
 
+jest.mock('../../helpers/animations');
 import * as helpers from '../../helpers/animations';
-helpers.showInstantly = jest.fn();
-helpers.showWithAnimation = jest.fn();
-helpers.hideWithAnimation = jest.fn();
-helpers.hideInstantly = jest.fn();
 
 import { ZenPanel } from '../zen-panel';
 
@@ -21,7 +18,11 @@ describe('zen-panel', () => {
     let page: SpecPage;
     let panel: HTMLZenPanelElement;
 
-    const render = async (attributes: string) => {
+    beforeEach(() => {
+      jest.clearAllMocks();
+    });
+
+    const render = async (attributes?: string) => {
       page = await newSpecPage({
         components: [ZenPanel],
         html: /*html*/ `
@@ -32,21 +33,15 @@ describe('zen-panel', () => {
       panel = page.root as HTMLZenPanelElement;
     };
 
-    it('should hide content on init without animation', () => {
-      const panel = new ZenPanel();
+    it('should hide content on init without animation', async () => {
+      await render();
       expect(panel.visible).toBe(false);
       expect(helpers.hideInstantly).toHaveBeenCalled();
     });
 
-    it('should not display content if not visible', () => {
-      const panel = new ZenPanel();
+    it('should not display content if not visible', async () => {
+      await render();
       expect(panel.visible).toBe(false);
-    });
-
-    it('should display content if visible', () => {
-      const panel = new ZenPanel();
-      panel.toggleContent();
-      expect(panel.visible).toBe(true);
     });
 
     it('should be visible from start', async () => {
