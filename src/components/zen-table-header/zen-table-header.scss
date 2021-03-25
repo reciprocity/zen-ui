@@ -5,6 +5,7 @@ $arrow-width: 2rem;
   display: table-row;
   position: relative;
   transform: scale(1); // hack to apply position relative for widgets (tested in chrome & ff)
+  z-index: 2;
 }
 
 .widgets {
