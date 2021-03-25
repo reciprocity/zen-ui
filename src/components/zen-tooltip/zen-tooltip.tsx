@@ -90,7 +90,7 @@ export class ZenTooltip {
           interactive={isScrollable}
         >
           <slot name="content">
-            <ZenSpace p="lg">
+            <ZenSpace padding="lg">
               <slot>
                 <sb-zen-text size="sm" style={{ color: this.color }}>
                   {this.label}

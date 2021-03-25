@@ -22,8 +22,8 @@ export class ZenSortableItem {
     const ZenSpace = applyPrefix('zen-space', this.host);
     return (
       <Host>
-        <ZenSpace p={this.padding}>
-          <ZenIcon icon={faGripVertical} p="md md md none" size="sm" class="handle" />
+        <ZenSpace padding={this.padding}>
+          <ZenIcon icon={faGripVertical} padding="md md md none" size="sm" class="handle" />
           <slot></slot>
         </ZenSpace>
       </Host>

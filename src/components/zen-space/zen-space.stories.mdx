@@ -77,7 +77,7 @@ export const StorySpacing = () => {
         size => html/*html*/ `
           <div class="story">
             <p>${size}</p>
-            <sb-zen-space spacing="${size}" p="xs">
+            <sb-zen-space spacing="${size}" padding="xs">
               <div class="item">Item</div>
               <div class="item">Item</div>
               <div class="item">Item</div>
@@ -97,7 +97,7 @@ export const StoryRowAlignVert = () => {
         align => html/*html*/ `
           <div class="story">
             <p>${align}</p>
-            <sb-zen-space spacing="sm" vertical-align="${align}" horizontal-align="center" p="xs">
+            <sb-zen-space spacing="sm" vertical-align="${align}" horizontal-align="center" padding="xs">
               <div class="item">Item</div>
               <div class="item tall slim">Item</div>
               <div class="item short">Item</div>
@@ -118,7 +118,7 @@ export const StoryRowAlignHorz = () => {
         align => html/*html*/ `
           <div class="story">
             <p>${align}</p>
-            <sb-zen-space spacing="sm" horizontal-align="${align}" p="xs">
+            <sb-zen-space spacing="sm" horizontal-align="${align}" padding="xs">
               <div class="item">Item</div>
               <div class="item tall slim">Item</div>
               <div class="item short">Item</div>
@@ -139,7 +139,7 @@ export const StoryColumnAlignVert = () => {
         align => html/*html*/ `
           <div class="story tall">
             <p class="info">${align}</p>
-            <sb-zen-space spacing="sm" vertical vertical-align="${align}" horizontal-align="center" p="xs">
+            <sb-zen-space spacing="sm" vertical vertical-align="${align}" horizontal-align="center" padding="xs">
               <div class="item">Item</div>
               <div class="item tall slim">Tall</div>
               <div class="item short">Short</div>
@@ -160,7 +160,7 @@ export const StoryColumnAlignHorz = () => {
         align => html/*html*/ `
           <div class="story tall">
             <p>${align}</p>
-            <sb-zen-space vertical horizontal-align="${align}" spacing="sm" p="xs">
+            <sb-zen-space vertical horizontal-align="${align}" spacing="sm" padding="xs">
               <div class="item">Item</div>
               <div class="item tall slim">Tall</div>
               <div class="item short">Short</div>
@@ -181,7 +181,7 @@ export const StoryPadding = () => {
         padding => html/*html*/ `
           <div class="story">
             <p>"${padding}"</p>
-            <sb-zen-space p="${padding}" spacing="sm" horizontal-align="stretch" vertical-align="stretch">
+            <sb-zen-space padding="${padding}" spacing="sm" horizontal-align="stretch" vertical-align="stretch">
               <div class="item">Item 1</div>
               <div class="item">Item 2</div>
               <div class="item">Item 3</div>
@@ -215,7 +215,7 @@ export const StoryCustomItems = args => {
     <div class="row">
       <div class="story wide">
         <p>align-right</p>
-        <sb-zen-space p="xs" spacing="sm">
+        <sb-zen-space padding="xs" spacing="sm">
           <div class="item">Item 1</div>
           <div class="item">Item 2</div>
           <div class="item dark" space-before>space-before</div>
@@ -223,7 +223,7 @@ export const StoryCustomItems = args => {
       </div>
       <div class="story wide">
         <p>space-after + space-before</p>
-        <sb-zen-space p="xs" spacing="sm">
+        <sb-zen-space padding="xs" spacing="sm">
           <div class="item">Item 1</div>
           <div class="item dark" space-before>space-before</div>
           <div class="item dark" space-after>space-after</div>
@@ -232,7 +232,7 @@ export const StoryCustomItems = args => {
       </div>
       <div class="story wide">
         <p>fill</p>
-        <sb-zen-space p="xs" spacing="sm">
+        <sb-zen-space padding="xs" spacing="sm">
           <div class="item">Item 1</div>
           <div class="item dark" fill>fill</div>
           <div class="item">Item 3</div>
@@ -240,7 +240,7 @@ export const StoryCustomItems = args => {
       </div>
       <div class="story wide">
         <p>fill-lg</p>
-        <sb-zen-space p="xs" spacing="sm">
+        <sb-zen-space padding="xs" spacing="sm">
           <div class="item dark" fill>fill</div>
           <div class="item dark" fill-lg>fill-lg</div>
           <div class="item dark" fill>fill</div>
@@ -302,9 +302,9 @@ Under the hood it uses <code>flex-box</code>.
 
 ### 4. Inner padding - Shorthand Property
 
-- To shorten the code, it is possible to specify all the padding in one property.
+- Accepts shorthands, eg. `padding="sm xl lg"`.
 - Same as you can do with normal `padding` and `margin` css properties.
-- It also supports **quick props** **`px`**, **`py`**, **`pt`**, **`pr`**, **`pb`**, **`pl`** _(eg. `px="sm" pt="lg"`)_ which prevails over prop `p`.
+- Also supports **side variants**: **`padding-x`**, **`padding-y`**, **`padding-top`**, **`padding-right`**, **`padding-bottom`**, **`padding-left`**<br/>_(eg. `padding-x="sm" padding-topadding="lg"`)_.
 
 <Canvas>
   <Story name="paddings">{StoryPadding.bind({})}</Story>

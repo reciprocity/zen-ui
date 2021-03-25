@@ -43,7 +43,7 @@ export class ZenSortable {
     const ZenSpace = applyPrefix('zen-space', this.host);
     return (
       <Host>
-        <ZenSpace vertical p={this.padding} spacing={this.spacing}>
+        <ZenSpace vertical padding={this.padding} spacing={this.spacing}>
           <slot></slot>
         </ZenSpace>
       </Host>
