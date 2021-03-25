@@ -43,21 +43,23 @@ export class ZenTableRow {
 
   @Watch('selected')
   async selectedChanged(selected: boolean): Promise<void> {
+    // Set parents rows checkbox indeterminate state
+    let parentRow = await this.parentRow();
+    while (parentRow && parentRow.selectable && parentRow.expandable) {
+      const hasAllSelected = await parentRow.hasAllRowsSelected();
+      const hasRowsSelected = await parentRow.hasRowsSelected();
+
+      if (selected === false && !hasRowsSelected) {
+        parentRow.selected = false;
+      }
+      parentRow.indeterminate = hasRowsSelected && !hasAllSelected;
+
+      parentRow = await parentRow.parentRow();
+    }
+
     // Set rows children selected state
     if (this.selectable && this.expandable) {
       this.rowChildren().forEach(n => (n.selected = selected));
-    }
-
-    // Set parents rows checkbox indeterminate state
-    let parenRow = await this.parentRow();
-    while (parenRow && parenRow.selectable && parenRow.expandable) {
-      const hasAllSelected = await parenRow.hasAllRowsSelected();
-      const hasRowsSelected = await parenRow.hasRowsSelected();
-
-      parenRow.indeterminate = hasRowsSelected && !hasAllSelected;
-      parenRow.selected = hasAllSelected;
-
-      parenRow = await parenRow.parentRow();
     }
 
     // Emit event that header checkbox state can be applied
@@ -90,7 +92,7 @@ export class ZenTableRow {
   /** Returns true if all children rows are selected **/
   @Method()
   async hasAllRowsSelected(): Promise<boolean> {
-    return this.rowChildren().every(row => row.selected);
+    return this.rowChildren().every(row => row.selected && !row.indeterminate);
   }
 
   /** Returns elements parent row (depth -1) **/

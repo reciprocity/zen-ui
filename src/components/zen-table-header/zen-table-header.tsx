@@ -59,7 +59,7 @@ export class ZenTableHeader {
   }
 
   hasAllRowsSelected(): boolean {
-    return this.allRows().every(row => row.selected);
+    return this.allRows().every(row => row.selected && !row.indeterminate);
   }
 
   onSelect(): void {
@@ -86,7 +86,10 @@ export class ZenTableHeader {
       const allSelected = this.hasAllRowsSelected();
 
       this.indeterminate = this.hasRowsSelected() && !allSelected;
-      this.selected = allSelected;
+      // this.selected = allSelected;
+      if (!this.hasRowsSelected()) {
+        this.selected = false;
+      }
     });
 
     this.observer = new MutationObserver(() => this.onTableChildChanged());
