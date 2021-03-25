@@ -5,24 +5,40 @@
   font-size: 0.875rem;
 }
 
-.header-container {
+.header {
   cursor: pointer;
+  @include noselect();
 }
 
 .chevron {
+  margin-right: 0.5rem;
   color: $color-gray-700;
+  transition: transform $transition-micro-move;
 }
 
-.header {
-  margin-left: 4px;
+:host([visible]) {
+  .chevron {
+    transform: rotate(90deg);
+  }
 }
 
 .content {
-  display: none;
+  -webkit-backface-visibility: hidden; // prevent transition jumping on Chrome
+  transition: transform 0.15s ease-out, opacity 0.15s linear;
 
-  margin-top: 1rem;
-}
+  &[animate='out-start'],
+  &[animate='in-end'] {
+    transform: translate(0);
+  }
 
-.visible {
-  display: block;
+  &[animate='out-end'],
+  &[animate='in-start'] {
+    opacity: 0;
+    transform: translateY(-30px);
+    transition: transform 0.15s ease-in, opacity 0.15s;
+  }
+
+  &[animate='out-finished'] {
+    display: none;
+  }
 }

@@ -1,4 +1,7 @@
-import { newSpecPage } from '@stencil/core/testing';
+import { newSpecPage, SpecPage } from '@stencil/core/testing';
+
+jest.mock('../../helpers/animations');
+import * as helpers from '../../helpers/animations';
 
 import { ZenPanel } from '../zen-panel';
 
@@ -11,50 +14,49 @@ describe('zen-panel', () => {
     expect(page.root.shadowRoot).toBeTruthy();
   });
 
-  describe('icon', () => {
-    it('should display right chevron icon if not visible', () => {
-      const panel = new ZenPanel();
-
-      expect(panel.internalVisible).toBe(false);
-      expect(panel.icon().iconName).toEqual('chevron-right');
-    });
-
-    it('should display down chevron icon if visible', () => {
-      const panel = new ZenPanel();
-
-      panel.toggleContent();
-
-      expect(panel.internalVisible).toBe(true);
-      expect(panel.icon().iconName).toEqual('chevron-down');
-    });
-  });
-
   describe('content', () => {
-    it('should hide content on init', () => {
-      const panel = new ZenPanel();
-      expect(panel.internalVisible).toBe(false);
+    let page: SpecPage;
+    let panel: HTMLZenPanelElement;
+
+    beforeEach(() => {
+      jest.clearAllMocks();
     });
 
-    it('should not display content if not visible', () => {
-      const panel = new ZenPanel();
-
-      expect(panel.internalVisible).toBe(false);
-      expect(panel.contentClasses()).toEqual({
-        content: true,
-        visible: false,
+    const render = async (attributes?: string) => {
+      page = await newSpecPage({
+        components: [ZenPanel],
+        html: /*html*/ `
+        <zen-panel ${attributes} />
+      `,
       });
+      await page.waitForChanges();
+      panel = page.root as HTMLZenPanelElement;
+    };
+
+    it('should hide content on init without animation', async () => {
+      await render();
+      expect(panel.visible).toBe(false);
+      expect(helpers.hideInstantly).toHaveBeenCalled();
     });
 
-    it('should display content if visible', () => {
-      const panel = new ZenPanel();
+    it('should not display content if not visible', async () => {
+      await render();
+      expect(panel.visible).toBe(false);
+    });
 
-      panel.toggleContent();
+    it('should be visible from start', async () => {
+      await render('visible');
+      expect(panel.visible).toBe(true);
+      expect(helpers.showInstantly).toHaveBeenCalled();
+      expect(helpers.showWithAnimation).not.toHaveBeenCalled();
+    });
 
-      expect(panel.internalVisible).toBe(true);
-      expect(panel.contentClasses()).toEqual({
-        content: true,
-        visible: true,
-      });
+    it('should hide with animation on click', async () => {
+      await render('visible');
+      expect(panel.visible).toBe(true);
+      panel.shadowRoot.querySelector('.header').click();
+      await page.waitForChanges();
+      expect(helpers.hideWithAnimation).toHaveBeenCalled();
     });
   });
 });

@@ -1,5 +1,6 @@
-import { h, Component, Element, Host, Prop, State } from '@stencil/core';
-import { faChevronRight, faChevronDown, IconDefinition } from '@fortawesome/pro-regular-svg-icons';
+import { h, Component, Element, Host, Prop, Watch } from '@stencil/core';
+import { faChevronRight } from '@fortawesome/pro-regular-svg-icons';
+import { showWithAnimation, hideWithAnimation, showInstantly, hideInstantly } from '../helpers/animations';
 
 import { applyPrefix } from '../helpers/helpers';
 
@@ -9,40 +10,46 @@ import { applyPrefix } from '../helpers/helpers';
   shadow: true,
 })
 export class ZenPanel {
+  private content: HTMLElement = null;
+  private initializing = true;
+
   @Element() host: HTMLZenPanelElement;
 
   /** Default visible state */
-  @Prop() readonly visible: boolean = false;
+  @Prop({ reflect: true, mutable: true }) visible = false;
 
-  @State() internalVisible = this.visible;
+  @Watch('visible')
+  async visibleChanged(visible: boolean): Promise<void> {
+    if (visible) {
+      this.initializing ? showInstantly(this.content) : showWithAnimation(this.content);
+    } else {
+      this.initializing ? hideInstantly(this.content) : hideWithAnimation(this.content);
+    }
+  }
 
   toggleContent(): void {
-    this.internalVisible = !this.internalVisible;
+    this.visible = !this.visible;
   }
 
-  icon(): IconDefinition {
-    return this.internalVisible ? faChevronDown : faChevronRight;
-  }
-
-  contentClasses(): Record<string, boolean> {
-    return {
-      content: true,
-      visible: this.internalVisible,
-    };
+  componentDidLoad(): void {
+    this.visibleChanged(this.visible);
+    this.initializing = false;
   }
 
   render(): HTMLElement {
-    const ZenText = applyPrefix('zen-text', this.host);
     const ZenIcon = applyPrefix('zen-icon', this.host);
+    const ZenSpace = applyPrefix('zen-space', this.host);
 
     return (
       <Host>
-        <ZenText class="header-container" size="md" onClick={() => this.toggleContent()}>
-          <ZenIcon icon={this.icon()} size="sm" padding="sm" class="icon fill chevron" />
+        <ZenSpace class="header" padding="md lg" onClick={() => this.toggleContent()}>
+          <ZenIcon icon={faChevronRight} size="sm" padding="sm none" class="icon chevron" />
           <slot name="header" />
-        </ZenText>
-        <div class={this.contentClasses()}>
-          <slot></slot>
+        </ZenSpace>
+        <div class="content-wrapper">
+          <ZenSpace padding="md lg" class="content" ref={el => (this.content = el)}>
+            <slot></slot>
+          </ZenSpace>
         </div>
       </Host>
     );
