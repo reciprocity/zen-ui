@@ -24,8 +24,8 @@ function getDefaultValue(prop) {
 }
 
 function filterPaddingProps(argTypes) {
-  const descript = '**Inner padding** *(accepts shorthands, eg. `padding="sm xl lg"`)*.<br/>Also supports **side variants**: **`padding-x`**,  **`padding-y`**, **`padding-top`**, **`padding-right`**, **`padding-bottom`**, **`padding-left`**<br/>*(eg. `padding-x="sm" padding-top="lg"`)*';
-  const paddingProps = ['padding', 'padding-x', 'padding-y', 'padding-t', 'padding-r', 'padding-b', 'padding-l'];
+  const descript = '**Inner padding** *(accepts shorthands, eg. `padding="sm xl lg"`)*.<br/>Also supports **side variants**: **`padding-top`**, **`padding-right`**, **`padding-bottom`**, **`padding-left`**<br/>*(eg. `padding-left="sm" padding-top="lg"`)*';
+  const paddingProps = ['padding', 'padding-t', 'padding-r', 'padding-b', 'padding-l'];
 
   Object.keys({ ...argTypes }).forEach(prop => {
     if (!paddingProps.includes(prop)) return;

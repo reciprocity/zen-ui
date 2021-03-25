@@ -25,10 +25,6 @@ export class ZenAvatarDetails {
   /** <Description generated in helper file> */
   @Prop({ reflect: true }) readonly padding: SpacingShorthand = 'lg';
   /** Skipped */
-  @Prop({ reflect: true }) readonly paddingX: Spacing = null;
-  /** Skipped */
-  @Prop({ reflect: true }) readonly paddingY: Spacing = null;
-  /** Skipped */
   @Prop({ reflect: true }) readonly paddingTop: Spacing = null;
   /** Skipped */
   @Prop({ reflect: true }) readonly paddingRight: Spacing = null;
@@ -49,8 +45,6 @@ export class ZenAvatarDetails {
         <ZenSpace
           no-wrap
           padding={this.padding}
-          padding-x={this.paddingX}
-          padding-y={this.paddingY}
           padding-top={this.paddingTop}
           padding-right={this.paddingRight}
           padding-bottom={this.paddingBottom}

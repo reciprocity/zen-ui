@@ -108,14 +108,6 @@ export namespace Components {
          */
         "paddingTop": Spacing;
         /**
-          * Skipped
-         */
-        "paddingX": Spacing;
-        /**
-          * Skipped
-         */
-        "paddingY": Spacing;
-        /**
           * Spacing between icon and username
          */
         "spacing": Size;
@@ -333,14 +325,6 @@ export namespace Components {
           * Skipped
          */
         "paddingTop": Spacing;
-        /**
-          * Skipped
-         */
-        "paddingX": Spacing;
-        /**
-          * Skipped
-         */
-        "paddingY": Spacing;
         /**
           * Size of the icon.
          */
@@ -603,14 +587,6 @@ export namespace Components {
           * Skipped
          */
         "paddingTop": Spacing;
-        /**
-          * Skipped
-         */
-        "paddingX": Spacing;
-        /**
-          * Skipped
-         */
-        "paddingY": Spacing;
         /**
           * Spacing between items
          */
@@ -1241,14 +1217,6 @@ declare namespace LocalJSX {
          */
         "paddingTop"?: Spacing;
         /**
-          * Skipped
-         */
-        "paddingX"?: Spacing;
-        /**
-          * Skipped
-         */
-        "paddingY"?: Spacing;
-        /**
           * Spacing between icon and username
          */
         "spacing"?: Size;
@@ -1462,14 +1430,6 @@ declare namespace LocalJSX {
           * Skipped
          */
         "paddingTop"?: Spacing;
-        /**
-          * Skipped
-         */
-        "paddingX"?: Spacing;
-        /**
-          * Skipped
-         */
-        "paddingY"?: Spacing;
         /**
           * Size of the icon.
          */
@@ -1720,14 +1680,6 @@ declare namespace LocalJSX {
           * Skipped
          */
         "paddingTop"?: Spacing;
-        /**
-          * Skipped
-         */
-        "paddingX"?: Spacing;
-        /**
-          * Skipped
-         */
-        "paddingY"?: Spacing;
         /**
           * Spacing between items
          */

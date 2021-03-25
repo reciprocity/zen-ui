@@ -20,10 +20,6 @@ export class ZenIcon {
   /** <Description generated in helper file> */
   @Prop({ reflect: true }) readonly padding: SpacingShorthand = null;
   /** Skipped */
-  @Prop({ reflect: true }) readonly paddingX: Spacing = null;
-  /** Skipped */
-  @Prop({ reflect: true }) readonly paddingY: Spacing = null;
-  /** Skipped */
   @Prop({ reflect: true }) readonly paddingTop: Spacing = null;
   /** Skipped */
   @Prop({ reflect: true }) readonly paddingRight: Spacing = null;
