@@ -1,6 +1,6 @@
 import { Component, Host, h, Element, Prop } from '@stencil/core';
 import { applyPrefix } from '../helpers/helpers';
-import { SpacingShorthand, Size, Spacing, None } from '../helpers/types';
+import { AvatarDetailVariant, IconSizes, Spacing, Size } from '../helpers/types';
 
 @Component({
   tag: 'zen-avatar-details',
@@ -9,6 +9,12 @@ import { SpacingShorthand, Size, Spacing, None } from '../helpers/types';
 })
 export class ZenAvatarDetails {
   @Element() host: HTMLZenAvatarDetailsElement;
+
+  /** Different variants  */
+  @Prop() readonly variant: AvatarDetailVariant = 'detailed';
+
+  /** Sizes that apply only for variant basic  */
+  @Prop() readonly size: IconSizes = 'md';
 
   /** User name  */
   @Prop() readonly userName: string = '';
@@ -36,6 +42,25 @@ export class ZenAvatarDetails {
   /** Spacing between icon and username  */
   @Prop() readonly spacing: Size | None = 'md';
 
+  textSize(): string {
+    let textSize = 'md';
+    if (this.variant == 'detailed') return textSize;
+
+    switch (this.size) {
+      case 'sm':
+        textSize = 'md';
+        break;
+      case 'md':
+        textSize = 'lg';
+        break;
+      case 'lg':
+        textSize = 'xl';
+        break;
+    }
+
+    return textSize;
+  }
+
   render(): HTMLElement {
     const ZenAvatarIcon = applyPrefix('zen-avatar-icon', this.host);
     const ZenSpace = applyPrefix('zen-space', this.host);
@@ -44,27 +69,29 @@ export class ZenAvatarDetails {
       <Host>
         <ZenSpace
           no-wrap
-          padding={this.padding}
           padding-top={this.paddingTop}
           padding-right={this.paddingRight}
           padding-bottom={this.paddingBottom}
           padding-left={this.paddingLeft}
-          vertical-align="middle"
+          vertical-align={this.variant == 'basic' ? 'center' : 'start'}
           spacing={this.spacing}
         >
           <ZenAvatarIcon
             user-name={this.userName}
             color={this.iconColor}
             background={this.iconBackground}
+            size={this.variant == 'basic' ? this.size : 'md'}
             data-test="avatar-icon"
           />
           <ZenSpace vertical padding="xs" spacing="sm">
-            <ZenText size="md" bold data-test="username">
+            <ZenText size={this.textSize()} bold={this.variant == 'detailed'} data-test="username">
               {this.userName}
             </ZenText>
-            <ZenText size="sm" data-test="email">
-              {this.email}
-            </ZenText>
+            {this.variant == 'detailed' && (
+              <ZenText size="md" data-test="email">
+                {this.email}
+              </ZenText>
+            )}
           </ZenSpace>
         </ZenSpace>
       </Host>

@@ -6,7 +6,7 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { StringifiedJson } from "./stories/components/color-swatch-group/color-swatch-group";
-import { Align, AvatarData, IconSizes, None, Notification, NotificationVariant, Position, Resize, Size, Spacing, SpacingShorthand, TextSize, TextState, TextVariant, TooltipVariant, TriggerEvent } from "./components/helpers/types";
+import { Align, AvatarData, AvatarDetailVariant, IconSizes, None, Notification, NotificationVariant, Position, Resize, Size, Spacing, SpacingShorthand, TextSize, TextState, TextVariant, TooltipVariant, TriggerEvent } from "./components/helpers/types";
 import { ButtonVariants } from "./components/zen-button/types";
 import { OptionValue } from "./components/zen-menu-item/zen-option";
 import { IconDefinition } from "@fortawesome/pro-light-svg-icons";
@@ -108,6 +108,10 @@ export namespace Components {
          */
         "paddingTop": Spacing;
         /**
+          * Sizes that apply only for variant basic
+         */
+        "size": IconSizes;
+        /**
           * Spacing between icon and username
          */
         "spacing": Size | None;
@@ -115,6 +119,10 @@ export namespace Components {
           * User name
          */
         "userName": string;
+        /**
+          * Different variants
+         */
+        "variant": AvatarDetailVariant;
     }
     interface ZenAvatarGroup {
         /**
@@ -1389,6 +1397,10 @@ declare namespace LocalJSX {
          */
         "paddingTop"?: Spacing;
         /**
+          * Sizes that apply only for variant basic
+         */
+        "size"?: IconSizes;
+        /**
           * Spacing between icon and username
          */
         "spacing"?: Size | None;
@@ -1396,6 +1408,10 @@ declare namespace LocalJSX {
           * User name
          */
         "userName"?: string;
+        /**
+          * Different variants
+         */
+        "variant"?: AvatarDetailVariant;
     }
     interface ZenAvatarGroup {
         /**

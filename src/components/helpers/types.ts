@@ -29,6 +29,8 @@ export type Resize = 'none' | 'both' | 'horizontal' | 'vertical' | 'initial' | '
 
 export type PositionVariant = 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
 
+export type AvatarDetailVariant = 'basic' | 'detailed';
+
 export interface AvatarData {
   userName?: string;
   email?: string;
