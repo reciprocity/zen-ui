@@ -47,3 +47,37 @@ $spacings: (
     }
   }
 }
+
+@mixin marginSizes {
+  @each $key, $value in $spacings {
+    :host([margin='#{$key}']),
+    :host(.margin-#{$key}) {
+      margin: #{$value};
+    }
+  }
+
+  @each $key, $value in $spacings {
+    :host([margin-x='#{$key}']),
+    :host(.margin-x-#{$key}) {
+      margin-left: #{$value};
+      margin-right: #{$value};
+    }
+  }
+
+  @each $key, $value in $spacings {
+    :host([margin-y='#{$key}']),
+    :host(.margin-y-#{$key}) {
+      margin-top: #{$value};
+      margin-bottom: #{$value};
+    }
+  }
+
+  @each $side in [ 'top', 'right', 'bottom', 'left' ] {
+    @each $key, $value in $spacings {
+      :host([margin-#{$side}='#{$key}']),
+      :host(.margin-#{$side}-#{$key}) {
+        margin-#{$side}: #{$value};
+      }
+    }
+  }
+}
