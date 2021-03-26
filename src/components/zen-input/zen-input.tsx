@@ -122,7 +122,7 @@ export class ZenInput {
           onInput={this.onInput}
           onChange={this.onChange}
         />
-        {!this.isEmpty && (
+        {!this.isEmpty && this.inputFocused && (
           <ZenIcon
             slot="trailingSlot"
             padding="xs md xs none"
