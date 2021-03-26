@@ -23,15 +23,15 @@ export class ZenAvatarDetails {
   @Prop() readonly iconBackground: string = '#D5E9FA';
 
   /** <Description generated in helper file> */
-  @Prop({ reflect: true }) readonly padding: SpacingShorthand = 'lg';
+  @Prop() readonly padding: SpacingShorthand = 'lg';
   /** Skipped */
-  @Prop({ reflect: true }) readonly paddingTop: Spacing = null;
+  @Prop() readonly paddingTop: Spacing = null;
   /** Skipped */
-  @Prop({ reflect: true }) readonly paddingRight: Spacing = null;
+  @Prop() readonly paddingRight: Spacing = null;
   /** Skipped */
-  @Prop({ reflect: true }) readonly paddingBottom: Spacing = null;
+  @Prop() readonly paddingBottom: Spacing = null;
   /** Skipped */
-  @Prop({ reflect: true }) readonly paddingLeft: Spacing = null;
+  @Prop() readonly paddingLeft: Spacing = null;
 
   /** Spacing between icon and username  */
   @Prop() readonly spacing: Size = 'md';

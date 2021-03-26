@@ -55,15 +55,15 @@ export class ZenPopover {
   @Prop() readonly backgroundColor: string = '';
 
   /** <Description generated in helper file> */
-  @Prop({ reflect: true }) readonly padding: SpacingShorthand = null;
+  @Prop() readonly padding: SpacingShorthand = null;
   /** Skipped */
-  @Prop({ reflect: true }) readonly paddingTop: Spacing = null;
+  @Prop() readonly paddingTop: Spacing = null;
   /** Skipped */
-  @Prop({ reflect: true }) readonly paddingRight: Spacing = null;
+  @Prop() readonly paddingRight: Spacing = null;
   /** Skipped */
-  @Prop({ reflect: true }) readonly paddingBottom: Spacing = null;
+  @Prop() readonly paddingBottom: Spacing = null;
   /** Skipped */
-  @Prop({ reflect: true }) readonly paddingLeft: Spacing = null;
+  @Prop() readonly paddingLeft: Spacing = null;
 
   /** Visibility changed */
   @Event() visibleChange: EventEmitter<void>;

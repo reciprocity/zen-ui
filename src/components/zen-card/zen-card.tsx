@@ -14,15 +14,15 @@ export class ZenCard {
   @Prop({ reflect: true }) readonly disabled = false;
 
   /** <Description generated in helper file> */
-  @Prop({ reflect: true }) readonly padding: SpacingShorthand = 'lg';
+  @Prop() readonly padding: SpacingShorthand = 'lg';
   /** Skipped */
-  @Prop({ reflect: true }) readonly paddingTop: Spacing = null;
+  @Prop() readonly paddingTop: Spacing = null;
   /** Skipped */
-  @Prop({ reflect: true }) readonly paddingRight: Spacing = null;
+  @Prop() readonly paddingRight: Spacing = null;
   /** Skipped */
-  @Prop({ reflect: true }) readonly paddingBottom: Spacing = null;
+  @Prop() readonly paddingBottom: Spacing = null;
   /** Skipped */
-  @Prop({ reflect: true }) readonly paddingLeft: Spacing = null;
+  @Prop() readonly paddingLeft: Spacing = null;
 
   render(): HTMLElement {
     const ZenSpace = applyPrefix('zen-space', this.host);

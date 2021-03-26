@@ -20,15 +20,15 @@ export class ZenPanel {
   @Prop({ reflect: true, mutable: true }) visible = false;
 
   /** <Description generated in helper file> */
-  @Prop({ reflect: true }) readonly padding: SpacingShorthand = 'md lg';
+  @Prop() readonly padding: SpacingShorthand = 'md lg';
   /** Skipped */
-  @Prop({ reflect: true }) readonly paddingTop: Spacing = null;
+  @Prop() readonly paddingTop: Spacing = null;
   /** Skipped */
-  @Prop({ reflect: true }) readonly paddingRight: Spacing = null;
+  @Prop() readonly paddingRight: Spacing = null;
   /** Skipped */
-  @Prop({ reflect: true }) readonly paddingBottom: Spacing = null;
+  @Prop() readonly paddingBottom: Spacing = null;
   /** Skipped */
-  @Prop({ reflect: true }) readonly paddingLeft: Spacing = null;
+  @Prop() readonly paddingLeft: Spacing = null;
 
   /** Padding of content section */
   @Prop({ reflect: true }) readonly contentPadding: SpacingShorthand = 'md lg';

@@ -42,15 +42,15 @@ export class ZenTooltip {
   @Prop() readonly delay: string = '0';
 
   /** Description generated in helper file */
-  @Prop({ reflect: true }) readonly padding: SpacingShorthand = 'lg';
+  @Prop() readonly padding: SpacingShorthand = 'lg';
   /** Skipped */
-  @Prop({ reflect: true }) readonly paddingTop: Spacing = null;
+  @Prop() readonly paddingTop: Spacing = null;
   /** Skipped */
-  @Prop({ reflect: true }) readonly paddingRight: Spacing = null;
+  @Prop() readonly paddingRight: Spacing = null;
   /** Skipped */
-  @Prop({ reflect: true }) readonly paddingBottom: Spacing = null;
+  @Prop() readonly paddingBottom: Spacing = null;
   /** Skipped */
-  @Prop({ reflect: true }) readonly paddingLeft: Spacing = null;
+  @Prop() readonly paddingLeft: Spacing = null;
 
   @Watch('variant')
   async variantChanged(variant: TooltipVariant): Promise<void> {
