@@ -1,5 +1,5 @@
 import { Component, Host, h, Prop } from '@stencil/core';
-import { TextSize, TextVariant, Align } from '../helpers/types';
+import { TextSize, TextVariant, TextState, Align } from '../helpers/types';
 
 @Component({
   tag: 'zen-text',
@@ -12,6 +12,9 @@ export class ZenText {
 
   /** Apply heading styles */
   @Prop({ reflect: true }) readonly variant: TextVariant = null;
+
+  /** State text style */
+  @Prop({ reflect: true }) readonly state: TextState = null;
 
   /** Render bold text */
   @Prop({ reflect: true }) readonly bold: boolean = false;

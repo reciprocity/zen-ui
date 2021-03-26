@@ -6,7 +6,7 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { StringifiedJson } from "./stories/components/color-swatch-group/color-swatch-group";
-import { Align, AvatarData, IconSizes, None, Notification, NotificationVariant, Position, Resize, Size, Spacing, SpacingShorthand, TextSize, TextVariant, TooltipVariant, TriggerEvent } from "./components/helpers/types";
+import { Align, AvatarData, IconSizes, None, Notification, NotificationVariant, Position, Resize, Size, Spacing, SpacingShorthand, TextSize, TextState, TextVariant, TooltipVariant, TriggerEvent } from "./components/helpers/types";
 import { ButtonVariants } from "./components/zen-button/types";
 import { OptionValue } from "./components/zen-menu-item/zen-option";
 import { IconDefinition } from "@fortawesome/pro-light-svg-icons";
@@ -723,6 +723,10 @@ export namespace Components {
           * Font size
          */
         "size": TextSize;
+        /**
+          * State text style
+         */
+        "state": TextState;
         /**
           * Strikethrough
          */
@@ -1816,6 +1820,10 @@ declare namespace LocalJSX {
           * Font size
          */
         "size"?: TextSize;
+        /**
+          * State text style
+         */
+        "state"?: TextState;
         /**
           * Strikethrough
          */
