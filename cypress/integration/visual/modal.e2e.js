@@ -3,11 +3,7 @@ import { createVisualTests } from '../../support/utils/visualTesting';
 
 describe('Text visual tests', () => {
   const pageId = 'containers-modal-window--mutiple';
-  const stories = [
-    'story--containers-modal-window--mutiple',
-    'story--containers-modal-window--paddingless',
-    'story--containers-modal-window--default-story',
-  ];
+  const stories = ['story--containers-modal-window--mutiple', 'story--containers-modal-window--default-story'];
 
   // Example how to skip testing for some user stories
   const skipedStories = [];

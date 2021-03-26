@@ -7,9 +7,6 @@ import { faTimes } from '@fortawesome/pro-regular-svg-icons';
  * @slot header - Custom header content
  * @slot footer - Footer content (buttons usually)
  * @slot (default) - Window content
- * @slot paddingless-header - Same as `header` but without default padding
- * @slot paddingless-content - Same as default slot but without default padding
- * @slot paddingless-footer - Same as `footer` but without default padding
  */
 
 @Component({
@@ -69,43 +66,37 @@ export class ZenModal {
         <ZenAnimate show={this.show}>
           <div class="dimmer"></div>
           <div class="window">
-            <slot name="paddingless-header">
-              <ZenSpace class="header" padding="lg xl">
-                <slot name="header">
-                  <ZenText variant="heading" size="sm">
-                    {this.label}
-                  </ZenText>
+            <ZenSpace class="header" padding="lg xl">
+              <slot name="header">
+                <ZenText variant="heading" size="sm">
+                  {this.label}
+                </ZenText>
+                {!this.hideCancel ? (
+                  <ZenIcon class="x-button" icon={faTimes} size="lg" onClick={() => this.onCancelClicked()}></ZenIcon>
+                ) : (
+                  ''
+                )}
+              </slot>
+            </ZenSpace>
+            <ZenSpace vertical padding="xl">
+              <slot>Zen-ui Modal</slot>
+            </ZenSpace>
+            <ZenSpace class="footer" padding="lg xl" horizontalAlign="end">
+              <slot name="footer">
+                <div class="buttons-row">
                   {!this.hideCancel ? (
-                    <ZenIcon class="x-button" icon={faTimes} size="lg" onClick={() => this.onCancelClicked()}></ZenIcon>
+                    <ZenButton class="btn-cancel" variant="secondary" onClick={() => this.onCancelClicked()}>
+                      Cancel
+                    </ZenButton>
                   ) : (
                     ''
                   )}
-                </slot>
-              </ZenSpace>
-            </slot>
-            <slot name="paddingless-content">
-              <ZenSpace vertical padding="xl">
-                <slot>Zen-ui Modal</slot>
-              </ZenSpace>
-            </slot>
-            <slot name="paddingless-footer">
-              <ZenSpace class="footer" padding="lg xl" horizontalAlign="end">
-                <slot name="footer">
-                  <div class="buttons-row">
-                    {!this.hideCancel ? (
-                      <ZenButton class="btn-cancel" variant="secondary" onClick={() => this.onCancelClicked()}>
-                        Cancel
-                      </ZenButton>
-                    ) : (
-                      ''
-                    )}
-                    <ZenButton class="btn-ok ml-4" onClick={() => this.onOkClicked()}>
-                      Ok
-                    </ZenButton>
-                  </div>
-                </slot>
-              </ZenSpace>
-            </slot>
+                  <ZenButton class="btn-ok ml-4" onClick={() => this.onOkClicked()}>
+                    Ok
+                  </ZenButton>
+                </div>
+              </slot>
+            </ZenSpace>
           </div>
         </ZenAnimate>
       </Host>
