@@ -96,8 +96,9 @@ export class ZenInput {
   }
 
   private onClearClick(event: Event): void {
-    console.log('todo: clear'); // todo
+    this.value = '';
     event.stopPropagation();
+    event.preventDefault();
   }
 
   componentDidLoad(): void {
