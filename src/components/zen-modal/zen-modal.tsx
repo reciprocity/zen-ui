@@ -82,7 +82,13 @@ export class ZenModal {
                   {this.label}
                 </ZenText>
                 {!this.hideCancel ? (
-                  <ZenIcon class="x-button" icon={faTimes} size="lg" onClick={() => this.onCancelClicked()}></ZenIcon>
+                  <ZenIcon
+                    class="x-button"
+                    icon={faTimes}
+                    size="lg"
+                    role="button"
+                    onClick={() => this.onCancelClicked()}
+                  ></ZenIcon>
                 ) : (
                   ''
                 )}
