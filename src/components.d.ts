@@ -560,6 +560,10 @@ export namespace Components {
     }
     interface ZenSpace {
         /**
+          * In some rare occasions we want display:block
+         */
+        "block": boolean;
+        /**
           * Horizontal align of items
          */
         "horizontalAlign": FlexAlign;
@@ -1672,6 +1676,10 @@ declare namespace LocalJSX {
         "padding"?: SpacingShorthand;
     }
     interface ZenSpace {
+        /**
+          * In some rare occasions we want display:block
+         */
+        "block"?: boolean;
         /**
           * Horizontal align of items
          */

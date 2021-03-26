@@ -61,6 +61,9 @@ export class ZenSpace {
   /** Break row/column if content doesn't fit */
   @Prop({ reflect: true }) readonly noWrap: boolean = false;
 
+  /** In some rare occasions we want display:block */
+  @Prop({ reflect: true }) readonly block: boolean = false;
+
   @Watch('padding')
   paddingChanged(): void {
     this.updateClasses();
