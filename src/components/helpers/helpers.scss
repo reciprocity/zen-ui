@@ -17,31 +17,21 @@ $spacings: (
 @mixin paddingSizes {
   @each $key, $value in $spacings {
     :host([padding='#{$key}']),
-    :host(.padding-#{$key}) {
+    :host(.p-#{$key}) {
       padding: #{$value};
     }
   }
 
-  @each $key, $value in $spacings {
-    :host([padding-x='#{$key}']),
-    :host(.padding-x-#{$key}) {
-      padding-left: #{$value};
-      padding-right: #{$value};
-    }
-  }
+  $side-shorts: [ 't', 'r', 'b', 'l' ];
+  $sides: [ 'top', 'right', 'bottom', 'left' ];
 
-  @each $key, $value in $spacings {
-    :host([padding-y='#{$key}']),
-    :host(.padding-y-#{$key}) {
-      padding-top: #{$value};
-      padding-bottom: #{$value};
-    }
-  }
+  @for $i from 1 through length($sides) {
+    $side-short: nth($side-shorts, $i);
+    $side: nth($sides, $i);
 
-  @each $side in [ 'top', 'right', 'bottom', 'left' ] {
     @each $key, $value in $spacings {
       :host([padding-#{$side}='#{$key}']),
-      :host(.padding-#{$side}-#{$key}) {
+      :host(.p#{$side-short}-#{$key}) {
         padding-#{$side}: #{$value};
       }
     }
@@ -51,31 +41,21 @@ $spacings: (
 @mixin marginSizes {
   @each $key, $value in $spacings {
     :host([margin='#{$key}']),
-    :host(.margin-#{$key}) {
+    :host(.m-#{$key}) {
       margin: #{$value};
     }
   }
 
-  @each $key, $value in $spacings {
-    :host([margin-x='#{$key}']),
-    :host(.margin-x-#{$key}) {
-      margin-left: #{$value};
-      margin-right: #{$value};
-    }
-  }
+  $side-shorts: [ 't', 'r', 'b', 'l' ];
+  $sides: [ 'top', 'right', 'bottom', 'left' ];
 
-  @each $key, $value in $spacings {
-    :host([margin-y='#{$key}']),
-    :host(.margin-y-#{$key}) {
-      margin-top: #{$value};
-      margin-bottom: #{$value};
-    }
-  }
+  @for $i from 1 through length($sides) {
+    $side-short: nth($side-shorts, $i);
+    $side: nth($sides, $i);
 
-  @each $side in [ 'top', 'right', 'bottom', 'left' ] {
     @each $key, $value in $spacings {
       :host([margin-#{$side}='#{$key}']),
-      :host(.margin-#{$side}-#{$key}) {
+      :host(.m#{$side-short}-#{$key}) {
         margin-#{$side}: #{$value};
       }
     }
