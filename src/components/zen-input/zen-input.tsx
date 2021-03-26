@@ -23,6 +23,8 @@ export class ZenInput {
 
   @State() inputFocused = false;
 
+  @State() isEmpty = true;
+
   /** Name of element, can be used as reference for form data */
   @Prop() readonly name: string = '';
 
@@ -53,8 +55,9 @@ export class ZenInput {
   }
 
   @Watch('value')
-  async monthViewedInCalendarChanged(value: string): Promise<void> {
+  async valueChanged(value: string): Promise<void> {
     this.input.value = value;
+    this.isEmpty = !value;
   }
 
   /** Focus input */
@@ -67,6 +70,7 @@ export class ZenInput {
     const input = ev.target as HTMLInputElement | null;
     if (input) {
       this.value = input.value || '';
+      this.isEmpty = !input.value;
     }
   };
 
@@ -96,6 +100,10 @@ export class ZenInput {
     event.stopPropagation();
   }
 
+  componentDidLoad(): void {
+    this.valueChanged(this.value);
+  }
+
   render(): HTMLElement {
     const value = this.getValue();
     const ZenIcon = applyPrefix('zen-icon', this.host);
@@ -114,13 +122,15 @@ export class ZenInput {
           onInput={this.onInput}
           onChange={this.onChange}
         />
-        <ZenIcon
-          slot="trailingSlot"
-          padding="md md md none"
-          class="icon clear"
-          icon={faTimes}
-          onMousedown={event => this.onClearClick(event)}
-        ></ZenIcon>
+        {!this.isEmpty && (
+          <ZenIcon
+            slot="trailingSlot"
+            padding="xs md xs none"
+            class="icon clear"
+            icon={faTimes}
+            onMousedown={event => this.onClearClick(event)}
+          ></ZenIcon>
+        )}
         <slot name="trailingSlot"></slot>
       </Host>
     );
