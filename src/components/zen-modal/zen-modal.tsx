@@ -2,6 +2,7 @@ import { Component, Prop, Host, h, Watch, Element, Event, EventEmitter } from '@
 import { applyPrefix } from '../helpers/helpers';
 import { modalsService } from './zen-modals-service';
 import { faTimes } from '@fortawesome/pro-regular-svg-icons';
+import { SpacingShorthand } from '../helpers/types';
 
 /**
  * @slot header - Custom header content
@@ -31,6 +32,15 @@ export class ZenModal {
 
   /** Default Ok button clicked (irrelevant if slot `buttons` passed) */
   @Event() ok: EventEmitter<void>;
+
+  /** Padding of header */
+  @Prop() readonly headerPadding: SpacingShorthand = 'lg xl';
+
+  /** Padding of content */
+  @Prop() readonly contentPadding: SpacingShorthand = 'xl';
+
+  /** Padding of footer */
+  @Prop() readonly footerPadding: SpacingShorthand = 'lg xl';
 
   @Watch('show')
   async showChanged(show: boolean): Promise<void> {
@@ -66,7 +76,7 @@ export class ZenModal {
         <ZenAnimate show={this.show}>
           <div class="dimmer"></div>
           <div class="window">
-            <ZenSpace class="header" padding="lg xl">
+            <ZenSpace class="header" padding={this.headerPadding}>
               <slot name="header">
                 <ZenText variant="heading" size="sm">
                   {this.label}
@@ -78,10 +88,10 @@ export class ZenModal {
                 )}
               </slot>
             </ZenSpace>
-            <ZenSpace vertical padding="xl">
+            <ZenSpace vertical padding={this.contentPadding}>
               <slot>Zen-ui Modal</slot>
             </ZenSpace>
-            <ZenSpace class="footer" padding="lg xl" horizontalAlign="end">
+            <ZenSpace class="footer" padding={this.footerPadding} horizontalAlign="end">
               <slot name="footer">
                 <div class="buttons-row">
                   {!this.hideCancel ? (

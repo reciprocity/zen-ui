@@ -418,6 +418,18 @@ export namespace Components {
     }
     interface ZenModal {
         /**
+          * Padding of content
+         */
+        "contentPadding": SpacingShorthand;
+        /**
+          * Padding of footer
+         */
+        "footerPadding": SpacingShorthand;
+        /**
+          * Padding of header
+         */
+        "headerPadding": SpacingShorthand;
+        /**
           * Hide default top-right X and default Cancel button
          */
         "hideCancel": boolean;
@@ -1702,6 +1714,18 @@ declare namespace LocalJSX {
         "value"?: string;
     }
     interface ZenModal {
+        /**
+          * Padding of content
+         */
+        "contentPadding"?: SpacingShorthand;
+        /**
+          * Padding of footer
+         */
+        "footerPadding"?: SpacingShorthand;
+        /**
+          * Padding of header
+         */
+        "headerPadding"?: SpacingShorthand;
         /**
           * Hide default top-right X and default Cancel button
          */
