@@ -7,7 +7,7 @@ import data from '../../../stencilDocs.json';
 const compData = data.components.find(n => n.tag === 'zen-skeleton');
 let argTypes = getArgTypes(compData);
 
-<Meta title="Layout/Skeleton" component="zen-skeleton" argTypes={argTypes} />
+<Meta title="Graphics/Skeleton" component="zen-skeleton" argTypes={argTypes} />
 
 export const StoryWithControls = args => {
   return html/*html*/ ` <sb-zen-skeleton ...="${spreadArgs(args, argTypes)}"></sb-zen-skeleton> `;
