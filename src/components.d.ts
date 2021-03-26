@@ -274,6 +274,26 @@ export namespace Components {
          */
         "opened": false;
         /**
+          * <Description generated in helper file>
+         */
+        "padding": SpacingShorthand;
+        /**
+          * Skipped
+         */
+        "paddingBottom": Spacing;
+        /**
+          * Skipped
+         */
+        "paddingLeft": Spacing;
+        /**
+          * Skipped
+         */
+        "paddingRight": Spacing;
+        /**
+          * Skipped
+         */
+        "paddingTop": Spacing;
+        /**
           * Position
          */
         "position": Position;
@@ -1426,6 +1446,26 @@ declare namespace LocalJSX {
           * Is drawer visible
          */
         "opened"?: false;
+        /**
+          * <Description generated in helper file>
+         */
+        "padding"?: SpacingShorthand;
+        /**
+          * Skipped
+         */
+        "paddingBottom"?: Spacing;
+        /**
+          * Skipped
+         */
+        "paddingLeft"?: Spacing;
+        /**
+          * Skipped
+         */
+        "paddingRight"?: Spacing;
+        /**
+          * Skipped
+         */
+        "paddingTop"?: Spacing;
         /**
           * Position
          */
