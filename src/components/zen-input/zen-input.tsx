@@ -43,6 +43,9 @@ export class ZenInput {
   /** Focus next control when pressing Enter key */
   @Prop() readonly enterToTab = true;
 
+  /** Should display clear button if focused and not empty */
+  @Prop() readonly clearButton = true;
+
   /** The value of the input. */
   @Prop({ mutable: true }) value?: string = '';
 
@@ -123,7 +126,7 @@ export class ZenInput {
           onInput={this.onInput}
           onChange={this.onChange}
         />
-        {!this.isEmpty && this.inputFocused && (
+        {!this.isEmpty && this.inputFocused && this.clearButton && (
           <ZenIcon
             slot="trailingSlot"
             padding="xs md xs none"
