@@ -1,4 +1,4 @@
-import { h, Component, Element, Host, Prop, Watch } from '@stencil/core';
+import { h, Component, Element, Host, Prop, Watch, Event, EventEmitter } from '@stencil/core';
 import { faChevronRight } from '@fortawesome/pro-regular-svg-icons';
 import { SpacingShorthand, Spacing } from '../helpers/types';
 import { showWithAnimation, hideWithAnimation, showInstantly, hideInstantly } from '../helpers/animations';
@@ -33,6 +33,12 @@ export class ZenPanel {
   /** Padding of content section */
   @Prop({ reflect: true }) readonly contentPadding: SpacingShorthand = 'md lg';
 
+  /** Panel opened */
+  @Event() open: EventEmitter<void>;
+
+  /** Panel closed */
+  @Event() close: EventEmitter<void>;
+
   @Watch('visible')
   async visibleChanged(visible: boolean): Promise<void> {
     if (visible) {
@@ -40,6 +46,7 @@ export class ZenPanel {
     } else {
       this.initializing ? hideInstantly(this.content) : hideWithAnimation(this.content);
     }
+    (visible ? this.open : this.close).emit();
   }
 
   toggleContent(): void {
