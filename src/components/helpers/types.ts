@@ -15,7 +15,9 @@ export type IconSizes = 'sm' | 'md' | 'lg';
 
 export type Size = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
-export type PaddingShorthand = Size | None | string;
+export type Spacing = Size | null | '2xl' | '3xl' | '4xl' | '5xl' | '6xl';
+
+export type SpacingShorthand = Spacing | None | string;
 
 export type None = 'none';
 

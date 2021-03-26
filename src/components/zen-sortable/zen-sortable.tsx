@@ -1,7 +1,7 @@
 import { Component, Host, h, Element, Prop } from '@stencil/core';
 import Sortable from 'sortablejs';
 import { applyPrefix } from '../helpers/helpers';
-import { PaddingShorthand } from '../helpers/types';
+import { SpacingShorthand, Size, None } from '../helpers/types';
 
 /**
  * @slot defaultSlot - Slot for ex. zen-sortable-item with possibility to set padding and spacing
@@ -16,10 +16,10 @@ export class ZenSortable {
   @Element() host: HTMLZenSortableElement;
 
   /** Container padding */
-  @Prop() readonly padding: PaddingShorthand = 'none';
+  @Prop() readonly padding: SpacingShorthand = 'none';
 
   /** Container item spacing */
-  @Prop() readonly spacing: PaddingShorthand = 'none';
+  @Prop() readonly spacing: Size | None = 'none';
 
   hasItemDataId(): boolean {
     return Array.from(this.host.children).every(item => item.hasAttribute('data-id'));
