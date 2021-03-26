@@ -440,10 +440,6 @@ export namespace Components {
     }
     interface ZenOption {
         /**
-          * False to enable custom item padding
-         */
-        "defaultPadding": boolean;
-        /**
           * Disable selecting option in dropdown
          */
         "disabled"?: boolean;
@@ -455,6 +451,26 @@ export namespace Components {
           * Prevents default hover style on mouse hover
          */
         "noHover"?: boolean;
+        /**
+          * <Description generated in helper file>
+         */
+        "padding": SpacingShorthand;
+        /**
+          * Skipped
+         */
+        "paddingBottom": Spacing;
+        /**
+          * Skipped
+         */
+        "paddingLeft": Spacing;
+        /**
+          * Skipped
+         */
+        "paddingRight": Spacing;
+        /**
+          * Skipped
+         */
+        "paddingTop": Spacing;
         /**
           * Render item as selected
          */
@@ -1693,10 +1709,6 @@ declare namespace LocalJSX {
     }
     interface ZenOption {
         /**
-          * False to enable custom item padding
-         */
-        "defaultPadding"?: boolean;
-        /**
           * Disable selecting option in dropdown
          */
         "disabled"?: boolean;
@@ -1708,6 +1720,26 @@ declare namespace LocalJSX {
           * Prevents default hover style on mouse hover
          */
         "noHover"?: boolean;
+        /**
+          * <Description generated in helper file>
+         */
+        "padding"?: SpacingShorthand;
+        /**
+          * Skipped
+         */
+        "paddingBottom"?: Spacing;
+        /**
+          * Skipped
+         */
+        "paddingLeft"?: Spacing;
+        /**
+          * Skipped
+         */
+        "paddingRight"?: Spacing;
+        /**
+          * Skipped
+         */
+        "paddingTop"?: Spacing;
         /**
           * Render item as selected
          */

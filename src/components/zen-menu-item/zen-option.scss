@@ -2,7 +2,6 @@
 @import '../../zen-styles/mixins/forms.scss';
 
 $item-line-height: 1.2rem;
-$item-ypadding: 0.5rem;
 
 :host {
   position: relative;
@@ -16,10 +15,6 @@ $item-ypadding: 0.5rem;
     transition: background-color 0.2s linear;
     display: flex;
     align-items: center;
-
-    &:not(.paddingless) {
-      padding: $item-ypadding 1rem;
-    }
 
     &.disabled {
       opacity: 0.5;
