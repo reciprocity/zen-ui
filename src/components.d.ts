@@ -918,6 +918,26 @@ export namespace Components {
          */
         "offset"?: number;
         /**
+          * Description generated in helper file
+         */
+        "padding": SpacingShorthand;
+        /**
+          * Skipped
+         */
+        "paddingBottom": Spacing;
+        /**
+          * Skipped
+         */
+        "paddingLeft": Spacing;
+        /**
+          * Skipped
+         */
+        "paddingRight": Spacing;
+        /**
+          * Skipped
+         */
+        "paddingTop": Spacing;
+        /**
           * Set tooltip position
          */
         "position"?: Placement;
@@ -2118,6 +2138,26 @@ declare namespace LocalJSX {
           * Set tooltip offset to target element
          */
         "offset"?: number;
+        /**
+          * Description generated in helper file
+         */
+        "padding"?: SpacingShorthand;
+        /**
+          * Skipped
+         */
+        "paddingBottom"?: Spacing;
+        /**
+          * Skipped
+         */
+        "paddingLeft"?: Spacing;
+        /**
+          * Skipped
+         */
+        "paddingRight"?: Spacing;
+        /**
+          * Skipped
+         */
+        "paddingTop"?: Spacing;
         /**
           * Set tooltip position
          */
