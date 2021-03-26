@@ -2,11 +2,11 @@
 import { createVisualTests } from '../../support/utils/visualTesting';
 
 describe('Avatar group visual tests', () => {
-  const pageId = 'icons-avatar-avatar-group--default';
+  const pageId = 'graphics-avatar-avatar-group--default';
   const stories = [
-    'story--icons-avatar-avatar-group--story-avatar-group',
-    'story--icons-avatar-avatar-group--story-avatar-group-colors',
-    'story--icons-avatar-avatar-group--default-story',
+    'story--graphics-avatar-avatar-group--story-avatar-group',
+    'story--graphics-avatar-avatar-group--story-avatar-group-colors',
+    'story--graphics-avatar-avatar-group--default-story',
   ];
 
   // Example how to skip testing for some user stories

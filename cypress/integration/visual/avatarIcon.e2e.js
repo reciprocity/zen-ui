@@ -2,11 +2,11 @@
 import { createVisualTests } from '../../support/utils/visualTesting';
 
 describe('Avatar icon visual tests', () => {
-  const pageId = 'icons-avatar-avatar-icon--default';
+  const pageId = 'graphics-avatar-avatar-icon--default';
   const stories = [
-    'story--icons-avatar-avatar-icon--story-avatar-variants',
-    'story--icons-avatar-avatar-icon--story-avatar-sizes',
-    'story--icons-avatar-avatar-icon--default-story',
+    'story--graphics-avatar-avatar-icon--story-avatar-variants',
+    'story--graphics-avatar-avatar-icon--story-avatar-sizes',
+    'story--graphics-avatar-avatar-icon--default-story',
   ];
 
   // Example how to skip testing for some user stories
