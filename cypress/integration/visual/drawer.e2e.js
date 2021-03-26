@@ -17,7 +17,7 @@ describe('Drawer visual tests', { scrollBehavior: 'center' }, () => {
     cy.get(`#${story[0]}`)
       .within(() => {
         cy.get('.btn-primary').click();
-        cy.get('sb-zen-drawer').should('be.visible');
+        cy.get('sb-zen-drawer').should('be.visible').wait(200);
       })
       .parents('.innerZoomElementWrapper')
       .matchImageSnapshot();

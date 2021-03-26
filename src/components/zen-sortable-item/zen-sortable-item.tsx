@@ -1,7 +1,7 @@
 import { Component, Host, h, Element, Prop } from '@stencil/core';
 import { faGripVertical } from '@fortawesome/pro-solid-svg-icons';
 import { applyPrefix } from '../helpers/helpers';
-import { PaddingShorthand } from '../helpers/types';
+import { SpacingShorthand } from '../helpers/types';
 
 /**
  * @slot defaultSlot - Slot for custom content
@@ -15,7 +15,7 @@ export class ZenSortableItem {
   @Element() host: HTMLZenSortableItemElement;
 
   /** Container padding */
-  @Prop() readonly padding: PaddingShorthand = 'sm lg';
+  @Prop() readonly padding: SpacingShorthand = 'sm lg';
 
   render(): HTMLElement {
     const ZenIcon = applyPrefix('zen-icon', this.host);
