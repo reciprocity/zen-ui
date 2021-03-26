@@ -504,12 +504,6 @@ export namespace Components {
          */
         "value": string;
     }
-    interface ZenSkeleton {
-        /**
-          * Makes the skeleton rounded
-         */
-        "rounded": boolean;
-    }
     interface ZenSortable {
         /**
           * Container padding
@@ -940,12 +934,6 @@ declare global {
         prototype: HTMLZenRadioElement;
         new (): HTMLZenRadioElement;
     };
-    interface HTMLZenSkeletonElement extends Components.ZenSkeleton, HTMLStencilElement {
-    }
-    var HTMLZenSkeletonElement: {
-        prototype: HTMLZenSkeletonElement;
-        new (): HTMLZenSkeletonElement;
-    };
     interface HTMLZenSortableElement extends Components.ZenSortable, HTMLStencilElement {
     }
     var HTMLZenSortableElement: {
@@ -1059,7 +1047,6 @@ declare global {
         "zen-popover": HTMLZenPopoverElement;
         "zen-progress-tracker": HTMLZenProgressTrackerElement;
         "zen-radio": HTMLZenRadioElement;
-        "zen-skeleton": HTMLZenSkeletonElement;
         "zen-sortable": HTMLZenSortableElement;
         "zen-sortable-item": HTMLZenSortableItemElement;
         "zen-space": HTMLZenSpaceElement;
@@ -1549,12 +1536,6 @@ declare namespace LocalJSX {
          */
         "value"?: string;
     }
-    interface ZenSkeleton {
-        /**
-          * Makes the skeleton rounded
-         */
-        "rounded"?: boolean;
-    }
     interface ZenSortable {
         /**
           * Container padding
@@ -1844,7 +1825,6 @@ declare namespace LocalJSX {
         "zen-popover": ZenPopover;
         "zen-progress-tracker": ZenProgressTracker;
         "zen-radio": ZenRadio;
-        "zen-skeleton": ZenSkeleton;
         "zen-sortable": ZenSortable;
         "zen-sortable-item": ZenSortableItem;
         "zen-space": ZenSpace;
@@ -1893,7 +1873,6 @@ declare module "@stencil/core" {
             "zen-popover": LocalJSX.ZenPopover & JSXBase.HTMLAttributes<HTMLZenPopoverElement>;
             "zen-progress-tracker": LocalJSX.ZenProgressTracker & JSXBase.HTMLAttributes<HTMLZenProgressTrackerElement>;
             "zen-radio": LocalJSX.ZenRadio & JSXBase.HTMLAttributes<HTMLZenRadioElement>;
-            "zen-skeleton": LocalJSX.ZenSkeleton & JSXBase.HTMLAttributes<HTMLZenSkeletonElement>;
             "zen-sortable": LocalJSX.ZenSortable & JSXBase.HTMLAttributes<HTMLZenSortableElement>;
             "zen-sortable-item": LocalJSX.ZenSortableItem & JSXBase.HTMLAttributes<HTMLZenSortableItemElement>;
             "zen-space": LocalJSX.ZenSpace & JSXBase.HTMLAttributes<HTMLZenSpaceElement>;

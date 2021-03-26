@@ -27,10 +27,6 @@ $select-transition: 0.5s;
   border: 1px solid $color-blue-700;
 }
 
-:host([full-span]) {
-  z-index: 2;
-}
-
 :host([full-span]) ::slotted(*:first-child) {
   position: absolute;
   left: 0;
