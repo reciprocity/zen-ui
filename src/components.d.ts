@@ -564,6 +564,26 @@ export namespace Components {
          */
         "horizontalAlign": FlexAlign;
         /**
+          * <Description generated in helper file>
+         */
+        "margin": SpacingShorthand;
+        /**
+          * Skipped
+         */
+        "marginBottom": Spacing;
+        /**
+          * Skipped
+         */
+        "marginLeft": Spacing;
+        /**
+          * Skipped
+         */
+        "marginRight": Spacing;
+        /**
+          * Skipped
+         */
+        "marginTop": Spacing;
+        /**
           * Break row/column if content doesn't fit
          */
         "noWrap": boolean;
@@ -1656,6 +1676,26 @@ declare namespace LocalJSX {
           * Horizontal align of items
          */
         "horizontalAlign"?: FlexAlign;
+        /**
+          * <Description generated in helper file>
+         */
+        "margin"?: SpacingShorthand;
+        /**
+          * Skipped
+         */
+        "marginBottom"?: Spacing;
+        /**
+          * Skipped
+         */
+        "marginLeft"?: Spacing;
+        /**
+          * Skipped
+         */
+        "marginRight"?: Spacing;
+        /**
+          * Skipped
+         */
+        "marginTop"?: Spacing;
         /**
           * Break row/column if content doesn't fit
          */
