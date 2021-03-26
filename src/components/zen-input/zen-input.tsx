@@ -1,5 +1,7 @@
 import { Component, Host, h, Prop, Element, Listen, State, Method, Watch } from '@stencil/core';
 import { getNextField } from '../helpers/helpers';
+import { faTimes } from '@fortawesome/pro-regular-svg-icons';
+import { applyPrefix } from '../helpers/helpers';
 
 /**
  * @slot leadingSlot - Slot placed at the left
@@ -89,8 +91,14 @@ export class ZenInput {
     return this.value;
   }
 
+  private onClearClick(event: Event): void {
+    console.log('todo: clear'); // todo
+    event.stopPropagation();
+  }
+
   render(): HTMLElement {
     const value = this.getValue();
+    const ZenIcon = applyPrefix('zen-icon', this.host);
 
     return (
       <Host class={{ 'has-focus': this.hasFocus || this.inputFocused, invalid: this.invalid, disabled: this.disabled }}>
@@ -106,6 +114,13 @@ export class ZenInput {
           onInput={this.onInput}
           onChange={this.onChange}
         />
+        <ZenIcon
+          slot="trailingSlot"
+          padding="md md md none"
+          class="icon clear"
+          icon={faTimes}
+          onMousedown={event => this.onClearClick(event)}
+        ></ZenIcon>
         <slot name="trailingSlot"></slot>
       </Host>
     );
