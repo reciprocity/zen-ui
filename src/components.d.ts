@@ -466,6 +466,30 @@ export namespace Components {
     }
     interface ZenPanel {
         /**
+          * Padding of content section
+         */
+        "contentPadding": SpacingShorthand;
+        /**
+          * <Description generated in helper file>
+         */
+        "padding": SpacingShorthand;
+        /**
+          * Skipped
+         */
+        "paddingBottom": Spacing;
+        /**
+          * Skipped
+         */
+        "paddingLeft": Spacing;
+        /**
+          * Skipped
+         */
+        "paddingRight": Spacing;
+        /**
+          * Skipped
+         */
+        "paddingTop": Spacing;
+        /**
           * Default visible state
          */
         "visible": boolean;
@@ -1634,6 +1658,30 @@ declare namespace LocalJSX {
         "value"?: OptionValue;
     }
     interface ZenPanel {
+        /**
+          * Padding of content section
+         */
+        "contentPadding"?: SpacingShorthand;
+        /**
+          * <Description generated in helper file>
+         */
+        "padding"?: SpacingShorthand;
+        /**
+          * Skipped
+         */
+        "paddingBottom"?: Spacing;
+        /**
+          * Skipped
+         */
+        "paddingLeft"?: Spacing;
+        /**
+          * Skipped
+         */
+        "paddingRight"?: Spacing;
+        /**
+          * Skipped
+         */
+        "paddingTop"?: Spacing;
         /**
           * Default visible state
          */
