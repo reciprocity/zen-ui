@@ -44,7 +44,7 @@ export class ZenInput {
   @Prop() readonly enterToTab = true;
 
   /** Should display clear button if focused and not empty */
-  @Prop() readonly clearButton = true;
+  @Prop({ reflect: true }) readonly clearButton = true;
 
   /** The value of the input. */
   @Prop({ mutable: true }) value?: string = '';
@@ -131,6 +131,7 @@ export class ZenInput {
             slot="trailingSlot"
             padding="xs md xs none"
             class="icon clear"
+            role="button"
             icon={faTimes}
             onMousedown={event => this.onClearClick(event)}
           ></ZenIcon>
