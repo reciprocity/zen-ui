@@ -1,8 +1,8 @@
 import { Component, Host, h, Element, Prop, Watch, State, Event, EventEmitter, Method } from '@stencil/core';
 import { createPopper, Placement, Offsets } from '@popperjs/core';
-import { getComposedPath, waitNextFrame } from '../helpers/helpers';
+import { getComposedPath, waitNextFrame, applyPrefix } from '../helpers/helpers';
 import { showWithAnimation, hideWithAnimation, showInstantly, hideInstantly } from '../helpers/animations';
-import { TriggerEvent } from '../helpers/types';
+import { TriggerEvent, SpacingShorthand, Spacing } from '../helpers/types';
 
 @Component({
   tag: 'zen-popover',
@@ -53,6 +53,17 @@ export class ZenPopover {
 
   /** Background color */
   @Prop() readonly backgroundColor: string = '';
+
+  /** <Description generated in helper file> */
+  @Prop({ reflect: true }) readonly padding: SpacingShorthand = null;
+  /** Skipped */
+  @Prop({ reflect: true }) readonly paddingTop: Spacing = null;
+  /** Skipped */
+  @Prop({ reflect: true }) readonly paddingRight: Spacing = null;
+  /** Skipped */
+  @Prop({ reflect: true }) readonly paddingBottom: Spacing = null;
+  /** Skipped */
+  @Prop({ reflect: true }) readonly paddingLeft: Spacing = null;
 
   /** Visibility changed */
   @Event() visibleChange: EventEmitter<void>;
@@ -250,12 +261,22 @@ export class ZenPopover {
   }
 
   render(): HTMLElement {
+    const ZenSpace = applyPrefix('zen-space', this.host);
     const style = this.backgroundColor ? { 'background-color': this.backgroundColor } : {};
     return (
       <Host>
         <div class="popup-wrap" role="tooltip">
           <div class="popup" style={style} data-position={this.actualPosition}>
-            <slot />
+            <ZenSpace
+              block
+              padding={this.padding}
+              padding-top={this.paddingTop}
+              padding-right={this.paddingRight}
+              padding-bottom={this.paddingBottom}
+              padding-left={this.paddingLeft}
+            >
+              <slot />
+            </ZenSpace>
           </div>
         </div>
       </Host>
