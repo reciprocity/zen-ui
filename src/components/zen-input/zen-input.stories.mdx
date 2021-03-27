@@ -18,6 +18,34 @@ export const StoryWithControls = args => html/*html*/ `
   ${logEvents('#input1', getComponentData('zen-input'))}
 `;
 
+export const StorySizes = () => {
+  waitForElement('#user-icon-sm, #user-icon-md, #user-icon-lg', elements => {
+    Array.from(elements).forEach(element => (element.icon = faUser));
+  });
+  return html/*html*/ `
+    <sb-zen-space spacing="md" horizontal-align="space-between" vertical-align="end">
+      <sb-zen-space vertical spacing="md">
+        <sb-zen-input size="sm" value="Some initial text" style="width: 18rem">
+          <sb-zen-icon id="user-icon-sm" size="sm" slot="leadingSlot" style="margin-left: 0.5rem;"></sb-zen-icon>
+        </sb-zen-input>
+        <sb-zen-text variant="label" align="center" style="width: 100%">sm</sb-zen-text>
+      </sb-zen-space>
+      <sb-zen-space vertical spacing="md">
+        <sb-zen-input size="md" value="Some initial text" style="width: 18rem">
+          <sb-zen-icon id="user-icon-md" slot="leadingSlot" style="margin-left: 0.5rem;"></sb-zen-icon>
+        </sb-zen-input>
+        <sb-zen-text variant="label" align="center" style="width: 100%">md</sb-zen-text>
+      </sb-zen-space>
+      <sb-zen-space vertical spacing="md">
+        <sb-zen-input size="lg" value="Some initial text" style="width: 18rem">
+          <sb-zen-icon id="user-icon-lg" slot="leadingSlot" style="margin-left: 0.5rem;"></sb-zen-icon>
+        </sb-zen-input>
+        <sb-zen-text variant="label" align="center" style="width: 100%">lg</sb-zen-text>
+      </sb-zen-space>
+    </sb-zen-space>
+  `;
+};
+
 export const StoryWithLeadingSlot = () => {
   waitForElement('#user-icon', element => {
     element.icon = faUser;
@@ -85,7 +113,15 @@ Form input component with slots capabilities
 
 <br />
 
-### 1. Input with leading slot fulfilled
+### 1. Sizes
+
+- Input ships in different sizes
+
+<Canvas>
+  <Story name="StorySizes">{StorySizes.bind({})}</Story>
+</Canvas>
+
+### 2. Input with leading slot fulfilled
 
 - Apply leadingSlot value for the slot attribute in your inner custom HTML
 
@@ -93,7 +129,7 @@ Form input component with slots capabilities
   <Story name="StoryWithLeadingSlot">{StoryWithLeadingSlot.bind({})}</Story>
 </Canvas>
 
-### 2. Search bar - Input with trailing slot fulfilled
+### 3. Search bar - Input with trailing slot fulfilled
 
 - Apply trailingSlot value for the slot attribute in your inner custom HTML
 
@@ -101,7 +137,7 @@ Form input component with slots capabilities
   <Story name="StoryWithTrailingSlot">{StoryWithTrailingSlot.bind({})}</Story>
 </Canvas>
 
-### 3. Input with leading and trailing slots fulfilled
+### 4. Input with leading and trailing slots fulfilled
 
 - Apply leadingSlot and trailingSlot values for the slot attributes in your inner custom HTML
 
@@ -109,7 +145,7 @@ Form input component with slots capabilities
   <Story name="StoryWithLeadingAndTrailingSlots">{StoryWithLeadingAndTrailingSlots.bind({})}</Story>
 </Canvas>
 
-### 4. In a form group
+### 5. In a form group
 
 - Apply trailingSlot value for the slot attribute in your inner custom HTML
 
