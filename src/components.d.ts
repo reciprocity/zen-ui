@@ -266,6 +266,10 @@ export namespace Components {
          */
         "placeholder": "Select date";
         /**
+          * Size variant
+         */
+        "size": InputSize;
+        /**
           * Selected date
          */
         "value": Date;
@@ -1582,6 +1586,10 @@ declare namespace LocalJSX {
           * Placeholder
          */
         "placeholder"?: "Select date";
+        /**
+          * Size variant
+         */
+        "size"?: InputSize;
         /**
           * Selected date
          */

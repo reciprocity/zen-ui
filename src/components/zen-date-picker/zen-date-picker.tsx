@@ -18,6 +18,7 @@ import {
   faTimes,
 } from '@fortawesome/pro-regular-svg-icons';
 import { applyPrefix } from '../helpers/helpers';
+import { InputSize } from '../helpers/types';
 
 enum Navigate {
   prevMonth,
@@ -72,6 +73,9 @@ export class ZenDatePicker {
 
   /** Shows invalid styles. */
   @Prop() readonly invalid = false;
+
+  /** Size variant */
+  @Prop({ reflect: true }) readonly size: InputSize = 'md';
 
   @Watch('formattedDate')
   async formattedDateChanged(formatted: string): Promise<void> {
@@ -190,6 +194,10 @@ export class ZenDatePicker {
     }
   }
 
+  inputIconSize(): string {
+    return this.size === 'sm' ? 'sm' : 'md';
+  }
+
   onInputChange(event: Event): void {
     const input = event.target as HTMLInputElement;
     if (!input.value && this.allowEmpty) {
@@ -241,14 +249,22 @@ export class ZenDatePicker {
           has-focus={this.opened}
           clear-button="false"
           onChange={e => this.onInputChange(e)}
+          size={this.size}
         >
-          <ZenIcon slot="leadingSlot" padding="md none md md" class="icon" icon={faCalendarAlt}></ZenIcon>
+          <ZenIcon
+            slot="leadingSlot"
+            size={this.inputIconSize()}
+            padding="md none md md"
+            class="icon"
+            icon={faCalendarAlt}
+          ></ZenIcon>
           {this.allowEmpty && (
             <ZenIcon
               slot="trailingSlot"
               padding="md md md none"
               class="icon clear"
               icon={faTimes}
+              size={this.inputIconSize()}
               onMousedown={event => this.onClearClick(event)}
             ></ZenIcon>
           )}
