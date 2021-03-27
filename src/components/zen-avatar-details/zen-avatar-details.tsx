@@ -1,6 +1,6 @@
 import { Component, Host, h, Element, Prop } from '@stencil/core';
 import { applyPrefix } from '../helpers/helpers';
-import { AvatarDetailVariant, IconSizes, Spacing, Size } from '../helpers/types';
+import { AvatarDetailVariant, IconSizes, Spacing, SpacingShorthand } from '../helpers/types';
 
 @Component({
   tag: 'zen-avatar-details',
@@ -59,13 +59,13 @@ export class ZenAvatarDetails {
       basic: {
         verticalAlignment: 'center',
         avatarIconSize: this.size,
-        usernameBold: false,
+        userNameBold: false,
         textSize: this.getTextSize(),
       },
       detailed: {
         verticalAlignment: 'start',
         avatarIconSize: 'md',
-        usernameBold: true,
+        userNameBold: true,
         textSize: 'md',
       },
     };
@@ -80,12 +80,12 @@ export class ZenAvatarDetails {
       <Host>
         <ZenSpace
           no-wrap
+          padding={this.padding}
           padding-top={this.paddingTop}
           padding-right={this.paddingRight}
           padding-bottom={this.paddingBottom}
           padding-left={this.paddingLeft}
-          vertical-align={this.variant == 'basic' ? 'center' : 'start'}
-          spacing={this.spacing}
+          spacing="md"
           vertical-align={this.getPropValueByVariant('verticalAlignment')}
         >
           <ZenAvatarIcon
@@ -98,7 +98,7 @@ export class ZenAvatarDetails {
           <ZenSpace vertical padding="xs" spacing="sm">
             <ZenText
               size={this.getPropValueByVariant('textSize')}
-              bold={this.getPropValueByVariant('usernameBold')}
+              bold={this.getPropValueByVariant('userNameBold')}
               data-test="username"
             >
               {this.userName}
