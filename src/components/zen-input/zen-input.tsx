@@ -2,6 +2,7 @@ import { Component, Host, h, Prop, Element, Listen, State, Method, Watch } from 
 import { getNextField } from '../helpers/helpers';
 import { faTimes } from '@fortawesome/pro-regular-svg-icons';
 import { applyPrefix } from '../helpers/helpers';
+import { InputSize } from '../helpers/types';
 
 /**
  * @slot leadingSlot - Slot placed at the left
@@ -48,6 +49,9 @@ export class ZenInput {
 
   /** The value of the input. */
   @Prop({ mutable: true }) value?: string = '';
+
+  /** Size variant */
+  @Prop({ reflect: true }) readonly size: InputSize = 'md';
 
   @Listen('keydown')
   handleKeyDown(ev: KeyboardEvent): void {
@@ -104,6 +108,10 @@ export class ZenInput {
     event.preventDefault();
   }
 
+  clearIconSize(): string {
+    return this.size === 'sm' ? 'sm' : 'md';
+  }
+
   componentDidLoad(): void {
     this.valueChanged(this.value);
   }
@@ -133,6 +141,7 @@ export class ZenInput {
             class="icon clear"
             role="button"
             icon={faTimes}
+            size={this.clearIconSize()}
             onMousedown={event => this.onClearClick(event)}
           ></ZenIcon>
         )}

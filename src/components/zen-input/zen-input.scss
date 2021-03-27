@@ -67,3 +67,21 @@ input {
   cursor: pointer;
   color: $color-gray-300;
 }
+
+:host([size='sm']) {
+  font-size: $text-sm;
+
+  input {
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+  }
+}
+
+:host([size='lg']) {
+  font-size: $text-lg;
+
+  input {
+    padding-top: 0.625rem;
+    padding-bottom: 0.625rem;
+  }
+}
