@@ -42,23 +42,34 @@ export class ZenAvatarDetails {
   /** Spacing between icon and username  */
   @Prop() readonly spacing: Size | None = 'md';
 
-  textSize(): string {
-    let textSize = 'md';
-    if (this.variant == 'detailed') return textSize;
+  getTextSize(): string {
+    if (this.variant === 'detailed') return 'md';
 
-    switch (this.size) {
-      case 'sm':
-        textSize = 'md';
-        break;
-      case 'md':
-        textSize = 'lg';
-        break;
-      case 'lg':
-        textSize = 'xl';
-        break;
-    }
+    // Basic variant text has a different size than icon
+    const basicTextSizeByDetailSize = {
+      sm: 'md',
+      md: 'lg',
+      lg: 'xl',
+    };
+    return basicTextSizeByDetailSize[this.size];
+  }
 
-    return textSize;
+  getPropValueByVariant(propertyName: string): string {
+    const propsByVariant = {
+      basic: {
+        verticalAlignment: 'center',
+        avatarIconSize: this.size,
+        usernameBold: false,
+        textSize: this.getTextSize(),
+      },
+      detailed: {
+        verticalAlignment: 'start',
+        avatarIconSize: 'md',
+        usernameBold: true,
+        textSize: 'md',
+      },
+    };
+    return propsByVariant[this.variant][propertyName];
   }
 
   render(): HTMLElement {
@@ -75,19 +86,24 @@ export class ZenAvatarDetails {
           padding-left={this.paddingLeft}
           vertical-align={this.variant == 'basic' ? 'center' : 'start'}
           spacing={this.spacing}
+          vertical-align={this.getPropValueByVariant('verticalAlignment')}
         >
           <ZenAvatarIcon
             user-name={this.userName}
             color={this.iconColor}
             background={this.iconBackground}
-            size={this.variant == 'basic' ? this.size : 'md'}
+            size={this.getPropValueByVariant('avatarIconSize')}
             data-test="avatar-icon"
           />
           <ZenSpace vertical padding="xs" spacing="sm">
-            <ZenText size={this.textSize()} bold={this.variant == 'detailed'} data-test="username">
+            <ZenText
+              size={this.getPropValueByVariant('textSize')}
+              bold={this.getPropValueByVariant('usernameBold')}
+              data-test="username"
+            >
               {this.userName}
             </ZenText>
-            {this.variant == 'detailed' && (
+            {this.variant === 'detailed' && (
               <ZenText size="md" data-test="email">
                 {this.email}
               </ZenText>
