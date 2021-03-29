@@ -40,7 +40,7 @@ export const Slots = args => {
         width: 100%;
       }
     </style>
-    <sb-zen-option default-padding="false">
+    <sb-zen-option padding="none">
       <div class="content">
         <img class="icon" src=${icon} alt="icon" />
         <b>Custom content</b>
@@ -67,7 +67,7 @@ You can wrap any content within zen-option. Here we've added custom png icon, so
 ## Properties
 
 export const Template = args => html/*html*/ `
-  <sb-zen-option default-padding="false" ...="${spreadArgs(args, argTypes)}"> Dropdown option </sb-zen-option>
+  <sb-zen-option padding="none" ...="${spreadArgs(args, argTypes)}"> Dropdown option </sb-zen-option>
 `;
 
 <Canvas>

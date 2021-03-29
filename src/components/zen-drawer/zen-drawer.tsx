@@ -1,6 +1,6 @@
 import { Component, Element, Host, h, Prop, Watch, Event, EventEmitter } from '@stencil/core';
 import { hideInstantly, hideWithAnimation, showInstantly, showWithAnimation } from '../helpers/animations';
-import { Position } from '../helpers/types';
+import { Position, SpacingShorthand, Spacing } from '../helpers/types';
 import { applyPrefix } from '../helpers/helpers';
 import { faArrowToRight } from '@fortawesome/pro-light-svg-icons';
 
@@ -19,6 +19,17 @@ export class ZenDrawer {
 
   /** Position */
   @Prop({ reflect: true }) readonly position: Position = 'right';
+
+  /** <Description generated in helper file> */
+  @Prop() readonly padding: SpacingShorthand = 'lg';
+  /** Skipped */
+  @Prop() readonly paddingTop: Spacing = null;
+  /** Skipped */
+  @Prop() readonly paddingRight: Spacing = null;
+  /** Skipped */
+  @Prop() readonly paddingBottom: Spacing = null;
+  /** Skipped */
+  @Prop() readonly paddingLeft: Spacing = null;
 
   /** Inner drawer hide button clicked */
   @Event() close: EventEmitter<void>;
@@ -39,14 +50,25 @@ export class ZenDrawer {
   render(): HTMLElement {
     const ZenButton = applyPrefix('zen-button', this.host);
     const ZenIcon = applyPrefix('zen-icon', this.host);
+    const ZenSpace = applyPrefix('zen-space', this.host);
     return (
       <Host data-position={this.position}>
-        <div class="drawer" data-position={this.position} ref={el => (this.drawer = el)}>
+        <ZenSpace
+          class="drawer"
+          data-position={this.position}
+          ref={el => (this.drawer = el)}
+          block
+          padding={this.padding}
+          padding-top={this.paddingTop}
+          padding-right={this.paddingRight}
+          padding-bottom={this.paddingBottom}
+          padding-left={this.paddingLeft}
+        >
           <ZenButton onClick={() => this.onCloseClicked()} class="close-btn" variant="tertiary">
             <ZenIcon padding="sm" size="md" class="close-icon" icon={faArrowToRight}></ZenIcon>
           </ZenButton>
           <slot></slot>
-        </div>
+        </ZenSpace>
       </Host>
     );
   }

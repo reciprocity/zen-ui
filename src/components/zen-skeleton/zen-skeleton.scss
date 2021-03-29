@@ -1,6 +1,13 @@
 @import '../../zen-styles/component-helpers.scss';
+@import '../helpers/helpers.scss';
 
 :host {
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+}
+
+:host .background {
   border-radius: 2px;
   display: inline-block;
   height: 100%;
@@ -29,6 +36,8 @@
   }
 }
 
-:host([rounded]) {
+:host([rounded]) .background {
   border-radius: 9999px;
 }
+
+@include paddingSizes;

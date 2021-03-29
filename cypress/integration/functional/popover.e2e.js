@@ -24,7 +24,7 @@ describe('Popover functional tests', { scrollBehavior: 'center' }, () => {
     cy.get(`#${story[1]}`).within(() => {
       cy.contains('sb-zen-button', 'Click outside').click();
       cy.get('[data-popper-placement="bottom"]').should('be.visible');
-      cy.get('sb-zen-space').first().click('right');
+      cy.get('[data-test="outer-element"]').first().click('right');
       cy.get('[data-popper-placement="bottom"]').should('not.exist');
     });
     cy.get(`#${story[1]}`).within(() => {

@@ -44,7 +44,7 @@ export const Template = args => {
     <sb-zen-dropdown id="dropdown-controls" style="width: 20rem" ...="${spread(camelKeysToKebab(args))}">
       <div class="separator">Some custom title</div>
       <sb-zen-option value="1">Item 1</sb-zen-option>
-      <sb-zen-option default-padding="false" value="2">
+      <sb-zen-option padding="none" value="2">
         <div class="content">
           <img class="icon" src=${iconGreen} alt="icon" />
           <b>Item 2</b>
@@ -73,14 +73,14 @@ export const CustomIcons = args => {
   return html/*html*/ `
     <sb-zen-dropdown id="dropdown-with-options-slot" style="min-height: 3.2rem; width: 20rem">
       <div class="separator">Group 1</div>
-      <sb-zen-option default-padding="false" value="1">
+      <sb-zen-option padding="none" value="1">
         <div class="content">
           <img class="icon" src=${iconGreen} alt="icon" />
           <b>Item 1</b>
           <span style="margin-left: auto"><sb-zen-icon id="icon2"></sb-zen-icon></span>
         </div>
       </sb-zen-option>
-      <sb-zen-option default-padding="false" value="2">
+      <sb-zen-option padding="none" value="2">
         <div class="content">
           <img class="icon" src=${iconBlue} alt="icon" />
           <b>Item 2 with a longer label</b>
@@ -88,7 +88,7 @@ export const CustomIcons = args => {
         </div>
       </sb-zen-option>
       <div class="separator">Group 2</div>
-      <sb-zen-option default-padding="false" value="3">
+      <sb-zen-option padding="none" value="3">
         <div class="content">
           <img class="icon" src=${iconRed} alt="icon" />
           <b>Item 3</b>

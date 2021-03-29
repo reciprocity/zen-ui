@@ -10,25 +10,29 @@ const argTypes = getArgTypes(compData);
 
 <Meta title="Layout/Card" component="zen-card" argTypes={argTypes} />
 
-export const Story1 = () => {
-  return html/*html*/ `
-    <sb-zen-card id="card1">
-      <div style="padding: 1rem;">Content</div>
-    </sb-zen-card>
-  `;
-};
-
 export const Story2 = () => {
   return html/*html*/ `
     <sb-zen-card id="card2" disabled>
-      <div style="padding: 1rem;">Disabled content</div>
+      <sb-zen-text>
+        Elementum rutrum sapien faucibus netus quisque eu ornare pulvinar dui, ipsum scelerisque volutpat ullamcorper
+        suspendisse nunc mi torquent, per taciti tempus vel convallis dictumst cubilia sit. Fames porttitor sodales
+        consectetur suscipit in sapien, proin eget etiam blandit elit sociis, euismod bibendum faucibus dolor himenaeos.
+        Donec aliquet curabitur nam pellentesque felis ligula metus egestas, at volutpat urna vitae velit varius dolor
+        bibendum dictumst, lacinia cubilia justo consequat sed consectetur laoreet.
+      </sb-zen-text>
     </sb-zen-card>
   `;
 };
 
 export const StoryWithControls = args => html/*html*/ `
   <sb-zen-card id="card0" ...="${spreadArgs(args, argTypes)}">
-    <div style="padding: 1rem;">Content</div>
+    <sb-zen-text>
+      Elementum rutrum sapien faucibus netus quisque eu ornare pulvinar dui, ipsum scelerisque volutpat ullamcorper
+      suspendisse nunc mi torquent, per taciti tempus vel convallis dictumst cubilia sit. Fames porttitor sodales
+      consectetur suscipit in sapien, proin eget etiam blandit elit sociis, euismod bibendum faucibus dolor himenaeos.
+      Donec aliquet curabitur nam pellentesque felis ligula metus egestas, at volutpat urna vitae velit varius dolor
+      bibendum dictumst, lacinia cubilia justo consequat sed consectetur laoreet.
+    </sb-zen-text>
   </sb-zen-card>
   ${logEvents('#card1', getComponentData('zen-card'))}
 `;
@@ -40,12 +44,6 @@ Contain content within a rectangle, with hovering triggering an elevation effect
 ## Component previews
 
 <br />
-
-### 1. Card
-
-<Canvas>
-  <Story name="card">{Story1.bind({})}</Story>
-</Canvas>
 
 ### 2. Disabled card
 
