@@ -4,10 +4,6 @@ import { faChevronRight } from '@fortawesome/pro-light-svg-icons';
 
 /**
  * @slot [default] - Content for table cells
- * @event rowSelectChanged | Called on any selection change
- * @method hasRowsSelected | Returns true if descendents have any row selected
- * @method hasAllRowsSelected | Returns true if descendents have all rows selected
- * @method parentRow | Returns parent row
  */
 @Component({
   tag: 'zen-table-row',
