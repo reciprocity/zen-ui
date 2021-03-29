@@ -372,6 +372,10 @@ export namespace Components {
     }
     interface ZenInput {
         /**
+          * Should display clear button if focused and not empty
+         */
+        "clearButton": true;
+        /**
           * Disables input.
          */
         "disabled": false;
@@ -1644,6 +1648,10 @@ declare namespace LocalJSX {
         "size"?: IconSizes;
     }
     interface ZenInput {
+        /**
+          * Should display clear button if focused and not empty
+         */
+        "clearButton"?: true;
         /**
           * Disables input.
          */

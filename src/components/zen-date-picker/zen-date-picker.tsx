@@ -236,6 +236,7 @@ export class ZenDatePicker {
           placeholder={this.placeholder}
           value={this.formattedDate}
           has-focus={this.opened}
+          clear-button="false"
           onChange={e => this.onInputChange(e)}
         >
           <ZenIcon slot="leadingSlot" padding="md none md md" class="icon" icon={faCalendarAlt}></ZenIcon>

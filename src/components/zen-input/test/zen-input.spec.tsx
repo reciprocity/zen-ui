@@ -5,6 +5,7 @@ import * as helpers from '../../helpers/helpers';
 helpers.getNextField = jest.fn(() => getNextFieldResult);
 
 import { ZenInput } from '../zen-input';
+import { ZenIcon } from '../../zen-icon/zen-icon';
 
 describe('zen-input', () => {
   it('should render with shadow dom', async () => {
@@ -177,5 +178,44 @@ describe('zen-input', () => {
     input.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }));
     await page.waitForChanges();
     expect(nextInput.focus).toHaveBeenCalled();
+  });
+
+  it('should show clear button', async () => {
+    const page = await newSpecPage({
+      components: [ZenInput, ZenIcon],
+      html: `<zen-input></zen-input>`,
+    });
+
+    const inputElement = page.root.shadowRoot.querySelector('input');
+
+    let clearButton = page.root.shadowRoot.querySelector('.icon.clear');
+    expect(clearButton).toBeFalsy();
+
+    inputElement.dispatchEvent(new Event('focus'));
+    await page.waitForChanges();
+    clearButton = page.root.shadowRoot.querySelector('.icon.clear');
+    expect(clearButton).toBeFalsy();
+
+    inputElement.value = 'something';
+    page.root.value = 'something';
+    await page.waitForChanges();
+
+    clearButton = page.root.shadowRoot.querySelector('.icon.clear');
+    expect(clearButton).toBeTruthy();
+  });
+
+  it('should not show clear button if clearButton false', async () => {
+    const page = await newSpecPage({
+      components: [ZenInput, ZenIcon],
+      html: `<zen-input clear-button="false"></zen-input>`,
+    });
+
+    const inputElement = page.root.shadowRoot.querySelector('input');
+
+    inputElement.dispatchEvent(new Event('focus'));
+    page.root.value = 'something';
+    await page.waitForChanges();
+    const clearButton = page.root.shadowRoot.querySelector('.icon.clear');
+    expect(clearButton).toBeFalsy();
   });
 });
