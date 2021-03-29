@@ -54,22 +54,15 @@ export class ZenAvatar {
           color={this.color()}
           size={this.size()}
         />
-        <ZenTooltip variant="light" show-delay="0" max-height={this.users.length > 4 ? '250px' : null}>
-          {this.users.map((user, index) => (
-            <div>
-              <ZenAvatarDetails
-                user-name={user.userName}
-                email={user.email}
-                icon-color={user.color}
-                icon-background={user.background}
-              />
-              <div
-                class={{
-                  splitter: true,
-                  hidden: index == this.users.length - 1 || this.users.length == 1,
-                }}
-              />
-            </div>
+        <ZenTooltip variant="light" padding="none" show-delay="0" max-height={this.users.length > 4 ? '250px' : null}>
+          {this.users.map(user => (
+            <ZenAvatarDetails
+              class="details"
+              user-name={user.userName}
+              email={user.email}
+              icon-color={user.color}
+              icon-background={user.background}
+            />
           ))}
         </ZenTooltip>
       </Host>

@@ -24,13 +24,29 @@ function getDefaultValue(prop) {
 }
 
 function filterPaddingProps(argTypes) {
-  const descript = '**Inner padding** *(accepts shorthands, eg. `padding="sm xl lg"`)*.<br/>Also supports **side variants**: **`padding-top`**, **`padding-right`**, **`padding-bottom`**, **`padding-left`**<br/>*(eg. `padding-left="sm" padding-top="lg"`)*';
-  const paddingProps = ['padding', 'padding-t', 'padding-r', 'padding-b', 'padding-l'];
+  const description = '**Inner padding** *(accepts shorthands, eg. `padding="sm xl lg"`)*.<br/>Also supports **side variants**: **`padding-top`**, **`padding-right`**, **`padding-bottom`**, **`padding-left`**<br/>*(eg. `padding-left="sm" padding-top="lg"`)*';
+
+  const paddingProps = ['padding', 'paddingTop', 'paddingRight', 'paddingBottom', 'paddingLeft'];
 
   Object.keys({ ...argTypes }).forEach(prop => {
     if (!paddingProps.includes(prop)) return;
     if (prop === 'padding') {
-      argTypes[prop].description = descript;
+      argTypes[prop].description = description;
+    } else {
+      delete argTypes[prop];
+    }
+  });
+}
+
+function filterMarginProps(argTypes) {
+  const description = '**Outer margin** *(accepts shorthands, eg. `margin="sm xl lg"`)*.<br/>Also supports **side variants**: **`margin-top`**, **`margin-right`**, **`margin-bottom`**, **`margin-left`**<br/>*(eg. `margin-left="sm" margin-top="lg"`)*';
+
+  const marginProps = ['margin', 'marginTop', 'marginRight', 'marginBottom', 'marginLeft'];
+
+  Object.keys({ ...argTypes }).forEach(prop => {
+    if (!marginProps.includes(prop)) return;
+    if (prop === 'margin') {
+      argTypes[prop].description = description;
     } else {
       delete argTypes[prop];
     }
@@ -69,6 +85,7 @@ export function getArgTypes(compData) {
     argTypes[prop.name].defaultValue = getDefaultValue(argTypes[prop.name]);
   }
   filterPaddingProps(argTypes);
+  filterMarginProps(argTypes);
   return argTypes;
 }
 

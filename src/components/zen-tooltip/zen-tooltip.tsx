@@ -2,11 +2,12 @@ import { Component, Host, h, Prop, State, Element, Watch } from '@stencil/core';
 import { TooltipVariant } from '../helpers/types';
 import { applyPrefix } from '../helpers/helpers';
 import { Placement } from '@popperjs/core';
+import { SpacingShorthand, Spacing } from '../helpers/types';
 
 /**
- * @slot defaultSlot - Slot that has zen space padding lg set
- * @slot contentSlot - Slot for custom content without padding
+ * @slot defaultSlot - Tooltip content
  */
+
 @Component({
   tag: 'zen-tooltip',
   styleUrl: 'zen-tooltip.scss',
@@ -40,6 +41,17 @@ export class ZenTooltip {
   /** Show and hide delay. Eg. '100' - both show & hide 100ms. '100 500' - show 100ms, hide 500ms. */
   @Prop() readonly delay: string = '0';
 
+  /** Description generated in helper file */
+  @Prop() readonly padding: SpacingShorthand = 'lg';
+  /** Skipped */
+  @Prop() readonly paddingTop: Spacing = null;
+  /** Skipped */
+  @Prop() readonly paddingRight: Spacing = null;
+  /** Skipped */
+  @Prop() readonly paddingBottom: Spacing = null;
+  /** Skipped */
+  @Prop() readonly paddingLeft: Spacing = null;
+
   @Watch('variant')
   async variantChanged(variant: TooltipVariant): Promise<void> {
     switch (variant) {
@@ -66,7 +78,6 @@ export class ZenTooltip {
   }
 
   render(): HTMLElement {
-    const ZenSpace = applyPrefix('zen-space', this.host);
     const ZenPopover = applyPrefix('zen-popover', this.host);
     const classes = {
       tooltip: true,
@@ -88,15 +99,16 @@ export class ZenTooltip {
           offset={{ x: 0, y: this.offset }}
           delay={this.delay}
           interactive={isScrollable}
+          padding={this.padding}
+          padding-top={this.paddingTop}
+          padding-right={this.paddingRight}
+          padding-bottom={this.paddingBottom}
+          padding-left={this.paddingLeft}
         >
-          <slot name="content">
-            <ZenSpace padding="lg">
-              <slot>
-                <sb-zen-text size="sm" style={{ color: this.color }}>
-                  {this.label}
-                </sb-zen-text>
-              </slot>
-            </ZenSpace>
+          <slot>
+            <sb-zen-text size="sm" style={{ color: this.color }}>
+              {this.label}
+            </sb-zen-text>
           </slot>
         </ZenPopover>
       </Host>

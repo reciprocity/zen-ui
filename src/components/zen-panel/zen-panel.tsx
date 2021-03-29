@@ -1,5 +1,6 @@
 import { h, Component, Element, Host, Prop, Watch } from '@stencil/core';
 import { faChevronRight } from '@fortawesome/pro-regular-svg-icons';
+import { SpacingShorthand, Spacing } from '../helpers/types';
 import { showWithAnimation, hideWithAnimation, showInstantly, hideInstantly } from '../helpers/animations';
 
 import { applyPrefix } from '../helpers/helpers';
@@ -17,6 +18,20 @@ export class ZenPanel {
 
   /** Default visible state */
   @Prop({ reflect: true, mutable: true }) visible = false;
+
+  /** <Description generated in helper file> */
+  @Prop() readonly padding: SpacingShorthand = 'md lg';
+  /** Skipped */
+  @Prop() readonly paddingTop: Spacing = null;
+  /** Skipped */
+  @Prop() readonly paddingRight: Spacing = null;
+  /** Skipped */
+  @Prop() readonly paddingBottom: Spacing = null;
+  /** Skipped */
+  @Prop() readonly paddingLeft: Spacing = null;
+
+  /** Padding of content section */
+  @Prop({ reflect: true }) readonly contentPadding: SpacingShorthand = 'md lg';
 
   @Watch('visible')
   async visibleChanged(visible: boolean): Promise<void> {
@@ -42,12 +57,20 @@ export class ZenPanel {
 
     return (
       <Host>
-        <ZenSpace class="header" padding="md lg" onClick={() => this.toggleContent()}>
+        <ZenSpace
+          class="header"
+          padding={this.padding}
+          padding-top={this.paddingTop}
+          padding-right={this.paddingRight}
+          padding-bottom={this.paddingBottom}
+          padding-left={this.paddingLeft}
+          onClick={() => this.toggleContent()}
+        >
           <ZenIcon icon={faChevronRight} size="sm" padding="sm none" class="icon chevron" />
           <slot name="header" />
         </ZenSpace>
         <div class="content-wrapper">
-          <ZenSpace padding="md lg" class="content" ref={el => (this.content = el)}>
+          <ZenSpace padding={this.contentPadding} class="content" ref={el => (this.content = el)}>
             <slot></slot>
           </ZenSpace>
         </div>

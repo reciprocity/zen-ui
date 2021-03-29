@@ -31,6 +31,9 @@ export class ZenTextarea {
   /** Appends attribute required. */
   @Prop() readonly required = false;
 
+  /** Shows invalid styles. */
+  @Prop({ reflect: true }) readonly invalid = false;
+
   /** Placeholder of the textarea. */
   @Prop() readonly placeholder: string = null;
 

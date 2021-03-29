@@ -34,7 +34,7 @@ export const TemplateSlot = () => {
       <div>
         <sb-zen-button label="User" variant="secondary"></sb-zen-button>
         <sb-zen-tooltip position="top" variant="light">
-          <sb-zen-space slot="content" no-wrap padding="lg" spacing="lg">
+          <sb-zen-space no-wrap spacing="lg">
             <sb-zen-avatar-icon
               user-name="Niki Franklin"
               background="#FFEED2"
@@ -112,7 +112,7 @@ Use prop `variant` to style the tooltip.
 
 #### 2. Custom content:
 
-Wrap some html content with `<zen-tooltip>` and it will appear inside the tooltip. For no default paddings add it to the content slot
+Wrap some html content with `<zen-tooltip>` and it will appear inside the tooltip.
 
 <Canvas>
   <Story name="slot">{TemplateSlot.bind({})}</Story>

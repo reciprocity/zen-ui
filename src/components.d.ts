@@ -6,7 +6,7 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { StringifiedJson } from "./stories/components/color-swatch-group/color-swatch-group";
-import { Align, AvatarData, IconSizes, None, Notification, NotificationVariant, Position, Resize, Size, Spacing, SpacingShorthand, TextSize, TextVariant, TooltipVariant, TriggerEvent } from "./components/helpers/types";
+import { Align, AvatarData, IconSizes, None, Notification, NotificationVariant, Position, Resize, Size, Spacing, SpacingShorthand, TextSize, TextState, TextVariant, TooltipVariant, TriggerEvent } from "./components/helpers/types";
 import { ButtonVariants } from "./components/zen-button/types";
 import { OptionValue } from "./components/zen-menu-item/zen-option";
 import { IconDefinition } from "@fortawesome/pro-light-svg-icons";
@@ -110,7 +110,7 @@ export namespace Components {
         /**
           * Spacing between icon and username
          */
-        "spacing": Size;
+        "spacing": Size | None;
         /**
           * User name
          */
@@ -189,6 +189,26 @@ export namespace Components {
           * Disables card.
          */
         "disabled": false;
+        /**
+          * <Description generated in helper file>
+         */
+        "padding": SpacingShorthand;
+        /**
+          * Skipped
+         */
+        "paddingBottom": Spacing;
+        /**
+          * Skipped
+         */
+        "paddingLeft": Spacing;
+        /**
+          * Skipped
+         */
+        "paddingRight": Spacing;
+        /**
+          * Skipped
+         */
+        "paddingTop": Spacing;
     }
     interface ZenCheckbox {
         /**
@@ -238,6 +258,10 @@ export namespace Components {
          */
         "formattedDate": string | null;
         /**
+          * Shows invalid styles.
+         */
+        "invalid": false;
+        /**
           * Placeholder
          */
         "placeholder": "Select date";
@@ -253,6 +277,26 @@ export namespace Components {
           * Is drawer visible
          */
         "opened": false;
+        /**
+          * <Description generated in helper file>
+         */
+        "padding": SpacingShorthand;
+        /**
+          * Skipped
+         */
+        "paddingBottom": Spacing;
+        /**
+          * Skipped
+         */
+        "paddingLeft": Spacing;
+        /**
+          * Skipped
+         */
+        "paddingRight": Spacing;
+        /**
+          * Skipped
+         */
+        "paddingTop": Spacing;
         /**
           * Position
          */
@@ -275,6 +319,10 @@ export namespace Components {
           * Alignment of field content and menu (if menuWidth set).
          */
         "fieldAlign": Align;
+        /**
+          * Shows invalid styles.
+         */
+        "invalid": false;
         /**
           * To determine if there's enough space under field on open
          */
@@ -331,6 +379,10 @@ export namespace Components {
         "size": IconSizes;
     }
     interface ZenInput {
+        /**
+          * Should display clear button if focused and not empty
+         */
+        "clearButton": true;
         /**
           * Disables input.
          */
@@ -400,10 +452,6 @@ export namespace Components {
     }
     interface ZenOption {
         /**
-          * False to enable custom item padding
-         */
-        "defaultPadding": boolean;
-        /**
           * Disable selecting option in dropdown
          */
         "disabled"?: boolean;
@@ -416,6 +464,26 @@ export namespace Components {
          */
         "noHover"?: boolean;
         /**
+          * <Description generated in helper file>
+         */
+        "padding": SpacingShorthand;
+        /**
+          * Skipped
+         */
+        "paddingBottom": Spacing;
+        /**
+          * Skipped
+         */
+        "paddingLeft": Spacing;
+        /**
+          * Skipped
+         */
+        "paddingRight": Spacing;
+        /**
+          * Skipped
+         */
+        "paddingTop": Spacing;
+        /**
           * Render item as selected
          */
         "selected": boolean;
@@ -425,6 +493,30 @@ export namespace Components {
         "value": OptionValue;
     }
     interface ZenPanel {
+        /**
+          * Padding of content section
+         */
+        "contentPadding": SpacingShorthand;
+        /**
+          * <Description generated in helper file>
+         */
+        "padding": SpacingShorthand;
+        /**
+          * Skipped
+         */
+        "paddingBottom": Spacing;
+        /**
+          * Skipped
+         */
+        "paddingLeft": Spacing;
+        /**
+          * Skipped
+         */
+        "paddingRight": Spacing;
+        /**
+          * Skipped
+         */
+        "paddingTop": Spacing;
         /**
           * Default visible state
          */
@@ -459,6 +551,26 @@ export namespace Components {
           * Popover offset
          */
         "offset": Offsets;
+        /**
+          * <Description generated in helper file>
+         */
+        "padding": SpacingShorthand;
+        /**
+          * Skipped
+         */
+        "paddingBottom": Spacing;
+        /**
+          * Skipped
+         */
+        "paddingLeft": Spacing;
+        /**
+          * Skipped
+         */
+        "paddingRight": Spacing;
+        /**
+          * Skipped
+         */
+        "paddingTop": Spacing;
         /**
           * Position
          */
@@ -538,6 +650,26 @@ export namespace Components {
     }
     interface ZenSkeleton {
         /**
+          * Description generated in helper file
+         */
+        "padding": SpacingShorthand;
+        /**
+          * Skipped
+         */
+        "paddingBottom": Spacing;
+        /**
+          * Skipped
+         */
+        "paddingLeft": Spacing;
+        /**
+          * Skipped
+         */
+        "paddingRight": Spacing;
+        /**
+          * Skipped
+         */
+        "paddingTop": Spacing;
+        /**
           * Makes the skeleton rounded
          */
         "rounded": boolean;
@@ -560,9 +692,33 @@ export namespace Components {
     }
     interface ZenSpace {
         /**
+          * In some rare occasions we want display:block
+         */
+        "block": boolean;
+        /**
           * Horizontal align of items
          */
         "horizontalAlign": FlexAlign;
+        /**
+          * <Description generated in helper file>
+         */
+        "margin": SpacingShorthand;
+        /**
+          * Skipped
+         */
+        "marginBottom": Spacing;
+        /**
+          * Skipped
+         */
+        "marginLeft": Spacing;
+        /**
+          * Skipped
+         */
+        "marginRight": Spacing;
+        /**
+          * Skipped
+         */
+        "marginTop": Spacing;
         /**
           * Break row/column if content doesn't fit
          */
@@ -724,6 +880,10 @@ export namespace Components {
          */
         "size": TextSize;
         /**
+          * State text style
+         */
+        "state": TextState;
+        /**
           * Strikethrough
          */
         "strikethrough": boolean;
@@ -753,6 +913,10 @@ export namespace Components {
           * Appends attribute disabled.
          */
         "disabled": false;
+        /**
+          * Shows invalid styles.
+         */
+        "invalid": false;
         /**
           * Name of element, can be used as reference for form data
          */
@@ -809,6 +973,26 @@ export namespace Components {
           * Set tooltip offset to target element
          */
         "offset"?: number;
+        /**
+          * Description generated in helper file
+         */
+        "padding": SpacingShorthand;
+        /**
+          * Skipped
+         */
+        "paddingBottom": Spacing;
+        /**
+          * Skipped
+         */
+        "paddingLeft": Spacing;
+        /**
+          * Skipped
+         */
+        "paddingRight": Spacing;
+        /**
+          * Skipped
+         */
+        "paddingTop": Spacing;
         /**
           * Set tooltip position
          */
@@ -1219,7 +1403,7 @@ declare namespace LocalJSX {
         /**
           * Spacing between icon and username
          */
-        "spacing"?: Size;
+        "spacing"?: Size | None;
         /**
           * User name
          */
@@ -1298,6 +1482,26 @@ declare namespace LocalJSX {
           * Disables card.
          */
         "disabled"?: false;
+        /**
+          * <Description generated in helper file>
+         */
+        "padding"?: SpacingShorthand;
+        /**
+          * Skipped
+         */
+        "paddingBottom"?: Spacing;
+        /**
+          * Skipped
+         */
+        "paddingLeft"?: Spacing;
+        /**
+          * Skipped
+         */
+        "paddingRight"?: Spacing;
+        /**
+          * Skipped
+         */
+        "paddingTop"?: Spacing;
     }
     interface ZenCheckbox {
         /**
@@ -1343,6 +1547,10 @@ declare namespace LocalJSX {
          */
         "formattedDate"?: string | null;
         /**
+          * Shows invalid styles.
+         */
+        "invalid"?: false;
+        /**
           * Placeholder
          */
         "placeholder"?: "Select date";
@@ -1362,6 +1570,26 @@ declare namespace LocalJSX {
           * Is drawer visible
          */
         "opened"?: false;
+        /**
+          * <Description generated in helper file>
+         */
+        "padding"?: SpacingShorthand;
+        /**
+          * Skipped
+         */
+        "paddingBottom"?: Spacing;
+        /**
+          * Skipped
+         */
+        "paddingLeft"?: Spacing;
+        /**
+          * Skipped
+         */
+        "paddingRight"?: Spacing;
+        /**
+          * Skipped
+         */
+        "paddingTop"?: Spacing;
         /**
           * Position
          */
@@ -1384,6 +1612,10 @@ declare namespace LocalJSX {
           * Alignment of field content and menu (if menuWidth set).
          */
         "fieldAlign"?: Align;
+        /**
+          * Shows invalid styles.
+         */
+        "invalid"?: false;
         /**
           * To determine if there's enough space under field on open
          */
@@ -1436,6 +1668,10 @@ declare namespace LocalJSX {
         "size"?: IconSizes;
     }
     interface ZenInput {
+        /**
+          * Should display clear button if focused and not empty
+         */
+        "clearButton"?: true;
         /**
           * Disables input.
          */
@@ -1505,10 +1741,6 @@ declare namespace LocalJSX {
     }
     interface ZenOption {
         /**
-          * False to enable custom item padding
-         */
-        "defaultPadding"?: boolean;
-        /**
           * Disable selecting option in dropdown
          */
         "disabled"?: boolean;
@@ -1521,6 +1753,26 @@ declare namespace LocalJSX {
          */
         "noHover"?: boolean;
         /**
+          * <Description generated in helper file>
+         */
+        "padding"?: SpacingShorthand;
+        /**
+          * Skipped
+         */
+        "paddingBottom"?: Spacing;
+        /**
+          * Skipped
+         */
+        "paddingLeft"?: Spacing;
+        /**
+          * Skipped
+         */
+        "paddingRight"?: Spacing;
+        /**
+          * Skipped
+         */
+        "paddingTop"?: Spacing;
+        /**
           * Render item as selected
          */
         "selected"?: boolean;
@@ -1530,6 +1782,30 @@ declare namespace LocalJSX {
         "value"?: OptionValue;
     }
     interface ZenPanel {
+        /**
+          * Padding of content section
+         */
+        "contentPadding"?: SpacingShorthand;
+        /**
+          * <Description generated in helper file>
+         */
+        "padding"?: SpacingShorthand;
+        /**
+          * Skipped
+         */
+        "paddingBottom"?: Spacing;
+        /**
+          * Skipped
+         */
+        "paddingLeft"?: Spacing;
+        /**
+          * Skipped
+         */
+        "paddingRight"?: Spacing;
+        /**
+          * Skipped
+         */
+        "paddingTop"?: Spacing;
         /**
           * Default visible state
          */
@@ -1564,6 +1840,26 @@ declare namespace LocalJSX {
           * Visibility changed
          */
         "onVisibleChange"?: (event: CustomEvent<void>) => void;
+        /**
+          * <Description generated in helper file>
+         */
+        "padding"?: SpacingShorthand;
+        /**
+          * Skipped
+         */
+        "paddingBottom"?: Spacing;
+        /**
+          * Skipped
+         */
+        "paddingLeft"?: Spacing;
+        /**
+          * Skipped
+         */
+        "paddingRight"?: Spacing;
+        /**
+          * Skipped
+         */
+        "paddingTop"?: Spacing;
         /**
           * Position
          */
@@ -1631,6 +1927,26 @@ declare namespace LocalJSX {
     }
     interface ZenSkeleton {
         /**
+          * Description generated in helper file
+         */
+        "padding"?: SpacingShorthand;
+        /**
+          * Skipped
+         */
+        "paddingBottom"?: Spacing;
+        /**
+          * Skipped
+         */
+        "paddingLeft"?: Spacing;
+        /**
+          * Skipped
+         */
+        "paddingRight"?: Spacing;
+        /**
+          * Skipped
+         */
+        "paddingTop"?: Spacing;
+        /**
           * Makes the skeleton rounded
          */
         "rounded"?: boolean;
@@ -1653,9 +1969,33 @@ declare namespace LocalJSX {
     }
     interface ZenSpace {
         /**
+          * In some rare occasions we want display:block
+         */
+        "block"?: boolean;
+        /**
           * Horizontal align of items
          */
         "horizontalAlign"?: FlexAlign;
+        /**
+          * <Description generated in helper file>
+         */
+        "margin"?: SpacingShorthand;
+        /**
+          * Skipped
+         */
+        "marginBottom"?: Spacing;
+        /**
+          * Skipped
+         */
+        "marginLeft"?: Spacing;
+        /**
+          * Skipped
+         */
+        "marginRight"?: Spacing;
+        /**
+          * Skipped
+         */
+        "marginTop"?: Spacing;
         /**
           * Break row/column if content doesn't fit
          */
@@ -1817,6 +2157,10 @@ declare namespace LocalJSX {
          */
         "size"?: TextSize;
         /**
+          * State text style
+         */
+        "state"?: TextState;
+        /**
           * Strikethrough
          */
         "strikethrough"?: boolean;
@@ -1846,6 +2190,10 @@ declare namespace LocalJSX {
           * Appends attribute disabled.
          */
         "disabled"?: false;
+        /**
+          * Shows invalid styles.
+         */
+        "invalid"?: false;
         /**
           * Name of element, can be used as reference for form data
          */
@@ -1902,6 +2250,26 @@ declare namespace LocalJSX {
           * Set tooltip offset to target element
          */
         "offset"?: number;
+        /**
+          * Description generated in helper file
+         */
+        "padding"?: SpacingShorthand;
+        /**
+          * Skipped
+         */
+        "paddingBottom"?: Spacing;
+        /**
+          * Skipped
+         */
+        "paddingLeft"?: Spacing;
+        /**
+          * Skipped
+         */
+        "paddingRight"?: Spacing;
+        /**
+          * Skipped
+         */
+        "paddingTop"?: Spacing;
         /**
           * Set tooltip position
          */

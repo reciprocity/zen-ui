@@ -125,6 +125,16 @@
   color: $color-gray-200;
 }
 
+:host([state='error']),
+:host([state='error'][size]) {
+  color: $color-red-700;
+}
+
+:host([state='success']),
+:host([state='success'][size]) {
+  color: $color-green-700;
+}
+
 span.required {
   color: $color-red-700;
 }
