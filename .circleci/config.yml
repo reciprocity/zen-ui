@@ -70,7 +70,7 @@ jobs:
           name: 'Start Storybook app'
           command: yarn run stencil:build && yarn run storybook:start
           background: true
-      - run: npx wait-on http://localhost:6006
+      - run: yarn wait-on http://localhost:6006
       - run:
           name: 'Run Cypress tests'
           command: yarn run test:e2e:ci
@@ -84,7 +84,7 @@ jobs:
       - checkout
       - attach_workspace:
           at: .
-      - run: cat coverage/lcov.info | npx coveralls
+      - run: cat coverage/lcov.info | yarn coveralls
   build:
     <<: *defaults
     steps:
