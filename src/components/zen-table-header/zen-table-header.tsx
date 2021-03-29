@@ -78,8 +78,6 @@ export class ZenTableHeader {
 
   componentDidLoad(): void {
     this.toggleStickyChildren(this.sticky);
-  async componentDidLoad(): Promise<void> {
-    await this.stickyChanged(this.sticky);
     this.indeterminate = this.hasRowsSelected();
 
     this.host.parentElement.addEventListener('rowSelectChanged', () => {
