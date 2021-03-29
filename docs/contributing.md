@@ -8,18 +8,16 @@ We format our commits' messages following [Conventional Commits](https://www.con
 
 Check the [Components Guidelines doc](./components-guidelines.md).
 
-## Update npm package
+## Publishing updates
 
-Grant privileges for Zen-UI package and login to your npm account in terminal. Then run the following commands:
-1. Make sure your git status is clean!
-1. `yarn npm:build`
-1. `npm version [version]` where version is `major | minor | patch`
-1. `npm publish`
+All releases are managed automatically by [`semantic-release`](https://semantic-release.gitbook.io/semantic-release): everytime something gets merged on the `main` branch, a new [SemVer](https://semver.org) version will be calculated from the commits and an update will be published on both NPM and the GitHub registry.
 
 ## Testing zen-ui in the ZenComply app locally
+
 1. Go to (ZenComply repo)[https://github.com/reciprocity/zencomply], clone repo and follow repo/readme.md to run the app locally. After it has been run successfully, stop it.
-1. From new tab in terminal go to repo `zen-ui` folder and run `yarn link`
-1. Go back to `ZenComply` terminal tab and run `yarn link '@reciprocity/zen-ui'`. This will substitute folder `zencomply/node_modules/@reciprocity/zen-ui` with symlink to your local folder `zen-ui\dist`.
-1. Now run both `ZenComply` in one terminal tab and `zen-ui` in another. Keep them both running.
-1. Any change you made in `zen-ui` will automatically be visible in `ZenComply`.
-* Note! HMR doesn't work. So you need to refresh `ZenComply` manually after `zen-ui` rebuilds because of your change.
+2. From new tab in terminal go to repo `zen-ui` folder and run `yarn link`
+3. Go back to `ZenComply` terminal tab and run `yarn link '@reciprocity/zen-ui'`. This will substitute folder `zencomply/node_modules/@reciprocity/zen-ui` with symlink to your local folder `zen-ui\dist`.
+4. Now run both `ZenComply` in one terminal tab and `zen-ui` in another. Keep them both running.
+5. Any change you made in `zen-ui` will automatically be visible in `ZenComply`.
+
+> Note: Since `zen-ui` is a dependency of `ZenComply`, HMR and automatic refresh won't work for the components, you need to manually refresh the application after the your changes are rebuilt.
