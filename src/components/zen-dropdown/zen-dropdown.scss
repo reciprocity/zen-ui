@@ -77,7 +77,7 @@ $item-ypadding: 0.5rem;
   max-height: #{4 * ($item-line-height + 2 * $item-ypadding)};
 }
 
-:host([invalid='true']) {
+:host([invalid='true']) .field {
   box-shadow: $shadow-invalid;
   border: 1px solid $color-red-700;
 }
