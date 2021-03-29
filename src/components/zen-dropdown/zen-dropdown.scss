@@ -79,5 +79,6 @@ $item-ypadding: 0.5rem;
 
 :host([invalid='true']) .field {
   box-shadow: $shadow-invalid;
+  transition: box-shadow $transition-color;
   border: 1px solid $color-red-700;
 }

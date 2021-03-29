@@ -20,6 +20,7 @@ textarea.input-control {
 :host([invalid]) {
   textarea.input-control {
     box-shadow: $shadow-invalid;
+    transition: box-shadow $transition-color;
     border: 1px solid $color-red-700;
   }
 }
