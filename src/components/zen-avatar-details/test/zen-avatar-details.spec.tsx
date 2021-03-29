@@ -42,22 +42,22 @@ describe('zen-avatar-details', () => {
     });
     page.root.users = user;
     const iconElement = page.root.shadowRoot.querySelector('zen-avatar-icon') as HTMLZenAvatarIconElement;
-    expect(iconElement.size).toEqual('md');
+    expect(iconElement.size).toEqual('sm');
 
     const textElement = page.root.shadowRoot.querySelector('zen-text') as HTMLZenTextElement;
-    expect(textElement.size).toEqual('lg');
+    expect(textElement.size).toEqual('md');
   });
 
   it('should render avatar variant basic, large size', async () => {
     const page = await newSpecPage({
       components: [ZenAvatarDetails, ZenAvatarIcon, ZenText],
-      html: `<zen-avatar-details variant="basic" size="lg" />`,
+      html: `<zen-avatar-details variant="basic" size="md" />`,
     });
     page.root.users = user;
     const iconElement = page.root.shadowRoot.querySelector('zen-avatar-icon') as HTMLZenAvatarIconElement;
-    expect(iconElement.size).toEqual('lg');
+    expect(iconElement.size).toEqual('md');
 
     const textElement = page.root.shadowRoot.querySelector('zen-text') as HTMLZenTextElement;
-    expect(textElement.size).toEqual('xl');
+    expect(textElement.size).toEqual('lg');
   });
 });
