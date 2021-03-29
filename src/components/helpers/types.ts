@@ -7,6 +7,8 @@ export type TooltipVariant = 'dark' | 'light' | 'error';
 
 export type TextVariant = null | 'heading' | 'label' | 'support';
 
+export type TextState = null | 'error' | 'success';
+
 export type NotificationVariant = 'success' | 'info' | 'warning' | 'error';
 
 export type TextSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';
