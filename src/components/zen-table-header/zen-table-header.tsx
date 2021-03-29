@@ -26,7 +26,7 @@ export class ZenTableHeader {
   @Prop({ mutable: true }) selected = false;
 
   /** Checkbox indeterminate state  */
-  @Prop({ mutable: true }) indeterminate = false;
+  @Prop({ mutable: true }) $indeterminate = false;
 
   @Watch('selected')
   async selectedChanged(selected: boolean): Promise<void> {
@@ -59,7 +59,7 @@ export class ZenTableHeader {
   }
 
   hasAllRowsSelected(): boolean {
-    return this.allRows().every(row => row.selected && !row.indeterminate);
+    return this.allRows().every(row => row.selected && !row.$indeterminate);
   }
 
   onSelect(): void {
@@ -78,7 +78,7 @@ export class ZenTableHeader {
 
   componentDidLoad(): void {
     this.toggleStickyChildren(this.sticky);
-    this.indeterminate = this.hasRowsSelected();
+    this.$indeterminate = this.hasRowsSelected();
 
     this.host.parentElement.addEventListener('rowSelectChanged', () => {
       const allSelected = this.hasAllRowsSelected();
@@ -89,7 +89,7 @@ export class ZenTableHeader {
       } else if (allSelected) {
         this.selected = true;
       }
-      this.indeterminate = someSelected && !allSelected;
+      this.$indeterminate = someSelected && !allSelected;
     });
 
     this.observer = new MutationObserver(() => this.onTableChildChanged());
@@ -113,7 +113,7 @@ export class ZenTableHeader {
           <div class="widgets">
             <ZenCheckBox
               class="checkbox"
-              indeterminate={this.indeterminate}
+              indeterminate={this.$indeterminate}
               checked={this.selected}
               onClick={() => this.onSelect()}
             ></ZenCheckBox>

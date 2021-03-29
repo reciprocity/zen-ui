@@ -28,8 +28,8 @@ export class ZenTableRow {
   /** Is row expanded */
   @Prop({ mutable: true }) expanded = false;
 
-  /** Checkbox indeterminate state  */
-  @Prop({ reflect: true }) readonly indeterminate: boolean = false;
+  /** Checkbox indeterminate state (Won't update children)  */
+  @Prop() readonly $indeterminate: boolean = false;
 
   /** Depth position of row (read-only) */
   @Prop() readonly depth: number = 0;
@@ -50,7 +50,7 @@ export class ZenTableRow {
       } else if (hasAllSelected) {
         parentRow.selected = true;
       }
-      parentRow.indeterminate = hasRowsSelected && !hasAllSelected;
+      parentRow.$indeterminate = hasRowsSelected && !hasAllSelected;
 
       parentRow = await parentRow.parentRow();
     }
@@ -90,7 +90,7 @@ export class ZenTableRow {
   /** Returns true if all children rows are selected **/
   @Method()
   async hasAllRowsSelected(): Promise<boolean> {
-    return this.rowChildren().every(row => row.selected && !row.indeterminate);
+    return this.rowChildren().every(row => row.selected && !row.$indeterminate);
   }
 
   /** Returns elements parent row (depth -1) **/
@@ -177,7 +177,7 @@ export class ZenTableRow {
           <div class="widgets">
             {this.selectable && (
               <ZenCheckBox
-                indeterminate={this.indeterminate}
+                indeterminate={this.$indeterminate}
                 class="checkbox"
                 checked={this.selected}
                 onClick={() => this.onSelect()}
