@@ -17,8 +17,6 @@
   transform: translateY(-5px);
 }
 
-.splitter {
-  border-top: 1px solid $color-gray-200;
-  padding-bottom: 1rem;
-  margin-top: 1rem;
+.details:not(:last-child) {
+  border-bottom: 1px solid $color-gray-200;
 }
