@@ -37,7 +37,10 @@ For size variations always use conventional shorthands:
 `xs`, `sm`, `md`, `lg`, `xl`, `2xl`,...
 
 ### Padding properties
-Padding prop of each component should always default to `none`! Consumers should be aware of introducing additional paddings.
+Paddings and spacings should always be set to match design out of the box.
+Contrary outer margins (spacing between components) should always default to 0!
+To determine what is inner padding and what is outer margin:
+- If we add some background color to the component. If particular spacing should also have this bg color, it is padding. If spacing should have bg color of component's background, it is margin.
 
 ## Writing stories
 Template for a new component's story page can be found here:
