@@ -36,9 +36,6 @@ export class ZenAvatarDetails {
   /** Skipped */
   @Prop() readonly paddingLeft: Spacing = null;
 
-  /** Spacing between icon and username  */
-  @Prop() readonly spacing: Size | None = 'md';
-
   getPropValueByVariant(propertyName: string): string {
     const propsByVariant = {
       basic_default: {

@@ -108,10 +108,6 @@ export namespace Components {
          */
         "paddingTop": Spacing;
         /**
-          * Spacing between icon and username
-         */
-        "spacing": Size | None;
-        /**
           * User name
          */
         "userName": string;
@@ -1392,10 +1388,6 @@ declare namespace LocalJSX {
           * Skipped
          */
         "paddingTop"?: Spacing;
-        /**
-          * Spacing between icon and username
-         */
-        "spacing"?: Size | None;
         /**
           * User name
          */
