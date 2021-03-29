@@ -47,8 +47,7 @@ export class ZenTableRow {
 
       if (!hasRowsSelected) {
         parentRow.selected = false;
-      }
-      if (hasAllSelected) {
+      } else if (hasAllSelected) {
         parentRow.selected = true;
       }
       parentRow.indeterminate = hasRowsSelected && !hasAllSelected;

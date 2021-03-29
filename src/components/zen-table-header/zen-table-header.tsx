@@ -86,8 +86,7 @@ export class ZenTableHeader {
 
       if (!someSelected) {
         this.selected = false;
-      }
-      if (allSelected) {
+      } else if (allSelected) {
         this.selected = true;
       }
       this.indeterminate = someSelected && !allSelected;
