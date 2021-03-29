@@ -1,6 +1,6 @@
 import { Component, Host, h, Element, Prop } from '@stencil/core';
 import { applyPrefix } from '../helpers/helpers';
-import { AvatarDetailVariant, Spacing, SpacingShorthand } from '../helpers/types';
+import { AvatarDetailVariant, AvatarVariantSizes, Spacing, SpacingShorthand } from '../helpers/types';
 
 @Component({
   tag: 'zen-avatar-details',
@@ -8,6 +8,27 @@ import { AvatarDetailVariant, Spacing, SpacingShorthand } from '../helpers/types
   shadow: true,
 })
 export class ZenAvatarDetails {
+  private propsByVariant = {
+    basic_default: {
+      verticalAlignment: 'center',
+      avatarIconSize: 'sm',
+      userNameBold: false,
+      textSize: 'md',
+    },
+    basic_large: {
+      verticalAlignment: 'center',
+      avatarIconSize: 'md',
+      userNameBold: false,
+      textSize: 'lg',
+    },
+    detailed: {
+      verticalAlignment: 'start',
+      avatarIconSize: 'md',
+      userNameBold: true,
+      textSize: 'md',
+    },
+  };
+
   @Element() host: HTMLZenAvatarDetailsElement;
 
   /** Different variants  */
@@ -36,28 +57,8 @@ export class ZenAvatarDetails {
   /** Skipped */
   @Prop() readonly paddingLeft: Spacing = null;
 
-  getPropValueByVariant(propertyName: string): string {
-    const propsByVariant = {
-      basic_default: {
-        verticalAlignment: 'center',
-        avatarIconSize: 'sm',
-        userNameBold: false,
-        textSize: 'md',
-      },
-      basic_large: {
-        verticalAlignment: 'center',
-        avatarIconSize: 'md',
-        userNameBold: false,
-        textSize: 'lg',
-      },
-      detailed: {
-        verticalAlignment: 'start',
-        avatarIconSize: 'md',
-        userNameBold: true,
-        textSize: 'md',
-      },
-    };
-    return propsByVariant[this.variant][propertyName];
+  getPropsByVariant(): AvatarVariantSizes {
+    return this.propsByVariant[this.variant];
   }
 
   render(): HTMLElement {
@@ -74,19 +75,19 @@ export class ZenAvatarDetails {
           padding-bottom={this.paddingBottom}
           padding-left={this.paddingLeft}
           spacing="md"
-          vertical-align={this.getPropValueByVariant('verticalAlignment')}
+          vertical-align={this.getPropsByVariant().verticalAlignment}
         >
           <ZenAvatarIcon
             user-name={this.userName}
             color={this.iconColor}
             background={this.iconBackground}
-            size={this.getPropValueByVariant('avatarIconSize')}
+            size={this.getPropsByVariant().avatarIconSize}
             data-test="avatar-icon"
           />
           <ZenSpace vertical padding="xs" spacing="sm">
             <ZenText
-              size={this.getPropValueByVariant('textSize')}
-              bold={this.getPropValueByVariant('userNameBold')}
+              size={this.getPropsByVariant().textSize}
+              bold={this.getPropsByVariant().userNameBold}
               data-test="username"
             >
               {this.userName}

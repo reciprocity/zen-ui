@@ -45,6 +45,13 @@ export interface AvatarColor {
   color?: string;
 }
 
+export type AvatarVariantSizes = {
+  verticalAlignment: string;
+  avatarIconSize: string;
+  userNameBold: boolean;
+  textSize: string;
+};
+
 export interface Notification {
   heading: string;
   content: string;
