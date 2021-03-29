@@ -110,7 +110,7 @@ export namespace Components {
         /**
           * Spacing between icon and username
          */
-        "spacing": Size;
+        "spacing": Size | None;
         /**
           * User name
          */
@@ -1383,7 +1383,7 @@ declare namespace LocalJSX {
         /**
           * Spacing between icon and username
          */
-        "spacing"?: Size;
+        "spacing"?: Size | None;
         /**
           * User name
          */
