@@ -96,6 +96,15 @@ jobs:
           root: .
           paths:
             - public
+            - dist
+            - loader
+  publish:
+    <<: *defaults
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - run: yarn semantic-release
   deploy:
     resource_class: small
     docker:
@@ -131,6 +140,13 @@ workflows:
       - build:
           requires:
             - prepare
+      - publish:
+          requires:
+            - build
+          filters:
+            branches:
+              only:
+                - main
       - deploy:
           requires:
             - build
