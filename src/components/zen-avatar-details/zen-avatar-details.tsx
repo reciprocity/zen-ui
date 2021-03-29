@@ -14,7 +14,7 @@ export class ZenAvatarDetails {
   @Prop() readonly variant: AvatarDetailVariant = 'detailed';
 
   /** Sizes that apply only for variant basic  */
-  @Prop() readonly size: IconSizes = 'md';
+  @Prop() readonly size: IconSizes = 'sm';
 
   /** User name  */
   @Prop() readonly userName: string = '';
