@@ -108,10 +108,6 @@ export namespace Components {
          */
         "paddingTop": Spacing;
         /**
-          * Sizes that apply only for variant basic
-         */
-        "size": IconSizes;
-        /**
           * Spacing between icon and username
          */
         "spacing": Size | None;
@@ -1396,10 +1392,6 @@ declare namespace LocalJSX {
           * Skipped
          */
         "paddingTop"?: Spacing;
-        /**
-          * Sizes that apply only for variant basic
-         */
-        "size"?: IconSizes;
         /**
           * Spacing between icon and username
          */

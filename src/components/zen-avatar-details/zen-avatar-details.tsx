@@ -1,6 +1,6 @@
 import { Component, Host, h, Element, Prop } from '@stencil/core';
 import { applyPrefix } from '../helpers/helpers';
-import { AvatarDetailVariant, IconSizes, Spacing, SpacingShorthand } from '../helpers/types';
+import { AvatarDetailVariant, Spacing, SpacingShorthand } from '../helpers/types';
 
 @Component({
   tag: 'zen-avatar-details',
@@ -12,9 +12,6 @@ export class ZenAvatarDetails {
 
   /** Different variants  */
   @Prop() readonly variant: AvatarDetailVariant = 'detailed';
-
-  /** Sizes that apply only for variant basic  */
-  @Prop() readonly size: IconSizes = 'sm';
 
   /** User name  */
   @Prop() readonly userName: string = '';
@@ -42,25 +39,19 @@ export class ZenAvatarDetails {
   /** Spacing between icon and username  */
   @Prop() readonly spacing: Size | None = 'md';
 
-  getTextSize(): string {
-    if (this.variant === 'detailed') return 'md';
-
-    // Basic variant text has a different size than icon
-    const basicTextSizeByDetailSize = {
-      sm: 'md',
-      md: 'lg',
-      lg: 'xl',
-    };
-    return basicTextSizeByDetailSize[this.size];
-  }
-
   getPropValueByVariant(propertyName: string): string {
     const propsByVariant = {
-      basic: {
+      basic_default: {
         verticalAlignment: 'center',
-        avatarIconSize: this.size,
+        avatarIconSize: 'sm',
         userNameBold: false,
-        textSize: this.getTextSize(),
+        textSize: 'md',
+      },
+      basic_large: {
+        verticalAlignment: 'center',
+        avatarIconSize: 'md',
+        userNameBold: false,
+        textSize: 'lg',
       },
       detailed: {
         verticalAlignment: 'start',
