@@ -30,22 +30,33 @@ export class ZenDropdown {
 
   /** Name of element, can be used as reference for form data */
   @Prop() readonly name: string = '';
+
   /** Selected option */
   @Prop({ mutable: true }) value: OptionValue = undefined;
+
   /** Alignment of field content and menu (if menuWidth set). */
   @Prop() readonly fieldAlign: Align = 'left';
+
   /** Width of menu. Set '100%' to match field width. */
   @Prop() readonly menuWidth: string = '100%';
+
   /** To determine if there's enough space under field on open */
   @Prop() readonly menuHeight: number = 170;
+
   /** Close dropdown menu after selecting an item */
   @Prop() readonly closeOnSelect = true;
+
   /** Don't draw border around field */
   @Prop() readonly borderless = false;
+
   /** Text in field if nothing selected */
   @Prop() readonly placeholder: string = 'Select something';
+
   /** Disable any changes */
   @Prop() readonly disabled?: boolean = false;
+
+  /** Shows invalid styles. */
+  @Prop() readonly invalid = false;
 
   /** Close an opened dropdown menu */
   @Method()

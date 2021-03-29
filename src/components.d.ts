@@ -258,6 +258,10 @@ export namespace Components {
          */
         "formattedDate": string | null;
         /**
+          * Shows invalid styles.
+         */
+        "invalid": false;
+        /**
           * Placeholder
          */
         "placeholder": "Select date";
@@ -315,6 +319,10 @@ export namespace Components {
           * Alignment of field content and menu (if menuWidth set).
          */
         "fieldAlign": Align;
+        /**
+          * Shows invalid styles.
+         */
+        "invalid": false;
         /**
           * To determine if there's enough space under field on open
          */
@@ -905,6 +913,10 @@ export namespace Components {
           * Appends attribute disabled.
          */
         "disabled": false;
+        /**
+          * Shows invalid styles.
+         */
+        "invalid": false;
         /**
           * Name of element, can be used as reference for form data
          */
@@ -1535,6 +1547,10 @@ declare namespace LocalJSX {
          */
         "formattedDate"?: string | null;
         /**
+          * Shows invalid styles.
+         */
+        "invalid"?: false;
+        /**
           * Placeholder
          */
         "placeholder"?: "Select date";
@@ -1596,6 +1612,10 @@ declare namespace LocalJSX {
           * Alignment of field content and menu (if menuWidth set).
          */
         "fieldAlign"?: Align;
+        /**
+          * Shows invalid styles.
+         */
+        "invalid"?: false;
         /**
           * To determine if there's enough space under field on open
          */
@@ -2170,6 +2190,10 @@ declare namespace LocalJSX {
           * Appends attribute disabled.
          */
         "disabled"?: false;
+        /**
+          * Shows invalid styles.
+         */
+        "invalid"?: false;
         /**
           * Name of element, can be used as reference for form data
          */
