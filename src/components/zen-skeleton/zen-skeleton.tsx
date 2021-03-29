@@ -35,8 +35,10 @@ export class ZenSkeleton {
 
   render(): HTMLElement {
     return (
-      <Host>
-        <span>&nbsp;</span>
+      <Host class={this.paddingClasses}>
+        <div class="background">
+          <span>&nbsp;</span>
+        </div>
       </Host>
     );
   }
