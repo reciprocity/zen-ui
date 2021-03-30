@@ -30,6 +30,7 @@ export class ZenAvatarGroup {
       index = index < colors.length - 1 ? index + 1 : 0;
       user.color = user.color ? user.color : colors[index].color;
       user.background = user.background ? user.background : colors[index].background;
+      user.size = this.size;
       return user;
     });
   }
