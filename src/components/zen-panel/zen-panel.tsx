@@ -43,10 +43,11 @@ export class ZenPanel {
   async visibleChanged(visible: boolean): Promise<void> {
     if (visible) {
       this.initializing ? showInstantly(this.content) : showWithAnimation(this.content);
+      this.open.emit();
     } else {
       this.initializing ? hideInstantly(this.content) : hideWithAnimation(this.content);
+      this.close.emit();
     }
-    (visible ? this.open : this.close).emit();
   }
 
   toggleContent(): void {
