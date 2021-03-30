@@ -1,6 +1,9 @@
-import { h, Component, Element, Host, Prop, State, Event, EventEmitter, Watch } from '@stencil/core';
+import { h, Component, Element, Host, Prop, State, Watch } from '@stencil/core';
 import { applyPrefix } from '../helpers/helpers';
 
+/**
+ * @slot [default] - Content for table header cells
+ */
 @Component({
   tag: 'zen-table-header',
   styleUrl: 'zen-table-header.scss',
@@ -10,6 +13,7 @@ export class ZenTableHeader {
   observer: MutationObserver = null;
 
   @Element() host: HTMLZenTableHeaderElement;
+
   @State() expandable = false;
 
   /** Remains fixed at the top of the table during vertical scrolling */
@@ -22,17 +26,21 @@ export class ZenTableHeader {
   @Prop({ mutable: true }) selected = false;
 
   /** Checkbox indeterminate state  */
-  @Prop({ mutable: true }) indeterminate = false;
+  @Prop({ mutable: true }) $indeterminate = false;
 
-  /** Row selected */
-  @Event() headerSelectedChange: EventEmitter<boolean>;
+  @Watch('selected')
+  async selectedChanged(selected: boolean): Promise<void> {
+    this.allRows().forEach(n => {
+      n.selected = selected;
+    });
+  }
 
   @Watch('sticky')
   async stickyChanged(sticky: boolean): Promise<void> {
     this.toggleStickyChildren(sticky);
   }
 
-  rows(): HTMLZenTableRowElement[] {
+  allRows(): HTMLZenTableRowElement[] {
     const rows = [];
     let next = this.host.nextElementSibling as HTMLZenTableRowElement;
     while (next) {
@@ -43,20 +51,19 @@ export class ZenTableHeader {
   }
 
   hasExpandableRows(): boolean {
-    return this.rows().some(row => row.expandable);
+    return this.allRows().some(row => row.expandable);
   }
 
   hasRowsSelected(): boolean {
-    return this.rows().some(row => row.selected);
+    return this.allRows().some(row => row.selected);
   }
 
   hasAllRowsSelected(): boolean {
-    return this.rows().every(row => row.selected);
+    return this.allRows().every(row => row.selected && !row.$indeterminate);
   }
 
   onSelect(): void {
     this.selected = !this.selected;
-    this.headerSelectedChange.emit(this.selected);
   }
 
   onTableChildChanged(): void {
@@ -71,13 +78,18 @@ export class ZenTableHeader {
 
   componentDidLoad(): void {
     this.toggleStickyChildren(this.sticky);
-    this.indeterminate = this.hasRowsSelected();
+    this.$indeterminate = this.hasRowsSelected();
 
     this.host.parentElement.addEventListener('rowSelectChanged', () => {
       const allSelected = this.hasAllRowsSelected();
+      const someSelected = this.hasRowsSelected();
 
-      this.indeterminate = this.hasRowsSelected() && !allSelected;
-      this.selected = allSelected;
+      if (!someSelected) {
+        this.selected = false;
+      } else if (allSelected) {
+        this.selected = true;
+      }
+      this.$indeterminate = someSelected && !allSelected;
     });
 
     this.observer = new MutationObserver(() => this.onTableChildChanged());
@@ -101,7 +113,7 @@ export class ZenTableHeader {
           <div class="widgets">
             <ZenCheckBox
               class="checkbox"
-              indeterminate={this.indeterminate}
+              indeterminate={this.$indeterminate}
               checked={this.selected}
               onClick={() => this.onSelect()}
             ></ZenCheckBox>

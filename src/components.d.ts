@@ -770,7 +770,7 @@ export namespace Components {
         /**
           * Checkbox indeterminate state
          */
-        "indeterminate": boolean;
+        "$indeterminate": boolean;
         /**
           * Show checkbox
          */
@@ -792,6 +792,10 @@ export namespace Components {
     }
     interface ZenTableRow {
         /**
+          * Checkbox indeterminate state (Won't update children)
+         */
+        "$indeterminate": boolean;
+        /**
           * Depth position of row (read-only)
          */
         "depth": number;
@@ -811,10 +815,6 @@ export namespace Components {
           * Returns true if descendent rows have a row selected *
          */
         "hasRowsSelected": () => Promise<boolean>;
-        /**
-          * Checkbox indeterminate state
-         */
-        "indeterminate": boolean;
         /**
           * Returns elements parent row (depth -1) *
          */
@@ -2047,11 +2047,7 @@ declare namespace LocalJSX {
         /**
           * Checkbox indeterminate state
          */
-        "indeterminate"?: boolean;
-        /**
-          * Row selected
-         */
-        "onHeaderSelectedChange"?: (event: CustomEvent<boolean>) => void;
+        "$indeterminate"?: boolean;
         /**
           * Show checkbox
          */
@@ -2073,6 +2069,10 @@ declare namespace LocalJSX {
     }
     interface ZenTableRow {
         /**
+          * Checkbox indeterminate state (Won't update children)
+         */
+        "$indeterminate"?: boolean;
+        /**
           * Depth position of row (read-only)
          */
         "depth"?: number;
@@ -2084,14 +2084,6 @@ declare namespace LocalJSX {
           * Is row expanded
          */
         "expanded"?: boolean;
-        /**
-          * Checkbox indeterminate state
-         */
-        "indeterminate"?: boolean;
-        /**
-          * Row expanded
-         */
-        "onRowExpandChange"?: (event: CustomEvent<boolean>) => void;
         /**
           * Row selected
          */

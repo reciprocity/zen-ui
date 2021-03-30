@@ -5,7 +5,7 @@ import { getArgTypes, getDefaultArgs, getComponentData, spreadArgs } from '../..
 import data from '../../../stencilDocs.json';
 const compData = data.components.find(n => n.tag === 'zen-table-header');
 const argTypes = getArgTypes(compData);
-argTypes['indeterminate'].table.disable = true;
+argTypes['$indeterminate'].table.disable = true;
 
 <Meta title="Lists/Table/Header" component="zen-table-header" argTypes={argTypes} />
 

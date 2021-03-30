@@ -2,6 +2,9 @@ import { h, Component, Host, Prop, Element, Event, EventEmitter, Method, Watch }
 import { applyPrefix } from '../helpers/helpers';
 import { faChevronRight } from '@fortawesome/pro-light-svg-icons';
 
+/**
+ * @slot [default] - Content for table cells
+ */
 @Component({
   tag: 'zen-table-row',
   styleUrl: 'zen-table-row.scss',
@@ -25,8 +28,8 @@ export class ZenTableRow {
   /** Is row expanded */
   @Prop({ mutable: true }) expanded = false;
 
-  /** Checkbox indeterminate state  */
-  @Prop({ mutable: true, reflect: true }) indeterminate = false;
+  /** Checkbox indeterminate state (Won't update children)  */
+  @Prop() readonly $indeterminate: boolean = false;
 
   /** Depth position of row (read-only) */
   @Prop() readonly depth: number = 0;
@@ -34,23 +37,47 @@ export class ZenTableRow {
   /** Row selected */
   @Event() rowSelectChanged: EventEmitter<boolean>;
 
-  /** Row expanded */
-  @Event() rowExpandChange: EventEmitter<boolean>;
-
   @Watch('selected')
-  async selectedChanged(): Promise<void> {
-    let parenRow = await this.parentRow();
+  async selectedChanged(selected: boolean): Promise<void> {
+    // Set parents rows checkbox indeterminate state
+    let parentRow = await this.parentRow();
+    while (parentRow && parentRow.selectable && parentRow.expandable) {
+      const hasAllSelected = await parentRow.hasAllRowsSelected();
+      const hasRowsSelected = await parentRow.hasRowsSelected();
 
-    // Get all expandable parent rows
-    while (parenRow && parenRow.expandable) {
-      // Set checkbox indeterminate state on parent rows
-      const hasAllSelected = await parenRow.hasAllRowsSelected();
-      const hasRowsSelected = await parenRow.hasRowsSelected();
+      if (!hasRowsSelected) {
+        parentRow.selected = false;
+      } else if (hasAllSelected) {
+        parentRow.selected = true;
+      }
+      parentRow.$indeterminate = hasRowsSelected && !hasAllSelected;
 
-      parenRow.indeterminate = hasRowsSelected && !hasAllSelected;
-      parenRow.selected = hasAllSelected;
+      parentRow = await parentRow.parentRow();
+    }
 
-      parenRow = await parenRow.parentRow();
+    // Set rows children selected state
+    if (this.selectable && this.expandable) {
+      this.rowChildren().forEach(n => (n.selected = selected));
+    }
+
+    // Emit event that header checkbox state can be applied
+    this.rowSelectChanged.emit(this.selected);
+  }
+
+  @Watch('expanded')
+  async expandedChanged(expanded: boolean): Promise<void> {
+    // Set rows children/descendents expanded state
+    if (this.expandable && expanded) {
+      // On expanding set only direct children to visible
+      this.rowChildren().forEach(n => {
+        n.visible = true;
+      });
+    } else {
+      this.rowDescendants().forEach(n => {
+        // On closing set all descendants to not visible
+        n.visible = false;
+        n.expanded = false;
+      });
     }
   }
 
@@ -63,13 +90,13 @@ export class ZenTableRow {
   /** Returns true if all children rows are selected **/
   @Method()
   async hasAllRowsSelected(): Promise<boolean> {
-    return this.rowChildren().every(row => row.selected);
+    return this.rowChildren().every(row => row.selected && !row.$indeterminate);
   }
 
   /** Returns elements parent row (depth -1) **/
   @Method()
   async parentRow(): Promise<HTMLZenTableRowElement> {
-    // find first prev sibling with depth 1 smaller than ours:
+    // Find first prev sibling with depth 1 smaller than ours
     let prev = this.host.previousElementSibling as HTMLZenTableRowElement;
 
     while (prev) {
@@ -80,6 +107,7 @@ export class ZenTableRow {
   }
 
   rowChildren(): HTMLZenTableRowElement[] {
+    // Find first depth level siblings of row
     const children = [];
     let next = this.host.nextElementSibling as HTMLZenTableRowElement;
 
@@ -95,6 +123,7 @@ export class ZenTableRow {
   }
 
   rowDescendants(): HTMLZenTableRowElement[] {
+    // Find all descendents of row
     const descendants = [];
     let next = this.host.nextElementSibling as HTMLZenTableRowElement;
 
@@ -119,21 +148,17 @@ export class ZenTableRow {
 
   onExpand(): void {
     this.expanded = !this.expanded;
-    this.rowExpandChange.emit(this.expanded);
   }
 
   onSelect(): void {
     this.selected = !this.selected;
-    this.rowSelectChanged.emit(this.selected);
   }
 
   async componentDidLoad(): Promise<void> {
     const parentRow = await this.parentRow();
-    const hasRowsSelected = await this.hasRowsSelected();
 
     this.visible = !parentRow || parentRow.expanded;
     this.expandable = this.hasChildren();
-    this.indeterminate = hasRowsSelected;
   }
 
   render(): HTMLTableRowElement {
@@ -152,7 +177,7 @@ export class ZenTableRow {
           <div class="widgets">
             {this.selectable && (
               <ZenCheckBox
-                indeterminate={this.indeterminate}
+                indeterminate={this.$indeterminate}
                 class="checkbox"
                 checked={this.selected}
                 onClick={() => this.onSelect()}
