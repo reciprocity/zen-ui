@@ -2,6 +2,7 @@ import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
 import { html } from 'lit-html';
 import { getArgTypes, getDefaultArgs, getComponentData, spreadArgs } from '../../../.storybook/helpers/argTypes';
 import data from '../../../stencilDocs.json';
+import { waitForElement } from '../../../.storybook/helpers/utils';
 const compData = data.components.find(n => n.tag === 'zen-avatar-details');
 const argTypes = getArgTypes(compData);
 argTypes['iconBackground'].control = 'color';
@@ -20,9 +21,63 @@ export const StoryWithControls = args => {
   `;
 };
 
+export const StoryVariants = () => {
+  waitForElement('#avatar-detailed', element => {
+    element.userName = 'Mike Anderson';
+    element.email = 'mike.anderson@reciprocitylabs.com';
+    element.iconColor = '#00528C';
+    element.iconBackground = '#D5E9FA';
+  });
+  waitForElement('#avatar-basic-medium', element => {
+    element.userName = 'John Smith';
+    element.iconColor = '#643A6B';
+    element.iconBackground = '#FADBFF';
+  });
+  waitForElement('#avatar-basic-small', element => {
+    element.userName = 'Ricky Madman';
+    element.iconColor = '#A26900';
+    element.iconBackground = '#FFEED2';
+  });
+  return html/*html*/ `
+    <sb-zen-space spacing="sm" vertical-align="center" horizontal-align="space-evenly">
+      <sb-zen-space vertical spacing="md" horizontal-align="center">
+        <sb-zen-avatar-details id="avatar-detailed" style="border: 1px solid lightgray"></sb-zen-avatar-details>
+        <sb-zen-text size="sm">Variant 'Detailed'</sb-zen-text>
+      </sb-zen-space>
+      <sb-zen-space vertical spacing="md" horizontal-align="center">
+        <sb-zen-avatar-details
+          id="avatar-basic-medium"
+          variant="basic"
+          style="border: 1px solid lightgray"
+        ></sb-zen-avatar-details>
+        <sb-zen-text size="sm">Variant 'Basic Default' </sb-zen-text>
+      </sb-zen-space>
+      <sb-zen-space vertical spacing="md" horizontal-align="center">
+        <sb-zen-avatar-details
+          id="avatar-basic-small"
+          variant="basic-lg"
+          size="md"
+          style="border: 1px solid lightgray"
+        ></sb-zen-avatar-details>
+        <sb-zen-text size="sm">Variant 'Basic Large' </sb-zen-text>
+      </sb-zen-space>
+    </sb-zen-space>
+  `;
+};
+
 # Avatar icon, username and email
 
-Avatar details component
+`Avatar details` component.
+
+<br />
+
+### 1. Variants
+
+Different variants of `AvatarDetail` component are `Detailed` and `Basic`. `Detailed` is the default variant. `Basic` variant has additional option to set size.
+
+<Canvas>
+  <Story name="StoryVariants">{StoryVariants.bind({})}</Story>
+</Canvas>
 
 ## Properties
 
@@ -31,10 +86,8 @@ Avatar details component
     name="default"
     args={{
       ...getDefaultArgs(argTypes),
-      userName: 'Shelley Fluke',
-      email: 'shelley@reciprocitylabs.com',
-      iconColor: '#00528C',
-      iconBackground: '#D5E9FA',
+      userName: 'Mike Anderson',
+      email: 'mike.anderson@reciprocitylabs.com',
     }}
   >
     {StoryWithControls.bind({})}

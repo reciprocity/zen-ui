@@ -1,6 +1,6 @@
 import { Component, Host, h, Element, Prop } from '@stencil/core';
 import { applyPrefix } from '../helpers/helpers';
-import { SpacingShorthand, Size, Spacing, None } from '../helpers/types';
+import { AvatarDetailVariant, AvatarVariantSizes, Spacing, SpacingShorthand } from '../helpers/types';
 
 @Component({
   tag: 'zen-avatar-details',
@@ -8,7 +8,31 @@ import { SpacingShorthand, Size, Spacing, None } from '../helpers/types';
   shadow: true,
 })
 export class ZenAvatarDetails {
+  private propsByVariant = {
+    basic: {
+      verticalAlignment: 'center',
+      avatarIconSize: 'sm',
+      userNameBold: false,
+      textSize: 'md',
+    },
+    'basic-lg': {
+      verticalAlignment: 'center',
+      avatarIconSize: 'md',
+      userNameBold: false,
+      textSize: 'lg',
+    },
+    detailed: {
+      verticalAlignment: 'start',
+      avatarIconSize: 'md',
+      userNameBold: true,
+      textSize: 'md',
+    },
+  };
+
   @Element() host: HTMLZenAvatarDetailsElement;
+
+  /** Different variants  */
+  @Prop() readonly variant: AvatarDetailVariant = 'detailed';
 
   /** User name  */
   @Prop() readonly userName: string = '';
@@ -33,10 +57,12 @@ export class ZenAvatarDetails {
   /** Skipped */
   @Prop() readonly paddingLeft: Spacing = null;
 
-  /** Spacing between icon and username  */
-  @Prop() readonly spacing: Size | None = 'md';
+  getPropsByVariant(): AvatarVariantSizes {
+    return this.propsByVariant[this.variant];
+  }
 
   render(): HTMLElement {
+    const sizes = this.getPropsByVariant();
     const ZenAvatarIcon = applyPrefix('zen-avatar-icon', this.host);
     const ZenSpace = applyPrefix('zen-space', this.host);
     const ZenText = applyPrefix('zen-text', this.host);
@@ -49,22 +75,25 @@ export class ZenAvatarDetails {
           padding-right={this.paddingRight}
           padding-bottom={this.paddingBottom}
           padding-left={this.paddingLeft}
-          vertical-align="middle"
-          spacing={this.spacing}
+          spacing="md"
+          vertical-align={sizes.verticalAlignment}
         >
           <ZenAvatarIcon
             user-name={this.userName}
             color={this.iconColor}
             background={this.iconBackground}
+            size={sizes.avatarIconSize}
             data-test="avatar-icon"
           />
           <ZenSpace vertical padding="xs" spacing="sm">
-            <ZenText size="md" bold data-test="username">
+            <ZenText size={sizes.textSize} bold={sizes.userNameBold} data-test="username">
               {this.userName}
             </ZenText>
-            <ZenText size="sm" data-test="email">
-              {this.email}
-            </ZenText>
+            {this.variant === 'detailed' && (
+              <ZenText size="md" data-test="email">
+                {this.email}
+              </ZenText>
+            )}
           </ZenSpace>
         </ZenSpace>
       </Host>

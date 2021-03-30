@@ -29,6 +29,8 @@ export type Resize = 'none' | 'both' | 'horizontal' | 'vertical' | 'initial' | '
 
 export type PositionVariant = 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
 
+export type AvatarDetailVariant = 'basic' | 'basic-lg' | 'detailed';
+
 export interface AvatarData {
   userName?: string;
   email?: string;
@@ -42,6 +44,13 @@ export interface AvatarColor {
   background?: string;
   color?: string;
 }
+
+export type AvatarVariantSizes = {
+  verticalAlignment: string;
+  avatarIconSize: string;
+  userNameBold: boolean;
+  textSize: string;
+};
 
 export interface Notification {
   heading: string;
