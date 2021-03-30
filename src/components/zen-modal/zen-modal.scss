@@ -1,7 +1,6 @@
 @import '../../zen-styles/variables.scss';
 @import '../../zen-styles/shadows.scss';
 
-$padding-x: 1.6rem;
 $show-time: 0.3s;
 
 :host {
@@ -10,7 +9,6 @@ $show-time: 0.3s;
   left: 0;
   width: 100vw;
   min-height: 100vh;
-
   display: flex;
   align-items: center;
   justify-content: center;
@@ -48,6 +46,7 @@ $show-time: 0.3s;
     opacity: 0;
     transform: translate(0, 30px);
   }
+
   &[animate='out-end'] {
     opacity: 0;
     transform: translate(0, -30px);
@@ -55,26 +54,24 @@ $show-time: 0.3s;
 }
 
 .header {
+  border-bottom: 1px solid $color-gray-200;
+}
+
+slot[name='header'] {
   display: flex;
-  align-items: center;
-  padding: 1rem 0 1rem $padding-x;
+  align-items: start;
+  width: 100%;
 }
 
 .x-button {
-  margin-left: auto;
-  font-size: $text-xl;
+  color: $color-gray-200;
   cursor: pointer;
-  color: $color-gray-300;
+  margin-left: auto;
   @include noselect;
-  padding: 0.2rem 1rem;
 }
 
-.content {
-  padding: 1.6rem $padding-x;
-}
-
-.buttons-row,
-::slotted([slot='buttons']) {
+slot[name='footer'],
+::slotted([slot='footer']) {
   display: flex;
 }
 
@@ -87,8 +84,5 @@ zen-button {
 }
 
 .footer {
-  padding: 0.8rem $padding-x;
   border-top: 1px solid $color-gray-200;
-  display: flex;
-  justify-content: flex-end;
 }

@@ -70,7 +70,7 @@ const argTypes = getArgTypes(compData);
 <Meta title="Containers/Space" component="zen-space" argTypes={argTypes} />
 
 export const StorySpacing = () => {
-  const spacings = ['none', 'xs', 'sm', 'md', 'lg', 'xl'];
+  const spacings = ['none', 'xs', 'sm', 'md', 'lg', 'xl', '2xl'];
   return html/*html*/ `
     <div class="row">
       ${spacings.map(
@@ -174,7 +174,7 @@ export const StoryColumnAlignHorz = () => {
 };
 
 export const StoryPadding = () => {
-  const values = ['lg', 'sm lg', 'sm sm xl lg'];
+  const values = ['lg', 'sm lg', 'sm sm 2xl lg'];
   return html/*html*/ `
     <div class="row">
       ${values.map(
