@@ -29,7 +29,7 @@ describe('zen-avatar-details', () => {
   it('should render avatar variant basic, without email text', async () => {
     const page = await newSpecPage({
       components: [ZenAvatarDetails, ZenAvatarIcon, ZenText],
-      html: `<zen-avatar-details variant="basic-default" />`,
+      html: `<zen-avatar-details variant="basic" />`,
     });
     page.root.users = user;
     expect(page.root.shadowRoot.querySelector('[data-test="email"]')).not.toBeTruthy();
@@ -38,7 +38,7 @@ describe('zen-avatar-details', () => {
   it('should render avatar variant basic, default size', async () => {
     const page = await newSpecPage({
       components: [ZenAvatarDetails, ZenAvatarIcon, ZenText],
-      html: `<zen-avatar-details variant="basic-default" />`,
+      html: `<zen-avatar-details variant="basic" />`,
     });
     page.root.users = user;
     const iconElement = page.root.shadowRoot.querySelector('zen-avatar-icon') as HTMLZenAvatarIconElement;
@@ -51,7 +51,7 @@ describe('zen-avatar-details', () => {
   it('should render avatar variant basic, large size', async () => {
     const page = await newSpecPage({
       components: [ZenAvatarDetails, ZenAvatarIcon, ZenText],
-      html: `<zen-avatar-details variant="basic-large" />`,
+      html: `<zen-avatar-details variant="basic-lg" />`,
     });
     page.root.users = user;
     const iconElement = page.root.shadowRoot.querySelector('zen-avatar-icon') as HTMLZenAvatarIconElement;

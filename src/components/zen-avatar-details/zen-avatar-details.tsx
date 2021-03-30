@@ -9,13 +9,13 @@ import { AvatarDetailVariant, AvatarVariantSizes, Spacing, SpacingShorthand } fr
 })
 export class ZenAvatarDetails {
   private propsByVariant = {
-    'basic-default': {
+    basic: {
       verticalAlignment: 'center',
       avatarIconSize: 'sm',
       userNameBold: false,
       textSize: 'md',
     },
-    'basic-large': {
+    'basic-lg': {
       verticalAlignment: 'center',
       avatarIconSize: 'md',
       userNameBold: false,

@@ -29,7 +29,7 @@ export type Resize = 'none' | 'both' | 'horizontal' | 'vertical' | 'initial' | '
 
 export type PositionVariant = 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
 
-export type AvatarDetailVariant = 'basic-default' | 'basic-large' | 'detailed';
+export type AvatarDetailVariant = 'basic' | 'basic-lg' | 'detailed';
 
 export interface AvatarData {
   userName?: string;
