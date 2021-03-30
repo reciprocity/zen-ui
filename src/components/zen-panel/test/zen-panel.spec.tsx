@@ -58,5 +58,30 @@ describe('zen-panel', () => {
       await page.waitForChanges();
       expect(helpers.hideWithAnimation).toHaveBeenCalled();
     });
+
+    it('should emit "open" event', async () => {
+      await render();
+
+      const eventSpy = jest.fn();
+      panel.addEventListener('open', eventSpy);
+
+      panel.visible = true;
+      await page.waitForChanges();
+
+      expect(eventSpy).toHaveBeenCalledTimes(1);
+    });
+
+    it('should emit "close" event', async () => {
+      await render('visible');
+      expect(panel.visible).toBe(true);
+
+      const eventSpy = jest.fn();
+      panel.addEventListener('close', eventSpy);
+
+      panel.visible = false;
+      await page.waitForChanges();
+
+      expect(eventSpy).toHaveBeenCalledTimes(1);
+    });
   });
 });

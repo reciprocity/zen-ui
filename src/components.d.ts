@@ -1787,6 +1787,14 @@ declare namespace LocalJSX {
          */
         "contentPadding"?: SpacingShorthand;
         /**
+          * Panel closed
+         */
+        "onClose"?: (event: CustomEvent<void>) => void;
+        /**
+          * Panel opened
+         */
+        "onOpen"?: (event: CustomEvent<void>) => void;
+        /**
           * <Description generated in helper file>
          */
         "padding"?: SpacingShorthand;
