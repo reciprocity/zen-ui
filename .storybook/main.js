@@ -6,7 +6,8 @@ module.exports = {
   "addons": [
     "@storybook/addon-docs",
     "@storybook/addon-essentials",
-    "@storybook/preset-scss"
+    "@storybook/preset-scss",
+    "./changelog.js"
   ],
   babel: async (options) => ({
     ...options,
