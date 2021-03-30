@@ -1,13 +1,13 @@
 /// <reference types="cypress" />
 
 describe('Popover functional tests', { scrollBehavior: 'center' }, () => {
-  const pageId = 'layout-popover--story-position-variants';
+  const pageId = 'containers-popover--story-position-variants';
   const story = [
-    'story--layout-popover--story-position-variants',
-    'story--layout-popover--story-trigger-events',
-    'story--layout-popover--story-scrollable',
-    'story--layout-popover--story-filters',
-    'story--layout-popover--default-story',
+    'story--containers-popover--story-position-variants',
+    'story--containers-popover--story-trigger-events',
+    'story--containers-popover--story-scrollable',
+    'story--containers-popover--story-filters',
+    'story--containers-popover--default-story',
   ];
 
   before(() => {

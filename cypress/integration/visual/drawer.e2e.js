@@ -1,8 +1,8 @@
 /// <reference types="cypress" />
 
 describe('Drawer visual tests', { scrollBehavior: 'center' }, () => {
-  const pageId = 'layout-drawer--default';
-  const story = ['story--layout-drawer--default-story'];
+  const pageId = 'containers-drawer--default';
+  const story = ['story--containers-drawer--default-story'];
 
   before(() => {
     cy.visitStorybookIframe(pageId);

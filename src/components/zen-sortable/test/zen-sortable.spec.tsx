@@ -3,8 +3,6 @@ jest.mock('sortablejs');
 import { newSpecPage } from '@stencil/core/testing';
 import { ZenSortable } from '../zen-sortable';
 import Sortable from 'sortablejs';
-import { ZenSortableItem } from '../../zen-sortable-item/zen-sortable-item';
-import { ZenText } from '../../zen-text/zen-text';
 
 describe('zen-sortable', () => {
   beforeEach(() => {
