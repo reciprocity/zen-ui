@@ -57,6 +57,12 @@ $show-time: 0.3s;
   border-bottom: 1px solid $color-gray-200;
 }
 
+slot[name='header'] {
+  display: flex;
+  align-items: start;
+  width: 100%;
+}
+
 .x-button {
   color: $color-gray-200;
   cursor: pointer;
@@ -64,8 +70,8 @@ $show-time: 0.3s;
   @include noselect;
 }
 
-.buttons-row,
-::slotted([slot='buttons']) {
+slot[name='footer'],
+::slotted([slot='footer']) {
   display: flex;
 }
 

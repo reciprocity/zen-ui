@@ -99,18 +99,16 @@ export class ZenModal {
             </ZenSpace>
             <ZenSpace class="footer" padding={this.footerPadding} horizontalAlign="end">
               <slot name="footer">
-                <div class="buttons-row">
-                  {!this.hideCancel ? (
-                    <ZenButton class="btn-cancel" variant="secondary" onClick={() => this.onCancelClicked()}>
-                      Cancel
-                    </ZenButton>
-                  ) : (
-                    ''
-                  )}
-                  <ZenButton class="btn-ok ml-4" onClick={() => this.onOkClicked()}>
-                    Ok
+                {!this.hideCancel ? (
+                  <ZenButton class="btn-cancel" variant="secondary" onClick={() => this.onCancelClicked()}>
+                    Cancel
                   </ZenButton>
-                </div>
+                ) : (
+                  ''
+                )}
+                <ZenButton class="btn-ok ml-4" onClick={() => this.onOkClicked()}>
+                  Ok
+                </ZenButton>
               </slot>
             </ZenSpace>
           </div>
