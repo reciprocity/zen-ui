@@ -9,13 +9,13 @@ import { AvatarDetailVariant, AvatarVariantSizes, Spacing, SpacingShorthand } fr
 })
 export class ZenAvatarDetails {
   private propsByVariant = {
-    basic_default: {
+    'basic-default': {
       verticalAlignment: 'center',
       avatarIconSize: 'sm',
       userNameBold: false,
       textSize: 'md',
     },
-    basic_large: {
+    'basic-large': {
       verticalAlignment: 'center',
       avatarIconSize: 'md',
       userNameBold: false,
@@ -62,6 +62,7 @@ export class ZenAvatarDetails {
   }
 
   render(): HTMLElement {
+    const sizes = this.getPropsByVariant();
     const ZenAvatarIcon = applyPrefix('zen-avatar-icon', this.host);
     const ZenSpace = applyPrefix('zen-space', this.host);
     const ZenText = applyPrefix('zen-text', this.host);
@@ -75,21 +76,17 @@ export class ZenAvatarDetails {
           padding-bottom={this.paddingBottom}
           padding-left={this.paddingLeft}
           spacing="md"
-          vertical-align={this.getPropsByVariant().verticalAlignment}
+          vertical-align={sizes.verticalAlignment}
         >
           <ZenAvatarIcon
             user-name={this.userName}
             color={this.iconColor}
             background={this.iconBackground}
-            size={this.getPropsByVariant().avatarIconSize}
+            size={sizes.avatarIconSize}
             data-test="avatar-icon"
           />
           <ZenSpace vertical padding="xs" spacing="sm">
-            <ZenText
-              size={this.getPropsByVariant().textSize}
-              bold={this.getPropsByVariant().userNameBold}
-              data-test="username"
-            >
+            <ZenText size={sizes.textSize} bold={sizes.userNameBold} data-test="username">
               {this.userName}
             </ZenText>
             {this.variant === 'detailed' && (
