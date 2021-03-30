@@ -10,14 +10,6 @@ const { argTypes, args } = getArgTypesAndArgs('zen-option');
 
 <Meta title="Forms/Dropdown/Dropdown option" component="zen-option" argTypes={argTypes} />
 
-# Zen Option
-
-Option item to be used inside **zen-dropdown** component
-
-## Component previews
-
-#### 1. Customized content
-
 export const Slots = args => {
   waitForElement('#icon1', element => {
     element.icon = args.icon;
@@ -50,6 +42,29 @@ export const Slots = args => {
   `;
 };
 
+export const Template = args => html/*html*/ `
+  <sb-zen-option padding="none" ...="${spreadArgs(args, argTypes)}"> Dropdown option </sb-zen-option>
+`;
+
+<Canvas>
+  <Story
+    name="default"
+    args={{
+      ...args,
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+# Zen Option
+
+Option item to be used inside **zen-dropdown** component
+
+## Component previews
+
+#### 1. Customized content
+
 <Canvas>
   <Story
     name="slots"
@@ -65,20 +80,5 @@ export const Slots = args => {
 You can wrap any content within zen-option. Here we've added custom png icon, some bold text and font-awesome icon on the right side.
 
 ## Properties
-
-export const Template = args => html/*html*/ `
-  <sb-zen-option padding="none" ...="${spreadArgs(args, argTypes)}"> Dropdown option </sb-zen-option>
-`;
-
-<Canvas>
-  <Story
-    name="default"
-    args={{
-      ...args,
-    }}
-  >
-    {Template.bind({})}
-  </Story>
-</Canvas>
 
 <ArgsTable story="default" />
