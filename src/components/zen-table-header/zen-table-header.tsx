@@ -17,10 +17,10 @@ export class ZenTableHeader {
   @State() expandable = false;
 
   /** Remains fixed at the top of the table during vertical scrolling */
-  @Prop({ reflect: true }) readonly sticky = false;
+  @Prop() readonly sticky = false;
 
   /** Show checkbox */
-  @Prop() readonly selectable = false;
+  @Prop({ reflect: true }) readonly selectable: boolean = false;
 
   /** Select all rows */
   @Prop({ mutable: true }) selected = false;
@@ -108,7 +108,7 @@ export class ZenTableHeader {
   render(): HTMLElement {
     const ZenCheckBox = applyPrefix('zen-checkbox', this.host);
     return (
-      <Host class={{ selectable: this.selectable, expandable: this.expandable }}>
+      <Host class={{ expandable: this.expandable }}>
         {this.selectable && (
           <div class="widgets">
             <ZenCheckBox

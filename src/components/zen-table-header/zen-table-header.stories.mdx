@@ -55,12 +55,6 @@ export const StoryWithControls = args => html/*html*/ `
       <sb-zen-table-header-cell>Title 3</sb-zen-table-header-cell>
       <sb-zen-table-header-cell>Title 4</sb-zen-table-header-cell>
     </sb-zen-table-header>
-    <sb-zen-table-row ...="${spreadArgs(args, argTypes)}">
-      <sb-zen-table-cell>Row 1, Cell 1</sb-zen-table-cell>
-      <sb-zen-table-cell>Row 1, Cell 2</sb-zen-table-cell>
-      <sb-zen-table-cell>Row 1, Cell 3</sb-zen-table-cell>
-      <sb-zen-table-cell>Row 1, Cell 4</sb-zen-table-cell>
-    </sb-zen-table-row>
   </sb-zen-table>
 `;
 
@@ -95,6 +89,7 @@ A fragment `ZenTableHeader`
     name="default"
     args={{
       ...getDefaultArgs(argTypes),
+      selectable: true,
     }}
   >
     {StoryWithControls.bind({})}
@@ -103,4 +98,4 @@ A fragment `ZenTableHeader`
 
 <ArgsTable story="default" />
 
-<docs-table docs={JSON.stringify(getComponentData('zen-table-header'))}></docs-table>
+<sb-docs-table docs={JSON.stringify(getComponentData('zen-table-header'))}></sb-docs-table>

@@ -786,7 +786,7 @@ export namespace Components {
         /**
           * Show checkbox
          */
-        "selectable": false;
+        "selectable": boolean;
         /**
           * Select all rows
          */
@@ -2083,7 +2083,7 @@ declare namespace LocalJSX {
         /**
           * Show checkbox
          */
-        "selectable"?: false;
+        "selectable"?: boolean;
         /**
           * Select all rows
          */
