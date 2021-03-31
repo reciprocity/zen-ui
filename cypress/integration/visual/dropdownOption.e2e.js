@@ -5,6 +5,7 @@ describe('Dropdown option visual tests', () => {
   const pageId = 'forms-dropdown-dropdown-option--slots';
   const stories = [
     'story--forms-dropdown-dropdown-option--slots',
+    'story--forms-dropdown-dropdown-option--story-sizes',
     'story--forms-dropdown-dropdown-option--default-story',
   ];
 

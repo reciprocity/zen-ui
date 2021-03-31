@@ -3,7 +3,11 @@ import { createVisualTests } from '../../support/utils/visualTesting';
 
 describe('Date-picker visual tests', { scrollBehavior: 'center' }, () => {
   const pageId = 'forms-date-picker--default-story';
-  const stories = ['story--forms-date-picker--default-story', 'story--forms-date-picker--initial'];
+  const stories = [
+    'story--forms-date-picker--default-story',
+    'story--forms-date-picker--story-sizes',
+    'story--forms-date-picker--initial',
+  ];
 
   before(() => {
     cy.visitStorybookIframe(pageId);

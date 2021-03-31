@@ -9,6 +9,11 @@ describe('Dropdown visual tests', { scrollBehavior: false }, () => {
       position: 'bottom-start',
     },
     {
+      storie: 'story--forms-dropdown-dropdown--story-sizes',
+      id: '#dropdown-size-md',
+      position: 'bottom-start',
+    },
+    {
       storie: 'story--forms-dropdown-dropdown--invite-people',
       id: '#dropdown1',
       position: 'bottom-end',
