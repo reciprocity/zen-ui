@@ -91,11 +91,10 @@ jobs:
       - checkout
       - attach_workspace:
           at: .
-      - run: yarn build
+      - run: yarn stencil:build
       - persist_to_workspace:
           root: .
           paths:
-            - public
             - dist
             - loader
   publish:
@@ -104,7 +103,11 @@ jobs:
       - checkout
       - attach_workspace:
           at: .
-      - run: yarn semantic-release
+      - run: yarn semantic-release && yarn storybook:build
+      - persist_to_workspace:
+          root: .
+          paths:
+            - public
   deploy:
     resource_class: small
     docker:
