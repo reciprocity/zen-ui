@@ -287,7 +287,7 @@ export class ZenDropdown {
             disabled: this.disabled,
           }}
         >
-          <div class={{ hidden: !this.value }}>
+          <div class={{ 'field-content': true, hidden: !this.value }}>
             <slot name="field-private" />
           </div>
           <div class={{ hidden: !!this.value }}>

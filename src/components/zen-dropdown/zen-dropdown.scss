@@ -104,6 +104,11 @@ $item-ypadding: 0.5rem;
   max-height: #{4 * ($item-line-height + 2 * $item-ypadding)};
 }
 
+.field-content {
+  width: auto;
+  min-width: 0;
+}
+
 :host([invalid='true']) .field {
   box-shadow: $shadow-invalid;
   transition: box-shadow $transition-color;
