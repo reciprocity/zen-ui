@@ -149,7 +149,7 @@ workflows:
                 - main
       - deploy:
           requires:
-            - build
+            - publish
           filters:
             branches:
               only:
