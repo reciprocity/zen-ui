@@ -133,9 +133,9 @@ export class ZenTooltip {
               <ZenText size="md">
                 <a class="link" href={this.link}>
                   {this.linkTitle ? this.linkTitle : this.link}
+                  <ZenIcon size="md" padding-left="md" class="icon" icon={faExternalLink} />
                 </a>
               </ZenText>
-              <ZenIcon size="md" class="linkIcon" icon={faExternalLink} />
             </ZenSpace>
           )}
         </ZenPopover>

@@ -16,19 +16,17 @@ $arrow_size: 0.3rem;
   padding-bottom: 0.5rem;
 }
 
-.linkIcon {
-  margin-left: 0.5rem;
-  padding-bottom: 0.25rem;
-}
-
-.link,
-.linkIcon {
+.link {
+  display: flex;
   color: $color-blue-700;
   text-decoration: none;
   cursor: grab;
 
+  .icon {
+    margin-top: -0.27rem;
+  }
+
   &:hover {
     text-decoration: underline;
-    cursor: grab;
   }
 }
