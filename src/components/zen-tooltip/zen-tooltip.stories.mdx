@@ -94,6 +94,29 @@ export const Scrollable = () => {
   `;
 };
 
+export const TitleAndHyperlink = () => {
+  return html/*html*/ `
+    <sb-zen-space nowrap horizontal-align="space-evenly" vertical-align="end">
+      <div>
+        <sb-zen-button label="Info" variant="secondary">Hover</sb-zen-button>
+        <sb-zen-tooltip
+          header="Title"
+          link-title="Learn more about this"
+          link="http://www.hyperlink.com"
+          position="top"
+          variant="light"
+        >
+          <sb-zen-text size="md" style="color:#868E96;width: 300px"
+            >Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+            industry's standard dummy text ever since the 1500s. Lorem Ipsum is simply dummy text of the printing and
+            typesetting industry.</sb-zen-text
+          >
+        </sb-zen-tooltip>
+      </div>
+    </sb-zen-space>
+  `;
+};
+
 # Zen Tooltip
 
 Tooltip bubbles that usually appears on element hover
@@ -124,6 +147,14 @@ Limit tooltip height by setting `max-height` ('4rem' in example below).
 
 <Canvas>
   <Story name="scrollable">{Scrollable.bind({})}</Story>
+</Canvas>
+
+#### 4. Tooltip with title and hyperlink:
+
+Set property header and link.
+
+<Canvas>
+  <Story name="hyperlink">{TitleAndHyperlink.bind({})}</Story>
 </Canvas>
 
 ## Properties

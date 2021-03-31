@@ -11,3 +11,24 @@ $arrow_size: 0.3rem;
   min-width: min-content;
   z-index: $z-index-tooltips;
 }
+
+.header {
+  padding-bottom: 0.5rem;
+}
+
+.linkIcon {
+  margin-left: 0.5rem;
+  padding-bottom: 0.25rem;
+}
+
+.link,
+.linkIcon {
+  color: $color-blue-700;
+  text-decoration: none;
+  cursor: grab;
+
+  &:hover {
+    text-decoration: underline;
+    cursor: grab;
+  }
+}

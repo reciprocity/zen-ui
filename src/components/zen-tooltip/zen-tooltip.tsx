@@ -3,6 +3,7 @@ import { TooltipVariant } from '../helpers/types';
 import { applyPrefix } from '../helpers/helpers';
 import { Placement } from '@popperjs/core';
 import { SpacingShorthand, Spacing } from '../helpers/types';
+import { faExternalLink } from '@fortawesome/pro-light-svg-icons';
 
 /**
  * @slot defaultSlot - Tooltip content
@@ -31,6 +32,15 @@ export class ZenTooltip {
 
   /** Set tooltip label */
   @Prop() readonly label?: string = '';
+
+  /** Hyperlink title */
+  @Prop() readonly header: string = '';
+
+  /** Link title */
+  @Prop() readonly linkTitle: string = '';
+
+  /** Link to resource */
+  @Prop() readonly link: string = '';
 
   /** Set tooltip offset to target element */
   @Prop() readonly offset?: number = 10;
@@ -79,6 +89,9 @@ export class ZenTooltip {
 
   render(): HTMLElement {
     const ZenPopover = applyPrefix('zen-popover', this.host);
+    const ZenIcon = applyPrefix('zen-icon', this.host);
+    const ZenText = applyPrefix('zen-text', this.host);
+    const ZenSpace = applyPrefix('zen-space', this.host);
     const classes = {
       tooltip: true,
     };
@@ -98,18 +111,33 @@ export class ZenTooltip {
           }}
           offset={{ x: 0, y: this.offset }}
           delay={this.delay}
-          interactive={isScrollable}
+          interactive={this.link || isScrollable}
           padding={this.padding}
           padding-top={this.paddingTop}
           padding-right={this.paddingRight}
           padding-bottom={this.paddingBottom}
           padding-left={this.paddingLeft}
         >
+          {this.header && (
+            <ZenText class="header" size="md" bold>
+              {this.header}
+            </ZenText>
+          )}
           <slot>
-            <sb-zen-text size="sm" style={{ color: this.color }}>
+            <ZenText size="sm" style={{ color: this.color }}>
               {this.label}
-            </sb-zen-text>
+            </ZenText>
           </slot>
+          {this.link && (
+            <ZenSpace no-wrap padding-top="lg">
+              <ZenText size="md">
+                <a class="link" href={this.link}>
+                  {this.linkTitle ? this.linkTitle : this.link}
+                </a>
+              </ZenText>
+              <ZenIcon size="md" class="linkIcon" icon={faExternalLink} />
+            </ZenSpace>
+          )}
         </ZenPopover>
       </Host>
     );
