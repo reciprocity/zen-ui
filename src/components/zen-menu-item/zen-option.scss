@@ -27,6 +27,9 @@ $item-line-height: 1rem;
 .content {
   width: 100%; // safari fix
   line-height: $item-line-height;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: block;
 }
 
 :host([size='lg'][padding='default']) .content,

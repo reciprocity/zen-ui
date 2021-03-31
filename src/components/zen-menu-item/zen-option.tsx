@@ -52,7 +52,7 @@ export class ZenOption {
   render(): HTMLElement {
     const ZenSpace = applyPrefix('zen-space', this.host);
     const ZenText = applyPrefix('zen-text', this.host);
-    const realPadding = this.padding === null ? sizes[this.size].padding : this.padding;
+    const realPadding = !this.padding || this.padding === 'null' ? sizes[this.size].padding : this.padding;
     return (
       <Host disabled={this.disabled ? 'true' : null}>
         <ZenSpace
@@ -67,7 +67,7 @@ export class ZenOption {
             disabled: this.disabled,
           }}
         >
-          <ZenText size={this.size} class="content">
+          <ZenText size={this.size} class="content" truncate>
             <slot>{this.value}</slot>
           </ZenText>
         </ZenSpace>
