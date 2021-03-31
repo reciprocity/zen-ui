@@ -1,8 +1,21 @@
 import { Component, Host, h, Prop, Element } from '@stencil/core';
 import { SpacingShorthand, Spacing } from '../helpers/types';
 import { applyPrefix } from '../helpers/helpers';
+import { InputSize } from '../helpers/types';
 
 export type OptionValue = string | number | undefined;
+
+const sizes = {
+  sm: {
+    padding: 'sm lg',
+  },
+  md: {
+    padding: 'md lg',
+  },
+  lg: {
+    padding: 'lg',
+  },
+};
 
 @Component({
   tag: 'zen-option',
@@ -22,9 +35,11 @@ export class ZenOption {
   @Prop() readonly disabled?: boolean = false;
   /** Prevents default hover style on mouse hover */
   @Prop({ reflect: true }) readonly noHover?: boolean = false;
+  /** Size variant */
+  @Prop({ reflect: true }) readonly size: InputSize = 'md';
 
   /** <Description generated in helper file> */
-  @Prop() readonly padding: SpacingShorthand = 'md lg';
+  @Prop() readonly padding: SpacingShorthand = null;
   /** Skipped */
   @Prop() readonly paddingTop: Spacing = null;
   /** Skipped */
@@ -36,11 +51,13 @@ export class ZenOption {
 
   render(): HTMLElement {
     const ZenSpace = applyPrefix('zen-space', this.host);
+    const ZenText = applyPrefix('zen-text', this.host);
+    const realPadding = this.padding === null ? sizes[this.size].padding : this.padding;
     return (
       <Host disabled={this.disabled ? 'true' : null}>
         <ZenSpace
           block
-          padding={this.padding}
+          padding={realPadding}
           padding-top={this.paddingTop}
           padding-right={this.paddingRight}
           padding-bottom={this.paddingBottom}
@@ -50,9 +67,9 @@ export class ZenOption {
             disabled: this.disabled,
           }}
         >
-          <slot>
-            <div class="content">{this.value}</div>
-          </slot>
+          <ZenText size={this.size} class="content">
+            <slot>{this.value}</slot>
+          </ZenText>
         </ZenSpace>
       </Host>
     );

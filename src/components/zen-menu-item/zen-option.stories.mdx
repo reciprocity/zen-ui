@@ -30,6 +30,7 @@ export const Slots = args => {
         display: inline-block;
         max-width: 300px;
         width: 100%;
+        border: 1px solid #f0f3f6;
       }
     </style>
     <sb-zen-option padding="none">
@@ -46,16 +47,24 @@ export const Template = args => html/*html*/ `
   <sb-zen-option padding="none" ...="${spreadArgs(args, argTypes)}"> Dropdown option </sb-zen-option>
 `;
 
-<Canvas>
-  <Story
-    name="default"
-    args={{
-      ...args,
-    }}
-  >
-    {Template.bind({})}
-  </Story>
-</Canvas>
+export const StorySizes = () => {
+  return html/*html*/ `
+    <sb-zen-space spacing="md" horizontal-align="space-between" vertical-align="end">
+      <sb-zen-space vertical spacing="md">
+        <sb-zen-option size="sm" value="Argentina" style="width: 18rem">Argentina</sb-zen-option>
+        <sb-zen-text variant="label" align="center" style="width: 100%">sm</sb-zen-text>
+      </sb-zen-space>
+      <sb-zen-space vertical spacing="md" style="width: 18rem">
+        <sb-zen-option size="md" value="Argentina" style="width: 18rem">Argentina</sb-zen-option>
+        <sb-zen-text variant="label" align="center" style="width: 100%">md</sb-zen-text>
+      </sb-zen-space>
+      <sb-zen-space vertical spacing="md" style="width: 18rem">
+        <sb-zen-option size="lg" value="Argentina" style="width: 18rem">Argentina</sb-zen-option>
+        <sb-zen-text variant="label" align="center" style="width: 100%">lg</sb-zen-text>
+      </sb-zen-space>
+    </sb-zen-space>
+  `;
+};
 
 # Zen Option
 
@@ -63,7 +72,19 @@ Option item to be used inside **zen-dropdown** component
 
 ## Component previews
 
-#### 1. Customized content
+<br />
+
+### 1. Sizes
+
+- Zen-option ships in different sizes
+- These sizes only matter if you have default items (simple text).
+- Make sure you also set the same `size` value to zen-dropdown!
+
+<Canvas>
+  <Story name="StorySizes">{StorySizes.bind({})}</Story>
+</Canvas>
+
+### 2. Customized content
 
 <Canvas>
   <Story
@@ -80,5 +101,16 @@ Option item to be used inside **zen-dropdown** component
 You can wrap any content within zen-option. Here we've added custom png icon, some bold text and font-awesome icon on the right side.
 
 ## Properties
+
+<Canvas>
+  <Story
+    name="default"
+    args={{
+      ...args,
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
 
 <ArgsTable story="default" />

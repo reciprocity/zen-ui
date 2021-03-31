@@ -24,8 +24,15 @@ $item-line-height: 1rem;
   }
 }
 
-::slotted(.content) {
+.content {
   width: 100%; // safari fix
+  line-height: $item-line-height;
+}
+
+:host([size='lg'][padding='default']) .content,
+:host([size='lg']:not([padding])) .content {
+  // zen-space doesn't provide 0.5rem padding, so we have to do it manually:
+  line-height: 0.5rem;
 }
 
 :host(:not([no-hover]):hover),
