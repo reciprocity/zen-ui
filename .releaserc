@@ -8,7 +8,7 @@
       "registries": {
         "github": {}
       }
-    }]
+    }],
     "@semantic-release/git",
     "@semantic-release/github"
   ]
