@@ -2,7 +2,7 @@ import { Component, Host, h, Prop, State, Listen, Watch, Element, Method } from 
 import { getDefaultSlotContent, applyPrefix, scrollIntoView } from '../helpers/helpers';
 import { faChevronDown } from '@fortawesome/pro-light-svg-icons';
 import { OptionValue } from '../zen-menu-item/zen-option';
-import { Align } from '../helpers/types';
+import { Align, InputSize } from '../helpers/types';
 
 export interface OptionItem {
   label: string;
@@ -30,6 +30,9 @@ export class ZenDropdown {
 
   /** Name of element, can be used as reference for form data */
   @Prop() readonly name: string = '';
+
+  /** Size variant (affects padding, arrow and placeholder) */
+  @Prop({ reflect: true }) readonly size: InputSize = 'md';
 
   /** Selected option */
   @Prop({ mutable: true }) value: OptionValue = undefined;
@@ -255,6 +258,7 @@ export class ZenDropdown {
   render(): HTMLElement {
     const ZenIcon = applyPrefix('zen-icon', this.host);
     const ZenPopover = applyPrefix('zen-popover', this.host);
+    const ZenText = applyPrefix('zen-text', this.host);
 
     const offset = {
       x: 0,
@@ -271,6 +275,8 @@ export class ZenDropdown {
         break;
     }
 
+    const iconSize = this.size === 'sm' ? 'sm' : 'md';
+
     return (
       <Host tabindex={this.disabled ? null : 0} onFocus={() => this.onFocus()} onBlur={() => this.onBlur()}>
         <div
@@ -286,10 +292,12 @@ export class ZenDropdown {
           </div>
           <div class={{ hidden: !!this.value }}>
             <slot name="placeholder">
-              <div class="placeholder">{this.placeholder}</div>
+              <ZenText class="placeholder" size={this.size}>
+                {this.placeholder}
+              </ZenText>
             </slot>
           </div>
-          <ZenIcon class="arrow" padding="sm" icon={faChevronDown}></ZenIcon>
+          <ZenIcon class="arrow" size={iconSize} icon={faChevronDown}></ZenIcon>
         </div>
         <ZenPopover
           class="list"

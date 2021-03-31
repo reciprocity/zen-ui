@@ -43,18 +43,17 @@ $field-height: #{1rem + 2 * 0.5rem};
   height: 100%;
   white-space: nowrap;
   overflow: hidden;
-  padding-right: 2.2rem;
   display: flex;
   align-items: center;
+  box-sizing: initial;
 
   &:not(.borderless) {
     @include zenInputBorder;
   }
 
   .arrow {
-    position: absolute;
-    right: 10px;
-    top: calc(50% - 12px);
+    margin-left: auto;
+    margin-right: 0.75rem;
     color: $color-gray-500;
     border-bottom-width: 0;
     transition: transform $open-transition;
@@ -66,8 +65,24 @@ $field-height: #{1rem + 2 * 0.5rem};
 }
 
 .placeholder {
-  padding: 0.5rem 1rem;
+  padding: 0.5rem;
   opacity: 0.5;
+}
+
+:host([size='sm']) {
+  min-height: 1.5rem;
+
+  .arrow {
+    margin-right: 0.5rem;
+  }
+}
+
+:host([size='lg']) {
+  min-height: 2.5rem;
+
+  .arrow {
+    margin-right: 1rem;
+  }
 }
 
 $item-line-height: 1.2rem;

@@ -64,6 +64,40 @@ export const Template = args => {
   `;
 };
 
+export const StorySizes = () => {
+  waitForElement('#user-icon-sm, #user-icon-md, #user-icon-lg', elements => {
+    Array.from(elements).forEach(element => (element.icon = faUser));
+  });
+  return html/*html*/ `
+    <sb-zen-space spacing="md" horizontal-align="space-between" vertical-align="end">
+      <sb-zen-space vertical spacing="md">
+        <sb-zen-dropdown size="sm" style="width: 18rem">
+          <sb-zen-option size="sm" value="Argentina">Argentina</sb-zen-option>
+          <sb-zen-option size="sm" value="Slovenia">Slovenia</sb-zen-option>
+          <sb-zen-option size="sm" value="United States">United States</sb-zen-option>
+        </sb-zen-dropdown>
+        <sb-zen-text variant="label" align="center" style="width: 100%">sm</sb-zen-text>
+      </sb-zen-space>
+      <sb-zen-space vertical spacing="md" style="width: 18rem">
+        <sb-zen-dropdown size="md">
+          <sb-zen-option size="md" value="Argentina">Argentina</sb-zen-option>
+          <sb-zen-option size="md" value="Slovenia">Slovenia</sb-zen-option>
+          <sb-zen-option size="md" value="United States">United States</sb-zen-option>
+        </sb-zen-dropdown>
+        <sb-zen-text variant="label" align="center" style="width: 100%">md</sb-zen-text>
+      </sb-zen-space>
+      <sb-zen-space vertical spacing="md" style="width: 18rem">
+        <sb-zen-dropdown size="lg">
+          <sb-zen-option size="lg" value="Argentina">Argentina</sb-zen-option>
+          <sb-zen-option size="lg" value="Slovenia">Slovenia</sb-zen-option>
+          <sb-zen-option size="lg" value="United States">United States</sb-zen-option>
+        </sb-zen-dropdown>
+        <sb-zen-text variant="label" align="center" style="width: 100%">lg</sb-zen-text>
+      </sb-zen-space>
+    </sb-zen-space>
+  `;
+};
+
 export const CustomIcons = args => {
   ['#icon2', '#icon3', '#icon4'].forEach(id => {
     waitForElement(id, element => {
@@ -159,7 +193,17 @@ A standard dropdown component
 
 <br />
 
-### 1. Options with custom content
+### 1. Sizes
+
+- Dropdown ships in different sizes
+- These sizes only matter if you have default items (simple text)
+- Make sure you also set the same `size` value to zen-options!
+
+<Canvas>
+  <Story name="StorySizes">{StorySizes.bind({})}</Story>
+</Canvas>
+
+### 2. Options with custom content
 
 - Each option has an icon and custom padding.
 - Because option is taller than usually, we have to specify dropdown's height manually, to match the option height.
@@ -168,7 +212,7 @@ A standard dropdown component
   <Story name="button">{CustomIcons.bind({})}</Story>
 </Canvas>
 
-### 2. Invite people dropdown
+### 3. Invite people dropdown
 
 A composition of `Input` and a `Dropdown` component. Dropdown is placed inside an input using input's slot `trailingSlot`.
 Click `Show code` for more details.
@@ -177,7 +221,7 @@ Click `Show code` for more details.
   <Story name="InvitePeople">{InvitePeople.bind({})}</Story>
 </Canvas>
 
-### 3. In a form group
+### 4. In a form group
 
 <Canvas>
   <Story name="StoryFormGroup">{StoryFormGroup.bind({})}</Story>

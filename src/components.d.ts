@@ -6,7 +6,7 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { StringifiedJson } from "./stories/components/color-swatch-group/color-swatch-group";
-import { Align, AvatarData, IconSizes, InputSize, None, Notification, NotificationVariant, Position, Resize, Size, Spacing, SpacingShorthand, TextSize, TextVariant, TooltipVariant, TriggerEvent } from "./components/helpers/types";
+import { Align, AvatarData, AvatarDetailVariant, IconSizes, InputSize, None, Notification, NotificationVariant, Position, Resize, Size, Spacing, SpacingShorthand, TextSize, TextState, TextVariant, TooltipVariant, TriggerEvent } from "./components/helpers/types";
 import { ButtonVariants } from "./components/zen-button/types";
 import { OptionValue } from "./components/zen-menu-item/zen-option";
 import { IconDefinition } from "@fortawesome/pro-light-svg-icons";
@@ -344,6 +344,10 @@ export namespace Components {
          */
         "placeholder": string;
         /**
+          * Size variant (affects padding, arrow and placeholder)
+         */
+        "size": InputSize;
+        /**
           * Close an opened dropdown menu
          */
         "toggle": (open?: boolean) => Promise<void>;
@@ -507,6 +511,10 @@ export namespace Components {
           * Render item as selected
          */
         "selected": boolean;
+        /**
+          * Size variant
+         */
+        "size": InputSize;
         /**
           * Value of option when used inside a dropdown
          */
@@ -1669,6 +1677,10 @@ declare namespace LocalJSX {
          */
         "placeholder"?: string;
         /**
+          * Size variant (affects padding, arrow and placeholder)
+         */
+        "size"?: InputSize;
+        /**
           * Selected option
          */
         "value"?: OptionValue;
@@ -1828,6 +1840,10 @@ declare namespace LocalJSX {
           * Render item as selected
          */
         "selected"?: boolean;
+        /**
+          * Size variant
+         */
+        "size"?: InputSize;
         /**
           * Value of option when used inside a dropdown
          */
