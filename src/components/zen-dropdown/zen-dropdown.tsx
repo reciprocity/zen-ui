@@ -2,7 +2,7 @@ import { Component, Host, h, Prop, State, Listen, Watch, Element, Method } from 
 import { getDefaultSlotContent, applyPrefix, scrollIntoView } from '../helpers/helpers';
 import { faChevronDown } from '@fortawesome/pro-light-svg-icons';
 import { OptionValue } from '../zen-menu-item/zen-option';
-import { Align, InputSize } from '../helpers/types';
+import { Align, DropdownSize } from '../helpers/types';
 
 export interface OptionItem {
   label: string;
@@ -31,8 +31,8 @@ export class ZenDropdown {
   /** Name of element, can be used as reference for form data */
   @Prop() readonly name: string = '';
 
-  /** Size variant (affects padding, arrow and placeholder) */
-  @Prop({ reflect: true }) readonly size: InputSize = 'md';
+  /** Size variant (affects padding, arrow and placeholder). Use `custom` to set height based on selected zen-option item height. */
+  @Prop({ reflect: true }) readonly size: DropdownSize = 'md';
 
   /** Selected option */
   @Prop({ mutable: true }) value: OptionValue = undefined;

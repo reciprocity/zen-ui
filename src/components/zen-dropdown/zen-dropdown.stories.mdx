@@ -105,7 +105,7 @@ export const CustomIcons = args => {
     });
   });
   return html/*html*/ `
-    <sb-zen-dropdown id="dropdown-with-options-slot" style="min-height: 3.2rem; width: 20rem">
+    <sb-zen-dropdown size="custom" id="dropdown-with-options-slot" style="min-height: 3.2rem; width: 20rem">
       <div class="separator">Group 1</div>
       <sb-zen-option padding="none" value="1">
         <div class="content">
@@ -207,6 +207,7 @@ A standard dropdown component
 
 - Each option has an icon and custom padding.
 - Because option is taller than usually, we have to specify dropdown's height manually, to match the option height.
+- Set `size` to `custom` in order. It will make dropdown's height equal to height selected option.
 
 <Canvas>
   <Story name="button">{CustomIcons.bind({})}</Story>
