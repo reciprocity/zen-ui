@@ -13,20 +13,20 @@ import { faChevronRight } from '@fortawesome/pro-light-svg-icons';
 export class ZenTableRow {
   @Element() host: HTMLZenTableRowElement;
 
+  /** Visible if no depth or parent.expanded */
+  @Prop({ reflect: true, mutable: true }) visible = true;
+
   /** Can be expanded */
-  @Prop({ mutable: true }) expandable = false;
+  @Prop({ reflect: true, mutable: true }) expandable = false;
 
   /** Show checkbox (read-only) */
-  @Prop() readonly selectable = false;
-
-  /** Visible if no depth or parent.expanded */
-  @Prop({ mutable: true }) visible = true;
+  @Prop({ reflect: true }) readonly selectable: boolean = false;
 
   /** Is row selected */
-  @Prop({ mutable: true }) selected = false;
+  @Prop({ reflect: true, mutable: true }) selected = false;
 
   /** Is row expanded */
-  @Prop({ mutable: true }) expanded = false;
+  @Prop({ reflect: true, mutable: true }) expanded = false;
 
   /** Checkbox indeterminate state (Won't update children)  */
   @Prop() readonly $indeterminate: boolean = false;
@@ -164,15 +164,8 @@ export class ZenTableRow {
   render(): HTMLTableRowElement {
     const ZenCheckBox = applyPrefix('zen-checkbox', this.host);
     const ZenIcon = applyPrefix('zen-icon', this.host);
-    const hostClass = {
-      hidden: !this.visible,
-      selectable: this.selectable,
-      expandable: this.expandable,
-      selected: this.selected,
-      expanded: this.expanded,
-    };
     return (
-      <Host class={hostClass}>
+      <Host>
         {this.showWidgets() && (
           <div class="widgets">
             {this.selectable && (
