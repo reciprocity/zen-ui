@@ -5,18 +5,6 @@ import { InputSize } from '../helpers/types';
 
 export type OptionValue = string | number | undefined;
 
-const sizes = {
-  sm: {
-    padding: 'sm lg',
-  },
-  md: {
-    padding: 'md lg',
-  },
-  lg: {
-    padding: 'lg',
-  },
-};
-
 @Component({
   tag: 'zen-option',
   styleUrl: 'zen-option.scss',
@@ -52,7 +40,7 @@ export class ZenOption {
   render(): HTMLElement {
     const ZenSpace = applyPrefix('zen-space', this.host);
     const ZenText = applyPrefix('zen-text', this.host);
-    const realPadding = !this.padding || this.padding === 'null' ? sizes[this.size].padding : this.padding;
+    const realPadding = !this.padding || this.padding === 'null' ? 'none lg' : this.padding;
     return (
       <Host disabled={this.disabled ? 'true' : null}>
         <ZenSpace

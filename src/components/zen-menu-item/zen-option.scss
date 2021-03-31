@@ -1,7 +1,7 @@
 @import '../../zen-styles/variables.scss';
 @import '../../zen-styles/mixins/forms.scss';
 
-$item-line-height: 1rem;
+$item-line-height: 1.2rem;
 
 :host {
   position: relative;
@@ -32,10 +32,16 @@ $item-line-height: 1rem;
   display: block;
 }
 
-:host([size='lg'][padding='default']) .content,
-:host([size='lg']:not([padding])) .content {
-  // zen-space doesn't provide 0.5rem padding, so we have to do it manually:
-  line-height: 0.5rem;
+:host([size='sm']) .content {
+  line-height: 1.5rem;
+}
+
+:host([size='md']) .content {
+  line-height: 2rem;
+}
+
+:host([size='lg']) .content {
+  line-height: 2.5rem;
 }
 
 :host(:not([no-hover]):hover),
