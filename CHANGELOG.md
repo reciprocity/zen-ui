@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/reciprocity/zen-ui/compare/1.0.0...1.0.1) (2021-03-31)
+
+
+### Bug Fixes
+
+* enable NPM releases ([75e0490](https://github.com/reciprocity/zen-ui/commit/75e0490c71f88c2465ad9664b993cf4c0c5d5b14))
+
 # [1.0.0](https://github.com/reciprocity/zen-ui/compare/0.1.7...1.0.0) (2021-03-31)
 
 
