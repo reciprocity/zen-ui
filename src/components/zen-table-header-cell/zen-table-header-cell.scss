@@ -10,13 +10,13 @@
   vertical-align: middle;
 }
 
-:host(.sticky) {
+:host([sticky]) {
   position: sticky;
   top: 0;
   z-index: 2;
 }
 
-:host(.sticky)::after {
+:host([sticky])::after {
   content: '';
   position: absolute;
   left: 0;

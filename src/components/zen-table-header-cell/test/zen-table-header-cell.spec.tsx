@@ -16,7 +16,6 @@ describe('zen-table-header-cell', () => {
       components: [ZenTableHeaderCell],
       html: `<zen-table-header-cell sticky>Content</zen-table-header-cell>`,
     });
-
-    expect(page.root.getAttribute('class')).toEqual('sticky');
+    expect(page.root.hasAttribute('sticky')).toBeTruthy();
   });
 });
