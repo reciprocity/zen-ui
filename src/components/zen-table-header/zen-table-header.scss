@@ -18,7 +18,7 @@ $arrow-width: 2rem;
   z-index: 3;
 }
 
-:host(.expandable) .widgets + ::slotted(*:nth-child(1)) {
+:host([expandable]) .widgets + ::slotted(*:nth-child(1)) {
   padding-left: #{$arrow-width};
 }
 
@@ -26,6 +26,6 @@ $arrow-width: 2rem;
   padding-left: #{$checkbox-width};
 }
 
-:host([selectable].expandable) .widgets + ::slotted(*:nth-child(1)) {
+:host([selectable][expandable]) .widgets + ::slotted(*:nth-child(1)) {
   padding-left: #{$checkbox-width + $arrow-width};
 }

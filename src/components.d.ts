@@ -812,7 +812,7 @@ export namespace Components {
          */
         "depth": number;
         /**
-          * Can be expanded
+          * Can be expanded (if has children)
          */
         "expandable": boolean;
         /**
@@ -2109,7 +2109,7 @@ declare namespace LocalJSX {
          */
         "depth"?: number;
         /**
-          * Can be expanded
+          * Can be expanded (if has children)
          */
         "expandable"?: boolean;
         /**

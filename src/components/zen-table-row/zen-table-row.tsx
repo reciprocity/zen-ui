@@ -16,7 +16,7 @@ export class ZenTableRow {
   /** Visible if no depth or parent.expanded */
   @Prop({ reflect: true, mutable: true }) visible = true;
 
-  /** Can be expanded */
+  /** Can be expanded (if has children) */
   @Prop({ reflect: true, mutable: true }) expandable = false;
 
   /** Show checkbox (read-only) */
