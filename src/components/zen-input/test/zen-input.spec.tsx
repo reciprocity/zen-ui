@@ -218,4 +218,16 @@ describe('zen-input', () => {
     const clearButton = page.root.shadowRoot.querySelector('.icon.clear');
     expect(clearButton).toBeFalsy();
   });
+
+  it('should show small clear icon', async () => {
+    const page = await newSpecPage({
+      components: [ZenInput, ZenIcon],
+      html: `<zen-input size="sm" value="x"></zen-input>`,
+    });
+    const inputElement = page.root.shadowRoot.querySelector('input');
+    inputElement.dispatchEvent(new Event('focus'));
+    await page.waitForChanges();
+    const icon = page.root.shadowRoot.querySelector('.icon.clear');
+    expect(icon.getAttribute('size')).toEqual('sm');
+  });
 });
