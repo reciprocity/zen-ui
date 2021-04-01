@@ -195,9 +195,8 @@ A standard dropdown component
 
 ### 1. Sizes
 
-- Dropdown ships in different sizes
-- These sizes only matter if you have default items (simple text)
-- Make sure you also set the same `size` value to zen-options!
+This component supports multiple sizes through the use of the `size` attribute. Not that it is only considered when implemented with "default items" (simple text). In that case, you need to make sure you set the same `size` on the `zen-dropdown`.
+For customly sized items, set `size` to custom.
 
 <Canvas>
   <Story name="StorySizes">{StorySizes.bind({})}</Story>
