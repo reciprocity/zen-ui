@@ -180,6 +180,10 @@ export namespace Components {
          */
         "name": string;
         /**
+          * Size variant
+         */
+        "size": InputSize;
+        /**
           * Color variant of the button
          */
         "variant": ButtonVariants;
@@ -1512,6 +1516,10 @@ declare namespace LocalJSX {
           * Name of element, can be used as reference for form data
          */
         "name"?: string;
+        /**
+          * Size variant
+         */
+        "size"?: InputSize;
         /**
           * Color variant of the button
          */
