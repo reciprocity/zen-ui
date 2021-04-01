@@ -194,10 +194,6 @@ export class ZenDatePicker {
     }
   }
 
-  inputIconSize(): string {
-    return this.size === 'sm' ? 'sm' : 'md';
-  }
-
   onInputChange(event: Event): void {
     const input = event.target as HTMLInputElement;
     if (!input.value && this.allowEmpty) {
@@ -239,6 +235,8 @@ export class ZenDatePicker {
     const ZenSpace = applyPrefix('zen-space', this.host);
     const ZenIcon = applyPrefix('zen-icon', this.host);
     const ZenPopover = applyPrefix('zen-popover', this.host);
+    const iconSize = this.size === 'sm' ? 'sm' : 'md';
+
     return (
       <Host onFocus={() => this.onFocus()} onBlur={() => this.onBlur()}>
         <ZenInput
@@ -253,7 +251,7 @@ export class ZenDatePicker {
         >
           <ZenIcon
             slot="leadingSlot"
-            size={this.inputIconSize()}
+            size={iconSize}
             padding="md none md md"
             class="icon"
             icon={faCalendarAlt}
@@ -264,7 +262,7 @@ export class ZenDatePicker {
               padding="md md md none"
               class="icon clear"
               icon={faTimes}
-              size={this.inputIconSize()}
+              size={iconSize}
               onMousedown={event => this.onClearClick(event)}
             ></ZenIcon>
           )}
