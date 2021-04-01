@@ -1,7 +1,6 @@
 /// <reference types="cypress" />
 
 describe('Tooltip visual tests', { scrollBehavior: 'center' }, () => {
-  // Cypress.config('scrollBehavior', 'center');
   const pageId = 'notifications-tooltip--variant';
   const story = [
     'story--notifications-tooltip--variant',
@@ -11,43 +10,55 @@ describe('Tooltip visual tests', { scrollBehavior: 'center' }, () => {
     'story--notifications-tooltip--hyperlink',
   ];
 
-  function findPopup(cy) {
-    return cy.get('sb-zen-tooltip').shadow().find('sb-zen-popover').shadow().find('.popup-wrap .popup');
-  }
-
   before(() => {
     cy.visitStorybookIframe(pageId);
     cy.verifyAllStoriesHaveVRT(story);
-    cy.get('sb-zen-tooltip').each(() => {
-      findPopup(cy).should('not.be.visible');
+    cy.get('sb-zen-popover').each(() => {
+      cy.get('.popup-wrap .popup').should('not.be.visible');
     });
   });
 
   it('Verifies ' + `${story[0]}`, () => {
-    cy.get(`#${story[0]}`).matchImageSnapshot();
+    const variants = ['dark', 'light', 'error'];
+    variants.forEach(variant => {
+      cy.get(`[variant="${variant}"]`)
+        .find('sb-zen-popover')
+        .then(el => {
+          el.attr('visible', true);
+        });
+      cy.get(`[variant="${variant}"]`)
+        .find('.popup-wrap .popup')
+        .first()
+        .should('be.visible')
+        .wait(300)
+        .matchImageSnapshot(`${variant}`);
+    });
   });
 
   it('Verifies ' + `${story[1]}`, () => {
-    cy.get(`#${story[1]}`).parents('.innerZoomElementWrapper').matchImageSnapshot();
+    cy.get(`#${story[1]}`)
+      .find('sb-zen-popover')
+      .then(el => {
+        el.attr('visible', true);
+      });
+    cy.get(`#${story[1]}`).find('.popup-wrap .popup').should('be.visible').wait(300).matchImageSnapshot();
   });
 
   it('Verifies ' + `${story[2]}`, () => {
     cy.get(`#${story[2]}`)
-      .within(() => {
-        cy.get('sb-zen-button').trigger('mouseover');
-        findPopup(cy).should('be.visible').wait(300);
-      })
-      .parents('.innerZoomElementWrapper')
-      .matchImageSnapshot();
+      .find('sb-zen-popover')
+      .then(el => {
+        el.attr('visible', true);
+      });
+    cy.get(`#${story[2]}`).find('.popup-wrap .popup').should('be.visible').wait(300).matchImageSnapshot();
   });
 
   it('Verifies ' + `${story[3]}`, () => {
     cy.get(`#${story[3]}`)
-      .within(() => {
-        cy.get('sb-zen-button').trigger('mouseover');
-        findPopup(cy).should('be.visible').wait(300);
-      })
-      .parents('.innerZoomElementWrapper')
-      .matchImageSnapshot();
+      .find('sb-zen-popover')
+      .then(el => {
+        el.attr('visible', true);
+      });
+    cy.get(`#${story[3]}`).find('.popup-wrap .popup').should('be.visible').wait(300).matchImageSnapshot();
   });
 });
