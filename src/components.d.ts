@@ -942,6 +942,10 @@ export namespace Components {
          */
         "disabled": false;
         /**
+          * Focus input
+         */
+        "focusInput": () => Promise<void>;
+        /**
           * Shows invalid styles.
          */
         "invalid": false;
