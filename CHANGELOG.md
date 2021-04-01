@@ -1,3 +1,30 @@
+# [2.0.0](https://github.com/reciprocity/zen-ui/compare/1.1.1...2.0.0) (2021-04-01)
+
+
+### Bug Fixes
+
+* fix firefox h3 overlapping dropdown ([66d08e6](https://github.com/reciprocity/zen-ui/commit/66d08e66c702cb33d88b6d918c168dfc1ea4caa3))
+* fix popover width ([3fad543](https://github.com/reciprocity/zen-ui/commit/3fad543e1c9199eac2568da56df9233fff4edd8e))
+* **zen-dropdown:** define field height instead of padding ([c743ce5](https://github.com/reciprocity/zen-ui/commit/c743ce56b6c93f5e3df617679ebfab8877993cc4))
+* **zen-dropdown:** truncate long text ([383f3e9](https://github.com/reciprocity/zen-ui/commit/383f3e9a482d2cf692c04b6b2a5b1868a583e6cb))
+* **zen-input:** define host height instead of padding ([07939e1](https://github.com/reciprocity/zen-ui/commit/07939e10c72ad687ca19778938472f5639ff258d))
+* **zen-option:** remove vert padding and control height with line-height ([f3eda2f](https://github.com/reciprocity/zen-ui/commit/f3eda2f3ee2aa9a1d811fa1bbe07e3b07d2e363f))
+* **zen-option:** truncate long text ([aabfcf5](https://github.com/reciprocity/zen-ui/commit/aabfcf52209e4f8cba00f3a5afae859f00d75a01))
+* unify input, dropdown, date-picker height to 2 rem ([1b0ea14](https://github.com/reciprocity/zen-ui/commit/1b0ea1433f34b51abbec38efa02b9ee6c98e352b))
+
+
+### Features
+
+* **zen-date-picker:** add prop `size` and sizes story ([7623d21](https://github.com/reciprocity/zen-ui/commit/7623d21fc34340ba1e95f3a05e9330fbb9fda224))
+* **zen-dropdown:** add size prop ([fa9bc55](https://github.com/reciprocity/zen-ui/commit/fa9bc55c3c72f922628d46f4f4769389bb4c7179))
+* **zen-input:** add prop `size` and styles ([6e6d65d](https://github.com/reciprocity/zen-ui/commit/6e6d65df9014c9f43b75592d249038962a119efe))
+* **zen-option:** add size prop ([8ed071c](https://github.com/reciprocity/zen-ui/commit/8ed071cdb5e7121572e3c063cb818498479f4f73))
+
+
+### BREAKING CHANGES
+
+* Input, dropdown, date-picker default height is unified to 2 rem.
+
 ## [1.1.1](https://github.com/reciprocity/zen-ui/compare/1.1.0...1.1.1) (2021-04-01)
 
 
