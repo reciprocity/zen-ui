@@ -49,7 +49,7 @@
   margin-right: 0.5rem;
 }
 
-:host(.btn-primary) {
+:host(.blue-filled) {
   @include button-variant(
     $color-white,
     $color-blue-700,
@@ -60,7 +60,7 @@
   );
 }
 
-:host(.btn-secondary) {
+:host(.blue-ghost) {
   @include outline-button-variant(
     $color-blue-700,
     $color-white,
@@ -73,7 +73,20 @@
   );
 }
 
-:host(.btn-tertiary) {
+:host(.grey-ghost) {
+  @include outline-button-variant(
+    $color-gray-700,
+    $color-white,
+    $color-gray-200,
+    $color-gray-800,
+    $color-gray-100,
+    $color-gray-200,
+    $color-gray-800,
+    $color-gray-200
+  );
+}
+
+:host(.grey-text) {
   @include button-variant(
     $color-gray-600,
     $color-white,
@@ -84,19 +97,32 @@
   );
 }
 
-:host(.btn-positive) {
+:host(.green-ghost) {
   @include outline-button-variant(
     $color-green-700,
     $color-white,
     $color-green-700,
     $color-green-800,
-    $color-green-100,
+    $color-gray-100,
     $color-green-300,
     $color-green-900,
-    $color-green-300
+    $color-gray-200
   );
 }
 
-:host(.btn-destructive) {
+:host(.red-filled) {
   @include button-variant($color-white, $color-red-700, $color-red-700, $color-red-800, $color-red-300, $color-red-900);
+}
+
+:host(.red-ghost) {
+  @include outline-button-variant(
+    $color-red-700,
+    $color-white,
+    $color-red-700,
+    $color-red-800,
+    $color-gray-100,
+    $color-red-300,
+    $color-red-900,
+    $color-gray-200
+  );
 }
