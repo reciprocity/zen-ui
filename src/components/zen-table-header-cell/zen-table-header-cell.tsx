@@ -7,11 +7,11 @@ import { h, Component, Host, Prop } from '@stencil/core';
 })
 export class ZenTableHeaderCell {
   /** Remains fixed at the top of the table during vertical scrolling */
-  @Prop() readonly sticky = false;
+  @Prop({ reflect: true }) readonly sticky = false;
 
   render(): HTMLTableHeaderCellElement {
     return (
-      <Host class={{ sticky: this.sticky }}>
+      <Host>
         <slot></slot>
       </Host>
     );

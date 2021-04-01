@@ -1,4 +1,4 @@
-import { h, Component, Element, Host, Prop, State, Watch } from '@stencil/core';
+import { h, Component, Element, Host, Prop, Watch, State } from '@stencil/core';
 import { applyPrefix } from '../helpers/helpers';
 
 /**
@@ -13,14 +13,13 @@ export class ZenTableHeader {
   observer: MutationObserver = null;
 
   @Element() host: HTMLZenTableHeaderElement;
-
   @State() expandable = false;
 
   /** Remains fixed at the top of the table during vertical scrolling */
-  @Prop({ reflect: true }) readonly sticky = false;
+  @Prop() readonly sticky = false;
 
   /** Show checkbox */
-  @Prop() readonly selectable = false;
+  @Prop({ reflect: true }) readonly selectable: boolean = false;
 
   /** Select all rows */
   @Prop({ mutable: true }) selected = false;
@@ -108,8 +107,8 @@ export class ZenTableHeader {
   render(): HTMLElement {
     const ZenCheckBox = applyPrefix('zen-checkbox', this.host);
     return (
-      <Host class={{ selectable: this.selectable, expandable: this.expandable }}>
-        {this.selectable && (
+      <Host expandable={this.expandable}>
+        {(this.selectable || this.expandable) && (
           <div class="widgets">
             <ZenCheckBox
               class="checkbox"

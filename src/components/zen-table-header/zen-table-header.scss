@@ -15,16 +15,17 @@ $arrow-width: 2rem;
   box-sizing: border-box;
   display: flex;
   align-items: center;
+  z-index: 3;
 }
 
-:host(.expandable) .widgets + ::slotted(*:nth-child(1)) {
+:host([expandable]) .widgets + ::slotted(*:nth-child(1)) {
   padding-left: #{$arrow-width};
 }
 
-:host(.selectable) .widgets + ::slotted(*:nth-child(1)) {
+:host([selectable]) .widgets + ::slotted(*:nth-child(1)) {
   padding-left: #{$checkbox-width};
 }
 
-:host(.expandable.selectable) .widgets + ::slotted(*:nth-child(1)) {
+:host([selectable][expandable]) .widgets + ::slotted(*:nth-child(1)) {
   padding-left: #{$checkbox-width + $arrow-width};
 }

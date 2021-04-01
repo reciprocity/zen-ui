@@ -18,11 +18,11 @@ $select-transition: 0.5s;
   transform: scale(1); // hack to apply position relative (tested in chrome & ff)
 }
 
-:host(.hidden) {
+:host(:not([visible])) {
   display: none;
 }
 
-:host(.selected),
+:host([selected]),
 :host([indeterminate]) {
   border: 1px solid $color-blue-700;
 }
@@ -40,18 +40,12 @@ $select-transition: 0.5s;
   transition: transform $expand-icon-transition;
 }
 
-.expanded .expand-icon {
+:host([expanded]) .expand-icon {
   transform: rotate(90deg);
 }
 
-:host(.expanded) .expand-icon {
-  transform: rotate(90deg);
-}
-
-.expanded ::slotted(*),
-:host(.selected) ::slotted(*),
-:host(.expanded) ::slotted(*),
-:host(.expanded-bg) ::slotted(*),
+:host([selected]) ::slotted(*),
+:host([expanded]) ::slotted(*),
 :host([depth]:not([depth='0'])) ::slotted(*) {
   background-color: $color-blue-50 !important;
 }
@@ -71,12 +65,12 @@ $select-transition: 0.5s;
   display: none;
 }
 
-:host(:not([depth]).expandable) ::slotted(*:first-child),
-:host(:not([depth]).selectable) ::slotted(*:first-child) {
+:host(:not([depth])[expandable]) ::slotted(*:first-child),
+:host(:not([depth])[selectable]) ::slotted(*:first-child) {
   padding-left: #{$arrow-width};
 }
 
-:host(:not([depth]).expandable.selectable) ::slotted(*:first-child) {
+:host(:not([depth])[expandable][selectable]) ::slotted(*:first-child) {
   padding-left: #{$checkbox-width + $arrow-width};
 }
 
@@ -85,9 +79,9 @@ $select-transition: 0.5s;
     padding-left: #{0.5rem + $i * $depth-padding};
   }
 
-  :host([depth='#{$i}'].expandable) ::slotted(*:first-child),
-  :host([depth='#{$i}'].selectable) ::slotted(*:first-child),
-  :host([depth='#{$i}'].selectable.expandable) ::slotted(*:first-child) {
+  :host([depth='#{$i}'][expandable]) ::slotted(*:first-child),
+  :host([depth='#{$i}'][selectable]) ::slotted(*:first-child),
+  :host([depth='#{$i}'][selectable][expandable]) ::slotted(*:first-child) {
     padding-left: #{($i) * $depth-padding + ($checkbox-width + $arrow-width)};
   }
 }

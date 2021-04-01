@@ -786,7 +786,7 @@ export namespace Components {
         /**
           * Show checkbox
          */
-        "selectable": false;
+        "selectable": boolean;
         /**
           * Select all rows
          */
@@ -812,7 +812,7 @@ export namespace Components {
          */
         "depth": number;
         /**
-          * Can be expanded
+          * Can be expanded (if has children)
          */
         "expandable": boolean;
         /**
@@ -834,7 +834,7 @@ export namespace Components {
         /**
           * Show checkbox (read-only)
          */
-        "selectable": false;
+        "selectable": boolean;
         /**
           * Is row selected
          */
@@ -2095,7 +2095,7 @@ declare namespace LocalJSX {
         /**
           * Show checkbox
          */
-        "selectable"?: false;
+        "selectable"?: boolean;
         /**
           * Select all rows
          */
@@ -2121,7 +2121,7 @@ declare namespace LocalJSX {
          */
         "depth"?: number;
         /**
-          * Can be expanded
+          * Can be expanded (if has children)
          */
         "expandable"?: boolean;
         /**
@@ -2135,7 +2135,7 @@ declare namespace LocalJSX {
         /**
           * Show checkbox (read-only)
          */
-        "selectable"?: false;
+        "selectable"?: boolean;
         /**
           * Is row selected
          */
