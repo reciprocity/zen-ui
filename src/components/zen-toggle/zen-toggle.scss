@@ -22,7 +22,7 @@ span {
     border-radius: 1rem;
     transition: background $transition-color, box-shadow $transition-color;
     background: $color-gray-300;
-    width: 2rem;
+    width: 1.875rem;
     height: 1rem;
     outline: none;
 
@@ -48,12 +48,12 @@ span {
     transition: transform $transition-micro-move;
     border-radius: 1rem;
     transform: translateX(0rem);
-    width: 0.75rem;
-    height: 0.75rem;
-    margin: 2px;
+    width: 0.875rem;
+    height: 0.875rem;
+    margin: 1px;
 
     &.checked {
-      transform: translateX(1rem);
+      transform: translateX(0.875rem);
     }
   }
 }
