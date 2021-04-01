@@ -5,6 +5,7 @@ describe('Button visual tests', () => {
   const pageId = 'forms-button--default';
   const stories = [
     'story--forms-button--story-simple',
+    'story--forms-button--story-sizes',
     'story--forms-button--story-loading',
     'story--forms-button--story-disabled',
     'story--forms-button--story-with-icons',
