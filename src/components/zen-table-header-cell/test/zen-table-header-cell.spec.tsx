@@ -10,12 +10,4 @@ describe('zen-table-header-cell', () => {
 
     expect(page.root.innerHTML).toEqual('Content');
   });
-
-  it('should apply `sticky` class to host element if `sticky` prop is set', async () => {
-    const page = await newSpecPage({
-      components: [ZenTableHeaderCell],
-      html: `<zen-table-header-cell sticky>Content</zen-table-header-cell>`,
-    });
-    expect(page.root.hasAttribute('sticky')).toBeTruthy();
-  });
 });
