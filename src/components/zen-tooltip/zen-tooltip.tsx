@@ -33,13 +33,13 @@ export class ZenTooltip {
   /** Set tooltip label */
   @Prop() readonly label?: string = '';
 
-  /** Hyperlink title */
-  @Prop() readonly header: string = '';
+  /** Set tooltip title */
+  @Prop() readonly heading: string = '';
 
-  /** Link title */
+  /** Set link title */
   @Prop() readonly linkTitle: string = '';
 
-  /** Link to resource */
+  /** Set link to resource */
   @Prop() readonly link: string = '';
 
   /** Set tooltip offset to target element */
@@ -118,9 +118,9 @@ export class ZenTooltip {
           padding-bottom={this.paddingBottom}
           padding-left={this.paddingLeft}
         >
-          {this.header && (
-            <ZenText class="header" size="md" bold>
-              {this.header}
+          {this.heading && (
+            <ZenText class="heading" size="md" bold>
+              {this.heading}
             </ZenText>
           )}
           <slot>

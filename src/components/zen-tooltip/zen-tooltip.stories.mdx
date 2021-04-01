@@ -100,7 +100,7 @@ export const TitleAndHyperlink = () => {
       <div>
         <sb-zen-button label="Info" variant="secondary">Hover</sb-zen-button>
         <sb-zen-tooltip
-          header="Title"
+          heading="Title"
           link-title="Learn more about this"
           link="http://www.hyperlink.com"
           position="top"
@@ -151,7 +151,7 @@ Limit tooltip height by setting `max-height` ('4rem' in example below).
 
 #### 4. Tooltip with title and hyperlink:
 
-Set property header and link.
+Set property `heading` and/or `link`.
 
 <Canvas>
   <Story name="hyperlink">{TitleAndHyperlink.bind({})}</Story>

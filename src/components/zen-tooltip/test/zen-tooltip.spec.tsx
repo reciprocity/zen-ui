@@ -86,10 +86,10 @@ describe('zen-tooltip', () => {
 
     await page.waitForChanges();
 
-    const header = tooltip.shadowRoot.querySelector('.header');
+    const heading = tooltip.shadowRoot.querySelector('.heading');
     const link = tooltip.shadowRoot.querySelector('.link');
 
-    expect(header).not.toBeTruthy();
+    expect(heading).not.toBeTruthy();
     expect(link).toBeTruthy();
   });
 
@@ -98,7 +98,7 @@ describe('zen-tooltip', () => {
       components: [ZenTooltip, ZenPopover],
       html: `
         <div class="trigger">Trigger</div>
-        <zen-tooltip header="Title">
+        <zen-tooltip heading="Title">
         Some text</zen-tooltip>
       `,
     });
@@ -109,10 +109,10 @@ describe('zen-tooltip', () => {
 
     await page.waitForChanges();
 
-    const header = tooltip.shadowRoot.querySelector('.header');
+    const heading = tooltip.shadowRoot.querySelector('.heading');
     const link = tooltip.shadowRoot.querySelector('.link');
 
-    expect(header).toBeTruthy();
+    expect(heading).toBeTruthy();
     expect(link).not.toBeTruthy();
   });
 });

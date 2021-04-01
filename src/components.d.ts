@@ -974,19 +974,19 @@ export namespace Components {
          */
         "delay": string;
         /**
-          * Hyperlink title
+          * Set tooltip title
          */
-        "header": string;
+        "heading": string;
         /**
           * Set tooltip label
          */
         "label"?: string;
         /**
-          * Link to resource
+          * Set link to resource
          */
         "link": string;
         /**
-          * Link title
+          * Set link title
          */
         "linkTitle": string;
         /**
@@ -2275,19 +2275,19 @@ declare namespace LocalJSX {
          */
         "delay"?: string;
         /**
-          * Hyperlink title
+          * Set tooltip title
          */
-        "header"?: string;
+        "heading"?: string;
         /**
           * Set tooltip label
          */
         "label"?: string;
         /**
-          * Link to resource
+          * Set link to resource
          */
         "link"?: string;
         /**
-          * Link title
+          * Set link title
          */
         "linkTitle"?: string;
         /**
