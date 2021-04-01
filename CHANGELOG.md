@@ -1,3 +1,13 @@
+## [1.1.1](https://github.com/reciprocity/zen-ui/compare/1.1.0...1.1.1) (2021-04-01)
+
+
+### Bug Fixes
+
+* change table header expandable to be a attribute ([2786037](https://github.com/reciprocity/zen-ui/commit/278603707c31e678fbffd0b99abb2dcad660e962))
+* make header selectable reflective and update styles ([081d7a5](https://github.com/reciprocity/zen-ui/commit/081d7a58721cd85ab31f00c474efae0875c80d7f))
+* make tabel header cell sticky prop to be reflective ([2c7d372](https://github.com/reciprocity/zen-ui/commit/2c7d3722a3eeddb90fa6fc62e62ab0ecb2e5ac14))
+* make table row params reflective and update styles ([6656153](https://github.com/reciprocity/zen-ui/commit/66561537f524a843cde3afa0db7cd1ea629eb3d3))
+
 # [1.1.0](https://github.com/reciprocity/zen-ui/compare/1.0.1...1.1.0) (2021-04-01)
 
 
