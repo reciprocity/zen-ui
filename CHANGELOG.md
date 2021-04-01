@@ -1,3 +1,15 @@
+# [1.1.0](https://github.com/reciprocity/zen-ui/compare/1.0.1...1.1.0) (2021-04-01)
+
+
+### Bug Fixes
+
+* small fix for icon margin ([68e01ad](https://github.com/reciprocity/zen-ui/commit/68e01ad2f7603fc2612d4fe6f7a40df3f004178f))
+
+
+### Features
+
+* add tooltip title and hyperlink ([cedd87f](https://github.com/reciprocity/zen-ui/commit/cedd87f9e55a0cd30fcf1dd6e4771326f2e655d2))
+
 ## [1.0.1](https://github.com/reciprocity/zen-ui/compare/1.0.0...1.0.1) (2021-03-31)
 
 
