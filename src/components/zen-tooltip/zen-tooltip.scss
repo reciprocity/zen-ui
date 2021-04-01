@@ -11,3 +11,22 @@ $arrow_size: 0.3rem;
   min-width: min-content;
   z-index: $z-index-tooltips;
 }
+
+.heading {
+  padding-bottom: 0.5rem;
+}
+
+.link {
+  display: flex;
+  color: $color-blue-700;
+  text-decoration: none;
+  cursor: pointer;
+
+  .icon {
+    margin-top: -0.25rem;
+  }
+
+  &:hover {
+    text-decoration: underline;
+  }
+}

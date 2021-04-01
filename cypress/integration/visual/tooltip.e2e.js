@@ -8,6 +8,7 @@ describe('Tooltip visual tests', { scrollBehavior: 'center' }, () => {
     'story--notifications-tooltip--slot',
     'story--notifications-tooltip--scrollable',
     'story--notifications-tooltip--default-story',
+    'story--notifications-tooltip--hyperlink',
   ];
 
   function findPopup(cy) {

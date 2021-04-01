@@ -974,9 +974,21 @@ export namespace Components {
          */
         "delay": string;
         /**
+          * Set tooltip title
+         */
+        "heading": string;
+        /**
           * Set tooltip label
          */
         "label"?: string;
+        /**
+          * Set link to resource
+         */
+        "link": string;
+        /**
+          * Set link title
+         */
+        "linkTitle": string;
         /**
           * Limit tooltips height and make content scroll
          */
@@ -2263,9 +2275,21 @@ declare namespace LocalJSX {
          */
         "delay"?: string;
         /**
+          * Set tooltip title
+         */
+        "heading"?: string;
+        /**
           * Set tooltip label
          */
         "label"?: string;
+        /**
+          * Set link to resource
+         */
+        "link"?: string;
+        /**
+          * Set link title
+         */
+        "linkTitle"?: string;
         /**
           * Limit tooltips height and make content scroll
          */

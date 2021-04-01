@@ -67,4 +67,52 @@ describe('zen-tooltip', () => {
 
     expect(popover.targetElement).toEqual(target);
   });
+
+  it('should render hyperlink and no header', async () => {
+    const page = await newSpecPage({
+      components: [ZenTooltip, ZenPopover],
+      html: `
+        <div class="trigger">Trigger</div>
+        <zen-tooltip
+          link-title="Learn more about this"
+          link="http://www.hyperlink.com">
+        Some text</zen-tooltip>
+      `,
+    });
+
+    const target = page.doc.querySelector('.trigger');
+    const tooltip = page.doc.querySelector('zen-tooltip');
+    target.dispatchEvent(new MouseEvent('mouseover'));
+
+    await page.waitForChanges();
+
+    const heading = tooltip.shadowRoot.querySelector('.heading');
+    const link = tooltip.shadowRoot.querySelector('.link');
+
+    expect(heading).not.toBeTruthy();
+    expect(link).toBeTruthy();
+  });
+
+  it('should render title and no hyperlink', async () => {
+    const page = await newSpecPage({
+      components: [ZenTooltip, ZenPopover],
+      html: `
+        <div class="trigger">Trigger</div>
+        <zen-tooltip heading="Title">
+        Some text</zen-tooltip>
+      `,
+    });
+
+    const target = page.doc.querySelector('.trigger');
+    const tooltip = page.doc.querySelector('zen-tooltip');
+    target.dispatchEvent(new MouseEvent('mouseover'));
+
+    await page.waitForChanges();
+
+    const heading = tooltip.shadowRoot.querySelector('.heading');
+    const link = tooltip.shadowRoot.querySelector('.link');
+
+    expect(heading).toBeTruthy();
+    expect(link).not.toBeTruthy();
+  });
 });
