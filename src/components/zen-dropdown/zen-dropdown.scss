@@ -2,18 +2,14 @@
 @import '../../zen-styles/shadows.scss';
 @import '../../zen-styles/mixins/forms.scss';
 
-$border: rgba(#000, 0.1);
-$background: #fff;
 $open-transition: 0.2s;
-
-$field-height: #{1.2rem + 2 * 0.5rem};
 
 :host {
   position: relative;
-  display: inline-block;
+  display: inline-flex;
+  justify-content: stretch;
+  height: auto;
   width: 100%;
-  height: 1px; // hack for field height=100%
-  min-height: $field-height;
   text-align-last: left;
   outline: none;
   font-size: $text-md;
@@ -40,21 +36,24 @@ $field-height: #{1.2rem + 2 * 0.5rem};
   z-index: 1;
   position: relative;
   border-radius: $input-radius;
-  height: 100%;
   white-space: nowrap;
   overflow: hidden;
-  padding-right: 2.2rem;
   display: flex;
   align-items: center;
+  box-sizing: border-box;
+  flex-basis: 100%;
 
   &:not(.borderless) {
     @include zenInputBorder;
   }
 
+  &.borderless {
+    background-color: transparent;
+  }
+
   .arrow {
-    position: absolute;
-    right: 10px;
-    top: calc(50% - 12px);
+    margin-left: auto;
+    margin-right: 0.75rem;
     color: $color-gray-500;
     border-bottom-width: 0;
     transition: transform $open-transition;
@@ -66,8 +65,36 @@ $field-height: #{1.2rem + 2 * 0.5rem};
 }
 
 .placeholder {
-  padding: 0.5rem 1rem;
+  padding: 0.5rem;
   opacity: 0.5;
+}
+
+:host([size='sm']) {
+  .field {
+    height: 1.5rem;
+  }
+
+  .arrow {
+    margin-right: 0.5rem;
+  }
+}
+
+:host([size='lg']) {
+  .field {
+    height: 2.5rem;
+  }
+
+  .arrow {
+    margin-right: 1rem;
+  }
+}
+
+:host([size='md']) .field {
+  height: 2rem;
+}
+
+:host([size='custom']) .field {
+  height: auto;
 }
 
 $item-line-height: 1.2rem;
@@ -75,6 +102,11 @@ $item-ypadding: 0.5rem;
 
 .list {
   max-height: #{4 * ($item-line-height + 2 * $item-ypadding)};
+}
+
+.field-content {
+  width: auto;
+  min-width: 0;
 }
 
 :host([invalid='true']) .field {

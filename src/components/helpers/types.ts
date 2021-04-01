@@ -15,6 +15,10 @@ export type TextSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';
 
 export type IconSizes = 'sm' | 'md' | 'lg';
 
+export type InputSize = 'sm' | 'md' | 'lg';
+
+export type DropdownSize = InputSize | 'custom';
+
 export type Size = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
 export type Spacing = Size | null | '2xl' | '3xl' | '4xl' | '5xl' | '6xl';

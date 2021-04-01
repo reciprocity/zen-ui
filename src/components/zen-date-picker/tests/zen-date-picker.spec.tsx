@@ -219,4 +219,28 @@ describe('zen-date-picker', () => {
     await render('formatted-date="" allow-empty="false"');
     expect(datepicker.value).toEqual(new Date(1972, 2 - 1, 18));
   });
+
+  it('should render small calendar icon and input', async () => {
+    await render('size="sm"');
+    const icon = datepicker.shadowRoot.querySelector('.icon.clear');
+    expect(icon.getAttribute('size')).toEqual('sm');
+    const input = datepicker.shadowRoot.querySelector('zen-input');
+    expect(input.getAttribute('size')).toEqual('sm');
+  });
+
+  it('should render normal calendar icon and input', async () => {
+    await render();
+    const icon = datepicker.shadowRoot.querySelector('.icon.clear');
+    expect(icon.getAttribute('size')).toEqual('md');
+    const input = datepicker.shadowRoot.querySelector('zen-input');
+    expect(input.getAttribute('size')).toEqual('md');
+  });
+
+  it('should render large calendar icon and input', async () => {
+    await render('size="lg"');
+    const icon = datepicker.shadowRoot.querySelector('.icon.clear');
+    expect(icon.getAttribute('size')).toEqual('md');
+    const input = datepicker.shadowRoot.querySelector('zen-input');
+    expect(input.getAttribute('size')).toEqual('lg');
+  });
 });

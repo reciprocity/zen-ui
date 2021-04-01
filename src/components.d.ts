@@ -6,7 +6,7 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { StringifiedJson } from "./stories/components/color-swatch-group/color-swatch-group";
-import { Align, AvatarData, AvatarDetailVariant, IconSizes, None, Notification, NotificationVariant, Position, Resize, Size, Spacing, SpacingShorthand, TextSize, TextState, TextVariant, TooltipVariant, TriggerEvent } from "./components/helpers/types";
+import { Align, AvatarData, AvatarDetailVariant, DropdownSize, IconSizes, InputSize, None, Notification, NotificationVariant, Position, Resize, Size, Spacing, SpacingShorthand, TextSize, TextState, TextVariant, TooltipVariant, TriggerEvent } from "./components/helpers/types";
 import { ButtonVariants } from "./components/zen-button/types";
 import { OptionValue } from "./components/zen-menu-item/zen-option";
 import { IconDefinition } from "@fortawesome/pro-light-svg-icons";
@@ -266,6 +266,10 @@ export namespace Components {
          */
         "placeholder": "Select date";
         /**
+          * Size variant
+         */
+        "size": InputSize;
+        /**
           * Selected date
          */
         "value": Date;
@@ -340,6 +344,10 @@ export namespace Components {
          */
         "placeholder": string;
         /**
+          * Size variant (affects padding, arrow and placeholder). Use `custom` to set height based on selected zen-option item height.
+         */
+        "size": DropdownSize;
+        /**
           * Close an opened dropdown menu
          */
         "toggle": (open?: boolean) => Promise<void>;
@@ -411,6 +419,10 @@ export namespace Components {
           * Placeholder of the input.
          */
         "placeholder": string;
+        /**
+          * Size variant
+         */
+        "size": InputSize;
         /**
           * The value of the input.
          */
@@ -499,6 +511,10 @@ export namespace Components {
           * Render item as selected
          */
         "selected": boolean;
+        /**
+          * Size variant
+         */
+        "size": InputSize;
         /**
           * Value of option when used inside a dropdown
          */
@@ -1579,6 +1595,10 @@ declare namespace LocalJSX {
          */
         "placeholder"?: "Select date";
         /**
+          * Size variant
+         */
+        "size"?: InputSize;
+        /**
           * Selected date
          */
         "value"?: Date;
@@ -1657,6 +1677,10 @@ declare namespace LocalJSX {
          */
         "placeholder"?: string;
         /**
+          * Size variant (affects padding, arrow and placeholder). Use `custom` to set height based on selected zen-option item height.
+         */
+        "size"?: DropdownSize;
+        /**
           * Selected option
          */
         "value"?: OptionValue;
@@ -1720,6 +1744,10 @@ declare namespace LocalJSX {
           * Placeholder of the input.
          */
         "placeholder"?: string;
+        /**
+          * Size variant
+         */
+        "size"?: InputSize;
         /**
           * The value of the input.
          */
@@ -1812,6 +1840,10 @@ declare namespace LocalJSX {
           * Render item as selected
          */
         "selected"?: boolean;
+        /**
+          * Size variant
+         */
+        "size"?: InputSize;
         /**
           * Value of option when used inside a dropdown
          */

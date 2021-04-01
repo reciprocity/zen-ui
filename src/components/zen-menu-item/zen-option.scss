@@ -24,8 +24,24 @@ $item-line-height: 1.2rem;
   }
 }
 
-::slotted(.content) {
+.content {
   width: 100%; // safari fix
+  line-height: $item-line-height;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: block;
+}
+
+:host([size='sm']) .content {
+  line-height: 1.5rem;
+}
+
+:host([size='md']) .content {
+  line-height: 2rem;
+}
+
+:host([size='lg']) .content {
+  line-height: 2.5rem;
 }
 
 :host(:not([no-hover]):hover),

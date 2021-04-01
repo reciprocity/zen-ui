@@ -17,10 +17,10 @@ export function camelKeysToKebab(object) {
 
 export function waitForElement(selector, callback) {
   function afterRender() {
-    const element = document.querySelector(selector);
-    if (!element) return;
+    const elements = document.querySelectorAll(selector);
+    if (!elements || !elements.length) return;
     observer.disconnect();
-    callback(element);
+    callback(elements.length === 1 ? elements[0] : elements);
   }
 
   const observer = new MutationObserver(afterRender);

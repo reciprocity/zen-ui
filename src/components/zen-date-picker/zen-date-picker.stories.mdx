@@ -24,6 +24,28 @@ export const StoryWithControls = args => {
   `;
 };
 
+export const StorySizes = () => {
+  waitForElement('#user-icon-sm, #user-icon-md, #user-icon-lg', elements => {
+    Array.from(elements).forEach(element => (element.icon = faUser));
+  });
+  return html/*html*/ `
+    <sb-zen-space spacing="md" horizontal-align="space-between" vertical-align="end">
+      <sb-zen-space vertical spacing="md">
+        <sb-zen-date-picker size="sm" formatted-date="01/31/1970" style="width: 18rem"></sb-zen-date-picker>
+        <sb-zen-text variant="label" align="center" style="width: 100%">sm</sb-zen-text>
+      </sb-zen-space>
+      <sb-zen-space vertical spacing="md">
+        <sb-zen-date-picker size="md" formatted-date="01/31/1970" style="width: 18rem"></sb-zen-date-picker>
+        <sb-zen-text variant="label" align="center" style="width: 100%">md</sb-zen-text>
+      </sb-zen-space>
+      <sb-zen-space vertical spacing="md">
+        <sb-zen-date-picker size="lg" formatted-date="01/31/1970" style="width: 18rem"></sb-zen-date-picker>
+        <sb-zen-text variant="label" align="center" style="width: 100%">lg</sb-zen-text>
+      </sb-zen-space>
+    </sb-zen-space>
+  `;
+};
+
 export const initialValue = () => {
   return html/*html*/ `
     <sb-zen-space spacing="lg">
@@ -47,7 +69,15 @@ Zen date picker component
 
 <br />
 
-### 1. Initial value
+### 1. Sizes
+
+This component supports multiple sizes through the use of the `size` attribute.
+
+<Canvas>
+  <Story name="StorySizes">{StorySizes.bind({})}</Story>
+</Canvas>
+
+### 2. Initial value
 
 - Set prop `formatted-date` to some string in format defined in prop `format` (_MM/dd/yyyy_ by default).
 - If prop `formatted-date` is an empty string or it is in an incorrect format, picker will be empty... but only if prop `allow-empty` is `true`! If empty isn't allowed, it converts invalid date into today's date!

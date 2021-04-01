@@ -9,6 +9,7 @@
   align-items: center;
   font-size: $text-md;
   min-width: 1rem;
+  height: 2rem;
 }
 
 :host(:hover) {
@@ -35,7 +36,8 @@
 
 input {
   @include zenInputBase;
-  padding: 0.375rem 0.5rem;
+  line-height: 1rem;
+  padding: 0 0.5rem;
   display: flex;
   border: none;
   flex: 1 1 auto;
@@ -65,4 +67,14 @@ input {
 .icon.clear {
   cursor: pointer;
   color: $color-gray-300;
+}
+
+:host([size='sm']) {
+  font-size: $text-sm;
+  height: 1.5rem;
+}
+
+:host([size='lg']) {
+  font-size: $text-lg;
+  height: 2.5rem;
 }

@@ -10,14 +10,6 @@ const { argTypes, args } = getArgTypesAndArgs('zen-option');
 
 <Meta title="Forms/Dropdown/Dropdown option" component="zen-option" argTypes={argTypes} />
 
-# Zen Option
-
-Option item to be used inside **zen-dropdown** component
-
-## Component previews
-
-#### 1. Customized content
-
 export const Slots = args => {
   waitForElement('#icon1', element => {
     element.icon = args.icon;
@@ -38,6 +30,7 @@ export const Slots = args => {
         display: inline-block;
         max-width: 300px;
         width: 100%;
+        border: 1px solid #f0f3f6;
       }
     </style>
     <sb-zen-option padding="none">
@@ -49,6 +42,55 @@ export const Slots = args => {
     </sb-zen-option>
   `;
 };
+
+export const Template = args => html/*html*/ `
+  <sb-zen-option padding="none" ...="${spreadArgs(args, argTypes)}"> Dropdown option </sb-zen-option>
+`;
+
+export const StorySizes = () => {
+  return html/*html*/ `
+    <sb-zen-space spacing="md" horizontal-align="space-between" vertical-align="end">
+      <sb-zen-space vertical spacing="md">
+        <sb-zen-option size="sm" value="Argentina" style="width: 18rem">Argentina</sb-zen-option>
+        <sb-zen-text variant="label" align="center" style="width: 100%">sm</sb-zen-text>
+      </sb-zen-space>
+      <sb-zen-space vertical spacing="md" style="width: 18rem">
+        <sb-zen-option size="md" value="Argentina" style="width: 18rem"
+          >Nascetur lobortis etiam elementum at morbi porttitor imperdiet, aliquet conubia ultricies arcu enim accumsan
+          habitasse consectetur, egestas tincidunt duis varius malesuada class. Natoque orci augue purus tincidunt
+          tristique suspendisse suscipit, urna penatibus himenaeos ultricies morbi in lorem nullam, pretium justo nec
+          faucibus cubilia quisque. Convallis pharetra cras maecenas tristique magna ligula, sem fringilla penatibus
+          neque nisl vulputate, faucibus venenatis nulla class dui.</sb-zen-option
+        >
+        <sb-zen-text variant="label" align="center" style="width: 100%">md</sb-zen-text>
+      </sb-zen-space>
+      <sb-zen-space vertical spacing="md" style="width: 18rem">
+        <sb-zen-option size="lg" value="Argentina" style="width: 18rem">Argentina</sb-zen-option>
+        <sb-zen-text variant="label" align="center" style="width: 100%">lg</sb-zen-text>
+      </sb-zen-space>
+    </sb-zen-space>
+  `;
+};
+
+# Zen Option
+
+Option item to be used inside **zen-dropdown** component
+
+## Component previews
+
+<br />
+
+### 1. Sizes
+
+- Zen-option ships in different sizes
+- These sizes only matter if you have default items (simple text).
+- Make sure you also set the same `size` value to zen-dropdown!
+
+<Canvas>
+  <Story name="StorySizes">{StorySizes.bind({})}</Story>
+</Canvas>
+
+### 2. Customized content
 
 <Canvas>
   <Story
@@ -65,10 +107,6 @@ export const Slots = args => {
 You can wrap any content within zen-option. Here we've added custom png icon, some bold text and font-awesome icon on the right side.
 
 ## Properties
-
-export const Template = args => html/*html*/ `
-  <sb-zen-option padding="none" ...="${spreadArgs(args, argTypes)}"> Dropdown option </sb-zen-option>
-`;
 
 <Canvas>
   <Story

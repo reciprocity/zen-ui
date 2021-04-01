@@ -52,7 +52,7 @@ export const Template = args => {
         </div>
       </sb-zen-option>
       <sb-zen-option value="3" disabled="true">Disabled item</sb-zen-option>
-      <sb-zen-option value="4">Item 4</sb-zen-option>
+      <sb-zen-option value="4">Item with a very long title that can not fit into</sb-zen-option>
       <sb-zen-option value="5">Item 5</sb-zen-option>
       <div class="separator">Separator</div>
       <sb-zen-option value="6">Item 6 abc</sb-zen-option>
@@ -64,6 +64,40 @@ export const Template = args => {
   `;
 };
 
+export const StorySizes = () => {
+  waitForElement('#user-icon-sm, #user-icon-md, #user-icon-lg', elements => {
+    Array.from(elements).forEach(element => (element.icon = faUser));
+  });
+  return html/*html*/ `
+    <sb-zen-space spacing="md" horizontal-align="space-between" vertical-align="end">
+      <sb-zen-space vertical spacing="md">
+        <sb-zen-dropdown size="sm" style="width: 18rem">
+          <sb-zen-option size="sm" value="Argentina">Argentina</sb-zen-option>
+          <sb-zen-option size="sm" value="Slovenia">Slovenia</sb-zen-option>
+          <sb-zen-option size="sm" value="United States">United States</sb-zen-option>
+        </sb-zen-dropdown>
+        <sb-zen-text variant="label" align="center" style="width: 100%">sm</sb-zen-text>
+      </sb-zen-space>
+      <sb-zen-space vertical spacing="md" style="width: 18rem">
+        <sb-zen-dropdown id="dropdown-size-md" size="md">
+          <sb-zen-option size="md" value="Argentina">Argentina</sb-zen-option>
+          <sb-zen-option size="md" value="Slovenia">Slovenia</sb-zen-option>
+          <sb-zen-option size="md" value="United States">United States</sb-zen-option>
+        </sb-zen-dropdown>
+        <sb-zen-text variant="label" align="center" style="width: 100%">md</sb-zen-text>
+      </sb-zen-space>
+      <sb-zen-space vertical spacing="md" style="width: 18rem">
+        <sb-zen-dropdown size="lg">
+          <sb-zen-option size="lg" value="Argentina">Argentina</sb-zen-option>
+          <sb-zen-option size="lg" value="Slovenia">Slovenia</sb-zen-option>
+          <sb-zen-option size="lg" value="United States">United States</sb-zen-option>
+        </sb-zen-dropdown>
+        <sb-zen-text variant="label" align="center" style="width: 100%">lg</sb-zen-text>
+      </sb-zen-space>
+    </sb-zen-space>
+  `;
+};
+
 export const CustomIcons = args => {
   ['#icon2', '#icon3', '#icon4'].forEach(id => {
     waitForElement(id, element => {
@@ -71,7 +105,7 @@ export const CustomIcons = args => {
     });
   });
   return html/*html*/ `
-    <sb-zen-dropdown id="dropdown-with-options-slot" style="min-height: 3.2rem; width: 20rem">
+    <sb-zen-dropdown size="custom" id="dropdown-with-options-slot" style="min-height: 3.2rem; width: 20rem">
       <div class="separator">Group 1</div>
       <sb-zen-option padding="none" value="1">
         <div class="content">
@@ -159,16 +193,26 @@ A standard dropdown component
 
 <br />
 
-### 1. Options with custom content
+### 1. Sizes
+
+This component supports multiple sizes through the use of the `size` attribute. Not that it is only considered when implemented with "default items" (simple text). In that case, you need to make sure you set the same `size` on the `zen-dropdown`.
+For customly sized items, set `size` to custom.
+
+<Canvas>
+  <Story name="StorySizes">{StorySizes.bind({})}</Story>
+</Canvas>
+
+### 2. Options with custom content
 
 - Each option has an icon and custom padding.
 - Because option is taller than usually, we have to specify dropdown's height manually, to match the option height.
+- Set `size` to `custom`. It will make dropdown's height equal to height selected option.
 
 <Canvas>
   <Story name="button">{CustomIcons.bind({})}</Story>
 </Canvas>
 
-### 2. Invite people dropdown
+### 3. Invite people dropdown
 
 A composition of `Input` and a `Dropdown` component. Dropdown is placed inside an input using input's slot `trailingSlot`.
 Click `Show code` for more details.
@@ -177,7 +221,7 @@ Click `Show code` for more details.
   <Story name="InvitePeople">{InvitePeople.bind({})}</Story>
 </Canvas>
 
-### 3. In a form group
+### 4. In a form group
 
 <Canvas>
   <Story name="StoryFormGroup">{StoryFormGroup.bind({})}</Story>
