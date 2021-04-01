@@ -8,12 +8,12 @@
   position: relative;
   color: $color-gray-700;
   justify-content: center;
-  vertical-align: middle;
+  align-items: center;
   user-select: none;
   background-color: transparent;
   border: 1px solid transparent;
   padding: 0.3rem 0.5rem;
-  min-height: 2rem;
+  height: 2rem;
   box-sizing: border-box;
   font-size: $text-md;
   font-family: inherit;
@@ -29,6 +29,16 @@
   opacity: 0.5;
   pointer-events: none;
   cursor: default;
+}
+
+:host([size='sm']) {
+  font-size: $text-sm;
+  height: 1.5rem;
+}
+
+:host([size='lg']) {
+  font-size: $text-lg;
+  height: 2.5rem;
 }
 
 .ml {
