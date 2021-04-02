@@ -16,13 +16,13 @@ export class ZenTableHeader {
   @State() expandable = false;
 
   /** Remains fixed at the top of the table during vertical scrolling */
-  @Prop() readonly sticky = false;
+  @Prop() readonly sticky: boolean = false;
 
   /** Show checkbox */
   @Prop({ reflect: true }) readonly selectable: boolean = false;
 
   /** Select all rows */
-  @Prop({ mutable: true }) selected = false;
+  @Prop({ reflect: true, mutable: true }) selected = false;
 
   /** Checkbox indeterminate state  */
   @Prop({ mutable: true }) $indeterminate = false;
@@ -70,9 +70,7 @@ export class ZenTableHeader {
   }
 
   toggleStickyChildren(sticky: boolean): void {
-    Array.from(this.host.children).forEach(cell =>
-      sticky ? cell.setAttribute('sticky', '') : cell.removeAttribute('sticky'),
-    );
+    Array.from(this.host.children).forEach((cell: HTMLZenTableHeaderCellElement) => (cell.sticky = sticky));
   }
 
   componentDidLoad(): void {

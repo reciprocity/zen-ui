@@ -810,13 +810,13 @@ export namespace Components {
         /**
           * Remains fixed at the top of the table during vertical scrolling
          */
-        "sticky": false;
+        "sticky": boolean;
     }
     interface ZenTableHeaderCell {
         /**
           * Remains fixed at the top of the table during vertical scrolling
          */
-        "sticky": false;
+        "sticky": boolean;
     }
     interface ZenTableRow {
         /**
@@ -2135,13 +2135,13 @@ declare namespace LocalJSX {
         /**
           * Remains fixed at the top of the table during vertical scrolling
          */
-        "sticky"?: false;
+        "sticky"?: boolean;
     }
     interface ZenTableHeaderCell {
         /**
           * Remains fixed at the top of the table during vertical scrolling
          */
-        "sticky"?: false;
+        "sticky"?: boolean;
     }
     interface ZenTableRow {
         /**
