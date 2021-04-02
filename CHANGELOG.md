@@ -1,3 +1,11 @@
+# [2.1.0](https://github.com/reciprocity/zen-ui/compare/2.0.0...2.1.0) (2021-04-02)
+
+
+### Features
+
+* **zen-button:** add size prop ([5379605](https://github.com/reciprocity/zen-ui/commit/5379605df2fea8c48dac688ff4b9572ef3733250))
+* **zen-button:** add styles for sizes ([eb05787](https://github.com/reciprocity/zen-ui/commit/eb05787ac45b85b060a567d1fe889790d5adb845))
+
 # [2.0.0](https://github.com/reciprocity/zen-ui/compare/1.1.1...2.0.0) (2021-04-01)
 
 
