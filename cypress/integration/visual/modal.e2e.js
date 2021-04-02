@@ -1,5 +1,4 @@
 /// <reference types="cypress" />
-import { createVisualTests } from '../../support/utils/visualTesting';
 
 describe('Text visual tests', () => {
   const pageId = 'containers-modal-window--mutiple';
@@ -11,8 +10,26 @@ describe('Text visual tests', () => {
   before(() => {
     cy.visitStorybookIframe(pageId);
     cy.verifyAllStoriesHaveVRT(stories, skipedStories);
-    // TODO: screenshots aren't ok we should add clicks and take screenshot of the modal, not of triggering buttons
   });
 
-  createVisualTests(stories, skipedStories);
+  beforeEach(() => {
+    cy.visitStorybookIframe(pageId);
+  });
+
+  it('Verifies ' + `${stories[0]}`, () => {
+    cy.get(`#${stories[0]}`).contains('Show Editor').click();
+    cy.get('#editor').should('have.attr', 'show');
+    cy.get('#editor').find('sb-zen-animate').wait(300).matchImageSnapshot('editor');
+    cy.get('#editor').find('.x-button').click();
+    cy.get('#editor').should('not.have.attr', 'show');
+    cy.get(`#${stories[0]}`).contains('Show Confirmation').click();
+    cy.get('#confirm').should('have.attr', 'show');
+    cy.get('#confirm').find('sb-zen-animate').wait(300).matchImageSnapshot('confirm');
+  });
+
+  it('Verifies ' + `${stories[1]}`, () => {
+    cy.get(`#${stories[1]}`).contains('Show Editor').click();
+    cy.get('#modal1').should('have.attr', 'show');
+    cy.get('#modal1').find('sb-zen-animate').wait(300).matchImageSnapshot();
+  });
 });
