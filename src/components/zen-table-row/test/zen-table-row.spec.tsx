@@ -142,4 +142,15 @@ describe('zen-table-row tree functionality', () => {
       expect((row as HTMLZenTableRowElement).selected).toBeTruthy();
     }
   });
+
+  it('should set indeterminate state to all parent rows', async () => {
+    const secondDepthChild = page.root.querySelector('zen-table-row[depth="2"]');
+    const secondDepthParentRow = page.root.querySelector('[second-level-parent]') as HTMLZenTableRowElement;
+
+    simulateMouse('click', secondDepthChild.shadowRoot.querySelector('.checkbox'));
+    await page.waitForChanges();
+
+    expect(parentRow.$indeterminate).toBeTruthy();
+    expect(secondDepthParentRow.$indeterminate).toBeTruthy();
+  });
 });
