@@ -14,7 +14,7 @@ import { Resize } from '../helpers/types';
   shadow: true,
 })
 export class ZenTextarea {
-  input = null;
+  input: HTMLTextAreaElement | null = null;
 
   @Element() host: HTMLZenTextareaElement;
 
@@ -48,7 +48,9 @@ export class ZenTextarea {
   /** Focus input */
   @Method()
   async focusInput(): Promise<void> {
-    this.input.focus();
+    if (this.input) {
+      this.input.focus();
+    }
   }
 
   private onInput = (ev: Event) => {
