@@ -64,7 +64,7 @@ export class ZenDrawer {
           padding-bottom={this.paddingBottom}
           padding-left={this.paddingLeft}
         >
-          <ZenButton onClick={() => this.onCloseClicked()} class="close-btn" variant="tertiary">
+          <ZenButton onClick={() => this.onCloseClicked()} class="close-btn" variant="grey-text">
             <ZenIcon padding="sm" size="md" class="close-icon" icon={faArrowToRight}></ZenIcon>
           </ZenButton>
           <slot></slot>

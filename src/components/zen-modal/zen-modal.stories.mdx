@@ -62,8 +62,8 @@ export const StoryMultipleModals = () => {
         <sb-zen-text variant="support"> This field should be unique </sb-zen-text>
       </sb-zen-space>
       <div slot="footer">
-        <sb-zen-button @click="${closeEditor}" variant="secondary">Cancel</sb-zen-button>
-        <sb-zen-button @click="${showConfirm}" class="ml-4" variant="secondary">Delete</sb-zen-button>
+        <sb-zen-button @click="${closeEditor}" variant="blue-ghost">Cancel</sb-zen-button>
+        <sb-zen-button @click="${showConfirm}" class="ml-4" variant="blue-ghost">Delete</sb-zen-button>
         <sb-zen-button @click="${closeEditor}" class="ml-4">Accept</sb-zen-button>
       </div>
     </sb-zen-modal>
@@ -78,7 +78,7 @@ export const StoryMultipleModals = () => {
       }}"
     >
       <p>Are you sure?!</p>
-      <sb-zen-button @click="${showEditor}" variant="secondary">Show Editor</sb-zen-button>
+      <sb-zen-button @click="${showEditor}" variant="blue-ghost">Show Editor</sb-zen-button>
     </sb-zen-modal>
   `;
 };
