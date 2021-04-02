@@ -39,7 +39,6 @@ h1.sbdocs-h1 {
 }
 
 .sbdocs h3 {
-  position: static;
   font-size: 1rem;
   margin-top: 3em;
   line-height: 1.2em;
@@ -127,6 +126,8 @@ h1.sbdocs-h1 {
 // boundaries:
 .css-1wjen9k > div {
   height: auto !important;
+  transform: none;
+  -webkit-transform: none;
 }
 
 .css-25bv1u { // show code button
