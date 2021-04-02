@@ -85,7 +85,7 @@ export class ZenAvatarDetails {
             size={sizes.avatarIconSize}
             data-test="avatar-icon"
           />
-          <ZenSpace vertical padding="xs" spacing="sm">
+          <ZenSpace no-wrap vertical padding="xs" spacing="sm">
             <ZenText size={sizes.textSize} bold={sizes.userNameBold} data-test="username">
               {this.userName}
             </ZenText>
