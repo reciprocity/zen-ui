@@ -59,6 +59,7 @@ describe('zen-table-row', () => {
 describe('zen-table-row tree functionality', () => {
   let page: SpecPage;
   let parentRow: HTMLZenTableRowElement;
+  let secondDepthParentRow: HTMLZenTableRowElement;
 
   beforeEach(async () => {
     page = await newSpecPage({
@@ -85,7 +86,9 @@ describe('zen-table-row tree functionality', () => {
             </zen-table>`,
     });
     parentRow = page.root.querySelector('zen-table-row') as HTMLZenTableRowElement;
+    secondDepthParentRow = page.root.querySelector('[second-level-parent]') as HTMLZenTableRowElement;
     expect(parentRow.visible).toBeTruthy();
+    expect(secondDepthParentRow.visible).toBeTruthy();
   });
 
   it('should set all descendants to not visible on expand false', async () => {
@@ -124,16 +127,13 @@ describe('zen-table-row tree functionality', () => {
   });
 
   it('should select only second depth children when setting second depth parent to selected', async () => {
-    const secondDepthPrentRow = page.root.querySelector('[second-level-parent]') as HTMLZenTableRowElement;
-    expect(secondDepthPrentRow.visible).toBeTruthy();
-
     // First depth children without the first depth parent row
     const firstDepthChildren = page.root.querySelectorAll(
       'zen-table-row[depth="1"] :not(zen-table-row[depth="1"]:first-child)',
     );
     const secondDepthChildren = page.root.querySelectorAll('zen-table-row[depth="2"]');
 
-    secondDepthPrentRow.selected = true;
+    secondDepthParentRow.selected = true;
     await page.waitForChanges();
     for (const row of firstDepthChildren.values()) {
       expect((row as HTMLZenTableRowElement).selected).not.toBeTruthy();
@@ -145,7 +145,6 @@ describe('zen-table-row tree functionality', () => {
 
   it('should set indeterminate state to all parent rows', async () => {
     const secondDepthChild = page.root.querySelector('zen-table-row[depth="2"]');
-    const secondDepthParentRow = page.root.querySelector('[second-level-parent]') as HTMLZenTableRowElement;
 
     simulateMouse('click', secondDepthChild.shadowRoot.querySelector('.checkbox'));
     await page.waitForChanges();
