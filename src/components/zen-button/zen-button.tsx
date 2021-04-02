@@ -1,6 +1,7 @@
 import { Component, Host, h, Prop, Element, State, Watch, Listen } from '@stencil/core';
 import { applyPrefix } from '../helpers/helpers';
 import { ButtonVariants } from './types';
+import { InputSize } from '../helpers/types';
 
 /**
  * @slot leadingIcon - Slot for the icon on the left
@@ -32,6 +33,9 @@ export class ZenButton {
 
   /** Sets if button can be tabbable/focusable */
   @State() tabindex = 0;
+
+  /** Size variant */
+  @Prop({ reflect: true }) readonly size: InputSize = 'md';
 
   @Watch('disabled')
   async disabledChanged(disabled: boolean): Promise<void> {
