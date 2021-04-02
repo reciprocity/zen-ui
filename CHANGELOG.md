@@ -1,3 +1,10 @@
+## [2.1.1](https://github.com/reciprocity/zen-ui/compare/2.1.0...2.1.1) (2021-04-02)
+
+
+### Bug Fixes
+
+* **zen-table header:** fix sticky param set ([3b12f99](https://github.com/reciprocity/zen-ui/commit/3b12f9920c466e6bd0ae3f147056ba1ba683cc25))
+
 # [2.1.0](https://github.com/reciprocity/zen-ui/compare/2.0.0...2.1.0) (2021-04-02)
 
 
