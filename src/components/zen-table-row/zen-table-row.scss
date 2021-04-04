@@ -10,7 +10,7 @@ $expand-icon-transition: 0.2s;
 $select-transition: 0.5s;
 
 :host {
-  display: table-row;
+  display: contents;
   border-top: 1px solid $color-gray-200;
   border-left: 1px solid $color-white;
   border-right: 1px solid $color-white;

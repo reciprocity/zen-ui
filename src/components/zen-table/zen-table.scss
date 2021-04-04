@@ -1,9 +1,10 @@
 @import '../../zen-styles/component-helpers.scss';
 
 :host {
+  display: grid;
+  grid-template-columns: auto 1fr 1fr;
   border-collapse: collapse;
   border-spacing: 0;
-  display: table;
   width: 100%;
   font-size: $text-md;
 }
