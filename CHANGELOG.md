@@ -1,3 +1,10 @@
+# [2.2.0](https://github.com/reciprocity/zen-ui/compare/2.1.1...2.2.0) (2021-04-05)
+
+
+### Features
+
+* added focusInput method to zen-textarea ([e0133b8](https://github.com/reciprocity/zen-ui/commit/e0133b8499cc0e9c9d49f9bac9b07065adcbe61e))
+
 ## [2.1.1](https://github.com/reciprocity/zen-ui/compare/2.1.0...2.1.1) (2021-04-02)
 
 
