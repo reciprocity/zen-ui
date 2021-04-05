@@ -7,7 +7,7 @@
   position: relative;
 
   .steps {
-    padding: 0 $side-padding 2.4em;
+    padding: 0 $side-padding 2.5rem;
     display: flex;
     justify-content: space-between;
   }
@@ -42,7 +42,7 @@
     top: 100%;
     left: 50%;
     transform: translate(-50%, 0);
-    padding-top: 1.2em;
+    padding-top: 0.85rem;
     text-align: center;
 
     font-size: $text-sm;
