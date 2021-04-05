@@ -1,3 +1,11 @@
+## [2.2.2](https://github.com/reciprocity/zen-ui/compare/2.2.1...2.2.2) (2021-04-05)
+
+
+### Bug Fixes
+
+* **zen-avatar-details:** add no wrap style ([c9da999](https://github.com/reciprocity/zen-ui/commit/c9da99947522f6c4de915e614c26c33a4a84b676))
+* **zen-avatar-group:** changes on data in storybook were not reflected ([3f911da](https://github.com/reciprocity/zen-ui/commit/3f911dade5a07a432bf8f806c17eede67ebfa0d0))
+
 ## [2.2.1](https://github.com/reciprocity/zen-ui/compare/2.2.0...2.2.1) (2021-04-05)
 
 
