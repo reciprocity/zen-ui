@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, Element } from '@stencil/core';
+import { Component, Host, h, Prop, Element, Method } from '@stencil/core';
 import { Resize } from '../helpers/types';
 
 /**
@@ -14,6 +14,8 @@ import { Resize } from '../helpers/types';
   shadow: true,
 })
 export class ZenTextarea {
+  input: HTMLTextAreaElement | null = null;
+
   @Element() host: HTMLZenTextareaElement;
 
   /** Name of element, can be used as reference for form data */
@@ -43,6 +45,14 @@ export class ZenTextarea {
   /** Prefilled text content */
   @Prop({ mutable: true }) text?: string | null = '';
 
+  /** Focus input */
+  @Method()
+  async focusInput(): Promise<void> {
+    if (this.input) {
+      this.input.focus();
+    }
+  }
+
   private onInput = (ev: Event) => {
     const input = ev.target as HTMLTextAreaElement | null;
     if (input) {
@@ -65,6 +75,7 @@ export class ZenTextarea {
     return (
       <Host>
         <textarea
+          ref={el => (this.input = el)}
           class="input-control"
           style={style}
           cols={this.cols}
