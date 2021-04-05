@@ -1,3 +1,10 @@
+## [2.2.1](https://github.com/reciprocity/zen-ui/compare/2.2.0...2.2.1) (2021-04-05)
+
+
+### Bug Fixes
+
+* replace em units with rem ([5caf82d](https://github.com/reciprocity/zen-ui/commit/5caf82d0c580aca276d84abf2402822aca7ead76))
+
 # [2.2.0](https://github.com/reciprocity/zen-ui/compare/2.1.1...2.2.0) (2021-04-05)
 
 
