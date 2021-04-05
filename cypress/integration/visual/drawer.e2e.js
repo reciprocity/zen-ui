@@ -16,7 +16,7 @@ describe('Drawer visual tests', { scrollBehavior: 'center' }, () => {
   it('Verifies that drawer opens ' + `${story[0]}`, () => {
     cy.get(`#${story[0]}`)
       .within(() => {
-        cy.get('.btn-primary').click();
+        cy.get('.blue-filled').click();
         cy.get('sb-zen-drawer').should('be.visible').wait(200);
       })
       .parents('.innerZoomElementWrapper')
@@ -29,7 +29,7 @@ describe('Drawer visual tests', { scrollBehavior: 'center' }, () => {
         cy.get('sb-zen-drawer[position]')
           .invoke('attr', 'position', 'left')
           .should('have.attr', 'data-position', 'left');
-        cy.get('.btn-primary').click();
+        cy.get('.blue-filled').click();
         cy.get('sb-zen-drawer').should('be.visible');
       })
       .parents('.innerZoomElementWrapper')
@@ -39,7 +39,7 @@ describe('Drawer visual tests', { scrollBehavior: 'center' }, () => {
   it('Verifies that drawer closes on close icon ' + `${story[0]}`, () => {
     cy.get(`#${story[0]}`)
       .within(() => {
-        cy.get('.btn-primary').click();
+        cy.get('.blue-filled').click();
         cy.get('sb-zen-drawer').should('have.attr', 'opened');
         cy.get('.close-icon').click();
         cy.get('sb-zen-drawer').should('not.have.attr', 'opened');
