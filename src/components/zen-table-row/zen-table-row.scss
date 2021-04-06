@@ -6,7 +6,6 @@ $checkbox-width: 2rem;
 $arrow-width: 2rem;
 $depth-padding: 1.8rem;
 
-$expand-icon-transition: 0.2s;
 $select-transition: 0.5s;
 
 :host {
@@ -27,34 +26,10 @@ $select-transition: 0.5s;
   border: 1px solid $color-blue-700;
 }
 
-.expand-icon {
-  cursor: pointer;
-  transition: transform $expand-icon-transition;
-}
-
-:host([expanded]) .expand-icon {
-  transform: rotate(90deg);
-}
-
 :host([selected]) ::slotted(*),
 :host([expanded]) ::slotted(*),
 :host([depth]:not([depth='0'])) ::slotted(*) {
   background-color: $color-blue-50 !important;
-}
-
-.widgets {
-  position: absolute;
-  inset: 1px auto 1px 1px; // 1px offset to render selected border on FF
-  box-sizing: border-box;
-  display: flex;
-  align-items: center;
-  padding-left: 0.5rem;
-}
-
-.widgets.hidden,
-.checkbox.hidden,
-.expand-icon.hidden {
-  display: none;
 }
 
 :host(:not([depth])[expandable]) ::slotted(*:first-child),

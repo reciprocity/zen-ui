@@ -1,9 +1,36 @@
+$expand-icon-transition: 0.2s;
+
 :host {
-  display: block;
+  display: flex;
+  align-items: center;
   background-clip: padding-box !important;
-  padding: 1rem 0;
-  :host([full-span]) {
-    grid-column-start: 1;
-    grid-column-end: -1;
-  }
+  padding: 1rem 1rem;
+}
+
+:host([full-span]) {
+  grid-column-start: 1;
+  grid-column-end: -1;
+}
+
+.widgets {
+  inset: 1px auto 1px 1px; // 1px offset to render selected border on FF
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  padding-left: 0.5rem;
+}
+
+.widgets.hidden,
+.checkbox.hidden,
+.expand-icon.hidden {
+  display: none;
+}
+
+.expand-icon {
+  cursor: pointer;
+  transition: transform $expand-icon-transition;
+}
+
+:host([expanded]) .expand-icon {
+  transform: rotate(90deg);
 }
