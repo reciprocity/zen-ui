@@ -57,9 +57,9 @@ export const StoryTreeWithHeader = () => {
         <sb-zen-table-cell><sb-zen-text>Status</sb-zen-text></sb-zen-table-cell>
         <sb-zen-table-cell><sb-zen-text>Some description plus some</sb-zen-text></sb-zen-table-cell>
       </sb-zen-table-row>
-      <sb-zen-table-row full-span depth="1" style="height:230px;">
-        <sb-zen-table-cell>
-          <sb-zen-space vertical spacing="lg" padding="lg">
+      <sb-zen-table-row depth="1" style="height:230px;">
+        <sb-zen-table-cell full-span>
+          <sb-zen-space vertical spacing="lg" padding="lg" stretch>
             <sb-zen-table>
               <sb-zen-table-row>
                 <sb-zen-table-cell>Inner Row 1, Cell 1</sb-zen-table-cell>
@@ -74,15 +74,11 @@ export const StoryTreeWithHeader = () => {
                 <sb-zen-option value="2">Option 2</sb-zen-option>
                 <sb-zen-option value="3">Option 3</sb-zen-option>
               </sb-zen-dropdown>
-            </sb-zen-table>
           </sb-zen-space>
         </sb-zen-table-cell>
-        <sb-zen-table-cell></sb-zen-table-cell>
-        <sb-zen-table-cell></sb-zen-table-cell>
-        <sb-zen-table-cell></sb-zen-table-cell>
-        <sb-zen-table-cell></sb-zen-table-cell>
       </sb-zen-table-row>
       <sb-zen-table-row selectable>
+            </sb-zen-table>
         <sb-zen-table-cell><sb-zen-text>PCI Requirement 8 - Firewall Configuration</sb-zen-text></sb-zen-table-cell>
         <sb-zen-table-cell><sb-zen-text>Status</sb-zen-text></sb-zen-table-cell>
         <sb-zen-table-cell><sb-zen-text>Some description plus some</sb-zen-text></sb-zen-table-cell>

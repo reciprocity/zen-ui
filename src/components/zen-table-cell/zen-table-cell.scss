@@ -2,4 +2,8 @@
   display: block;
   background-clip: padding-box !important;
   padding: 1rem 0;
+  :host([full-span]) {
+    grid-column-start: 1;
+    grid-column-end: -1;
+  }
 }

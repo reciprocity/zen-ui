@@ -10,6 +10,9 @@ import { faChevronRight } from '@fortawesome/pro-light-svg-icons';
 export class ZenTableCell {
   @Element() host: HTMLZenTableCellElement;
 
+  /** Spanns through whole table */
+  @Prop({ reflect: true }) readonly fullSpan: boolean = false;
+
   /** Can be expanded (read-only) */
   @Prop({ reflect: true }) readonly $expandable: boolean = false;
 
