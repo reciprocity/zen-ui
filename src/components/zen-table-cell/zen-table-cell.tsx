@@ -25,6 +25,9 @@ export class ZenTableCell {
   /** Is row expanded (read-only) */
   @Prop({ reflect: true, attribute: 'expanded' }) readonly $expanded: boolean = false;
 
+  /** Is row expanded (read-only) */
+  @Prop({ reflect: true, attribute: 'depth' }) readonly $depth: number = 0;
+
   /** Checkbox indeterminate state (read-only)  */
   @Prop() readonly $indeterminate: boolean = false;
 

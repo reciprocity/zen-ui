@@ -46,6 +46,11 @@ export class ZenTableRow {
     this.setCellsProp('$expandable', expandable);
   }
 
+  @Watch('depth')
+  async depthChanged(depth: number): Promise<void> {
+    this.setCellsProp('$depth', depth);
+  }
+
   @Watch('selected')
   async selectedChanged(selected: boolean): Promise<void> {
     this.setCellsProp('$selected', selected);
@@ -173,10 +178,11 @@ export class ZenTableRow {
     this.visible = !parentRow || parentRow.expanded;
     this.expandable = this.hasChildren();
 
-    this.setCellsProp('$selected', this.selected);
-    this.setCellsProp('$selectable', this.selectable);
-    this.setCellsProp('$expandable', this.expandable);
-    this.setCellsProp('$expanded', this.expanded);
+    this.selectableChanged(this.selectable);
+    this.selectedChanged(this.selected);
+    this.expandableChanged(this.expandable);
+    this.expandedChanged(this.expanded);
+    this.depthChanged(this.depth);
   }
 
   render(): HTMLTableRowElement {
