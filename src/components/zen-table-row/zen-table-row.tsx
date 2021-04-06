@@ -59,6 +59,11 @@ export class ZenTableRow {
     this.setCellsProp('$header', header);
   }
 
+  @Watch('$indeterminate')
+  async indeterminateChanged(indeterminate: boolean): Promise<void> {
+    this.setCellsProp('$indeterminate', indeterminate);
+  }
+
   @Watch('selected')
   async selectedChanged(selected: boolean): Promise<void> {
     this.setCellsProp('$selected', selected);
@@ -192,6 +197,7 @@ export class ZenTableRow {
     this.expandedChanged(this.expanded);
     this.depthChanged(this.depth);
     this.headerChanged(this.header);
+    this.indeterminateChanged(this.$indeterminate);
   }
 
   render(): HTMLTableRowElement {
