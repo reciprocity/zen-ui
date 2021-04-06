@@ -1,4 +1,4 @@
-import { h, Component, Host } from '@stencil/core';
+import { h, Component, Host, Prop, Element } from '@stencil/core';
 import { applyPrefix } from '../helpers/helpers';
 import { faChevronRight } from '@fortawesome/pro-light-svg-icons';
 
@@ -8,6 +8,23 @@ import { faChevronRight } from '@fortawesome/pro-light-svg-icons';
   shadow: true,
 })
 export class ZenTableCell {
+  @Element() host: HTMLZenTableCellElement;
+
+  /** Can be expanded (if has children) */
+  @Prop({ reflect: true }) readonly expandable = false;
+
+  /** Show checkbox (read-only) */
+  @Prop({ reflect: true }) readonly selectable: boolean = false;
+
+  /** Is row selected */
+  @Prop({ reflect: true }) readonly selected = false;
+
+  /** Is row expanded */
+  @Prop({ reflect: true }) readonly expanded = false;
+
+  /** Checkbox indeterminate state (Won't update children)  */
+  @Prop() readonly $indeterminate: boolean = false;
+
   render(): HTMLTableCellElement {
     const ZenCheckBox = applyPrefix('zen-checkbox', this.host);
     const ZenIcon = applyPrefix('zen-icon', this.host);
