@@ -14,7 +14,7 @@ describe('zen-table-row', () => {
     expect(page.root.innerHTML).toEqual('Content');
   });
 
-  it('should render checkbox', async () => {
+  it.skip('should render checkbox', async () => {
     const page = await newSpecPage({
       components: [ZenTableRow],
       html: `<zen-table-row selectable>
