@@ -15,6 +15,8 @@ export type TextSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';
 
 export type IconSizes = 'sm' | 'md' | 'lg';
 
+export type AvatarIconSizes = 'sm' | 'md';
+
 export type InputSize = 'sm' | 'md' | 'lg';
 
 export type DropdownSize = InputSize | 'custom';
