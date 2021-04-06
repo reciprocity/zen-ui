@@ -36,7 +36,12 @@ export class ZenDrawer {
 
   @Watch('opened')
   async openedChanged(): Promise<void> {
-    this.opened ? showWithAnimation(this.drawer) : hideWithAnimation(this.drawer);
+    if (this.opened) {
+      this.host.style.display = 'block';
+      showWithAnimation(this.drawer);
+    } else {
+      hideWithAnimation(this.drawer, () => (this.host.style.display = 'none'));
+    }
   }
 
   onCloseClicked(): void {
