@@ -1,4 +1,5 @@
 import { h, Component, Host, Prop, Element, Event, EventEmitter, Method, Watch } from '@stencil/core';
+import { getDefaultSlotContent } from '../helpers/helpers';
 
 /**
  * @slot [default] - Content for table cells
@@ -35,8 +36,20 @@ export class ZenTableRow {
   /** Row selected */
   @Event() rowSelectChanged: EventEmitter<boolean>;
 
+  @Watch('selectable')
+  async selectableChanged(selectable: boolean): Promise<void> {
+    this.setCellsProp('$selectable', selectable);
+  }
+
+  @Watch('expandable')
+  async expandableChanged(expandable: boolean): Promise<void> {
+    this.setCellsProp('$expandable', expandable);
+  }
+
   @Watch('selected')
   async selectedChanged(selected: boolean): Promise<void> {
+    this.setCellsProp('$selected', selected);
+
     // Set parents rows checkbox indeterminate state
     let parentRow = await this.parentRow();
     while (parentRow && parentRow.selectable && parentRow.expandable) {
@@ -64,6 +77,8 @@ export class ZenTableRow {
 
   @Watch('expanded')
   async expandedChanged(expanded: boolean): Promise<void> {
+    this.setCellsProp('$expanded', expanded);
+
     // Set rows children/descendents expanded state
     if (this.expandable && expanded) {
       // On expanding set only direct children to visible
@@ -120,6 +135,11 @@ export class ZenTableRow {
     return children;
   }
 
+  getRowCells(): HTMLZenTableCellElement[] {
+    const cells = getDefaultSlotContent(this.host);
+    return cells ? (Array.from(cells) as HTMLZenTableCellElement[]) : [];
+  }
+
   rowDescendants(): HTMLZenTableRowElement[] {
     // Find all descendents of row
     const descendants = [];
@@ -140,11 +160,23 @@ export class ZenTableRow {
     return !!this.rowChildren().length;
   }
 
+  setCellsProp(propName: string, value: unknown): void {
+    const cells = this.getRowCells();
+    cells.forEach(cell => {
+      cell[propName] = value;
+    });
+  }
+
   async componentDidLoad(): Promise<void> {
     const parentRow = await this.parentRow();
 
     this.visible = !parentRow || parentRow.expanded;
     this.expandable = this.hasChildren();
+
+    this.setCellsProp('$selected', this.selected);
+    this.setCellsProp('$selectable', this.selectable);
+    this.setCellsProp('$expandable', this.expandable);
+    this.setCellsProp('$expanded', this.expanded);
   }
 
   render(): HTMLTableRowElement {

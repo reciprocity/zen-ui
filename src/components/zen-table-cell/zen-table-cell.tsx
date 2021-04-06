@@ -14,22 +14,22 @@ export class ZenTableCell {
   @Prop({ reflect: true }) readonly fullSpan: boolean = false;
 
   /** Can be expanded (read-only) */
-  @Prop({ reflect: true }) readonly $expandable: boolean = false;
+  @Prop({ reflect: true, attribute: 'expandable' }) readonly $expandable: boolean = false;
 
   /** Show checkbox (read-only) */
-  @Prop({ reflect: true }) readonly $selectable: boolean = false;
+  @Prop({ reflect: true, attribute: 'selectable' }) readonly $selectable: boolean = false;
 
   /** Is row selected (read-only) */
-  @Prop({ reflect: true }) readonly $selected: boolean = false;
+  @Prop({ reflect: true, attribute: 'selected' }) readonly $selected: boolean = false;
 
   /** Is row expanded (read-only) */
-  @Prop({ reflect: true }) readonly $expanded: boolean = false;
+  @Prop({ reflect: true, attribute: 'expanded' }) readonly $expanded: boolean = false;
 
   /** Checkbox indeterminate state (read-only)  */
   @Prop() readonly $indeterminate: boolean = false;
 
   showWidgets(): boolean {
-    const isFirstCell = this.host.previousElementSibling;
+    const isFirstCell = !this.host.previousElementSibling;
     return isFirstCell && (this.$selectable || this.$expandable);
   }
 
