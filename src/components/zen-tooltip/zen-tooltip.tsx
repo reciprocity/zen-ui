@@ -46,7 +46,7 @@ export class ZenTooltip {
   @Prop() readonly offset?: number = 10;
 
   /** Set tooltip max width */
-  @Prop() readonly maxWidth: string = '11rem';
+  @Prop() readonly maxWidth: string = '22.5rem';
 
   /** Limit tooltips height and make content scroll  */
   @Prop() readonly maxHeight: string = 'none';
@@ -128,7 +128,7 @@ export class ZenTooltip {
             </ZenText>
           )}
           <slot>
-            <ZenText size="sm" style={{ color: this.color }}>
+            <ZenText size="md" pale>
               {this.label}
             </ZenText>
           </slot>
