@@ -306,7 +306,7 @@ export class ZenDropdown {
           interactive
           position={align}
           onVisibleChange={() => this.onOpenToggle()}
-          style={{ width: this.menuWidth, height: this.menuHeight }}
+          style={{ width: this.menuWidth, 'max-height': this.menuHeight }}
           offset={offset}
         >
           <slot />
