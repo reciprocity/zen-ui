@@ -55,23 +55,19 @@ export class ZenTableCell {
       <Host>
         {this.showWidgets() && (
           <div class="widgets">
-            {this.$selectable && (
-              <ZenCheckBox
-                indeterminate={this.$indeterminate}
-                class="checkbox"
-                checked={this.$selected}
-                onClick={event => this.onCheckboxClick(event)}
-              />
-            )}
-            {this.$expandable && (
-              <ZenIcon
-                class="expand-icon"
-                size="sm"
-                padding="lg"
-                icon={faChevronRight}
-                onClick={() => this.onExpandArrowClick()}
-              />
-            )}
+            <ZenCheckBox
+              indeterminate={this.$indeterminate}
+              class={{ checkbox: true, invisible: !this.$selectable }}
+              checked={this.$selected}
+              onChange={event => this.onCheckboxClick(event)}
+            />
+            <ZenIcon
+              class={{ 'expand-icon': true, invisible: !this.$expandable }}
+              size="sm"
+              padding="lg"
+              icon={faChevronRight}
+              onClick={() => this.onExpandArrowClick()}
+            />
           </div>
         )}
         <slot></slot>

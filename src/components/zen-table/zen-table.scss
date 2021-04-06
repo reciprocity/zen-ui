@@ -3,12 +3,8 @@
 :host {
   display: grid;
   grid-template-columns: auto 1fr 1fr;
-  border-collapse: collapse;
-  border-spacing: 0;
   width: 100%;
+  line-height: 1.2em;
+  color: $color-gray-700;
   font-size: $text-md;
-}
-
-:host(:last-child) {
-  border-bottom: 1px solid $color-gray-200;
 }

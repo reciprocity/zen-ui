@@ -1,15 +1,53 @@
-$expand-icon-transition: 0.2s;
+@import '../../zen-styles/component-helpers.scss';
 
 :host {
   display: flex;
+  position: relative;
   align-items: center;
-  background-clip: padding-box !important;
-  padding: 1rem 1rem;
+  height: 3.5rem;
+  padding-right: 2.5rem;
+  margin-top: -1px; // collapse borders
 }
+
+// Border
+// We place it to pseudo element so that when we set selected border z-index,
+// we don't promote whole cell to extra layer (that would mess dropdown popovers)
+:host::after {
+  content: '';
+  position: absolute;
+  inset: 0 0 0 0;
+  border-top: 1px solid $color-gray-200;
+  border-bottom: 1px solid $color-gray-200;
+  pointer-events: none;
+}
+
+// -----------------------------------------------------------------------------
+// Selected border
+
+:host([selected])::after,
+:host([indeterminate])::after {
+  border-top: 1px solid $color-blue-700;
+  border-bottom: 1px solid $color-blue-700;
+  z-index: 1; // selected item's border should prevail
+}
+
+// First cell:
+:host([indeterminate]:first-child)::after,
+:host([selected]:first-child)::after {
+  border-left: 1px solid $color-blue-700;
+}
+
+// Last cell:
+:host([selected]:last-child)::after,
+:host([indeterminate]:last-child)::after {
+  border-right: 1px solid $color-blue-700;
+}
+// -----------------------------------------------------------------------------
 
 :host([full-span]) {
   grid-column-start: 1;
   grid-column-end: -1;
+  height: auto;
 }
 
 .widgets {
@@ -20,17 +58,31 @@ $expand-icon-transition: 0.2s;
   padding-left: 0.5rem;
 }
 
-.widgets.hidden,
-.checkbox.hidden,
-.expand-icon.hidden {
-  display: none;
+.checkbox.invisible,
+.expand-icon.invisible {
+  visibility: hidden;
 }
 
 .expand-icon {
   cursor: pointer;
-  transition: transform $expand-icon-transition;
+  transition: transform $transition-micro-move;
 }
 
 :host([expanded]) .expand-icon {
   transform: rotate(90deg);
+}
+
+// Depth padding:
+$depth-padding: 1.8rem;
+
+@for $i from 1 through 64 {
+  :host([depth='#{$i}']) .widgets {
+    padding-left: #{0.5rem + $i * $depth-padding};
+  }
+}
+
+:host([selected]),
+:host([expanded]),
+:host([depth]:not([depth='0'])) {
+  background-color: $color-blue-50 !important;
 }
