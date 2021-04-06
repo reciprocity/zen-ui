@@ -21,10 +21,10 @@ export class ZenTableRow {
   @Prop({ reflect: true }) readonly selectable: boolean = false;
 
   /** Is row selected */
-  @Prop({ reflect: true, mutable: true }) selected = false;
+  @Prop({ reflect: true }) readonly selected: boolean = false;
 
   /** Is row expanded */
-  @Prop({ reflect: true, mutable: true }) expanded = false;
+  @Prop({ reflect: true }) readonly expanded: boolean = false;
 
   /** Checkbox indeterminate state (Won't update children)  */
   @Prop() readonly $indeterminate: boolean = false;
@@ -138,18 +138,6 @@ export class ZenTableRow {
 
   hasChildren(): boolean {
     return !!this.rowChildren().length;
-  }
-
-  showWidgets(): boolean {
-    return this.selectable || this.expandable;
-  }
-
-  onExpand(): void {
-    this.expanded = !this.expanded;
-  }
-
-  onSelect(): void {
-    this.selected = !this.selected;
   }
 
   async componentDidLoad(): Promise<void> {
