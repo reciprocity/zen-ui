@@ -1,3 +1,10 @@
+## [2.2.3](https://github.com/reciprocity/zen-ui/compare/2.2.2...2.2.3) (2021-04-06)
+
+
+### Bug Fixes
+
+* **zen-drawer:** completely hides drawer on close ([4a3aac6](https://github.com/reciprocity/zen-ui/commit/4a3aac657005c2a91170bba76643e70919786380))
+
 ## [2.2.2](https://github.com/reciprocity/zen-ui/compare/2.2.1...2.2.2) (2021-04-05)
 
 
