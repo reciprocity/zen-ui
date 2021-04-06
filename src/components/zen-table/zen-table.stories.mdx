@@ -17,11 +17,11 @@ export const StoryTreeWithHeader = () => {
   });
   return html/*html*/ `
     <sb-zen-table>
-      <!-- <sb-zen-table-header selectable>
-        <sb-zen-table-header-cell>Title</sb-zen-table-header-cell>
-        <sb-zen-table-header-cell>Status</sb-zen-table-header-cell>
-        <sb-zen-table-header-cell>Description</sb-zen-table-header-cell>
-      </sb-zen-table-header> -->
+      <sb-zen-table-row header selectable>
+        <sb-zen-table-cell>Title</sb-zen-table-cell>
+        <sb-zen-table-cell>Status</sb-zen-table-cell>
+        <sb-zen-table-cell>Description</sb-zen-table-cell>
+      </sb-zen-table-row>
       <sb-zen-table-row selectable>
         <sb-zen-table-cell>PCI Requirement 1 - Firewall Configuration</sb-zen-text></sb-zen-table-cell>
         <sb-zen-table-cell>Status</sb-zen-text></sb-zen-table-cell>

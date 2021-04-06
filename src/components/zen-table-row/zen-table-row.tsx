@@ -33,6 +33,9 @@ export class ZenTableRow {
   /** Depth position of row (read-only) */
   @Prop() readonly depth: number = 0;
 
+  /** Row represents header */
+  @Prop() readonly header: boolean = false;
+
   /** Row selected */
   @Event() rowSelectChanged: EventEmitter<boolean>;
 
@@ -49,6 +52,11 @@ export class ZenTableRow {
   @Watch('depth')
   async depthChanged(depth: number): Promise<void> {
     this.setCellsProp('$depth', depth);
+  }
+
+  @Watch('header')
+  async headerChanged(header: boolean): Promise<void> {
+    this.setCellsProp('$header', header);
   }
 
   @Watch('selected')
@@ -183,6 +191,7 @@ export class ZenTableRow {
     this.expandableChanged(this.expandable);
     this.expandedChanged(this.expanded);
     this.depthChanged(this.depth);
+    this.headerChanged(this.header);
   }
 
   render(): HTMLTableRowElement {

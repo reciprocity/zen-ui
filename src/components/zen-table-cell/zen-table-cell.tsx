@@ -28,6 +28,9 @@ export class ZenTableCell {
   /** Is row expanded (read-only) */
   @Prop({ reflect: true, attribute: 'depth' }) readonly $depth: number = 0;
 
+  /** Cell is inside header (read-only)  */
+  @Prop({ reflect: true, attribute: 'header' }) readonly $header: boolean = false;
+
   /** Checkbox indeterminate state (read-only)  */
   @Prop() readonly $indeterminate: boolean = false;
 
@@ -70,7 +73,9 @@ export class ZenTableCell {
             />
           </div>
         )}
-        <slot></slot>
+        <sb-zen-text>
+          <slot />
+        </sb-zen-text>
       </Host>
     );
   }
