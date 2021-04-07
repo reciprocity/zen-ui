@@ -34,6 +34,9 @@ export class ZenTableCell {
   /** Checkbox indeterminate state (read-only)  */
   @Prop() readonly $indeterminate: boolean = false;
 
+  /** Cell remains fixed at the top during scroll (mainly used for headers) */
+  @Prop({ reflect: true, attribute: 'sticky' }) readonly $sticky: boolean = false;
+
   showWidgets(): boolean {
     const isFirstCell = !this.host.previousElementSibling;
     return isFirstCell && (this.$selectable || this.$expandable);

@@ -16,8 +16,8 @@ export const StoryTreeWithHeader = () => {
     element.icon = faArrowRight;
   });
   return html/*html*/ `
-    <sb-zen-table>
-      <sb-zen-table-row header selectable>
+    <sb-zen-table style="max-height: 200px; overflow-y: auto;">
+      <sb-zen-table-row header sticky selectable>
         <sb-zen-table-cell>Title</sb-zen-table-cell>
         <sb-zen-table-cell>Status</sb-zen-table-cell>
         <sb-zen-table-cell>Description</sb-zen-table-cell>

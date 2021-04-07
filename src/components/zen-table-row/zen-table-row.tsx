@@ -38,6 +38,9 @@ export class ZenTableRow {
   /** Row represents header */
   @Prop() readonly header: boolean = false;
 
+  /** Row remains fixed at the top during scroll (mainly used for headers) */
+  @Prop() readonly sticky = false;
+
   /** Row selected */
   @Event() rowSelectChanged: EventEmitter<boolean>;
 
@@ -63,6 +66,11 @@ export class ZenTableRow {
       this.startChildObserver();
     }
     this.setCellsProp('$header', header);
+  }
+
+  @Watch('sticky')
+  async stickyChanged(sticky: boolean): Promise<void> {
+    this.setCellsProp('$sticky', sticky);
   }
 
   @Watch('$indeterminate')
@@ -261,6 +269,7 @@ export class ZenTableRow {
     this.expandedChanged(this.expanded);
     this.depthChanged(this.depth);
     this.headerChanged(this.header);
+    this.stickyChanged(this.sticky);
     this.indeterminateChanged(this.$indeterminate);
   }
 

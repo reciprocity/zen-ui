@@ -50,6 +50,13 @@
   height: auto;
 }
 
+:host([sticky]) {
+  position: sticky;
+  background-color: $color-white;
+  top: 0;
+  z-index: 1;
+}
+
 .widgets {
   inset: 1px auto 1px 1px; // 1px offset to render selected border on FF
   box-sizing: border-box;
