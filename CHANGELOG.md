@@ -1,3 +1,11 @@
+## [2.2.4](https://github.com/reciprocity/zen-ui/compare/2.2.3...2.2.4) (2021-04-07)
+
+
+### Bug Fixes
+
+* **zen-dropdown:** change to apply max-height instead of height ([7eca163](https://github.com/reciprocity/zen-ui/commit/7eca16349eb3cac535ebf9eedab8415432ac7382))
+* **zen-dropdown:** fix menu height not being applied ([f76d795](https://github.com/reciprocity/zen-ui/commit/f76d7953400f11b3cc2a001fa8ad2254cd393cd8))
+
 ## [2.2.3](https://github.com/reciprocity/zen-ui/compare/2.2.2...2.2.3) (2021-04-06)
 
 
