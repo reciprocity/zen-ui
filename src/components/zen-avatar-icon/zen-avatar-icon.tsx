@@ -1,5 +1,5 @@
 import { Component, Host, h, Prop } from '@stencil/core';
-import { IconSizes } from '../helpers/types';
+import { AvatarIconSize } from '../helpers/types';
 
 @Component({
   tag: 'zen-avatar-icon',
@@ -23,7 +23,7 @@ export class ZenAvatarIcon {
   @Prop() readonly email: string = '';
 
   /** Icon size   */
-  @Prop({ reflect: true }) readonly size: IconSizes = 'md';
+  @Prop({ reflect: true }) readonly size: AvatarIconSize = 'md';
 
   hasImage(): boolean {
     return this.imageUrl != '';
