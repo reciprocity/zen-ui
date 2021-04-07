@@ -15,7 +15,7 @@ argTypes['$indeterminate'].table.disable = true;
 
 export const StoryRow = () => {
   return html/*html*/ `
-    <sb-zen-table>
+    <sb-zen-table columns="repeat(4, 1fr)">
       <sb-zen-table-row>
         <sb-zen-table-cell>Row 1, Cell 1</sb-zen-table-cell>
         <sb-zen-table-cell>Row 1, Cell 2</sb-zen-table-cell>
@@ -28,7 +28,7 @@ export const StoryRow = () => {
 
 export const StoryRowsSelectable = () => {
   return html/*html*/ `
-    <sb-zen-table>
+    <sb-zen-table columns="repeat(4, 1fr)">
       <sb-zen-table-row selectable>
         <sb-zen-table-cell>Row 1, Cell 1</sb-zen-table-cell>
         <sb-zen-table-cell>Row 1, Cell 2</sb-zen-table-cell>
@@ -41,7 +41,7 @@ export const StoryRowsSelectable = () => {
 
 export const StoryRowExpandable = () => {
   return html/*html*/ `
-    <sb-zen-table>
+    <sb-zen-table columns="repeat(4, 1fr)">
       <sb-zen-table-row depth="0">
         <sb-zen-table-cell>Row 1, Cell 1</sb-zen-table-cell>
         <sb-zen-table-cell>Row 1, Cell 2</sb-zen-table-cell>
@@ -68,7 +68,7 @@ export const StoryRowExpandable = () => {
 };
 
 export const StoryWithControls = args => html/*html*/ `
-  <sb-zen-table>
+  <sb-zen-table columns="repeat(4, 1fr)">
     <sb-zen-table-row ...="${spreadArgs(args, argTypes)}">
       <sb-zen-table-cell>Row 1, Cell 1</sb-zen-table-cell>
       <sb-zen-table-cell>Row 1, Cell 2</sb-zen-table-cell>
