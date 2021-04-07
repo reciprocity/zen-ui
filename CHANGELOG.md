@@ -1,3 +1,15 @@
+# [2.3.0](https://github.com/reciprocity/zen-ui/compare/2.2.4...2.3.0) (2021-04-07)
+
+
+### Bug Fixes
+
+* **zen-tooltip:** update story styles to equal the wireframes ([d18a434](https://github.com/reciprocity/zen-ui/commit/d18a4342184d2030ff07a396f61207d7fa681808))
+
+
+### Features
+
+* **zen-tooltip:** add max width prop ([b752097](https://github.com/reciprocity/zen-ui/commit/b75209748e239c80a077d8a84c8ce52d0a8fce63))
+
 ## [2.2.4](https://github.com/reciprocity/zen-ui/compare/2.2.3...2.2.4) (2021-04-07)
 
 
