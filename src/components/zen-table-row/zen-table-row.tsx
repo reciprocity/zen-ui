@@ -274,14 +274,14 @@ export class ZenTableRow {
     this.visible = !parentRow || parentRow.expanded;
     this.expandable = this.hasChildren();
 
-    await this.selectableChanged(this.selectable);
-    await this.selectedChanged(this.selected);
-    await this.expandableChanged(this.expandable);
-    await this.expandedChanged(this.expanded);
-    await this.depthChanged(this.depth);
-    await this.headerChanged(this.header);
-    await this.stickyChanged(this.sticky);
-    await this.indeterminateChanged(this.$indeterminate);
+    this.selectableChanged(this.selectable);
+    this.selectedChanged(this.selected);
+    this.expandableChanged(this.expandable);
+    this.expandedChanged(this.expanded);
+    this.depthChanged(this.depth);
+    this.headerChanged(this.header);
+    this.stickyChanged(this.sticky);
+    this.indeterminateChanged(this.$indeterminate);
   }
 
   disconnectedCallback(): void {
