@@ -56,14 +56,18 @@
 :host([header]) {
   height: 2rem;
   font-weight: bold;
-  border-top: none;
+  border-bottom: 1px solid $color-gray-200;
+  background-color: $color-white !important;
+}
+
+:host([header])::after {
+  content: none;
 }
 
 :host([sticky]) {
   position: sticky;
-  background-color: $color-white;
   top: -2px; // -2 to prevent bg leaking due to scrolling tremble
-  z-index: 1;
+  z-index: 2;
 }
 
 .widgets {
@@ -105,5 +109,5 @@ $depth-padding: 1.8rem;
 :host([selected]),
 :host([expanded]),
 :host([depth]:not([depth='0'])) {
-  background-color: $color-blue-50 !important;
+  background-color: $color-blue-50;
 }
