@@ -58,14 +58,15 @@
   padding-left: 0.5rem;
 }
 
-.checkbox.invisible,
-.expand-icon.invisible {
-  visibility: hidden;
-}
-
 .expand-icon {
   cursor: pointer;
   transition: transform $transition-micro-move;
+}
+
+.checkbox.invisible,
+.expand-icon.invisible,
+:host([header]) .expand-icon {
+  visibility: hidden;
 }
 
 :host([expanded]) .expand-icon {
