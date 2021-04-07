@@ -334,7 +334,7 @@ export namespace Components {
         /**
           * To determine if there's enough space under field on open
          */
-        "menuHeight": number;
+        "menuHeight": string;
         /**
           * Width of menu. Set '100%' to match field width.
          */
@@ -1675,7 +1675,7 @@ declare namespace LocalJSX {
         /**
           * To determine if there's enough space under field on open
          */
-        "menuHeight"?: number;
+        "menuHeight"?: string;
         /**
           * Width of menu. Set '100%' to match field width.
          */
