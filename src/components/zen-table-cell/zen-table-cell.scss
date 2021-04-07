@@ -50,10 +50,16 @@
   height: auto;
 }
 
+:host([header]) {
+  height: 2rem;
+  font-weight: bold;
+  border-top: none;
+}
+
 :host([sticky]) {
   position: sticky;
   background-color: $color-white;
-  top: 0;
+  top: -2px; // -2 to prevent bg leaking due to scrolling tremble
   z-index: 1;
 }
 
