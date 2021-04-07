@@ -1,0 +1,24 @@
+@import '../../zen-styles/component-helpers.scss';
+
+:host {
+  display: block;
+  padding: 0.25rem 1rem;
+  cursor: pointer;
+  user-select: none;
+  transition: 0.1s ease-in;
+  border-bottom: 4px solid transparent;
+  color: $color-gray-400;
+
+  ::slotted(*) {
+    color: $color-gray-400;
+  }
+}
+
+:host(:hover) {
+  border-bottom: 4px solid $color-blue-700;
+}
+
+:host(.selected) {
+  border-bottom: 4px solid $color-blue-700;
+  color: $color-gray-800;
+}
