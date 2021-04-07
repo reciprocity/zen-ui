@@ -1018,6 +1018,10 @@ export namespace Components {
          */
         "maxHeight": string;
         /**
+          * Set tooltip max width
+         */
+        "maxWidth": string;
+        /**
           * Set tooltip offset to target element
          */
         "offset"?: number;
@@ -2338,6 +2342,10 @@ declare namespace LocalJSX {
           * Limit tooltips height and make content scroll
          */
         "maxHeight"?: string;
+        /**
+          * Set tooltip max width
+         */
+        "maxWidth"?: string;
         /**
           * Set tooltip offset to target element
          */
