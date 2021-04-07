@@ -6,7 +6,7 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { StringifiedJson } from "./stories/components/color-swatch-group/color-swatch-group";
-import { Align, AvatarData, AvatarDetailVariant, AvatarIconSizes, DropdownSize, IconSizes, InputSize, None, Notification, NotificationVariant, Position, Resize, Size, Spacing, SpacingShorthand, TextSize, TextState, TextVariant, TooltipVariant, TriggerEvent } from "./components/helpers/types";
+import { Align, AvatarData, AvatarDetailVariant, AvatarIconSize, DropdownSize, IconSize, InputSize, None, Notification, NotificationVariant, Position, Resize, Size, Spacing, SpacingShorthand, TextSize, TextState, TextVariant, TooltipVariant, TriggerEvent } from "./components/helpers/types";
 import { ButtonVariants } from "./components/zen-button/types";
 import { OptionValue } from "./components/zen-menu-item/zen-option";
 import { IconDefinition } from "@fortawesome/pro-light-svg-icons";
@@ -128,7 +128,7 @@ export namespace Components {
         /**
           * Icons size
          */
-        "size": IconSizes;
+        "size": IconSize;
         /**
           * Array of user's data
          */
@@ -154,7 +154,7 @@ export namespace Components {
         /**
           * Icon size
          */
-        "size": AvatarIconSizes;
+        "size": AvatarIconSize;
         /**
           * Name and Surname
          */
@@ -388,7 +388,7 @@ export namespace Components {
         /**
           * Size of the icon.
          */
-        "size": IconSizes;
+        "size": IconSize;
     }
     interface ZenInput {
         /**
@@ -1469,7 +1469,7 @@ declare namespace LocalJSX {
         /**
           * Icons size
          */
-        "size"?: IconSizes;
+        "size"?: IconSize;
         /**
           * Array of user's data
          */
@@ -1495,7 +1495,7 @@ declare namespace LocalJSX {
         /**
           * Icon size
          */
-        "size"?: AvatarIconSizes;
+        "size"?: AvatarIconSize;
         /**
           * Name and Surname
          */
@@ -1725,7 +1725,7 @@ declare namespace LocalJSX {
         /**
           * Size of the icon.
          */
-        "size"?: IconSizes;
+        "size"?: IconSize;
     }
     interface ZenInput {
         /**

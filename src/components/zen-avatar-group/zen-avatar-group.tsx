@@ -1,6 +1,6 @@
 import { Component, Host, h, Prop, Element } from '@stencil/core';
 import { applyPrefix } from '../helpers/helpers';
-import { AvatarColor, AvatarData, IconSizes } from '../helpers/types';
+import { AvatarColor, AvatarData, IconSize } from '../helpers/types';
 
 @Component({
   tag: 'zen-avatar-group',
@@ -17,7 +17,7 @@ export class ZenAvatarGroup {
   @Prop() readonly maxIcons: number = 4;
 
   /** Icons size */
-  @Prop() readonly size: IconSizes = 'md';
+  @Prop() readonly size: IconSize = 'md';
 
   /** If multiple avatars then show icon animation  */
   @Prop({ reflect: true }) readonly animation: boolean = true;
