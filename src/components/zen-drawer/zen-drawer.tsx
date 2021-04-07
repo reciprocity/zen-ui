@@ -49,7 +49,12 @@ export class ZenDrawer {
   }
 
   componentDidLoad(): void {
-    this.opened ? showInstantly(this.drawer) : hideInstantly(this.drawer);
+    if (this.opened) {
+      showInstantly(this.drawer);
+    } else {
+      hideInstantly(this.drawer);
+      this.host.style.display = 'none';
+    }
   }
 
   render(): HTMLElement {
