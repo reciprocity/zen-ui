@@ -37,6 +37,9 @@ export class ZenTableCell {
   /** Cell remains fixed at the top during scroll (mainly used for headers) */
   @Prop({ reflect: true, attribute: 'sticky' }) readonly $sticky: boolean = false;
 
+  /** Cell custom background color */
+  @Prop() readonly backgroundColor: string = '';
+
   showWidgets(): boolean {
     const isFirstCell = !this.host.previousElementSibling;
     return isFirstCell && (this.$selectable || this.$expandable);
@@ -58,7 +61,7 @@ export class ZenTableCell {
     const ZenCheckBox = applyPrefix('zen-checkbox', this.host);
     const ZenIcon = applyPrefix('zen-icon', this.host);
     return (
-      <Host>
+      <Host style={{ backgroundColor: this.backgroundColor }}>
         {this.showWidgets() && (
           <div class="widgets">
             <ZenCheckBox

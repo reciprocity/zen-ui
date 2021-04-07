@@ -834,6 +834,10 @@ export namespace Components {
          */
         "$sticky": boolean;
         /**
+          * Cell custom background color
+         */
+        "backgroundColor": string;
+        /**
           * Spanns through whole table
          */
         "fullSpan": boolean;
@@ -2180,6 +2184,10 @@ declare namespace LocalJSX {
           * Cell remains fixed at the top during scroll (mainly used for headers)
          */
         "$sticky"?: boolean;
+        /**
+          * Cell custom background color
+         */
+        "backgroundColor"?: string;
         /**
           * Spanns through whole table
          */
