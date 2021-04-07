@@ -795,32 +795,48 @@ export namespace Components {
     interface ZenSpinner {
     }
     interface ZenTable {
+        /**
+          * Space separated css grid columns<br/>(eg. `auto 1fr 1fr 200px 1fr`)
+         */
+        "columns": "";
     }
     interface ZenTableCell {
-    }
-    interface ZenTableHeader {
         /**
-          * Checkbox indeterminate state
+          * Is row expanded (read-only)
+         */
+        "$depth": number;
+        /**
+          * Can be expanded (read-only)
+         */
+        "$expandable": boolean;
+        /**
+          * Is row expanded (read-only)
+         */
+        "$expanded": boolean;
+        /**
+          * Cell is inside header (read-only)
+         */
+        "$header": boolean;
+        /**
+          * Checkbox indeterminate state (read-only)
          */
         "$indeterminate": boolean;
         /**
-          * Show checkbox
+          * Show checkbox (read-only)
          */
-        "selectable": boolean;
+        "$selectable": boolean;
         /**
-          * Select all rows
+          * Is row selected (read-only)
          */
-        "selected": boolean;
+        "$selected": boolean;
         /**
-          * Remains fixed at the top of the table during vertical scrolling
+          * Cell remains fixed at the top during scroll (mainly used for headers)
          */
-        "sticky": boolean;
-    }
-    interface ZenTableHeaderCell {
+        "$sticky": boolean;
         /**
-          * Remains fixed at the top of the table during vertical scrolling
+          * Spanns through whole table
          */
-        "sticky": boolean;
+        "fullSpan": boolean;
     }
     interface ZenTableRow {
         /**
@@ -848,6 +864,10 @@ export namespace Components {
          */
         "hasRowsSelected": () => Promise<boolean>;
         /**
+          * Row represents header
+         */
+        "header": boolean;
+        /**
           * Returns elements parent row (depth -1) *
          */
         "parentRow": () => Promise<HTMLZenTableRowElement>;
@@ -859,6 +879,10 @@ export namespace Components {
           * Is row selected
          */
         "selected": boolean;
+        /**
+          * Row remains fixed at the top during scroll (mainly used for headers)
+         */
+        "sticky": false;
         /**
           * Visible if no depth or parent.expanded
          */
@@ -1266,18 +1290,6 @@ declare global {
         prototype: HTMLZenTableCellElement;
         new (): HTMLZenTableCellElement;
     };
-    interface HTMLZenTableHeaderElement extends Components.ZenTableHeader, HTMLStencilElement {
-    }
-    var HTMLZenTableHeaderElement: {
-        prototype: HTMLZenTableHeaderElement;
-        new (): HTMLZenTableHeaderElement;
-    };
-    interface HTMLZenTableHeaderCellElement extends Components.ZenTableHeaderCell, HTMLStencilElement {
-    }
-    var HTMLZenTableHeaderCellElement: {
-        prototype: HTMLZenTableHeaderCellElement;
-        new (): HTMLZenTableHeaderCellElement;
-    };
     interface HTMLZenTableRowElement extends Components.ZenTableRow, HTMLStencilElement {
     }
     var HTMLZenTableRowElement: {
@@ -1350,8 +1362,6 @@ declare global {
         "zen-spinner": HTMLZenSpinnerElement;
         "zen-table": HTMLZenTableElement;
         "zen-table-cell": HTMLZenTableCellElement;
-        "zen-table-header": HTMLZenTableHeaderElement;
-        "zen-table-header-cell": HTMLZenTableHeaderCellElement;
         "zen-table-row": HTMLZenTableRowElement;
         "zen-tabs": HTMLZenTabsElement;
         "zen-text": HTMLZenTextElement;
@@ -2132,32 +2142,48 @@ declare namespace LocalJSX {
     interface ZenSpinner {
     }
     interface ZenTable {
+        /**
+          * Space separated css grid columns<br/>(eg. `auto 1fr 1fr 200px 1fr`)
+         */
+        "columns"?: "";
     }
     interface ZenTableCell {
-    }
-    interface ZenTableHeader {
         /**
-          * Checkbox indeterminate state
+          * Is row expanded (read-only)
+         */
+        "$depth"?: number;
+        /**
+          * Can be expanded (read-only)
+         */
+        "$expandable"?: boolean;
+        /**
+          * Is row expanded (read-only)
+         */
+        "$expanded"?: boolean;
+        /**
+          * Cell is inside header (read-only)
+         */
+        "$header"?: boolean;
+        /**
+          * Checkbox indeterminate state (read-only)
          */
         "$indeterminate"?: boolean;
         /**
-          * Show checkbox
+          * Show checkbox (read-only)
          */
-        "selectable"?: boolean;
+        "$selectable"?: boolean;
         /**
-          * Select all rows
+          * Is row selected (read-only)
          */
-        "selected"?: boolean;
+        "$selected"?: boolean;
         /**
-          * Remains fixed at the top of the table during vertical scrolling
+          * Cell remains fixed at the top during scroll (mainly used for headers)
          */
-        "sticky"?: boolean;
-    }
-    interface ZenTableHeaderCell {
+        "$sticky"?: boolean;
         /**
-          * Remains fixed at the top of the table during vertical scrolling
+          * Spanns through whole table
          */
-        "sticky"?: boolean;
+        "fullSpan"?: boolean;
     }
     interface ZenTableRow {
         /**
@@ -2177,6 +2203,10 @@ declare namespace LocalJSX {
          */
         "expanded"?: boolean;
         /**
+          * Row represents header
+         */
+        "header"?: boolean;
+        /**
           * Row selected
          */
         "onRowSelectChanged"?: (event: CustomEvent<boolean>) => void;
@@ -2188,6 +2218,10 @@ declare namespace LocalJSX {
           * Is row selected
          */
         "selected"?: boolean;
+        /**
+          * Row remains fixed at the top during scroll (mainly used for headers)
+         */
+        "sticky"?: false;
         /**
           * Visible if no depth or parent.expanded
          */
@@ -2415,8 +2449,6 @@ declare namespace LocalJSX {
         "zen-spinner": ZenSpinner;
         "zen-table": ZenTable;
         "zen-table-cell": ZenTableCell;
-        "zen-table-header": ZenTableHeader;
-        "zen-table-header-cell": ZenTableHeaderCell;
         "zen-table-row": ZenTableRow;
         "zen-tabs": ZenTabs;
         "zen-text": ZenText;
@@ -2464,8 +2496,6 @@ declare module "@stencil/core" {
             "zen-spinner": LocalJSX.ZenSpinner & JSXBase.HTMLAttributes<HTMLZenSpinnerElement>;
             "zen-table": LocalJSX.ZenTable & JSXBase.HTMLAttributes<HTMLZenTableElement>;
             "zen-table-cell": LocalJSX.ZenTableCell & JSXBase.HTMLAttributes<HTMLZenTableCellElement>;
-            "zen-table-header": LocalJSX.ZenTableHeader & JSXBase.HTMLAttributes<HTMLZenTableHeaderElement>;
-            "zen-table-header-cell": LocalJSX.ZenTableHeaderCell & JSXBase.HTMLAttributes<HTMLZenTableHeaderCellElement>;
             "zen-table-row": LocalJSX.ZenTableRow & JSXBase.HTMLAttributes<HTMLZenTableRowElement>;
             "zen-tabs": LocalJSX.ZenTabs & JSXBase.HTMLAttributes<HTMLZenTabsElement>;
             "zen-text": LocalJSX.ZenText & JSXBase.HTMLAttributes<HTMLZenTextElement>;
