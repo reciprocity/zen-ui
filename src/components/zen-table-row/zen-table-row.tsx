@@ -212,7 +212,28 @@ export class ZenTableRow {
   }
 
   startChildObserver(): void {
-    this.host.parentElement.addEventListener('rowSelectChanged', async () => {
+    this.childObserver = new MutationObserver(() => this.onTableChildChanged());
+
+    const table = this.host.parentElement;
+
+    this.childObserver.observe(table, {
+      childList: true,
+      attributes: true,
+      subtree: true,
+    });
+  }
+
+  stopChildObserver(): void {
+    if (this.childObserver) this.childObserver.disconnect();
+  }
+
+  onTableChildChanged(): void {
+    const updateMyExandableProp = () => {
+      const hasExpandableRows = this.rowChildren().some(row => row.expandable);
+      this.expandable = hasExpandableRows;
+    };
+
+    const updateMyCheckbox = async () => {
       const allSelected = await this.hasAllRowsSelected();
       const someSelected = await this.hasRowsSelected();
 
@@ -222,25 +243,10 @@ export class ZenTableRow {
         this.selected = true;
       }
       this.$indeterminate = someSelected && !allSelected;
-    });
+    };
 
-    this.childObserver = new MutationObserver(() => this.onTableChildChanged());
-
-    const table = this.host.parentElement;
-
-    this.childObserver.observe(table, {
-      childList: true,
-      attributes: true,
-    });
-  }
-
-  stopChildObserver(): void {
-    if (this.childObserver) this.childObserver.disconnect();
-  }
-
-  onTableChildChanged(): void {
-    const hasExpandableRows = this.rowChildren().some(row => row.expandable);
-    this.expandable = hasExpandableRows;
+    updateMyExandableProp();
+    updateMyCheckbox();
   }
 
   async componentDidLoad(): Promise<void> {
