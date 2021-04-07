@@ -16,7 +16,7 @@ export const StoryTreeWithHeader = () => {
     element.icon = faArrowRight;
   });
   return html/*html*/ `
-    <sb-zen-table style="max-height: 500px; overflow-y: auto;">
+    <sb-zen-table columns="auto 1fr 1fr" style="max-height: 200px; overflow-y: auto;">
       <sb-zen-table-row header sticky selectable>
         <sb-zen-table-cell>Title</sb-zen-table-cell>
         <sb-zen-table-cell>Status</sb-zen-table-cell>
@@ -60,7 +60,7 @@ export const StoryTreeWithHeader = () => {
       <sb-zen-table-row depth="1" style="height:230px;">
         <sb-zen-table-cell full-span>
           <sb-zen-space vertical spacing="lg" padding="lg" stretch>
-            <sb-zen-table>
+            <sb-zen-table columns="auto 1fr 1fr">
               <sb-zen-table-row>
                 <sb-zen-table-cell>Inner Row 1, Cell 1</sb-zen-table-cell>
                 <sb-zen-table-cell>Inner Row 1, Cell 2</sb-zen-table-cell>
@@ -180,6 +180,7 @@ Arrange data into rows and columns.
     name="default"
     args={{
       ...getDefaultArgs(argTypes),
+      columns: 'auto 1fr 1fr',
     }}
   >
     {StoryWithControls.bind({})}
