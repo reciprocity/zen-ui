@@ -59,7 +59,6 @@ describe('zen-table-row', () => {
     expect(expandableIcon).toBeTruthy();
 
     simulateMouse('click', expandableIcon);
-    page.waitForChanges;
     expect(mainRow.expanded).toBeTruthy();
     expect(expandRow.visible).toBeTruthy();
   });
@@ -113,14 +112,13 @@ describe('zen-table-row tree functionality', () => {
     await page.waitForChanges();
   });
 
-  it.skip('should set all descendants to not visible on expand false', async () => {
+  it('should set all descendants to not visible on expand false', async () => {
     expect(parentRow.visible).toBeTruthy();
     expect(secondDepthParentRow.visible).toBeTruthy();
 
     const expandableIcon = firstCell.shadowRoot.querySelector('.expand-icon');
 
     simulateMouse('click', expandableIcon);
-    page.waitForChanges;
 
     const descendents = [];
     descendents.concat(page.root.querySelectorAll('zen-table-row[depth="1"]'));
@@ -131,9 +129,8 @@ describe('zen-table-row tree functionality', () => {
     }
   });
 
-  it.skip('should select all row descendents on parent row click and property set', async () => {
+  it('should select all row descendents on parent row click and property set', async () => {
     simulateMouse('click', firstCell.shadowRoot.querySelector('.checkbox'));
-    await page.waitForChanges();
 
     const descendents = [];
     descendents.concat(page.root.querySelectorAll('zen-table-row[depth="1"]'));
@@ -144,13 +141,13 @@ describe('zen-table-row tree functionality', () => {
     }
 
     parentRow.selected = false;
-    await page.waitForChanges();
+
     for (const row of descendents.values()) {
       expect((row as HTMLZenTableRowElement).selected).not.toBeTruthy();
     }
   });
 
-  it.skip('should select only second depth children when setting second depth parent to selected', async () => {
+  it('should select only second depth children when setting second depth parent to selected', () => {
     // First depth children without the first depth parent row
     const firstDepthChildren = page.root.querySelectorAll(
       'zen-table-row[depth="1"] :not(zen-table-row[depth="1"]:first-child)',
@@ -158,7 +155,7 @@ describe('zen-table-row tree functionality', () => {
     const secondDepthChildren = page.root.querySelectorAll('zen-table-row[depth="2"]');
 
     secondDepthParentRow.selected = true;
-    await page.waitForChanges();
+
     for (const row of firstDepthChildren.values()) {
       expect((row as HTMLZenTableRowElement).selected).not.toBeTruthy();
     }
@@ -167,7 +164,7 @@ describe('zen-table-row tree functionality', () => {
     }
   });
 
-  it.skip('should set indeterminate state to all parent rows', async () => {
+  it('should set indeterminate state to all parent rows', async () => {
     const checkbox = secondDepthCell.shadowRoot.querySelector('.checkbox') as HTMLZenCheckboxElement;
     checkbox.checked = true;
     const event = new Event('change', { bubbles: true, composed: true });
