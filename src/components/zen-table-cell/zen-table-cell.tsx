@@ -76,9 +76,7 @@ export class ZenTableCell {
             />
           </div>
         )}
-        <sb-zen-text>
-          <slot />
-        </sb-zen-text>
+        <slot />
       </Host>
     );
   }
