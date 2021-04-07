@@ -1,3 +1,10 @@
+## [2.3.1](https://github.com/reciprocity/zen-ui/compare/2.3.0...2.3.1) (2021-04-07)
+
+
+### Bug Fixes
+
+* **zen-drawer:** when component is not opened on first load display is set to none ([b1f47e9](https://github.com/reciprocity/zen-ui/commit/b1f47e958f55114cc25a644580bdaa69d6a46efe))
+
 # [2.3.0](https://github.com/reciprocity/zen-ui/compare/2.2.4...2.3.0) (2021-04-07)
 
 
