@@ -15,7 +15,10 @@
 :host::after {
   content: '';
   position: absolute;
-  inset: 0 0 0 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   border-top: 1px solid $color-gray-200;
   border-bottom: 1px solid $color-gray-200;
   pointer-events: none;
@@ -64,7 +67,11 @@
 }
 
 .widgets {
-  inset: 1px auto 1px 1px; // 1px offset to render selected border on FF
+  // 1px offset to render selected border on FF:
+  top: 1px;
+  right: auto;
+  bottom: 1px;
+  left: 1px;
   box-sizing: border-box;
   display: flex;
   align-items: center;

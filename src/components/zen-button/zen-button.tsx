@@ -59,7 +59,10 @@ export class ZenButton {
     const ZenSpinner = applyPrefix('zen-spinner', this.host);
     const spinnerStyle = {
       position: 'absolute',
-      inset: 0,
+      top: 0,
+      right: 0,
+      bottom: 0,
+      left: 0,
     };
     return (
       <Host class={{ btn: true, [`btn-${this.variant}`]: true, disabled: this.disabled }} tabindex={this.tabindex}>
