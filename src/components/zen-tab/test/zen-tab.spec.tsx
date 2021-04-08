@@ -10,15 +10,4 @@ describe('zen-tab', () => {
 
     expect(page.root.shadowRoot).toBeTruthy();
   });
-
-  it('should select', async () => {
-    const page = await newSpecPage({
-      components: [ZenTab],
-      html: `<zen-tab></zen-tab>`,
-    });
-    page.rootInstance.selected = true;
-
-    await page.waitForChanges();
-    expect(page.root.hasAttribute('selected')).toBeTruthy();
-  });
 });
