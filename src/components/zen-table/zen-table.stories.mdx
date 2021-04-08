@@ -418,6 +418,15 @@ export const StoryWithControls = args => {
     selectRow(row);
   }
   //
+  function removeRow() {
+    const row = element(`sb-zen-table-row.selected`);
+    if (!row) {
+      alert('No row selected!');
+      return;
+    }
+    row.remove();
+  }
+  //
   function insertRow() {
     const parent = element(`sb-zen-table-row.selected`);
     if (!parent) {
@@ -528,6 +537,9 @@ export const StoryWithControls = args => {
       <sb-zen-checkbox id="chk-selectable" label="Selectable"></sb-zen-checkbox>
       <sb-zen-checkbox id="chk-selected" label="Selected" checked></sb-zen-checkbox>
       <sb-zen-button variant="secondary" @click="${() => insertRow()}"> Insert row </sb-zen-button>
+      <sb-zen-button class="space-before space-after" variant="secondary" @click="${() => removeRow()}">
+        Remove selected
+      </sb-zen-button>
     </sb-zen-space>
     ${logEvents('#table1', getComponentData('zen-table'))}`;
 };
