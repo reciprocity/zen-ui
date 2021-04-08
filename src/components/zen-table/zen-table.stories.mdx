@@ -2,6 +2,7 @@ import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
 import { html } from 'lit-html';
 import { logEvents } from '../../../.storybook/helpers/log-events';
 import { getArgTypes, getDefaultArgs, getComponentData, spreadArgs } from '../../../.storybook/helpers/argTypes';
+import { htmlToElement } from '../helpers/helpers';
 
 import data from '../../../stencilDocs.json';
 import { faArrowRight } from '@fortawesome/pro-light-svg-icons';
@@ -399,47 +400,119 @@ export const StoryExtendedRowContent = () => {
   `;
 };
 
-export const StoryWithControls = args => html/*html*/ `
-  <sb-zen-table id="table1" ...="${spreadArgs(args, argTypes)}">
-    <sb-zen-table-row header>
-      <sb-zen-table-cell>Title 1</sb-zen-table-cell>
-      <sb-zen-table-cell>Title 2</sb-zen-table-cell>
-      <sb-zen-table-cell>Title 3</sb-zen-table-cell>
-      <sb-zen-table-cell>Title 4</sb-zen-table-cell>
-    </sb-zen-table-row>
-    <sb-zen-table-row>
-      <sb-zen-table-cell>Row 1, Cell 1</sb-zen-table-cell>
-      <sb-zen-table-cell>Row 1, Cell 2</sb-zen-table-cell>
-      <sb-zen-table-cell>Row 1, Cell 3</sb-zen-table-cell>
-      <sb-zen-table-cell>Row 1, Cell 4</sb-zen-table-cell>
-    </sb-zen-table-row>
-    <sb-zen-table-row>
-      <sb-zen-table-cell>Row 2, Cell 1</sb-zen-table-cell>
-      <sb-zen-table-cell>Row 2, Cell 2</sb-zen-table-cell>
-      <sb-zen-table-cell>Row 2, Cell 3</sb-zen-table-cell>
-      <sb-zen-table-cell>Row 2, Cell 4</sb-zen-table-cell>
-    </sb-zen-table-row>
-    <sb-zen-table-row>
-      <sb-zen-table-cell>Row 3, Cell 1</sb-zen-table-cell>
-      <sb-zen-table-cell>Row 3, Cell 2</sb-zen-table-cell>
-      <sb-zen-table-cell>Row 3, Cell 3</sb-zen-table-cell>
-      <sb-zen-table-cell>Row 3, Cell 4</sb-zen-table-cell>
-    </sb-zen-table-row>
-    <sb-zen-table-row>
-      <sb-zen-table-cell>Row 4, Cell 1</sb-zen-table-cell>
-      <sb-zen-table-cell>Row 4, Cell 2</sb-zen-table-cell>
-      <sb-zen-table-cell>Row 4, Cell 3</sb-zen-table-cell>
-      <sb-zen-table-cell>Row 4, Cell 4</sb-zen-table-cell>
-    </sb-zen-table-row>
-    <sb-zen-table-row>
-      <sb-zen-table-cell>Row 5, Cell 1</sb-zen-table-cell>
-      <sb-zen-table-cell>Row 5, Cell 2</sb-zen-table-cell>
-      <sb-zen-table-cell>Row 5, Cell 3</sb-zen-table-cell>
-      <sb-zen-table-cell>Row 5, Cell 4</sb-zen-table-cell>
-    </sb-zen-table-row>
-  </sb-zen-table>
-  ${logEvents('#table1', getComponentData('zen-table'))}
-`;
+export const StoryWithControls = args => {
+  //
+  function element(selector) {
+    return document.querySelector(selector);
+  }
+  //
+  function selectRow(row) {
+    const sel = Array.from(document.querySelectorAll(`sb-zen-table-row.selected`));
+    sel.forEach(n => n.classList.remove('selected'));
+    if (!row.tagName.endsWith('-ROW') || row.header) return;
+    row.classList.add('selected');
+  }
+  //
+  function clicked(event) {
+    const row = event.target.tagName.endsWith('-CELL') ? event.target.parentElement : event.target;
+    selectRow(row);
+  }
+  //
+  function insertRow() {
+    const parent = element(`sb-zen-table-row.selected`);
+    if (!parent) {
+      alert('Select some row first!');
+      return;
+    }
+    const type = element('[group=insert-type]').selected;
+    const depth = parent.depth + (type === 'sibling' ? 0 : 1);
+    const selected = element(`#chk-selected`).checked;
+    const selectable = selected || element(`#chk-selectable`).checked;
+    const count = parseInt(element('#insert-count').value, 10) || 1;
+    //
+    let child;
+    for (let i = 0; i < count; i++) {
+      child = htmlToElement(/*html*/ `
+        <sb-zen-table-row
+          depth="${depth}"
+          ${selectable ? 'selectable' : ''}
+          ${selected ? 'selected' : ''}
+        >
+          <sb-zen-table-cell>Title 1</sb-zen-table-cell>
+          <sb-zen-table-cell>Title 2</sb-zen-table-cell>
+          <sb-zen-table-cell>Title 3</sb-zen-table-cell>
+          <sb-zen-table-cell>Title 4</sb-zen-table-cell>
+        </sb-zen-table-row>
+        `)[0];
+      parent.insertAdjacentElement('afterend', child);
+    }
+    selectRow(child);
+  }
+  //
+  return html/*html*/ ` <style>
+      sb-zen-table-row.selected > sb-zen-table-cell:first-child::before {
+        content: '';
+        position: absolute;
+        top: calc(50% - 3px);
+        left: 0;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background-color: #0078cd;
+      }
+    </style>
+    <sb-zen-table id="table1" ...="${spreadArgs(args, argTypes)}" @click="${e => clicked(e)}">
+      <sb-zen-table-row header selectable>
+        <sb-zen-table-cell>Title 1</sb-zen-table-cell>
+        <sb-zen-table-cell>Title 2</sb-zen-table-cell>
+        <sb-zen-table-cell>Title 3</sb-zen-table-cell>
+        <sb-zen-table-cell>Title 4</sb-zen-table-cell>
+      </sb-zen-table-row>
+      <sb-zen-table-row selectable>
+        <sb-zen-table-cell>Row 1, Cell 1</sb-zen-table-cell>
+        <sb-zen-table-cell>Row 1, Cell 2</sb-zen-table-cell>
+        <sb-zen-table-cell>Row 1, Cell 3</sb-zen-table-cell>
+        <sb-zen-table-cell>Row 1, Cell 4</sb-zen-table-cell>
+      </sb-zen-table-row>
+      <sb-zen-table-row selectable>
+        <sb-zen-table-cell>Row 2, Cell 1</sb-zen-table-cell>
+        <sb-zen-table-cell>Row 2, Cell 2</sb-zen-table-cell>
+        <sb-zen-table-cell>Row 2, Cell 3</sb-zen-table-cell>
+        <sb-zen-table-cell>Row 2, Cell 4</sb-zen-table-cell>
+      </sb-zen-table-row>
+      <sb-zen-table-row selectable>
+        <sb-zen-table-cell>Row 3, Cell 1</sb-zen-table-cell>
+        <sb-zen-table-cell>Row 3, Cell 2</sb-zen-table-cell>
+        <sb-zen-table-cell>Row 3, Cell 3</sb-zen-table-cell>
+        <sb-zen-table-cell>Row 3, Cell 4</sb-zen-table-cell>
+      </sb-zen-table-row>
+      <sb-zen-table-row selectable>
+        <sb-zen-table-cell>Row 4, Cell 1</sb-zen-table-cell>
+        <sb-zen-table-cell>Row 4, Cell 2</sb-zen-table-cell>
+        <sb-zen-table-cell>Row 4, Cell 3</sb-zen-table-cell>
+        <sb-zen-table-cell>Row 4, Cell 4</sb-zen-table-cell>
+      </sb-zen-table-row>
+      <sb-zen-table-row selectable>
+        <sb-zen-table-cell>Row 5, Cell 1</sb-zen-table-cell>
+        <sb-zen-table-cell>Row 5, Cell 2</sb-zen-table-cell>
+        <sb-zen-table-cell>Row 5, Cell 3</sb-zen-table-cell>
+        <sb-zen-table-cell>Row 5, Cell 4</sb-zen-table-cell>
+      </sb-zen-table-row>
+    </sb-zen-table>
+    <sb-zen-text bold class="mt-24">Zen-table rows editor</sb-zen-text>
+    <sb-zen-space spacing="md" padding-top="xl">
+      <sb-zen-text>Add </sb-zen-text>
+      <sb-zen-input id="insert-count" value="1" type="number" style="max-width: 60px"></sb-zen-input>
+      <sb-zen-text>new </sb-zen-text>
+      <sb-zen-radio value="sibling" checked group="insert-type"> sibling </sb-zen-radio>
+      <sb-zen-radio value="child" group="insert-type"> child </sb-zen-radio>
+      <sb-zen-text>that is initally</sb-zen-text>
+      <sb-zen-checkbox id="chk-selectable" label="Selectable"></sb-zen-checkbox>
+      <sb-zen-checkbox id="chk-selected" label="Selected" checked></sb-zen-checkbox>
+      <sb-zen-button variant="secondary" @click="${() => insertRow()}"> Insert row </sb-zen-button>
+    </sb-zen-space>
+    ${logEvents('#table1', getComponentData('zen-table'))}`;
+};
 
 # ZenTable
 
@@ -498,6 +571,8 @@ A composition of `ZenTable` component and fragment `ZenTableRow`, `ZenTableHeade
 </Canvas>
 
 ## Properties
+
+Use this section to test advanced table stuff.
 
 <Canvas>
   <Story
