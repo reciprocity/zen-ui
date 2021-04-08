@@ -25,10 +25,10 @@ export class ZenTabs {
 
   selectTab(tab: HTMLZenTabElement): void {
     this.tabs.forEach(n => {
-      n.deselect();
+      n.selected = false;
     });
 
-    if (tab) tab.select();
+    if (tab) tab.selected = true;
   }
 
   componentDidLoad(): void {

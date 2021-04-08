@@ -18,7 +18,7 @@
   border-bottom: 4px solid $color-blue-700;
 }
 
-:host(.selected) {
+:host([selected]) {
   border-bottom: 4px solid $color-blue-700;
   color: $color-gray-800;
 }

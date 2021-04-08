@@ -8,9 +8,7 @@ const { argTypes } = getArgTypesAndArgs('zen-tab');
 
 export const StoryWithControls = args => {
   return html/*html*/ ` <sb-zen-space horizontal-align="center">
-      <sb-zen-tab id="controls" ...="${spreadArgs(args, argTypes)}">
-        <sb-zen-text align="center">Evidence Requests</sb-zen-text>
-      </sb-zen-tab>
+      <sb-zen-tab id="controls" ...="${spreadArgs(args, argTypes)}"> Evidence Requests </sb-zen-tab>
     </sb-zen-space>
     ${logEvents('#controls', getComponentData('zen-tab'))}`;
 };

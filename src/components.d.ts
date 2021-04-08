@@ -795,13 +795,9 @@ export namespace Components {
     }
     interface ZenTab {
         /**
-          * Deselect tab
+          * Set tab selected
          */
-        "deselect": () => Promise<void>;
-        /**
-          * Select tab
-         */
-        "select": () => Promise<void>;
+        "selected": boolean;
     }
     interface ZenTable {
     }
@@ -2144,6 +2140,10 @@ declare namespace LocalJSX {
           * Tab selected event
          */
         "onTabSelect"?: (event: CustomEvent<void>) => void;
+        /**
+          * Set tab selected
+         */
+        "selected"?: boolean;
     }
     interface ZenTable {
     }
