@@ -1,11 +1,4 @@
-import { Component, Host, h, Prop, Element } from '@stencil/core';
-
-export interface TabItem {
-  label: string;
-  value: string;
-}
-
-export type TabValue = string | number;
+import { Component, Host, h, Prop, Element, Listen, Watch } from '@stencil/core';
 
 @Component({
   tag: 'zen-tabs',
@@ -13,33 +6,43 @@ export type TabValue = string | number;
   shadow: true,
 })
 export class ZenTabs {
+  private tabs: HTMLZenTabElement[];
+
   @Element() host: HTMLZenTabsElement;
 
   /** Index of currently selected tab. */
-  @Prop() readonly tabs: TabItem[] = [];
+  @Prop() readonly value: number = 0;
 
-  /** Index of currently selected tab. */
-  @Prop({ mutable: true }) value: TabValue = -1;
-
-  tabClicked(event: Event): void {
-    this.value = (event.target as HTMLElement).getAttribute('data-value');
-    this.host.dispatchEvent(new Event('change'));
+  @Watch('value')
+  async selectedChanged(): Promise<void> {
+    const tab = this.tabs[this.value];
+    this.selectTab(tab);
   }
 
-  isTabActive = (tab: TabItem): boolean => tab.value == this.value;
+  @Listen('tabSelect')
+  onSelectedTab(event: CustomEvent): void {
+    const tab = this.tabs.find(tab => tab.getAttribute('name') === event.detail);
+    this.selectTab(tab);
+  }
 
-  render(): HTMLElement {
+  selectTab(tab: HTMLZenTabElement): void {
+    this.tabs.forEach(tab => {
+      tab.deselect();
+    });
+
+    tab.select();
+  }
+
+  componentDidLoad(): void {
+    this.tabs = Array.from(this.host.children).map(n => n as HTMLZenTabElement);
+    const tab = this.tabs[this.value];
+    this.selectTab(tab);
+  }
+
+  render(): HTMLZenTabsElement {
     return (
       <Host>
-        {this.tabs.map((tab: TabItem) => (
-          <div
-            class={{ tab: true, active: this.isTabActive(tab) }}
-            data-value={tab.value}
-            onClick={e => this.tabClicked(e)}
-          >
-            {tab.label}
-          </div>
-        ))}
+        <slot></slot>
       </Host>
     );
   }

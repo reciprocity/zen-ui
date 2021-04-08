@@ -2,24 +2,6 @@
 
 :host {
   display: flex;
+  justify-content: space-between;
   font-size: $text-md;
-}
-
-.tab {
-  background-color: $color-gray-200;
-  border-radius: 3px;
-  padding: 0.25rem 1rem;
-  cursor: pointer;
-  user-select: none;
-
-  transition: background-color 0.1s linear, border-color 0.1s linear, color 0.1s linear;
-
-  & + .tab {
-    margin-left: 0.5rem;
-  }
-
-  &.active {
-    background-color: $color-blue-700;
-    color: $color-white;
-  }
 }
