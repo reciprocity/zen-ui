@@ -15,28 +15,25 @@ export class ZenTabs {
 
   @Watch('value')
   async selectedChanged(): Promise<void> {
-    const tab = this.tabs[this.value];
-    this.selectTab(tab);
+    this.selectTab(this.tabs[this.value]);
   }
 
   @Listen('tabSelect')
   onSelectedTab(event: CustomEvent): void {
-    const tab = this.tabs.find(tab => tab.getAttribute('name') === event.detail);
-    this.selectTab(tab);
+    this.selectTab(event.target as HTMLZenTabElement);
   }
 
   selectTab(tab: HTMLZenTabElement): void {
-    this.tabs.forEach(tab => {
-      tab.deselect();
+    this.tabs.forEach(n => {
+      n.deselect();
     });
 
-    tab.select();
+    if (tab) tab.select();
   }
 
   componentDidLoad(): void {
     this.tabs = Array.from(this.host.children).map(n => n as HTMLZenTabElement);
-    const tab = this.tabs[this.value];
-    this.selectTab(tab);
+    this.selectTab(this.tabs[this.value]);
   }
 
   render(): HTMLZenTabsElement {

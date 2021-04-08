@@ -2143,7 +2143,7 @@ declare namespace LocalJSX {
         /**
           * Tab selected event
          */
-        "onTabSelect"?: (event: CustomEvent<string>) => void;
+        "onTabSelect"?: (event: CustomEvent<void>) => void;
     }
     interface ZenTable {
     }

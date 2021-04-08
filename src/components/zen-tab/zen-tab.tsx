@@ -12,7 +12,7 @@ export class ZenTab {
   @State() selected = false;
 
   /** Tab selected event */
-  @Event() tabSelect: EventEmitter<string>;
+  @Event() tabSelect: EventEmitter<void>;
 
   /** Deselect tab */
   @Method()
@@ -28,7 +28,7 @@ export class ZenTab {
 
   onClick(): void {
     this.selected = !this.selected;
-    this.tabSelect.emit(this.host.getAttribute('name'));
+    this.tabSelect.emit();
   }
 
   render(): HTMLZenTabElement {

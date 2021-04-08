@@ -35,6 +35,6 @@ describe('zen-tabs', () => {
     expect(tabs[1].classList.contains('selected')).toBeFalsy();
     await simulateMouse('click', tabs[1]);
     await page.waitForChanges();
-    expect(tabs[0].classList.contains('selected')).toBeTruthy();
+    expect(tabs[1].classList.contains('selected')).toBeTruthy();
   });
 });
