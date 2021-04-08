@@ -409,7 +409,7 @@ export const StoryWithControls = args => {
   function selectRow(row) {
     const sel = Array.from(document.querySelectorAll(`sb-zen-table-row.selected`));
     sel.forEach(n => n.classList.remove('selected'));
-    if (!row.tagName.endsWith('-ROW') || row.header) return;
+    if (!row || !row.tagName.endsWith('-ROW') || row.header) return;
     row.classList.add('selected');
   }
   //
@@ -418,17 +418,30 @@ export const StoryWithControls = args => {
     selectRow(row);
   }
   //
+  function rowDescendants(row) {
+    const descendants = [];
+    let next = row;
+    while (next) {
+      next = next.nextElementSibling;
+      if (!next || next.depth <= row.depth) break;
+      descendants.push(next);
+    }
+    return descendants;
+  }
+  //
   function removeRow() {
     const row = element(`sb-zen-table-row.selected`);
     if (!row) {
       alert('No row selected!');
       return;
     }
+    const newSelection = row.nextElementSibling || row.previousElementSibling;
     row.remove();
+    selectRow(newSelection);
   }
   //
   function insertRow() {
-    const parent = element(`sb-zen-table-row.selected`);
+    let parent = element(`sb-zen-table-row.selected`);
     if (!parent) {
       alert('Select some row first!');
       return;
@@ -438,6 +451,12 @@ export const StoryWithControls = args => {
     const selected = element(`#chk-selected`).checked;
     const selectable = selected || element(`#chk-selectable`).checked;
     const count = parseInt(element('#insert-count').value, 10) || 1;
+    //
+    if (type === 'sibling') {
+      // Insert after last descendent:
+      const descendants = rowDescendants(parent);
+      parent = descendants[descendants.length - 1] || parent;
+    }
     //
     let child;
     for (let i = 0; i < count; i++) {
