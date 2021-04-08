@@ -796,6 +796,10 @@ export namespace Components {
     }
     interface ZenTable {
         /**
+          * Private variable (table cleanup in progress)
+         */
+        "$updating": boolean;
+        /**
           * Space separated css grid columns<br/>(eg. `auto 1fr 1fr 200px 1fr`)
          */
         "columns": "";
@@ -2146,6 +2150,10 @@ declare namespace LocalJSX {
     interface ZenSpinner {
     }
     interface ZenTable {
+        /**
+          * Private variable (table cleanup in progress)
+         */
+        "$updating"?: boolean;
         /**
           * Space separated css grid columns<br/>(eg. `auto 1fr 1fr 200px 1fr`)
          */

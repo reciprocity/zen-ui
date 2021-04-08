@@ -14,6 +14,8 @@ export class ZenTable {
   @Prop() readonly columns = '';
 
   /** Private variable (table cleanup in progress) */
+  @Prop() readonly $updating: boolean = false;
+
   async cleanupTableStructure(): Promise<void> {
     function parentRows(rows, index: number): HTMLZenTableRowElement[] {
       let curDepth = rows[index].depth;
@@ -24,6 +26,16 @@ export class ZenTable {
         parents.push(rows[i]);
       }
       return parents;
+    }
+
+    function descendentRows(rows, index: number): HTMLZenTableRowElement[] {
+      const children = [];
+      const myDepth = rows[index].depth;
+      for (let i = index + 1; i < rows.length; i++) {
+        if (rows[i].depth <= myDepth) break;
+        children.push(rows[i]);
+      }
+      return children;
     }
 
     function removeOrphans(rows) {
@@ -54,13 +66,30 @@ export class ZenTable {
       }
     }
 
+    function updateParentCheckboxes(rows) {
+      for (let i = 0; i < rows.length; i++) {
+        const descendents = descendentRows(rows, i);
+        if (!descendents.length) continue;
+        const allSelected = descendents.length && descendents.every(n => n.selected);
+        const someSelected = descendents.some(n => n.selected);
+
+        rows[i].$indeterminate = !allSelected && someSelected;
+        rows[i].selected = allSelected;
+      }
+    }
+
     // -------------------------------------------------------------------------
+    this.host.$updating = true;
+
     const rows = this.allRows();
 
     // NOTE: Order of below function calls is important!!!
     removeOrphans(rows);
     updateExapndableProps(rows);
     updateVisibleProps(rows);
+    updateParentCheckboxes(rows);
+
+    this.host.$updating = false;
   }
 
   allRows(): HTMLZenTableRowElement[] {

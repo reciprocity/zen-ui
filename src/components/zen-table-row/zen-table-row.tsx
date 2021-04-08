@@ -83,36 +83,10 @@ export class ZenTableRow {
   async selectedChanged(selected: boolean): Promise<void> {
     this.setCellsProp('$selected', selected);
 
-    // Set rows children selected state
-    if (this.header || this.expandable) {
-      this.rowChildren().forEach(n => (n.selected = selected));
-    }
+    if (this.getTable().$updating) return;
 
-    if (this.header) return;
-
-    // Set parents rows checkbox indeterminate state
-    let parentRow = await this.parentRow();
-    try {
-      while (parentRow && parentRow.selectable && parentRow.expandable) {
-        const hasAllSelected = await parentRow.hasAllRowsSelected();
-        const hasRowsSelected = await parentRow.hasRowsSelected();
-
-        if (!hasRowsSelected) {
-          parentRow.selected = false;
-        } else if (hasAllSelected) {
-          parentRow.selected = true;
-        }
-        parentRow.$indeterminate = hasRowsSelected && !hasAllSelected;
-
-        parentRow = await parentRow.parentRow();
-      }
-
-      // Emit event that header checkbox state can be applied
-      this.rowSelectChanged.emit(this.selected);
-    } catch (error) {
-      // todo: this happens on jest tests. Should be fixed some day...
-      console.log(`error ZenTableCell.selectedChanged()`);
-    }
+    // Select each descendent row:
+    this.rowDescendants().forEach(n => (n.selected = selected));
   }
 
   @Watch('expanded')
@@ -143,6 +117,10 @@ export class ZenTableRow {
       prev = prev.previousElementSibling as HTMLZenTableRowElement;
     }
     return null;
+  }
+
+  getTable(): HTMLZenTableElement {
+    return this.host.parentElement as HTMLZenTableElement;
   }
 
   allTableRows(): HTMLZenTableRowElement[] {
