@@ -118,20 +118,6 @@ export class ZenTableRow {
   @Watch('expanded')
   async expandedChanged(expanded: boolean): Promise<void> {
     this.setCellsProp('$expanded', expanded);
-
-    // Set rows children/descendents expanded state
-    if (this.expandable && expanded) {
-      // On expanding set only direct children to visible
-      this.rowChildren().forEach(n => {
-        n.visible = true;
-      });
-    } else {
-      this.rowDescendants().forEach(n => {
-        // On closing set all descendants to not visible
-        n.visible = false;
-        n.expanded = false;
-      });
-    }
   }
 
   /** Returns true if descendent rows have a row selected **/
