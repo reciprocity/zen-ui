@@ -48,20 +48,16 @@ export const StoryRowExpandable = () => {
         <sb-zen-table-cell>Row 1, Cell 3</sb-zen-table-cell>
         <sb-zen-table-cell>Row 1, Cell 4</sb-zen-table-cell>
       </sb-zen-table-row>
-      <sb-zen-table-row full-span depth="1" style="height:100px;">
-        <sb-zen-table-cell>
-          <sb-zen-space vertical no-wrap spacing="lg" padding="lg">
-            <sb-zen-dropdown style="width: 200px">
+      <sb-zen-table-row depth="1" style="height:100px;">
+        <sb-zen-table-cell full-span>
+          <sb-zen-space vertical no-wrap spacing="lg" padding="lg" padding-left="6xl" stretch>
+            <sb-zen-dropdown style="width: 100%">
               <sb-zen-option value="1" disabled="true">Option 1</sb-zen-option>
               <sb-zen-option value="2">Option 2</sb-zen-option>
               <sb-zen-option value="3">Option 3</sb-zen-option>
             </sb-zen-dropdown>
           </sb-zen-space>
         </sb-zen-table-cell>
-        <sb-zen-table-cell></sb-zen-table-cell>
-        <sb-zen-table-cell></sb-zen-table-cell>
-        <sb-zen-table-cell></sb-zen-table-cell>
-        <sb-zen-table-cell></sb-zen-table-cell>
       </sb-zen-table-row>
     </sb-zen-table>
   `;
