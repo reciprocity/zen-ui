@@ -28,13 +28,13 @@ describe('zen-tabs', () => {
   it('should render selected tab', async () => {
     page.rootInstance.value = '1';
     await page.waitForChanges();
-    expect(tabs[1].classList.contains('selected')).toBeTruthy();
+    expect(tabs[1].hasAttribute('selected')).toBeTruthy();
   });
 
   it('should select tab on click', async () => {
-    expect(tabs[1].classList.contains('selected')).toBeFalsy();
+    expect(tabs[1].hasAttribute('selected')).toBeFalsy();
     await simulateMouse('click', tabs[1]);
     await page.waitForChanges();
-    expect(tabs[1].classList.contains('selected')).toBeTruthy();
+    expect(tabs[1].hasAttribute('selected')).toBeTruthy();
   });
 });

@@ -19,6 +19,6 @@ describe('zen-tab', () => {
     page.rootInstance.selected = true;
 
     await page.waitForChanges();
-    expect(page.root.classList.contains('selected')).toBeTruthy();
+    expect(page.root.hasAttribute('selected')).toBeTruthy();
   });
 });
