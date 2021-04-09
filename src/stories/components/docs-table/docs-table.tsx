@@ -23,7 +23,6 @@ export class DocsTable {
   }
 
   render(): HTMLElement {
-    console.log(this.data.methods);
     const ZenText = applyPrefix('zen-text', this.host);
     const ZenSpace = applyPrefix('zen-space', this.host);
     return (
