@@ -1,1 +1,8 @@
-export type ButtonVariants = 'primary' | 'secondary' | 'tertiary' | 'destructive' | 'positive';
+export type ButtonVariants =
+  | 'blue-filled'
+  | 'blue-ghost'
+  | 'grey-ghost'
+  | 'grey-text'
+  | 'red-filled'
+  | 'red-ghost'
+  | 'green-ghost';

@@ -10,14 +10,14 @@ describe('zen-button', () => {
     expect(page.root.shadowRoot).toBeTruthy();
   });
 
-  it.each(['primary', 'secondary', 'tertiary', 'positive', 'destructive'])(
+  it.each(['blue-filled', 'blue-ghost', 'grey-ghost', 'grey-text', 'green-ghost', 'red-filled', 'red-ghost'])(
     'should render button (variant: %s) with loading and disabled props',
     async variant => {
       const page = await newSpecPage({
         components: [ZenButton],
         html: `<zen-button variant="${variant}" loading disabled></zen-button>`,
       });
-      expect(page.root.classList.contains(`btn-${variant}`)).toBe(true);
+      expect(page.root.classList.contains(`${variant}`)).toBe(true);
       expect(page.root.classList.contains('disabled')).toBe(true);
       expect(page.root.shadowRoot.querySelector('zen-spinner')).toBeTruthy();
     },

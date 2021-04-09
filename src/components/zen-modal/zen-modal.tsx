@@ -100,7 +100,7 @@ export class ZenModal {
             <ZenSpace class="footer" padding={this.footerPadding} horizontalAlign="end">
               <slot name="footer">
                 {!this.hideCancel ? (
-                  <ZenButton class="btn-cancel" variant="secondary" onClick={() => this.onCancelClicked()}>
+                  <ZenButton class="btn-cancel" variant="blue-ghost" onClick={() => this.onCancelClicked()}>
                     Cancel
                   </ZenButton>
                 ) : (

@@ -14,7 +14,7 @@ export const StoryWithControls = args => html/*html*/ `
   ${logEvents('#button1', getComponentData('zen-button'))}
 `;
 
-export const Story1 = () => html/*html*/ ` <zen-button id="button1" variant="secondary"> Button 1 </zen-button> `;
+export const Story1 = () => html/*html*/ ` <zen-button id="button1" variant="blue-ghost"> Button 1 </zen-button> `;
 
 export const Story2 = () => html/*html*/ ` <zen-button id="button1"> Button 2 </zen-button> `;
 
