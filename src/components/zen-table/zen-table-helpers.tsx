@@ -102,8 +102,10 @@ export const cleanupTableStructure = function (table: HTMLZenTableElement): void
   updateVisibleProps(rows);
   updateParentCheckboxes(rows);
 
-  updateHeaderSelectCheckbox(header, rows);
-  updateHeaderExpandable(header, rows);
+  if (header) {
+    updateHeaderSelectCheckbox(header, rows);
+    updateHeaderExpandable(header, rows);
+  }
 
   table.$updating = false;
 };
