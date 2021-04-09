@@ -1,0 +1,37 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
+import { html } from 'lit-html';
+import { getArgTypes, getDefaultArgs, getComponentData, spreadArgs } from '../../../.storybook/helpers/argTypes';
+
+import data from '../../../stencilDocs.json';
+const compData = data.components.find(n => n.tag === 'zen-table-cell');
+const argTypes = getArgTypes(compData);
+// disable props that are controlled by table and would have no impact:
+// argTypes.$visible.control = { type: 'none' };
+// argTypes.$expandable.control = { type: 'none' };
+
+<Meta title="Lists/Table/Table Cell" component="zen-table-cell" argTypes={argTypes} />
+
+export const StoryWithControls = args => html/*html*/ `
+  <sb-zen-table-cell ...="${spreadArgs(args, argTypes)}">Row 1, Cell 1</sb-zen-table-cell>
+`;
+
+# Zen Table Cell
+
+Cell to be used inside `zen-table-row`
+
+## Properties
+
+<Canvas>
+  <Story
+    name="default"
+    args={{
+      ...getDefaultArgs(argTypes),
+    }}
+  >
+    {StoryWithControls.bind({})}
+  </Story>
+</Canvas>
+
+<ArgsTable story="default" />
+
+<sb-docs-table docs={JSON.stringify(getComponentData('zen-table-cell'))}></sb-docs-table>
