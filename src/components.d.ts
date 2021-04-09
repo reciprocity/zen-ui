@@ -877,14 +877,6 @@ export namespace Components {
          */
         "expanded": boolean;
         /**
-          * Returns true if all children rows are selected *
-         */
-        "hasAllRowsSelected": () => Promise<boolean>;
-        /**
-          * Returns true if descendent rows have a row selected *
-         */
-        "hasRowsSelected": () => Promise<boolean>;
-        /**
           * Row represents header
          */
         "header": boolean;
@@ -899,7 +891,7 @@ export namespace Components {
         /**
           * Is row selected
          */
-        "selected": false;
+        "selected": boolean;
         /**
           * Row remains fixed at the top during scroll (mainly used for headers)
          */
@@ -2267,7 +2259,7 @@ declare namespace LocalJSX {
         /**
           * Is row selected
          */
-        "selected"?: false;
+        "selected"?: boolean;
         /**
           * Row remains fixed at the top during scroll (mainly used for headers)
          */

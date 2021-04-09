@@ -86,6 +86,11 @@ export const cleanupTableStructure = function (table: HTMLZenTableElement): void
     header.selected = allSelected;
   };
 
+  function updateHeaderExpandable(header, rows) {
+    const someExpandable = rows.some(n => n.expandable);
+    header.expandable = someExpandable;
+  }
+
   // -------------------------------------------------------------------------
   table.$updating = true;
 
@@ -98,5 +103,7 @@ export const cleanupTableStructure = function (table: HTMLZenTableElement): void
   updateParentCheckboxes(rows);
 
   updateHeaderSelectCheckbox(header, rows);
+  updateHeaderExpandable(header, rows);
+
   table.$updating = false;
 };

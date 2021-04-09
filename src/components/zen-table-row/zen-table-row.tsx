@@ -19,13 +19,13 @@ export class ZenTableRow {
   @Prop({ reflect: true, mutable: true }) visible = true;
 
   /** Can be expanded (if has children) */
-  @Prop({ reflect: true, mutable: true }) expandable = false;
+  @Prop({ reflect: true }) readonly expandable: boolean = false;
 
   /** Show checkbox (read-only) */
   @Prop({ reflect: true }) readonly selectable: boolean = false;
 
   /** Is row selected */
-  @Prop({ reflect: true }) readonly selected = false;
+  @Prop({ reflect: true }) readonly selected: boolean = false;
 
   /** Is row expanded */
   @Prop({ reflect: true }) readonly expanded: boolean = false;
@@ -62,10 +62,6 @@ export class ZenTableRow {
 
   @Watch('header')
   async headerChanged(header: boolean): Promise<void> {
-    this.stopChildObserver();
-    if (header) {
-      this.startChildObserver();
-    }
     this.setCellsProp('$header', header);
   }
 
@@ -92,18 +88,6 @@ export class ZenTableRow {
   @Watch('expanded')
   async expandedChanged(expanded: boolean): Promise<void> {
     this.setCellsProp('$expanded', expanded);
-  }
-
-  /** Returns true if descendent rows have a row selected **/
-  @Method()
-  async hasRowsSelected(): Promise<boolean> {
-    return this.rowDescendants().some(row => row.selected);
-  }
-
-  /** Returns true if all children rows are selected **/
-  @Method()
-  async hasAllRowsSelected(): Promise<boolean> {
-    return this.rowChildren().every(row => row.selected && !row.$indeterminate);
   }
 
   /** Returns elements parent row (depth -1) **/
@@ -194,36 +178,10 @@ export class ZenTableRow {
     }
   }
 
-  startChildObserver(): void {
-    this.childObserver = new MutationObserver(() => this.onTableChildChanged());
-
-    const table = this.host.parentElement;
-
-    this.childObserver.observe(table, {
-      childList: true,
-      attributes: true,
-      subtree: true,
-    });
-  }
-
-  stopChildObserver(): void {
-    if (this.childObserver) this.childObserver.disconnect();
-  }
-
-  onTableChildChanged(): void {
-    const updateMyExandableProp = () => {
-      const hasExpandableRows = this.rowChildren().some(row => row.expandable);
-      this.expandable = hasExpandableRows;
-    };
-
-    updateMyExandableProp();
-  }
-
   async componentDidLoad(): Promise<void> {
     const parentRow = await this.parentRow();
 
     this.visible = !parentRow || parentRow.expanded;
-    this.expandable = this.hasChildren();
 
     this.selectableChanged(this.selectable);
     this.selectedChanged(this.selected);
@@ -233,10 +191,6 @@ export class ZenTableRow {
     this.headerChanged(this.header);
     this.stickyChanged(this.sticky);
     this.indeterminateChanged(this.$indeterminate);
-  }
-
-  disconnectedCallback(): void {
-    this.stopChildObserver();
   }
 
   render(): HTMLTableRowElement {
