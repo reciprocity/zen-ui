@@ -101,7 +101,7 @@
 $depth-padding: 1.8rem;
 
 @for $i from 1 through 64 {
-  :host([depth='#{$i}']) {
+  :host([depth='#{$i}']:first-child) {
     padding-left: #{0.5rem + $i * $depth-padding};
   }
 }
