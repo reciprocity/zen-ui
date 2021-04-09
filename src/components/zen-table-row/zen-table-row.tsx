@@ -1,4 +1,4 @@
-import { h, Component, Host, Prop, Element, Event, EventEmitter, Method, Watch } from '@stencil/core';
+import { h, Component, Host, Prop, Element, Event, EventEmitter, Watch } from '@stencil/core';
 import { getDefaultSlotContent } from '../helpers/helpers';
 
 /**
@@ -79,7 +79,8 @@ export class ZenTableRow {
   async selectedChanged(selected: boolean): Promise<void> {
     this.setCellsProp('$selected', selected);
 
-    if (this.getTable().$updating) return;
+    const table = this.host.parentElement as HTMLZenTableElement;
+    if (table.$updating) return;
 
     // Select each descendent row:
     this.rowDescendants().forEach(n => (n.selected = selected));
@@ -90,23 +91,6 @@ export class ZenTableRow {
     this.setCellsProp('$expanded', expanded);
   }
 
-  /** Returns elements parent row (depth -1) **/
-  @Method()
-  async parentRow(): Promise<HTMLZenTableRowElement> {
-    // Find first prev sibling with depth 1 smaller than ours
-    let prev = this.host.previousElementSibling as HTMLZenTableRowElement;
-
-    while (prev) {
-      if (prev.depth === this.depth - 1) return prev;
-      prev = prev.previousElementSibling as HTMLZenTableRowElement;
-    }
-    return null;
-  }
-
-  getTable(): HTMLZenTableElement {
-    return this.host.parentElement as HTMLZenTableElement;
-  }
-
   allTableRows(): HTMLZenTableRowElement[] {
     const rows = [];
     let next = this.host.nextElementSibling as HTMLZenTableRowElement;
@@ -115,26 +99,6 @@ export class ZenTableRow {
       next = next.nextElementSibling as HTMLZenTableRowElement;
     }
     return rows;
-  }
-
-  rowChildren(): HTMLZenTableRowElement[] {
-    if (this.header) {
-      return this.allTableRows();
-    }
-
-    // Find first depth level siblings of row
-    const children = [];
-    let next = this.host.nextElementSibling as HTMLZenTableRowElement;
-
-    while (next) {
-      if (next.depth <= this.depth) break;
-      if (next.depth === this.depth + 1) {
-        children.push(next as HTMLZenTableRowElement);
-      }
-      next = next.nextElementSibling as HTMLZenTableRowElement;
-    }
-
-    return children;
   }
 
   getRowCells(): HTMLZenTableCellElement[] {
@@ -160,10 +124,6 @@ export class ZenTableRow {
     }
 
     return descendants;
-  }
-
-  hasChildren(): boolean {
-    return !!this.rowChildren().length;
   }
 
   setCellsProp(propName: string, value: unknown): void {

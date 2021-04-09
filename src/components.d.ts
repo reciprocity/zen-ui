@@ -881,10 +881,6 @@ export namespace Components {
          */
         "header": boolean;
         /**
-          * Returns elements parent row (depth -1) *
-         */
-        "parentRow": () => Promise<HTMLZenTableRowElement>;
-        /**
           * Show checkbox (read-only)
          */
         "selectable": boolean;
