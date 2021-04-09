@@ -78,6 +78,7 @@ describe('zen-table-row tree functionality', () => {
   let secondDepthCell: HTMLZenTableCellElement;
 
   beforeEach(async () => {
+    global.MutationObserver.mockClear();
     page = await newSpecPage({
       components: [ZenTable, ZenTableRow, ZenTableCell],
       html: /*html*/ `
