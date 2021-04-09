@@ -1,3 +1,16 @@
+# [3.0.0](https://github.com/reciprocity/zen-ui/compare/2.3.1...3.0.0) (2021-04-09)
+
+
+### Features
+
+* remove zen-table-header and zen-table-header-cell ([862cd35](https://github.com/reciprocity/zen-ui/commit/862cd35e13d6423e3704e95b7b5d1f8464ac50fc))
+
+
+### BREAKING CHANGES
+
+* zen-table-header and zen-table-header-cell is removed.
+It is substituted by zen-row and new prop `header`
+
 ## [2.3.1](https://github.com/reciprocity/zen-ui/compare/2.3.0...2.3.1) (2021-04-07)
 
 
