@@ -813,45 +813,45 @@ export namespace Components {
     }
     interface ZenTable {
         /**
-          * Private variable (table cleanup in progress)
+          * Table cleanup in progress
          */
         "$updating": boolean;
         /**
-          * Space separated css grid columns<br/>(eg. `auto 1fr 1fr 200px 1fr`)
+          * Space separated css prop <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-columns" target="_blank">grid-template-columns</a><br/>(eg. `auto 1fr 1fr 200px 1fr`)
          */
         "columns": "";
     }
     interface ZenTableCell {
         /**
-          * Is row expanded (read-only)
+          * Is row expanded
          */
         "$depth": number;
         /**
-          * Can be expanded (read-only)
+          * Can be expanded
          */
         "$expandable": boolean;
         /**
-          * Is row expanded (read-only)
+          * Is row expanded
          */
         "$expanded": boolean;
         /**
-          * Cell is inside header (read-only)
+          * Cell is inside header
          */
         "$header": boolean;
         /**
-          * Checkbox indeterminate state (read-only)
+          * Checkbox indeterminate state
          */
         "$indeterminate": boolean;
         /**
-          * Show checkbox (read-only)
+          * Show checkbox
          */
         "$selectable": boolean;
         /**
-          * Is row selected (read-only)
+          * Is row selected
          */
         "$selected": boolean;
         /**
-          * Cell remains fixed at the top during scroll (mainly used for headers)
+          * Cell remains fixed at the top during scroll
          */
         "$sticky": boolean;
         /**
@@ -859,25 +859,29 @@ export namespace Components {
          */
         "backgroundColor": string;
         /**
-          * Spanns through whole table
+          * Spans through whole table
          */
         "fullSpan": boolean;
     }
     interface ZenTableRow {
         /**
-          * Checkbox indeterminate state (Won't update children)
+          * True if it has any child row
          */
-        "$indeterminate": boolean;
+        "$expandable": false;
         /**
-          * Depth position of row (read-only)
+          * Some but not all children selected
+         */
+        "$indeterminate": false;
+        /**
+          * True when parent row is expanded or if it's root row
+         */
+        "$visible": true;
+        /**
+          * Define depth to make nested items
          */
         "depth": number;
         /**
-          * Can be expanded (if has children)
-         */
-        "expandable": boolean;
-        /**
-          * Is row expanded
+          * If row is currently expanded
          */
         "expanded": boolean;
         /**
@@ -885,21 +889,17 @@ export namespace Components {
          */
         "header": boolean;
         /**
-          * Show checkbox (read-only)
+          * Show checkbox
          */
         "selectable": boolean;
         /**
-          * Is row selected
+          * If checkbox is checked
          */
         "selected": boolean;
         /**
           * Row remains fixed at the top during scroll (mainly used for headers)
          */
         "sticky": false;
-        /**
-          * Visible if no depth or parent.expanded
-         */
-        "visible": boolean;
     }
     interface ZenTabs {
         /**
@@ -2181,45 +2181,45 @@ declare namespace LocalJSX {
     }
     interface ZenTable {
         /**
-          * Private variable (table cleanup in progress)
+          * Table cleanup in progress
          */
         "$updating"?: boolean;
         /**
-          * Space separated css grid columns<br/>(eg. `auto 1fr 1fr 200px 1fr`)
+          * Space separated css prop <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-columns" target="_blank">grid-template-columns</a><br/>(eg. `auto 1fr 1fr 200px 1fr`)
          */
         "columns"?: "";
     }
     interface ZenTableCell {
         /**
-          * Is row expanded (read-only)
+          * Is row expanded
          */
         "$depth"?: number;
         /**
-          * Can be expanded (read-only)
+          * Can be expanded
          */
         "$expandable"?: boolean;
         /**
-          * Is row expanded (read-only)
+          * Is row expanded
          */
         "$expanded"?: boolean;
         /**
-          * Cell is inside header (read-only)
+          * Cell is inside header
          */
         "$header"?: boolean;
         /**
-          * Checkbox indeterminate state (read-only)
+          * Checkbox indeterminate state
          */
         "$indeterminate"?: boolean;
         /**
-          * Show checkbox (read-only)
+          * Show checkbox
          */
         "$selectable"?: boolean;
         /**
-          * Is row selected (read-only)
+          * Is row selected
          */
         "$selected"?: boolean;
         /**
-          * Cell remains fixed at the top during scroll (mainly used for headers)
+          * Cell remains fixed at the top during scroll
          */
         "$sticky"?: boolean;
         /**
@@ -2227,25 +2227,29 @@ declare namespace LocalJSX {
          */
         "backgroundColor"?: string;
         /**
-          * Spanns through whole table
+          * Spans through whole table
          */
         "fullSpan"?: boolean;
     }
     interface ZenTableRow {
         /**
-          * Checkbox indeterminate state (Won't update children)
+          * True if it has any child row
          */
-        "$indeterminate"?: boolean;
+        "$expandable"?: false;
         /**
-          * Depth position of row (read-only)
+          * Some but not all children selected
+         */
+        "$indeterminate"?: false;
+        /**
+          * True when parent row is expanded or if it's root row
+         */
+        "$visible"?: true;
+        /**
+          * Define depth to make nested items
          */
         "depth"?: number;
         /**
-          * Can be expanded (if has children)
-         */
-        "expandable"?: boolean;
-        /**
-          * Is row expanded
+          * If row is currently expanded
          */
         "expanded"?: boolean;
         /**
@@ -2257,21 +2261,17 @@ declare namespace LocalJSX {
          */
         "onRowSelectChanged"?: (event: CustomEvent<boolean>) => void;
         /**
-          * Show checkbox (read-only)
+          * Show checkbox
          */
         "selectable"?: boolean;
         /**
-          * Is row selected
+          * If checkbox is checked
          */
         "selected"?: boolean;
         /**
           * Row remains fixed at the top during scroll (mainly used for headers)
          */
         "sticky"?: false;
-        /**
-          * Visible if no depth or parent.expanded
-         */
-        "visible"?: boolean;
     }
     interface ZenTabs {
         /**

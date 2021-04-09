@@ -5,11 +5,10 @@ import { getArgTypes, getDefaultArgs, getComponentData, spreadArgs } from '../..
 import data from '../../../stencilDocs.json';
 const compData = data.components.find(n => n.tag === 'zen-table-row');
 const argTypes = getArgTypes(compData);
-argTypes['depth'].table.disable = true;
-argTypes['expandable'].table.disable = true;
-argTypes['expanded'].table.disable = true;
-argTypes['visible'].table.disable = true;
-argTypes['$indeterminate'].table.disable = true;
+// disable props that are controlled by table and would have no impact:
+argTypes.$visible.control = { type: 'none' };
+argTypes.$expandable.control = { type: 'none' };
+argTypes.expanded.control = { type: 'none' };
 
 <Meta title="Lists/Table/Row" component="zen-table-row" argTypes={argTypes} />
 

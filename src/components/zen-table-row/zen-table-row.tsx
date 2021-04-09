@@ -15,25 +15,25 @@ export class ZenTableRow {
 
   @Element() host: HTMLZenTableRowElement;
 
-  /** Visible if no depth or parent.expanded */
+  /** True when parent row is expanded or if it's root row */
   @Prop({ reflect: true, attribute: 'visible' }) readonly $visible: boolean = true;
 
-  /** Can be expanded (if has children) */
+  /** True if it has any child row */
   @Prop({ reflect: true, attribute: 'expandable' }) readonly $expandable: boolean = false;
 
-  /** Show checkbox (read-only) */
+  /** Show checkbox */
   @Prop({ reflect: true }) readonly selectable: boolean = false;
 
-  /** Is row selected */
+  /** If checkbox is checked */
   @Prop({ reflect: true }) readonly selected: boolean = false;
 
-  /** Is row expanded */
+  /** If row is currently expanded */
   @Prop({ reflect: true }) readonly expanded: boolean = false;
 
-  /** Checkbox indeterminate state (Won't update children)  */
-  @Prop() readonly $indeterminate: boolean = false;
+  /** Some but not all children selected */
+  @Prop({ attribute: 'indeterminate' }) readonly $indeterminate = false;
 
-  /** Depth position of row (read-only) */
+  /** Define depth to make nested items */
   @Prop() readonly depth: number = 0;
 
   /** Row represents header */
