@@ -66,27 +66,31 @@ export namespace Components {
     }
     interface ZenAvatar {
         /**
-          * Show icon animation
+          * Set show icon animation
          */
         "animation": boolean;
         /**
-          * Users
+          * Set users input data
          */
         "users": AvatarData[];
     }
     interface ZenAvatarDetails {
         /**
-          * User email
+          * Set user email
          */
         "email": string;
         /**
-          * Icon background color
+          * Set icon background color
          */
         "iconBackground": string;
         /**
-          * Icon color
+          * Set icon color
          */
         "iconColor": string;
+        /**
+          * Set override for user name initials
+         */
+        "initials": string;
         /**
           * <Description generated in helper file>
          */
@@ -108,11 +112,11 @@ export namespace Components {
          */
         "paddingTop": Spacing;
         /**
-          * User name
+          * Set user name
          */
         "userName": string;
         /**
-          * Different variants
+          * Set fifferent variants
          */
         "variant": AvatarDetailVariant;
     }
@@ -136,27 +140,31 @@ export namespace Components {
     }
     interface ZenAvatarIcon {
         /**
-          * Background color
+          * Set background color
          */
         "background": string;
         /**
-          * Font color
+          * Set font color
          */
         "color": string;
         /**
-          * Email
+          * Set email
          */
         "email": string;
         /**
-          * Image URL
+          * Set image URL
          */
         "imageUrl": string;
         /**
-          * Icon size
+          * Set override for user name initials
+         */
+        "initials": string;
+        /**
+          * Set icon size
          */
         "size": IconSizes;
         /**
-          * Name and Surname
+          * Set name and surname
          */
         "userName": string;
     }
@@ -1425,27 +1433,31 @@ declare namespace LocalJSX {
     }
     interface ZenAvatar {
         /**
-          * Show icon animation
+          * Set show icon animation
          */
         "animation"?: boolean;
         /**
-          * Users
+          * Set users input data
          */
         "users"?: AvatarData[];
     }
     interface ZenAvatarDetails {
         /**
-          * User email
+          * Set user email
          */
         "email"?: string;
         /**
-          * Icon background color
+          * Set icon background color
          */
         "iconBackground"?: string;
         /**
-          * Icon color
+          * Set icon color
          */
         "iconColor"?: string;
+        /**
+          * Set override for user name initials
+         */
+        "initials"?: string;
         /**
           * <Description generated in helper file>
          */
@@ -1467,11 +1479,11 @@ declare namespace LocalJSX {
          */
         "paddingTop"?: Spacing;
         /**
-          * User name
+          * Set user name
          */
         "userName"?: string;
         /**
-          * Different variants
+          * Set fifferent variants
          */
         "variant"?: AvatarDetailVariant;
     }
@@ -1495,27 +1507,31 @@ declare namespace LocalJSX {
     }
     interface ZenAvatarIcon {
         /**
-          * Background color
+          * Set background color
          */
         "background"?: string;
         /**
-          * Font color
+          * Set font color
          */
         "color"?: string;
         /**
-          * Email
+          * Set email
          */
         "email"?: string;
         /**
-          * Image URL
+          * Set image URL
          */
         "imageUrl"?: string;
         /**
-          * Icon size
+          * Set override for user name initials
+         */
+        "initials"?: string;
+        /**
+          * Set icon size
          */
         "size"?: IconSizes;
         /**
-          * Name and Surname
+          * Set name and surname
          */
         "userName"?: string;
     }

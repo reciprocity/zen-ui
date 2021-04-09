@@ -10,10 +10,10 @@ import { AvatarData } from '../helpers/types';
 export class ZenAvatar {
   @Element() host: HTMLZenAvatarElement;
 
-  /** Users  */
+  /** Set users input data  */
   @Prop() readonly users: AvatarData[] = [];
 
-  /** Show icon animation  */
+  /** Set show icon animation  */
   @Prop({ reflect: true }) readonly animation: boolean = false;
 
   userValue(property: string): string {
@@ -26,6 +26,10 @@ export class ZenAvatar {
 
   email(): string {
     return this.userValue('email');
+  }
+
+  initials(): string {
+    return this.userValue('initials');
   }
 
   background(): string {
@@ -50,6 +54,7 @@ export class ZenAvatar {
           class={{ 'avatar-icon': true, animation: this.animation }}
           user-name={this.userName()}
           email={this.email()}
+          initials={this.initials()}
           background={this.background()}
           color={this.color()}
           size={this.size()}
@@ -60,6 +65,7 @@ export class ZenAvatar {
               class="details"
               user-name={user.userName}
               email={user.email}
+              initials={user.initials}
               icon-color={user.color}
               icon-background={user.background}
             />

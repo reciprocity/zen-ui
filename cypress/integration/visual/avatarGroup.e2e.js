@@ -4,7 +4,7 @@ describe('Avatar group visual tests', () => {
   const pageId = 'graphics-avatar-avatar-group--default';
   const stories = [
     'story--graphics-avatar-avatar-group--story-avatar-group',
-    'story--graphics-avatar-avatar-group--story-avatar-group-colors',
+    'story--graphics-avatar-avatar-group--story-override-data',
     'story--graphics-avatar-avatar-group--default-story',
   ];
 
@@ -41,7 +41,7 @@ describe('Avatar group visual tests', () => {
 
   it('Verifies ' + `${stories[1]}`, () => {
     cy.get(`#${stories[1]}`).matchImageSnapshot('Avatar colors - icons');
-    cy.get('#avatar-group-colors')
+    cy.get('#avatar-override-data')
       .find('sb-zen-avatar')
       .first()
       .then(el => {
