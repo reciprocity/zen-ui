@@ -68,6 +68,7 @@ export function getArgTypes(compData) {
 
     argTypes[prop.name] = {
       description: prop.docs,
+      attr: prop.attr,
       type: {
         name: storybookType,
         required: prop.required },
@@ -112,8 +113,18 @@ export function spreadArgs(args, argTypes) {
     return argTypes[camelCase(prop)] && argTypes[camelCase(prop)].defaultValue === true;
   }
 
+  const propsToAttributes = (args, argTypes) => {
+    const attrs = {};
+    for (const [prop, value] of Object.entries(args)) {
+      const attr = argTypes[prop] ? argTypes[prop].attr : prop;
+      attrs[attr] = value;
+    }
+    return attrs;
+  }
+
   if (!argTypes) throw('argTypes.js: spreadArgs missing argTypes param');
-  const attrs = camelKeysToKebab(args);
+  const attrs = camelKeysToKebab(propsToAttributes(args, argTypes));
+
   for (const key in attrs) {
     if (!attrs.hasOwnProperty(key)) continue;
     attrs[key] = attrs[key] === false && !isTrueByDefault(key) ? null : attrs[key];
