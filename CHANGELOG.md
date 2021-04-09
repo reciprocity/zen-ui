@@ -1,3 +1,52 @@
+## [2.3.1](https://github.com/reciprocity/zen-ui/compare/2.3.0...2.3.1) (2021-04-07)
+
+
+### Bug Fixes
+
+* **zen-drawer:** when component is not opened on first load display is set to none ([b1f47e9](https://github.com/reciprocity/zen-ui/commit/b1f47e958f55114cc25a644580bdaa69d6a46efe))
+
+# [2.3.0](https://github.com/reciprocity/zen-ui/compare/2.2.4...2.3.0) (2021-04-07)
+
+
+### Bug Fixes
+
+* **zen-tooltip:** update story styles to equal the wireframes ([d18a434](https://github.com/reciprocity/zen-ui/commit/d18a4342184d2030ff07a396f61207d7fa681808))
+
+
+### Features
+
+* **zen-tooltip:** add max width prop ([b752097](https://github.com/reciprocity/zen-ui/commit/b75209748e239c80a077d8a84c8ce52d0a8fce63))
+
+## [2.2.4](https://github.com/reciprocity/zen-ui/compare/2.2.3...2.2.4) (2021-04-07)
+
+
+### Bug Fixes
+
+* **zen-dropdown:** change to apply max-height instead of height ([7eca163](https://github.com/reciprocity/zen-ui/commit/7eca16349eb3cac535ebf9eedab8415432ac7382))
+* **zen-dropdown:** fix menu height not being applied ([f76d795](https://github.com/reciprocity/zen-ui/commit/f76d7953400f11b3cc2a001fa8ad2254cd393cd8))
+
+## [2.2.3](https://github.com/reciprocity/zen-ui/compare/2.2.2...2.2.3) (2021-04-06)
+
+
+### Bug Fixes
+
+* **zen-drawer:** completely hides drawer on close ([4a3aac6](https://github.com/reciprocity/zen-ui/commit/4a3aac657005c2a91170bba76643e70919786380))
+
+## [2.2.2](https://github.com/reciprocity/zen-ui/compare/2.2.1...2.2.2) (2021-04-05)
+
+
+### Bug Fixes
+
+* **zen-avatar-details:** add no wrap style ([c9da999](https://github.com/reciprocity/zen-ui/commit/c9da99947522f6c4de915e614c26c33a4a84b676))
+* **zen-avatar-group:** changes on data in storybook were not reflected ([3f911da](https://github.com/reciprocity/zen-ui/commit/3f911dade5a07a432bf8f806c17eede67ebfa0d0))
+
+## [2.2.1](https://github.com/reciprocity/zen-ui/compare/2.2.0...2.2.1) (2021-04-05)
+
+
+### Bug Fixes
+
+* replace em units with rem ([5caf82d](https://github.com/reciprocity/zen-ui/commit/5caf82d0c580aca276d84abf2402822aca7ead76))
+
 # [2.2.0](https://github.com/reciprocity/zen-ui/compare/2.1.1...2.2.0) (2021-04-05)
 
 

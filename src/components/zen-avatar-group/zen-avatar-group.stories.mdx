@@ -95,7 +95,7 @@ export const StoryAvatarGroupColors = () => {
 
 export const StoryWithControls = args => {
   waitForElement('#avatar-group-control', element => {
-    element.users = users;
+    element.users = args.users;
   });
   return html/*html*/ ` <sb-zen-space fill horizontal-align="center" vertical-align="center">
     <sb-zen-avatar-group id="avatar-group-control" ...="${spreadArgs(args, argTypes)}" />
@@ -133,7 +133,7 @@ export const StoryWithControls = args => {
     name="default"
     args={{
       ...getDefaultArgs(argTypes),
-      users: { users },
+      users: users,
     }}
   >
     {StoryWithControls.bind({})}

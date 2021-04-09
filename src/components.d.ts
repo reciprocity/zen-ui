@@ -334,7 +334,7 @@ export namespace Components {
         /**
           * To determine if there's enough space under field on open
          */
-        "menuHeight": number;
+        "menuHeight": string;
         /**
           * Width of menu. Set '100%' to match field width.
          */
@@ -1018,6 +1018,10 @@ export namespace Components {
          */
         "maxHeight": string;
         /**
+          * Set tooltip max width
+         */
+        "maxWidth": string;
+        /**
           * Set tooltip offset to target element
          */
         "offset"?: number;
@@ -1675,7 +1679,7 @@ declare namespace LocalJSX {
         /**
           * To determine if there's enough space under field on open
          */
-        "menuHeight"?: number;
+        "menuHeight"?: string;
         /**
           * Width of menu. Set '100%' to match field width.
          */
@@ -2338,6 +2342,10 @@ declare namespace LocalJSX {
           * Limit tooltips height and make content scroll
          */
         "maxHeight"?: string;
+        /**
+          * Set tooltip max width
+         */
+        "maxWidth"?: string;
         /**
           * Set tooltip offset to target element
          */
