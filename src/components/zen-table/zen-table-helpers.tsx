@@ -52,8 +52,8 @@ export const cleanupTableStructure = function (table: HTMLZenTableElement): void
 
   const updateExapndableProps = (rows: Rows): void => {
     for (let i = 0; i < rows.length; i++) {
-      rows[i].expandable = rows[i + 1] && rows[i + 1].depth > rows[i].depth;
-      if (!rows[i].expandable && rows[i].expanded) {
+      rows[i].$expandable = rows[i + 1] && rows[i + 1].depth > rows[i].depth;
+      if (!rows[i].$expandable && rows[i].expanded) {
         rows[i].expanded = false;
       }
     }
@@ -62,7 +62,7 @@ export const cleanupTableStructure = function (table: HTMLZenTableElement): void
   const updateVisibleProps = (rows: Rows): void => {
     for (let i = 0; i < rows.length; i++) {
       const parents = parentRows(rows, i);
-      rows[i].visible = !parents.length || parents.every(n => n.expanded);
+      rows[i].$visible = !parents.length || parents.every(n => n.expanded);
     }
   };
 
@@ -87,8 +87,8 @@ export const cleanupTableStructure = function (table: HTMLZenTableElement): void
   };
 
   function updateHeaderExpandable(header, rows) {
-    const someExpandable = rows.some(n => n.expandable);
-    header.expandable = someExpandable;
+    const someExpandable = rows.some(n => n.$expandable);
+    header.$expandable = someExpandable;
   }
 
   // -------------------------------------------------------------------------

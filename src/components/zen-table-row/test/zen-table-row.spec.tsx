@@ -55,12 +55,12 @@ describe('zen-table-row', () => {
     await page.waitForChanges();
     await cleanupTableStructure(table);
 
-    expect(mainRow.visible).toBeTruthy();
+    expect(mainRow.$visible).toBeTruthy();
 
     const firstCell = page.root.querySelector('.first-cell') as HTMLZenTableRowElement;
 
     const expandRow = page.root.querySelector('[full-span]') as HTMLZenTableRowElement;
-    expect(expandRow.visible).toBeFalsy();
+    expect(expandRow.$visible).toBeFalsy();
 
     const expandableIcon = firstCell.shadowRoot.querySelector('.expand-icon');
     expect(expandableIcon).toBeTruthy();
@@ -68,7 +68,7 @@ describe('zen-table-row', () => {
     simulateMouse('click', expandableIcon);
     cleanupTableStructure(table);
     expect(mainRow.expanded).toBeTruthy();
-    expect(expandRow.visible).toBeTruthy();
+    expect(expandRow.$visible).toBeTruthy();
   });
 });
 
@@ -113,7 +113,7 @@ describe('zen-table-row tree functionality', () => {
     // mock slots:
     cells = parentRow.querySelectorAll('zen-table-cell');
     parentRow.selectable = true;
-    parentRow.expandable = true;
+    parentRow.$expandable = true;
     parentRow.expanded = true;
 
     firstCell = table.querySelector('.first-cell') as HTMLZenTableCellElement;
@@ -125,8 +125,8 @@ describe('zen-table-row tree functionality', () => {
 
   it('should set all descendants to not visible on expand false', async () => {
     cleanupTableStructure(table);
-    expect(parentRow.visible).toBeTruthy();
-    expect(secondDepthParentRow.visible).toBeTruthy();
+    expect(parentRow.$visible).toBeTruthy();
+    expect(secondDepthParentRow.$visible).toBeTruthy();
 
     const expandableIcon = firstCell.shadowRoot.querySelector('.expand-icon');
 
@@ -137,7 +137,7 @@ describe('zen-table-row tree functionality', () => {
     descendents.concat(page.root.querySelectorAll('zen-table-row[depth="2"]'));
 
     for (const row of descendents.values()) {
-      expect((row as HTMLZenTableRowElement).visible).not.toBeTruthy();
+      expect((row as HTMLZenTableRowElement).$visible).not.toBeTruthy();
     }
   });
 

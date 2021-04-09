@@ -16,10 +16,10 @@ export class ZenTableRow {
   @Element() host: HTMLZenTableRowElement;
 
   /** Visible if no depth or parent.expanded */
-  @Prop({ reflect: true }) readonly visible: boolean = true;
+  @Prop({ reflect: true, attribute: 'visible' }) readonly $visible: boolean = true;
 
   /** Can be expanded (if has children) */
-  @Prop({ reflect: true }) readonly expandable: boolean = false;
+  @Prop({ reflect: true, attribute: 'expandable' }) readonly $expandable: boolean = false;
 
   /** Show checkbox (read-only) */
   @Prop({ reflect: true }) readonly selectable: boolean = false;
@@ -50,7 +50,7 @@ export class ZenTableRow {
     this.setCellsProp('$selectable', selectable);
   }
 
-  @Watch('expandable')
+  @Watch('$expandable')
   async expandableChanged(expandable: boolean): Promise<void> {
     this.setCellsProp('$expandable', expandable);
   }
@@ -141,7 +141,7 @@ export class ZenTableRow {
   async componentDidLoad(): Promise<void> {
     this.selectableChanged(this.selectable);
     this.selectedChanged(this.selected);
-    this.expandableChanged(this.expandable);
+    this.expandableChanged(this.$expandable);
     this.expandedChanged(this.expanded);
     this.depthChanged(this.depth);
     this.headerChanged(this.header);
