@@ -14,7 +14,6 @@ describe('Table visual tests', () => {
 
   const skippedStories = [
     'story--lists-table-table--selectable',
-    'story--lists-table-table--tree',
     'story--lists-table-table--tree-with-header',
     'story--lists-table-table--custom',
   ];

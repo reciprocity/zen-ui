@@ -51,10 +51,11 @@ export const users = [
   },
 ];
 
-export const usersColor = [
+export const usersOverride = [
   {
-    userName: 'Mike Anderson',
+    userName: 'Mike (no name)',
     email: 'mike.anderson@reciprocitylabs.com',
+    initials: 'MI',
     imageUrl: '',
     color: '#FFFFFF',
     background: '#000000',
@@ -82,13 +83,13 @@ export const StoryAvatarGroup = () => {
   `;
 };
 
-export const StoryAvatarGroupColors = () => {
-  waitForElement('#avatar-group-colors', element => {
-    element.users = usersColor;
+export const StoryOverrideData = () => {
+  waitForElement('#avatar-override-data', element => {
+    element.users = usersOverride;
   });
   return html/*html*/ `
     <sb-zen-space fill horizontal-align="center" vertical-align="center">
-      <sb-zen-avatar-group id="avatar-group-colors" max-icons="12" />
+      <sb-zen-avatar-group id="avatar-override-data" max-icons="12" />
     </sb-zen-space>
   `;
 };
@@ -118,12 +119,12 @@ export const StoryWithControls = args => {
   <Story name="StoryAvatarGroup">{StoryAvatarGroup.bind({})}</Story>
 </Canvas>
 
-### 2. Avatar group override colors
+### 2. Avatar group override data
 
-`Avatar Group` icon colors can be overridden by adding "color" or "background" to `AvatarData` input array.
+`Avatar Group` icon colors and user name initials can be overridden by adding ("color", "background", "initials") props to `AvatarData` input array.
 
 <Canvas>
-  <Story name="StoryAvatarGroupColors">{StoryAvatarGroupColors.bind({})}</Story>
+  <Story name="StoryOverrideData">{StoryOverrideData.bind({})}</Story>
 </Canvas>
 
 ## Properties

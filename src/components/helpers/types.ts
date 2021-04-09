@@ -40,6 +40,7 @@ export type AvatarDetailVariant = 'basic' | 'basic-lg' | 'detailed';
 export interface AvatarData {
   userName?: string;
   email?: string;
+  initials?: string;
   imageUrl?: string;
   background?: string;
   color?: string;

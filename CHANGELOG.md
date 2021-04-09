@@ -1,3 +1,40 @@
+# [3.2.0](https://github.com/reciprocity/zen-ui/compare/3.1.0...3.2.0) (2021-04-09)
+
+
+### Bug Fixes
+
+* **zen-tab:** add default font size and styling ([f7e91de](https://github.com/reciprocity/zen-ui/commit/f7e91def58852f564c1a5629f9b9e88e2630c879))
+* **zen-tab:** promote selected to property ([6112352](https://github.com/reciprocity/zen-ui/commit/6112352162c0ccacb37e23c323aa7dad9f405340))
+* **zen-tabs:** fix that event is logged in the console ([9c28377](https://github.com/reciprocity/zen-ui/commit/9c28377b70cef47191615892b734bb61610138f6))
+
+
+### Features
+
+* **zen-tab:** add zen-tab fragment ([d4efdd9](https://github.com/reciprocity/zen-ui/commit/d4efdd9df9082587cb28bddd9a465f022921a967))
+* **zen-tabs:** convert story to mdx ([01f5223](https://github.com/reciprocity/zen-ui/commit/01f5223e0bea9eec9b14d74be3b41ab6f38b65ae))
+* **zen-tabs:** move tabs to story navigation folder ([bb512c5](https://github.com/reciprocity/zen-ui/commit/bb512c5b9ee71cfede7598dbc6368e2cd4101b26))
+* **zen-tabs:** update zen tab implementation ([50cc6ff](https://github.com/reciprocity/zen-ui/commit/50cc6ffd6ebd3f66bc338181eab86a3c1574481d))
+
+# [3.1.0](https://github.com/reciprocity/zen-ui/compare/3.0.0...3.1.0) (2021-04-09)
+
+
+### Features
+
+* **zen-avatar:** add override for initials ([a0149d7](https://github.com/reciprocity/zen-ui/commit/a0149d75d6c65176fe86d45a66c744e67cf1af69))
+
+# [3.0.0](https://github.com/reciprocity/zen-ui/compare/2.3.1...3.0.0) (2021-04-09)
+
+
+### Features
+
+* remove zen-table-header and zen-table-header-cell ([862cd35](https://github.com/reciprocity/zen-ui/commit/862cd35e13d6423e3704e95b7b5d1f8464ac50fc))
+
+
+### BREAKING CHANGES
+
+* zen-table-header and zen-table-header-cell is removed.
+It is substituted by zen-row and new prop `header`
+
 ## [2.3.1](https://github.com/reciprocity/zen-ui/compare/2.3.0...2.3.1) (2021-04-07)
 
 

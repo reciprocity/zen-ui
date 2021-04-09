@@ -1,0 +1,43 @@
+import { html } from 'lit-html';
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
+import { logEvents } from '../../../.storybook/helpers/log-events';
+import { getArgTypesAndArgs, getDefaultArgs, getComponentData, spreadArgs } from '../../../.storybook/helpers/argTypes';
+const { argTypes } = getArgTypesAndArgs('zen-tabs');
+
+<Meta title="Navigation/Tabs/Tabs" component="zen-tabs" argTypes={argTypes} />
+
+export const StoryWithControls = args => {
+  return html/*html*/ `
+    <sb-zen-tabs id="controls" ...="${spreadArgs(args, argTypes)}">
+      <sb-zen-tab> Tab1 </sb-zen-tab>
+      <sb-zen-tab> Tab2 </sb-zen-tab>
+      <sb-zen-tab> Tab3 </sb-zen-tab>
+      <sb-zen-tab> Tab4 </sb-zen-tab>
+      <sb-zen-tab> Tab5 </sb-zen-tab>
+    </sb-zen-tabs>
+    ${logEvents('#controls', getComponentData('zen-tab'))}
+  `;
+};
+
+# Zen Tabs
+
+A `zen-tabs` component to be used with `zen-tab` fragment.
+
+<br />
+
+## Properties
+
+<Canvas>
+  <Story
+    name="default"
+    args={{
+      ...getDefaultArgs(argTypes),
+    }}
+  >
+    {StoryWithControls.bind({})}
+  </Story>
+</Canvas>
+
+<ArgsTable story="default" />
+
+<sb-docs-table docs={JSON.stringify(getComponentData('zen-tabs'))}></sb-docs-table>

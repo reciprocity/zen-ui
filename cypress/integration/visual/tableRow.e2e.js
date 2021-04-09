@@ -18,5 +18,5 @@ describe('Table row visual tests', () => {
     cy.verifyAllStoriesHaveVRT(stories, skippedStories);
   });
 
-  createVisualTests(stories, skippedStories, 'sb-zen-table-row');
+  createVisualTests(stories, skippedStories, 'sb-zen-table');
 });

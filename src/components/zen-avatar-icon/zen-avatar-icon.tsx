@@ -7,19 +7,22 @@ import { AvatarIconSize } from '../helpers/types';
   shadow: true,
 })
 export class ZenAvatarIcon {
-  /** Image URL  */
+  /** Set image URL */
   @Prop() readonly imageUrl: string = '';
 
-  /** Background color  */
+  /** Set background color */
   @Prop() readonly background: string = '#abd2f5';
 
-  /** Font color  */
+  /** Set font color */
   @Prop() readonly color: string = '#00528c';
 
-  /** Name and Surname  */
+  /** Set name and surname */
   @Prop() readonly userName: string = '';
 
-  /** Email  */
+  /** Set override for user name initials */
+  @Prop() readonly initials: string = '';
+
+  /** Set email */
   @Prop() readonly email: string = '';
 
   /** Icon size   */
@@ -30,6 +33,8 @@ export class ZenAvatarIcon {
   }
 
   getUserInitials(): string {
+    if (this.initials) return this.initials;
+
     let initials = '';
     if (this.userName) {
       if (/\s/.test(this.userName)) {
