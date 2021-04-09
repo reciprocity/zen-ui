@@ -14,7 +14,6 @@ import { OptionValue as OptionValue1 } from "./components/zen-menu-item/zen-opti
 import { Offsets, Placement } from "@popperjs/core";
 import { StepItem } from "./components/zen-progress-tracker/zen-progress-tracker";
 import { StepsFilter } from "./components/zen-progress-tracker/types";
-import { TabItem, TabValue } from "./components/zen-tabs/zen-tabs";
 export namespace Components {
     interface ColorSwatch {
         /**
@@ -802,6 +801,12 @@ export namespace Components {
     }
     interface ZenSpinner {
     }
+    interface ZenTab {
+        /**
+          * Set tab selected
+         */
+        "selected": boolean;
+    }
     interface ZenTable {
         /**
           * Space separated css grid columns<br/>(eg. `auto 1fr 1fr 200px 1fr`)
@@ -904,11 +909,7 @@ export namespace Components {
         /**
           * Index of currently selected tab.
          */
-        "tabs": TabItem[];
-        /**
-          * Index of currently selected tab.
-         */
-        "value": TabValue;
+        "value": number;
     }
     interface ZenText {
         /**
@@ -1290,6 +1291,12 @@ declare global {
         prototype: HTMLZenSpinnerElement;
         new (): HTMLZenSpinnerElement;
     };
+    interface HTMLZenTabElement extends Components.ZenTab, HTMLStencilElement {
+    }
+    var HTMLZenTabElement: {
+        prototype: HTMLZenTabElement;
+        new (): HTMLZenTabElement;
+    };
     interface HTMLZenTableElement extends Components.ZenTable, HTMLStencilElement {
     }
     var HTMLZenTableElement: {
@@ -1372,6 +1379,7 @@ declare global {
         "zen-sortable-item": HTMLZenSortableItemElement;
         "zen-space": HTMLZenSpaceElement;
         "zen-spinner": HTMLZenSpinnerElement;
+        "zen-tab": HTMLZenTabElement;
         "zen-table": HTMLZenTableElement;
         "zen-table-cell": HTMLZenTableCellElement;
         "zen-table-row": HTMLZenTableRowElement;
@@ -2161,6 +2169,16 @@ declare namespace LocalJSX {
     }
     interface ZenSpinner {
     }
+    interface ZenTab {
+        /**
+          * Tab selected event
+         */
+        "onTabSelect"?: (event: CustomEvent<void>) => void;
+        /**
+          * Set tab selected
+         */
+        "selected"?: boolean;
+    }
     interface ZenTable {
         /**
           * Space separated css grid columns<br/>(eg. `auto 1fr 1fr 200px 1fr`)
@@ -2255,11 +2273,7 @@ declare namespace LocalJSX {
         /**
           * Index of currently selected tab.
          */
-        "tabs"?: TabItem[];
-        /**
-          * Index of currently selected tab.
-         */
-        "value"?: TabValue;
+        "value"?: number;
     }
     interface ZenText {
         /**
@@ -2471,6 +2485,7 @@ declare namespace LocalJSX {
         "zen-sortable-item": ZenSortableItem;
         "zen-space": ZenSpace;
         "zen-spinner": ZenSpinner;
+        "zen-tab": ZenTab;
         "zen-table": ZenTable;
         "zen-table-cell": ZenTableCell;
         "zen-table-row": ZenTableRow;
@@ -2518,6 +2533,7 @@ declare module "@stencil/core" {
             "zen-sortable-item": LocalJSX.ZenSortableItem & JSXBase.HTMLAttributes<HTMLZenSortableItemElement>;
             "zen-space": LocalJSX.ZenSpace & JSXBase.HTMLAttributes<HTMLZenSpaceElement>;
             "zen-spinner": LocalJSX.ZenSpinner & JSXBase.HTMLAttributes<HTMLZenSpinnerElement>;
+            "zen-tab": LocalJSX.ZenTab & JSXBase.HTMLAttributes<HTMLZenTabElement>;
             "zen-table": LocalJSX.ZenTable & JSXBase.HTMLAttributes<HTMLZenTableElement>;
             "zen-table-cell": LocalJSX.ZenTableCell & JSXBase.HTMLAttributes<HTMLZenTableCellElement>;
             "zen-table-row": LocalJSX.ZenTableRow & JSXBase.HTMLAttributes<HTMLZenTableRowElement>;

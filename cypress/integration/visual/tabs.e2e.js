@@ -1,9 +1,9 @@
 /// <reference types="cypress" />
 import { createVisualTests } from '../../support/utils/visualTesting';
 
-describe('Tab visual tests', () => {
-  const pageId = 'in-progress-tabs--default';
-  const stories = ['story--in-progress-tabs--default'];
+describe('Tabs visual tests', () => {
+  const pageId = 'navigation-tabs-tabs--default';
+  const stories = ['story--navigation-tabs-tabs--default-story'];
 
   before(() => {
     cy.visitStorybookIframe(pageId);
