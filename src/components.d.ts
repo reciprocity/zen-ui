@@ -863,7 +863,7 @@ export namespace Components {
         /**
           * Checkbox indeterminate state (Won't update children)
          */
-        "$indeterminate": boolean;
+        "$indeterminate": false;
         /**
           * Depth position of row (read-only)
          */
@@ -899,7 +899,7 @@ export namespace Components {
         /**
           * Is row selected
          */
-        "selected": boolean;
+        "selected": false;
         /**
           * Row remains fixed at the top during scroll (mainly used for headers)
          */
@@ -2239,7 +2239,7 @@ declare namespace LocalJSX {
         /**
           * Checkbox indeterminate state (Won't update children)
          */
-        "$indeterminate"?: boolean;
+        "$indeterminate"?: false;
         /**
           * Depth position of row (read-only)
          */
@@ -2267,7 +2267,7 @@ declare namespace LocalJSX {
         /**
           * Is row selected
          */
-        "selected"?: boolean;
+        "selected"?: false;
         /**
           * Row remains fixed at the top during scroll (mainly used for headers)
          */

@@ -79,8 +79,12 @@ export const cleanupTableStructure = function (table: HTMLZenTableElement): void
   };
 
   const updateHeaderSelectCheckbox = (header, rows) => {
-    console.log('todo', header, rows);
-  }
+    const allSelected = rows.length && rows.every(n => n.selected);
+    const someSelected = rows.some(n => n.selected);
+
+    header.$indeterminate = !allSelected && someSelected;
+    header.selected = allSelected;
+  };
 
   // -------------------------------------------------------------------------
   table.$updating = true;

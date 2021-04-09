@@ -25,13 +25,13 @@ export class ZenTableRow {
   @Prop({ reflect: true }) readonly selectable: boolean = false;
 
   /** Is row selected */
-  @Prop({ reflect: true, mutable: true }) selected = false;
+  @Prop({ reflect: true }) readonly selected = false;
 
   /** Is row expanded */
   @Prop({ reflect: true }) readonly expanded: boolean = false;
 
   /** Checkbox indeterminate state (Won't update children)  */
-  @Prop({ mutable: true }) $indeterminate = false;
+  @Prop() readonly $indeterminate = false;
 
   /** Depth position of row (read-only) */
   @Prop() readonly depth: number = 0;
@@ -216,20 +216,7 @@ export class ZenTableRow {
       this.expandable = hasExpandableRows;
     };
 
-    const updateMyCheckbox = async () => {
-      const allSelected = await this.hasAllRowsSelected();
-      const someSelected = await this.hasRowsSelected();
-
-      if (!someSelected) {
-        this.selected = false;
-      } else if (allSelected) {
-        this.selected = true;
-      }
-      this.$indeterminate = someSelected && !allSelected;
-    };
-
     updateMyExandableProp();
-    updateMyCheckbox();
   }
 
   async componentDidLoad(): Promise<void> {
