@@ -1,3 +1,10 @@
+# [3.1.0](https://github.com/reciprocity/zen-ui/compare/3.0.0...3.1.0) (2021-04-09)
+
+
+### Features
+
+* **zen-avatar:** add override for initials ([a0149d7](https://github.com/reciprocity/zen-ui/commit/a0149d75d6c65176fe86d45a66c744e67cf1af69))
+
 # [3.0.0](https://github.com/reciprocity/zen-ui/compare/2.3.1...3.0.0) (2021-04-09)
 
 
