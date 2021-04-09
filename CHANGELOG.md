@@ -6,6 +6,13 @@
 * **zen-avatar-icon:** removed lg size ([6d6c9d5](https://github.com/reciprocity/zen-ui/commit/6d6c9d5350a726c31eec6f3caa8f4530e103766a))
 * **zen-button:** change variant names ([6d7afb3](https://github.com/reciprocity/zen-ui/commit/6d7afb318e8f9caa1f9e7171f6eb632938fc0046))
 
+### BREAKING CHANGES
+
+> There was an error with the commit message, this was supposed to be v4.0.0
+
+* **zen-avatar-icon:** The `lg` size variant was removed.
+* **zen-button**: The following button variants have been renamed: `primary` to `blue-filled`, `secondary` to `blue-ghost`, `tertiary` to `grey-ghost`, `destructive` to `red-filled` and `positive` to `green-ghost`; and the default `variant`, being that is was `primary`, was changed to `blue-filled`.
+
 # [3.2.0](https://github.com/reciprocity/zen-ui/compare/3.1.0...3.2.0) (2021-04-09)
 
 
