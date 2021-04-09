@@ -5,7 +5,7 @@ describe('zen-table', () => {
   it('should render', async () => {
     const page = await newSpecPage({
       components: [ZenTable],
-      html: `<zen-table>Content</zen-table>`,
+      html: `<zen-table columns="1fr">Content</zen-table>`,
     });
 
     expect(page.root.innerHTML).toEqual('Content');

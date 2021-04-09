@@ -1,6 +1,5 @@
 import { h, Component, Host, Prop, Element, Event, EventEmitter, Method, Watch } from '@stencil/core';
-import { applyPrefix } from '../helpers/helpers';
-import { faChevronRight } from '@fortawesome/pro-light-svg-icons';
+import { getDefaultSlotContent } from '../helpers/helpers';
 
 /**
  * @slot [default] - Content for table cells
@@ -11,6 +10,9 @@ import { faChevronRight } from '@fortawesome/pro-light-svg-icons';
   shadow: true,
 })
 export class ZenTableRow {
+  childObserver: MutationObserver = null;
+  disconnected = false;
+
   @Element() host: HTMLZenTableRowElement;
 
   /** Visible if no depth or parent.expanded */
@@ -26,46 +28,97 @@ export class ZenTableRow {
   @Prop({ reflect: true, mutable: true }) selected = false;
 
   /** Is row expanded */
-  @Prop({ reflect: true, mutable: true }) expanded = false;
+  @Prop({ reflect: true }) readonly expanded: boolean = false;
 
   /** Checkbox indeterminate state (Won't update children)  */
-  @Prop() readonly $indeterminate: boolean = false;
+  @Prop({ mutable: true }) $indeterminate = false;
 
   /** Depth position of row (read-only) */
   @Prop() readonly depth: number = 0;
 
+  /** Row represents header */
+  @Prop() readonly header: boolean = false;
+
+  /** Row remains fixed at the top during scroll (mainly used for headers) */
+  @Prop() readonly sticky = false;
+
   /** Row selected */
   @Event() rowSelectChanged: EventEmitter<boolean>;
 
+  @Watch('selectable')
+  async selectableChanged(selectable: boolean): Promise<void> {
+    this.setCellsProp('$selectable', selectable);
+  }
+
+  @Watch('expandable')
+  async expandableChanged(expandable: boolean): Promise<void> {
+    this.setCellsProp('$expandable', expandable);
+  }
+
+  @Watch('depth')
+  async depthChanged(depth: number): Promise<void> {
+    this.setCellsProp('$depth', depth);
+  }
+
+  @Watch('header')
+  async headerChanged(header: boolean): Promise<void> {
+    this.stopChildObserver();
+    if (header) {
+      this.startChildObserver();
+    }
+    this.setCellsProp('$header', header);
+  }
+
+  @Watch('sticky')
+  async stickyChanged(sticky: boolean): Promise<void> {
+    this.setCellsProp('$sticky', sticky);
+  }
+
+  @Watch('$indeterminate')
+  async indeterminateChanged(indeterminate: boolean): Promise<void> {
+    this.setCellsProp('$indeterminate', indeterminate);
+  }
+
   @Watch('selected')
   async selectedChanged(selected: boolean): Promise<void> {
-    // Set parents rows checkbox indeterminate state
-    let parentRow = await this.parentRow();
-    while (parentRow && parentRow.selectable && parentRow.expandable) {
-      const hasAllSelected = await parentRow.hasAllRowsSelected();
-      const hasRowsSelected = await parentRow.hasRowsSelected();
-
-      if (!hasRowsSelected) {
-        parentRow.selected = false;
-      } else if (hasAllSelected) {
-        parentRow.selected = true;
-      }
-      parentRow.$indeterminate = hasRowsSelected && !hasAllSelected;
-
-      parentRow = await parentRow.parentRow();
-    }
+    this.setCellsProp('$selected', selected);
 
     // Set rows children selected state
-    if (this.selectable && this.expandable) {
+    if (this.header || this.expandable) {
       this.rowChildren().forEach(n => (n.selected = selected));
     }
 
-    // Emit event that header checkbox state can be applied
-    this.rowSelectChanged.emit(this.selected);
+    if (this.header) return;
+
+    // Set parents rows checkbox indeterminate state
+    let parentRow = await this.parentRow();
+    try {
+      while (parentRow && parentRow.selectable && parentRow.expandable) {
+        const hasAllSelected = await parentRow.hasAllRowsSelected();
+        const hasRowsSelected = await parentRow.hasRowsSelected();
+
+        if (!hasRowsSelected) {
+          parentRow.selected = false;
+        } else if (hasAllSelected) {
+          parentRow.selected = true;
+        }
+        parentRow.$indeterminate = hasRowsSelected && !hasAllSelected;
+
+        parentRow = await parentRow.parentRow();
+      }
+
+      // Emit event that header checkbox state can be applied
+      this.rowSelectChanged.emit(this.selected);
+    } catch (error) {
+      // todo: this happens on jest tests. Should be fixed some day...
+      console.log(`error ZenTableCell.selectedChanged()`);
+    }
   }
 
   @Watch('expanded')
   async expandedChanged(expanded: boolean): Promise<void> {
+    this.setCellsProp('$expanded', expanded);
+
     // Set rows children/descendents expanded state
     if (this.expandable && expanded) {
       // On expanding set only direct children to visible
@@ -106,7 +159,21 @@ export class ZenTableRow {
     return null;
   }
 
+  allTableRows(): HTMLZenTableRowElement[] {
+    const rows = [];
+    let next = this.host.nextElementSibling as HTMLZenTableRowElement;
+    while (next) {
+      rows.push(next);
+      next = next.nextElementSibling as HTMLZenTableRowElement;
+    }
+    return rows;
+  }
+
   rowChildren(): HTMLZenTableRowElement[] {
+    if (this.header) {
+      return this.allTableRows();
+    }
+
     // Find first depth level siblings of row
     const children = [];
     let next = this.host.nextElementSibling as HTMLZenTableRowElement;
@@ -122,7 +189,16 @@ export class ZenTableRow {
     return children;
   }
 
+  getRowCells(): HTMLZenTableCellElement[] {
+    const cells = getDefaultSlotContent(this.host);
+    return cells ? (Array.from(cells) as HTMLZenTableCellElement[]) : [];
+  }
+
   rowDescendants(): HTMLZenTableRowElement[] {
+    if (this.header) {
+      return this.allTableRows();
+    }
+
     // Find all descendents of row
     const descendants = [];
     let next = this.host.nextElementSibling as HTMLZenTableRowElement;
@@ -142,16 +218,54 @@ export class ZenTableRow {
     return !!this.rowChildren().length;
   }
 
-  showWidgets(): boolean {
-    return this.selectable || this.expandable;
+  setCellsProp(propName: string, value: unknown): void {
+    const cells = this.getRowCells();
+    try {
+      cells.forEach(cell => {
+        cell[propName] = value;
+      });
+    } catch (error) {
+      // todo: this happens on jest tests. Should be fixed some day...
+      console.log(`error ZenTableCell.setCellsProp(${propName})`);
+    }
   }
 
-  onExpand(): void {
-    this.expanded = !this.expanded;
+  startChildObserver(): void {
+    this.childObserver = new MutationObserver(() => this.onTableChildChanged());
+
+    const table = this.host.parentElement;
+
+    this.childObserver.observe(table, {
+      childList: true,
+      attributes: true,
+      subtree: true,
+    });
   }
 
-  onSelect(): void {
-    this.selected = !this.selected;
+  stopChildObserver(): void {
+    if (this.childObserver) this.childObserver.disconnect();
+  }
+
+  onTableChildChanged(): void {
+    const updateMyExandableProp = () => {
+      const hasExpandableRows = this.rowChildren().some(row => row.expandable);
+      this.expandable = hasExpandableRows;
+    };
+
+    const updateMyCheckbox = async () => {
+      const allSelected = await this.hasAllRowsSelected();
+      const someSelected = await this.hasRowsSelected();
+
+      if (!someSelected) {
+        this.selected = false;
+      } else if (allSelected) {
+        this.selected = true;
+      }
+      this.$indeterminate = someSelected && !allSelected;
+    };
+
+    updateMyExandableProp();
+    updateMyCheckbox();
   }
 
   async componentDidLoad(): Promise<void> {
@@ -159,34 +273,24 @@ export class ZenTableRow {
 
     this.visible = !parentRow || parentRow.expanded;
     this.expandable = this.hasChildren();
+
+    this.selectableChanged(this.selectable);
+    this.selectedChanged(this.selected);
+    this.expandableChanged(this.expandable);
+    this.expandedChanged(this.expanded);
+    this.depthChanged(this.depth);
+    this.headerChanged(this.header);
+    this.stickyChanged(this.sticky);
+    this.indeterminateChanged(this.$indeterminate);
+  }
+
+  disconnectedCallback(): void {
+    this.stopChildObserver();
   }
 
   render(): HTMLTableRowElement {
-    const ZenCheckBox = applyPrefix('zen-checkbox', this.host);
-    const ZenIcon = applyPrefix('zen-icon', this.host);
     return (
       <Host>
-        {this.showWidgets() && (
-          <div class="widgets">
-            {this.selectable && (
-              <ZenCheckBox
-                indeterminate={this.$indeterminate}
-                class="checkbox"
-                checked={this.selected}
-                onClick={() => this.onSelect()}
-              />
-            )}
-            {this.expandable && (
-              <ZenIcon
-                class="expand-icon"
-                size="sm"
-                padding="lg"
-                icon={faChevronRight}
-                onClick={() => this.onExpand()}
-              />
-            )}
-          </div>
-        )}
         <slot></slot>
       </Host>
     );
