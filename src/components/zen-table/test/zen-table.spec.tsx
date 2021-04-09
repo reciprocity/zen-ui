@@ -1,3 +1,6 @@
+import { mutationObserverMock } from '../../helpers/jest';
+global.MutationObserver = mutationObserverMock();
+
 import { newSpecPage } from '@stencil/core/testing';
 import { ZenTable } from '../zen-table';
 

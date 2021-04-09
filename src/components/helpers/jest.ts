@@ -1,5 +1,6 @@
 import { SpecPage } from '@stencil/core/testing';
 import kebabCase from 'lodash/kebabCase';
+import { jest } from '@jest/globals';
 
 type ClientPoint = { clientX: number; clientY: number };
 
@@ -27,3 +28,13 @@ export async function propReflectsInAttributes(page: SpecPage, props: Record<str
   }
   return true;
 }
+
+export const mutationObserverMock = (): unknown =>
+  jest.fn(function MutationObserver(callback: (a: unknown, b: unknown) => void) {
+    this.observe = jest.fn();
+    this.disconnect = jest.fn();
+    // Optionally add a trigger() method to manually trigger a change
+    this.trigger = mockedMutationsList => {
+      callback(mockedMutationsList, this);
+    };
+  });
