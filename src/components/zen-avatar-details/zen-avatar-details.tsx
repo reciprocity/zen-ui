@@ -31,7 +31,7 @@ export class ZenAvatarDetails {
 
   @Element() host: HTMLZenAvatarDetailsElement;
 
-  /** Set fifferent variants  */
+  /** Set the style variant  */
   @Prop() readonly variant: AvatarDetailVariant = 'detailed';
 
   /** Set user name  */
