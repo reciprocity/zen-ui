@@ -1,6 +1,20 @@
 type Rows = HTMLZenTableRowElement[];
 
 export const cleanupTableStructure = function (table: HTMLZenTableElement): void {
+  const getHeaderAndRows = (
+    table: HTMLZenTableElement,
+  ): { header: HTMLZenTableRowElement; rows: HTMLZenTableRowElement[] } => {
+    const isRow = (element: HTMLZenTableRowElement) => element.tagName.endsWith('-ROW') && !element.header;
+
+    const isHeader = (element: HTMLZenTableRowElement) => element.tagName.endsWith('-ROW') && element.header;
+
+    const allRows = Array.from(table.children) as HTMLZenTableRowElement[];
+    return {
+      header: allRows.filter(n => isHeader(n))[0] || null,
+      rows: allRows.filter(n => isRow(n)),
+    };
+  };
+
   const parentRows = (rows, index: number): Rows => {
     let curDepth = rows[index].depth;
     const parents = [];
@@ -64,10 +78,14 @@ export const cleanupTableStructure = function (table: HTMLZenTableElement): void
     }
   };
 
+  const updateHeaderSelectCheckbox = (header, rows) => {
+    console.log('todo', header, rows);
+  }
+
   // -------------------------------------------------------------------------
   table.$updating = true;
 
-  const rows = getAllRows(table);
+  const { header, rows } = getHeaderAndRows(table);
 
   // NOTE: Order of below function calls is important!!!
   removeOrphans(rows);
@@ -75,11 +93,6 @@ export const cleanupTableStructure = function (table: HTMLZenTableElement): void
   updateVisibleProps(rows);
   updateParentCheckboxes(rows);
 
+  updateHeaderSelectCheckbox(header, rows);
   table.$updating = false;
-};
-
-export const getAllRows = function (table: HTMLZenTableElement): Rows {
-  const isNormalRow = (element: HTMLZenTableRowElement) => element.tagName.endsWith('-ROW') && !element.header;
-
-  return Array.from(table.children).filter(n => isNormalRow(n as HTMLZenTableRowElement)) as Rows;
 };
