@@ -863,7 +863,7 @@ export namespace Components {
         /**
           * Checkbox indeterminate state (Won't update children)
          */
-        "$indeterminate": false;
+        "$indeterminate": boolean;
         /**
           * Depth position of row (read-only)
          */
@@ -2231,7 +2231,7 @@ declare namespace LocalJSX {
         /**
           * Checkbox indeterminate state (Won't update children)
          */
-        "$indeterminate"?: false;
+        "$indeterminate"?: boolean;
         /**
           * Depth position of row (read-only)
          */
