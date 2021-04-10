@@ -1,5 +1,5 @@
 import { Component, Host, h, Prop } from '@stencil/core';
-import { IconSizes } from '../helpers/types';
+import { AvatarIconSize } from '../helpers/types';
 
 @Component({
   tag: 'zen-avatar-icon',
@@ -7,29 +7,34 @@ import { IconSizes } from '../helpers/types';
   shadow: true,
 })
 export class ZenAvatarIcon {
-  /** Image URL  */
+  /** Set image URL */
   @Prop() readonly imageUrl: string = '';
 
-  /** Background color  */
+  /** Set background color */
   @Prop() readonly background: string = '#abd2f5';
 
-  /** Font color  */
+  /** Set font color */
   @Prop() readonly color: string = '#00528c';
 
-  /** Name and Surname  */
+  /** Set name and surname */
   @Prop() readonly userName: string = '';
 
-  /** Email  */
+  /** Set override for user name initials */
+  @Prop() readonly initials: string = '';
+
+  /** Set email */
   @Prop() readonly email: string = '';
 
   /** Icon size   */
-  @Prop({ reflect: true }) readonly size: IconSizes = 'md';
+  @Prop({ reflect: true }) readonly size: AvatarIconSize = 'md';
 
   hasImage(): boolean {
     return this.imageUrl != '';
   }
 
   getUserInitials(): string {
+    if (this.initials) return this.initials;
+
     let initials = '';
     if (this.userName) {
       if (/\s/.test(this.userName)) {

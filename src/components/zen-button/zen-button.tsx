@@ -23,7 +23,7 @@ export class ZenButton {
   @Prop() readonly name: string = '';
 
   /** Color variant of the button */
-  @Prop() readonly variant: ButtonVariants = 'primary';
+  @Prop() readonly variant: ButtonVariants = 'blue-filled';
 
   /** If present, will show a spinner */
   @Prop() readonly loading?: boolean = false;
@@ -59,10 +59,13 @@ export class ZenButton {
     const ZenSpinner = applyPrefix('zen-spinner', this.host);
     const spinnerStyle = {
       position: 'absolute',
-      inset: 0,
+      top: 0,
+      right: 0,
+      bottom: 0,
+      left: 0,
     };
     return (
-      <Host class={{ btn: true, [`btn-${this.variant}`]: true, disabled: this.disabled }} tabindex={this.tabindex}>
+      <Host class={{ btn: true, [`${this.variant}`]: true, disabled: this.disabled }} tabindex={this.tabindex}>
         <slot name="leadingIcon" />
         {this.loading ? <ZenSpinner style={spinnerStyle}></ZenSpinner> : null}
         <span class={{ ml: this.leadingIconSlotFulfilled, mr: this.trailingIconSlotFulfilled }}>

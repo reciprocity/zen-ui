@@ -1,3 +1,82 @@
+## [3.2.1](https://github.com/reciprocity/zen-ui/compare/3.2.0...3.2.1) (2021-04-09)
+
+
+### Bug Fixes
+
+* **zen-avatar-icon:** removed lg size ([6d6c9d5](https://github.com/reciprocity/zen-ui/commit/6d6c9d5350a726c31eec6f3caa8f4530e103766a))
+* **zen-button:** change variant names ([6d7afb3](https://github.com/reciprocity/zen-ui/commit/6d7afb318e8f9caa1f9e7171f6eb632938fc0046))
+
+### BREAKING CHANGES
+
+> There was an error with the commit message, this was supposed to be v4.0.0
+
+* **zen-avatar-icon:** The `lg` size variant was removed.
+* **zen-button**: The following button variants have been renamed: `primary` to `blue-filled`, `secondary` to `blue-ghost`, `tertiary` to `grey-ghost`, `destructive` to `red-filled` and `positive` to `green-ghost`; and the default `variant`, being that is was `primary`, was changed to `blue-filled`.
+
+# [3.2.0](https://github.com/reciprocity/zen-ui/compare/3.1.0...3.2.0) (2021-04-09)
+
+
+### Bug Fixes
+
+* **zen-tab:** add default font size and styling ([f7e91de](https://github.com/reciprocity/zen-ui/commit/f7e91def58852f564c1a5629f9b9e88e2630c879))
+* **zen-tab:** promote selected to property ([6112352](https://github.com/reciprocity/zen-ui/commit/6112352162c0ccacb37e23c323aa7dad9f405340))
+* **zen-tabs:** fix that event is logged in the console ([9c28377](https://github.com/reciprocity/zen-ui/commit/9c28377b70cef47191615892b734bb61610138f6))
+
+
+### Features
+
+* **zen-tab:** add zen-tab fragment ([d4efdd9](https://github.com/reciprocity/zen-ui/commit/d4efdd9df9082587cb28bddd9a465f022921a967))
+* **zen-tabs:** convert story to mdx ([01f5223](https://github.com/reciprocity/zen-ui/commit/01f5223e0bea9eec9b14d74be3b41ab6f38b65ae))
+* **zen-tabs:** move tabs to story navigation folder ([bb512c5](https://github.com/reciprocity/zen-ui/commit/bb512c5b9ee71cfede7598dbc6368e2cd4101b26))
+* **zen-tabs:** update zen tab implementation ([50cc6ff](https://github.com/reciprocity/zen-ui/commit/50cc6ffd6ebd3f66bc338181eab86a3c1574481d))
+
+# [3.1.0](https://github.com/reciprocity/zen-ui/compare/3.0.0...3.1.0) (2021-04-09)
+
+
+### Features
+
+* **zen-avatar:** add override for initials ([a0149d7](https://github.com/reciprocity/zen-ui/commit/a0149d75d6c65176fe86d45a66c744e67cf1af69))
+
+# [3.0.0](https://github.com/reciprocity/zen-ui/compare/2.3.1...3.0.0) (2021-04-09)
+
+
+### Features
+
+* remove zen-table-header and zen-table-header-cell ([862cd35](https://github.com/reciprocity/zen-ui/commit/862cd35e13d6423e3704e95b7b5d1f8464ac50fc))
+
+
+### BREAKING CHANGES
+
+* zen-table-header and zen-table-header-cell is removed.
+It is substituted by zen-row and new prop `header`
+
+## [2.3.1](https://github.com/reciprocity/zen-ui/compare/2.3.0...2.3.1) (2021-04-07)
+
+
+### Bug Fixes
+
+* **zen-drawer:** when component is not opened on first load display is set to none ([b1f47e9](https://github.com/reciprocity/zen-ui/commit/b1f47e958f55114cc25a644580bdaa69d6a46efe))
+
+# [2.3.0](https://github.com/reciprocity/zen-ui/compare/2.2.4...2.3.0) (2021-04-07)
+
+
+### Bug Fixes
+
+* **zen-tooltip:** update story styles to equal the wireframes ([d18a434](https://github.com/reciprocity/zen-ui/commit/d18a4342184d2030ff07a396f61207d7fa681808))
+
+
+### Features
+
+* **zen-tooltip:** add max width prop ([b752097](https://github.com/reciprocity/zen-ui/commit/b75209748e239c80a077d8a84c8ce52d0a8fce63))
+
+## [2.2.4](https://github.com/reciprocity/zen-ui/compare/2.2.3...2.2.4) (2021-04-07)
+
+
+### Bug Fixes
+
+* **zen-dropdown:** change to apply max-height instead of height ([7eca163](https://github.com/reciprocity/zen-ui/commit/7eca16349eb3cac535ebf9eedab8415432ac7382))
+* **zen-dropdown:** fix menu height not being applied ([f76d795](https://github.com/reciprocity/zen-ui/commit/f76d7953400f11b3cc2a001fa8ad2254cd393cd8))
+
 ## [2.2.3](https://github.com/reciprocity/zen-ui/compare/2.2.2...2.2.3) (2021-04-06)
 
 

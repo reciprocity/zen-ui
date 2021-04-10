@@ -44,7 +44,7 @@ export class ZenDropdown {
   @Prop() readonly menuWidth: string = '100%';
 
   /** To determine if there's enough space under field on open */
-  @Prop() readonly menuHeight: number = 170;
+  @Prop() readonly menuHeight: string = '170px';
 
   /** Close dropdown menu after selecting an item */
   @Prop() readonly closeOnSelect = true;
@@ -306,7 +306,7 @@ export class ZenDropdown {
           interactive
           position={align}
           onVisibleChange={() => this.onOpenToggle()}
-          style={{ width: this.menuWidth }}
+          style={{ width: this.menuWidth, 'max-height': this.menuHeight }}
           offset={offset}
         >
           <slot />

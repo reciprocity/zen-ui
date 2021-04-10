@@ -13,7 +13,9 @@ export type NotificationVariant = 'success' | 'info' | 'warning' | 'error';
 
 export type TextSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';
 
-export type IconSizes = 'sm' | 'md' | 'lg';
+export type IconSize = 'sm' | 'md' | 'lg';
+
+export type AvatarIconSize = 'sm' | 'md';
 
 export type InputSize = 'sm' | 'md' | 'lg';
 
@@ -38,6 +40,7 @@ export type AvatarDetailVariant = 'basic' | 'basic-lg' | 'detailed';
 export interface AvatarData {
   userName?: string;
   email?: string;
+  initials?: string;
   imageUrl?: string;
   background?: string;
   color?: string;

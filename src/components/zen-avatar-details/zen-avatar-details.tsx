@@ -31,19 +31,22 @@ export class ZenAvatarDetails {
 
   @Element() host: HTMLZenAvatarDetailsElement;
 
-  /** Different variants  */
+  /** Set the style variant  */
   @Prop() readonly variant: AvatarDetailVariant = 'detailed';
 
-  /** User name  */
+  /** Set user name  */
   @Prop() readonly userName: string = '';
 
-  /** User email  */
+  /** Set override for user name initials   */
+  @Prop() readonly initials: string = '';
+
+  /** Set user email  */
   @Prop() readonly email: string = '';
 
-  /** Icon color  */
+  /** Set icon color  */
   @Prop() readonly iconColor: string = '#00528C';
 
-  /** Icon background color  */
+  /** Set icon background color  */
   @Prop() readonly iconBackground: string = '#D5E9FA';
 
   /** <Description generated in helper file> */
@@ -80,6 +83,8 @@ export class ZenAvatarDetails {
         >
           <ZenAvatarIcon
             user-name={this.userName}
+            email={this.email}
+            initials={this.initials}
             color={this.iconColor}
             background={this.iconBackground}
             size={sizes.avatarIconSize}

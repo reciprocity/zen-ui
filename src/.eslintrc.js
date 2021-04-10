@@ -34,7 +34,7 @@ module.exports = {
         element: 'inline',
         event: 'inline',
         method: 'multiline',
-        watch: 'multiline',
+        // watch: 'multiline',
         listen: 'multiline',
       },
     ],

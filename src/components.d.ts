@@ -6,8 +6,7 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { StringifiedJson } from "./stories/components/color-swatch-group/color-swatch-group";
-import { SourceCodes } from "./stories/components/html-playground/html-playground";
-import { Align, AvatarData, AvatarDetailVariant, DropdownSize, IconSizes, InputSize, None, Notification, NotificationVariant, Position, Resize, Size, Spacing, SpacingShorthand, TextSize, TextState, TextVariant, TooltipVariant, TriggerEvent } from "./components/helpers/types";
+import { Align, AvatarData, AvatarDetailVariant, AvatarIconSize, DropdownSize, IconSize, InputSize, None, Notification, NotificationVariant, Position, Resize, Size, Spacing, SpacingShorthand, TextSize, TextState, TextVariant, TooltipVariant, TriggerEvent } from "./components/helpers/types";
 import { ButtonVariants } from "./components/zen-button/types";
 import { OptionValue } from "./components/zen-menu-item/zen-option";
 import { IconDefinition } from "@fortawesome/pro-light-svg-icons";
@@ -15,8 +14,6 @@ import { OptionValue as OptionValue1 } from "./components/zen-menu-item/zen-opti
 import { Offsets, Placement } from "@popperjs/core";
 import { StepItem } from "./components/zen-progress-tracker/zen-progress-tracker";
 import { StepsFilter } from "./components/zen-progress-tracker/types";
-import { FlexAlign } from "./components/zen-space/zen-space";
-import { TabItem, TabValue } from "./components/zen-tabs/zen-tabs";
 export namespace Components {
     interface ColorSwatch {
         /**
@@ -68,27 +65,31 @@ export namespace Components {
     }
     interface ZenAvatar {
         /**
-          * Show icon animation
+          * Set show icon animation
          */
         "animation": boolean;
         /**
-          * Users
+          * Set users input data
          */
         "users": AvatarData[];
     }
     interface ZenAvatarDetails {
         /**
-          * User email
+          * Set user email
          */
         "email": string;
         /**
-          * Icon background color
+          * Set icon background color
          */
         "iconBackground": string;
         /**
-          * Icon color
+          * Set icon color
          */
         "iconColor": string;
+        /**
+          * Set override for user name initials
+         */
+        "initials": string;
         /**
           * <Description generated in helper file>
          */
@@ -110,11 +111,11 @@ export namespace Components {
          */
         "paddingTop": Spacing;
         /**
-          * User name
+          * Set user name
          */
         "userName": string;
         /**
-          * Different variants
+          * Set fifferent variants
          */
         "variant": AvatarDetailVariant;
     }
@@ -130,7 +131,7 @@ export namespace Components {
         /**
           * Icons size
          */
-        "size": IconSizes;
+        "size": IconSize;
         /**
           * Array of user's data
          */
@@ -138,27 +139,31 @@ export namespace Components {
     }
     interface ZenAvatarIcon {
         /**
-          * Background color
+          * Set background color
          */
         "background": string;
         /**
-          * Font color
+          * Set font color
          */
         "color": string;
         /**
-          * Email
+          * Set email
          */
         "email": string;
         /**
-          * Image URL
+          * Set image URL
          */
         "imageUrl": string;
         /**
-          * Icon size
+          * Set override for user name initials
          */
-        "size": IconSizes;
+        "initials": string;
         /**
-          * Name and Surname
+          * Set icon size
+         */
+        "size": AvatarIconSize;
+        /**
+          * Set name and surname
          */
         "userName": string;
     }
@@ -336,7 +341,7 @@ export namespace Components {
         /**
           * To determine if there's enough space under field on open
          */
-        "menuHeight": number;
+        "menuHeight": string;
         /**
           * Width of menu. Set '100%' to match field width.
          */
@@ -390,7 +395,7 @@ export namespace Components {
         /**
           * Size of the icon.
          */
-        "size": IconSizes;
+        "size": IconSize;
     }
     interface ZenInput {
         /**
@@ -796,33 +801,59 @@ export namespace Components {
     }
     interface ZenSpinner {
     }
+    interface ZenTab {
+        /**
+          * Set tab selected
+         */
+        "selected": boolean;
+    }
     interface ZenTable {
+        /**
+          * Space separated css grid columns<br/>(eg. `auto 1fr 1fr 200px 1fr`)
+         */
+        "columns": "";
     }
     interface ZenTableCell {
-    }
-    interface ZenTableHeader {
         /**
-          * Checkbox indeterminate state
+          * Is row expanded (read-only)
+         */
+        "$depth": number;
+        /**
+          * Can be expanded (read-only)
+         */
+        "$expandable": boolean;
+        /**
+          * Is row expanded (read-only)
+         */
+        "$expanded": boolean;
+        /**
+          * Cell is inside header (read-only)
+         */
+        "$header": boolean;
+        /**
+          * Checkbox indeterminate state (read-only)
          */
         "$indeterminate": boolean;
         /**
-          * Show checkbox
+          * Show checkbox (read-only)
          */
-        "selectable": boolean;
+        "$selectable": boolean;
         /**
-          * Select all rows
+          * Is row selected (read-only)
          */
-        "selected": boolean;
+        "$selected": boolean;
         /**
-          * Remains fixed at the top of the table during vertical scrolling
+          * Cell remains fixed at the top during scroll (mainly used for headers)
          */
-        "sticky": boolean;
-    }
-    interface ZenTableHeaderCell {
+        "$sticky": boolean;
         /**
-          * Remains fixed at the top of the table during vertical scrolling
+          * Cell custom background color
          */
-        "sticky": boolean;
+        "backgroundColor": string;
+        /**
+          * Spanns through whole table
+         */
+        "fullSpan": boolean;
     }
     interface ZenTableRow {
         /**
@@ -850,6 +881,10 @@ export namespace Components {
          */
         "hasRowsSelected": () => Promise<boolean>;
         /**
+          * Row represents header
+         */
+        "header": boolean;
+        /**
           * Returns elements parent row (depth -1) *
          */
         "parentRow": () => Promise<HTMLZenTableRowElement>;
@@ -862,6 +897,10 @@ export namespace Components {
          */
         "selected": boolean;
         /**
+          * Row remains fixed at the top during scroll (mainly used for headers)
+         */
+        "sticky": false;
+        /**
           * Visible if no depth or parent.expanded
          */
         "visible": boolean;
@@ -870,11 +909,7 @@ export namespace Components {
         /**
           * Index of currently selected tab.
          */
-        "tabs": TabItem[];
-        /**
-          * Index of currently selected tab.
-         */
-        "value": TabValue;
+        "value": number;
     }
     interface ZenText {
         /**
@@ -1019,6 +1054,10 @@ export namespace Components {
           * Limit tooltips height and make content scroll
          */
         "maxHeight": string;
+        /**
+          * Set tooltip max width
+         */
+        "maxWidth": string;
         /**
           * Set tooltip offset to target element
          */
@@ -1252,6 +1291,12 @@ declare global {
         prototype: HTMLZenSpinnerElement;
         new (): HTMLZenSpinnerElement;
     };
+    interface HTMLZenTabElement extends Components.ZenTab, HTMLStencilElement {
+    }
+    var HTMLZenTabElement: {
+        prototype: HTMLZenTabElement;
+        new (): HTMLZenTabElement;
+    };
     interface HTMLZenTableElement extends Components.ZenTable, HTMLStencilElement {
     }
     var HTMLZenTableElement: {
@@ -1263,18 +1308,6 @@ declare global {
     var HTMLZenTableCellElement: {
         prototype: HTMLZenTableCellElement;
         new (): HTMLZenTableCellElement;
-    };
-    interface HTMLZenTableHeaderElement extends Components.ZenTableHeader, HTMLStencilElement {
-    }
-    var HTMLZenTableHeaderElement: {
-        prototype: HTMLZenTableHeaderElement;
-        new (): HTMLZenTableHeaderElement;
-    };
-    interface HTMLZenTableHeaderCellElement extends Components.ZenTableHeaderCell, HTMLStencilElement {
-    }
-    var HTMLZenTableHeaderCellElement: {
-        prototype: HTMLZenTableHeaderCellElement;
-        new (): HTMLZenTableHeaderCellElement;
     };
     interface HTMLZenTableRowElement extends Components.ZenTableRow, HTMLStencilElement {
     }
@@ -1346,10 +1379,9 @@ declare global {
         "zen-sortable-item": HTMLZenSortableItemElement;
         "zen-space": HTMLZenSpaceElement;
         "zen-spinner": HTMLZenSpinnerElement;
+        "zen-tab": HTMLZenTabElement;
         "zen-table": HTMLZenTableElement;
         "zen-table-cell": HTMLZenTableCellElement;
-        "zen-table-header": HTMLZenTableHeaderElement;
-        "zen-table-header-cell": HTMLZenTableHeaderCellElement;
         "zen-table-row": HTMLZenTableRowElement;
         "zen-tabs": HTMLZenTabsElement;
         "zen-text": HTMLZenTextElement;
@@ -1409,27 +1441,31 @@ declare namespace LocalJSX {
     }
     interface ZenAvatar {
         /**
-          * Show icon animation
+          * Set show icon animation
          */
         "animation"?: boolean;
         /**
-          * Users
+          * Set users input data
          */
         "users"?: AvatarData[];
     }
     interface ZenAvatarDetails {
         /**
-          * User email
+          * Set user email
          */
         "email"?: string;
         /**
-          * Icon background color
+          * Set icon background color
          */
         "iconBackground"?: string;
         /**
-          * Icon color
+          * Set icon color
          */
         "iconColor"?: string;
+        /**
+          * Set override for user name initials
+         */
+        "initials"?: string;
         /**
           * <Description generated in helper file>
          */
@@ -1451,11 +1487,11 @@ declare namespace LocalJSX {
          */
         "paddingTop"?: Spacing;
         /**
-          * User name
+          * Set user name
          */
         "userName"?: string;
         /**
-          * Different variants
+          * Set fifferent variants
          */
         "variant"?: AvatarDetailVariant;
     }
@@ -1471,7 +1507,7 @@ declare namespace LocalJSX {
         /**
           * Icons size
          */
-        "size"?: IconSizes;
+        "size"?: IconSize;
         /**
           * Array of user's data
          */
@@ -1479,27 +1515,31 @@ declare namespace LocalJSX {
     }
     interface ZenAvatarIcon {
         /**
-          * Background color
+          * Set background color
          */
         "background"?: string;
         /**
-          * Font color
+          * Set font color
          */
         "color"?: string;
         /**
-          * Email
+          * Set email
          */
         "email"?: string;
         /**
-          * Image URL
+          * Set image URL
          */
         "imageUrl"?: string;
         /**
-          * Icon size
+          * Set override for user name initials
          */
-        "size"?: IconSizes;
+        "initials"?: string;
         /**
-          * Name and Surname
+          * Set icon size
+         */
+        "size"?: AvatarIconSize;
+        /**
+          * Set name and surname
          */
         "userName"?: string;
     }
@@ -1677,7 +1717,7 @@ declare namespace LocalJSX {
         /**
           * To determine if there's enough space under field on open
          */
-        "menuHeight"?: number;
+        "menuHeight"?: string;
         /**
           * Width of menu. Set '100%' to match field width.
          */
@@ -1727,7 +1767,7 @@ declare namespace LocalJSX {
         /**
           * Size of the icon.
          */
-        "size"?: IconSizes;
+        "size"?: IconSize;
     }
     interface ZenInput {
         /**
@@ -2129,33 +2169,63 @@ declare namespace LocalJSX {
     }
     interface ZenSpinner {
     }
+    interface ZenTab {
+        /**
+          * Tab selected event
+         */
+        "onTabSelect"?: (event: CustomEvent<void>) => void;
+        /**
+          * Set tab selected
+         */
+        "selected"?: boolean;
+    }
     interface ZenTable {
+        /**
+          * Space separated css grid columns<br/>(eg. `auto 1fr 1fr 200px 1fr`)
+         */
+        "columns"?: "";
     }
     interface ZenTableCell {
-    }
-    interface ZenTableHeader {
         /**
-          * Checkbox indeterminate state
+          * Is row expanded (read-only)
+         */
+        "$depth"?: number;
+        /**
+          * Can be expanded (read-only)
+         */
+        "$expandable"?: boolean;
+        /**
+          * Is row expanded (read-only)
+         */
+        "$expanded"?: boolean;
+        /**
+          * Cell is inside header (read-only)
+         */
+        "$header"?: boolean;
+        /**
+          * Checkbox indeterminate state (read-only)
          */
         "$indeterminate"?: boolean;
         /**
-          * Show checkbox
+          * Show checkbox (read-only)
          */
-        "selectable"?: boolean;
+        "$selectable"?: boolean;
         /**
-          * Select all rows
+          * Is row selected (read-only)
          */
-        "selected"?: boolean;
+        "$selected"?: boolean;
         /**
-          * Remains fixed at the top of the table during vertical scrolling
+          * Cell remains fixed at the top during scroll (mainly used for headers)
          */
-        "sticky"?: boolean;
-    }
-    interface ZenTableHeaderCell {
+        "$sticky"?: boolean;
         /**
-          * Remains fixed at the top of the table during vertical scrolling
+          * Cell custom background color
          */
-        "sticky"?: boolean;
+        "backgroundColor"?: string;
+        /**
+          * Spanns through whole table
+         */
+        "fullSpan"?: boolean;
     }
     interface ZenTableRow {
         /**
@@ -2175,6 +2245,10 @@ declare namespace LocalJSX {
          */
         "expanded"?: boolean;
         /**
+          * Row represents header
+         */
+        "header"?: boolean;
+        /**
           * Row selected
          */
         "onRowSelectChanged"?: (event: CustomEvent<boolean>) => void;
@@ -2187,6 +2261,10 @@ declare namespace LocalJSX {
          */
         "selected"?: boolean;
         /**
+          * Row remains fixed at the top during scroll (mainly used for headers)
+         */
+        "sticky"?: false;
+        /**
           * Visible if no depth or parent.expanded
          */
         "visible"?: boolean;
@@ -2195,11 +2273,7 @@ declare namespace LocalJSX {
         /**
           * Index of currently selected tab.
          */
-        "tabs"?: TabItem[];
-        /**
-          * Index of currently selected tab.
-         */
-        "value"?: TabValue;
+        "value"?: number;
     }
     interface ZenText {
         /**
@@ -2341,6 +2415,10 @@ declare namespace LocalJSX {
          */
         "maxHeight"?: string;
         /**
+          * Set tooltip max width
+         */
+        "maxWidth"?: string;
+        /**
           * Set tooltip offset to target element
          */
         "offset"?: number;
@@ -2407,10 +2485,9 @@ declare namespace LocalJSX {
         "zen-sortable-item": ZenSortableItem;
         "zen-space": ZenSpace;
         "zen-spinner": ZenSpinner;
+        "zen-tab": ZenTab;
         "zen-table": ZenTable;
         "zen-table-cell": ZenTableCell;
-        "zen-table-header": ZenTableHeader;
-        "zen-table-header-cell": ZenTableHeaderCell;
         "zen-table-row": ZenTableRow;
         "zen-tabs": ZenTabs;
         "zen-text": ZenText;
@@ -2456,10 +2533,9 @@ declare module "@stencil/core" {
             "zen-sortable-item": LocalJSX.ZenSortableItem & JSXBase.HTMLAttributes<HTMLZenSortableItemElement>;
             "zen-space": LocalJSX.ZenSpace & JSXBase.HTMLAttributes<HTMLZenSpaceElement>;
             "zen-spinner": LocalJSX.ZenSpinner & JSXBase.HTMLAttributes<HTMLZenSpinnerElement>;
+            "zen-tab": LocalJSX.ZenTab & JSXBase.HTMLAttributes<HTMLZenTabElement>;
             "zen-table": LocalJSX.ZenTable & JSXBase.HTMLAttributes<HTMLZenTableElement>;
             "zen-table-cell": LocalJSX.ZenTableCell & JSXBase.HTMLAttributes<HTMLZenTableCellElement>;
-            "zen-table-header": LocalJSX.ZenTableHeader & JSXBase.HTMLAttributes<HTMLZenTableHeaderElement>;
-            "zen-table-header-cell": LocalJSX.ZenTableHeaderCell & JSXBase.HTMLAttributes<HTMLZenTableHeaderCellElement>;
             "zen-table-row": LocalJSX.ZenTableRow & JSXBase.HTMLAttributes<HTMLZenTableRowElement>;
             "zen-tabs": LocalJSX.ZenTabs & JSXBase.HTMLAttributes<HTMLZenTabsElement>;
             "zen-text": LocalJSX.ZenText & JSXBase.HTMLAttributes<HTMLZenTextElement>;

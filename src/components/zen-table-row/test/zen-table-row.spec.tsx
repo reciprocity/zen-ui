@@ -1,4 +1,9 @@
-import { newSpecPage, SpecPage } from '@stencil/core/testing';
+let cells: NodeListOf<HTMLZenTableCellElement> = [];
+
+import * as helpers from '../../helpers/helpers';
+helpers.getDefaultSlotContent = jest.fn(() => cells);
+
+import { newSpecPage } from '@stencil/core/testing';
 import { ZenTableRow } from '../zen-table-row';
 import { ZenTable } from '../../zen-table/zen-table';
 import { ZenTableCell } from '../../zen-table-cell/zen-table-cell';
@@ -16,11 +21,8 @@ describe('zen-table-row', () => {
 
   it('should render checkbox', async () => {
     const page = await newSpecPage({
-      components: [ZenTableRow],
-      html: `<zen-table-row selectable>
-                <zen-table-cell>Row 1, Cell 1</zen-table-cell>
-                <zen-table-cell>Row 1, Cell 2</zen-table-cell>
-            </zen-table-row>`,
+      components: [ZenTableCell],
+      html: `<zen-table-cell selectable>Row 1, Cell 1</zen-table-cell>`,
     });
 
     expect(page.root.shadowRoot.querySelector('zen-checkbox')).toBeTruthy();
@@ -29,28 +31,34 @@ describe('zen-table-row', () => {
   it('should render expendable icon and on click expand full span row', async () => {
     const page = await newSpecPage({
       components: [ZenTable, ZenTableRow, ZenTableCell],
-      html: `<zen-table>
-              <zen-table-row selectable depth="0">
-                <zen-table-cell>Row 1, Cell 1</zen-table-cell>
-                <zen-table-cell>Row 1, Cell 2</zen-table-cell>
-              </zen-table-row>
-              <zen-table-row full-span depth="1">
-                <zen-table-cell>Test</zen-table-cell>
-                <zen-table-cell></zen-table-cell>
-              </zen-table-row>
-            </zen-table>`,
+      html: /*html*/ `
+        <zen-table columns="1fr 1fr">
+          <zen-table-row depth="0">
+            <zen-table-cell class="first-cell">Row 1, Cell 1</zen-table-cell>
+            <zen-table-cell>Row 1, Cell 2</zen-table-cell>
+          </zen-table-row>
+          <zen-table-row full-span depth="1">
+            <zen-table-cell>Test</zen-table-cell>
+            <zen-table-cell></zen-table-cell>
+          </zen-table-row>
+        </zen-table>`,
     });
     const mainRow = page.root.querySelector('zen-table-row') as HTMLZenTableRowElement;
+    cells = mainRow.querySelectorAll('zen-table-cell');
+    mainRow.selectable = true;
+    await page.waitForChanges();
+
     expect(mainRow.visible).toBeTruthy();
 
-    const expandRow = page.root.querySelector('[full-span]') as HTMLZenTableRowElement;
-    expect(expandRow.visible).not.toBeTruthy();
+    const firstCell = page.root.querySelector('.first-cell') as HTMLZenTableRowElement;
 
-    const expandableIcon = mainRow.shadowRoot.querySelector('.expand-icon');
+    const expandRow = page.root.querySelector('[full-span]') as HTMLZenTableRowElement;
+    expect(expandRow.visible).toBeFalsy();
+
+    const expandableIcon = firstCell.shadowRoot.querySelector('.expand-icon');
     expect(expandableIcon).toBeTruthy();
 
     simulateMouse('click', expandableIcon);
-    page.waitForChanges;
     expect(mainRow.expanded).toBeTruthy();
     expect(expandRow.visible).toBeTruthy();
   });
@@ -60,43 +68,57 @@ describe('zen-table-row tree functionality', () => {
   let page: SpecPage;
   let parentRow: HTMLZenTableRowElement;
   let secondDepthParentRow: HTMLZenTableRowElement;
+  let firstCell: HTMLZenTableCellElement;
+  let secondDepthCell: HTMLZenTableCellElement;
 
   beforeEach(async () => {
     page = await newSpecPage({
       components: [ZenTable, ZenTableRow, ZenTableCell],
-      html: `<zen-table>
-              <zen-table-row selectable expandable visible expanded>
-                <zen-table-cell>Row 1, Cell 1</zen-table-cell>
-              </zen-table-row>
-              <zen-table-row selectable depth="1">
-                <zen-table-cell>Child Row 1, Cell 1 </zen-table-cell>
-              </zen-table-row>
-               <zen-table-row selectable depth="1">
-                <zen-table-cell>Child Row 2, Cell 1 </zen-table-cell>
-              </zen-table-row>
-              <zen-table-row selectable depth="1" second-level-parent>
-                <zen-table-cell>Child Row 3, Cell 1 </zen-table-cell>
-              </zen-table-row>
-              <zen-table-row selectable depth="2">
-                <zen-table-cell>Child Row 4, Cell 1 </zen-table-cell>
-              </zen-table-row>
-               <zen-table-row selectable depth="2">
-                <zen-table-cell>Child Row 5, Cell 1 </zen-table-cell>
-              </zen-table-row>
-            </zen-table>`,
+      html: /*html*/ `
+        <zen-table columns="1fr 1fr">
+          <zen-table-row>
+            <zen-table-cell class="first-cell">Row 1, Cell 1</zen-table-cell>
+          </zen-table-row>
+          <zen-table-row selectable depth="1">
+            <zen-table-cell>Child Row 1, Cell 1 </zen-table-cell>
+          </zen-table-row>
+            <zen-table-row selectable depth="1">
+            <zen-table-cell>Child Row 2, Cell 1 </zen-table-cell>
+          </zen-table-row>
+          <zen-table-row selectable depth="1" second-level-parent>
+            <zen-table-cell>Child Row 3, Cell 1 </zen-table-cell>
+          </zen-table-row>
+          <zen-table-row selectable depth="2">
+            <zen-table-cell>Child Row 4, Cell 1 </zen-table-cell>
+          </zen-table-row>
+            <zen-table-row selectable depth="2">
+            <zen-table-cell class="second-depth-cell">Child Row 5, Cell 1 </zen-table-cell>
+          </zen-table-row>
+        </zen-table>`,
     });
     parentRow = page.root.querySelector('zen-table-row') as HTMLZenTableRowElement;
     secondDepthParentRow = page.root.querySelector('[second-level-parent]') as HTMLZenTableRowElement;
-    expect(parentRow.visible).toBeTruthy();
-    expect(secondDepthParentRow.visible).toBeTruthy();
+
+    // mock slots:
+    cells = parentRow.querySelectorAll('zen-table-cell');
+    parentRow.selectable = true;
+    parentRow.expandable = true;
+    parentRow.expanded = true;
+
+    firstCell = page.root.querySelector('.first-cell') as HTMLZenTableCellElement;
+    secondDepthCell = page.root.querySelector('.second-depth-cell') as HTMLZenTableCellElement;
+    secondDepthCell.$selectable = true;
+
+    await page.waitForChanges();
   });
 
   it('should set all descendants to not visible on expand false', async () => {
-    const expandableIcon = parentRow.shadowRoot.querySelector('.expand-icon');
-    expect(expandableIcon).toBeTruthy();
+    expect(parentRow.visible).toBeTruthy();
+    expect(secondDepthParentRow.visible).toBeTruthy();
+
+    const expandableIcon = firstCell.shadowRoot.querySelector('.expand-icon');
 
     simulateMouse('click', expandableIcon);
-    page.waitForChanges;
 
     const descendents = [];
     descendents.concat(page.root.querySelectorAll('zen-table-row[depth="1"]'));
@@ -108,8 +130,7 @@ describe('zen-table-row tree functionality', () => {
   });
 
   it('should select all row descendents on parent row click and property set', async () => {
-    simulateMouse('click', parentRow.shadowRoot.querySelector('.checkbox'));
-    await page.waitForChanges();
+    simulateMouse('click', firstCell.shadowRoot.querySelector('.checkbox'));
 
     const descendents = [];
     descendents.concat(page.root.querySelectorAll('zen-table-row[depth="1"]'));
@@ -120,13 +141,13 @@ describe('zen-table-row tree functionality', () => {
     }
 
     parentRow.selected = false;
-    await page.waitForChanges();
+
     for (const row of descendents.values()) {
       expect((row as HTMLZenTableRowElement).selected).not.toBeTruthy();
     }
   });
 
-  it('should select only second depth children when setting second depth parent to selected', async () => {
+  it('should select only second depth children when setting second depth parent to selected', () => {
     // First depth children without the first depth parent row
     const firstDepthChildren = page.root.querySelectorAll(
       'zen-table-row[depth="1"] :not(zen-table-row[depth="1"]:first-child)',
@@ -134,7 +155,7 @@ describe('zen-table-row tree functionality', () => {
     const secondDepthChildren = page.root.querySelectorAll('zen-table-row[depth="2"]');
 
     secondDepthParentRow.selected = true;
-    await page.waitForChanges();
+
     for (const row of firstDepthChildren.values()) {
       expect((row as HTMLZenTableRowElement).selected).not.toBeTruthy();
     }
@@ -144,9 +165,10 @@ describe('zen-table-row tree functionality', () => {
   });
 
   it('should set indeterminate state to all parent rows', async () => {
-    const secondDepthChild = page.root.querySelector('zen-table-row[depth="2"]');
-
-    simulateMouse('click', secondDepthChild.shadowRoot.querySelector('.checkbox'));
+    const checkbox = secondDepthCell.shadowRoot.querySelector('.checkbox') as HTMLZenCheckboxElement;
+    checkbox.checked = true;
+    const event = new Event('change', { bubbles: true, composed: true });
+    checkbox.dispatchEvent(event);
     await page.waitForChanges();
 
     expect(parentRow.$indeterminate).toBeTruthy();

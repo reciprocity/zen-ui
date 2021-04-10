@@ -19,7 +19,7 @@ export const user = [
 export const Template = args => {
   return html/*html*/ `
     <sb-zen-space horizontal-align="center" vertical-align="center">
-      <sb-zen-button label="Apply changes" variant="secondary">Button</sb-zen-button>
+      <sb-zen-button label="Apply changes" variant="blue-ghost">Button</sb-zen-button>
       <sb-zen-tooltip ...="${spreadArgs(args, argTypes)}"></sb-zen-tooltip>
     </sb-zen-space>
   `;
@@ -32,7 +32,7 @@ export const TemplateSlot = () => {
   return html/*html*/ `
     <sb-zen-space horizontal-align="center" vertical-align="center">
       <div>
-        <sb-zen-button label="User" variant="secondary"></sb-zen-button>
+        <sb-zen-button label="User" variant="blue-ghost"></sb-zen-button>
         <sb-zen-tooltip position="top" variant="light">
           <sb-zen-space no-wrap spacing="lg">
             <sb-zen-avatar-icon
@@ -56,21 +56,21 @@ export const TemplateVariants = () => {
   return html/*html*/ `
     <sb-zen-space nowrap horizontal-align="space-evenly" vertical-align="end" spacing="sm">
       <div>
-          <sb-zen-button label="Example" variant="primary"></sb-zen-button>
+          <sb-zen-button label="Example" variant="blue-filled"></sb-zen-button>
           <sb-zen-tooltip position="top" variant="dark">
-            <sb-zen-text size="sm" style="color:white;">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s. Lorem Ipsum is simply dummy text of the printing and typesetting industry.</sb-zen-text>
+            <sb-zen-text size="md" style="color:white;">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s. Lorem Ipsum is simply dummy text of the printing and typesetting industry.</sb-zen-text>
          </sb-zen-tooltip>
       </div>
       <div>
-        <sb-zen-button label="Info" variant="secondary"></sb-zen-button>
+        <sb-zen-button label="Info" variant="blue-ghost"></sb-zen-button>
         <sb-zen-tooltip position="top" variant="light">
-           <sb-zen-text size="sm">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s. Lorem Ipsum is simply dummy text of the printing and typesetting industry.</sb-zen-text>
+           <sb-zen-text size="md" style="color:#868E96;">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s. Lorem Ipsum is simply dummy text of the printing and typesetting industry.</sb-zen-text>
         </sb-zen-tooltip>
       </div>
       <div>
-        <sb-zen-button label="Delete" variant="destructive"></sb-zen-button>
+        <sb-zen-button label="Delete" variant="red-filled"></sb-zen-button>
         <sb-zen-tooltip position="top" variant="error">
-            <sb-zen-text size="sm" style="color:white;">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s. Lorem Ipsum is simply dummy text of the printing and typesetting industry.</sb-zen-text>
+            <sb-zen-text size="md" style="color:white;">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s. Lorem Ipsum is simply dummy text of the printing and typesetting industry.</sb-zen-text>
         </sb-zen-tooltip>
       </div>
     </div>
@@ -81,9 +81,9 @@ export const Scrollable = () => {
   return html/*html*/ `
     <sb-zen-space nowrap horizontal-align="space-evenly" vertical-align="end">
       <div>
-        <sb-zen-button label="Info" variant="secondary">Hover</sb-zen-button>
-        <sb-zen-tooltip position="top" variant="light" label="Override text" max-height="5rem">
-          <sb-zen-text size="sm"
+        <sb-zen-button label="Info" variant="blue-ghost">Hover</sb-zen-button>
+        <sb-zen-tooltip position="top" variant="light" max-height="7rem" label="">
+          <sb-zen-text size="sm" style="color:#868E96;"
             >Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
             industry's standard dummy text ever since the 1500s. Lorem Ipsum is simply dummy text of the printing and
             typesetting industry.</sb-zen-text
@@ -98,7 +98,7 @@ export const TitleAndHyperlink = () => {
   return html/*html*/ `
     <sb-zen-space nowrap horizontal-align="space-evenly" vertical-align="end">
       <div>
-        <sb-zen-button label="Info" variant="secondary">Hover</sb-zen-button>
+        <sb-zen-button label="Info" variant="blue-ghost">Hover</sb-zen-button>
         <sb-zen-tooltip
           heading="Title"
           link-title="Learn more about this"
@@ -165,8 +165,10 @@ Set property `heading` and/or `link`.
     args={{
       ...args,
       position: 'top',
-      variant: 'dark',
-      label: 'The Manager can edit and create in the context of the PCI-DSS framework.',
+      variant: 'light',
+      heading: 'Title',
+      label:
+        'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s. Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
       offset: 10,
     }}
   >

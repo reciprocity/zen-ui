@@ -13,7 +13,7 @@ export const StoryWithControls = args => {
   });
   return html/*html*/ `
     <sb-zen-space no-wrap spacing="sm" horizontal-align="center">
-      <sb-zen-button variant="primary"> Button </sb-zen-button>
+      <sb-zen-button variant="blue-filled"> Button </sb-zen-button>
       <sb-zen-popover padding="md" id="control" ...="${spreadArgs(args, argTypes)}">
         <sb-zen-text size="sm">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</sb-zen-text>
       </sb-zen-popover>
@@ -24,27 +24,27 @@ export const StoryWithControls = args => {
 export const StoryPositionVariants = args => {
   return html/*html*/ `
     <sb-zen-space no-wrap padding="2xl" spacing="sm" horizontal-align="center" vertical-align="center">
-      <sb-zen-button variant="primary">left</sb-zen-button>
+      <sb-zen-button variant="blue-filled">left</sb-zen-button>
       <sb-zen-popover padding="md" position="left" style="max-width: 120px">
         <sb-zen-text size="sm">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</sb-zen-text>
       </sb-zen-popover>
-      <sb-zen-button variant="primary">bottom-start</sb-zen-button>
+      <sb-zen-button variant="blue-filled">bottom-start</sb-zen-button>
       <sb-zen-popover padding="md" position="bottom-start">
         <sb-zen-text size="sm">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</sb-zen-text>
       </sb-zen-popover>
-      <sb-zen-button variant="primary">bottom-end</sb-zen-button>
+      <sb-zen-button variant="blue-filled">bottom-end</sb-zen-button>
       <sb-zen-popover padding="md" position="bottom-end" style="position:absolute; right:0;">
         <sb-zen-text size="sm">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</sb-zen-text>
       </sb-zen-popover>
-      <sb-zen-button variant="primary">top-start</sb-zen-button>
+      <sb-zen-button variant="blue-filled">top-start</sb-zen-button>
       <sb-zen-popover padding="md" position="top-start">
         <sb-zen-text size="sm">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</sb-zen-text>
       </sb-zen-popover>
-      <sb-zen-button variant="primary">top-end</sb-zen-button>
+      <sb-zen-button variant="blue-filled">top-end</sb-zen-button>
       <sb-zen-popover padding="md" position="top-end" style="position:absolute; right:0;">
         <sb-zen-text size="sm">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</sb-zen-text>
       </sb-zen-popover>
-      <sb-zen-button variant="primary">right</sb-zen-button>
+      <sb-zen-button variant="blue-filled">right</sb-zen-button>
       <sb-zen-popover padding="md" position="right" style="max-width: 120px">
         <sb-zen-text size="sm">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</sb-zen-text>
       </sb-zen-popover>
@@ -55,15 +55,15 @@ export const StoryPositionVariants = args => {
 export const StoryTriggerEvents = args => {
   return html/*html*/ `
     <sb-zen-space spacing="sm" no-wrap horizontal-align="space-evenly" vertical-align="start" data-test="outer-element">
-      <sb-zen-button variant="primary">Click toggle</sb-zen-button>
+      <sb-zen-button variant="blue-filled">Click toggle</sb-zen-button>
       <sb-zen-popover padding="md">
         <sb-zen-text size="sm">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</sb-zen-text>
       </sb-zen-popover>
-      <sb-zen-button variant="primary">Click outside</sb-zen-button>
+      <sb-zen-button variant="blue-filled">Click outside</sb-zen-button>
       <sb-zen-popover padding="md" close-on-target-click="false">
         <sb-zen-text size="sm">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</sb-zen-text>
       </sb-zen-popover>
-      <sb-zen-button variant="primary">Hover</sb-zen-button>
+      <sb-zen-button variant="blue-filled">Hover</sb-zen-button>
       <sb-zen-popover padding="md" trigger-event="hover">
         <sb-zen-text size="sm">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</sb-zen-text>
       </sb-zen-popover>
@@ -75,7 +75,7 @@ export const StoryScrollable = args => {
   return html/*html*/ `
     <div style="height: 200px; overflow: auto;" data-test="scroll">
       <sb-zen-space no-wrap horizontal-align="center" vertical-align="center" style="height: 400px;">
-        <sb-zen-button variant="primary"> Top Start </sb-zen-button>
+        <sb-zen-button variant="blue-filled"> Top Start </sb-zen-button>
         <sb-zen-popover padding="md" position="bottom-end" visible="true" close-on-click-out="false">
           <sb-zen-text size="sm"
             >Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text
@@ -115,7 +115,7 @@ export const StoryFilters = args => {
   });
   return html/*html*/ `
     <sb-zen-space no-wrap spacing="lg" horizontal-align="start" vertical-align="top">
-      <sb-zen-button variant="primary">
+      <sb-zen-button variant="blue-filled">
         <sb-zen-icon slot="leadingIcon" id="filter" style="height:14px; align-self:center;"></sb-zen-icon>
         Filter
       </sb-zen-button>
@@ -144,11 +144,11 @@ export const StoryFilters = args => {
             <!-- value -->
             <sb-zen-input style="width: 192px;height: 35px;"></sb-zen-input>
             <!-- add group filter -->
-            <sb-zen-button variant="tertiary">
+            <sb-zen-button variant="grey-text">
               <sb-zen-icon id="plus" slot="leadingIcon"></sb-zen-icon>
             </sb-zen-button>
             <!-- remove filter -->
-            <sb-zen-button variant="tertiary">
+            <sb-zen-button variant="grey-text">
               <sb-zen-icon id="trash" slot="leadingIcon"></sb-zen-icon>
             </sb-zen-button>
           </sb-zen-space>
@@ -172,20 +172,20 @@ export const StoryFilters = args => {
             <!-- value -->
             <sb-zen-input disabled="true" style="width: 192px;height: 35px;"></sb-zen-input>
             <!-- add group filter -->
-            <sb-zen-button variant="tertiary">
+            <sb-zen-button variant="grey-text">
               <sb-zen-icon id="plus2" slot="leadingIcon"></sb-zen-icon>
             </sb-zen-button>
             <!-- remove filter -->
-            <sb-zen-button variant="tertiary">
+            <sb-zen-button variant="grey-text">
               <sb-zen-icon id="trash2" slot="leadingIcon"></sb-zen-icon>
             </sb-zen-button>
           </sb-zen-space>
           <sb-zen-space horizontal-align="start" padding="lg">
-            <sb-zen-button variant="secondary"> + Add new </sb-zen-button>
+            <sb-zen-button variant="blue-ghost"> + Add new </sb-zen-button>
           </sb-zen-space>
           <sb-zen-divider style="width:100%; margin-bottom: 0"></sb-zen-divider>
           <sb-zen-space horizontal-align="end" padding="lg" style="width:100%;">
-            <sb-zen-button variant="primary"> Apply Filter </sb-zen-button>
+            <sb-zen-button variant="blue-filled"> Apply Filter </sb-zen-button>
           </sb-zen-space>
         </div>
       </sb-zen-popover>
