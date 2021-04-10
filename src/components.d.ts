@@ -6,6 +6,7 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { StringifiedJson } from "./stories/components/color-swatch-group/color-swatch-group";
+import { SourceCodes } from "./stories/components/html-playground/html-playground";
 import { Align, AvatarData, AvatarDetailVariant, AvatarIconSize, DropdownSize, IconSize, InputSize, None, Notification, NotificationVariant, Position, Resize, Size, Spacing, SpacingShorthand, TextSize, TextState, TextVariant, TooltipVariant, TriggerEvent } from "./components/helpers/types";
 import { ButtonVariants } from "./components/zen-button/types";
 import { OptionValue } from "./components/zen-menu-item/zen-option";
@@ -14,6 +15,7 @@ import { OptionValue as OptionValue1 } from "./components/zen-menu-item/zen-opti
 import { Offsets, Placement } from "@popperjs/core";
 import { StepItem } from "./components/zen-progress-tracker/zen-progress-tracker";
 import { StepsFilter } from "./components/zen-progress-tracker/types";
+import { FlexAlign } from "./components/zen-space/zen-space";
 export namespace Components {
     interface ColorSwatch {
         /**
@@ -115,7 +117,7 @@ export namespace Components {
          */
         "userName": string;
         /**
-          * Set fifferent variants
+          * Set the style variant
          */
         "variant": AvatarDetailVariant;
     }
@@ -159,7 +161,7 @@ export namespace Components {
          */
         "initials": string;
         /**
-          * Set icon size
+          * Icon size
          */
         "size": AvatarIconSize;
         /**
@@ -1491,7 +1493,7 @@ declare namespace LocalJSX {
          */
         "userName"?: string;
         /**
-          * Set fifferent variants
+          * Set the style variant
          */
         "variant"?: AvatarDetailVariant;
     }
@@ -1535,7 +1537,7 @@ declare namespace LocalJSX {
          */
         "initials"?: string;
         /**
-          * Set icon size
+          * Icon size
          */
         "size"?: AvatarIconSize;
         /**
