@@ -1,12 +1,13 @@
 import { Config } from '@stencil/core';
 import { sass } from '@stencil/sass';
 import { reactOutputTarget } from '@stencil/react-output-target';
+import { name as packageName } from './package.json';
 
 export const config: Config = {
   namespace: 'zen-ui',
   outputTargets: [
     reactOutputTarget({
-      componentCorePackage: '..',
+      componentCorePackage: packageName,
       proxiesFile: './react/components.ts',
       includeDefineCustomElements: false,
     }),
