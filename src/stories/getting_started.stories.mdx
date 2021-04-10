@@ -54,3 +54,42 @@ Read this before consuming these components.
 ### Unique prefixes
 
 When registering ZenUI components in you application make sure that you're using a non-existent prefix to avoid any unexpected behavior by name collision.
+
+### React bindings
+
+When working with a React application, instead of manually creating wrappers for the web components, you can use this library React bindings and import the components directly into your JSX.
+
+First, install the bindings alognside the library:
+
+```bash
+yarn add @reciprocity/zen-ui @reciprocity/zen-ui-react
+```
+
+Then, setup the library and the bindings:
+
+```js
+import { defineCustomElements } from '@reciprocity/zen-ui/loader';
+import { setTagTransform } from '@reciprocity/zen-ui-react';
+
+const transformTagName = tagName => `YOUR_APP_ID-${tagName}`;
+defineCustomElements(window, { transformTagName });
+setTagTransform(transformTagName);
+```
+
+1. Since using a prefix is required, you need to set it both for the library and the bindings.
+2. The reason you need to do it "twice" it's because `defineCustomElements` supports extra options that the bindings don't.
+
+Once the library and bindings are configured, you can just create a component and import the components:
+
+```jsx
+import React from 'react';
+import { ZenDropdown, ZenOption } from '@reciprocity/zen-ui-react';
+
+export const MyDropdown = () => (
+  <ZenDropdown>
+    <ZenOption value="orange">Orange</ZenOption>
+    <ZenOption value="lemon">Lemon</ZenOption>
+    <ZenOption value="apple">Apple</ZenOption>
+  </ZenDropdown>
+);
+```
