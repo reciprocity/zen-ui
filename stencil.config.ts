@@ -8,7 +8,7 @@ export const config: Config = {
   outputTargets: [
     reactOutputTarget({
       componentCorePackage: packageName,
-      proxiesFile: './react/components.ts',
+      proxiesFile: './react/src/output/components.ts',
       includeDefineCustomElements: false,
     }),
     {
