@@ -31,6 +31,8 @@
     "stencil:start": "stencil build --dev --watch --serve",
     "stencil:watch": "stencil build --watch",
     "stencil:build": "stencil build --docs",
+    "prestencil:build": "rm -rf dist && rm -rf ./react/src/output",
+    "poststencil:build": "ts-node -O '{\"module\":\"commonjs\"}' ./react/transform",
     "stencil:test:watch": "stencil test --spec --watchAll",
     "storybook:start": "start-storybook --docs -p 6006",
     "storybook:build": "build-storybook --docs -o public --quiet",
