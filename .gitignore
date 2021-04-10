@@ -1,5 +1,6 @@
 dist/
-/react/src/output
+react/src/output
+react/dist
 www/
 loader/
 public/
