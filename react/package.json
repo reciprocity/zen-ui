@@ -1,5 +1,6 @@
 {
   "name": "@reciprocity/zen-ui-react",
+  "license": "MIT",
   "sideEffects": false,
   "version": "0.0.0",
   "description": "React bindings for @reciprocity/zen-ui",
@@ -8,11 +9,10 @@
     "url": "git+https://github.com/reciprocity/zen-ui.git"
   },
   "scripts": {
-    "build": "yarn run clean && yarn run compile",
+    "build": "yarn run clean && yarn run build:cjs && yarn run build:esm",
     "clean": "rm -rf dist",
-    "compile": "yarn run compile:cjs && yarn run compile:esm",
-    "compile:cjs": "tsc -p . -m commonjs --outDir dist/cjs",
-    "compile:esm": "tsc -p . -m es2015 --outDir dist/esm"
+    "build:cjs": "tsc -p . -m commonjs --outDir dist/cjs",
+    "build:esm": "tsc -p . -m es2015 --outDir dist/esm"
   },
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
@@ -29,7 +29,7 @@
     "typescript": "^4.2.3"
   },
   "dependencies": {
-    "@reciprocity/zen-ui": "0.0.0"
+    "@reciprocity/zen-ui": ".."
   },
   "peerDependencies": {
     "react": "^17.0.2",
