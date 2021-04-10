@@ -1,5 +1,5 @@
-import { promises as fs } from 'fs';
 import * as path from 'path';
+import { updateFile, prefixPaths } from './utils';
 
 /**
  * ==================================
@@ -87,14 +87,6 @@ type Config = typeof CONFIG;
  * ==================================
  */
 
-type UpdateFileCb = (contents: string) => Promise<string>;
-// Opens a file, updates it and saves it.
-const updateFile = async (filepath: string, fn: UpdateFileCb) => {
-  const contents = await fs.readFile(filepath, 'utf-8');
-  const updatedContents = await fn(contents);
-  await fs.writeFile(filepath, updatedContents);
-};
-
 // Generates a types import statement line.
 const getTypesImportLine = (filepath: string, fromFilepath: string, types: string[]) => {
   let typesPath = path.relative(path.dirname(fromFilepath), filepath);
@@ -112,13 +104,7 @@ const prepareConfig = (config: Config): Config => {
   const base = path.join(__dirname, config.targetPath);
   return {
     ...config,
-    paths: Object.entries(config.paths).reduce(
-      (acc, [key, value]) => ({
-        ...acc,
-        [key]: path.join(base, value),
-      }),
-      config.paths,
-    ),
+    paths: prefixPaths(base, config.paths),
   };
 };
 
