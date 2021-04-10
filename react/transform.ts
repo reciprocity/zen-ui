@@ -99,7 +99,7 @@ const getTypesImportLine = (filepath: string, fromFilepath: string, types: strin
   return `import type { ${types.join(', ')} } from '${typesPath}';`;
 };
 
-// Generates a configuration by updating its paths and prefixing them with the cwp.
+// Generates a configuration by updating its paths and prefixing them with the cwd.
 const prepareConfig = (config: Config): Config => {
   const base = path.join(__dirname, config.targetPath);
   return {
