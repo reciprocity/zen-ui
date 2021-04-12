@@ -1,5 +1,6 @@
 import { SpecPage } from '@stencil/core/testing';
 import kebabCase from 'lodash/kebabCase';
+import { jest } from '@jest/globals';
 
 type ClientPoint = { clientX: number; clientY: number };
 
@@ -18,12 +19,6 @@ export const simulateKey = (key: string, target: Element): void => {
 export const simulateClick = (target: Element, point: ClientPoint | undefined = undefined): void =>
   simulateMouse('click', target, point);
 
-export function htmlToElement(html: string): Element[] {
-  const template = document.createElement('template');
-  template.innerHTML = html.trim();
-  return Array.from(template.content.children);
-}
-
 export async function propReflectsInAttributes(page: SpecPage, props: Record<string, unknown>): Promise<boolean> {
   // Use this helper to test if all supported props are reflected in attributes
   for (const [key, value] of Object.entries(props)) {
@@ -33,3 +28,13 @@ export async function propReflectsInAttributes(page: SpecPage, props: Record<str
   }
   return true;
 }
+
+export const mutationObserverMock = (): unknown =>
+  jest.fn(function MutationObserver(callback: (a: unknown, b: unknown) => void) {
+    this.observe = jest.fn();
+    this.disconnect = jest.fn();
+    // Optionally add a trigger() method to manually trigger a change
+    this.trigger = mockedMutationsList => {
+      callback(mockedMutationsList, this);
+    };
+  });

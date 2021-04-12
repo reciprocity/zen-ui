@@ -1,5 +1,5 @@
 import { newSpecPage } from '@stencil/core/testing';
-import { htmlToElement } from '../../helpers/jest';
+import { htmlToElement } from '../../helpers/helpers';
 
 jest.useFakeTimers();
 
