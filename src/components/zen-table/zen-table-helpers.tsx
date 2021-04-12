@@ -22,10 +22,12 @@ export const cleanupTableStructure = function (table: HTMLZenTableElement): void
     return children;
   };
 
+  /**
+    Orphans: Rows whose depth is more than 1 greater from `prevSibling.depth`\
+    Rows like this could never become visible.\
+    Apprently their parent got deleted so we'd expect they'd get too.
+   */
   const removeOrphans = (rows: Rows): void => {
-    // orphans: rows whose depth is more than 1 greater from prevSibling.depth
-    // rows like this could never become visible.
-    // Apprently their parent got deleted so we'd expect they'd get too.
     for (let i = rows.length - 1; i >= 0; i--) {
       if (rows[i - 1] && rows[i].depth - rows[i - 1].depth > 1) {
         rows[i].remove();
