@@ -1,14 +1,23 @@
 import { mutationObserverMock } from '../../helpers/jest';
 global.MutationObserver = mutationObserverMock();
 
-global.console = { error: jest.fn() };
-
 import { newSpecPage } from '@stencil/core/testing';
 import { ZenTable } from '../zen-table';
 
 describe('zen-table', () => {
-  beforeEach(async () => {
+  beforeAll(() => {
+    jest.spyOn(console, 'error').mockImplementation(() => {
+      // nothing
+    });
+  });
+
+  afterEach(() => {
     global.MutationObserver.mockClear();
+    console.error.mockClear();
+  });
+
+  afterAll(() => {
+    console.error.mockRestore();
   });
 
   it('should render', async () => {
