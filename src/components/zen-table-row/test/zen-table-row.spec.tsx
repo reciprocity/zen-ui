@@ -63,7 +63,7 @@ describe('zen-table-row', () => {
     expect(expandableIcon).toBeTruthy();
 
     simulateMouse('click', expandableIcon);
-    await cleanupTableStructure(table);
+    cleanupTableStructure(table);
     expect(mainRow.expanded).toBeTruthy();
     expect(expandRow.visible).toBeTruthy();
   });
@@ -121,7 +121,7 @@ describe('zen-table-row tree functionality', () => {
   });
 
   it('should set all descendants to not visible on expand false', async () => {
-    await cleanupTableStructure(table);
+    cleanupTableStructure(table);
     expect(parentRow.visible).toBeTruthy();
     expect(secondDepthParentRow.visible).toBeTruthy();
 
@@ -179,7 +179,7 @@ describe('zen-table-row tree functionality', () => {
     const event = new Event('change', { bubbles: true, composed: true });
     checkbox.dispatchEvent(event);
     await page.waitForChanges();
-    await cleanupTableStructure(table);
+    cleanupTableStructure(table);
 
     expect(parentRow.$indeterminate).toBeTruthy();
     expect(secondDepthParentRow.$indeterminate).toBeTruthy();

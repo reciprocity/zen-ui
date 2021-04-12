@@ -1,6 +1,6 @@
 type Rows = HTMLZenTableRowElement[];
 
-export const cleanupTableStructure = async function (table: HTMLZenTableElement): Promise<void> {
+export const cleanupTableStructure = function (table: HTMLZenTableElement): void {
   const parentRows = (rows, index: number): Rows => {
     let curDepth = rows[index].depth;
     const parents = [];
