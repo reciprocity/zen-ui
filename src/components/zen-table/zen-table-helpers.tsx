@@ -67,7 +67,7 @@ export const cleanupTableStructure = function (table: HTMLZenTableElement): void
   // -------------------------------------------------------------------------
   table.$updating = true;
 
-  const rows = allRows(table);
+  const rows = getAllRows(table);
 
   // NOTE: Order of below function calls is important!!!
   removeOrphans(rows);
@@ -78,7 +78,7 @@ export const cleanupTableStructure = function (table: HTMLZenTableElement): void
   table.$updating = false;
 };
 
-export const allRows = function (table: HTMLZenTableElement): Rows {
+export const getAllRows = function (table: HTMLZenTableElement): Rows {
   const isNormalRow = (element: HTMLZenTableRowElement) => element.tagName.endsWith('-ROW') && !element.header;
 
   return Array.from(table.children).filter(n => isNormalRow(n as HTMLZenTableRowElement)) as Rows;
