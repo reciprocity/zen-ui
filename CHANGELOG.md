@@ -1,3 +1,10 @@
+## [3.2.5](https://github.com/reciprocity/zen-ui/compare/3.2.4...3.2.5) (2021-04-12)
+
+
+### Bug Fixes
+
+* **zen-progress-tracker:** labels now have white-space nowrap style ([8fe737c](https://github.com/reciprocity/zen-ui/commit/8fe737c84ce252e4c0c61553be1650133f65e5c0))
+
 ## [3.2.4](https://github.com/reciprocity/zen-ui/compare/3.2.3...3.2.4) (2021-04-12)
 
 
