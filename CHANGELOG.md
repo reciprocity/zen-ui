@@ -1,3 +1,10 @@
+## [3.2.2](https://github.com/reciprocity/zen-ui/compare/3.2.1...3.2.2) (2021-04-12)
+
+
+### Bug Fixes
+
+* **zen-space:** vertically distributed items should not have right margin ([db94404](https://github.com/reciprocity/zen-ui/commit/db94404714d890dc3679a8085333eb1ed9a4ee53))
+
 ## [3.2.1](https://github.com/reciprocity/zen-ui/compare/3.2.0...3.2.1) (2021-04-09)
 
 
