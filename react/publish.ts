@@ -1,3 +1,5 @@
+import * as path from 'path';
+import { promises as fs } from 'fs';
 import { execSync } from 'child_process';
 import { prefixPaths, updateFile } from './utils';
 import { name as mainPkgName, version as mainPkgVersion } from '../package.json';
@@ -46,7 +48,7 @@ const CONFIG = {
    * names match with the ones configured for `@amanda-mitchell/semantic-release-npm-multiple`,
    * so env vars with their info should be available in order to be used.
    */
-  registries: ['public', 'github'],
+  registries: [],
 };
 
 type Config = typeof CONFIG;
@@ -178,11 +180,42 @@ const publishPackage = async (config: Config) => {
   await configureRegistry(config); // reset the .npmrc
 };
 
-// Generates a configuration by updating its paths and prefixing them with the cwd.
-const prepareConfig = (config: Config): Config => ({
-  ...config,
-  paths: prefixPaths(config.cwd, config.paths),
-});
+type ReleasesConfig = {
+  plugins: (string | [string, any])[];
+};
+type ReleaseMultiplePlugin = [
+  string,
+  {
+    registries: {
+      [key: string]: any;
+    };
+  },
+];
+
+/**
+ * Generates a new config by reading the main package `.releaserc` and getting the names of the
+ * registries where this should be published to. It also updates all the paths by prefixing them
+ * with the cwd.
+ */
+const prepareConfig = async (config: Config): Promise<Config> => {
+  const newConfig = {
+    ...config,
+    paths: prefixPaths(config.cwd, config.paths),
+  };
+
+  const releasesFile = await fs.readFile(path.join(newConfig.paths.basePackage, '.releaserc'), 'utf-8');
+  const releasesConfig = JSON.parse(releasesFile) as ReleasesConfig;
+  const registriesPlugin = releasesConfig.plugins.find(
+    item => Array.isArray(item) && item[0].endsWith('semantic-release-npm-multiple'),
+  ) as ReleaseMultiplePlugin | null;
+  if (!registriesPlugin) {
+    console.log(`\x1b[31m💥  Unable to find the multiple registries plugin in the .relaserc\x1b[0m`);
+    process.exit(1);
+  }
+
+  newConfig.registries = Object.keys(registriesPlugin[1].registries);
+  return newConfig;
+};
 
 /**
  * ==================================
@@ -191,7 +224,8 @@ const prepareConfig = (config: Config): Config => ({
  */
 (async () => {
   const beforeTime = new Date().getTime();
-  const config = prepareConfig(CONFIG);
+  const config = await prepareConfig(CONFIG);
+  console.log({ config });
   validateRegistries(config.registries);
   if (!shouldPublish(config)) {
     process.exit(0);
