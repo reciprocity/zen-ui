@@ -155,7 +155,7 @@ const updateAndInstallDeps = async (config: Config) => {
 
   run(config, 'rm -rf node_modules && yarn --frozen-lockfile');
   await updatePackageJson(config, async contents => {
-    contents.dependencies[mainPkgName] = mainPkgVersion;
+    contents.dependencies[mainPkgName] = `^${mainPkgVersion}`;
     return contents;
   });
 };
