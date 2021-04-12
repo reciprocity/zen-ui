@@ -65,9 +65,14 @@ export function getArgTypes(compData) {
     //   Warning: `value` prop on `input` should not be null
     //   Workaround: Change number type to string
     const storybookType = ['enum', 'number'].includes(tip) ? 'string' : tip;
+    const isReadonly = prop.name.startsWith('$');
+    const description = isReadonly
+      ? `<div class="readonly-prop">${prop.docs}</div>`
+      : prop.docs;
 
     argTypes[prop.name] = {
-      description: prop.docs,
+      description: description,
+      attr: prop.attr,
       type: {
         name: storybookType,
         required: prop.required },
@@ -80,6 +85,10 @@ export function getArgTypes(compData) {
       argTypes[prop.name].control = {
         type: 'select',
         options: prop.type.split('|').map(n => cleanStrValue(n))
+      };
+    } else if (tip === 'number') {
+      argTypes[prop.name].control = {
+        type: 'number'
       };
     }
     argTypes[prop.name].defaultValue = getDefaultValue(argTypes[prop.name]);
@@ -113,7 +122,17 @@ export function spreadArgs(args, argTypes) {
   }
 
   if (!argTypes) throw('argTypes.js: spreadArgs missing argTypes param');
-  const attrs = camelKeysToKebab(args);
+
+  const propsToAttributes = Object.entries(args).reduce(
+    (acc, [prop, value]) => ({
+      ...acc,
+      [argTypes[prop] ? argTypes[prop].attr : prop]: value,
+    }),
+    {}
+  );
+
+  const attrs = camelKeysToKebab(propsToAttributes);
+
   for (const key in attrs) {
     if (!attrs.hasOwnProperty(key)) continue;
     attrs[key] = attrs[key] === false && !isTrueByDefault(key) ? null : attrs[key];

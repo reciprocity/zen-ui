@@ -115,7 +115,7 @@ export namespace Components {
          */
         "userName": string;
         /**
-          * Set fifferent variants
+          * Set the style variant
          */
         "variant": AvatarDetailVariant;
     }
@@ -159,7 +159,7 @@ export namespace Components {
          */
         "initials": string;
         /**
-          * Set icon size
+          * Icon size
          */
         "size": AvatarIconSize;
         /**
@@ -1483,7 +1483,7 @@ declare namespace LocalJSX {
          */
         "userName"?: string;
         /**
-          * Set fifferent variants
+          * Set the style variant
          */
         "variant"?: AvatarDetailVariant;
     }
@@ -1527,7 +1527,7 @@ declare namespace LocalJSX {
          */
         "initials"?: string;
         /**
-          * Set icon size
+          * Icon size
          */
         "size"?: AvatarIconSize;
         /**
