@@ -52,7 +52,7 @@ describe('Avatar group visual tests', () => {
 
   it('Verifies ' + `${stories[2]}`, () => {
     cy.get(`#${stories[2]}`).matchImageSnapshot('Avatar group - medium icons');
-    cy.get('#maxIcons').clear().type('3{enter}');
+    cy.get('[name=maxIcons]').clear().type('3{enter}');
     cy.contains('tr', 'size').find('select').select('lg');
     cy.get('#avatar-group-control').should('have.attr', 'size', 'lg');
     cy.get(`#${stories[2]}`).matchImageSnapshot('Avatar group - large icons with 3 icons');
