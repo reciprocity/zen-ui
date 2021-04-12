@@ -77,7 +77,8 @@ $aligns: (
 // Spacing --------------------------------------
 
 @each $key, $value in $spacings {
-  :host([spacing='#{$key}']) ::slotted(*:not(:last-child)) {
+  :host([spacing='#{$key}'][vertical='false']) ::slotted(*:not(:last-child)),
+  :host([spacing='#{$key}']:not([vertical])) ::slotted(*:not(:last-child)) {
     margin-right: #{$value};
   }
 }
