@@ -31,7 +31,7 @@ export class ZenTableRow {
   @Prop({ reflect: true }) readonly expanded: boolean = false;
 
   /** Some but not all children selected */
-  @Prop({ attribute: 'indeterminate' }) readonly $indeterminate = false;
+  @Prop({ attribute: 'indeterminate' }) readonly $indeterminate: boolean = false;
 
   /** Define depth to make nested items */
   @Prop() readonly depth: number = 0;
@@ -40,7 +40,7 @@ export class ZenTableRow {
   @Prop() readonly header: boolean = false;
 
   /** Row remains fixed at the top during scroll (mainly used for headers) */
-  @Prop() readonly sticky = false;
+  @Prop() readonly sticky: boolean = false;
 
   /** Row selected */
   @Event() rowSelectChanged: EventEmitter<boolean>;

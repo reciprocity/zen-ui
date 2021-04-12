@@ -867,15 +867,15 @@ export namespace Components {
         /**
           * True if it has any child row
          */
-        "$expandable": false;
+        "$expandable": boolean;
         /**
           * Some but not all children selected
          */
-        "$indeterminate": false;
+        "$indeterminate": boolean;
         /**
           * True when parent row is expanded or if it's root row
          */
-        "$visible": true;
+        "$visible": boolean;
         /**
           * Define depth to make nested items
          */
@@ -899,7 +899,7 @@ export namespace Components {
         /**
           * Row remains fixed at the top during scroll (mainly used for headers)
          */
-        "sticky": false;
+        "sticky": boolean;
     }
     interface ZenTabs {
         /**
@@ -2235,15 +2235,15 @@ declare namespace LocalJSX {
         /**
           * True if it has any child row
          */
-        "$expandable"?: false;
+        "$expandable"?: boolean;
         /**
           * Some but not all children selected
          */
-        "$indeterminate"?: false;
+        "$indeterminate"?: boolean;
         /**
           * True when parent row is expanded or if it's root row
          */
-        "$visible"?: true;
+        "$visible"?: boolean;
         /**
           * Define depth to make nested items
          */
@@ -2271,7 +2271,7 @@ declare namespace LocalJSX {
         /**
           * Row remains fixed at the top during scroll (mainly used for headers)
          */
-        "sticky"?: false;
+        "sticky"?: boolean;
     }
     interface ZenTabs {
         /**
