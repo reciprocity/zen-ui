@@ -877,21 +877,9 @@ export namespace Components {
          */
         "expanded": boolean;
         /**
-          * Returns true if all children rows are selected *
-         */
-        "hasAllRowsSelected": () => Promise<boolean>;
-        /**
-          * Returns true if descendent rows have a row selected *
-         */
-        "hasRowsSelected": () => Promise<boolean>;
-        /**
           * Row represents header
          */
         "header": boolean;
-        /**
-          * Returns elements parent row (depth -1) *
-         */
-        "parentRow": () => Promise<HTMLZenTableRowElement>;
         /**
           * Show checkbox (read-only)
          */

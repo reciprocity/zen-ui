@@ -1,4 +1,6 @@
-let cells: NodeListOf<HTMLZenTableCellElement> = [];
+import { expect } from '@jest/globals';
+
+let cells: NodeListOf<HTMLZenTableCellElement>;
 
 import * as helpers from '../../helpers/helpers';
 helpers.getDefaultSlotContent = jest.fn(() => cells);
@@ -46,11 +48,12 @@ describe('zen-table-row', () => {
           </zen-table-row>
         </zen-table>`,
     });
-    const table = page.root as HTMLZenTable;
+    const table = page.root as HTMLZenTableElement;
     const mainRow = page.root.querySelector('zen-table-row') as HTMLZenTableRowElement;
     cells = mainRow.querySelectorAll('zen-table-cell');
     mainRow.selectable = true;
     await page.waitForChanges();
+    await cleanupTableStructure(table);
 
     expect(mainRow.visible).toBeTruthy();
 
