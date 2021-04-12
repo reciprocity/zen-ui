@@ -1,5 +1,7 @@
+type Rows = HTMLZenTableRowElement[];
+
 export const cleanupTableStructure = async function (table: HTMLZenTableElement): Promise<void> {
-  function parentRows(rows, index: number): HTMLZenTableRowElement[] {
+  const parentRows = (rows, index: number): Rows => {
     let curDepth = rows[index].depth;
     const parents = [];
     for (let i = index - 1; i >= 0; i--) {
@@ -8,9 +10,9 @@ export const cleanupTableStructure = async function (table: HTMLZenTableElement)
       parents.push(rows[i]);
     }
     return parents;
-  }
+  };
 
-  function descendentRows(rows, index: number): HTMLZenTableRowElement[] {
+  const descendentRows = (rows, index: number): Rows => {
     const children = [];
     const myDepth = rows[index].depth;
     for (let i = index + 1; i < rows.length; i++) {
@@ -18,9 +20,9 @@ export const cleanupTableStructure = async function (table: HTMLZenTableElement)
       children.push(rows[i]);
     }
     return children;
-  }
+  };
 
-  function removeOrphans(rows) {
+  const removeOrphans = (rows: Rows): void => {
     // orphans: rows whose depth is more than 1 greater from prevSibling.depth
     // rows like this could never become visible.
     // Apprently their parent got deleted so we'd expect they'd get too.
@@ -30,25 +32,25 @@ export const cleanupTableStructure = async function (table: HTMLZenTableElement)
         delete rows[i];
       }
     }
-  }
+  };
 
-  function updateExapndableProps(rows) {
+  const updateExapndableProps = (rows: Rows): void => {
     for (let i = 0; i < rows.length; i++) {
       rows[i].expandable = rows[i + 1] && rows[i + 1].depth > rows[i].depth;
       if (!rows[i].expandable && rows[i].expanded) {
         rows[i].expanded = false;
       }
     }
-  }
+  };
 
-  function updateVisibleProps(rows) {
+  const updateVisibleProps = (rows: Rows): void => {
     for (let i = 0; i < rows.length; i++) {
       const parents = parentRows(rows, i);
       rows[i].visible = !parents.length || parents.every(n => n.expanded);
     }
-  }
+  };
 
-  function updateParentCheckboxes(rows) {
+  const updateParentCheckboxes = (rows: Rows): void => {
     for (let i = 0; i < rows.length; i++) {
       const descendents = descendentRows(rows, i);
       if (!descendents.length) continue;
@@ -58,7 +60,7 @@ export const cleanupTableStructure = async function (table: HTMLZenTableElement)
       rows[i].$indeterminate = !allSelected && someSelected;
       rows[i].selected = allSelected;
     }
-  }
+  };
 
   // -------------------------------------------------------------------------
   table.$updating = true;
@@ -74,9 +76,8 @@ export const cleanupTableStructure = async function (table: HTMLZenTableElement)
   table.$updating = false;
 };
 
-export const allRows = function (table: HTMLZenTableElement): HTMLZenTableRowElement[] {
-  function isNormalRow(element: HTMLZenTableRowElement) {
-    return element.tagName.endsWith('-ROW') && !element.header;
-  }
-  return Array.from(table.children).filter(n => isNormalRow(n as HTMLZenTableRowElement)) as HTMLZenTableRowElement[];
+export const allRows = function (table: HTMLZenTableElement): Rows {
+  const isNormalRow = (element: HTMLZenTableRowElement) => element.tagName.endsWith('-ROW') && !element.header;
+
+  return Array.from(table.children).filter(n => isNormalRow(n as HTMLZenTableRowElement)) as Rows;
 };
