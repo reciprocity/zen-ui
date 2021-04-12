@@ -80,7 +80,7 @@ export const cleanupTableStructure = function (table: HTMLZenTableElement): void
 
   const updateHeaderSelectCheckbox = (header, rows) => {
     const allSelected = rows.length && rows.every(n => n.selected);
-    const someSelected = rows.some(n => n.selected);
+    const someSelected = !allSelected && rows.some(n => n.selected);
 
     header.$indeterminate = !allSelected && someSelected;
     header.selected = allSelected;
