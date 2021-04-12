@@ -1,3 +1,10 @@
+## [3.2.4](https://github.com/reciprocity/zen-ui/compare/3.2.3...3.2.4) (2021-04-12)
+
+
+### Bug Fixes
+
+* **zen-tabs:** fix that tabs stretch full width ([995f32e](https://github.com/reciprocity/zen-ui/commit/995f32e99506808f5eb004aabcd9291ce201ab78))
+
 ## [3.2.3](https://github.com/reciprocity/zen-ui/compare/3.2.2...3.2.3) (2021-04-12)
 
 
