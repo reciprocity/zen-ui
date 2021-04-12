@@ -1,5 +1,5 @@
 import { mutationObserverMock } from '../../helpers/jest';
-global.MutationObserver = mutationObserverMock();
+const originalMutationObserver = global.MutationObserver;
 
 import { newSpecPage } from '@stencil/core/testing';
 import { ZenTable } from '../zen-table';
@@ -11,8 +11,12 @@ describe('zen-table', () => {
     });
   });
 
+  beforeEach(() => {
+    global.MutationObserver = mutationObserverMock();
+  });
+
   afterEach(() => {
-    global.MutationObserver.mockClear();
+    global.MutationObserver = originalMutationObserver;
     console.error.mockClear();
   });
 
