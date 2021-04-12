@@ -1,3 +1,12 @@
+## [3.2.3](https://github.com/reciprocity/zen-ui/compare/3.2.2...3.2.3) (2021-04-12)
+
+
+### Bug Fixes
+
+* non-selectable and non-expandable child row should still have left padding ([898120d](https://github.com/reciprocity/zen-ui/commit/898120d353c80fb589833c8b7d3097d56390159e))
+* **zen-table:** expandable and visible props are always correctly calculated ([6a7706a](https://github.com/reciprocity/zen-ui/commit/6a7706a8242afbfe24779c88a3928ef4458ceb1e))
+* **zen-table:** selected and indeterminate props are always correctly calculated ([feb73b9](https://github.com/reciprocity/zen-ui/commit/feb73b915f1e3980be20b919ded4974826c8cb52))
+
 ## [3.2.2](https://github.com/reciprocity/zen-ui/compare/3.2.1...3.2.2) (2021-04-12)
 
 
