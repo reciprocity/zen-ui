@@ -50,10 +50,10 @@ export const StoryMultipleModals = () => {
     document.querySelector('#editor').show = false;
   }
   return html/*html*/ `
-    <div style="display: flex; flex-direction: row;">
+    <sb-zen-space spacing="md">
       <sb-zen-button @click="${showEditor}">Show Editor</sb-zen-button>
-      <sb-zen-button @click="${showConfirm}" class="ml-4">Show Confirmation</sb-zen-button>
-    </div>
+      <sb-zen-button @click="${showConfirm}">Show Confirmation</sb-zen-button>
+    </sb-zen-space>
     <sb-zen-modal id="editor" label="Risk score editor" @cancel="${closeEditor}">
       <sb-zen-text>This is a modal window editor example.</sb-zen-text>
       <sb-zen-space spacing="sm" vertical>
@@ -62,9 +62,11 @@ export const StoryMultipleModals = () => {
         <sb-zen-text variant="support"> This field should be unique </sb-zen-text>
       </sb-zen-space>
       <div slot="footer">
-        <sb-zen-button @click="${closeEditor}" variant="blue-ghost">Cancel</sb-zen-button>
-        <sb-zen-button @click="${showConfirm}" class="ml-4" variant="blue-ghost">Delete</sb-zen-button>
-        <sb-zen-button @click="${closeEditor}" class="ml-4">Accept</sb-zen-button>
+        <sb-zen-space spacing="md">
+          <sb-zen-button @click="${closeEditor}" variant="blue-ghost">Cancel</sb-zen-button>
+          <sb-zen-button @click="${showConfirm}" variant="blue-ghost">Delete</sb-zen-button>
+          <sb-zen-button @click="${closeEditor}">Accept</sb-zen-button>
+        </sb-zen-space>
       </div>
     </sb-zen-modal>
     <sb-zen-modal

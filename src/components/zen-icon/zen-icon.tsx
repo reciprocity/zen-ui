@@ -5,15 +5,8 @@ import { parsePadding } from '../helpers/helpers';
 
 function renderIcon(icon: IconDefinition): HTMLElement {
   const [width, height, , , svg] = icon.icon;
-  const classes = {
-    'svg-inline--fa': true,
-    'fa-w-20': true,
-    'mr-3': true,
-    [`fa-${icon.iconName}`]: true,
-  };
   return (
     <svg
-      class={classes}
       aria-hidden="true"
       focusable="false"
       data-prefix="fal"
