@@ -1,3 +1,10 @@
+## [3.3.12](https://github.com/reciprocity/zen-ui/compare/3.3.11...3.3.12) (2021-04-13)
+
+
+### Bug Fixes
+
+* **react:** add public access for NPM ([004e537](https://github.com/reciprocity/zen-ui/commit/004e53796eda8c073762f24873f59be3a5557fbb))
+
 ## [3.3.11](https://github.com/reciprocity/zen-ui/compare/3.3.10...3.3.11) (2021-04-13)
 
 
