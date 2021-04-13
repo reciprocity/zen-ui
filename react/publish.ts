@@ -119,7 +119,7 @@ const configureRegistry = ({ paths }: Config, registry: RegistryInfo | null = nu
 
 // Validates the latest commit message to ensure whether or not to publish the package.
 const shouldPublish = (config: Config): boolean =>
-  !!/chore\(release\):\s*([\d\.]+)\s*/.exec(run(config, 'git log -1 --oneline', false));
+  !!/chore\(release\):\s*([\d\.]+)\s*/.exec(run(config, 'git log -1 --oneline'));
 
 type PackageJson = {
   name: string;
