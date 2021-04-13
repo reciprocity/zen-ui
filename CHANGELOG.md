@@ -1,3 +1,10 @@
+## [3.3.1](https://github.com/reciprocity/zen-ui/compare/3.3.0...3.3.1) (2021-04-13)
+
+
+### Bug Fixes
+
+* first row should have top blue border when selected ([a250dfc](https://github.com/reciprocity/zen-ui/commit/a250dfc12d31d090db45f4968294e7dd7add55da))
+
 # [3.3.0](https://github.com/reciprocity/zen-ui/compare/3.2.5...3.3.0) (2021-04-13)
 
 
