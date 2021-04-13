@@ -83,7 +83,7 @@ const getRegistryVarNames = (name: string): RegistryVariables => {
 const validateRegistries = (names: string[]): void => {
   names.forEach(name => {
     const vars = getRegistryVarNames(name);
-    const missing = Object.keys(vars).find(varName => !process.env[varName]);
+    const missing = Object.keys(vars).find(varName => !process.env[vars[varName]]);
     if (missing) {
       console.log(`\x1b[31m💥  Missing '${vars[missing]}' environment variable\x1b[0m`);
       process.exit(1);
