@@ -8,6 +8,9 @@
     "type": "git",
     "url": "git+https://github.com/reciprocity/zen-ui.git"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "yarn run clean && yarn run build:cjs && yarn run build:esm",
     "clean": "rm -rf dist",
