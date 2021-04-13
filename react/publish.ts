@@ -187,7 +187,7 @@ const publishPackage = async (config: Config) => {
         process.env.NPM_TOKEN = registry.token;
         const originalRegistry = process.env.NPM_CONFIG_REGISTRY;
         process.env.NPM_CONFIG_REGISTRY = registry.url;
-        run(config, `npm publish --registry ${registry.url}`);
+        run(config, 'npm publish');
         process.env.NPM_TOKEN = originalToken;
         process.env.NPM_CONFIG_REGISTRY = originalRegistry;
       }),
