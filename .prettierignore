@@ -9,3 +9,4 @@ loader
 src/components/**/*.md
 src/stories/components/**/*.md
 components.d.ts
+react/src/**

@@ -3,7 +3,7 @@ import { Size, None, SpacingShorthand, Spacing } from '../helpers/types';
 import { parsePadding } from '../helpers/helpers';
 import merge from 'lodash/merge';
 
-type FlexAlign =
+export type FlexAlign =
   | 'start'
   | 'end'
   | 'center'

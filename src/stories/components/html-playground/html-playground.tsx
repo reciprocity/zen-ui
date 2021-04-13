@@ -12,7 +12,7 @@ declare global {
   }
 }
 
-interface SourceCodes {
+export interface SourceCodes {
   js: string;
   vue: string;
 }
