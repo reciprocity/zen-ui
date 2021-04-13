@@ -13,7 +13,7 @@
 }
 
 :host([variant='shadow']) {
-  box-shadow: 0 0 8px $color-gray-200;
+  box-shadow: $shadow-drop-card;
 }
 
 :host([variant='default']) {
