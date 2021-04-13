@@ -1,3 +1,10 @@
+## [3.3.9](https://github.com/reciprocity/zen-ui/compare/3.3.8...3.3.9) (2021-04-13)
+
+
+### Bug Fixes
+
+* **react:** use env vars ([54500db](https://github.com/reciprocity/zen-ui/commit/54500db7697495ea78174abc384ac2608bd5e5ed))
+
 ## [3.3.8](https://github.com/reciprocity/zen-ui/compare/3.3.7...3.3.8) (2021-04-13)
 
 
