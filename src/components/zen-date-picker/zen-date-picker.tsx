@@ -15,7 +15,6 @@ import {
   faChevronLeft,
   faChevronRight,
   faChevronDoubleRight,
-  faTimes,
 } from '@fortawesome/pro-regular-svg-icons';
 import { applyPrefix } from '../helpers/helpers';
 import { InputSize } from '../helpers/types';
@@ -85,7 +84,7 @@ export class ZenDatePicker {
     if (isValid(parsedDate)) {
       this.value = parsedDate;
     } else if (this.allowEmpty) {
-      this.clearDate();
+      this.value = null;
       return;
     } else {
       this.value = helpers.today();
@@ -216,11 +215,6 @@ export class ZenDatePicker {
     this.opened = popup.visible;
   }
 
-  onClearClick(event: Event): void {
-    this.clearDate();
-    event.stopPropagation();
-  }
-
   componentDidLoad(): void {
     if (this.formattedDate !== 'null' && this.formattedDate !== null) {
       this.formattedDateChanged(this.formattedDate);
@@ -245,7 +239,7 @@ export class ZenDatePicker {
           placeholder={this.placeholder}
           value={this.formattedDate}
           has-focus={this.opened}
-          clear-button="false"
+          clear-button={this.allowEmpty ? 'true' : 'false'}
           onChange={e => this.onInputChange(e)}
           size={this.size}
         >
@@ -256,16 +250,6 @@ export class ZenDatePicker {
             class="icon"
             icon={faCalendarAlt}
           ></ZenIcon>
-          {this.allowEmpty && (
-            <ZenIcon
-              slot="trailingSlot"
-              padding="md md md none"
-              class="icon clear"
-              icon={faTimes}
-              size={iconSize}
-              onMousedown={event => this.onClearClick(event)}
-            ></ZenIcon>
-          )}
         </ZenInput>
         <ZenPopover
           class="calendar"
