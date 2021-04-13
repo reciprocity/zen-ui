@@ -10,28 +10,19 @@ const argTypes = getArgTypes(compData);
 
 <Meta title="Containers/Card" component="zen-card" argTypes={argTypes} />
 
+export const content =
+  'Elementum rutrum sapien faucibus netus quisque eu ornare pulvinar dui, ipsum scelerisque volutpat ullamcorper suspendisse nunc mi torquent, per taciti tempus vel convallis dictumst cubilia sit. Fames porttitor sodales consectetur suscipit in sapien, proin eget etiam blandit elit sociis, euismod bibendum faucibus dolor himenaeos. Donec aliquet curabitur nam pellentesque felis ligula metus egestas, at volutpat urna vitae velit varius dolor bibendum dictumst, lacinia cubilia justo consequat sed consectetur laoreet.';
+
 export const Story1 = () => {
   return html/*html*/ `
     <sb-zen-space vertical spacing="lg" horizontal-align="center">
       <sb-zen-text bold>Default variant</sb-zen-text>
       <sb-zen-card>
-        <sb-zen-text>
-          Elementum rutrum sapien faucibus netus quisque eu ornare pulvinar dui, ipsum scelerisque volutpat ullamcorper
-          suspendisse nunc mi torquent, per taciti tempus vel convallis dictumst cubilia sit. Fames porttitor sodales
-          consectetur suscipit in sapien, proin eget etiam blandit elit sociis, euismod bibendum faucibus dolor
-          himenaeos. Donec aliquet curabitur nam pellentesque felis ligula metus egestas, at volutpat urna vitae velit
-          varius dolor bibendum dictumst, lacinia cubilia justo consequat sed consectetur laoreet.
-        </sb-zen-text>
+        <sb-zen-text> ${content} </sb-zen-text>
       </sb-zen-card>
       <sb-zen-text bold>Shadow variant</sb-zen-text>
       <sb-zen-card variant="shadow">
-        <sb-zen-text>
-          Elementum rutrum sapien faucibus netus quisque eu ornare pulvinar dui, ipsum scelerisque volutpat ullamcorper
-          suspendisse nunc mi torquent, per taciti tempus vel convallis dictumst cubilia sit. Fames porttitor sodales
-          consectetur suscipit in sapien, proin eget etiam blandit elit sociis, euismod bibendum faucibus dolor
-          himenaeos. Donec aliquet curabitur nam pellentesque felis ligula metus egestas, at volutpat urna vitae velit
-          varius dolor bibendum dictumst, lacinia cubilia justo consequat sed consectetur laoreet.
-        </sb-zen-text>
+        <sb-zen-text> ${content} </sb-zen-text>
       </sb-zen-card>
     </sb-zen-space>
   `;
@@ -40,26 +31,14 @@ export const Story1 = () => {
 export const Story2 = () => {
   return html/*html*/ `
     <sb-zen-card disabled>
-      <sb-zen-text>
-        Elementum rutrum sapien faucibus netus quisque eu ornare pulvinar dui, ipsum scelerisque volutpat ullamcorper
-        suspendisse nunc mi torquent, per taciti tempus vel convallis dictumst cubilia sit. Fames porttitor sodales
-        consectetur suscipit in sapien, proin eget etiam blandit elit sociis, euismod bibendum faucibus dolor himenaeos.
-        Donec aliquet curabitur nam pellentesque felis ligula metus egestas, at volutpat urna vitae velit varius dolor
-        bibendum dictumst, lacinia cubilia justo consequat sed consectetur laoreet.
-      </sb-zen-text>
+      <sb-zen-text> ${content} </sb-zen-text>
     </sb-zen-card>
   `;
 };
 
 export const StoryWithControls = args => html/*html*/ `
   <sb-zen-card id="card-control" ...="${spreadArgs(args, argTypes)}">
-    <sb-zen-text>
-      Elementum rutrum sapien faucibus netus quisque eu ornare pulvinar dui, ipsum scelerisque volutpat ullamcorper
-      suspendisse nunc mi torquent, per taciti tempus vel convallis dictumst cubilia sit. Fames porttitor sodales
-      consectetur suscipit in sapien, proin eget etiam blandit elit sociis, euismod bibendum faucibus dolor himenaeos.
-      Donec aliquet curabitur nam pellentesque felis ligula metus egestas, at volutpat urna vitae velit varius dolor
-      bibendum dictumst, lacinia cubilia justo consequat sed consectetur laoreet.
-    </sb-zen-text>
+    <sb-zen-text> ${content} </sb-zen-text>
   </sb-zen-card>
   ${logEvents('#card-control', getComponentData('zen-card'))}
 `;
