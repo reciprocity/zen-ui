@@ -1,3 +1,10 @@
+## [3.3.4](https://github.com/reciprocity/zen-ui/compare/3.3.3...3.3.4) (2021-04-13)
+
+
+### Bug Fixes
+
+* **react:** load the env vars on the publis script ([fab2fa3](https://github.com/reciprocity/zen-ui/commit/fab2fa3f4763da7b14cb284ece62a27a72435c4b))
+
 ## [3.3.3](https://github.com/reciprocity/zen-ui/compare/3.3.2...3.3.3) (2021-04-13)
 
 
