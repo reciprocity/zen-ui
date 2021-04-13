@@ -1,3 +1,10 @@
+## [3.3.11](https://github.com/reciprocity/zen-ui/compare/3.3.10...3.3.11) (2021-04-13)
+
+
+### Bug Fixes
+
+* **react:** use the right registry path ([8a513a9](https://github.com/reciprocity/zen-ui/commit/8a513a9d85acad693ecd7a247db7d943b32f9a90))
+
 ## [3.3.10](https://github.com/reciprocity/zen-ui/compare/3.3.9...3.3.10) (2021-04-13)
 
 
