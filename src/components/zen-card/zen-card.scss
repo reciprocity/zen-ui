@@ -3,19 +3,25 @@
 
 :host {
   display: block;
-
-  border: 1px solid $color-gray-200;
   border-radius: 2px;
-  cursor: pointer;
-  transition: box-shadow $transition-visibility;
-}
-
-:host(:hover) {
-  box-shadow: $shadow-drop-200;
 }
 
 :host([disabled]) {
   cursor: default;
   opacity: 0.5;
   pointer-events: none;
+}
+
+:host([variant='shadow']) {
+  box-shadow: 0 0 8px $color-gray-200;
+}
+
+:host([variant='default']) {
+  transition: box-shadow $transition-visibility;
+  border: 1px solid $color-gray-200;
+  cursor: pointer;
+}
+
+:host([variant='default']:hover) {
+  box-shadow: $shadow-drop-200;
 }

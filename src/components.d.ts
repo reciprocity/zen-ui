@@ -6,7 +6,7 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { StringifiedJson } from "./stories/components/color-swatch-group/color-swatch-group";
-import { Align, AvatarData, AvatarDetailVariant, AvatarIconSize, DropdownSize, IconSize, InputSize, None, Notification, NotificationVariant, Position, Resize, Size, Spacing, SpacingShorthand, TextSize, TextState, TextVariant, TooltipVariant, TriggerEvent } from "./components/helpers/types";
+import { Align, AvatarData, AvatarDetailVariant, AvatarIconSize, CardVariant, DropdownSize, IconSize, InputSize, None, Notification, NotificationVariant, Position, Resize, Size, Spacing, SpacingShorthand, TextSize, TextState, TextVariant, TooltipVariant, TriggerEvent } from "./components/helpers/types";
 import { ButtonVariants } from "./components/zen-button/types";
 import { OptionValue } from "./components/zen-menu-item/zen-option";
 import { IconDefinition } from "@fortawesome/pro-light-svg-icons";
@@ -220,6 +220,10 @@ export namespace Components {
           * Skipped
          */
         "paddingTop": Spacing;
+        /**
+          * Color variant of the button
+         */
+        "variant": CardVariant;
     }
     interface ZenCheckbox {
         /**
@@ -1588,6 +1592,10 @@ declare namespace LocalJSX {
           * Skipped
          */
         "paddingTop"?: Spacing;
+        /**
+          * Color variant of the button
+         */
+        "variant"?: CardVariant;
     }
     interface ZenCheckbox {
         /**
