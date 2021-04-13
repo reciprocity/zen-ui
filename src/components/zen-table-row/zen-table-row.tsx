@@ -1,4 +1,4 @@
-import { h, Component, Host, Prop, Element, Event, EventEmitter, Method, Watch } from '@stencil/core';
+import { h, Component, Host, Prop, Element, Event, EventEmitter, Watch } from '@stencil/core';
 import { getDefaultSlotContent } from '../helpers/helpers';
 
 /**
@@ -15,32 +15,35 @@ export class ZenTableRow {
 
   @Element() host: HTMLZenTableRowElement;
 
-  /** Visible if no depth or parent.expanded */
-  @Prop({ reflect: true, mutable: true }) visible = true;
+  /** True when parent row is expanded or if it's root row */
+  @Prop({ reflect: true, attribute: 'visible' }) readonly $visible: boolean = true;
 
-  /** Can be expanded (if has children) */
-  @Prop({ reflect: true, mutable: true }) expandable = false;
+  /** True if it has any child row */
+  @Prop({ reflect: true, attribute: 'expandable' }) readonly $expandable: boolean = false;
 
-  /** Show checkbox (read-only) */
+  /** Show checkbox */
   @Prop({ reflect: true }) readonly selectable: boolean = false;
 
-  /** Is row selected */
-  @Prop({ reflect: true, mutable: true }) selected = false;
+  /** If checkbox is checked */
+  @Prop({ reflect: true }) readonly selected: boolean = false;
 
-  /** Is row expanded */
+  /** If row is currently expanded */
   @Prop({ reflect: true }) readonly expanded: boolean = false;
 
-  /** Checkbox indeterminate state (Won't update children)  */
-  @Prop({ mutable: true }) $indeterminate = false;
+  /** Some but not all children selected */
+  @Prop({ attribute: 'indeterminate' }) readonly $indeterminate: boolean = false;
 
-  /** Depth position of row (read-only) */
+  /** Define depth to make nested items */
   @Prop() readonly depth: number = 0;
 
   /** Row represents header */
   @Prop() readonly header: boolean = false;
 
   /** Row remains fixed at the top during scroll (mainly used for headers) */
-  @Prop() readonly sticky = false;
+  @Prop() readonly sticky: boolean = false;
+
+  /** Row is placed right after header (auto calculated) */
+  @Prop() readonly $afterHeader: boolean = false;
 
   /** Row selected */
   @Event() rowSelectChanged: EventEmitter<boolean>;
@@ -50,7 +53,7 @@ export class ZenTableRow {
     this.setCellsProp('$selectable', selectable);
   }
 
-  @Watch('expandable')
+  @Watch('$expandable')
   async expandableChanged(expandable: boolean): Promise<void> {
     this.setCellsProp('$expandable', expandable);
   }
@@ -62,11 +65,12 @@ export class ZenTableRow {
 
   @Watch('header')
   async headerChanged(header: boolean): Promise<void> {
-    this.stopChildObserver();
-    if (header) {
-      this.startChildObserver();
-    }
     this.setCellsProp('$header', header);
+  }
+
+  @Watch('$afterHeader')
+  async afterHeaderChanged(afterHeader: boolean): Promise<void> {
+    this.setCellsProp('$afterHeader', afterHeader);
   }
 
   @Watch('sticky')
@@ -83,80 +87,16 @@ export class ZenTableRow {
   async selectedChanged(selected: boolean): Promise<void> {
     this.setCellsProp('$selected', selected);
 
-    // Set rows children selected state
-    if (this.header || this.expandable) {
-      this.rowChildren().forEach(n => (n.selected = selected));
-    }
+    const table = this.host.parentElement as HTMLZenTableElement;
+    if (table.$updating) return;
 
-    if (this.header) return;
-
-    // Set parents rows checkbox indeterminate state
-    let parentRow = await this.parentRow();
-    try {
-      while (parentRow && parentRow.selectable && parentRow.expandable) {
-        const hasAllSelected = await parentRow.hasAllRowsSelected();
-        const hasRowsSelected = await parentRow.hasRowsSelected();
-
-        if (!hasRowsSelected) {
-          parentRow.selected = false;
-        } else if (hasAllSelected) {
-          parentRow.selected = true;
-        }
-        parentRow.$indeterminate = hasRowsSelected && !hasAllSelected;
-
-        parentRow = await parentRow.parentRow();
-      }
-
-      // Emit event that header checkbox state can be applied
-      this.rowSelectChanged.emit(this.selected);
-    } catch (error) {
-      // todo: this happens on jest tests. Should be fixed some day...
-      console.log(`error ZenTableCell.selectedChanged()`);
-    }
+    // Select each descendent row:
+    this.rowDescendants().forEach(n => (n.selected = selected));
   }
 
   @Watch('expanded')
   async expandedChanged(expanded: boolean): Promise<void> {
     this.setCellsProp('$expanded', expanded);
-
-    // Set rows children/descendents expanded state
-    if (this.expandable && expanded) {
-      // On expanding set only direct children to visible
-      this.rowChildren().forEach(n => {
-        n.visible = true;
-      });
-    } else {
-      this.rowDescendants().forEach(n => {
-        // On closing set all descendants to not visible
-        n.visible = false;
-        n.expanded = false;
-      });
-    }
-  }
-
-  /** Returns true if descendent rows have a row selected **/
-  @Method()
-  async hasRowsSelected(): Promise<boolean> {
-    return this.rowDescendants().some(row => row.selected);
-  }
-
-  /** Returns true if all children rows are selected **/
-  @Method()
-  async hasAllRowsSelected(): Promise<boolean> {
-    return this.rowChildren().every(row => row.selected && !row.$indeterminate);
-  }
-
-  /** Returns elements parent row (depth -1) **/
-  @Method()
-  async parentRow(): Promise<HTMLZenTableRowElement> {
-    // Find first prev sibling with depth 1 smaller than ours
-    let prev = this.host.previousElementSibling as HTMLZenTableRowElement;
-
-    while (prev) {
-      if (prev.depth === this.depth - 1) return prev;
-      prev = prev.previousElementSibling as HTMLZenTableRowElement;
-    }
-    return null;
   }
 
   allTableRows(): HTMLZenTableRowElement[] {
@@ -167,26 +107,6 @@ export class ZenTableRow {
       next = next.nextElementSibling as HTMLZenTableRowElement;
     }
     return rows;
-  }
-
-  rowChildren(): HTMLZenTableRowElement[] {
-    if (this.header) {
-      return this.allTableRows();
-    }
-
-    // Find first depth level siblings of row
-    const children = [];
-    let next = this.host.nextElementSibling as HTMLZenTableRowElement;
-
-    while (next) {
-      if (next.depth <= this.depth) break;
-      if (next.depth === this.depth + 1) {
-        children.push(next as HTMLZenTableRowElement);
-      }
-      next = next.nextElementSibling as HTMLZenTableRowElement;
-    }
-
-    return children;
   }
 
   getRowCells(): HTMLZenTableCellElement[] {
@@ -214,10 +134,6 @@ export class ZenTableRow {
     return descendants;
   }
 
-  hasChildren(): boolean {
-    return !!this.rowChildren().length;
-  }
-
   setCellsProp(propName: string, value: unknown): void {
     const cells = this.getRowCells();
     try {
@@ -230,62 +146,15 @@ export class ZenTableRow {
     }
   }
 
-  startChildObserver(): void {
-    this.childObserver = new MutationObserver(() => this.onTableChildChanged());
-
-    const table = this.host.parentElement;
-
-    this.childObserver.observe(table, {
-      childList: true,
-      attributes: true,
-      subtree: true,
-    });
-  }
-
-  stopChildObserver(): void {
-    if (this.childObserver) this.childObserver.disconnect();
-  }
-
-  onTableChildChanged(): void {
-    const updateMyExandableProp = () => {
-      const hasExpandableRows = this.rowChildren().some(row => row.expandable);
-      this.expandable = hasExpandableRows;
-    };
-
-    const updateMyCheckbox = async () => {
-      const allSelected = await this.hasAllRowsSelected();
-      const someSelected = await this.hasRowsSelected();
-
-      if (!someSelected) {
-        this.selected = false;
-      } else if (allSelected) {
-        this.selected = true;
-      }
-      this.$indeterminate = someSelected && !allSelected;
-    };
-
-    updateMyExandableProp();
-    updateMyCheckbox();
-  }
-
   async componentDidLoad(): Promise<void> {
-    const parentRow = await this.parentRow();
-
-    this.visible = !parentRow || parentRow.expanded;
-    this.expandable = this.hasChildren();
-
     this.selectableChanged(this.selectable);
     this.selectedChanged(this.selected);
-    this.expandableChanged(this.expandable);
+    this.expandableChanged(this.$expandable);
     this.expandedChanged(this.expanded);
     this.depthChanged(this.depth);
     this.headerChanged(this.header);
     this.stickyChanged(this.sticky);
     this.indeterminateChanged(this.$indeterminate);
-  }
-
-  disconnectedCallback(): void {
-    this.stopChildObserver();
   }
 
   render(): HTMLTableRowElement {

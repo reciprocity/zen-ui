@@ -10,35 +10,38 @@ import { faChevronRight } from '@fortawesome/pro-light-svg-icons';
 export class ZenTableCell {
   @Element() host: HTMLZenTableCellElement;
 
-  /** Spanns through whole table */
+  /** Spans through whole table */
   @Prop({ reflect: true }) readonly fullSpan: boolean = false;
 
-  /** Can be expanded (read-only) */
+  /** Can be expanded */
   @Prop({ reflect: true, attribute: 'expandable' }) readonly $expandable: boolean = false;
 
-  /** Show checkbox (read-only) */
+  /** Show checkbox */
   @Prop({ reflect: true, attribute: 'selectable' }) readonly $selectable: boolean = false;
 
-  /** Is row selected (read-only) */
+  /** Is row selected */
   @Prop({ reflect: true, attribute: 'selected' }) readonly $selected: boolean = false;
 
-  /** Is row expanded (read-only) */
+  /** Is row expanded */
   @Prop({ reflect: true, attribute: 'expanded' }) readonly $expanded: boolean = false;
 
-  /** Is row expanded (read-only) */
+  /** Is row expanded */
   @Prop({ reflect: true, attribute: 'depth' }) readonly $depth: number = 0;
 
-  /** Cell is inside header (read-only)  */
+  /** Cell is inside header  */
   @Prop({ reflect: true, attribute: 'header' }) readonly $header: boolean = false;
 
-  /** Checkbox indeterminate state (read-only)  */
-  @Prop() readonly $indeterminate: boolean = false;
+  /** Checkbox indeterminate state  */
+  @Prop({ attribute: 'indeterminate' }) readonly $indeterminate: boolean = false;
 
-  /** Cell remains fixed at the top during scroll (mainly used for headers) */
+  /** Cell remains fixed at the top during scroll */
   @Prop({ reflect: true, attribute: 'sticky' }) readonly $sticky: boolean = false;
 
   /** Cell custom background color */
   @Prop() readonly backgroundColor: string = '';
+
+  /** Row is placed right after header (auto calculated) */
+  @Prop({ reflect: true, attribute: 'after-header' }) readonly $afterHeader: boolean = false;
 
   showWidgets(): boolean {
     const isFirstCell = !this.host.previousElementSibling;

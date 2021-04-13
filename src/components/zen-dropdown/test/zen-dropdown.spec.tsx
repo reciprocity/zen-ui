@@ -1,5 +1,6 @@
 import { newSpecPage, SpecPage } from '@stencil/core/testing';
-import { htmlToElement, simulateKey } from '../../helpers/jest';
+import { simulateKey } from '../../helpers/jest';
+import { htmlToElement } from '../../helpers/helpers';
 
 let options: NodeListOf<HTMLZenOptionElement> | undefined[] = [];
 
