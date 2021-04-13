@@ -34,6 +34,9 @@ export class ZenAvatarDetails {
   /** Set the style variant  */
   @Prop() readonly variant: AvatarDetailVariant = 'detailed';
 
+  /** Set image URL */
+  @Prop() readonly imageUrl: string = '';
+
   /** Set user name  */
   @Prop() readonly userName: string = '';
 
@@ -83,6 +86,7 @@ export class ZenAvatarDetails {
         >
           <ZenAvatarIcon
             user-name={this.userName}
+            image-url={this.imageUrl}
             email={this.email}
             initials={this.initials}
             color={this.iconColor}

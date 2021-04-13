@@ -19,27 +19,24 @@ export class ZenAvatar {
   userValue(property: string): string {
     return this.users[0] ? this.users[0][property] : '';
   }
-
   userName(): string {
     return this.users.length == 1 ? this.userValue('userName') : '+' + this.users.length;
   }
-
+  imageUrl(): string {
+    return this.userValue('imageUrl');
+  }
   email(): string {
     return this.userValue('email');
   }
-
   initials(): string {
     return this.userValue('initials');
   }
-
   background(): string {
     return this.users.length == 1 ? this.userValue('background') : '#CED4DA';
   }
-
   color(): string {
     return this.users.length == 1 ? this.userValue('color') : '#3E464C';
   }
-
   size(): string {
     return this.userValue('size');
   }
@@ -52,6 +49,7 @@ export class ZenAvatar {
       <Host>
         <ZenAvatarIcon
           class={{ 'avatar-icon': true, animation: this.animation }}
+          image-url={this.imageUrl()}
           user-name={this.userName()}
           email={this.email()}
           initials={this.initials()}
@@ -63,6 +61,7 @@ export class ZenAvatar {
           {this.users.map(user => (
             <ZenAvatarDetails
               class="details"
+              image-url={user.imageUrl}
               user-name={user.userName}
               email={user.email}
               initials={user.initials}
