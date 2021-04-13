@@ -1,5 +1,5 @@
 import { h, Component, Host, Prop, Element } from '@stencil/core';
-import { SpacingShorthand, Spacing } from '../helpers/types';
+import { SpacingShorthand, Spacing, CardVariant } from '../helpers/types';
 import { applyPrefix } from '../helpers/helpers';
 
 @Component({
@@ -9,6 +9,9 @@ import { applyPrefix } from '../helpers/helpers';
 })
 export class ZenCard {
   @Element() host: HTMLZenCardElement;
+
+  /** Color variant of the button */
+  @Prop({ reflect: true }) readonly variant: CardVariant = 'default';
 
   /** Disables card. */
   @Prop({ reflect: true }) readonly disabled = false;

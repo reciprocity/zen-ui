@@ -37,6 +37,8 @@ export type PositionVariant = 'top-left' | 'top-right' | 'bottom-left' | 'bottom
 
 export type AvatarDetailVariant = 'basic' | 'basic-lg' | 'detailed';
 
+export type CardVariant = 'default' | 'shadow';
+
 export interface AvatarData {
   userName?: string;
   email?: string;
