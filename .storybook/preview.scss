@@ -1,20 +1,26 @@
-@import '/src/zen-styles/main.scss';
+@import './scss/typography.scss';
+
+$color-gray-600: #59626a;
+$color-red-800: #c22f3d;
+$color-blue-700: #0078cd;
+
+html {
+  font-family: 'Open Sans', Courier, sans-serif;
+}
 
 small {
   font-size: 10px;
 }
 
-$text-color: $color-gray-600;
-
 #docs-root > .sbdocs {
   // Page
   background: #f9f9f9;
-  color: $text-color;
+  color: $color-gray-600;
 }
 
 span.css-in3yi3,
 p.css-15n5lxj {
-  color: $text-color;
+  color: $color-gray-600;
 }
 
 .css-xvwzt3 {
@@ -122,7 +128,7 @@ h1.sbdocs-h1 {
     position: absolute;
     left: 1.2rem;
     margin-top: 2rem;
-    background-color: #c22f3d;
+    background-color: $color-red-800;
     color: #fff;
     font-weight: bold;
     padding: 0.25em 0.75em;
