@@ -225,7 +225,6 @@ const prepareConfig = async (config: Config): Promise<Config> => {
 (async () => {
   const beforeTime = new Date().getTime();
   const config = await prepareConfig(CONFIG);
-  console.log({ config });
   validateRegistries(config.registries);
   if (!shouldPublish(config)) {
     process.exit(0);
