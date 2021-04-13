@@ -1,3 +1,10 @@
+# [3.4.0](https://github.com/reciprocity/zen-ui/compare/3.3.3...3.4.0) (2021-04-13)
+
+
+### Features
+
+* add React bindings ([7887e88](https://github.com/reciprocity/zen-ui/commit/7887e8861a81c6a4be5aefbb80d12e1c34a0be94))
+
 ## [3.3.3](https://github.com/reciprocity/zen-ui/compare/3.3.2...3.3.3) (2021-04-13)
 
 
