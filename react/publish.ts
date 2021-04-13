@@ -181,7 +181,7 @@ const publishPackage = async (config: Config) => {
       acc.then(async () => {
         const registry = getRegistry(name);
         await configureRegistry(config, registry);
-        run(config, 'npm publish');
+        run(config, 'npm publish --access public');
       }),
     Promise.resolve(),
   );
