@@ -9,6 +9,7 @@ import { faArrowRight } from '@fortawesome/pro-light-svg-icons';
 import { waitForElement } from '../../../.storybook/helpers/utils';
 const compData = data.components.find(n => n.tag === 'zen-table');
 const argTypes = getArgTypes(compData);
+argTypes.$updating.control = { type: 'none' };
 
 <Meta title="Lists/Table/Table" component="zen-table" argTypes={argTypes} />
 

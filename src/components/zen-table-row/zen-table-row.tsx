@@ -15,32 +15,35 @@ export class ZenTableRow {
 
   @Element() host: HTMLZenTableRowElement;
 
-  /** Visible if no depth or parent.expanded */
-  @Prop({ reflect: true }) readonly visible: boolean = true;
+  /** True when parent row is expanded or if it's root row */
+  @Prop({ reflect: true, attribute: 'visible' }) readonly $visible: boolean = true;
 
-  /** Can be expanded (if has children) */
-  @Prop({ reflect: true }) readonly expandable: boolean = false;
+  /** True if it has any child row */
+  @Prop({ reflect: true, attribute: 'expandable' }) readonly $expandable: boolean = false;
 
-  /** Show checkbox (read-only) */
+  /** Show checkbox */
   @Prop({ reflect: true }) readonly selectable: boolean = false;
 
-  /** Is row selected */
+  /** If checkbox is checked */
   @Prop({ reflect: true }) readonly selected: boolean = false;
 
-  /** Is row expanded */
+  /** If row is currently expanded */
   @Prop({ reflect: true }) readonly expanded: boolean = false;
 
-  /** Checkbox indeterminate state (Won't update children)  */
-  @Prop() readonly $indeterminate: boolean = false;
+  /** Some but not all children selected */
+  @Prop({ attribute: 'indeterminate' }) readonly $indeterminate: boolean = false;
 
-  /** Depth position of row (read-only) */
+  /** Define depth to make nested items */
   @Prop() readonly depth: number = 0;
 
   /** Row represents header */
   @Prop() readonly header: boolean = false;
 
   /** Row remains fixed at the top during scroll (mainly used for headers) */
-  @Prop() readonly sticky = false;
+  @Prop() readonly sticky: boolean = false;
+
+  /** Row is placed right after header (auto calculated) */
+  @Prop() readonly $afterHeader: boolean = false;
 
   /** Row selected */
   @Event() rowSelectChanged: EventEmitter<boolean>;
@@ -50,7 +53,7 @@ export class ZenTableRow {
     this.setCellsProp('$selectable', selectable);
   }
 
-  @Watch('expandable')
+  @Watch('$expandable')
   async expandableChanged(expandable: boolean): Promise<void> {
     this.setCellsProp('$expandable', expandable);
   }
@@ -63,6 +66,11 @@ export class ZenTableRow {
   @Watch('header')
   async headerChanged(header: boolean): Promise<void> {
     this.setCellsProp('$header', header);
+  }
+
+  @Watch('$afterHeader')
+  async afterHeaderChanged(afterHeader: boolean): Promise<void> {
+    this.setCellsProp('$afterHeader', afterHeader);
   }
 
   @Watch('sticky')
@@ -141,7 +149,7 @@ export class ZenTableRow {
   async componentDidLoad(): Promise<void> {
     this.selectableChanged(this.selectable);
     this.selectedChanged(this.selected);
-    this.expandableChanged(this.expandable);
+    this.expandableChanged(this.$expandable);
     this.expandedChanged(this.expanded);
     this.depthChanged(this.depth);
     this.headerChanged(this.header);

@@ -11,11 +11,11 @@ export class ZenTable {
 
   @Element() host: HTMLZenTableElement;
 
-  /** Space separated css grid columns<br/>(eg. `auto 1fr 1fr 200px 1fr`) */
+  /** Space separated css prop <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-columns" target="_blank">grid-template-columns</a><br/>(eg. `auto 1fr 1fr 200px 1fr`)*/
   @Prop() readonly columns = '';
 
-  /** Private variable (table cleanup in progress) */
-  @Prop() readonly $updating: boolean = false;
+  /** Table cleanup in progress */
+  @Prop({ attribute: 'updating' }) readonly $updating: boolean = false;
 
   startChildObserver(): void {
     this.childObserver = new MutationObserver(() => cleanupTableStructure(this.host));
