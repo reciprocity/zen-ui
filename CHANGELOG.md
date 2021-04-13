@@ -1,3 +1,10 @@
+## [3.3.5](https://github.com/reciprocity/zen-ui/compare/3.3.4...3.3.5) (2021-04-13)
+
+
+### Bug Fixes
+
+* **react:** inherit stdio for the git log ([b5f8743](https://github.com/reciprocity/zen-ui/commit/b5f8743882cf1916a19ec39b87d39c88f2236aca))
+
 ## [3.3.4](https://github.com/reciprocity/zen-ui/compare/3.3.3...3.3.4) (2021-04-13)
 
 
