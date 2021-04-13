@@ -1,3 +1,10 @@
+## [3.3.2](https://github.com/reciprocity/zen-ui/compare/3.3.1...3.3.2) (2021-04-13)
+
+
+### Bug Fixes
+
+* **zen-avatar:** fix avatar image not displayed ([7352e74](https://github.com/reciprocity/zen-ui/commit/7352e74eaf938e0c558830ba50c99ecd1383c5b8))
+
 ## [3.3.1](https://github.com/reciprocity/zen-ui/compare/3.3.0...3.3.1) (2021-04-13)
 
 
