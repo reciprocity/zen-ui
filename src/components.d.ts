@@ -87,6 +87,10 @@ export namespace Components {
          */
         "iconColor": string;
         /**
+          * Set image URL
+         */
+        "imageUrl": string;
+        /**
           * Set override for user name initials
          */
         "initials": string;
@@ -1466,6 +1470,10 @@ declare namespace LocalJSX {
           * Set icon color
          */
         "iconColor"?: string;
+        /**
+          * Set image URL
+         */
+        "imageUrl"?: string;
         /**
           * Set override for user name initials
          */
