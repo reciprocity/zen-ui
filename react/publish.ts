@@ -60,10 +60,19 @@ type Config = typeof CONFIG;
  */
 
 // Runs a command on the cwd.
-const run = (config: Config, cmd: string, inheritStdio: boolean = true): string =>
-  execSync(`cd ${config.cwd} && ${cmd}`, { stdio: inheritStdio ? 'inherit' : 'ignore' })
-    .toString()
-    .trim();
+function run(config: Config, cmd: string, inheritStdio?: true): null;
+function run(config: Config, cmd: string, inheritStdio?: false): string;
+function run(config: Config, cmd: string, inheritStdio: boolean = true): string | null {
+  let result: string | null = null;
+  const runCommand = `cd ${config.cwd} && ${cmd}`;
+  if (inheritStdio) {
+    execSync(runCommand, { stdio: 'inherit' });
+  } else {
+    result = execSync(runCommand).toString().trim();
+  }
+
+  return result;
+}
 
 type RegistryVariables = {
   registry: string;
@@ -83,7 +92,7 @@ const getRegistryVarNames = (name: string): RegistryVariables => {
 const validateRegistries = (names: string[]): void => {
   names.forEach(name => {
     const vars = getRegistryVarNames(name);
-    const missing = Object.keys(vars).find(varName => !process.env[varName]);
+    const missing = Object.keys(vars).find(varName => !process.env[vars[varName]]);
     if (missing) {
       console.log(`\x1b[31m💥  Missing '${vars[missing]}' environment variable\x1b[0m`);
       process.exit(1);
@@ -99,7 +108,7 @@ type RegistryInfo = {
 // Gets the config and the url of a registry by its name.
 const getRegistry = (name: string): RegistryInfo => {
   const vars = getRegistryVarNames(name);
-  const url = process.env[vars.registry].replace(/\/+$/, '');
+  const url = process.env[vars.registry].replace(/(\/+)?$/, '/');
   const urlProtocolLess = url.replace(/^https?:/, '');
   const npmrc = [
     `${mainPkgScope}:registry=${url}`,
@@ -172,7 +181,7 @@ const publishPackage = async (config: Config) => {
       acc.then(async () => {
         const registry = getRegistry(name);
         await configureRegistry(config, registry);
-        run(config, `npm publish --registry ${registry.url}`);
+        run(config, 'npm publish --access public');
       }),
     Promise.resolve(),
   );
