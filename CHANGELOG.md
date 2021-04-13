@@ -1,3 +1,10 @@
+## [3.3.6](https://github.com/reciprocity/zen-ui/compare/3.3.5...3.3.6) (2021-04-13)
+
+
+### Bug Fixes
+
+* **react:** use pipe instead of ignore for execSync ([98da1cb](https://github.com/reciprocity/zen-ui/commit/98da1cbc6052988fe78737ae111aa93483f2bd95))
+
 ## [3.3.5](https://github.com/reciprocity/zen-ui/compare/3.3.4...3.3.5) (2021-04-13)
 
 
