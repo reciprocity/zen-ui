@@ -1,3 +1,10 @@
+## [3.3.13](https://github.com/reciprocity/zen-ui/compare/3.3.12...3.3.13) (2021-04-13)
+
+
+### Bug Fixes
+
+* **react:** remove private flag ([beecf4c](https://github.com/reciprocity/zen-ui/commit/beecf4c0393bb3b19f8872f7ba3fe8f8af8b0a1d))
+
 ## [3.3.12](https://github.com/reciprocity/zen-ui/compare/3.3.11...3.3.12) (2021-04-13)
 
 
