@@ -60,10 +60,13 @@ type Config = typeof CONFIG;
  */
 
 // Runs a command on the cwd.
-const run = (config: Config, cmd: string, inheritStdio: boolean = true): string =>
-  execSync(`cd ${config.cwd} && ${cmd}`, { stdio: inheritStdio ? 'inherit' : 'ignore' })
+function run(config: Config, cmd: string, inheritStdio?: true): null;
+function run(config: Config, cmd: string, inheritStdio?: false): string;
+function run(config: Config, cmd: string, inheritStdio: boolean = true): string | null {
+  return execSync(`cd ${config.cwd} && ${cmd}`, { stdio: inheritStdio ? 'inherit' : 'pipe' })
     .toString()
     .trim();
+}
 
 type RegistryVariables = {
   registry: string;
@@ -119,7 +122,7 @@ const configureRegistry = ({ paths }: Config, registry: RegistryInfo | null = nu
 
 // Validates the latest commit message to ensure whether or not to publish the package.
 const shouldPublish = (config: Config): boolean =>
-  !!/chore\(release\):\s*([\d\.]+)\s*/.exec(run(config, 'git log -1 --oneline'));
+  !!/chore\(release\):\s*([\d\.]+)\s*/.exec(run(config, 'git log -1 --oneline', false));
 
 type PackageJson = {
   name: string;
