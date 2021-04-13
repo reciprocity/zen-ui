@@ -63,9 +63,15 @@ type Config = typeof CONFIG;
 function run(config: Config, cmd: string, inheritStdio?: true): null;
 function run(config: Config, cmd: string, inheritStdio?: false): string;
 function run(config: Config, cmd: string, inheritStdio: boolean = true): string | null {
-  return execSync(`cd ${config.cwd} && ${cmd}`, { stdio: inheritStdio ? 'inherit' : 'pipe' })
-    .toString()
-    .trim();
+  let result: string | null = null;
+  const runCommand = `cd ${config.cwd} && ${cmd}`;
+  if (inheritStdio) {
+    execSync(runCommand, { stdio: 'inherit' });
+  } else {
+    result = execSync(runCommand).toString().trim();
+  }
+
+  return result;
 }
 
 type RegistryVariables = {
