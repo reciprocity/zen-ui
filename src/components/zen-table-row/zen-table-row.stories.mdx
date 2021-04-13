@@ -10,7 +10,12 @@ argTypes.$visible.control = { type: 'none' };
 argTypes.$expandable.control = { type: 'none' };
 argTypes.expanded.control = { type: 'none' };
 
-<Meta title="Lists/Table/Row" component="zen-table-row" argTypes={argTypes} />
+<Meta
+  title="Lists/Table/Row"
+  component="zen-table-row"
+  argTypes={argTypes}
+  parameters={{ controls: { sort: 'none' } }}
+/>
 
 export const StoryRow = () => {
   return html/*html*/ `

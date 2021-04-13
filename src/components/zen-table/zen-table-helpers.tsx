@@ -91,6 +91,16 @@ export const cleanupTableStructure = function (table: HTMLZenTableElement): void
     header.$expandable = someExpandable;
   }
 
+  /**
+   * Each row has prop $afterHeader. If after header is true, we draw selected
+   * border a bit differently. (with top margin: 1px so that header isn't covering
+   * top blue border)
+   */
+  function updatePropAfterHeader(header, rows) {
+    const afterHeaderRow = header.nextElementSibling;
+    rows.forEach(row => (row.$afterHeader = row === afterHeaderRow));
+  }
+
   // -------------------------------------------------------------------------
   table.$updating = true;
 
@@ -105,6 +115,7 @@ export const cleanupTableStructure = function (table: HTMLZenTableElement): void
   if (header) {
     updateHeaderSelectCheckbox(header, rows);
     updateHeaderExpandable(header, rows);
+    updatePropAfterHeader(header, rows);
   }
 
   table.$updating = false;

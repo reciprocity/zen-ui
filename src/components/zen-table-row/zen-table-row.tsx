@@ -42,6 +42,9 @@ export class ZenTableRow {
   /** Row remains fixed at the top during scroll (mainly used for headers) */
   @Prop() readonly sticky: boolean = false;
 
+  /** Row is placed right after header (auto calculated) */
+  @Prop() readonly $afterHeader: boolean = false;
+
   /** Row selected */
   @Event() rowSelectChanged: EventEmitter<boolean>;
 
@@ -63,6 +66,11 @@ export class ZenTableRow {
   @Watch('header')
   async headerChanged(header: boolean): Promise<void> {
     this.setCellsProp('$header', header);
+  }
+
+  @Watch('$afterHeader')
+  async afterHeaderChanged(afterHeader: boolean): Promise<void> {
+    this.setCellsProp('$afterHeader', afterHeader);
   }
 
   @Watch('sticky')

@@ -823,6 +823,10 @@ export namespace Components {
     }
     interface ZenTableCell {
         /**
+          * Row is placed right after header (auto calculated)
+         */
+        "$afterHeader": boolean;
+        /**
           * Is row expanded
          */
         "$depth": number;
@@ -864,6 +868,10 @@ export namespace Components {
         "fullSpan": boolean;
     }
     interface ZenTableRow {
+        /**
+          * Row is placed right after header (auto calculated)
+         */
+        "$afterHeader": boolean;
         /**
           * True if it has any child row
          */
@@ -2191,6 +2199,10 @@ declare namespace LocalJSX {
     }
     interface ZenTableCell {
         /**
+          * Row is placed right after header (auto calculated)
+         */
+        "$afterHeader"?: boolean;
+        /**
           * Is row expanded
          */
         "$depth"?: number;
@@ -2232,6 +2244,10 @@ declare namespace LocalJSX {
         "fullSpan"?: boolean;
     }
     interface ZenTableRow {
+        /**
+          * Row is placed right after header (auto calculated)
+         */
+        "$afterHeader"?: boolean;
         /**
           * True if it has any child row
          */

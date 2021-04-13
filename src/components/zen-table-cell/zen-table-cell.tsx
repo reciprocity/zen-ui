@@ -40,6 +40,9 @@ export class ZenTableCell {
   /** Cell custom background color */
   @Prop() readonly backgroundColor: string = '';
 
+  /** Row is placed right after header (auto calculated) */
+  @Prop({ reflect: true, attribute: 'after-header' }) readonly $afterHeader: boolean = false;
+
   showWidgets(): boolean {
     const isFirstCell = !this.host.previousElementSibling;
     return isFirstCell && (this.$selectable || this.$expandable);

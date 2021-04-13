@@ -45,6 +45,11 @@
 :host([indeterminate]:last-child)::after {
   border-right: 1px solid $color-blue-700;
 }
+
+:host([selected][after-header])::after,
+:host([indeterminate][after-header])::after {
+  top: 1px;
+}
 // -----------------------------------------------------------------------------
 
 :host([full-span]) {
