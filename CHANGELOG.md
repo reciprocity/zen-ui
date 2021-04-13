@@ -1,3 +1,10 @@
+## [3.3.8](https://github.com/reciprocity/zen-ui/compare/3.3.7...3.3.8) (2021-04-13)
+
+
+### Bug Fixes
+
+* **react:** cat .npmrc ([f3dc9e4](https://github.com/reciprocity/zen-ui/commit/f3dc9e44e107dfd951fc8feb03fb0d5f587deded))
+
 ## [3.3.7](https://github.com/reciprocity/zen-ui/compare/3.3.6...3.3.7) (2021-04-13)
 
 
