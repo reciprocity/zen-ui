@@ -1,53 +1,61 @@
-$spacer: 1rem !default;
-$spacers: () !default;
-$spacers: map-merge(
-  (
-    0: 0,
-    4: (
-      $spacer * 0.4,
-    ),
-    8: (
-      $spacer * 0.8,
-    ),
-    12: (
-      $spacer * 1.2,
-    ),
-    16: (
-      $spacer * 1.6,
-    ),
-    24: (
-      $spacer * 2.4,
-    ),
-    32: (
-      $spacer * 3.2,
-    ),
-    40: (
-      $spacer * 4,
-    ),
-    48: (
-      $spacer * 4.8,
-    ),
-    56: (
-      $spacer * 5.6,
-    ),
-    64: (
-      $spacer * 6.4,
-    ),
-    72: (
-      $spacer * 7.2,
-    ),
-    80: (
-      $spacer * 8,
-    ),
-    96: (
-      $spacer * 9.6,
-    ),
-    128: (
-      $spacer * 12.8,
-    ),
-    256: (
-      $spacer * 25.6,
-    ),
-  ),
-  $spacers
+$spacings: (
+  'none': 0,
+  'xs': 1px,
+  'sm': 0.25rem,
+  'md': 0.5rem,
+  'lg': 1rem,
+  'xl': 1.5rem,
+  '2xl': 2rem,
+  '3xl': 2.5rem,
+  '4xl': 3rem,
+  '5xl': 3.5rem,
+  '6xl': 4rem,
 );
+
+@mixin paddingSizes {
+  @each $key, $value in $spacings {
+    :host([padding='#{$key}']),
+    :host(.p-#{$key}) {
+      padding: #{$value};
+    }
+  }
+
+  $side-shorts: [ 't', 'r', 'b', 'l' ];
+  $sides: [ 'top', 'right', 'bottom', 'left' ];
+
+  @for $i from 1 through length($sides) {
+    $side-short: nth($side-shorts, $i);
+    $side: nth($sides, $i);
+
+    @each $key, $value in $spacings {
+      :host([padding-#{$side}='#{$key}']),
+      :host(.p#{$side-short}-#{$key}) {
+        padding-#{$side}: #{$value};
+      }
+    }
+  }
+}
+
+@mixin marginSizes {
+  @each $key, $value in $spacings {
+    :host([margin='#{$key}']),
+    :host(.m-#{$key}) {
+      margin: #{$value};
+    }
+  }
+
+  $side-shorts: [ 't', 'r', 'b', 'l' ];
+  $sides: [ 'top', 'right', 'bottom', 'left' ];
+
+  @for $i from 1 through length($sides) {
+    $side-short: nth($side-shorts, $i);
+    $side: nth($sides, $i);
+
+    @each $key, $value in $spacings {
+      :host([margin-#{$side}='#{$key}']),
+      :host(.m#{$side-short}-#{$key}) {
+        margin-#{$side}: #{$value};
+      }
+    }
+  }
+}
