@@ -100,12 +100,36 @@ h1.sbdocs-h1 {
   }
 
   tr {
-    background: rgba(0, 0, 0, 0.05) !important;
-    border: none !important;
+    border-bottom: none !important;
+    border-top: 1px solid #e0e4e8 !important;
+  }
+}
+
+.docblock-argstable {
+  position: relative;
+
+  td {
+    vertical-align: middle !important;
   }
 
-  tr:nth-child(2n - 1) {
-    background: rgba(0, 0, 0, 0.02) !important;
+  .readonly-prop {
+    font-style: italic;
+  }
+
+  .readonly-prop::after {
+    content: 'READ ONLY';
+    font-style: normal;
+    position: absolute;
+    left: 1.2rem;
+    margin-top: 2rem;
+    background-color: #c22f3d;
+    color: #fff;
+    font-weight: bold;
+    padding: 0.25em 0.75em;
+    font-size: 0.5rem;
+    letter-spacing: 1px;
+    border-radius: 3px;
+    line-height: 1em;
   }
 }
 

@@ -32,9 +32,17 @@ can be changed into zen component by just prepending tag names with `zen-`:
 - Note that majority of these events will bubble up and **you don't need to emit** them manually. Emitting them manually might even be a bad idea because `event.target` will be different (host element instead of the actual element).
 - Note also that if `event.composed` is false, it will not bubble out of shadow dom! Therefore events with `event.composed` false need to be emitted manually. An example of such an event would be input's event `change`.
 
-### Property names conventions
-For size variations always use conventional shorthands:
-`xs`, `sm`, `md`, `lg`, `xl`, `2xl`,...
+## Props
+
+### Private props
+**Private props** should be prefixed by `$` sign (eg. `$updating`).
+- Private props are @Prop()s that are used in our composite components such as table. **State** of such prop **is managed by some other component in the composite** and should therefore not be set by the enduser (eg. `zen-row's` prop `$visible`). However user can always read values of such props.
+- Props prefixed by `$` will automatically get a `read only` badge in the props table.
+- If prop can't be controlled by standard Storybook controls, disable it's controls in the stories with: `argTypes.$visible.control = { type: 'none' };`
+
+### Size properties
+- For size variations always use conventional shorthands:
+  `xs`, `sm`, `md`, `lg`, `xl`, `2xl`,...
 
 ### Padding properties
 Paddings and spacings should always be set to match design out of the box.
