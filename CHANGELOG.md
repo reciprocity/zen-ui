@@ -1,3 +1,10 @@
+# [3.3.0](https://github.com/reciprocity/zen-ui/compare/3.2.5...3.3.0) (2021-04-13)
+
+
+### Features
+
+* **zen-card:** add additional shadow variant ([2102c61](https://github.com/reciprocity/zen-ui/commit/2102c6140513dcbadb2de10e7774aafe39543198))
+
 ## [3.2.5](https://github.com/reciprocity/zen-ui/compare/3.2.4...3.2.5) (2021-04-12)
 
 
