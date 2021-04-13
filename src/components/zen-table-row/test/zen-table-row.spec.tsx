@@ -55,7 +55,7 @@ describe('zen-table-row', () => {
     await page.waitForChanges();
     await cleanupTableStructure(table);
 
-    expect(mainRow.$visible).toBeTruthy();
+    expect(mainRow.$visible).toBe(true);
 
     const firstCell = page.root.querySelector('.first-cell') as HTMLZenTableRowElement;
 
@@ -67,8 +67,8 @@ describe('zen-table-row', () => {
 
     simulateMouse('click', expandableIcon);
     cleanupTableStructure(table);
-    expect(mainRow.expanded).toBeTruthy();
-    expect(expandRow.$visible).toBeTruthy();
+    expect(mainRow.expanded).toBe(true);
+    expect(expandRow.$visible).toBe(true);
   });
 });
 
@@ -125,8 +125,8 @@ describe('zen-table-row tree functionality', () => {
 
   it('should set all descendants to not visible on expand false', async () => {
     cleanupTableStructure(table);
-    expect(parentRow.$visible).toBeTruthy();
-    expect(secondDepthParentRow.$visible).toBeTruthy();
+    expect(parentRow.$visible).toBe(true);
+    expect(secondDepthParentRow.$visible).toBe(true);
 
     const expandableIcon = firstCell.shadowRoot.querySelector('.expand-icon');
 
@@ -137,7 +137,7 @@ describe('zen-table-row tree functionality', () => {
     descendents.concat(page.root.querySelectorAll('zen-table-row[depth="2"]'));
 
     for (const row of descendents.values()) {
-      expect((row as HTMLZenTableRowElement).$visible).not.toBeTruthy();
+      expect((row as HTMLZenTableRowElement).$visible).not.toBe(true);
     }
   });
 
@@ -149,13 +149,13 @@ describe('zen-table-row tree functionality', () => {
     descendents.concat(page.root.querySelectorAll('zen-table-row[depth="2"]'));
 
     for (const row of descendents.values()) {
-      expect((row as HTMLZenTableRowElement).selected).toBeTruthy();
+      expect((row as HTMLZenTableRowElement).selected).toBe(true);
     }
 
     parentRow.selected = false;
 
     for (const row of descendents.values()) {
-      expect((row as HTMLZenTableRowElement).selected).not.toBeTruthy();
+      expect((row as HTMLZenTableRowElement).selected).not.toBe(true);
     }
   });
 
@@ -169,10 +169,10 @@ describe('zen-table-row tree functionality', () => {
     secondDepthParentRow.selected = true;
 
     for (const row of firstDepthChildren.values()) {
-      expect((row as HTMLZenTableRowElement).selected).not.toBeTruthy();
+      expect((row as HTMLZenTableRowElement).selected).not.toBe(true);
     }
     for (const row of secondDepthChildren.values()) {
-      expect((row as HTMLZenTableRowElement).selected).toBeTruthy();
+      expect((row as HTMLZenTableRowElement).selected).toBe(true);
     }
   });
 
@@ -184,7 +184,7 @@ describe('zen-table-row tree functionality', () => {
     await page.waitForChanges();
     cleanupTableStructure(table);
 
-    expect(parentRow.$indeterminate).toBeTruthy();
-    expect(secondDepthParentRow.$indeterminate).toBeTruthy();
+    expect(parentRow.$indeterminate).toBe(true);
+    expect(secondDepthParentRow.$indeterminate).toBe(true);
   });
 });
