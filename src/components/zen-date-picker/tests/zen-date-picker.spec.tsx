@@ -23,7 +23,6 @@ describe('zen-date-picker', () => {
   let datepicker: HTMLZenDatePickerElement;
   let input: HTMLZenInputElement;
   let calendar: HTMLZenPopoverElement;
-  let xButton: HTMLZenPopoverElement;
 
   const render = async (attributes: string) => {
     jest.clearAllTimers();
@@ -38,7 +37,6 @@ describe('zen-date-picker', () => {
     datepicker = page.root as HTMLZenDatePickerElement;
     input = datepicker.shadowRoot.querySelector('#date-input');
     calendar = datepicker.shadowRoot.querySelector('.calendar');
-    xButton = datepicker.shadowRoot.querySelector('.icon.clear');
   };
 
   async function focusInput() {
@@ -175,26 +173,12 @@ describe('zen-date-picker', () => {
     expect(datepicker.format).toBe('dd.MM.yyyy');
   });
 
-  it('should clear value on x button click', async () => {
-    await render();
-    expect(datepicker.value).toEqual(new Date(1972, 2 - 1, 18));
-    expect(xButton).toBeTruthy();
-
-    simulateMouse('mousedown', xButton);
-    expect(JSON.stringify(datepicker.value)).toEqual('null');
-  });
-
   it('should clear value on emptying input', async () => {
     await render();
     expect(datepicker.value).toEqual(new Date(1972, 2 - 1, 18));
 
     setInputValue('');
     expect(JSON.stringify(datepicker.value)).toEqual('null');
-  });
-
-  it('should not render x button if allowEmpty is false', async () => {
-    await render('allow-empty="false"');
-    expect(xButton).toBeFalsy();
   });
 
   it('should not clear date if allowEmpty is false', async () => {
@@ -222,24 +206,18 @@ describe('zen-date-picker', () => {
 
   it('should render small calendar icon and input', async () => {
     await render('size="sm"');
-    const icon = datepicker.shadowRoot.querySelector('.icon.clear');
-    expect(icon.getAttribute('size')).toEqual('sm');
     const input = datepicker.shadowRoot.querySelector('zen-input');
     expect(input.getAttribute('size')).toEqual('sm');
   });
 
   it('should render normal calendar icon and input', async () => {
     await render();
-    const icon = datepicker.shadowRoot.querySelector('.icon.clear');
-    expect(icon.getAttribute('size')).toEqual('md');
     const input = datepicker.shadowRoot.querySelector('zen-input');
     expect(input.getAttribute('size')).toEqual('md');
   });
 
   it('should render large calendar icon and input', async () => {
     await render('size="lg"');
-    const icon = datepicker.shadowRoot.querySelector('.icon.clear');
-    expect(icon.getAttribute('size')).toEqual('md');
     const input = datepicker.shadowRoot.querySelector('zen-input');
     expect(input.getAttribute('size')).toEqual('lg');
   });
