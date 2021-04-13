@@ -103,13 +103,12 @@ const validateRegistries = (names: string[]): void => {
 type RegistryInfo = {
   url: string;
   npmrc: string;
-  token: string;
 };
 
 // Gets the config and the url of a registry by its name.
 const getRegistry = (name: string): RegistryInfo => {
   const vars = getRegistryVarNames(name);
-  const url = process.env[vars.registry].replace(/\/+$/, '');
+  const url = process.env[vars.registry].replace(/(\/+)?$/, '/');
   const urlProtocolLess = url.replace(/^https?:/, '');
   const npmrc = [
     `${mainPkgScope}:registry=${url}`,
@@ -120,7 +119,6 @@ const getRegistry = (name: string): RegistryInfo => {
   return {
     url,
     npmrc,
-    token: process.env[vars.token],
   };
 };
 
@@ -182,14 +180,8 @@ const publishPackage = async (config: Config) => {
     (acc, name) =>
       acc.then(async () => {
         const registry = getRegistry(name);
-        // await configureRegistry(config, registry);
-        const originalToken = process.env.NPM_TOKEN;
-        process.env.NPM_TOKEN = registry.token;
-        const originalRegistry = process.env.NPM_CONFIG_REGISTRY;
-        process.env.NPM_CONFIG_REGISTRY = registry.url;
+        await configureRegistry(config, registry);
         run(config, 'npm publish');
-        process.env.NPM_TOKEN = originalToken;
-        process.env.NPM_CONFIG_REGISTRY = originalRegistry;
       }),
     Promise.resolve(),
   );
