@@ -5,9 +5,6 @@ import { getArgTypes, getDefaultArgs, getComponentData, spreadArgs } from '../..
 import data from '../../../stencilDocs.json';
 const compData = data.components.find(n => n.tag === 'zen-table-cell');
 const argTypes = getArgTypes(compData);
-// disable props that are controlled by table and would have no impact:
-// argTypes.$visible.control = { type: 'none' };
-// argTypes.$expandable.control = { type: 'none' };
 
 <Meta title="Lists/Table/Table Cell" component="zen-table-cell" argTypes={argTypes} />
 
@@ -26,6 +23,7 @@ Cell to be used inside `zen-table-row`
     name="default"
     args={{
       ...getDefaultArgs(argTypes),
+      $selectable: true,
     }}
   >
     {StoryWithControls.bind({})}
