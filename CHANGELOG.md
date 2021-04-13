@@ -1,3 +1,10 @@
+## [3.3.10](https://github.com/reciprocity/zen-ui/compare/3.3.9...3.3.10) (2021-04-13)
+
+
+### Bug Fixes
+
+* **react:** remove inline flag ([ec551e5](https://github.com/reciprocity/zen-ui/commit/ec551e51cad1750ae7568893e4510c79ba854f1c))
+
 ## [3.3.9](https://github.com/reciprocity/zen-ui/compare/3.3.8...3.3.9) (2021-04-13)
 
 
