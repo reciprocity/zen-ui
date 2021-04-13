@@ -1,3 +1,10 @@
+## [3.3.7](https://github.com/reciprocity/zen-ui/compare/3.3.6...3.3.7) (2021-04-13)
+
+
+### Bug Fixes
+
+* **react:** avoid trying to stringify a nullable value ([5a555ff](https://github.com/reciprocity/zen-ui/commit/5a555ff571d731637be5fc809e9e21293ef829b5))
+
 ## [3.3.6](https://github.com/reciprocity/zen-ui/compare/3.3.5...3.3.6) (2021-04-13)
 
 
