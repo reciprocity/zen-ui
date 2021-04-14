@@ -1,8 +1,8 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
 import { html } from 'lit-html';
-import { getArgTypes, getDefaultArgs, getComponentData, spreadArgs } from '../../../.storybook/helpers/argTypes';
+import { getArgTypes, getDefaultArgs, getComponentData, spreadArgs } from '#storybook/helpers/argTypes';
 import data from '../../../stencilDocs.json';
-import { waitForElement } from '../../../.storybook/helpers/utils';
+import { waitForElement } from '#storybook/helpers/utils';
 const compData = data.components.find(n => n.tag === 'zen-avatar');
 const argTypes = getArgTypes(compData);
 
