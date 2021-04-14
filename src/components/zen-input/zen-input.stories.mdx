@@ -1,14 +1,13 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
 import { html } from 'lit-html';
-import { logEvents } from '../../../.storybook/helpers/log-events';
-import { getArgTypes, getDefaultArgs, getComponentData, spreadArgs } from '../../../.storybook/helpers/argTypes';
-import { waitForElement } from '../../../.storybook/helpers/utils';
+import { logEvents } from '#storybook/helpers/log-events';
+import { getArgTypes, getDefaultArgs, getComponentData, spreadArgs } from '#storybook/helpers/argTypes';
+import { waitForElement } from '#storybook/helpers/utils';
 
 import data from '../../../stencilDocs.json';
 const compData = data.components.find(n => n.tag === 'zen-input');
 const argTypes = getArgTypes(compData);
 
-import { litHtmlIcon, styles } from '../helpers/fa-icons';
 import { faUser, faKey, faSearch } from '@fortawesome/pro-light-svg-icons';
 
 <Meta title="Forms/Input" component="zen-input" argTypes={argTypes} />

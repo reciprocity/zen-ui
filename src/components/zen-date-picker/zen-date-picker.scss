@@ -1,6 +1,4 @@
-@import '../../zen-styles/variables.scss';
-@import '../../zen-styles/shadows.scss';
-@import '../../zen-styles/mixins/forms.scss';
+@import '../scss/component-helpers.scss';
 
 :host {
   display: block;

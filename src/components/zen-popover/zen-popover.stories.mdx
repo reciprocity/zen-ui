@@ -1,8 +1,8 @@
 import { html } from 'lit-html';
 import { Meta, Description, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
 import { faTimes, faTrashAlt, faPlus, faFilter, faCheck } from '@fortawesome/pro-light-svg-icons';
-import { waitForElement } from '../../../.storybook/helpers/utils';
-import { getArgTypesAndArgs, getDefaultArgs, getComponentData, spreadArgs } from '../../../.storybook/helpers/argTypes';
+import { waitForElement } from '#storybook/helpers/utils';
+import { getArgTypesAndArgs, getDefaultArgs, getComponentData, spreadArgs } from '#storybook/helpers/argTypes';
 const { argTypes } = getArgTypesAndArgs('zen-popover');
 
 <Meta title="Containers/Popover" component="zen-popover" argTypes={argTypes} />

@@ -1,9 +1,0 @@
-.animate-visibility {
-  opacity: 1;
-  transition: visibility $transition-visibility, opacity $transition-visibility;
-}
-
-.invisible {
-  visibility: hidden;
-  opacity: 0;
-}

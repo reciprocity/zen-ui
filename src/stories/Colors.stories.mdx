@@ -1,6 +1,6 @@
 import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
 import { groupBy } from 'lodash';
-const sassVars = require('sass-extract-loader!../zen-styles/colors.scss');
+const sassVars = require('sass-extract-loader!../components/scss/vars/colors.scss');
 const isBrightColor = rgb => (rgb.r + rgb.g + rgb.b) / 3 > 128;
 
 export const groupColors = function (sassVars) {

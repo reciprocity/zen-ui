@@ -1,6 +1,5 @@
-@import '../../zen-styles/variables.scss';
-@import '../../zen-styles/mixins/forms.scss';
-@import '../../zen-styles/shadows.scss';
+@import '../scss/component-helpers.scss';
+@import '../scss/mixins/forms.scss';
 
 :host {
   display: inline-flex;

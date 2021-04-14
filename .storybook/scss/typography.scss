@@ -14,7 +14,7 @@ h6,
   // font-family: $headings-font-family; TODO: include font
   font-weight: 700;
   line-height: 1.2em;
-  color: $color-gray-700;
+  color: #3e464c;
 }
 
 h1,
@@ -40,14 +40,4 @@ h5,
 
 p {
   line-height: 1.4;
-}
-
-.text-lg {
-  font-size: $text-lg;
-}
-.text-sm {
-  font-size: $text-sm;
-}
-.text-xs {
-  font-size: $text-xs;
 }

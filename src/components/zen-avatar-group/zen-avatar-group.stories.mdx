@@ -1,10 +1,11 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
 import { html } from 'lit-html';
-import { getArgTypes, getDefaultArgs, getComponentData, spreadArgs } from '../../../.storybook/helpers/argTypes';
+import { getArgTypes, getDefaultArgs, getComponentData, spreadArgs } from '#storybook/helpers/argTypes';
 import data from '../../../stencilDocs.json';
-import { waitForElement } from '../../../.storybook/helpers/utils';
+import { waitForElement } from '#storybook/helpers/utils';
 const compData = data.components.find(n => n.tag === 'zen-avatar-group');
 const argTypes = getArgTypes(compData);
+import avatarImage from '#storybook/img/avatar.jpg';
 
 <Meta title="Graphics/Avatar/Avatar Group" component="zen-avatar-group" argTypes={argTypes} />
 
@@ -12,7 +13,7 @@ export const users = [
   {
     userName: 'Jill Lee',
     email: 'jill.lee@reciprocitylabs.com',
-    imageUrl: 'static/media/avatar.e266cd57.jpg',
+    imageUrl: avatarImage,
   },
   {
     userName: 'Frank Sinatra',

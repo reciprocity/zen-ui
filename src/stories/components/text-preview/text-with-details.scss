@@ -1,10 +1,8 @@
-@import './src/zen-styles/colors.scss';
-@import './src/zen-styles/variables.scss';
-@import './src/zen-styles/typography.scss';
+$color-gray-300: #adb5bd;
 
 :host {
   display: block;
   color: $color-gray-300;
-  font-size: $text-sm;
+  font-size: 0.75rem;
   margin-bottom: 0.625rem;
 }

@@ -1,8 +1,25 @@
 import { IconDefinition } from '@fortawesome/pro-light-svg-icons';
 import { Component, Host, h, Prop, Element, Watch, State } from '@stencil/core';
-import { renderIcon } from '../helpers/fa-icons';
 import { IconSize, SpacingShorthand, Spacing } from '../helpers/types';
 import { parsePadding } from '../helpers/helpers';
+
+function renderIcon(icon: IconDefinition): HTMLElement {
+  const [width, height, , , svg] = icon.icon;
+  return (
+    <svg
+      aria-hidden="true"
+      focusable="false"
+      data-prefix="fal"
+      data-icon={icon.iconName}
+      role="img"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox={`0 0 ${width} ${height}`}
+      data-fa-i2svg=""
+    >
+      <path fill="currentColor" d={svg as string}></path>
+    </svg>
+  );
+}
 
 @Component({
   tag: 'zen-icon',

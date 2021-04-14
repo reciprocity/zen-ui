@@ -1,11 +1,11 @@
 import { html } from 'lit-html';
 import { Meta, Description, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
-import { waitForElement } from '../../../.storybook/helpers/utils';
+import { waitForElement } from '#storybook/helpers/utils';
 
-import icon from '../../img/reci-icon-g.png';
+import icon from '#storybook/img/reci-icon-g.png';
 import { faCheck } from '@fortawesome/pro-light-svg-icons';
 
-import { getDefaultArgs, getArgTypesAndArgs, spreadArgs } from '../../../.storybook/helpers/argTypes';
+import { getDefaultArgs, getArgTypesAndArgs, spreadArgs } from '#storybook/helpers/argTypes';
 const { argTypes, args } = getArgTypesAndArgs('zen-option');
 
 <Meta title="Forms/Dropdown/Dropdown option" component="zen-option" argTypes={argTypes} />

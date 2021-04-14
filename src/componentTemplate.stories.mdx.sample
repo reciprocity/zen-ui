@@ -1,13 +1,13 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
 import { html } from 'lit-html';
-import { logEvents } from '../../../.storybook/helpers/log-events';
-import { getArgTypes, getDefaultArgs, getComponentData, spreadArgs } from '../../../.storybook/helpers/argTypes';
+import { logEvents } from '#storybook/helpers/log-events';
+import { getArgTypes, getDefaultArgs, getComponentData, spreadArgs } from '#storybook/helpers/argTypes';
 
 import data from '../../../stencilDocs.json';
 const compData = data.components.find(n => n.tag === 'zen-button');
 const argTypes = getArgTypes(compData);
 
-<Meta title="Developers/Template" component="zen-button" argTypes={argTypes} />
+<Meta title="Guides/Developers/Template" component="zen-button" argTypes={argTypes} />
 
 export const StoryWithControls = args => html/*html*/ `
   <zen-button id="button1" ...="${spreadArgs(args, argTypes)}"> Button 1 </zen-button>

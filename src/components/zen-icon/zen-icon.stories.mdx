@@ -1,6 +1,6 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
 import { html } from 'lit-html';
-import { getArgTypes, getDefaultArgs, getComponentData, spreadArgs } from '../../../.storybook/helpers/argTypes';
+import { getArgTypes, getDefaultArgs, getComponentData, spreadArgs } from '#storybook/helpers/argTypes';
 const css = /*css*/ `
   .icon {
     width: min-content;
@@ -8,7 +8,7 @@ const css = /*css*/ `
     text-align; center;
   }
 `;
-import { waitForElement } from '../../../.storybook/helpers/utils';
+import { waitForElement } from '#storybook/helpers/utils';
 import data from '../../../stencilDocs.json';
 const compData = data.components.find(n => n.tag === 'zen-icon');
 let argTypes = getArgTypes(compData);
