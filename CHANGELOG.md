@@ -1,3 +1,10 @@
+## [3.4.1](https://github.com/reciprocity/zen-ui/compare/3.4.0...3.4.1) (2021-04-14)
+
+
+### Bug Fixes
+
+* **zen-option:** updated mousemove hover style and remove keyboard hover when mousemove ([6410bac](https://github.com/reciprocity/zen-ui/commit/6410bac9c64ee8fd56f26389fe6abea8b2841554))
+
 # [3.4.0](https://github.com/reciprocity/zen-ui/compare/3.3.3...3.4.0) (2021-04-13)
 
 
