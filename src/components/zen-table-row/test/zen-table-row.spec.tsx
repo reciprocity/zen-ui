@@ -31,47 +31,9 @@ describe('zen-table-row', () => {
 
     expect(page.root.shadowRoot.querySelector('zen-checkbox')).toBeTruthy();
   });
-
-  it.skip('should render expendable icon and on click expand full span row', async () => {
-    const page = await newSpecPage({
-      components: [ZenTable, ZenTableRow, ZenTableCell],
-      html: /*html*/ `
-        <zen-table columns="1fr 1fr">
-          <zen-table-row depth="0">
-            <zen-table-cell class="first-cell">Row 1, Cell 1</zen-table-cell>
-            <zen-table-cell>Row 1, Cell 2</zen-table-cell>
-          </zen-table-row>
-          <zen-table-row full-span depth="1">
-            <zen-table-cell>Test</zen-table-cell>
-            <zen-table-cell></zen-table-cell>
-          </zen-table-row>
-        </zen-table>`,
-    });
-    const table = page.root as HTMLZenTableElement;
-    const mainRow = page.root.querySelector('zen-table-row') as HTMLZenTableRowElement;
-    helpers.getDefaultSlotContent = jest.fn(() => parentRow.querySelectorAll('zen-table-cell'));
-    mainRow.selectable = true;
-    await page.waitForChanges();
-    await cleanupTableStructure(table);
-
-    expect(mainRow.$visible).toBe(true);
-
-    const firstCell = page.root.querySelector('.first-cell') as HTMLZenTableRowElement;
-
-    const expandRow = page.root.querySelector('[full-span]') as HTMLZenTableRowElement;
-    expect(expandRow.$visible).toBeFalsy();
-
-    const expandableIcon = firstCell.shadowRoot.querySelector('.expand-icon');
-    expect(expandableIcon).toBeTruthy();
-
-    simulateMouse('click', expandableIcon);
-    cleanupTableStructure(table);
-    expect(mainRow.expanded).toBe(true);
-    expect(expandRow.$visible).toBe(true);
-  });
 });
 
-describe('zen-table-row tree functionality', () => {
+describe('zen-table-row inside tree structure', () => {
   let page: SpecPage;
   let table: HTMLZenTableElement;
   let parentRow: HTMLZenTableRowElement;
@@ -113,7 +75,6 @@ describe('zen-table-row tree functionality', () => {
     helpers.getDefaultSlotContent = jest.fn(() => parentRow.querySelectorAll('zen-table-cell'));
     parentRow.selectable = true;
     parentRow.$expandable = true;
-    parentRow.expanded = true;
 
     firstCell = table.querySelector('.first-cell') as HTMLZenTableCellElement;
     secondDepthCell = table.querySelector('.second-depth-cell') as HTMLZenTableCellElement;
@@ -126,7 +87,26 @@ describe('zen-table-row tree functionality', () => {
     helpers.getDefaultSlotContent = originalGetDefaultSlotContent;
   });
 
+  it('should render expendable icon and on click expand full span row', () => {
+    parentRow.selectable = true;
+    cleanupTableStructure(table);
+
+    expect(parentRow.$visible).toBe(true);
+    expect(secondDepthParentRow.$visible).toBeFalsy();
+
+    const expandableIcon = firstCell.shadowRoot.querySelector('.expand-icon');
+    expect(expandableIcon).toBeTruthy();
+
+    simulateMouse('click', expandableIcon);
+    cleanupTableStructure(table);
+
+    expect(parentRow.expanded).toBe(true);
+    expect(secondDepthParentRow.$visible).toBe(true);
+  });
+
   it('should set all descendants to not visible on expand false', async () => {
+    parentRow.expanded = true;
+
     cleanupTableStructure(table);
     expect(parentRow.$visible).toBe(true);
     expect(secondDepthParentRow.$visible).toBe(true);
