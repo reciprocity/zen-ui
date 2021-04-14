@@ -1,15 +1,13 @@
 import { expect } from '@jest/globals';
-
-import * as helpers from '../../helpers/helpers';
-
 import { mutationObserverMock, simulateMouse } from '../../helpers/jest';
-global.MutationObserver = mutationObserverMock();
-
+import * as helpers from '../../helpers/helpers';
+import { cleanupTableStructure } from '../../zen-table/zen-table-helpers';
 import { newSpecPage } from '@stencil/core/testing';
 import { ZenTableRow } from '../zen-table-row';
 import { ZenTable } from '../../zen-table/zen-table';
 import { ZenTableCell } from '../../zen-table-cell/zen-table-cell';
-import { cleanupTableStructure } from '../../zen-table/zen-table-helpers';
+
+global.MutationObserver = mutationObserverMock();
 
 const originalGetDefaultSlotContent = helpers.getDefaultSlotContent;
 
@@ -37,7 +35,7 @@ describe('zen-table-row inside tree structure', () => {
   let page: SpecPage;
   let table: HTMLZenTableElement;
   let parentRow: HTMLZenTableRowElement;
-  let secondDepthParentRow: HTMLZenTableRowElement;
+  let secondDepthRow: HTMLZenTableRowElement;
   let firstCell: HTMLZenTableCellElement;
   let secondDepthCell: HTMLZenTableCellElement;
 
@@ -69,7 +67,7 @@ describe('zen-table-row inside tree structure', () => {
     });
     table = page.root;
     parentRow = table.querySelector('zen-table-row') as HTMLZenTableRowElement;
-    secondDepthParentRow = table.querySelector('[second-level-parent]') as HTMLZenTableRowElement;
+    secondDepthRow = table.querySelector('[second-level-parent]') as HTMLZenTableRowElement;
 
     // mock slots:
     helpers.getDefaultSlotContent = jest.fn(() => parentRow.querySelectorAll('zen-table-cell'));
@@ -92,7 +90,7 @@ describe('zen-table-row inside tree structure', () => {
     cleanupTableStructure(table);
 
     expect(parentRow.$visible).toBe(true);
-    expect(secondDepthParentRow.$visible).toBeFalsy();
+    expect(secondDepthRow.$visible).toBeFalsy();
 
     const expandableIcon = firstCell.shadowRoot.querySelector('.expand-icon');
     expect(expandableIcon).toBeTruthy();
@@ -101,7 +99,7 @@ describe('zen-table-row inside tree structure', () => {
     cleanupTableStructure(table);
 
     expect(parentRow.expanded).toBe(true);
-    expect(secondDepthParentRow.$visible).toBe(true);
+    expect(secondDepthRow.$visible).toBe(true);
   });
 
   it('should set all descendants to not visible on expand false', async () => {
@@ -109,7 +107,7 @@ describe('zen-table-row inside tree structure', () => {
 
     cleanupTableStructure(table);
     expect(parentRow.$visible).toBe(true);
-    expect(secondDepthParentRow.$visible).toBe(true);
+    expect(secondDepthRow.$visible).toBe(true);
 
     const expandableIcon = firstCell.shadowRoot.querySelector('.expand-icon');
 
@@ -149,7 +147,7 @@ describe('zen-table-row inside tree structure', () => {
     );
     const secondDepthChildren = page.root.querySelectorAll('zen-table-row[depth="2"]');
 
-    secondDepthParentRow.selected = true;
+    secondDepthRow.selected = true;
 
     for (const row of firstDepthChildren.values()) {
       expect((row as HTMLZenTableRowElement).selected).not.toBe(true);
@@ -168,6 +166,6 @@ describe('zen-table-row inside tree structure', () => {
     cleanupTableStructure(table);
 
     expect(parentRow.$indeterminate).toBe(true);
-    expect(secondDepthParentRow.$indeterminate).toBe(true);
+    expect(secondDepthRow.$indeterminate).toBe(true);
   });
 });
