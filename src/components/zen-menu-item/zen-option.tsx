@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, Element } from '@stencil/core';
+import { Component, Host, h, Prop, Element, Listen } from '@stencil/core';
 import { SpacingShorthand, Spacing } from '../helpers/types';
 import { applyPrefix } from '../helpers/helpers';
 import { InputSize } from '../helpers/types';
@@ -15,27 +15,42 @@ export class ZenOption {
 
   /** Render item as selected */
   @Prop({ reflect: true }) readonly selected: boolean = false;
+
   /** Render item as focused */
   @Prop({ reflect: true }) readonly focused: boolean = false;
+
   /** Value of option when used inside a dropdown */
   @Prop({ reflect: true }) readonly value: OptionValue = '';
+
   /** Disable selecting option in dropdown */
   @Prop() readonly disabled?: boolean = false;
+
   /** Prevents default hover style on mouse hover */
   @Prop({ reflect: true }) readonly noHover?: boolean = false;
+
   /** Size variant */
   @Prop({ reflect: true }) readonly size: InputSize = 'md';
 
   /** <Description generated in helper file> */
   @Prop() readonly padding: SpacingShorthand = null;
+
   /** Skipped */
   @Prop() readonly paddingTop: Spacing = null;
+
   /** Skipped */
   @Prop() readonly paddingRight: Spacing = null;
+
   /** Skipped */
   @Prop() readonly paddingBottom: Spacing = null;
+
   /** Skipped */
   @Prop() readonly paddingLeft: Spacing = null;
+
+  @Listen('mousemove')
+  handleMouseOver(): void {
+    Array.from(this.host.parentElement.children).forEach(node => node.removeAttribute('focused'));
+    this.host.setAttribute('focused', 'true');
+  }
 
   render(): HTMLElement {
     const ZenSpace = applyPrefix('zen-space', this.host);

@@ -44,18 +44,21 @@ $item-line-height: 1.2rem;
   line-height: 2.5rem;
 }
 
-:host(:not([no-hover]):hover),
-:host([selected]),
-:host([focused]) {
+:host([selected]) {
+  .background {
+    font-weight: bold;
+  }
+}
+
+:host(:not([no-hover])[focused]) {
   .background {
     background-color: $color-gray-100;
   }
 }
 
-:host([selected][focused]),
-:host(:not([no-hover])[selected]:hover),
-:host(:not([no-hover])[focused]:hover) {
+:host(:not([no-hover])[selected][focused]) {
   .background {
-    background-color: $color-gray-200;
+    background-color: $color-gray-100;
+    font-weight: bold;
   }
 }
