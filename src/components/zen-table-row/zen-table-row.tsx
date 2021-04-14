@@ -135,15 +135,7 @@ export class ZenTableRow {
   }
 
   setCellsProp(propName: string, value: unknown): void {
-    const cells = this.getRowCells();
-    try {
-      cells.forEach(cell => {
-        cell[propName] = value;
-      });
-    } catch (error) {
-      // todo: this happens on jest tests. Should be fixed some day...
-      console.log(`error ZenTableCell.setCellsProp(${propName})`);
-    }
+    this.getRowCells().forEach(cell => (cell[propName] = value));
   }
 
   async componentDidLoad(): Promise<void> {
