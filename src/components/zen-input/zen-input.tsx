@@ -104,6 +104,8 @@ export class ZenInput {
 
   private onClearClick(event: Event): void {
     this.value = '';
+    this.input.value = '';
+    this.host.dispatchEvent(new window.Event('change'));
     event.stopPropagation();
     event.preventDefault();
   }
@@ -142,7 +144,7 @@ export class ZenInput {
             role="button"
             icon={faTimes}
             size={this.clearIconSize()}
-            onMousedown={event => this.onClearClick(event)}
+            onMousedown={(event: MouseEvent) => this.onClearClick(event)}
           ></ZenIcon>
         )}
         <slot name="trailingSlot"></slot>
