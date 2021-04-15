@@ -2,7 +2,7 @@ import { expect } from '@jest/globals';
 import { mutationObserverMock, simulateMouse } from '../../helpers/jest';
 import * as helpers from '../../helpers/helpers';
 import { cleanupTableStructure } from '../../zen-table/zen-table-helpers';
-import { newSpecPage } from '@stencil/core/testing';
+import { newSpecPage, SpecPage } from '@stencil/core/testing';
 import { ZenTableRow } from '../zen-table-row';
 import { ZenTable } from '../../zen-table/zen-table';
 import { ZenTableCell } from '../../zen-table-cell/zen-table-cell';
