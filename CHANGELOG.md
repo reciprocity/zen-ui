@@ -1,3 +1,10 @@
+## [3.5.1](https://github.com/reciprocity/zen-ui/compare/3.5.0...3.5.1) (2021-04-15)
+
+
+### Bug Fixes
+
+* enable React bindings deploy ([77d2fb6](https://github.com/reciprocity/zen-ui/commit/77d2fb6d1a349f2cdd2146b4f962a74cbc27f249))
+
 # [3.5.0](https://github.com/reciprocity/zen-ui/compare/3.4.1...3.5.0) (2021-04-15)
 
 
