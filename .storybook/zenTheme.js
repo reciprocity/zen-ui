@@ -1,5 +1,5 @@
 import { create } from '@storybook/theming/create';
-import ReciLogo from '../src/stories/img/infinity-logo-tight_white.svg';
+import ReciLogo from './img/infinity-logo-tight_white.svg';
 const { version } = require('../package.json');
 
 export default create({
