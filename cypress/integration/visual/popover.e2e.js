@@ -6,13 +6,14 @@ describe('Popover visual tests', { scrollBehavior: 'center' }, () => {
     'story--containers-popover--story-position-variants',
     'story--containers-popover--story-trigger-events',
     'story--containers-popover--story-scrollable',
-    'story--containers-popover--story-filters',
     'story--containers-popover--default-story',
   ];
 
+  const skippedStories = ['story--containers-popover--story-filters'];
+
   beforeEach(() => {
     cy.visitStorybookIframe(pageId);
-    cy.verifyAllStoriesHaveVRT(story);
+    cy.verifyAllStoriesHaveVRT(story, skippedStories);
     cy.get('sb-zen-button').should('be.visible');
   });
 
@@ -54,7 +55,7 @@ describe('Popover visual tests', { scrollBehavior: 'center' }, () => {
       });
   });
 
-  it('Verifies ' + `${story[3]}`, () => {
+  it.skip('Verifies ' + `${story[3]}`, () => {
     cy.get(`#${story[3]}`).within(() => {
       cy.contains('Filter').click();
       cy.get('[data-popper-placement="bottom-start"]').should('be.visible');
@@ -64,8 +65,8 @@ describe('Popover visual tests', { scrollBehavior: 'center' }, () => {
     });
   });
 
-  it('Verifies ' + `${story[4]}`, () => {
-    cy.get(`#${story[4]}`)
+  it('Verifies ' + `${story[3]}`, () => {
+    cy.get(`#${story[3]}`)
       .parents('.docs-story')
       .within(doc => {
         cy.contains('sb-zen-button', 'Button').click();
