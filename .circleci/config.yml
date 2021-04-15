@@ -103,7 +103,7 @@ jobs:
       - checkout
       - attach_workspace:
           at: .
-      - run: yarn semantic-release && yarn build
+      - run: yarn semantic-release && yarn build && yarn react:publish
       - persist_to_workspace:
           root: .
           paths:
