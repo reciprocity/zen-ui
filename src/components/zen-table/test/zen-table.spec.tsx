@@ -1,27 +1,35 @@
-import { mutationObserverMock } from '../../helpers/jest';
+import { expect, jest, beforeAll, afterAll } from '@jest/globals';
+import jestMock from 'jest-mock';
+import { createMutationObserverMock, MutationObserverMock } from '../../helpers/jest';
 const originalMutationObserver = global.MutationObserver;
 
 import { newSpecPage } from '@stencil/core/testing';
 import { ZenTable } from '../zen-table';
 
+let consoleErrorMock;
+
 describe('zen-table', () => {
+  let mutationObserverMock: jestMock.Mock<MutationObserverMock>;
+
   beforeAll(() => {
-    jest.spyOn(console, 'error').mockImplementation(() => {
+    consoleErrorMock = jest.spyOn(console, 'error').mockImplementation(() => {
       // nothing
     });
   });
 
   beforeEach(() => {
-    global.MutationObserver = mutationObserverMock();
+    mutationObserverMock = createMutationObserverMock();
+    global.MutationObserver = mutationObserverMock;
   });
 
   afterEach(() => {
     global.MutationObserver = originalMutationObserver;
-    console.error.mockClear();
+    mutationObserverMock.mockClear();
+    consoleErrorMock.mockClear();
   });
 
   afterAll(() => {
-    console.error.mockRestore();
+    consoleErrorMock.mockRestore();
   });
 
   it('should render', async () => {
