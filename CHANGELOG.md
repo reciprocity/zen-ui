@@ -1,3 +1,15 @@
+# [3.5.0](https://github.com/reciprocity/zen-ui/compare/3.4.1...3.5.0) (2021-04-15)
+
+
+### Bug Fixes
+
+* **zen-datepicker:** now using zen-input clear button to clear datepicker ([794d69a](https://github.com/reciprocity/zen-ui/commit/794d69a6e430a25a4ad864377623f9b18721a155))
+
+
+### Features
+
+* **zen-input:** when clear button is clicked a change event is triggered ([f08ca40](https://github.com/reciprocity/zen-ui/commit/f08ca4038f3a745c102c9dd2d2179ef359b1dbf2))
+
 ## [3.4.1](https://github.com/reciprocity/zen-ui/compare/3.4.0...3.4.1) (2021-04-14)
 
 
