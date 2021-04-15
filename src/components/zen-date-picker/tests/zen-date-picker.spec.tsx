@@ -181,6 +181,20 @@ describe('zen-date-picker', () => {
     expect(JSON.stringify(datepicker.value)).toEqual('null');
   });
 
+  it('should not render x button if allowEmpty is false', async () => {
+    await render('allow-empty="false"');
+
+    const input = datepicker.shadowRoot.getElementById('date-input');
+    const realInput = input.shadowRoot.querySelector('input');
+    realInput.value = '02/02/2021';
+    realInput.dispatchEvent(new Event('focus'));
+
+    await page.waitForChanges();
+
+    const clearButton = input.querySelector('.icon.clear');
+    expect(clearButton).toBeFalsy();
+  });
+
   it('should not clear date if allowEmpty is false', async () => {
     await render('allow-empty="false"');
     expect(datepicker.value).toEqual(new Date(1972, 2 - 1, 18));
