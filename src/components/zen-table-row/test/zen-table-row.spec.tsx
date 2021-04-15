@@ -1,5 +1,6 @@
 import { expect } from '@jest/globals';
-import { createMutationObserverMock, simulateMouse } from '../../helpers/jest';
+import jestMock from 'jest-mock';
+import { createMutationObserverMock, MutationObserverMock, simulateMouse } from '../../helpers/jest';
 import * as helpers from '../../helpers/helpers';
 import { cleanupTableStructure } from '../../zen-table/zen-table-helpers';
 import { newSpecPage, SpecPage } from '@stencil/core/testing';
@@ -37,12 +38,11 @@ describe('zen-table-row inside tree structure', () => {
   let secondDepthRow: HTMLZenTableRowElement;
   let firstCell: HTMLZenTableCellElement;
   let secondDepthCell: HTMLZenTableCellElement;
-  let mutationObserverMock: unknown;
+  let mutationObserverMock: jestMock.Mock<MutationObserverMock>;
 
   beforeEach(async () => {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    mutationObserverMock = global.MutationObserver = createMutationObserverMock();
+    mutationObserverMock = createMutationObserverMock();
+    global.MutationObserver = mutationObserverMock;
 
     page = await newSpecPage({
       components: [ZenTable, ZenTableRow, ZenTableCell],
