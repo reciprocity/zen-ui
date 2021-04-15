@@ -222,7 +222,7 @@ const prepareConfig = async (config: Config): Promise<Config> => {
     process.exit(1);
   }
 
-  newConfig.registries = ['public', 'github'];
+  newConfig.registries = Object.keys(registriesPlugin[1].registries);
   return newConfig;
 };
 
