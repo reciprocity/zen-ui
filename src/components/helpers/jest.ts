@@ -29,7 +29,7 @@ export async function propReflectsInAttributes(page: SpecPage, props: Record<str
   return true;
 }
 
-export const mutationObserverMock = (): unknown =>
+export const createMutationObserverMock = (): unknown =>
   jest.fn(function MutationObserver(callback: (a: unknown, b: unknown) => void) {
     this.observe = jest.fn();
     this.disconnect = jest.fn();

@@ -1,5 +1,5 @@
 import { expect } from '@jest/globals';
-import { mutationObserverMock, simulateMouse } from '../../helpers/jest';
+import { createMutationObserverMock, simulateMouse } from '../../helpers/jest';
 import * as helpers from '../../helpers/helpers';
 import { cleanupTableStructure } from '../../zen-table/zen-table-helpers';
 import { newSpecPage, SpecPage } from '@stencil/core/testing';
@@ -7,8 +7,7 @@ import { ZenTableRow } from '../zen-table-row';
 import { ZenTable } from '../../zen-table/zen-table';
 import { ZenTableCell } from '../../zen-table-cell/zen-table-cell';
 
-global.MutationObserver = mutationObserverMock();
-
+const originalMutationObserver = global.MutationObserver;
 const originalGetDefaultSlotContent = helpers.getDefaultSlotContent;
 
 describe('zen-table-row', () => {
@@ -38,9 +37,13 @@ describe('zen-table-row inside tree structure', () => {
   let secondDepthRow: HTMLZenTableRowElement;
   let firstCell: HTMLZenTableCellElement;
   let secondDepthCell: HTMLZenTableCellElement;
+  let mutationObserverMock: unknown;
 
   beforeEach(async () => {
-    global.MutationObserver.mockClear();
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    mutationObserverMock = global.MutationObserver = createMutationObserverMock();
+
     page = await newSpecPage({
       components: [ZenTable, ZenTableRow, ZenTableCell],
       html: /*html*/ `
@@ -83,6 +86,8 @@ describe('zen-table-row inside tree structure', () => {
 
   afterEach(() => {
     helpers.getDefaultSlotContent = originalGetDefaultSlotContent;
+    global.MutationObserver = originalMutationObserver;
+    mutationObserverMock.mockClear();
   });
 
   it('should render expendable icon and on click expand full span row', () => {
