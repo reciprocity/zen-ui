@@ -68,11 +68,12 @@ describe('zen-table-row inside tree structure', () => {
           </zen-table-row>
         </zen-table>`,
     });
-    table = page.root;
+    table = page.root as HTMLZenTableElement;
     parentRow = table.querySelector('zen-table-row') as HTMLZenTableRowElement;
     secondDepthRow = table.querySelector('[second-level-parent]') as HTMLZenTableRowElement;
 
-    // mock slots:
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     helpers.getDefaultSlotContent = jest.fn(() => parentRow.querySelectorAll('zen-table-cell'));
     parentRow.selectable = true;
     parentRow.$expandable = true;
@@ -85,6 +86,8 @@ describe('zen-table-row inside tree structure', () => {
   });
 
   afterEach(() => {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     helpers.getDefaultSlotContent = originalGetDefaultSlotContent;
     global.MutationObserver = originalMutationObserver;
     mutationObserverMock.mockClear();
@@ -154,10 +157,10 @@ describe('zen-table-row inside tree structure', () => {
 
     secondDepthRow.selected = true;
 
-    for (const row of firstDepthChildren.values()) {
+    for (const row of Array.from(firstDepthChildren).values()) {
       expect((row as HTMLZenTableRowElement).selected).not.toBe(true);
     }
-    for (const row of secondDepthChildren.values()) {
+    for (const row of Array.from(secondDepthChildren).values()) {
       expect((row as HTMLZenTableRowElement).selected).toBe(true);
     }
   });
