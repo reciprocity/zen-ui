@@ -6,8 +6,7 @@
     "@semantic-release/changelog",
     ["@amanda-mitchell/semantic-release-npm-multiple", {
       "registries": {
-        "github": {},
-        "public": {}
+        "github": {}
       }
     }],
     "@semantic-release/git",
