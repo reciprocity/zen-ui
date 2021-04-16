@@ -1,13 +1,19 @@
 import { newSpecPage } from '@stencil/core/testing';
-
-let getNextFieldResult = null;
 import * as helpers from '../../helpers/helpers';
-helpers.getNextField = jest.fn(() => getNextFieldResult);
 
 import { ZenInput } from '../zen-input';
 import { ZenIcon } from '../../zen-icon/zen-icon';
 
 describe('zen-input', () => {
+  let getNextFieldResult: null | HTMLInputElement;
+  beforeEach(() => {
+    getNextFieldResult = null;
+    jest
+      .spyOn(helpers, 'getNextField')
+      .mockClear()
+      .mockImplementation(() => getNextFieldResult);
+  });
+
   it('should render with shadow dom', async () => {
     const page = await newSpecPage({
       components: [ZenInput],
@@ -172,7 +178,7 @@ describe('zen-input', () => {
       `,
     });
     const input = page.doc.querySelector('zen-input');
-    const nextInput = page.doc.querySelector('#next-input');
+    const nextInput = page.doc.querySelector<HTMLInputElement>('#next-input');
     getNextFieldResult = nextInput;
     nextInput.focus = jest.fn();
     input.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }));

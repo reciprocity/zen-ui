@@ -33,7 +33,7 @@ describe('zen-breadcrumbs', () => {
   describe('insertBetween', () => {
     it.each([
       [[], []],
-      [[1], [1]],
+      [['1'], ['1']],
     ])('should not insert element into array if array has less than 2 elements (array: %s)', (arr, expected) => {
       const insertBetween = ZenBreadcrumbs.prototype.insertBetween;
       const res = insertBetween(arr, '!');
@@ -41,8 +41,8 @@ describe('zen-breadcrumbs', () => {
     });
 
     it.each([
-      [[1, 2], '&', [1, '&', 2]],
-      [[1, 2, 3], '&', [1, '&', 2, '&', 3]],
+      [['1', '2'], '&', ['1', '&', '2']],
+      [['1', '2', '3'], '&', ['1', '&', '2', '&', '3']],
     ])('should insert element between array of elements (element: %j, array: %s)', (arr, el, expected) => {
       const insertBetween = ZenBreadcrumbs.prototype.insertBetween;
       const res = insertBetween(arr, el);

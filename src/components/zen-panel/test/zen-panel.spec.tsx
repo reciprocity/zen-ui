@@ -54,7 +54,7 @@ describe('zen-panel', () => {
     it('should hide with animation on click', async () => {
       await render('visible');
       expect(panel.visible).toBe(true);
-      panel.shadowRoot.querySelector('.header').click();
+      panel.shadowRoot.querySelector<HTMLElement>('.header').click();
       await page.waitForChanges();
       expect(helpers.hideWithAnimation).toHaveBeenCalled();
     });

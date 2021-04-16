@@ -1,5 +1,3 @@
-import { expect } from '@jest/globals';
-import jestMock from 'jest-mock';
 import { createMutationObserverMock, MutationObserverMock, simulateMouse } from '../../helpers/jest';
 import * as helpers from '../../helpers/helpers';
 import { cleanupTableStructure } from '../../zen-table/zen-table-helpers';
@@ -9,7 +7,6 @@ import { ZenTable } from '../../zen-table/zen-table';
 import { ZenTableCell } from '../../zen-table-cell/zen-table-cell';
 
 const originalMutationObserver = global.MutationObserver;
-const originalGetDefaultSlotContent = helpers.getDefaultSlotContent;
 
 describe('zen-table-row', () => {
   it('should render', async () => {
@@ -38,11 +35,18 @@ describe('zen-table-row inside tree structure', () => {
   let secondDepthRow: HTMLZenTableRowElement;
   let firstCell: HTMLZenTableCellElement;
   let secondDepthCell: HTMLZenTableCellElement;
-  let mutationObserverMock: jestMock.Mock<MutationObserverMock>;
+  let mutationObserverMock: jest.Mock<MutationObserverMock>;
+  let cells: NodeListOf<HTMLZenTableCellElement>;
 
   beforeEach(async () => {
     mutationObserverMock = createMutationObserverMock();
     global.MutationObserver = mutationObserverMock;
+
+    cells = ([] as unknown) as NodeListOf<HTMLZenTableCellElement>;
+    jest
+      .spyOn(helpers, 'getDefaultSlotContent')
+      .mockClear()
+      .mockImplementation(() => (cells as unknown) as Element[]);
 
     page = await newSpecPage({
       components: [ZenTable, ZenTableRow, ZenTableCell],
@@ -72,9 +76,7 @@ describe('zen-table-row inside tree structure', () => {
     parentRow = table.querySelector('zen-table-row') as HTMLZenTableRowElement;
     secondDepthRow = table.querySelector('[second-level-parent]') as HTMLZenTableRowElement;
 
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    helpers.getDefaultSlotContent = jest.fn(() => parentRow.querySelectorAll('zen-table-cell'));
+    cells = parentRow.querySelectorAll('zen-table-cell');
     parentRow.selectable = true;
     parentRow.$expandable = true;
 
@@ -86,14 +88,10 @@ describe('zen-table-row inside tree structure', () => {
   });
 
   afterEach(() => {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    helpers.getDefaultSlotContent = originalGetDefaultSlotContent;
     global.MutationObserver = originalMutationObserver;
-    mutationObserverMock.mockClear();
   });
 
-  it('should render expendable icon and on click expand full span row', () => {
+  it('should render expendable icon and on click expand full span row', async () => {
     parentRow.selectable = true;
     cleanupTableStructure(table);
 
@@ -148,7 +146,7 @@ describe('zen-table-row inside tree structure', () => {
     }
   });
 
-  it('should select only second depth children when setting second depth parent to selected', () => {
+  it('should select only second depth children when setting second depth parent to selected', async () => {
     // First depth children without the first depth parent row
     const firstDepthChildren = page.root.querySelectorAll(
       'zen-table-row[depth="1"] :not(zen-table-row[depth="1"]:first-child)',

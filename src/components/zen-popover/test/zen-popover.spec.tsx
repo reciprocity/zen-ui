@@ -1,46 +1,53 @@
 import { newSpecPage, SpecPage } from '@stencil/core/testing';
-
-const popperMock = {
-  destroy: jest.fn(),
-  state: {
-    placement: 'bottom',
-  },
-};
-
 import * as popper from '@popperjs/core';
-popper.createPopper = jest.fn(() => popperMock);
-
 import * as helpers from '../../helpers/helpers';
-helpers.waitNextFrame = jest.fn(() => new Promise(resolve => setTimeout(() => resolve(), 50)));
-helpers.getComposedPath = jest.fn(() => []);
-
 import { ZenPopover } from '../zen-popover';
 import { ZenButton } from '../../zen-button/zen-button';
 import { simulateMouse } from '../../helpers/jest';
 
-async function simulateNextFrame(page) {
-  jest.advanceTimersByTime(50);
-  await page.waitForChanges();
-}
-
-function isVisible(popup) {
-  return popup.getAttribute('animate') === 'in-end';
-}
-
-function isHidden(popup) {
-  return popup.getAttribute('animate') === 'out-finished';
-}
-
-// -----------------------------------------------------------------------------
 describe('zen-popover', () => {
   let page: SpecPage;
   let popover: HTMLZenPopoverElement;
   let popup: HTMLElement;
   let trigger: HTMLButtonElement;
+  const documentElement = (global.document as unknown) as Element;
 
-  const render = async (params?: string) => {
+  const simulateNextFrame = async page => {
+    jest.advanceTimersByTime(50);
+    await page.waitForChanges();
+  };
+
+  const isVisible = popup => popup.getAttribute('animate') === 'in-end';
+  const isHidden = popup => popup.getAttribute('animate') === 'out-finished';
+
+  // -----------------------------------------------------------------------------
+
+  beforeEach(() => {
     jest.clearAllTimers();
     jest.useFakeTimers();
+    jest
+      .spyOn(popper, 'createPopper')
+      .mockClear()
+      .mockImplementation(
+        () =>
+          (({
+            destroy: jest.fn(),
+            state: {
+              placement: 'bottom',
+            },
+          } as unknown) as popper.Instance),
+      );
+    jest
+      .spyOn(helpers, 'getComposedPath')
+      .mockClear()
+      .mockImplementation(() => []);
+    jest
+      .spyOn(helpers, 'waitNextFrame')
+      .mockClear()
+      .mockImplementation(() => new Promise(resolve => setTimeout(resolve, 50)));
+  });
+
+  const render = async (params?: string) => {
     page = await newSpecPage({
       components: [ZenPopover, ZenButton],
       html: /*html*/ `
@@ -54,7 +61,7 @@ describe('zen-popover', () => {
     });
     await page.waitForChanges();
     popover = page.doc.querySelector('zen-popover') as HTMLZenPopoverElement;
-    trigger = page.doc.querySelector('zen-button');
+    trigger = page.doc.querySelector<HTMLButtonElement>('zen-button');
     popup = popover.shadowRoot.querySelector('.popup');
   };
 
@@ -116,7 +123,7 @@ describe('zen-popover', () => {
     await simulateNextFrame(page); // wait to create popper
     jest.runAllTimers(); // mouse down listener is added in timeout
 
-    simulateMouse('mousedown', global.document);
+    simulateMouse('mousedown', documentElement);
     await simulateNextFrame(page); // clickOut has waitNextFrame
 
     expect(popover.visible).toBeFalsy();
@@ -142,7 +149,7 @@ describe('zen-popover', () => {
     await simulateNextFrame(page); // wait to create popper
     jest.runAllTimers(); // mouse down listener is added in timeout
 
-    simulateMouse('mousedown', global.document);
+    simulateMouse('mousedown', documentElement);
     await simulateNextFrame(page); // clickOut has waitNextFrame
 
     expect(popover.visible).toBeFalsy();
@@ -158,7 +165,7 @@ describe('zen-popover', () => {
     await simulateNextFrame(page); // wait to create popper
     jest.runAllTimers(); // mouse down listener is added in timeout
 
-    simulateMouse('mousedown', global.document);
+    simulateMouse('mousedown', documentElement);
     await simulateNextFrame(page); // clickOut has waitNextFrame
 
     expect(popover.visible).toBeTruthy();
@@ -205,7 +212,7 @@ describe('zen-popover', () => {
     await simulateNextFrame(page); // wait to create popper
     jest.runAllTimers(); // mouse down listener is added in timeout
 
-    simulateMouse('mousedown', global.document);
+    simulateMouse('mousedown', documentElement);
     await simulateNextFrame(page); // clickOut has waitNextFrame
 
     expect(popover.visible).toBeFalsy();

@@ -45,6 +45,7 @@
     "format": "prettier --write $@",
     "format:all": "yarn format src/ cypress/",
     "format:ci": "yarn format:check",
+    "typecheck": "tsc --noEmit",
     "postinstall": "husky install",
     "prepublishOnly": "pinst --disable",
     "postpublish": "pinst --enable",

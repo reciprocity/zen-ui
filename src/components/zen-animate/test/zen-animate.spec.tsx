@@ -1,18 +1,25 @@
 import { newSpecPage } from '@stencil/core/testing';
-import { htmlToElement } from '../../helpers/helpers';
-
-jest.useFakeTimers();
-
-const fakeSlot = htmlToElement('<div></div>')[0];
-
 import * as helpers from '../../helpers/helpers';
-helpers.getSlotElement = jest.fn(() => fakeSlot);
-helpers.getDefaultSlotContent = jest.fn(() => [fakeSlot]);
-helpers.waitNextFrame = jest.fn(() => new Promise(resolve => resolve(true)));
-
 import { ZenAnimate } from '../zen-animate';
 
 describe('zen-animate', () => {
+  beforeEach(() => {
+    jest.useFakeTimers();
+    const [fakeSlot] = helpers.htmlToElement('<div></div>');
+    jest
+      .spyOn(helpers, 'getSlotElement')
+      .mockClear()
+      .mockImplementation(() => (fakeSlot as unknown) as HTMLElement);
+    jest
+      .spyOn(helpers, 'getDefaultSlotContent')
+      .mockClear()
+      .mockImplementation(() => [fakeSlot]);
+    jest
+      .spyOn(helpers, 'waitNextFrame')
+      .mockClear()
+      .mockImplementation(() => new Promise(resolve => resolve(true)));
+  });
+
   it('should render', async () => {
     const page = await newSpecPage({
       components: [ZenAnimate],
@@ -62,7 +69,7 @@ describe('zen-animate', () => {
   });
 
   it('should retry to get slot if it failed first time', async () => {
-    helpers.getDefaultSlotContent = jest.fn(() => []);
+    jest.spyOn(helpers, 'getDefaultSlotContent').mockImplementation(() => []);
     const page = await newSpecPage({
       components: [ZenAnimate],
       html: `<zen-animate show="true"><h1>Slot</h1></zen-animate>`,

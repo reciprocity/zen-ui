@@ -1,17 +1,7 @@
 import { newSpecPage, SpecPage } from '@stencil/core/testing';
-import { simulateKey, simulateMouse } from '../../helpers/jest';
-
-const popperMock = {
-  destroy: jest.fn(),
-  state: {
-    placement: 'bottom',
-  },
-};
+import { simulateKey } from '../../helpers/jest';
 import * as popper from '@popperjs/core';
-popper.createPopper = jest.fn(() => popperMock);
-
 import { helpers } from '../date-helpers';
-helpers.today = jest.fn(() => new Date(1972, 1, 18));
 
 import { ZenDatePicker } from '../zen-date-picker';
 import { ZenInput } from '../../zen-input/zen-input';
@@ -24,7 +14,26 @@ describe('zen-date-picker', () => {
   let input: HTMLZenInputElement;
   let calendar: HTMLZenPopoverElement;
 
-  const render = async (attributes: string) => {
+  beforeEach(() => {
+    jest
+      .spyOn(popper, 'createPopper')
+      .mockClear()
+      .mockImplementation(
+        () =>
+          (({
+            destroy: jest.fn(),
+            state: {
+              placement: 'bottom',
+            },
+          } as unknown) as popper.Instance),
+      );
+    jest
+      .spyOn(helpers, 'today')
+      .mockClear()
+      .mockImplementation(() => new Date(1972, 1, 18));
+  });
+
+  const render = async (attributes?: string) => {
     jest.clearAllTimers();
     jest.useFakeTimers();
     page = await newSpecPage({
@@ -39,17 +48,17 @@ describe('zen-date-picker', () => {
     calendar = datepicker.shadowRoot.querySelector('.calendar');
   };
 
-  async function focusInput() {
+  const focusInput = async () => {
     const focusin = new Event('focus', { bubbles: true, composed: true });
     datepicker.dispatchEvent(focusin);
     await page.waitForChanges();
-  }
+  };
 
-  function setInputValue(value) {
+  const setInputValue = (value: string) => {
     input.value = value;
     const event = new Event('change', { bubbles: true, composed: true });
     input.dispatchEvent(event);
-  }
+  };
 
   // ---------------------------------------------------------------------------
   it('should render with calendar hidden', async () => {
@@ -78,7 +87,7 @@ describe('zen-date-picker', () => {
 
   it('should update value on input change', async () => {
     await render();
-    setInputValue('02/02/2021', input);
+    setInputValue('02/02/2021');
     const event = new Event('change', { bubbles: true, composed: true });
     input.dispatchEvent(event);
     await page.waitForChanges();
@@ -87,7 +96,7 @@ describe('zen-date-picker', () => {
 
   it('should set value on number click', async () => {
     await render();
-    const numbers = calendar.querySelectorAll('.day-num');
+    const numbers = calendar.querySelectorAll('.day-num') as NodeListOf<HTMLElement>;
     numbers[5].click();
     await page.waitForChanges();
     expect(datepicker.value).toEqual(new Date(1972, 2 - 1, 4));
@@ -112,7 +121,7 @@ describe('zen-date-picker', () => {
   it('should change month date using arrows', async () => {
     await render();
     const date = calendar.querySelector('.date');
-    const arrows = calendar.querySelectorAll('.navigation .icon');
+    const arrows = calendar.querySelectorAll('.navigation .icon') as NodeListOf<HTMLElement>;
 
     arrows[1].click();
     await page.waitForChanges();

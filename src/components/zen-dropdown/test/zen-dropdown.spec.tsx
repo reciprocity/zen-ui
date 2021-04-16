@@ -1,39 +1,53 @@
 import { newSpecPage, SpecPage } from '@stencil/core/testing';
-import { simulateKey } from '../../helpers/jest';
-import { htmlToElement } from '../../helpers/helpers';
-
-let options: NodeListOf<HTMLZenOptionElement> | undefined[] = [];
-
-const popperMock = () => ({
-  destroy: jest.fn(),
-  state: {
-    placement: 'bottom',
-    visible: false,
-  },
-});
 import * as popper from '@popperjs/core';
-popper.createPopper = jest.fn(() => popperMock());
-
+import { simulateKey } from '../../helpers/jest';
 import * as helpers from '../../helpers/helpers';
-helpers.getDefaultSlotContent = jest.fn(() => options);
-helpers.getComposedPath = jest.fn(() => []);
-helpers.scrollIntoView = jest.fn(() => true);
-helpers.waitNextFrame = jest.fn(() => new Promise(resolve => resolve(true)));
 
 import { ZenDropdown } from '../zen-dropdown';
 import { ZenPopover } from '../../zen-popover/zen-popover';
 
 describe('zen-dropdown', () => {
   let page: SpecPage;
-  let dropdown: Element;
+  let dropdown: HTMLZenDropdownElement;
   let list: HTMLZenPopoverElement;
+  let options: NodeListOf<HTMLZenOptionElement>;
 
-  beforeEach(async () => {
+  beforeEach(() => {
     jest.clearAllTimers();
     jest.useFakeTimers();
+    jest
+      .spyOn(popper, 'createPopper')
+      .mockClear()
+      .mockImplementation(
+        () =>
+          (({
+            destroy: jest.fn(),
+            state: {
+              placement: 'bottom',
+              visible: false,
+            },
+          } as unknown) as popper.Instance),
+      );
+    options = ([] as unknown) as NodeListOf<HTMLZenOptionElement>;
+    jest
+      .spyOn(helpers, 'getDefaultSlotContent')
+      .mockClear()
+      .mockImplementation(() => (options as unknown) as Element[]);
+    jest
+      .spyOn(helpers, 'getComposedPath')
+      .mockClear()
+      .mockImplementation(() => []);
+    jest
+      .spyOn(helpers, 'scrollIntoView')
+      .mockClear()
+      .mockImplementation(() => true);
+    jest
+      .spyOn(helpers, 'waitNextFrame')
+      .mockClear()
+      .mockImplementation(() => new Promise(resolve => resolve(true)));
   });
 
-  const render = async (attributes: string) => {
+  const render = async (attributes?: string) => {
     page = await newSpecPage({
       components: [ZenDropdown, ZenPopover],
       html: `<zen-dropdown ${attributes}>
@@ -42,11 +56,11 @@ describe('zen-dropdown', () => {
         <zen-option value="contributor">Contributor</zen-option>
       </ zen-dropdown>`,
     });
-    dropdown = page.root;
+    dropdown = page.root as HTMLZenDropdownElement;
     list = dropdown.shadowRoot.querySelector('.list');
-    options = htmlToElement(`<zen-option value="admin">Administrator</zen-option>
+    options = (helpers.htmlToElement(`<zen-option value="admin">Administrator</zen-option>
         <zen-option value="reader">Reader</zen-option>
-        <zen-option value="contributor">Contributor</zen-option>`);
+        <zen-option value="contributor">Contributor</zen-option>`) as unknown) as NodeListOf<HTMLZenOptionElement>;
 
     await page.waitForChanges();
     const focusin = new Event('focus', { bubbles: true, composed: true });
