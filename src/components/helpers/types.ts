@@ -3,8 +3,6 @@ export type Align = 'left' | 'right' | 'center';
 
 export type Position = 'top' | 'right' | 'bottom' | 'left';
 
-export type TooltipVariant = 'dark' | 'light' | 'error';
-
 export type TextVariant = null | 'heading' | 'label' | 'support';
 
 export type TextState = null | 'error' | 'success';

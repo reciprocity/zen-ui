@@ -1,5 +1,4 @@
-import { Component, Host, h, Prop, State, Element, Watch } from '@stencil/core';
-import { TooltipVariant } from '../helpers/types';
+import { Component, Host, h, Prop, State, Element } from '@stencil/core';
 import { applyPrefix } from '../helpers/helpers';
 import { Placement } from '@popperjs/core';
 import { SpacingShorthand, Spacing } from '../helpers/types';
@@ -21,14 +20,9 @@ export class ZenTooltip {
 
   @State() visible = false;
   @State() target: HTMLElement = null;
-  @State() color = '';
-  @State() backgroundColor = '';
 
   /** Set tooltip position */
   @Prop() readonly position?: Placement = 'top';
-
-  /** Set tooltip variant */
-  @Prop() readonly variant?: TooltipVariant = 'dark';
 
   /** Set tooltip label */
   @Prop() readonly label?: string = '';
@@ -65,29 +59,8 @@ export class ZenTooltip {
   /** Skipped */
   @Prop() readonly paddingLeft: Spacing = null;
 
-  @Watch('variant')
-  async variantChanged(variant: TooltipVariant): Promise<void> {
-    switch (variant) {
-      case 'dark':
-        this.backgroundColor = '#1e272c'; // $color-gray-800
-        this.color = '#fff';
-        break;
-
-      case 'error':
-        this.backgroundColor = '#c22f3d'; // $color-red-800
-        this.color = '#fff';
-        break;
-
-      default:
-        this.backgroundColor = '';
-        this.color = '';
-        break;
-    }
-  }
-
   componentDidLoad(): void {
     this.popover.targetElement = this.host.previousElementSibling as HTMLElement;
-    this.variantChanged(this.variant);
   }
 
   render(): HTMLElement {
@@ -107,9 +80,7 @@ export class ZenTooltip {
           class="popover"
           trigger-event="hover"
           position={this.position}
-          background-color={this.backgroundColor}
           style={{
-            color: this.color,
             'max-height': this.maxHeight,
             'max-width': this.maxWidth,
           }}
