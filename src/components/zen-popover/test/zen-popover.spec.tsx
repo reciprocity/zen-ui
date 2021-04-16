@@ -10,6 +10,7 @@ describe('zen-popover', () => {
   let popover: HTMLZenPopoverElement;
   let popup: HTMLElement;
   let trigger: HTMLButtonElement;
+  const documentElement = (global.document as unknown) as Element;
 
   const simulateNextFrame = async page => {
     jest.advanceTimersByTime(50);
@@ -122,7 +123,7 @@ describe('zen-popover', () => {
     await simulateNextFrame(page); // wait to create popper
     jest.runAllTimers(); // mouse down listener is added in timeout
 
-    simulateMouse('mousedown', (global.document as unknown) as Element);
+    simulateMouse('mousedown', documentElement);
     await simulateNextFrame(page); // clickOut has waitNextFrame
 
     expect(popover.visible).toBeFalsy();
@@ -148,7 +149,7 @@ describe('zen-popover', () => {
     await simulateNextFrame(page); // wait to create popper
     jest.runAllTimers(); // mouse down listener is added in timeout
 
-    simulateMouse('mousedown', (global.document as unknown) as Element);
+    simulateMouse('mousedown', documentElement);
     await simulateNextFrame(page); // clickOut has waitNextFrame
 
     expect(popover.visible).toBeFalsy();
@@ -164,7 +165,7 @@ describe('zen-popover', () => {
     await simulateNextFrame(page); // wait to create popper
     jest.runAllTimers(); // mouse down listener is added in timeout
 
-    simulateMouse('mousedown', (global.document as unknown) as Element);
+    simulateMouse('mousedown', documentElement);
     await simulateNextFrame(page); // clickOut has waitNextFrame
 
     expect(popover.visible).toBeTruthy();
@@ -211,7 +212,7 @@ describe('zen-popover', () => {
     await simulateNextFrame(page); // wait to create popper
     jest.runAllTimers(); // mouse down listener is added in timeout
 
-    simulateMouse('mousedown', (global.document as unknown) as Element);
+    simulateMouse('mousedown', documentElement);
     await simulateNextFrame(page); // clickOut has waitNextFrame
 
     expect(popover.visible).toBeFalsy();
