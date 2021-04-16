@@ -4,8 +4,6 @@ const originalMutationObserver = global.MutationObserver;
 import { newSpecPage } from '@stencil/core/testing';
 import { ZenTable } from '../zen-table';
 
-// let consoleErrorMock: jest.MockedFunction<typeof console.error>;
-
 describe('zen-table', () => {
   let mutationObserverMock: jest.Mock<MutationObserverMock>;
 
