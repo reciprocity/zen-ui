@@ -1,4 +1,4 @@
-import { newSpecPage } from '@stencil/core/testing';
+import { newSpecPage, SpecPage } from '@stencil/core/testing';
 import { modalsService } from '../zen-modals-service';
 
 import { ZenModal } from '../zen-modal';
