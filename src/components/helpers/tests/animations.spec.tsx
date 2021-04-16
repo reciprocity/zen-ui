@@ -1,17 +1,7 @@
 import { newSpecPage, SpecPage } from '@stencil/core/testing';
 import { ZenButton } from '../../zen-button/zen-button';
-
-import * as helpers from '../../helpers/helpers';
-helpers.waitNextFrame = jest.fn(() => new Promise(resolve => setTimeout(() => resolve(), 50)));
-helpers.getCssTransitionDuration = jest.fn(() => 300);
-
 import * as helpers from '../../helpers/helpers';
 import { showWithAnimation, hideWithAnimation, showInstantly, hideInstantly } from '../animations';
-
-async function simulateNextFrame(page) {
-  jest.advanceTimersByTime(50);
-  await page.waitForChanges();
-}
 
 describe('showWithAnimation()', () => {
   let page: SpecPage;
@@ -19,6 +9,14 @@ describe('showWithAnimation()', () => {
 
   beforeEach(async () => {
     jest.useFakeTimers();
+    jest
+      .spyOn(helpers, 'waitNextFrame')
+      .mockClear()
+      .mockImplementation(() => new Promise(resolve => setTimeout(resolve, 50)));
+    jest
+      .spyOn(helpers, 'getCssTransitionDuration')
+      .mockClear()
+      .mockImplementation(() => 300);
     page = await newSpecPage({
       components: [ZenButton],
       html: `<zen-button>Press</zen-button>`,
@@ -49,6 +47,10 @@ describe('showWithAnimation()', () => {
 describe('hideWithAnimation()', () => {
   let page: SpecPage;
   let button: HTMLElement;
+  const simulateNextFrame = async (page: SpecPage) => {
+    jest.advanceTimersByTime(50);
+    await page.waitForChanges();
+  };
 
   beforeEach(async () => {
     jest.useFakeTimers();
