@@ -26,7 +26,7 @@ describe('zen-notification', () => {
       html: `<zen-notification heading="Test Heading" dismiss="true">Test Message</zen-notification>`,
     });
     page.rootInstance.close = jest.fn();
-    page.root.shadowRoot.querySelector('.close').click();
+    page.root.shadowRoot.querySelector<HTMLElement>('.close').click();
 
     expect(page.rootInstance.close).toHaveBeenCalled();
   });
