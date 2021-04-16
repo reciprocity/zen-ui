@@ -1,3 +1,16 @@
+# [4.0.0](https://github.com/reciprocity/zen-ui/compare/3.5.1...4.0.0) (2021-04-16)
+
+
+### Bug Fixes
+
+* **zen-tooltip:** remove variants ([2631441](https://github.com/reciprocity/zen-ui/commit/2631441adcb59ce85041f5d3ecfa253b997aa9c0))
+
+
+### BREAKING CHANGES
+
+* **zen-tooltip:** The variant attribute of the  has been removed,
+and the default appearance is the one from the  variant.
+
 ## [3.5.1](https://github.com/reciprocity/zen-ui/compare/3.5.0...3.5.1) (2021-04-15)
 
 
