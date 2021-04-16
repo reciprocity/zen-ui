@@ -1,7 +1,5 @@
 import { SpecPage } from '@stencil/core/testing';
 import kebabCase from 'lodash/kebabCase';
-import { jest } from '@jest/globals';
-import jestMock from 'jest-mock';
 
 type ClientPoint = { clientX: number; clientY: number };
 
@@ -47,4 +45,4 @@ export const FakeMutationObserver = <MutationObserverMock>function (this: Mutati
   return this;
 };
 
-export const createMutationObserverMock = (): jestMock.Mock<MutationObserverMock> => jest.fn(FakeMutationObserver);
+export const createMutationObserverMock = (): jest.Mock<MutationObserverMock> => jest.fn(FakeMutationObserver);
