@@ -1,46 +1,8 @@
 import { newSpecPage } from '@stencil/core/testing';
-import * as popper from '@popperjs/core';
 import { ZenTooltip } from '../zen-tooltip';
 import { ZenPopover } from '../../zen-popover/zen-popover';
 
 describe('zen-tooltip', () => {
-  beforeEach(() => {
-    jest
-      .spyOn(popper, 'createPopper')
-      .mockClear()
-      .mockImplementation(
-        () =>
-          (({
-            destroy: jest.fn(),
-            state: {
-              placement: 'bottom',
-            },
-          } as unknown) as popper.Instance),
-      );
-  });
-
-  it('should correctly apply correct color to each variant', async () => {
-    const page = await newSpecPage({
-      components: [ZenTooltip, ZenPopover],
-      html: `
-        <zen-tooltip variant="dark">Some text</zen-tooltip>
-      `,
-    });
-    const tooltip = page.doc.querySelector('zen-tooltip');
-    const popover = tooltip.shadowRoot.querySelector('.popover') as HTMLZenPopoverElement;
-    expect(popover.backgroundColor).toEqual('#1e272c');
-
-    tooltip.variant = 'error';
-    await page.waitForChanges();
-    expect(popover.backgroundColor).toEqual('#c22f3d');
-    // This is an invalid case; we need to review it, because there's no "empty variant".
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    tooltip.variant = '';
-    await page.waitForChanges();
-    expect(popover.backgroundColor).toEqual('');
-  });
-
   it('should show tooltip on mouse over', async () => {
     const page = await newSpecPage({
       components: [ZenTooltip, ZenPopover],
