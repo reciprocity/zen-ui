@@ -1,5 +1,4 @@
 import { newSpecPage } from '@stencil/core/testing';
-
 import { ZenAvatarIcon } from '../../zen-avatar-icon/zen-avatar-icon';
 import { ZenAvatar } from '../../zen-avatar/zen-avatar';
 import { ZenAvatarGroup } from '../zen-avatar-group';
@@ -102,8 +101,8 @@ describe('zen-avatar-group', () => {
     page.root.users = usersColor;
     await page.waitForChanges();
     const avatar = page.root.shadowRoot.querySelector('zen-avatar');
-
-    expect(avatar.shadowRoot.querySelector('.avatar-icon').style.color).toEqual('#FFFFFF');
-    expect(avatar.shadowRoot.querySelector('.avatar-icon').style.background).toEqual('#000000');
+    const icon = avatar.shadowRoot.querySelector('.avatar-icon') as HTMLElement;
+    expect(icon.style.color).toEqual('#FFFFFF');
+    expect(icon.style.background).toEqual('#000000');
   });
 });
