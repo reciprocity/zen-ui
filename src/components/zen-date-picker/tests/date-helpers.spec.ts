@@ -1,13 +1,6 @@
 import fnsFormat from 'date-fns/format';
 import { helpers } from '../date-helpers';
-
-helpers.today = jest.fn(() => new Date(1972, 2, 18));
-
 import { getDayNumbers, parseDate, getMonthName } from '../date-helpers';
-
-const dateFormat = 'MM/dd/yyyy';
-
-const format = date => fnsFormat(date, 'MM/dd/yyyy', helpers.today());
 
 describe('helpers', () => {
   it('getDayNumbers should works', () => {
@@ -25,6 +18,15 @@ describe('helpers', () => {
 });
 
 describe('parseDate', () => {
+  const format = date => fnsFormat(date, 'MM/dd/yyyy');
+  const dateFormat = 'MM/dd/yyyy';
+  beforeEach(() => {
+    jest
+      .spyOn(helpers, 'today')
+      .mockClear()
+      .mockImplementation(() => new Date(1972, 2, 18));
+  });
+
   it('should parse a valid date', () => {
     expect(format(parseDate('01/12/2021', dateFormat))).toBe('01/12/2021');
   });
