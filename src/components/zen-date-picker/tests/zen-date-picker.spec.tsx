@@ -1,5 +1,5 @@
 import { newSpecPage, SpecPage } from '@stencil/core/testing';
-import { simulateKey, simulateMouse } from '../../helpers/jest';
+import { simulateKey } from '../../helpers/jest';
 
 const popperMock = {
   destroy: jest.fn(),
