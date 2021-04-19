@@ -1,5 +1,8 @@
 import { Component, Host, h, Prop, Element, Listen, Watch } from '@stencil/core';
 
+/**
+ * @event change | Called on any selection change
+ **/
 @Component({
   tag: 'zen-tabs',
   styleUrl: 'zen-tabs.scss',
@@ -29,6 +32,7 @@ export class ZenTabs {
     });
 
     if (tab) tab.selected = true;
+    this.host.dispatchEvent(new window.Event('change'));
   }
 
   componentDidLoad(): void {
