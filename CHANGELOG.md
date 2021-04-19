@@ -1,3 +1,11 @@
+## [4.0.1](https://github.com/reciprocity/zen-ui/compare/4.0.0...4.0.1) (2021-04-19)
+
+
+### Bug Fixes
+
+* **zen-tabs:** fix that change event gets trigered ([21b7b32](https://github.com/reciprocity/zen-ui/commit/21b7b3261d0760d89a27a056c9fd0637cd81712e))
+* **zen-tabs:** remove flex grow ([678d201](https://github.com/reciprocity/zen-ui/commit/678d20166fcebe5ff1380cd7acee32883b264715))
+
 # [4.0.0](https://github.com/reciprocity/zen-ui/compare/3.5.1...4.0.0) (2021-04-16)
 
 
