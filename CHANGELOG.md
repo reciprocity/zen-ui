@@ -1,3 +1,10 @@
+# [4.1.0](https://github.com/reciprocity/zen-ui/compare/4.0.3...4.1.0) (2021-04-20)
+
+
+### Features
+
+* **zen-lozenge:** added new component with its types, style and slot ([d54ae62](https://github.com/reciprocity/zen-ui/commit/d54ae625c32ffe14f0704d3522e924af43285dca))
+
 ## [4.0.3](https://github.com/reciprocity/zen-ui/compare/4.0.2...4.0.3) (2021-04-20)
 
 
