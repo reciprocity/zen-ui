@@ -1,12 +1,11 @@
 @import '../scss/component-helpers.scss';
 
 :host {
-  display: flex;
+  display: inline-flex;
   font-weight: bold;
   padding: 0.125rem 1rem;
   border: 1px solid;
   border-radius: 2px;
-  width: min-content;
   cursor: default;
 }
 
