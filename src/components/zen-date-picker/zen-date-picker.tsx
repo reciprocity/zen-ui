@@ -69,16 +69,16 @@ export class ZenDatePicker {
   /** Close calendar after picking a date */
   @Prop() readonly closeOnClick: boolean = true;
 
-  /** If user can clear the date. */
+  /** If user can clear the date */
   @Prop() readonly allowEmpty: boolean = true;
 
-  /** Shows invalid styles. */
+  /** Shows invalid styles */
   @Prop() readonly invalid = false;
 
-  /** disableBeforeDate. */
+  /** Disables all dates before this one */
   @Prop() readonly disableBeforeDate: string | null = null;
 
-  /** disableAfterDate. */
+  /** Disables all dates after this one */
   @Prop() readonly disableAfterDate: string | null = null;
 
   /** Size variant */
