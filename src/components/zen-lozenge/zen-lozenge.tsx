@@ -10,13 +10,13 @@ import { LozengeVariant, LozengeSize, LozengeTextVariant } from '../helpers/type
   shadow: true,
 })
 export class ZenLozenge {
-  /** Variant */
+  /** Color variant */
   @Prop({ reflect: true }) readonly variant: LozengeVariant = 'light-grey';
 
   /** Size */
   @Prop({ reflect: true }) readonly size: LozengeSize = 'default';
 
-  /** Size */
+  /** Text variant */
   @Prop({ reflect: true }) readonly textVariant: LozengeTextVariant = 'uppercase';
 
   render(): HTMLElement {

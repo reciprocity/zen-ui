@@ -455,11 +455,11 @@ export namespace Components {
          */
         "size": LozengeSize;
         /**
-          * Size
+          * Text variant
          */
         "textVariant": LozengeTextVariant;
         /**
-          * Variant
+          * Color variant
          */
         "variant": LozengeVariant;
     }
@@ -1848,11 +1848,11 @@ declare namespace LocalJSX {
          */
         "size"?: LozengeSize;
         /**
-          * Size
+          * Text variant
          */
         "textVariant"?: LozengeTextVariant;
         /**
-          * Variant
+          * Color variant
          */
         "variant"?: LozengeVariant;
     }
