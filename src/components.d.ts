@@ -825,7 +825,7 @@ export namespace Components {
         /**
           * Space separated css prop <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-columns" target="_blank">grid-template-columns</a><br/>(eg. `auto 1fr 1fr 200px 1fr`)
          */
-        "columns": "";
+        "columns": string;
     }
     interface ZenTableCell {
         /**
@@ -2201,7 +2201,7 @@ declare namespace LocalJSX {
         /**
           * Space separated css prop <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-columns" target="_blank">grid-template-columns</a><br/>(eg. `auto 1fr 1fr 200px 1fr`)
          */
-        "columns"?: "";
+        "columns"?: string;
     }
     interface ZenTableCell {
         /**
