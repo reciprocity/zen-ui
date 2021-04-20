@@ -7,7 +7,7 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { StringifiedJson } from "./stories/components/color-swatch-group/color-swatch-group";
 import { SourceCodes } from "./stories/components/html-playground/html-playground";
-import { Align, AvatarData, AvatarDetailVariant, AvatarIconSize, CardVariant, DropdownSize, IconSize, InputSize, None, Notification, NotificationVariant, Position, Resize, Size, Spacing, SpacingShorthand, TextSize, TextState, TextVariant, TriggerEvent } from "./components/helpers/types";
+import { Align, AvatarData, AvatarDetailVariant, AvatarIconSize, CardVariant, DropdownSize, IconSize, InputSize, LozengeSize, LozengeTextVariant, LozengeVariant, None, Notification, NotificationVariant, Position, Resize, Size, Spacing, SpacingShorthand, TextSize, TextState, TextVariant, TriggerEvent } from "./components/helpers/types";
 import { ButtonVariants } from "./components/zen-button/types";
 import { OptionValue } from "./components/zen-menu-item/zen-option";
 import { IconDefinition } from "@fortawesome/pro-light-svg-icons";
@@ -448,6 +448,20 @@ export namespace Components {
           * The value of the input.
          */
         "value"?: string;
+    }
+    interface ZenLozenge {
+        /**
+          * Size
+         */
+        "size": LozengeSize;
+        /**
+          * Size
+         */
+        "textVariant": LozengeTextVariant;
+        /**
+          * Variant
+         */
+        "variant": LozengeVariant;
     }
     interface ZenModal {
         /**
@@ -1219,6 +1233,12 @@ declare global {
         prototype: HTMLZenInputElement;
         new (): HTMLZenInputElement;
     };
+    interface HTMLZenLozengeElement extends Components.ZenLozenge, HTMLStencilElement {
+    }
+    var HTMLZenLozengeElement: {
+        prototype: HTMLZenLozengeElement;
+        new (): HTMLZenLozengeElement;
+    };
     interface HTMLZenModalElement extends Components.ZenModal, HTMLStencilElement {
     }
     var HTMLZenModalElement: {
@@ -1372,6 +1392,7 @@ declare global {
         "zen-dropdown": HTMLZenDropdownElement;
         "zen-icon": HTMLZenIconElement;
         "zen-input": HTMLZenInputElement;
+        "zen-lozenge": HTMLZenLozengeElement;
         "zen-modal": HTMLZenModalElement;
         "zen-notification": HTMLZenNotificationElement;
         "zen-notifications-wrapper": HTMLZenNotificationsWrapperElement;
@@ -1820,6 +1841,20 @@ declare namespace LocalJSX {
           * The value of the input.
          */
         "value"?: string;
+    }
+    interface ZenLozenge {
+        /**
+          * Size
+         */
+        "size"?: LozengeSize;
+        /**
+          * Size
+         */
+        "textVariant"?: LozengeTextVariant;
+        /**
+          * Variant
+         */
+        "variant"?: LozengeVariant;
     }
     interface ZenModal {
         /**
@@ -2494,6 +2529,7 @@ declare namespace LocalJSX {
         "zen-dropdown": ZenDropdown;
         "zen-icon": ZenIcon;
         "zen-input": ZenInput;
+        "zen-lozenge": ZenLozenge;
         "zen-modal": ZenModal;
         "zen-notification": ZenNotification;
         "zen-notifications-wrapper": ZenNotificationsWrapper;
@@ -2542,6 +2578,7 @@ declare module "@stencil/core" {
             "zen-dropdown": LocalJSX.ZenDropdown & JSXBase.HTMLAttributes<HTMLZenDropdownElement>;
             "zen-icon": LocalJSX.ZenIcon & JSXBase.HTMLAttributes<HTMLZenIconElement>;
             "zen-input": LocalJSX.ZenInput & JSXBase.HTMLAttributes<HTMLZenInputElement>;
+            "zen-lozenge": LocalJSX.ZenLozenge & JSXBase.HTMLAttributes<HTMLZenLozengeElement>;
             "zen-modal": LocalJSX.ZenModal & JSXBase.HTMLAttributes<HTMLZenModalElement>;
             "zen-notification": LocalJSX.ZenNotification & JSXBase.HTMLAttributes<HTMLZenNotificationElement>;
             "zen-notifications-wrapper": LocalJSX.ZenNotificationsWrapper & JSXBase.HTMLAttributes<HTMLZenNotificationsWrapperElement>;
