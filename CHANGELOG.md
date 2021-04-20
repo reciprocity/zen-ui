@@ -1,3 +1,10 @@
+## [4.0.3](https://github.com/reciprocity/zen-ui/compare/4.0.2...4.0.3) (2021-04-20)
+
+
+### Bug Fixes
+
+* **zen-table:** add table column type ([cc80b63](https://github.com/reciprocity/zen-ui/commit/cc80b632b2dcd992658ca49376451b89a89d3ea0))
+
 ## [4.0.2](https://github.com/reciprocity/zen-ui/compare/4.0.1...4.0.2) (2021-04-20)
 
 
