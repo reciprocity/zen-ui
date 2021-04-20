@@ -1,3 +1,10 @@
+## [4.0.2](https://github.com/reciprocity/zen-ui/compare/4.0.1...4.0.2) (2021-04-20)
+
+
+### Bug Fixes
+
+* bug if formatted date is set to today ([072e89f](https://github.com/reciprocity/zen-ui/commit/072e89f60940028b3ecee1e594d12665f3d005c1))
+
 ## [4.0.1](https://github.com/reciprocity/zen-ui/compare/4.0.0...4.0.1) (2021-04-19)
 
 

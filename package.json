@@ -1,6 +1,6 @@
 {
   "name": "@reciprocity/zen-ui",
-  "version": "4.0.1",
+  "version": "4.0.2",
   "description": "Zen UI components library",
   "main": "dist/index.cjs.js",
   "module": "dist/custom-elements/index.js",
