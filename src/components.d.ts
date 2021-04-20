@@ -271,6 +271,14 @@ export namespace Components {
          */
         "closeOnClick": boolean;
         /**
+          * disableAfterDate.
+         */
+        "disableAfterDate": string | null;
+        /**
+          * disableBeforeDate.
+         */
+        "disableBeforeDate": string | null;
+        /**
           * Date format
          */
         "format": string;
@@ -1667,6 +1675,14 @@ declare namespace LocalJSX {
           * Close calendar after picking a date
          */
         "closeOnClick"?: boolean;
+        /**
+          * disableAfterDate.
+         */
+        "disableAfterDate"?: string | null;
+        /**
+          * disableBeforeDate.
+         */
+        "disableBeforeDate"?: string | null;
         /**
           * Date format
          */

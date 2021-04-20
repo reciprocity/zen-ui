@@ -45,6 +45,8 @@ export class ZenDatePicker {
   dayNums = [];
   popover: HTMLZenPopoverElement = null;
   input: HTMLZenInputElement = null;
+  beforeDate: Date = null;
+  afterDate: Date = null;
 
   @State() calendarMonthName = '';
   @State() calendarYear = 1970;
@@ -72,6 +74,12 @@ export class ZenDatePicker {
 
   /** Shows invalid styles. */
   @Prop() readonly invalid = false;
+
+  /** disableBeforeDate. */
+  @Prop() readonly disableBeforeDate: string | null = null;
+
+  /** disableAfterDate. */
+  @Prop() readonly disableAfterDate: string | null = null;
 
   /** Size variant */
   @Prop({ reflect: true }) readonly size: InputSize = 'md';
@@ -299,21 +307,36 @@ export class ZenDatePicker {
             </ZenSpace>
           </div>
           <ZenSpace padding="xs lg lg">
-            {this.dayNums.map(num => (
-              <ZenText
-                class={{
-                  'day-num': true,
-                  empty: !num,
-                  selected: this.isSelected(num),
-                }}
-                align="center"
-                onClick={() => {
-                  this.selectDay(num);
-                }}
-              >
-                {num || ''}
-              </ZenText>
-            ))}
+            {this.dayNums.map(num => {
+              const currentDate = setDate(this.calendarMonth, num);
+              return (this.beforeDate && currentDate < this.beforeDate) ||
+                (this.afterDate && currentDate > this.afterDate) ? (
+                <ZenText
+                  class={{
+                    'day-num': true,
+                    empty: !num,
+                  }}
+                  disabled="true"
+                  align="center"
+                >
+                  {num || ''}
+                </ZenText>
+              ) : (
+                <ZenText
+                  class={{
+                    'day-num': true,
+                    empty: !num,
+                    selected: this.isSelected(num),
+                  }}
+                  align="center"
+                  onClick={() => {
+                    this.selectDay(num);
+                  }}
+                >
+                  {num || ''}
+                </ZenText>
+              );
+            })}
           </ZenSpace>
         </ZenPopover>
       </Host>
