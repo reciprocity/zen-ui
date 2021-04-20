@@ -1,0 +1,92 @@
+@import '../scss/component-helpers.scss';
+
+:host {
+  display: inline-flex;
+  font-weight: bold;
+  padding: 0.125rem 1rem;
+  border: 1px solid;
+  border-radius: 2px;
+  cursor: default;
+}
+
+:host([text-variant='uppercase']) {
+  text-transform: uppercase;
+}
+
+:host([text-variant='capitalize']) {
+  text-transform: capitalize;
+}
+
+:host([size='default']) {
+  font-size: $text-xs;
+}
+
+:host([size='lg']) {
+  font-size: $text-sm;
+}
+
+:host([variant='light-grey']) {
+  color: $color-gray-700;
+  background-color: $color-gray-200;
+  border-color: $color-gray-200;
+}
+
+:host([variant='dark-grey']) {
+  color: $color-white;
+  background-color: $color-gray-600;
+  border-color: $color-gray-600;
+}
+
+:host([variant='light-yellow']) {
+  color: $color-yellow-900;
+  background-color: $color-yellow-300;
+  border-color: $color-yellow-300;
+}
+
+:host([variant='dark-yellow']) {
+  color: $color-white;
+  background-color: $color-yellow-900;
+  border-color: $color-yellow-900;
+}
+
+:host([variant='light-purple']) {
+  color: $color-purple-900;
+  background-color: $color-purple-100;
+  border-color: $color-purple-100;
+}
+
+:host([variant='dark-purple']) {
+  color: $color-white;
+  background-color: $color-purple-700;
+  border-color: $color-purple-700;
+}
+
+:host([variant='light-blue']) {
+  color: $color-blue-900;
+  background-color: $color-blue-100;
+  border-color: $color-blue-100;
+}
+
+:host([variant='dark-blue']) {
+  color: $color-white;
+  background-color: $color-blue-900;
+  border-color: $color-blue-900;
+}
+
+:host([variant='green']) {
+  color: $color-white;
+  background-color: $color-green-700;
+  border-color: $color-green-700;
+}
+
+:host([variant='red']) {
+  color: $color-white;
+  background-color: $color-red-900;
+  border-color: $color-red-900;
+}
+
+:host([variant='dark-blue-ghost']) {
+  color: $color-blue-900;
+  background-color: $color-white;
+  border-color: $color-blue-900;
+}

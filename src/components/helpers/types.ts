@@ -37,6 +37,23 @@ export type AvatarDetailVariant = 'basic' | 'basic-lg' | 'detailed';
 
 export type CardVariant = 'default' | 'shadow';
 
+export type LozengeVariant =
+  | 'light-grey'
+  | 'dark-grey'
+  | 'light-yellow'
+  | 'dark-yellow'
+  | 'light-purple'
+  | 'dark-purple'
+  | 'light-blue'
+  | 'dark-blue'
+  | 'green'
+  | 'red'
+  | 'dark-blue-ghost';
+
+export type LozengeSize = 'default' | 'lg';
+
+export type LozengeTextVariant = 'uppercase' | 'capitalize';
+
 export interface AvatarData {
   userName?: string;
   email?: string;
