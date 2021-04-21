@@ -1,4 +1,4 @@
-import { Component, Host, h, Element, Prop, Watch } from '@stencil/core';
+import { Component, Host, h, Element, Prop } from '@stencil/core';
 import { applyPrefix } from '../helpers/helpers';
 
 @Component({
@@ -16,17 +16,7 @@ export class ZenStatusTracker {
   /** Status archived */
   @Prop() readonly archived: boolean = false;
 
-  @Watch('selected')
-  async selectedChanged(): Promise<void> {
-    this.initializeLozenges();
-  }
-
-  @Watch('archived')
-  async archivedChanged(): Promise<void> {
-    this.initializeLozenges();
-  }
-
-  initializeLozenges(): void {
+  setChildStyles(): void {
     let hasSelected = false;
 
     this.children.forEach((lozenge, index) => {
@@ -54,7 +44,7 @@ export class ZenStatusTracker {
 
   componentDidLoad(): void {
     this.children = Array.from(this.host.children).map(n => n as HTMLZenLozengeElement);
-    this.initializeLozenges();
+    this.setChildStyles();
   }
 
   render(): HTMLElement {
@@ -63,7 +53,7 @@ export class ZenStatusTracker {
       <Host>
         <slot></slot>
         {this.archived && (
-          <ZenLozenge size="lg" variant="dark-grey">
+          <ZenLozenge data-test="archived" size="lg" variant="dark-grey">
             Archived
           </ZenLozenge>
         )}
