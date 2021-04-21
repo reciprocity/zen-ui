@@ -6,7 +6,9 @@ describe('zen-status-tracker', () => {
   it('renders', async () => {
     const page = await newSpecPage({
       components: [ZenStatusTracker],
-      html: `<zen-status-tracker></zen-status-tracker>`,
+      html: `<zen-status-tracker>
+                <zen-lozenge>Setup</zen-lozenge>
+             </zen-status-tracker>`,
     });
 
     expect(page.root.shadowRoot).toBeTruthy();

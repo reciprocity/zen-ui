@@ -17,32 +17,34 @@ export class ZenStatusTracker {
   @Prop() readonly archived: boolean = false;
 
   setChildStyles(): void {
-    let hasSelected = false;
+    if (this.archived) {
+      this.children.forEach(lozenge => {
+        lozenge.setAttribute('variant', 'none');
+        lozenge.setAttribute('size', 'lg');
+      });
 
-    this.children.forEach((lozenge, index) => {
-      lozenge.setAttribute('variant', 'none');
+      return;
+    }
+
+    this.children.reduce((hasSelected, lozenge, index) => {
       lozenge.setAttribute('size', 'lg');
-
-      if (this.archived) return;
-      // change the lozenge variant based on the selected index
-      if (this.selected == index) {
+      const isSelected = this.selected === index;
+      if (isSelected) {
         hasSelected = true;
-        index == this.children.length - 1
-          ? lozenge.setAttribute('variant', 'green')
-          : lozenge.setAttribute('variant', 'dark-blue-ghost');
+        lozenge.setAttribute('variant', index === this.children.length - 1 ? 'green' : 'dark-blue-ghost');
+      } else {
+        lozenge.setAttribute('variant', 'none');
       }
 
-      // disable all the lozenge elements after the selected one
-      if (hasSelected && this.selected != index) lozenge.setAttribute('disabled', '');
+      if (hasSelected && !isSelected) lozenge.setAttribute('disabled', '');
+      if (index && this.selected === index - 1) lozenge.style.borderLeft = '1px solid transparent';
 
-      // remove border left after selected lozenge
-      if (this.selected == index - 1) {
-        lozenge.style.borderLeft = '1px solid transparent';
-      }
-    });
+      return hasSelected;
+    }, false);
   }
 
   componentDidLoad(): void {
+    if (this.host.children.length == 0) throw new Error("There's no lozenge children");
     this.children = Array.from(this.host.children).map(n => n as HTMLZenLozengeElement);
     this.setChildStyles();
   }
