@@ -1,0 +1,13 @@
+@import '../scss/component-helpers.scss';
+
+:host {
+  display: flex;
+}
+
+::slotted([variant='none']) {
+  border-left: 1px solid $color-gray-200;
+}
+
+::slotted([variant='none']:first-child) {
+  border-left: 1px solid transparent;
+}

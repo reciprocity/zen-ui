@@ -830,6 +830,14 @@ export namespace Components {
     interface ZenSpinner {
     }
     interface ZenStatusTracker {
+        /**
+          * Status archived
+         */
+        "archived": boolean;
+        /**
+          * Selected index
+         */
+        "selected": number;
     }
     interface ZenTab {
         /**
@@ -2236,6 +2244,14 @@ declare namespace LocalJSX {
     interface ZenSpinner {
     }
     interface ZenStatusTracker {
+        /**
+          * Status archived
+         */
+        "archived"?: boolean;
+        /**
+          * Selected index
+         */
+        "selected"?: number;
     }
     interface ZenTab {
         /**
