@@ -25,6 +25,10 @@
   font-size: $text-sm;
 }
 
+:host([disabled]) {
+  color: $color-gray-400 !important;
+}
+
 :host([variant='light-grey']) {
   color: $color-gray-700;
   background-color: $color-gray-200;
@@ -89,4 +93,9 @@
   color: $color-blue-900;
   background-color: $color-white;
   border-color: $color-blue-900;
+}
+
+:host([variant='none']) {
+  color: $color-gray-700;
+  border: 1px solid transparent;
 }
