@@ -13,13 +13,15 @@
   height: inherit;
   max-height: inherit;
   min-height: inherit;
-  width: 100%;
+  width: inherit;
   max-width: inherit;
   min-width: inherit;
 }
 
 :host(:not([interactive])) .popup-wrap {
   pointer-events: none;
+  max-width: inherit;
+  width: inherit;
 }
 
 .popup {
