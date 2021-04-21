@@ -4,11 +4,13 @@ $arrow_size: 0.3rem;
 
 :host {
   position: absolute;
+  width: 300px;
+  max-width: max-content;
 }
 
 .popover {
-  max-width: 11rem;
-  min-width: min-content;
+  width: inherit;
+  max-width: inherit;
   z-index: $z-index-tooltips;
 }
 
