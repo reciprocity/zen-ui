@@ -39,9 +39,6 @@ export class ZenTooltip {
   /** Set tooltip offset to target element */
   @Prop() readonly offset?: number = 10;
 
-  /** Set tooltip max width */
-  @Prop() readonly maxWidth: string = '22.5rem';
-
   /** Limit tooltips height and make content scroll  */
   @Prop() readonly maxHeight: string = 'none';
 
@@ -82,7 +79,6 @@ export class ZenTooltip {
           position={this.position}
           style={{
             'max-height': this.maxHeight,
-            'max-width': this.maxWidth,
           }}
           offset={{ x: 0, y: this.offset }}
           delay={this.delay}

@@ -14,7 +14,7 @@ export const StoryWithControls = args => {
   return html/*html*/ `
     <sb-zen-space no-wrap spacing="sm" horizontal-align="center">
       <sb-zen-button variant="blue-filled"> Button </sb-zen-button>
-      <sb-zen-popover padding="md" id="control" ...="${spreadArgs(args, argTypes)}">
+      <sb-zen-popover padding="md" id="control" ...="${spreadArgs(args, argTypes)}" style="max-width: 300px">
         <sb-zen-text size="sm">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</sb-zen-text>
       </sb-zen-popover>
     </sb-zen-space>
@@ -29,19 +29,19 @@ export const StoryPositionVariants = args => {
         <sb-zen-text size="sm">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</sb-zen-text>
       </sb-zen-popover>
       <sb-zen-button variant="blue-filled">bottom-start</sb-zen-button>
-      <sb-zen-popover padding="md" position="bottom-start">
+      <sb-zen-popover padding="md" position="bottom-start" style="max-width: 300px">
         <sb-zen-text size="sm">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</sb-zen-text>
       </sb-zen-popover>
       <sb-zen-button variant="blue-filled">bottom-end</sb-zen-button>
-      <sb-zen-popover padding="md" position="bottom-end" style="position:absolute; right:0;">
+      <sb-zen-popover padding="md" position="bottom-end" style="position:absolute; right:0; max-width: 300px">
         <sb-zen-text size="sm">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</sb-zen-text>
       </sb-zen-popover>
       <sb-zen-button variant="blue-filled">top-start</sb-zen-button>
-      <sb-zen-popover padding="md" position="top-start">
+      <sb-zen-popover padding="md" position="top-start" style="max-width: 300px">
         <sb-zen-text size="sm">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</sb-zen-text>
       </sb-zen-popover>
       <sb-zen-button variant="blue-filled">top-end</sb-zen-button>
-      <sb-zen-popover padding="md" position="top-end" style="position:absolute; right:0;">
+      <sb-zen-popover padding="md" position="top-end" style="position:absolute; right:0; max-width: 300px">
         <sb-zen-text size="sm">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</sb-zen-text>
       </sb-zen-popover>
       <sb-zen-button variant="blue-filled">right</sb-zen-button>
@@ -56,15 +56,15 @@ export const StoryTriggerEvents = args => {
   return html/*html*/ `
     <sb-zen-space spacing="sm" no-wrap horizontal-align="space-evenly" vertical-align="start" data-test="outer-element">
       <sb-zen-button variant="blue-filled">Click toggle</sb-zen-button>
-      <sb-zen-popover padding="md">
+      <sb-zen-popover padding="md" style="max-width: 300px">
         <sb-zen-text size="sm">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</sb-zen-text>
       </sb-zen-popover>
       <sb-zen-button variant="blue-filled">Click outside</sb-zen-button>
-      <sb-zen-popover padding="md" close-on-target-click="false">
+      <sb-zen-popover padding="md" close-on-target-click="false" style="max-width: 300px">
         <sb-zen-text size="sm">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</sb-zen-text>
       </sb-zen-popover>
       <sb-zen-button variant="blue-filled">Hover</sb-zen-button>
-      <sb-zen-popover padding="md" trigger-event="hover">
+      <sb-zen-popover padding="md" trigger-event="hover" style="max-width: 300px">
         <sb-zen-text size="sm">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</sb-zen-text>
       </sb-zen-popover>
     </sb-zen-space>
@@ -76,7 +76,13 @@ export const StoryScrollable = args => {
     <div style="height: 200px; overflow: auto;" data-test="scroll">
       <sb-zen-space no-wrap horizontal-align="center" vertical-align="center" style="height: 400px;">
         <sb-zen-button variant="blue-filled"> Top Start </sb-zen-button>
-        <sb-zen-popover padding="md" position="bottom-end" visible="true" close-on-click-out="false">
+        <sb-zen-popover
+          padding="md"
+          position="bottom-end"
+          visible="true"
+          close-on-click-out="false"
+          style="max-width: 300px"
+        >
           <sb-zen-text size="sm"
             >Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text
             of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting
@@ -119,7 +125,7 @@ export const StoryFilters = args => {
         <sb-zen-icon slot="leadingIcon" id="filter" style="height:14px; align-self:center;"></sb-zen-icon>
         Filter
       </sb-zen-button>
-      <sb-zen-popover position="bottom-start" interactive="true" style="width: fit-content">
+      <sb-zen-popover position="bottom-start" interactive="true">
         <div data-test="filter">
           <sb-zen-space horizontal-align="start" padding="lg">
             <sb-zen-text size="xs" variant="heading">Filters</sb-zen-text>
