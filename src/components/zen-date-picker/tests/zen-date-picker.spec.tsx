@@ -264,6 +264,6 @@ describe('zen-date-picker', () => {
     const disabledDays = Array.from(numbers).filter(el => {
       return el.getAttribute('disabled') && !el.classList.contains('empty');
     });
-    expect(disabledDays.length).toEqual(16);
+    expect(disabledDays.length).toEqual(15);
   });
 });
