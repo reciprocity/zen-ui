@@ -57,7 +57,13 @@ export class ZenAvatar {
           color={this.color()}
           size={this.size()}
         />
-        <ZenTooltip variant="light" padding="none" show-delay="0" max-height={this.users.length > 4 ? '250px' : null}>
+        <ZenTooltip
+          variant="light"
+          padding="none"
+          show-delay="0"
+          max-height={this.users.length > 4 ? '250px' : null}
+          style={{ maxWidth: 'none' }}
+        >
           {this.users.map(user => (
             <ZenAvatarDetails
               class="details"

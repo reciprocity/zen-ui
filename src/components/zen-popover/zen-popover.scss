@@ -3,9 +3,9 @@
 
 :host {
   display: block;
-  width: 300px;
   position: absolute;
   z-index: 100;
+  width: max-content;
 }
 
 .popup-wrap,
@@ -20,8 +20,6 @@
 
 :host(:not([interactive])) .popup-wrap {
   pointer-events: none;
-  max-width: inherit;
-  width: inherit;
 }
 
 .popup {
