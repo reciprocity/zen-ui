@@ -259,7 +259,7 @@ export namespace Components {
     }
     interface ZenDatePicker {
         /**
-          * If user can clear the date.
+          * If user can clear the date
          */
         "allowEmpty": boolean;
         /**
@@ -271,6 +271,14 @@ export namespace Components {
          */
         "closeOnClick": boolean;
         /**
+          * Disables all dates after this one
+         */
+        "disableAfterDate": string | null;
+        /**
+          * Disables all dates before this one
+         */
+        "disableBeforeDate": string | null;
+        /**
           * Date format
          */
         "format": string;
@@ -279,7 +287,7 @@ export namespace Components {
          */
         "formattedDate": string | null;
         /**
-          * Shows invalid styles.
+          * Shows invalid styles
          */
         "invalid": false;
         /**
@@ -1660,13 +1668,21 @@ declare namespace LocalJSX {
     }
     interface ZenDatePicker {
         /**
-          * If user can clear the date.
+          * If user can clear the date
          */
         "allowEmpty"?: boolean;
         /**
           * Close calendar after picking a date
          */
         "closeOnClick"?: boolean;
+        /**
+          * Disables all dates after this one
+         */
+        "disableAfterDate"?: string | null;
+        /**
+          * Disables all dates before this one
+         */
+        "disableBeforeDate"?: string | null;
         /**
           * Date format
          */
@@ -1676,7 +1692,7 @@ declare namespace LocalJSX {
          */
         "formattedDate"?: string | null;
         /**
-          * Shows invalid styles.
+          * Shows invalid styles
          */
         "invalid"?: false;
         /**

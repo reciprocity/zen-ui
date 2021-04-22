@@ -244,4 +244,26 @@ describe('zen-date-picker', () => {
     const input = datepicker.shadowRoot.querySelector('zen-input');
     expect(input.getAttribute('size')).toEqual('lg');
   });
+
+  it('should disable days before when disableBeforeDate prop is set', async () => {
+    await render('disable-before-date="02/06/2021"');
+    setInputValue('02/10/2021');
+    await page.waitForChanges();
+    const numbers = calendar.querySelectorAll('.day-num');
+    const disabledDays = Array.from(numbers).filter(el => {
+      return el.getAttribute('disabled') && !el.classList.contains('empty');
+    });
+    expect(disabledDays.length).toEqual(5);
+  });
+
+  it('should disable days after when disableAfterDate prop is set', async () => {
+    await render('disable-after-date="02/12/2021"');
+    setInputValue('02/10/2021');
+    await page.waitForChanges();
+    const numbers = calendar.querySelectorAll('.day-num');
+    const disabledDays = Array.from(numbers).filter(el => {
+      return el.getAttribute('disabled') && !el.classList.contains('empty');
+    });
+    expect(disabledDays.length).toEqual(16);
+  });
 });

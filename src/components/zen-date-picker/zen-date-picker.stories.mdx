@@ -61,6 +61,23 @@ export const initialValue = () => {
   `;
 };
 
+export const DisableBeforeAfterDates = () => {
+  return html/*html*/ `
+    <sb-zen-space spacing="md">
+      <sb-zen-date-picker
+        formatted-date="01/15/1970"
+        style="width: 18rem"
+        disable-after-date="01/20/1970"
+      ></sb-zen-date-picker>
+      <sb-zen-date-picker
+        formatted-date="01/20/1970"
+        style="width: 18rem"
+        disable-before-date="01/15/1970"
+      ></sb-zen-date-picker>
+    </sb-zen-space>
+  `;
+};
+
 # Date picker
 
 Zen date picker component
@@ -84,6 +101,15 @@ This component supports multiple sizes through the use of the `size` attribute.
 
 <Canvas>
   <Story name="initial">{initialValue.bind({})}</Story>
+</Canvas>
+
+### 3. Disable before and after dates
+
+- Set prop `disable-before-date` to disable any date before the one setted in the prop.
+- Set prop `disable-after-date` to disable any date after the one setted in the prop.
+
+<Canvas>
+  <Story name="DisableBeforeAfterDates">{DisableBeforeAfterDates.bind({})}</Story>
 </Canvas>
 
 ## Properties

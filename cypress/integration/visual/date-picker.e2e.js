@@ -7,6 +7,7 @@ describe('Date-picker visual tests', { scrollBehavior: 'center' }, () => {
     'story--forms-date-picker--default-story',
     'story--forms-date-picker--story-sizes',
     'story--forms-date-picker--initial',
+    'story--forms-date-picker--disable-before-after-dates',
   ];
 
   before(() => {

@@ -45,6 +45,8 @@ export class ZenDatePicker {
   dayNums = [];
   popover: HTMLZenPopoverElement = null;
   input: HTMLZenInputElement = null;
+  private beforeDate: Date = null;
+  private afterDate: Date = null;
 
   @State() calendarMonthName = '';
   @State() calendarYear = 1970;
@@ -67,11 +69,17 @@ export class ZenDatePicker {
   /** Close calendar after picking a date */
   @Prop() readonly closeOnClick: boolean = true;
 
-  /** If user can clear the date. */
+  /** If user can clear the date */
   @Prop() readonly allowEmpty: boolean = true;
 
-  /** Shows invalid styles. */
+  /** Shows invalid styles */
   @Prop() readonly invalid = false;
+
+  /** Disables all dates before this one */
+  @Prop() readonly disableBeforeDate: string | null = null;
+
+  /** Disables all dates after this one */
+  @Prop() readonly disableAfterDate: string | null = null;
 
   /** Size variant */
   @Prop({ reflect: true }) readonly size: InputSize = 'md';
@@ -215,8 +223,24 @@ export class ZenDatePicker {
     this.opened = popup.visible;
   }
 
+  componentWillRender(): void {
+    const disableBeforeDate = new Date(this.disableBeforeDate);
+    const disableAfterDate = new Date(this.disableAfterDate);
+    disableAfterDate.setHours(23, 59, 59, 999);
+
+    if (`${this.disableBeforeDate}` !== 'null') {
+      this.beforeDate = isValid(disableBeforeDate) ? disableBeforeDate : null;
+      if (`${this.beforeDate}` !== 'null' && this.value < this.beforeDate) this.value = this.beforeDate;
+    }
+
+    if (`${this.disableAfterDate}` !== 'null') {
+      this.afterDate = isValid(disableAfterDate) ? disableAfterDate : null;
+      if (`${this.afterDate}` !== 'null' && this.value > this.afterDate) this.value = this.afterDate;
+    }
+  }
+
   componentDidLoad(): void {
-    if (this.formattedDate !== 'null' && this.formattedDate !== null) {
+    if (`${this.formattedDate}` !== 'null') {
       this.formattedDateChanged(this.formattedDate);
     }
     this.dateChanged(this.value); // set today date
@@ -299,21 +323,36 @@ export class ZenDatePicker {
             </ZenSpace>
           </div>
           <ZenSpace padding="xs lg lg">
-            {this.dayNums.map(num => (
-              <ZenText
-                class={{
-                  'day-num': true,
-                  empty: !num,
-                  selected: this.isSelected(num),
-                }}
-                align="center"
-                onClick={() => {
-                  this.selectDay(num);
-                }}
-              >
-                {num || ''}
-              </ZenText>
-            ))}
+            {this.dayNums.map(num => {
+              const currentDate = setDate(this.calendarMonth, num);
+              return (this.beforeDate && currentDate < this.beforeDate) ||
+                (this.afterDate && currentDate > this.afterDate) ? (
+                <ZenText
+                  class={{
+                    'day-num': true,
+                    empty: !num,
+                  }}
+                  disabled="true"
+                  align="center"
+                >
+                  {num || ''}
+                </ZenText>
+              ) : (
+                <ZenText
+                  class={{
+                    'day-num': true,
+                    empty: !num,
+                    selected: this.isSelected(num),
+                  }}
+                  align="center"
+                  onClick={() => {
+                    this.selectDay(num);
+                  }}
+                >
+                  {num || ''}
+                </ZenText>
+              );
+            })}
           </ZenSpace>
         </ZenPopover>
       </Host>

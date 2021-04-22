@@ -123,6 +123,7 @@
 
 :host([disabled]) {
   color: $color-gray-200;
+  pointer-events: none;
 }
 
 :host([state='error']),
