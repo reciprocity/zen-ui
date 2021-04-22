@@ -1,3 +1,10 @@
+# [4.2.0](https://github.com/reciprocity/zen-ui/compare/4.1.0...4.2.0) (2021-04-22)
+
+
+### Features
+
+* **zen-date-picker:** added disableBeforeDate and disableAfterDate props ([e19ad31](https://github.com/reciprocity/zen-ui/commit/e19ad317d5aa88ab5d7040c7d88de03edc13b87e))
+
 # [4.1.0](https://github.com/reciprocity/zen-ui/compare/4.0.3...4.1.0) (2021-04-20)
 
 
