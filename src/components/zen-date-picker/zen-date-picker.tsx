@@ -226,14 +226,16 @@ export class ZenDatePicker {
   componentWillRender(): void {
     const disableBeforeDate = new Date(this.disableBeforeDate);
     const disableAfterDate = new Date(this.disableAfterDate);
-    disableAfterDate.setDate(disableAfterDate.getDate() + 1);
+    disableAfterDate.setHours(23, 59, 59, 999);
 
     if (`${this.disableBeforeDate}` !== 'null') {
       this.beforeDate = isValid(disableBeforeDate) ? disableBeforeDate : null;
+      if (`${this.beforeDate}` !== 'null' && this.value < this.beforeDate) this.value = this.beforeDate;
     }
 
     if (`${this.disableAfterDate}` !== 'null') {
       this.afterDate = isValid(disableAfterDate) ? disableAfterDate : null;
+      if (`${this.afterDate}` !== 'null' && this.value > this.afterDate) this.value = this.afterDate;
     }
   }
 
@@ -241,8 +243,6 @@ export class ZenDatePicker {
     if (`${this.formattedDate}` !== 'null') {
       this.formattedDateChanged(this.formattedDate);
     }
-    if (`${this.beforeDate}` !== 'null' && this.value < this.beforeDate) this.value = this.beforeDate;
-    if (`${this.afterDate}` !== 'null' && this.value > this.afterDate) this.value = this.afterDate;
     this.dateChanged(this.value); // set today date
   }
 
