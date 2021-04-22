@@ -4,7 +4,8 @@ $arrow_size: 0.3rem;
 
 :host {
   position: absolute;
-  max-width: 300px;
+  width: 300px;
+  max-width: max-content;
 }
 
 .popover {

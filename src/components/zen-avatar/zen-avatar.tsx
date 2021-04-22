@@ -62,7 +62,7 @@ export class ZenAvatar {
           padding="none"
           show-delay="0"
           max-height={this.users.length > 4 ? '250px' : null}
-          style={{ maxWidth: 'none' }}
+          style={{ width: 'auto' }}
         >
           {this.users.map(user => (
             <ZenAvatarDetails
