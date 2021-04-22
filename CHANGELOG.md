@@ -1,3 +1,21 @@
+# [5.0.0](https://github.com/reciprocity/zen-ui/compare/4.2.0...5.0.0) (2021-04-22)
+
+
+### Bug Fixes
+
+* **popover:** max-width and width should be passed from parent ([ee04588](https://github.com/reciprocity/zen-ui/commit/ee04588be06c45d6e00c61562c81525ac21c81a8))
+
+
+### chore
+
+* **tooltip:** remove prop `maxWidth` ([2afee60](https://github.com/reciprocity/zen-ui/commit/2afee605c2eaaa8797115fb38a508f46d4e487f4))
+
+
+### BREAKING CHANGES
+
+* **tooltip:** Tooltip - Prop `maxWIdth` is removed.
+Use more natural css prop `max-width` on zen-tooltip to achieve the same effect.
+
 # [4.2.0](https://github.com/reciprocity/zen-ui/compare/4.1.0...4.2.0) (2021-04-22)
 
 
