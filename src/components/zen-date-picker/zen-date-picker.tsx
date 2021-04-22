@@ -45,8 +45,8 @@ export class ZenDatePicker {
   dayNums = [];
   popover: HTMLZenPopoverElement = null;
   input: HTMLZenInputElement = null;
-  beforeDate: Date = null;
-  afterDate: Date = null;
+  private beforeDate: Date = null;
+  private afterDate: Date = null;
 
   @State() calendarMonthName = '';
   @State() calendarYear = 1970;
@@ -223,10 +223,26 @@ export class ZenDatePicker {
     this.opened = popup.visible;
   }
 
+  componentWillRender(): void {
+    const disableBeforeDate = new Date(this.disableBeforeDate);
+    const disableAfterDate = new Date(this.disableAfterDate);
+    disableAfterDate.setDate(disableAfterDate.getDate() + 1);
+
+    if (`${this.disableBeforeDate}` !== 'null') {
+      this.beforeDate = isValid(disableBeforeDate) ? disableBeforeDate : null;
+    }
+
+    if (`${this.disableAfterDate}` !== 'null') {
+      this.afterDate = isValid(disableAfterDate) ? disableAfterDate : null;
+    }
+  }
+
   componentDidLoad(): void {
-    if (this.formattedDate !== 'null' && this.formattedDate !== null) {
+    if (`${this.formattedDate}` !== 'null') {
       this.formattedDateChanged(this.formattedDate);
     }
+    if (`${this.beforeDate}` !== 'null' && this.value < this.beforeDate) this.value = this.beforeDate;
+    if (`${this.afterDate}` !== 'null' && this.value > this.afterDate) this.value = this.afterDate;
     this.dateChanged(this.value); // set today date
   }
 
