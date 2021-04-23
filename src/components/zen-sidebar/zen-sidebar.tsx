@@ -1,5 +1,5 @@
 import { Component, Element, Host, h, Prop, Watch, Event, EventEmitter, State } from '@stencil/core';
-import { Position } from '../helpers/types';
+import { Position, SpacingShorthand, Spacing } from '../helpers/types';
 import { applyPrefix } from '../helpers/helpers';
 
 @Component({
@@ -25,6 +25,17 @@ export class ZenSidebar {
 
   /** Position */
   @Prop({ reflect: true }) readonly position: Position = 'left';
+
+  /** <Description generated in helper file> */
+  @Prop() readonly padding: SpacingShorthand = 'lg';
+  /** Skipped */
+  @Prop() readonly paddingTop: Spacing = null;
+  /** Skipped */
+  @Prop() readonly paddingRight: Spacing = null;
+  /** Skipped */
+  @Prop() readonly paddingBottom: Spacing = null;
+  /** Skipped */
+  @Prop() readonly paddingLeft: Spacing = null;
 
   /** Inner sidebar hide button clicked */
   @Event() collapse: EventEmitter<void>;
@@ -79,6 +90,11 @@ export class ZenSidebar {
           data-position={this.position}
           ref={el => (this.sidebar = el)}
           block
+          padding={this.padding}
+          padding-top={this.paddingTop}
+          padding-right={this.paddingRight}
+          padding-bottom={this.paddingBottom}
+          padding-left={this.paddingLeft}
           style={this.isVertical() ? { width: this.width } : {}}
         >
           <slot></slot>
