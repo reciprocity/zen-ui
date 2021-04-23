@@ -758,6 +758,10 @@ export namespace Components {
         "width": string;
     }
     interface ZenSidebarNav {
+        /**
+          * Make sidebar fully expanded
+         */
+        "expanded": true;
     }
     interface ZenSkeleton {
         /**
@@ -2213,6 +2217,10 @@ declare namespace LocalJSX {
         "width"?: string;
     }
     interface ZenSidebarNav {
+        /**
+          * Make sidebar fully expanded
+         */
+        "expanded"?: true;
     }
     interface ZenSkeleton {
         /**
