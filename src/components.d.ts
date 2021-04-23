@@ -719,6 +719,24 @@ export namespace Components {
          */
         "value": string;
     }
+    interface ZenSidebar {
+        /**
+          * Width/height of sidebar in collapsed state (in px)
+         */
+        "collapsedSize": number;
+        /**
+          * Is sidebar visible
+         */
+        "expanded": true;
+        /**
+          * Position
+         */
+        "position": Position;
+        /**
+          * Width of sidebar in maximized state (css prop).<br />Has no impact if position is top or bottom.<br />Can also be set to `auto`.
+         */
+        "width": string;
+    }
     interface ZenSkeleton {
         /**
           * Description generated in helper file
@@ -1291,6 +1309,12 @@ declare global {
         prototype: HTMLZenRadioElement;
         new (): HTMLZenRadioElement;
     };
+    interface HTMLZenSidebarElement extends Components.ZenSidebar, HTMLStencilElement {
+    }
+    var HTMLZenSidebarElement: {
+        prototype: HTMLZenSidebarElement;
+        new (): HTMLZenSidebarElement;
+    };
     interface HTMLZenSkeletonElement extends Components.ZenSkeleton, HTMLStencilElement {
     }
     var HTMLZenSkeletonElement: {
@@ -1405,6 +1429,7 @@ declare global {
         "zen-popover": HTMLZenPopoverElement;
         "zen-progress-tracker": HTMLZenProgressTrackerElement;
         "zen-radio": HTMLZenRadioElement;
+        "zen-sidebar": HTMLZenSidebarElement;
         "zen-skeleton": HTMLZenSkeletonElement;
         "zen-sortable": HTMLZenSortableElement;
         "zen-sortable-item": HTMLZenSortableItemElement;
@@ -2116,6 +2141,28 @@ declare namespace LocalJSX {
          */
         "value"?: string;
     }
+    interface ZenSidebar {
+        /**
+          * Width/height of sidebar in collapsed state (in px)
+         */
+        "collapsedSize"?: number;
+        /**
+          * Is sidebar visible
+         */
+        "expanded"?: true;
+        /**
+          * Inner sidebar hide button clicked
+         */
+        "onCollapse"?: (event: CustomEvent<void>) => void;
+        /**
+          * Position
+         */
+        "position"?: Position;
+        /**
+          * Width of sidebar in maximized state (css prop).<br />Has no impact if position is top or bottom.<br />Can also be set to `auto`.
+         */
+        "width"?: string;
+    }
     interface ZenSkeleton {
         /**
           * Description generated in helper file
@@ -2546,6 +2593,7 @@ declare namespace LocalJSX {
         "zen-popover": ZenPopover;
         "zen-progress-tracker": ZenProgressTracker;
         "zen-radio": ZenRadio;
+        "zen-sidebar": ZenSidebar;
         "zen-skeleton": ZenSkeleton;
         "zen-sortable": ZenSortable;
         "zen-sortable-item": ZenSortableItem;
@@ -2595,6 +2643,7 @@ declare module "@stencil/core" {
             "zen-popover": LocalJSX.ZenPopover & JSXBase.HTMLAttributes<HTMLZenPopoverElement>;
             "zen-progress-tracker": LocalJSX.ZenProgressTracker & JSXBase.HTMLAttributes<HTMLZenProgressTrackerElement>;
             "zen-radio": LocalJSX.ZenRadio & JSXBase.HTMLAttributes<HTMLZenRadioElement>;
+            "zen-sidebar": LocalJSX.ZenSidebar & JSXBase.HTMLAttributes<HTMLZenSidebarElement>;
             "zen-skeleton": LocalJSX.ZenSkeleton & JSXBase.HTMLAttributes<HTMLZenSkeletonElement>;
             "zen-sortable": LocalJSX.ZenSortable & JSXBase.HTMLAttributes<HTMLZenSortableElement>;
             "zen-sortable-item": LocalJSX.ZenSortableItem & JSXBase.HTMLAttributes<HTMLZenSortableItemElement>;

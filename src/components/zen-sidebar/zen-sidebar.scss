@@ -1,0 +1,46 @@
+@import '../scss/component-helpers.scss';
+
+:host {
+  position: absolute;
+  overflow: hidden;
+}
+
+.sidebar {
+  background-color: $color-gray-50;
+}
+
+:host([data-position*='left']),
+:host([data-position*='right']) {
+  height: 100%;
+
+  .sidebar {
+    width: auto;
+    height: 100%;
+  }
+}
+
+:host([data-position*='top']),
+:host([data-position*='bottom']) {
+  width: 100%;
+
+  .sidebar {
+    width: 100%;
+    height: auto;
+  }
+}
+
+:host([data-position*='left']) {
+  left: 0;
+}
+
+:host([data-position*='right']) {
+  right: 0;
+}
+
+:host([data-position*='top']) {
+  top: 0;
+}
+
+:host([data-position*='bottom']) {
+  bottom: 0;
+}
