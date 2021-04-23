@@ -26,3 +26,7 @@ export function waitForElement(selector, callback) {
   const observer = new MutationObserver(afterRender);
   observer.observe(document.body, { subtree: true, childList: true });
 }
+
+export function loremIpsum(repeat = 1) {
+  return 'Lorem Ipsum Quam vestibulum malesuada porta dignissim tristique in facilisi dapibus, iaculis vulputate cum orci vel eleifend potenti vehicula per, pulvinar nam porttitor aliquet nisl augue lacus. '.repeat(repeat);
+}

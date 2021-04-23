@@ -1,6 +1,8 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
 import { html } from 'lit-html';
 import { getArgTypes, getDefaultArgs, getComponentData, spreadArgs } from '#storybook/helpers/argTypes';
+import { loremIpsum } from '#storybook/helpers/utils';
+import { logEvents } from '#storybook/helpers/log-events';
 
 import data from '../../../stencilDocs.json';
 const compData = data.components.find(n => n.tag === 'zen-sidebar-nav');
@@ -9,10 +11,35 @@ const argTypes = getArgTypes(compData);
 <Meta title="Navigation/Sidebar navigation/Sidebar navigation" component="zen-sidebar-nav" argTypes={argTypes} />
 
 export const StoryWithControls = args => {
-  return html/*html*/ ` <sb-zen-sidebar-nav ...="${spreadArgs(args, argTypes)}"></sb-zen-sidebar-nav> `;
+  function expandSidebar() {
+    document.querySelector('#sidebar1').expanded = !document.querySelector('#sidebar1').expanded;
+  }
+  const isHorizontalSidebar = ['top', 'bottom'].includes(args.position);
+  const placeAfter = ['right', 'bottom'].includes(args.position);
+  return html/*html*/ ` <sb-zen-space
+      horizontal-align="center"
+      no-wrap
+      ?vertical=${isHorizontalSidebar}
+      style="border: 1px solid lightgrey; position:relative; height: 400px"
+    >
+      <sb-zen-sidebar-nav padding="sm" id="sidebar1">
+        <sb-zen-text size="sm">${loremIpsum(3)}</sb-zen-text>
+      </sb-zen-sidebar-nav>
+      <sb-zen-space
+        padding="6xl"
+        class="fill"
+        horizontal-align="center"
+        vertical
+        style="border: 3px solid lightgrey; position:relative; height: 400px"
+      >
+        <sb-zen-text size="sm">${loremIpsum(3)}</sb-zen-text>
+        <sb-zen-button @click="${expandSidebar}">Toggle Sidebar</sb-zen-button>
+      </sb-zen-space>
+    </sb-zen-space>
+    ${logEvents('#sidebar1', getComponentData('zen-sidebar'))}`;
 };
 
-# Side navigation bar
+# Zen Sidebar navigation
 
 Todo
 
