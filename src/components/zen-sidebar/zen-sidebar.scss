@@ -3,6 +3,10 @@
 :host {
   position: relative;
   flex-shrink: 0;
+}
+
+:host(:not([expanded])),
+:host([expanded='false']) {
   z-index: 100;
 }
 

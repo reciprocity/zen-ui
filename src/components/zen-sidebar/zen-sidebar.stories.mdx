@@ -23,7 +23,7 @@ export const Template = args => {
         @collapse="${e => {
           e.target.expanded = false;
         }}"
-        style="z-index: 1; ${placeAfter ? 'order: 2' : ''}"
+        style="${placeAfter ? 'order: 2' : ''}"
         padding="sm"
         id="sidebar1"
         ...="${spreadArgs(args, argTypes)}"
@@ -54,7 +54,7 @@ export const Template = args => {
           is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the
           printing and typesetting industry.
         </sb-zen-text>
-        <sb-zen-button @click="${expandSidebar}">Open Sidebar</sb-zen-button>
+        <sb-zen-button @click="${expandSidebar}">Toggle Sidebar</sb-zen-button>
       </sb-zen-space>
     </sb-zen-space>
     ${logEvents('#sidebar1', getComponentData('zen-sidebar'))}`;
@@ -74,7 +74,6 @@ Collapsible sidebar. Mainly used as a navigation bar.
     args={{
       ...getDefaultArgs(argTypes),
       expanded: false,
-      position: 'top',
     }}
   >
     {Template.bind({})}
