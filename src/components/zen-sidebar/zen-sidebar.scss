@@ -3,6 +3,7 @@
 :host {
   position: relative;
   flex-shrink: 0;
+  z-index: 100;
 }
 
 .sidebar-wrap {
@@ -13,8 +14,8 @@
   background-color: $color-gray-50;
 }
 
-:host([data-position*='left']),
-:host([data-position*='right']) {
+:host([position*='left']),
+:host([position*='right']) {
   height: 100%;
 
   .sidebar-wrap {
@@ -27,8 +28,8 @@
   }
 }
 
-:host([data-position*='top']),
-:host([data-position*='bottom']) {
+:host([position*='top']),
+:host([position*='bottom']) {
   width: 100%;
 
   .sidebar-wrap {
@@ -41,18 +42,20 @@
   }
 }
 
-:host([data-position*='left']) {
+:host([position*='left']) {
   left: 0;
 }
 
-:host([data-position*='right']) {
-  right: 0;
+:host([position*='right']) {
+  .sidebar-wrap {
+    right: 0;
+  }
 }
 
-:host([data-position*='top']) {
+:host([position*='top']) {
   top: 0;
 }
 
-:host([data-position*='bottom']) {
+:host([position*='bottom']) {
   bottom: 0;
 }

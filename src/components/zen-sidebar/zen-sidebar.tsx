@@ -14,6 +14,7 @@ export class ZenSidebar {
   @Element() host: HTMLZenSidebarElement;
 
   @State() wrapStyle: { [key: string]: string } = { display: 'none' };
+  @State() wrapPosition = 'absolute';
 
   @State() hover = false;
 
@@ -51,6 +52,7 @@ export class ZenSidebar {
   @Watch('expanded')
   async expandedChanged(): Promise<void> {
     this.toggle();
+    this.wrapPosition = this.expanded ? 'relative' : 'absolute';
   }
 
   @Listen('mouseover')
@@ -105,11 +107,14 @@ export class ZenSidebar {
     const prop = this.isVertical() ? 'width' : 'height';
 
     return (
-      <Host data-position={this.position} style={{ [prop]: hostWidth }}>
-        <div ref={el => (this.wrap = el)} class="sidebar-wrap" style={this.wrapStyle}>
+      <Host style={{ [prop]: hostWidth }}>
+        <div
+          ref={el => (this.wrap = el)}
+          class="sidebar-wrap"
+          style={{ ...this.wrapStyle, position: this.wrapPosition }}
+        >
           <ZenSpace
             class="sidebar"
-            data-position={this.position}
             ref={el => (this.sidebar = el)}
             block
             padding={this.padding}

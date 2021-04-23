@@ -12,6 +12,7 @@ export const Template = args => {
     document.querySelector('#sidebar1').expanded = !document.querySelector('#sidebar1').expanded;
   }
   const isHorizontalSidebar = ['top', 'bottom'].includes(args.position);
+  const placeAfter = ['right', 'bottom'].includes(args.position);
   return html/*html*/ ` <sb-zen-space
       horizontal-align="center"
       no-wrap
@@ -22,7 +23,7 @@ export const Template = args => {
         @collapse="${e => {
           e.target.expanded = false;
         }}"
-        style="z-index: 1"
+        style="z-index: 1; ${placeAfter ? 'order: 2' : ''}"
         padding="sm"
         id="sidebar1"
         ...="${spreadArgs(args, argTypes)}"
