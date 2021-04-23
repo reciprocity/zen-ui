@@ -48,6 +48,11 @@ export class ZenSidebar {
     this.toggle();
   }
 
+  @Watch('expanded')
+  async expandedChanged(): Promise<void> {
+    this.toggle();
+  }
+
   @Listen('mouseover')
   handleMouseOver(): void {
     this.hover = true;
@@ -78,9 +83,10 @@ export class ZenSidebar {
     // note: we have to get width in px, because `width: auto` isn't animated
 
     const duration = animated ? 'all 0.2s ease-out' : 'none';
+    const expand = this.hover || this.expanded;
 
     this.wrapStyle = {
-      [prop]: `${this.hover ? sidebarSize : this.collapsedSize}px`,
+      [prop]: `${expand ? sidebarSize : this.collapsedSize}px`,
       transition: duration,
     };
   }
@@ -95,9 +101,10 @@ export class ZenSidebar {
 
   render(): HTMLElement {
     const ZenSpace = applyPrefix('zen-space', this.host);
+    const hostWidth = this.expanded ? 'auto' : `${this.collapsedSize}px`;
 
     return (
-      <Host data-position={this.position}>
+      <Host data-position={this.position} style={{ width: hostWidth }}>
         <div ref={el => (this.wrap = el)} class="sidebar-wrap" style={this.wrapStyle}>
           <ZenSpace
             class="sidebar"
