@@ -1,8 +1,9 @@
 @import '../scss/component-helpers.scss';
 
 :host {
-  position: absolute;
+  position: relative;
   overflow: hidden;
+  flex-shrink: 0;
 }
 
 .sidebar {
