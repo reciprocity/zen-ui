@@ -78,7 +78,7 @@ describe('zen-radio', () => {
 
   it('should emit "change" event on change', async () => {
     const eventSpy = jest.fn();
-    radios[2].addEventListener('change', eventSpy);
+    radios[2].addEventListener('zenChange', eventSpy);
 
     radios[2].checked = true;
     await page.waitForChanges();
@@ -87,7 +87,7 @@ describe('zen-radio', () => {
 
   it('should emit "change" event on item from same group change', async () => {
     const eventSpy = jest.fn();
-    radios[2].addEventListener('change', eventSpy);
+    radios[2].addEventListener('zenChange', eventSpy);
 
     radios[1].checked = true;
     await page.waitForChanges();

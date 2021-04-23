@@ -5,7 +5,6 @@ import { SpacingShorthand, Size, None } from '../helpers/types';
 
 /**
  * @slot defaultSlot - Slot for ex. zen-sortable-item with possibility to set padding and spacing
- * @event onChange | Called on any selection change and returns a list of ids.
  */
 @Component({
   tag: 'zen-sortable',
@@ -32,7 +31,7 @@ export class ZenSortable {
         handle: '.handle',
         onEnd: function (evt) {
           evt.stopPropagation();
-          evt.target.dispatchEvent(new CustomEvent('onChange', { detail: this.toArray() }));
+          evt.target.dispatchEvent(new CustomEvent('zenChange', { detail: this.toArray() }));
         },
       });
     } else {

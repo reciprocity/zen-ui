@@ -1,11 +1,7 @@
-import { Component, Host, h, Prop, Element, Listen, Watch, Method } from '@stencil/core';
+import { Component, Host, h, Prop, Element, Listen, Watch, Method, Event, EventEmitter } from '@stencil/core';
 import { querySelectorAllDeep } from 'query-selector-shadow-dom';
 import last from 'lodash/last';
 import { applyPrefix, toggleAttribute } from '../helpers/helpers';
-
-/**
- * @event change | Called each time radio.selected changes
- */
 
 @Component({
   tag: 'zen-radio',
@@ -36,6 +32,9 @@ export class ZenRadio {
   /** Group id to which this radio belongs */
   @Prop({ reflect: true }) readonly group: string = '';
 
+  /** Radio change event */
+  @Event() zenChange: EventEmitter<void>;
+
   @Watch('checked')
   async checkedChanged(checked: boolean): Promise<void> {
     this.setSelected(checked ? this.value : '');
@@ -46,10 +45,18 @@ export class ZenRadio {
     this.setSelected(selected);
   }
 
+  /**
+   * Method triggers a custom event "zenChange"
+   */
+  @Method()
+  async dispatchChangeEvent(): Promise<void> {
+    this.zenChange.emit();
+  }
+
   setSelected(selected: string): void {
     const dispatchChangeEvents = (): void => {
       this.elementsInSameGroup().forEach((element: HTMLZenRadioElement) => {
-        element.dispatchEvent(new window.Event('change'));
+        element.dispatchChangeEvent();
       });
     };
 

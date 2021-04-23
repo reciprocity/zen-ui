@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, State, Listen, Watch, Element, Method } from '@stencil/core';
+import { Component, Host, h, Prop, State, Listen, Watch, Element, Method, Event, EventEmitter } from '@stencil/core';
 import { getDefaultSlotContent, applyPrefix, scrollIntoView } from '../helpers/helpers';
 import { faChevronDown } from '@fortawesome/pro-light-svg-icons';
 import { OptionValue } from '../zen-menu-item/zen-option';
@@ -11,7 +11,6 @@ export interface OptionItem {
 /**
  * @slot [default] - Content for dropdown menu
  * @slot placeholder - Slot visible in field when nothing is selected
- * @event change | Called on any selection change
  * @event focus | Focused
  * @event blur | Focus lost
  */
@@ -60,6 +59,9 @@ export class ZenDropdown {
 
   /** Shows invalid styles. */
   @Prop() readonly invalid: boolean = false;
+
+  /** Dropdown change event */
+  @Event() zenChange: EventEmitter<void>;
 
   /** Close an opened dropdown menu */
   @Method()
@@ -204,7 +206,7 @@ export class ZenDropdown {
     if (this.closeOnSelect) {
       this.popover.visible = false;
     }
-    this.host.dispatchEvent(new window.Event('change'));
+    this.zenChange.emit();
   }
 
   async setFocusedOption(option?: HTMLZenOptionElement): Promise<void> {

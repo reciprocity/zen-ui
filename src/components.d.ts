@@ -699,6 +699,10 @@ export namespace Components {
          */
         "disabled": boolean;
         /**
+          * Method triggers a custom event "zenChange"
+         */
+        "dispatchChangeEvent": () => Promise<void>;
+        /**
           * Group id to which this radio belongs
          */
         "group": string;
@@ -1771,6 +1775,10 @@ declare namespace LocalJSX {
          */
         "name"?: string;
         /**
+          * Checkbox change event
+         */
+        "onZenChange"?: (event: CustomEvent<void>) => void;
+        /**
           * Shows a red asterisk after label.
          */
         "required"?: boolean;
@@ -1804,6 +1812,10 @@ declare namespace LocalJSX {
           * Shows invalid styles
          */
         "invalid"?: boolean;
+        /**
+          * Date picker change event
+         */
+        "onZenChange"?: (event: CustomEvent<void>) => void;
         /**
           * Placeholder
          */
@@ -1887,6 +1899,10 @@ declare namespace LocalJSX {
          */
         "name"?: string;
         /**
+          * Dropdown change event
+         */
+        "onZenChange"?: (event: CustomEvent<void>) => void;
+        /**
           * Text in field if nothing selected
          */
         "placeholder"?: string;
@@ -1954,6 +1970,10 @@ declare namespace LocalJSX {
           * Name of element, can be used as reference for form data
          */
         "name"?: string;
+        /**
+          * Input change event
+         */
+        "onZenChange"?: (event: CustomEvent<void>) => void;
         /**
           * Placeholder of the input.
          */
@@ -2199,6 +2219,10 @@ declare namespace LocalJSX {
          */
         "labelWidth"?: string;
         /**
+          * Progress tracker change event
+         */
+        "onZenChange"?: (event: CustomEvent<void>) => void;
+        /**
           * Ordered array of possible steps
          */
         "steps"?: Array<StepItem>;
@@ -2220,6 +2244,10 @@ declare namespace LocalJSX {
           * Name of element, can be used as reference for form data
          */
         "name"?: string;
+        /**
+          * Radio change event
+         */
+        "onZenChange"?: (event: CustomEvent<void>) => void;
         /**
           * Shows a red asterisk after label
          */
@@ -2555,6 +2583,10 @@ declare namespace LocalJSX {
     }
     interface ZenTabs {
         /**
+          * Tabs change event
+         */
+        "onZenChange"?: (event: CustomEvent<void>) => void;
+        /**
           * Index of currently selected tab.
          */
         "value"?: number;
@@ -2639,6 +2671,10 @@ declare namespace LocalJSX {
          */
         "name"?: string;
         /**
+          * Textarea change event
+         */
+        "onZenChange"?: (event: CustomEvent<void>) => void;
+        /**
           * Placeholder of the textarea.
          */
         "placeholder"?: string;
@@ -2672,6 +2708,10 @@ declare namespace LocalJSX {
           * Name of element, can be used as reference for form data
          */
         "name"?: string;
+        /**
+          * Toggle change event
+         */
+        "onZenChange"?: (event: CustomEvent<void>) => void;
     }
     interface ZenTooltip {
         /**

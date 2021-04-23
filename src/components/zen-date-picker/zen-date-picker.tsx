@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, Watch, State, Element, Listen, Method } from '@stencil/core';
+import { Component, Host, h, Prop, Watch, State, Element, Listen, Method, Event, EventEmitter } from '@stencil/core';
 import { getDayNumbers, helpers, getMonthName, parseDate } from './date-helpers';
 import getYear from 'date-fns/getYear';
 import addMonths from 'date-fns/addMonths';
@@ -27,7 +27,6 @@ enum Navigate {
 }
 
 /**
- * @event change | Called on date change
  * @event focus | Focused
  * @event blur | Focus lost
  * @event click | Clicked
@@ -84,6 +83,9 @@ export class ZenDatePicker {
   /** Size variant */
   @Prop({ reflect: true }) readonly size: InputSize = 'md';
 
+  /** Date picker change event */
+  @Event() zenChange: EventEmitter<void>;
+
   @Watch('formattedDate')
   async formattedDateChanged(formatted: string): Promise<void> {
     const parsedDate = parseDate(formatted, this.format);
@@ -97,7 +99,7 @@ export class ZenDatePicker {
     } else {
       this.value = helpers.today();
     }
-    this.host.dispatchEvent(new window.Event('change'));
+    this.zenChange.emit();
   }
 
   @Watch('value')
@@ -146,7 +148,7 @@ export class ZenDatePicker {
   @Method()
   async clearDate(): Promise<void> {
     this.value = new Date(NaN);
-    this.host.dispatchEvent(new window.Event('change'));
+    this.zenChange.emit();
   }
 
   ensureValidFormatString(fallback = 'MM/dd/yyyy'): void {
@@ -185,7 +187,7 @@ export class ZenDatePicker {
   selectDay(day: number): void {
     if (!day) return;
     this.value = setDate(this.calendarMonth, day);
-    this.host.dispatchEvent(new window.Event('change'));
+    this.zenChange.emit();
   }
 
   isSelected(day: number): boolean {
@@ -212,7 +214,7 @@ export class ZenDatePicker {
 
     if (isValid(date)) {
       this.value = date;
-      this.host.dispatchEvent(new window.Event('change'));
+      this.zenChange.emit();
     } else {
       // revert to old date:
       this.dateChanged(this.value);

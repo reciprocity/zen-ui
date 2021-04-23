@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, Element, Listen, State, Method, Watch } from '@stencil/core';
+import { Component, Host, h, Prop, Element, Listen, State, Method, Watch, Event, EventEmitter } from '@stencil/core';
 import { getNextField } from '../helpers/helpers';
 import { faTimes } from '@fortawesome/pro-regular-svg-icons';
 import { applyPrefix } from '../helpers/helpers';
@@ -7,7 +7,6 @@ import { InputSize } from '../helpers/types';
 /**
  * @slot leadingSlot - Slot placed at the left
  * @slot trailingSlot - Slot placed at the right
- * @event change | Content change applied
  * @event input | Content changed
  * @event focus | Focused
  * @event blur | Focus lost
@@ -53,6 +52,9 @@ export class ZenInput {
   /** Size variant */
   @Prop({ reflect: true }) readonly size: InputSize = 'md';
 
+  /** Input change event */
+  @Event() zenChange: EventEmitter<void>;
+
   @Listen('keydown')
   handleKeyDown(ev: KeyboardEvent): void {
     if (ev.key === 'Enter' && this.enterToTab) {
@@ -87,7 +89,7 @@ export class ZenInput {
       this.value = input.value || '';
     }
     // change event should be forwarded, because it's not composed:
-    this.host.dispatchEvent(new window.Event('change'));
+    this.zenChange.emit();
   };
 
   private onBlur = () => {
@@ -105,7 +107,7 @@ export class ZenInput {
   private onClearClick(event: Event): void {
     this.value = '';
     this.input.value = '';
-    this.host.dispatchEvent(new window.Event('change'));
+    this.zenChange.emit();
     event.stopPropagation();
     event.preventDefault();
   }

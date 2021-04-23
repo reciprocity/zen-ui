@@ -1,8 +1,7 @@
-import { Component, Host, h, Prop, Element, Method } from '@stencil/core';
+import { Component, Host, h, Prop, Element, Method, Event, EventEmitter } from '@stencil/core';
 import { Resize } from '../helpers/types';
 
 /**
- * @event change | Content change applied
  * @event input | Content changed
  * @event focus | Focused
  * @event blur | Focus lost
@@ -45,6 +44,9 @@ export class ZenTextarea {
   /** Prefilled text content */
   @Prop({ mutable: true }) text?: string | null = '';
 
+  /** Textarea change event */
+  @Event() zenChange: EventEmitter<void>;
+
   /** Focus input */
   @Method()
   async focusInput(): Promise<void> {
@@ -66,7 +68,7 @@ export class ZenTextarea {
       this.text = input.value || '';
     }
     // change event should be forwarded, because it's not composed:
-    this.host.dispatchEvent(new window.Event('change'));
+    this.zenChange.emit();
   };
 
   render(): HTMLElement {
