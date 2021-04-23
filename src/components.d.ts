@@ -725,7 +725,7 @@ export namespace Components {
          */
         "collapsedSize": number;
         /**
-          * Is sidebar visible
+          * Make sidebar fully expanded
          */
         "expanded": true;
         /**
@@ -2167,7 +2167,7 @@ declare namespace LocalJSX {
          */
         "collapsedSize"?: number;
         /**
-          * Is sidebar visible
+          * Make sidebar fully expanded
          */
         "expanded"?: true;
         /**

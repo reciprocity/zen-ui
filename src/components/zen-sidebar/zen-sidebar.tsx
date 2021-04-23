@@ -1,4 +1,4 @@
-import { Component, Element, Host, h, Prop, Watch, Event, EventEmitter, State } from '@stencil/core';
+import { Component, Element, Host, h, Prop, Watch, Event, EventEmitter, State, Listen } from '@stencil/core';
 import { Position, SpacingShorthand, Spacing } from '../helpers/types';
 import { applyPrefix } from '../helpers/helpers';
 
@@ -15,7 +15,9 @@ export class ZenSidebar {
 
   @State() wrapStyle: { [key: string]: string } = { display: 'none' };
 
-  /** Is sidebar visible */
+  @State() hover = false;
+
+  /** Make sidebar fully expanded */
   @Prop({ reflect: true }) readonly expanded = true;
 
   /** Width/height of sidebar in collapsed state (in px) */
@@ -41,9 +43,19 @@ export class ZenSidebar {
   /** Inner sidebar hide button clicked */
   @Event() collapse: EventEmitter<void>;
 
-  @Watch('expanded')
-  async expandedChanged(): Promise<void> {
+  @Watch('hover')
+  async hoverChanged(): Promise<void> {
     this.toggle();
+  }
+
+  @Listen('mouseover')
+  handleMouseOver(): void {
+    this.hover = true;
+  }
+
+  @Listen('mouseout')
+  handleMouseOut(): void {
+    this.hover = false;
   }
 
   isVertical = (): boolean => ['left', 'right'].includes(this.position);
@@ -68,7 +80,7 @@ export class ZenSidebar {
     const duration = animated ? 'all 0.2s ease-out' : 'none';
 
     this.wrapStyle = {
-      [prop]: `${this.expanded ? sidebarSize : this.collapsedSize}px`,
+      [prop]: `${this.hover ? sidebarSize : this.collapsedSize}px`,
       transition: duration,
     };
   }
