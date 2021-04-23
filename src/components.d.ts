@@ -757,6 +757,8 @@ export namespace Components {
          */
         "width": string;
     }
+    interface ZenSidebarNav {
+    }
     interface ZenSkeleton {
         /**
           * Description generated in helper file
@@ -1335,6 +1337,12 @@ declare global {
         prototype: HTMLZenSidebarElement;
         new (): HTMLZenSidebarElement;
     };
+    interface HTMLZenSidebarNavElement extends Components.ZenSidebarNav, HTMLStencilElement {
+    }
+    var HTMLZenSidebarNavElement: {
+        prototype: HTMLZenSidebarNavElement;
+        new (): HTMLZenSidebarNavElement;
+    };
     interface HTMLZenSkeletonElement extends Components.ZenSkeleton, HTMLStencilElement {
     }
     var HTMLZenSkeletonElement: {
@@ -1450,6 +1458,7 @@ declare global {
         "zen-progress-tracker": HTMLZenProgressTrackerElement;
         "zen-radio": HTMLZenRadioElement;
         "zen-sidebar": HTMLZenSidebarElement;
+        "zen-sidebar-nav": HTMLZenSidebarNavElement;
         "zen-skeleton": HTMLZenSkeletonElement;
         "zen-sortable": HTMLZenSortableElement;
         "zen-sortable-item": HTMLZenSortableItemElement;
@@ -2203,6 +2212,8 @@ declare namespace LocalJSX {
          */
         "width"?: string;
     }
+    interface ZenSidebarNav {
+    }
     interface ZenSkeleton {
         /**
           * Description generated in helper file
@@ -2634,6 +2645,7 @@ declare namespace LocalJSX {
         "zen-progress-tracker": ZenProgressTracker;
         "zen-radio": ZenRadio;
         "zen-sidebar": ZenSidebar;
+        "zen-sidebar-nav": ZenSidebarNav;
         "zen-skeleton": ZenSkeleton;
         "zen-sortable": ZenSortable;
         "zen-sortable-item": ZenSortableItem;
@@ -2684,6 +2696,7 @@ declare module "@stencil/core" {
             "zen-progress-tracker": LocalJSX.ZenProgressTracker & JSXBase.HTMLAttributes<HTMLZenProgressTrackerElement>;
             "zen-radio": LocalJSX.ZenRadio & JSXBase.HTMLAttributes<HTMLZenRadioElement>;
             "zen-sidebar": LocalJSX.ZenSidebar & JSXBase.HTMLAttributes<HTMLZenSidebarElement>;
+            "zen-sidebar-nav": LocalJSX.ZenSidebarNav & JSXBase.HTMLAttributes<HTMLZenSidebarNavElement>;
             "zen-skeleton": LocalJSX.ZenSkeleton & JSXBase.HTMLAttributes<HTMLZenSkeletonElement>;
             "zen-sortable": LocalJSX.ZenSortable & JSXBase.HTMLAttributes<HTMLZenSortableElement>;
             "zen-sortable-item": LocalJSX.ZenSortableItem & JSXBase.HTMLAttributes<HTMLZenSortableItemElement>;

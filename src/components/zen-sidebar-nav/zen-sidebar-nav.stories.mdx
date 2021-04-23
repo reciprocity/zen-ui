@@ -1,0 +1,34 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
+import { html } from 'lit-html';
+import { getArgTypes, getDefaultArgs, getComponentData, spreadArgs } from '#storybook/helpers/argTypes';
+
+import data from '../../../stencilDocs.json';
+const compData = data.components.find(n => n.tag === 'zen-sidebar-nav');
+const argTypes = getArgTypes(compData);
+
+<Meta title="Navigation/Sidebar navigation/Sidebar navigation" component="zen-sidebar-nav" argTypes={argTypes} />
+
+export const StoryWithControls = args => {
+  return html/*html*/ ` <sb-zen-sidebar-nav ...="${spreadArgs(args, argTypes)}"></sb-zen-sidebar-nav> `;
+};
+
+# Side navigation bar
+
+Todo
+
+## Properties
+
+<Canvas>
+  <Story
+    name="default"
+    args={{
+      ...getDefaultArgs(argTypes),
+    }}
+  >
+    {StoryWithControls.bind({})}
+  </Story>
+</Canvas>
+
+<ArgsTable story="default" />
+
+<sb-docs-table docs={JSON.stringify(getComponentData('zen-sidebar-nav'))}></sb-docs-table>
