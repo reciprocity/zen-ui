@@ -15,31 +15,42 @@ export const Template = args => {
       horizontal-align="center"
       style="border: 1px solid lightgrey; position:relative; height: 400px"
     >
-      <sb-zen-button @click="${expandSidebar}">Open Sidebar</sb-zen-button>
       <sb-zen-sidebar
         @collapse="${e => {
           e.target.expanded = false;
         }}"
+        style="z-index: 1"
+        padding="sm"
         id="sidebar1"
         ...="${spreadArgs(args, argTypes)}"
       >
-        <sb-zen-space vertical spacing="sm">
-          <sb-zen-text variant="label" size="sm">Title</sb-zen-text>
-          <sb-zen-text size="sm">
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-          </sb-zen-text>
-          <sb-zen-text variant="label" size="sm">Description</sb-zen-text>
-          <sb-zen-text size="sm">
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text
-            of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply
-            dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and
-            typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
-            is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the
-            printing and typesetting industry.
-          </sb-zen-text>
-        </sb-zen-space>
+        <sb-zen-text size="sm">
+          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of
+          the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting
+          industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply
+          dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and
+          typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
+          is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the
+          printing and typesetting industry.
+        </sb-zen-text>
       </sb-zen-sidebar>
+      <sb-zen-space
+        padding="6xl"
+        class="fill"
+        horizontal-align="center"
+        style="border: 1px solid lightgrey; position:relative; height: 400px"
+      >
+        <sb-zen-text size="sm">
+          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of
+          the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting
+          industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply
+          dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and
+          typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
+          is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the
+          printing and typesetting industry.
+        </sb-zen-text>
+        <sb-zen-button @click="${expandSidebar}">Open Sidebar</sb-zen-button>
+      </sb-zen-space>
     </sb-zen-space>
     ${logEvents('#sidebar1', getComponentData('zen-sidebar'))}`;
 };
