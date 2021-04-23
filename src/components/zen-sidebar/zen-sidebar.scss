@@ -1,6 +1,7 @@
 @import '../scss/component-helpers.scss';
 
 :host {
+  display: block;
   position: relative;
   flex-shrink: 0;
 }

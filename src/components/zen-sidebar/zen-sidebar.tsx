@@ -99,6 +99,7 @@ export class ZenSidebar {
 
   componentDidLoad(): void {
     this.toggle(false);
+    this.wrapPosition = this.expanded ? 'relative' : 'absolute';
   }
 
   render(): HTMLElement {
