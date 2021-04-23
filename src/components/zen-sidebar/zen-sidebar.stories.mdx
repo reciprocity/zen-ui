@@ -11,9 +11,11 @@ export const Template = args => {
   function expandSidebar() {
     document.querySelector('#sidebar1').expanded = !document.querySelector('#sidebar1').expanded;
   }
+  const isHorizontalSidebar = ['top', 'bottom'].includes(args.position);
   return html/*html*/ ` <sb-zen-space
       horizontal-align="center"
       no-wrap
+      ?vertical=${isHorizontalSidebar}
       style="border: 1px solid lightgrey; position:relative; height: 400px"
     >
       <sb-zen-sidebar
@@ -40,7 +42,7 @@ export const Template = args => {
         class="fill"
         horizontal-align="center"
         vertical
-        style="border: 1px solid lightgrey; position:relative; height: 400px"
+        style="border: 3px solid lightgrey; position:relative; height: 400px"
       >
         <sb-zen-text size="sm">
           Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of
@@ -70,6 +72,8 @@ Collapsible sidebar. Mainly used as a navigation bar.
     name="default"
     args={{
       ...getDefaultArgs(argTypes),
+      expanded: false,
+      position: 'top',
     }}
   >
     {Template.bind({})}

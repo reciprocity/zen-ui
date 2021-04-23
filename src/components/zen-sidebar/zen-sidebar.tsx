@@ -102,9 +102,10 @@ export class ZenSidebar {
   render(): HTMLElement {
     const ZenSpace = applyPrefix('zen-space', this.host);
     const hostWidth = this.expanded ? 'auto' : `${this.collapsedSize}px`;
+    const prop = this.isVertical() ? 'width' : 'height';
 
     return (
-      <Host data-position={this.position} style={{ width: hostWidth }}>
+      <Host data-position={this.position} style={{ [prop]: hostWidth }}>
         <div ref={el => (this.wrap = el)} class="sidebar-wrap" style={this.wrapStyle}>
           <ZenSpace
             class="sidebar"
