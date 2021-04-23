@@ -9,10 +9,11 @@ import { applyPrefix } from '../helpers/helpers';
 })
 export class ZenSidebar {
   private sidebar: HTMLElement = null;
+  private wrap: HTMLElement = null;
 
   @Element() host: HTMLZenSidebarElement;
 
-  @State() hostStyle: { [key: string]: string } = { display: 'none' };
+  @State() wrapStyle: { [key: string]: string } = { display: 'none' };
 
   /** Is sidebar visible */
   @Prop({ reflect: true }) readonly expanded = true;
@@ -50,13 +51,13 @@ export class ZenSidebar {
   toggle(animated = true): void {
     const getSidebarSize = (): number => {
       // note: we have to get width in px, because `width: auto` isn't animated
-      const originalHostDisplay = this.host.style.display;
-      this.host.style.display = 'block';
+      const originalHostDisplay = this.wrap.style.display;
+      this.wrap.style.display = 'block';
 
       const prop = this.isVertical() ? 'offsetWidth' : 'offsetHeight';
       const width = this.sidebar[prop];
 
-      this.host.style.display = originalHostDisplay;
+      this.wrap.style.display = originalHostDisplay;
       return width;
     };
 
@@ -66,7 +67,7 @@ export class ZenSidebar {
 
     const duration = animated ? 'all 0.2s ease-out' : 'none';
 
-    this.hostStyle = {
+    this.wrapStyle = {
       [prop]: `${this.expanded ? sidebarSize : this.collapsedSize}px`,
       transition: duration,
     };
@@ -84,21 +85,23 @@ export class ZenSidebar {
     const ZenSpace = applyPrefix('zen-space', this.host);
 
     return (
-      <Host data-position={this.position} style={this.hostStyle}>
-        <ZenSpace
-          class="sidebar"
-          data-position={this.position}
-          ref={el => (this.sidebar = el)}
-          block
-          padding={this.padding}
-          padding-top={this.paddingTop}
-          padding-right={this.paddingRight}
-          padding-bottom={this.paddingBottom}
-          padding-left={this.paddingLeft}
-          style={this.isVertical() ? { width: this.width } : {}}
-        >
-          <slot></slot>
-        </ZenSpace>
+      <Host data-position={this.position}>
+        <div ref={el => (this.wrap = el)} class="sidebar-wrap" style={this.wrapStyle}>
+          <ZenSpace
+            class="sidebar"
+            data-position={this.position}
+            ref={el => (this.sidebar = el)}
+            block
+            padding={this.padding}
+            padding-top={this.paddingTop}
+            padding-right={this.paddingRight}
+            padding-bottom={this.paddingBottom}
+            padding-left={this.paddingLeft}
+            style={this.isVertical() ? { width: this.width } : {}}
+          >
+            <slot></slot>
+          </ZenSpace>
+        </div>
       </Host>
     );
   }

@@ -2,8 +2,12 @@
 
 :host {
   position: relative;
-  overflow: hidden;
   flex-shrink: 0;
+}
+
+.sidebar-wrap {
+  position: absolute;
+  overflow: hidden;
 }
 
 .sidebar {
@@ -14,6 +18,10 @@
 :host([data-position*='right']) {
   height: 100%;
 
+  .sidebar-wrap {
+    height: 100%;
+  }
+
   .sidebar {
     width: auto;
     height: 100%;
@@ -23,6 +31,10 @@
 :host([data-position*='top']),
 :host([data-position*='bottom']) {
   width: 100%;
+
+  .sidebar-wrap {
+    width: 100%;
+  }
 
   .sidebar {
     width: 100%;
