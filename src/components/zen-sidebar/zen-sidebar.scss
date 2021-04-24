@@ -1,6 +1,7 @@
 @import '../scss/component-helpers.scss';
 
 :host {
+  background-color: $color-gray-50;
   display: block;
   position: relative;
   flex-shrink: 0;
@@ -12,13 +13,17 @@
 }
 
 .sidebar-wrap {
+  background-color: inherit;
   overflow: hidden;
 }
 
 .sidebar {
-  background-color: $color-gray-50;
   display: flex;
   flex-direction: column;
+}
+
+slot[name='wrapChildren'] {
+  background-color: inherit;
 }
 
 :host([position*='left']),
