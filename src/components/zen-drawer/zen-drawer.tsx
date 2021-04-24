@@ -15,7 +15,7 @@ export class ZenDrawer {
   @Element() host: HTMLZenDrawerElement;
 
   /** Is drawer visible */
-  @Prop({ reflect: true }) readonly opened = false;
+  @Prop({ reflect: true }) readonly opened: boolean = false;
 
   /** Position */
   @Prop({ reflect: true }) readonly position: Position = 'right';

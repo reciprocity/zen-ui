@@ -47,10 +47,10 @@ export class ZenDropdown {
   @Prop() readonly menuHeight: string = '170px';
 
   /** Close dropdown menu after selecting an item */
-  @Prop() readonly closeOnSelect = true;
+  @Prop() readonly closeOnSelect: boolean = true;
 
   /** Don't draw border around field */
-  @Prop() readonly borderless = false;
+  @Prop() readonly borderless: boolean = false;
 
   /** Text in field if nothing selected */
   @Prop() readonly placeholder: string = 'Select something';
@@ -59,7 +59,7 @@ export class ZenDropdown {
   @Prop() readonly disabled?: boolean = false;
 
   /** Shows invalid styles. */
-  @Prop() readonly invalid = false;
+  @Prop() readonly invalid: boolean = false;
 
   /** Close an opened dropdown menu */
   @Method()

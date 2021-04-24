@@ -30,22 +30,22 @@ export class ZenInput {
   @Prop() readonly name: string = '';
 
   /** Paint focused border */
-  @Prop() readonly hasFocus = false;
+  @Prop() readonly hasFocus: boolean = false;
 
   /** Placeholder of the input. */
   @Prop() readonly placeholder: string = '';
 
   /** Disables input. */
-  @Prop() readonly disabled = false;
+  @Prop() readonly disabled: boolean = false;
 
   /** Shows invalid styles. */
-  @Prop() readonly invalid = false;
+  @Prop() readonly invalid: boolean = false;
 
   /** Focus next control when pressing Enter key */
-  @Prop() readonly enterToTab = true;
+  @Prop() readonly enterToTab: boolean = true;
 
   /** Should display clear button if focused and not empty */
-  @Prop({ reflect: true }) readonly clearButton = true;
+  @Prop({ reflect: true }) readonly clearButton: boolean = true;
 
   /** The value of the input. */
   @Prop({ mutable: true }) value?: string = '';

@@ -14,7 +14,7 @@ export class ZenCard {
   @Prop({ reflect: true }) readonly variant: CardVariant = 'default';
 
   /** Disables card. */
-  @Prop({ reflect: true }) readonly disabled = false;
+  @Prop({ reflect: true }) readonly disabled: boolean = false;
 
   /** <Description generated in helper file> */
   @Prop() readonly padding: SpacingShorthand = 'lg';

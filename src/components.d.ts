@@ -47,7 +47,7 @@ export namespace Components {
         /**
           * Save current value to local storage and restore it on load
          */
-        "saveValue": true;
+        "saveValue": boolean;
         /**
           * What framework is initally selected
          */
@@ -205,7 +205,7 @@ export namespace Components {
         /**
           * Disables card.
          */
-        "disabled": false;
+        "disabled": boolean;
         /**
           * <Description generated in helper file>
          */
@@ -239,7 +239,7 @@ export namespace Components {
         /**
           * Disables checkbox.
          */
-        "disabled": false;
+        "disabled": boolean;
         /**
           * Shows the checkbox in indeterminate state
          */
@@ -255,7 +255,7 @@ export namespace Components {
         /**
           * Shows a red asterisk after label.
          */
-        "required": false;
+        "required": boolean;
     }
     interface ZenDatePicker {
         /**
@@ -289,11 +289,11 @@ export namespace Components {
         /**
           * Shows invalid styles
          */
-        "invalid": false;
+        "invalid": boolean;
         /**
           * Placeholder
          */
-        "placeholder": "Select date";
+        "placeholder": string;
         /**
           * Size variant
          */
@@ -309,7 +309,7 @@ export namespace Components {
         /**
           * Is drawer visible
          */
-        "opened": false;
+        "opened": boolean;
         /**
           * <Description generated in helper file>
          */
@@ -339,11 +339,11 @@ export namespace Components {
         /**
           * Don't draw border around field
          */
-        "borderless": false;
+        "borderless": boolean;
         /**
           * Close dropdown menu after selecting an item
          */
-        "closeOnSelect": true;
+        "closeOnSelect": boolean;
         /**
           * Disable any changes
          */
@@ -355,7 +355,7 @@ export namespace Components {
         /**
           * Shows invalid styles.
          */
-        "invalid": false;
+        "invalid": boolean;
         /**
           * To determine if there's enough space under field on open
          */
@@ -419,15 +419,15 @@ export namespace Components {
         /**
           * Should display clear button if focused and not empty
          */
-        "clearButton": true;
+        "clearButton": boolean;
         /**
           * Disables input.
          */
-        "disabled": false;
+        "disabled": boolean;
         /**
           * Focus next control when pressing Enter key
          */
-        "enterToTab": true;
+        "enterToTab": boolean;
         /**
           * Focus input
          */
@@ -435,11 +435,11 @@ export namespace Components {
         /**
           * Paint focused border
          */
-        "hasFocus": false;
+        "hasFocus": boolean;
         /**
           * Shows invalid styles.
          */
-        "invalid": false;
+        "invalid": boolean;
         /**
           * Name of element, can be used as reference for form data
          */
@@ -495,7 +495,7 @@ export namespace Components {
         /**
           * Set `true` to show and `false` to hide modal
          */
-        "show": false;
+        "show": boolean;
     }
     interface ZenNotification {
         /**
@@ -693,7 +693,7 @@ export namespace Components {
         /**
           * Radio can't be selected (but you can still set `checked=true`)
          */
-        "disabled": false;
+        "disabled": boolean;
         /**
           * Group id to which this radio belongs
          */
@@ -705,7 +705,7 @@ export namespace Components {
         /**
           * Shows a red asterisk after label
          */
-        "required": false;
+        "required": boolean;
         /**
           * Value of selected radio in this group
          */
@@ -975,7 +975,7 @@ export namespace Components {
         /**
           * Shows a red asterisk at the end
          */
-        "required": false;
+        "required": boolean;
         /**
           * Font size
          */
@@ -1013,7 +1013,7 @@ export namespace Components {
         /**
           * Appends attribute disabled.
          */
-        "disabled": false;
+        "disabled": boolean;
         /**
           * Focus input
          */
@@ -1021,7 +1021,7 @@ export namespace Components {
         /**
           * Shows invalid styles.
          */
-        "invalid": false;
+        "invalid": boolean;
         /**
           * Name of element, can be used as reference for form data
          */
@@ -1033,7 +1033,7 @@ export namespace Components {
         /**
           * Appends attribute required.
          */
-        "required": false;
+        "required": boolean;
         /**
           * Resize (variants)
          */
@@ -1055,7 +1055,7 @@ export namespace Components {
         /**
           * Set disabled state.
          */
-        "disabled": false;
+        "disabled": boolean;
         /**
           * Name of element, can be used as reference for form data
          */
@@ -1452,7 +1452,7 @@ declare namespace LocalJSX {
         /**
           * Save current value to local storage and restore it on load
          */
-        "saveValue"?: true;
+        "saveValue"?: boolean;
         /**
           * What framework is initally selected
          */
@@ -1610,7 +1610,7 @@ declare namespace LocalJSX {
         /**
           * Disables card.
          */
-        "disabled"?: false;
+        "disabled"?: boolean;
         /**
           * <Description generated in helper file>
          */
@@ -1644,7 +1644,7 @@ declare namespace LocalJSX {
         /**
           * Disables checkbox.
          */
-        "disabled"?: false;
+        "disabled"?: boolean;
         /**
           * Shows the checkbox in indeterminate state
          */
@@ -1660,7 +1660,7 @@ declare namespace LocalJSX {
         /**
           * Shows a red asterisk after label.
          */
-        "required"?: false;
+        "required"?: boolean;
     }
     interface ZenDatePicker {
         /**
@@ -1690,11 +1690,11 @@ declare namespace LocalJSX {
         /**
           * Shows invalid styles
          */
-        "invalid"?: false;
+        "invalid"?: boolean;
         /**
           * Placeholder
          */
-        "placeholder"?: "Select date";
+        "placeholder"?: string;
         /**
           * Size variant
          */
@@ -1714,7 +1714,7 @@ declare namespace LocalJSX {
         /**
           * Is drawer visible
          */
-        "opened"?: false;
+        "opened"?: boolean;
         /**
           * <Description generated in helper file>
          */
@@ -1744,11 +1744,11 @@ declare namespace LocalJSX {
         /**
           * Don't draw border around field
          */
-        "borderless"?: false;
+        "borderless"?: boolean;
         /**
           * Close dropdown menu after selecting an item
          */
-        "closeOnSelect"?: true;
+        "closeOnSelect"?: boolean;
         /**
           * Disable any changes
          */
@@ -1760,7 +1760,7 @@ declare namespace LocalJSX {
         /**
           * Shows invalid styles.
          */
-        "invalid"?: false;
+        "invalid"?: boolean;
         /**
           * To determine if there's enough space under field on open
          */
@@ -1820,23 +1820,23 @@ declare namespace LocalJSX {
         /**
           * Should display clear button if focused and not empty
          */
-        "clearButton"?: true;
+        "clearButton"?: boolean;
         /**
           * Disables input.
          */
-        "disabled"?: false;
+        "disabled"?: boolean;
         /**
           * Focus next control when pressing Enter key
          */
-        "enterToTab"?: true;
+        "enterToTab"?: boolean;
         /**
           * Paint focused border
          */
-        "hasFocus"?: false;
+        "hasFocus"?: boolean;
         /**
           * Shows invalid styles.
          */
-        "invalid"?: false;
+        "invalid"?: boolean;
         /**
           * Name of element, can be used as reference for form data
          */
@@ -1900,7 +1900,7 @@ declare namespace LocalJSX {
         /**
           * Set `true` to show and `false` to hide modal
          */
-        "show"?: false;
+        "show"?: boolean;
     }
     interface ZenNotification {
         /**
@@ -2094,7 +2094,7 @@ declare namespace LocalJSX {
         /**
           * Radio can't be selected (but you can still set `checked=true`)
          */
-        "disabled"?: false;
+        "disabled"?: boolean;
         /**
           * Group id to which this radio belongs
          */
@@ -2106,7 +2106,7 @@ declare namespace LocalJSX {
         /**
           * Shows a red asterisk after label
          */
-        "required"?: false;
+        "required"?: boolean;
         /**
           * Value of selected radio in this group
          */
@@ -2380,7 +2380,7 @@ declare namespace LocalJSX {
         /**
           * Shows a red asterisk at the end
          */
-        "required"?: false;
+        "required"?: boolean;
         /**
           * Font size
          */
@@ -2418,11 +2418,11 @@ declare namespace LocalJSX {
         /**
           * Appends attribute disabled.
          */
-        "disabled"?: false;
+        "disabled"?: boolean;
         /**
           * Shows invalid styles.
          */
-        "invalid"?: false;
+        "invalid"?: boolean;
         /**
           * Name of element, can be used as reference for form data
          */
@@ -2434,7 +2434,7 @@ declare namespace LocalJSX {
         /**
           * Appends attribute required.
          */
-        "required"?: false;
+        "required"?: boolean;
         /**
           * Resize (variants)
          */
@@ -2456,7 +2456,7 @@ declare namespace LocalJSX {
         /**
           * Set disabled state.
          */
-        "disabled"?: false;
+        "disabled"?: boolean;
         /**
           * Name of element, can be used as reference for form data
          */
