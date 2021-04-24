@@ -2,6 +2,10 @@ import { Component, Element, Host, h, Prop, Watch, Event, EventEmitter, State, L
 import { Position, SpacingShorthand, Spacing } from '../helpers/types';
 import { applyPrefix } from '../helpers/helpers';
 
+/**
+ * @slot wrapChildren - In case you want to place some absolute elements relative to sidebar wrap size (eg. close icon on zen-sidebar-nav)
+ */
+
 @Component({
   tag: 'zen-sidebar',
   styleUrl: 'zen-sidebar.scss',
@@ -31,7 +35,7 @@ export class ZenSidebar {
   @Prop({ reflect: true }) readonly position: Position = 'left';
 
   /** <Description generated in helper file> */
-  @Prop() readonly padding: SpacingShorthand = 'lg';
+  @Prop() readonly padding: SpacingShorthand = 'none';
   /** Skipped */
   @Prop() readonly paddingTop: Spacing = null;
   /** Skipped */
@@ -127,6 +131,7 @@ export class ZenSidebar {
           >
             <slot></slot>
           </ZenSpace>
+          <slot name="wrapChildren"></slot>
         </div>
       </Host>
     );
