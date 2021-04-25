@@ -11,9 +11,6 @@ const argTypes = getArgTypes(compData);
 <Meta title="Navigation/Sidebar navigation/Sidebar navigation" component="zen-sidebar-nav" argTypes={argTypes} />
 
 export const StoryWithControls = args => {
-  function expandSidebar() {
-    document.querySelector('#sidebar1').expanded = !document.querySelector('#sidebar1').expanded;
-  }
   const isHorizontalSidebar = ['top', 'bottom'].includes(args.position);
   const placeAfter = ['right', 'bottom'].includes(args.position);
   return html/*html*/ ` <sb-zen-space
@@ -33,7 +30,6 @@ export const StoryWithControls = args => {
         style="border: 3px solid lightgrey; position:relative; height: 400px"
       >
         <sb-zen-text size="sm">${loremIpsum(3)}</sb-zen-text>
-        <sb-zen-button @click="${expandSidebar}">Toggle Sidebar</sb-zen-button>
       </sb-zen-space>
     </sb-zen-space>
     ${logEvents('#sidebar1', getComponentData('zen-sidebar'))}`;

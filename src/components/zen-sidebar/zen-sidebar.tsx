@@ -56,6 +56,9 @@ export class ZenSidebar {
   @Watch('expanded')
   async expandedChanged(): Promise<void> {
     this.toggle();
+    if (!this.expanded) {
+      this.hover = false;
+    }
     this.wrapPosition = this.expanded ? 'relative' : 'absolute';
   }
 

@@ -761,7 +761,7 @@ export namespace Components {
         /**
           * Make sidebar fully expanded
          */
-        "expanded": true;
+        "expanded": boolean;
     }
     interface ZenSkeleton {
         /**
@@ -2220,7 +2220,7 @@ declare namespace LocalJSX {
         /**
           * Make sidebar fully expanded
          */
-        "expanded"?: true;
+        "expanded"?: boolean;
     }
     interface ZenSkeleton {
         /**
