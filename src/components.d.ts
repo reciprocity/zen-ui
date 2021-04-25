@@ -2247,6 +2247,10 @@ declare namespace LocalJSX {
          */
         "onCollapse"?: (event: CustomEvent<void>) => void;
         /**
+          * On sidebar collapse/expand
+         */
+        "onToggle"?: (event: CustomEvent<{ expanded: boolean }>) => void;
+        /**
           * <Description generated in helper file>
          */
         "padding"?: SpacingShorthand;
