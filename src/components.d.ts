@@ -778,6 +778,10 @@ export namespace Components {
         "selected": boolean;
     }
     interface ZenSidebarNavSubitem {
+        /**
+          * Render item as selected
+         */
+        "selected": false;
     }
     interface ZenSkeleton {
         /**
@@ -2288,6 +2292,14 @@ declare namespace LocalJSX {
         "selected"?: boolean;
     }
     interface ZenSidebarNavSubitem {
+        /**
+          * Item was selected
+         */
+        "onSubitemSelect"?: (event: CustomEvent<void>) => void;
+        /**
+          * Render item as selected
+         */
+        "selected"?: false;
     }
     interface ZenSkeleton {
         /**
