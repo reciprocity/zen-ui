@@ -9,18 +9,19 @@
   min-height: 2.5rem;
   cursor: pointer;
   transition: color $transition-color;
+  width: 100%;
 }
 
 :host(:hover) {
   color: $color-blue-700;
 }
 
-:host::after {
+:host([selected])::after {
   content: '';
   position: absolute;
   width: 100%;
   bottom: 0;
-  height: 20px;
+  height: 8px;
   transform: translate(0, 100%);
   background-image: linear-gradient(rgb(34, 148, 229, 0.15) 0%, rgba(34, 148, 229, 0) 100%);
 }
