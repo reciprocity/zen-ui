@@ -7,7 +7,7 @@ import { Component, Host, h, Prop, Event, EventEmitter, Watch } from '@stencil/c
 })
 export class ZenSidebarNavSubitem {
   /** Render item as selected */
-  @Prop({ reflect: true }) readonly selected = false;
+  @Prop({ reflect: true }) readonly selected: boolean = false;
 
   /** Item was selected */
   @Event() subitemSelect: EventEmitter<void>;

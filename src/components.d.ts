@@ -781,7 +781,7 @@ export namespace Components {
         /**
           * Render item as selected
          */
-        "selected": false;
+        "selected": boolean;
     }
     interface ZenSkeleton {
         /**
@@ -2303,7 +2303,7 @@ declare namespace LocalJSX {
         /**
           * Render item as selected
          */
-        "selected"?: false;
+        "selected"?: boolean;
     }
     interface ZenSkeleton {
         /**

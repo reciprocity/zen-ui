@@ -20,19 +20,24 @@ export class ZenSidebarNavItem {
 
   @Watch('selected')
   selectedChanged(selected: boolean): void {
-    if (!selected) return;
+    if (!selected) {
+      this.deselectAllChildren();
+      return;
+    }
+    const subitems = this.getItems();
+    if (subitems.length) {
+      subitems[0].selected = true;
+    }
     this.zenSelect.emit();
   }
 
   deselectAllChildren(): void {
-    const subitems = this.getItems();
-    if (!subitems) return;
     this.getItems().forEach(subitem => (subitem.selected = false));
   }
 
   getItems(): HTMLZenSidebarNavSubitemElement[] {
     const wrapper = getSlotElement(this.host, 'subitems');
-    if (!wrapper) return;
+    if (!wrapper) return [];
 
     return Array.from(wrapper.children).filter(el =>
       el.tagName.endsWith('ZEN-SIDEBAR-NAV-SUBITEM'),
@@ -50,7 +55,7 @@ export class ZenSidebarNavItem {
 
   componentDidLoad(): void {
     // TODO: Do this in mutation observer!
-    this.hasSubitems = !!this.getItems();
+    this.hasSubitems = !!this.getItems().length;
   }
 
   render(): HTMLElement {
