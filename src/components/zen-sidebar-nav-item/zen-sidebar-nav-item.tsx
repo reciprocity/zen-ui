@@ -24,6 +24,12 @@ export class ZenSidebarNavItem {
     this.zenSelect.emit();
   }
 
+  deselectAllChildren(): void {
+    const subitems = this.getItems();
+    if (!subitems) return;
+    this.getItems().forEach(subitem => (subitem.selected = false));
+  }
+
   getItems(): HTMLZenSidebarNavSubitemElement[] {
     const wrapper = getSlotElement(this.host, 'subitems');
     if (!wrapper) return;
