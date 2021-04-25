@@ -25,7 +25,7 @@ export class ZenSidebarNavItem {
       return;
     }
     const subitems = this.getItems();
-    if (subitems.length) {
+    if (subitems.length && !subitems.some(n => n.selected)) {
       subitems[0].selected = true;
     }
     this.zenSelect.emit();
