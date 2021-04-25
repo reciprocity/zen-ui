@@ -43,7 +43,7 @@
   transition: max-height 0.2s ease-out;
 }
 
-:host([selected]) .subitems {
+:host(:not(.collapsed)[selected]) .subitems {
   max-height: 50rem; // some high value that should be higher than actual height!
   transition: max-height 0.2s ease-in;
 }

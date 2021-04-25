@@ -31,6 +31,11 @@ export class ZenSidebarNav {
     });
   }
 
+  onToggle(event: CustomEvent): void {
+    const expanded = event.detail.expanded;
+    this.getItems().forEach(item => (expanded ? item.classList.remove('collapsed') : item.classList.add('collapsed')));
+  }
+
   render(): HTMLElement {
     const ZenSidebar = applyPrefix('zen-sidebar', this.host);
     const ZenIcon = applyPrefix('zen-icon', this.host);
@@ -38,7 +43,13 @@ export class ZenSidebarNav {
 
     return (
       <Host>
-        <ZenSidebar class="sidebar" collapsed-size="32" expanded={this.expanded} onSelect={e => this.itemSelected(e)}>
+        <ZenSidebar
+          class="sidebar"
+          collapsed-size="32"
+          expanded={this.expanded}
+          onSelect={e => this.itemSelected(e)}
+          onToggle={e => this.onToggle(e)}
+        >
           <slot></slot>
 
           <ZenSpace padding="lg md" class="footer" vertical>
