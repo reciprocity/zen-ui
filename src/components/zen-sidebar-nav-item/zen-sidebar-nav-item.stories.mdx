@@ -1,6 +1,8 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
 import { html } from 'lit-html';
 import { getArgTypes, getDefaultArgs, getComponentData, spreadArgs } from '#storybook/helpers/argTypes';
+import { waitForElement } from '#storybook/helpers/utils';
+import { faHomeAlt } from '@fortawesome/pro-light-svg-icons';
 
 import data from '../../../stencilDocs.json';
 const compData = data.components.find(n => n.tag === 'zen-sidebar-nav-item');
@@ -9,12 +11,20 @@ const argTypes = getArgTypes(compData);
 <Meta title="Navigation/Sidebar navigation/Sidebar nav item" component="zen-sidebar-nav-item" argTypes={argTypes} />
 
 export const StoryWithControls = args => {
-  return html/*html*/ ` <sb-zen-sidebar-nav-item ...="${spreadArgs(args, argTypes)}"></sb-zen-sidebar-nav-item> `;
+  waitForElement('#icon-home', element => {
+    element.icon = faHomeAlt;
+  });
+  return html/*html*/ `
+    <sb-zen-sidebar-nav-item ...="${spreadArgs(args, argTypes)}">
+      <sb-zen-icon id="icon-home"></sb-zen-icon>
+      Program Overview
+    </sb-zen-sidebar-nav-item>
+  `;
 };
 
-# Side navigation bar
+# Sidebar navigation item
 
-Todo
+Item to be used inside `zen-sidbar-nav`.
 
 ## Properties
 

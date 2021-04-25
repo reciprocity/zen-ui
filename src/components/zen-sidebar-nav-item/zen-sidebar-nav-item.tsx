@@ -9,7 +9,7 @@ export class ZenSidebarNavItem {
   render(): HTMLElement {
     return (
       <Host>
-        <p>todo</p>
+        <slot></slot>
       </Host>
     );
   }
