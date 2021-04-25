@@ -43,7 +43,9 @@
   transition: max-height 0.2s ease-out;
 }
 
-:host(:not(.collapsed)[selected]) .subitems {
+:host(:not(.collapsed)) .subitems:hover, // don't close while hovering subitems!
+:host(:not(.collapsed)[selected]) .subitems,
+:host(:not(.collapsed)) .item:hover + .subitems /* open on hover */ {
   max-height: 50rem; // some high value that should be higher than actual height!
   transition: max-height 0.2s ease-in;
 }

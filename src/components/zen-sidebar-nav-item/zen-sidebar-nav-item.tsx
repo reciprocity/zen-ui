@@ -13,7 +13,7 @@ export class ZenSidebarNavItem {
   @State() hasSubitems = false;
 
   /** Render item as selected */
-  @Prop({ reflect: true }) readonly selected: boolean = false;
+  @Prop({ reflect: true, mutable: true }) selected = false;
 
   /** Item was selected */
   @Event() zenSelect: EventEmitter<void>;
@@ -33,12 +33,13 @@ export class ZenSidebarNavItem {
     ) as HTMLZenSidebarNavSubitemElement[];
   }
 
-  itemSelected(event: CustomEvent): void {
+  subitemSelected(event: CustomEvent): void {
     const newlySelected = event.target;
     const others = this.getItems().filter(item => item.selected && item !== newlySelected);
     others.forEach(item => {
       item.selected = false;
     });
+    this.selected = true;
   }
 
   componentDidLoad(): void {
@@ -50,7 +51,7 @@ export class ZenSidebarNavItem {
     const ZenIcon = applyPrefix('zen-icon', this.host);
 
     return (
-      <Host onSubitemSelect={e => this.itemSelected(e)} class={{ 'has-subitems': this.hasSubitems }}>
+      <Host onSubitemSelect={e => this.subitemSelected(e)} class={{ 'has-subitems': this.hasSubitems }}>
         <div class="item">
           <slot></slot>
           <ZenIcon class="arrow" size="sm" icon={faChevronDown}></ZenIcon>
