@@ -69,17 +69,26 @@ export class ZenSidebar {
   }
 
   @Listen('mousemove')
+  handleMouseMove(event: MouseEvent): void {
+    this.onMouseOver(event);
+  }
+
+  @Listen('mouseover')
   handleMouseOver(event: MouseEvent): void {
-    if (!this.expandOnHover || this.expanded || this.hover) return;
-    // todo: tried to add prop `@prop() ignoreOnHover: HtmlElement[]`, but it was
-    //       always empty no matter of how I've set it from zen-sidebar-nav...
-    if ((event.target as HTMLElement).classList.contains('hover-ignore')) return;
-    this.hover = true;
+    this.onMouseOver(event);
   }
 
   @Listen('mouseout')
   handleMouseOut(): void {
     this.hover = false;
+  }
+
+  onMouseOver(event: MouseEvent): void {
+    if (!this.expandOnHover || this.expanded || this.hover) return;
+    // todo: tried to add prop `@prop() ignoreOnHover: HtmlElement[]`, but it was
+    //       always empty no matter of how I've set it from zen-sidebar-nav...
+    if ((event.target as HTMLElement).classList.contains('hover-ignore')) return;
+    this.hover = true;
   }
 
   isVertical = (): boolean => ['left', 'right'].includes(this.position);
