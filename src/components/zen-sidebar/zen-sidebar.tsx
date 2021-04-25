@@ -133,6 +133,7 @@ export class ZenSidebar {
             ref={el => (this.sidebar = el)}
             vertical
             vertical-align="start"
+            no-wrap
             padding={this.padding}
             padding-top={this.paddingTop}
             padding-right={this.paddingRight}

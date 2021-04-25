@@ -64,8 +64,8 @@ export const StoryWithControls = args => {
     <sb-zen-space
       horizontal-align="center"
       no-wrap
-      ?vertical=${isHorizontalSidebar}
-      style="border: 1px solid lightgrey; position:relative; height: 400px"
+      vertical-align="stretch"
+      style="border: 1px solid lightgrey; position:relative; height: 600px"
     >
       <sb-zen-sidebar-nav padding="sm" id="sidebar1" ...="${spreadArgs(args, argTypes)}">
         <div class="programs-dropdown">
@@ -92,7 +92,12 @@ export const StoryWithControls = args => {
           <sb-zen-icon padding="md" id="icon-records"></sb-zen-icon>
           Program records
           <div slot="subitems">
-            <sb-zen-sidebar-nav-subitem @click="${subitemClicked}"> Controls </sb-zen-sidebar-nav-subitem>
+            <sb-zen-sidebar-nav-subitem @click="${subitemClicked}">Controls</sb-zen-sidebar-nav-subitem>
+            <sb-zen-sidebar-nav-subitem @click="${subitemClicked}">Requirements</sb-zen-sidebar-nav-subitem>
+            <sb-zen-sidebar-nav-subitem @click="${subitemClicked}">Findings</sb-zen-sidebar-nav-subitem>
+            <sb-zen-sidebar-nav-subitem @click="${subitemClicked}">Control assesments</sb-zen-sidebar-nav-subitem>
+            <sb-zen-sidebar-nav-subitem @click="${subitemClicked}">Evidence requests</sb-zen-sidebar-nav-subitem>
+            <sb-zen-sidebar-nav-subitem @click="${subitemClicked}">Tasks</sb-zen-sidebar-nav-subitem>
           </div>
         </sb-zen-sidebar-nav-item>
         <sb-zen-sidebar-nav-item @click="${itemClicked}">
@@ -109,7 +114,7 @@ export const StoryWithControls = args => {
         class="fill"
         horizontal-align="center"
         vertical
-        style="border: 3px solid lightgrey; position:relative; height: 400px"
+        style="border: 3px solid lightgrey; position:relative"
       >
         <sb-zen-text size="sm">${loremIpsum(3)}</sb-zen-text>
       </sb-zen-space>
