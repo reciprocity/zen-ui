@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, Event, EventEmitter, Watch, Element } from '@stencil/core';
+import { Component, Host, h, Prop, Event, EventEmitter, Watch, Element, State } from '@stencil/core';
 import { applyPrefix, getSlotElement } from '../helpers/helpers';
 import { faChevronDown } from '@fortawesome/pro-regular-svg-icons';
 
@@ -9,6 +9,8 @@ import { faChevronDown } from '@fortawesome/pro-regular-svg-icons';
 })
 export class ZenSidebarNavItem {
   @Element() host: HTMLZenSidebarNavItemElement;
+
+  @State() hasSubitems = false;
 
   /** Render item as selected */
   @Prop({ reflect: true }) readonly selected: boolean = false;
@@ -39,11 +41,16 @@ export class ZenSidebarNavItem {
     });
   }
 
+  componentDidLoad(): void {
+    // TODO: Do this in mutation observer!
+    this.hasSubitems = !!this.getItems();
+  }
+
   render(): HTMLElement {
     const ZenIcon = applyPrefix('zen-icon', this.host);
 
     return (
-      <Host onSubitemSelect={e => this.itemSelected(e)}>
+      <Host onSubitemSelect={e => this.itemSelected(e)} class={{ 'has-subitems': this.hasSubitems }}>
         <div class="item">
           <slot></slot>
           <ZenIcon class="arrow" size="sm" icon={faChevronDown}></ZenIcon>

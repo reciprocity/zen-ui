@@ -57,3 +57,7 @@
 :host([selected]) .arrow {
   transform: rotate(180deg);
 }
+
+:host(:not(.has-subitems)) .arrow {
+  display: none;
+}
