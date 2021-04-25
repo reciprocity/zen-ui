@@ -1,4 +1,4 @@
-import { Component, Host, h } from '@stencil/core';
+import { Component, Host, h, Prop } from '@stencil/core';
 
 @Component({
   tag: 'zen-sidebar-nav-item',
@@ -6,6 +6,9 @@ import { Component, Host, h } from '@stencil/core';
   shadow: true,
 })
 export class ZenSidebarNavItem {
+  /** Render item as selected */
+  @Prop({ reflect: true }) readonly selected = false;
+
   render(): HTMLElement {
     return (
       <Host>

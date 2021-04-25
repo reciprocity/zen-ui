@@ -768,6 +768,10 @@ export namespace Components {
         "expanded": boolean;
     }
     interface ZenSidebarNavItem {
+        /**
+          * Render item as selected
+         */
+        "selected": false;
     }
     interface ZenSkeleton {
         /**
@@ -2240,6 +2244,10 @@ declare namespace LocalJSX {
         "expanded"?: boolean;
     }
     interface ZenSidebarNavItem {
+        /**
+          * Render item as selected
+         */
+        "selected"?: false;
     }
     interface ZenSkeleton {
         /**
