@@ -131,7 +131,8 @@ export class ZenSidebar {
           <ZenSpace
             class="sidebar"
             ref={el => (this.sidebar = el)}
-            block
+            vertical
+            vertical-align="start"
             padding={this.padding}
             padding-top={this.paddingTop}
             padding-right={this.paddingRight}

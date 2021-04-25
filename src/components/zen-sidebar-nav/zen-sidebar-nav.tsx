@@ -20,11 +20,19 @@ export class ZenSidebarNav {
   render(): HTMLElement {
     const ZenSidebar = applyPrefix('zen-sidebar', this.host);
     const ZenIcon = applyPrefix('zen-icon', this.host);
+    const ZenSpace = applyPrefix('zen-space', this.host);
 
     return (
       <Host>
         <ZenSidebar class="sidebar" collapsed-size="32" expanded={this.expanded}>
           <slot></slot>
+
+          <ZenSpace padding="lg md" class="footer" vertical>
+            <a href="https://placeholder.com/" target="_blank">
+              Privacy Policy
+            </a>
+            <div>Copyright © 2021</div>
+          </ZenSpace>
 
           <ZenIcon
             slot="wrapChildren"
