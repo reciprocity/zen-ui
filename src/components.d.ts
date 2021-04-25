@@ -2245,6 +2245,10 @@ declare namespace LocalJSX {
     }
     interface ZenSidebarNavItem {
         /**
+          * Item was selected
+         */
+        "onSelect"?: (event: CustomEvent<void>) => void;
+        /**
           * Render item as selected
          */
         "selected"?: false;

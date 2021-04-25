@@ -21,10 +21,6 @@ const argTypes = getArgTypes(compData);
 
 export const StoryWithControls = args => {
   function itemClicked(event) {
-    const allItems = document.querySelectorAll('#sidebar1 sb-zen-sidebar-nav-item');
-    Array.from(allItems).forEach(item => {
-      item.selected = false;
-    });
     const item = event.target.closest('sb-zen-sidebar-nav-item');
     item.selected = true;
   }
