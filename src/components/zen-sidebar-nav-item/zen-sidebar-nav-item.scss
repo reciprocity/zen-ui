@@ -1,5 +1,15 @@
 @import '../scss/component-helpers.scss';
 
 :host {
-  // todo
+  display: flex;
+  align-items: center;
+  font-size: $text-md;
+  color: $color-gray-700;
+  min-height: 2.5rem;
+  cursor: pointer;
+  transition: color $transition-color;
+}
+
+:host(:hover) {
+  color: $color-blue-700;
 }

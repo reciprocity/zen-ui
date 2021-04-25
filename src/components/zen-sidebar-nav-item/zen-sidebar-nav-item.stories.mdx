@@ -2,7 +2,7 @@ import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
 import { html } from 'lit-html';
 import { getArgTypes, getDefaultArgs, getComponentData, spreadArgs } from '#storybook/helpers/argTypes';
 import { waitForElement } from '#storybook/helpers/utils';
-import { faHomeAlt } from '@fortawesome/pro-light-svg-icons';
+import { faHomeAlt } from '@fortawesome/pro-regular-svg-icons';
 
 import data from '../../../stencilDocs.json';
 const compData = data.components.find(n => n.tag === 'zen-sidebar-nav-item');
@@ -16,7 +16,7 @@ export const StoryWithControls = args => {
   });
   return html/*html*/ `
     <sb-zen-sidebar-nav-item ...="${spreadArgs(args, argTypes)}">
-      <sb-zen-icon id="icon-home"></sb-zen-icon>
+      <sb-zen-icon padding="md" id="icon-home"></sb-zen-icon>
       Program Overview
     </sb-zen-sidebar-nav-item>
   `;
