@@ -1,4 +1,5 @@
-import { Component, Host, h, Prop, Event, EventEmitter, Watch } from '@stencil/core';
+import { Component, Host, h, Prop, Event, EventEmitter, Watch, Element } from '@stencil/core';
+import { getSlotElement } from '../helpers/helpers';
 
 @Component({
   tag: 'zen-sidebar-nav-item',
@@ -6,6 +7,8 @@ import { Component, Host, h, Prop, Event, EventEmitter, Watch } from '@stencil/c
   shadow: true,
 })
 export class ZenSidebarNavItem {
+  @Element() host: HTMLZenSidebarNavItemElement;
+
   /** Render item as selected */
   @Prop({ reflect: true }) readonly selected: boolean = false;
 
@@ -18,9 +21,26 @@ export class ZenSidebarNavItem {
     this.zenSelect.emit();
   }
 
+  getItems(): HTMLZenSidebarNavSubitemElement[] {
+    const wrapper = getSlotElement(this.host, 'subitems');
+    if (!wrapper) return;
+
+    return Array.from(wrapper.children).filter(el =>
+      el.tagName.endsWith('ZEN-SIDEBAR-NAV-SUBITEM'),
+    ) as HTMLZenSidebarNavSubitemElement[];
+  }
+
+  itemSelected(event: CustomEvent): void {
+    const newlySelected = event.target;
+    const others = this.getItems().filter(item => item.selected && item !== newlySelected);
+    others.forEach(item => {
+      item.selected = false;
+    });
+  }
+
   render(): HTMLElement {
     return (
-      <Host>
+      <Host onSubitemSelect={e => this.itemSelected(e)}>
         <div class="item">
           <slot></slot>
         </div>
