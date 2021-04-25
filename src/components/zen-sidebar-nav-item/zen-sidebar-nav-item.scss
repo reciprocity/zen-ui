@@ -2,6 +2,7 @@
 
 :host {
   width: 100%;
+  position: relative;
 }
 
 .item {
@@ -19,9 +20,10 @@
   color: $color-blue-700;
 }
 
-:host([selected])::after {
+:host([selected]) .item::after {
   content: '';
   position: absolute;
+  z-index: 1;
   width: 100%;
   bottom: 0;
   height: 8px;
@@ -33,4 +35,16 @@
   font-weight: bold;
   color: $color-blue-700;
   background-color: $color-white;
+}
+
+.subitems {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+}
+
+:host([selected]) .subitems,
+:host([expanded]) .subitems {
+  max-height: 50rem; // some high value that should be higher than actual height!
+  transition: max-height 0.2s ease-in;
 }

@@ -24,7 +24,9 @@ export class ZenSidebarNavItem {
         <div class="item">
           <slot></slot>
         </div>
-        <slot name="subitems"></slot>
+        <div class="subitems">
+          <slot name="subitems"></slot>
+        </div>
       </Host>
     );
   }
