@@ -44,10 +44,15 @@
 }
 
 :host(:not(.collapsed)) .subitems:hover, // don't close while hovering subitems!
-:host(:not(.collapsed)[selected]) .subitems,
+:host(:not(.collapsed)[selected]) .subitems {
+  max-height: 50rem; // some high value that should be higher than actual height!
+  transition: max-height 0.2s ease-in;
+}
+
 :host(:not(.collapsed)) .item:hover + .subitems /* open on hover */ {
   max-height: 50rem; // some high value that should be higher than actual height!
   transition: max-height 0.2s ease-in;
+  transition-delay: 0.3s;
 }
 
 .arrow {
