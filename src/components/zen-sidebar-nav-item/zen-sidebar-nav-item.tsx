@@ -21,7 +21,10 @@ export class ZenSidebarNavItem {
   render(): HTMLElement {
     return (
       <Host>
-        <slot></slot>
+        <div class="item">
+          <slot></slot>
+        </div>
+        <slot name="subitems"></slot>
       </Host>
     );
   }

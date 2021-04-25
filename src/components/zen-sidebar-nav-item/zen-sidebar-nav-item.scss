@@ -1,6 +1,10 @@
 @import '../scss/component-helpers.scss';
 
 :host {
+  width: 100%;
+}
+
+.item {
   display: flex;
   position: relative;
   align-items: center;
@@ -9,10 +13,9 @@
   min-height: 2.5rem;
   cursor: pointer;
   transition: color $transition-color;
-  width: 100%;
 }
 
-:host(:hover) {
+.item:hover {
   color: $color-blue-700;
 }
 
@@ -26,7 +29,7 @@
   background-image: linear-gradient(rgb(34, 148, 229, 0.15) 0%, rgba(34, 148, 229, 0) 100%);
 }
 
-:host([selected]) {
+:host([selected]) .item {
   font-weight: bold;
   color: $color-blue-700;
   background-color: $color-white;

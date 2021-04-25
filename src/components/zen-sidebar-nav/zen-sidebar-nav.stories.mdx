@@ -27,14 +27,13 @@ export const StoryWithControls = args => {
   const waitAndAddIcon = (id, icon) => waitForElement(`#icon-${id}`, element => {
     element.icon = icon;
   });
-
   waitAndAddIcon('home', faHomeAlt);
   waitAndAddIcon('chart-line, faChartLine);
   waitAndAddIcon('audits', faClipboardList);
   waitAndAddIcon('questionnaires', faThList);
   waitAndAddIcon('records', faFolderOpen);
   waitAndAddIcon('tools', faTools);
-  waitAndAddIcon('settings', faSlidersVSquare);```
+  waitAndAddIcon('settings', faSlidersVSquare);
   const isHorizontalSidebar = ['top', 'bottom'].includes(args.position);
   const placeAfter = ['right', 'bottom'].includes(args.position);
   return html/*html*/ ` <style>
@@ -92,6 +91,9 @@ export const StoryWithControls = args => {
         <sb-zen-sidebar-nav-item @click="${itemClicked}">
           <sb-zen-icon padding="md" id="icon-records"></sb-zen-icon>
           Program records
+          <div slot="subitems">
+            <sb-zen-sidebar-nav-subitem @click="${subitemClicked}"> Controls </sb-zen-sidebar-nav-subitem>
+          </div>
         </sb-zen-sidebar-nav-item>
         <sb-zen-sidebar-nav-item @click="${itemClicked}">
           <sb-zen-icon padding="md" id="icon-tools"></sb-zen-icon>
