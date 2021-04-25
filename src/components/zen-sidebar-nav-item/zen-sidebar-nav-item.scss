@@ -43,8 +43,17 @@
   transition: max-height 0.2s ease-out;
 }
 
-:host([selected]) .subitems,
-:host([expanded]) .subitems {
+:host([selected]) .subitems {
   max-height: 50rem; // some high value that should be higher than actual height!
   transition: max-height 0.2s ease-in;
+}
+
+.arrow {
+  margin-left: auto;
+  margin-right: 0.75rem;
+  transition: transform 0.2s;
+}
+
+:host([selected]) .arrow {
+  transform: rotate(180deg);
 }

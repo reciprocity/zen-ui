@@ -1,5 +1,6 @@
 import { Component, Host, h, Prop, Event, EventEmitter, Watch, Element } from '@stencil/core';
-import { getSlotElement } from '../helpers/helpers';
+import { applyPrefix, getSlotElement } from '../helpers/helpers';
+import { faChevronDown } from '@fortawesome/pro-regular-svg-icons';
 
 @Component({
   tag: 'zen-sidebar-nav-item',
@@ -39,10 +40,13 @@ export class ZenSidebarNavItem {
   }
 
   render(): HTMLElement {
+    const ZenIcon = applyPrefix('zen-icon', this.host);
+
     return (
       <Host onSubitemSelect={e => this.itemSelected(e)}>
         <div class="item">
           <slot></slot>
+          <ZenIcon class="arrow" size="sm" icon={faChevronDown}></ZenIcon>
         </div>
         <div class="subitems">
           <slot name="subitems"></slot>
