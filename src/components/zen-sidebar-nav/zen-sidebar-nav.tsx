@@ -31,7 +31,7 @@ export class ZenSidebarNav {
             role="button"
             padding="md"
             size="md"
-            class="collapse-icon"
+            class="collapse-icon hover-ignore"
             icon={faChevronDoubleLeft}
             onClick={() => this.toggle()}
           ></ZenIcon>

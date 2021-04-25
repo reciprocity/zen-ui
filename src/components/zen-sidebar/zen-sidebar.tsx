@@ -34,6 +34,9 @@ export class ZenSidebar {
   /** Position */
   @Prop({ reflect: true }) readonly position: Position = 'left';
 
+  /** Temporary expand sidebar on mouse over.<br>To prevent this behavior for only some child elements, add class `hover-ignore` to such child. */
+  @Prop() readonly expandOnHover: boolean = true;
+
   /** <Description generated in helper file> */
   @Prop() readonly padding: SpacingShorthand = 'none';
   /** Skipped */
@@ -62,8 +65,12 @@ export class ZenSidebar {
     this.wrapPosition = this.expanded ? 'relative' : 'absolute';
   }
 
-  @Listen('mouseover')
-  handleMouseOver(): void {
+  @Listen('mousemove')
+  handleMouseOver(event: MouseEvent): void {
+    if (!this.expandOnHover || this.expanded || this.hover) return;
+    // todo: tried to add prop `@prop() ignoreOnHover: HtmlElement[]`, but it was
+    //       always empty no matter of how I've set it from zen-sidebar-nav...
+    if ((event.target as HTMLElement).classList.contains('hover-ignore')) return;
     this.hover = true;
   }
 
