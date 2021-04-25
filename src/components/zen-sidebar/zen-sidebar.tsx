@@ -14,6 +14,7 @@ import { applyPrefix } from '../helpers/helpers';
 export class ZenSidebar {
   private sidebar: HTMLElement = null;
   private wrap: HTMLElement = null;
+  private unhoverTimer: NodeJS.Timeout;
 
   @Element() host: HTMLZenSidebarElement;
 
@@ -80,14 +81,18 @@ export class ZenSidebar {
 
   @Listen('mouseout')
   handleMouseOut(): void {
-    this.hover = false;
+    this.unhoverTimer = setTimeout(() => {
+      this.hover = false;
+    }, 0);
   }
 
   onMouseOver(event: MouseEvent): void {
-    if (!this.expandOnHover || this.expanded || this.hover) return;
     // todo: tried to add prop `@prop() ignoreOnHover: HtmlElement[]`, but it was
     //       always empty no matter of how I've set it from zen-sidebar-nav...
     if ((event.target as HTMLElement).classList.contains('hover-ignore')) return;
+    clearTimeout(this.unhoverTimer);
+
+    if (!this.expandOnHover || this.expanded || this.hover) return;
     this.hover = true;
   }
 
