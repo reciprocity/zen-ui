@@ -18,12 +18,16 @@ export class ZenStatusTracker {
   /** Status archived */
   @Prop({ reflect: true }) readonly archived: boolean = false;
 
+  getChildren(): HTMLZenLozengeElement[] {
+    return (Array.from(this.host.children) as unknown) as HTMLZenLozengeElement[];
+  }
+
   hasIdsSet(): boolean {
-    return this.children.every(item => item.hasAttribute('id'));
+    return this.getChildren().every(item => item.hasAttribute('id'));
   }
 
   hasChildren(): boolean {
-    return this.children && this.children.length > 0;
+    return this.getChildren().length > 0;
   }
 
   isValid(): boolean {
@@ -40,17 +44,12 @@ export class ZenStatusTracker {
     return true;
   }
 
-  updateParameters(statusTracker: HTMLZenStatusTrackerElement): void {
-    if (!this.isValid()) return;
-    statusTracker.selectedId = this.selectedId;
-    statusTracker.archived = this.archived;
-  }
-
   setLozengeProperties(): void {
     if (!this.isValid()) return;
+    const children = this.getChildren();
 
     if (this.archived) {
-      this.children.forEach(lozenge => {
+      children.forEach(lozenge => {
         lozenge.setAttribute('variant', 'none');
         lozenge.setAttribute('size', 'lg');
       });
@@ -58,8 +57,8 @@ export class ZenStatusTracker {
       return;
     }
 
-    const lastChild = this.children[this.children.length - 1];
-    this.children.reduce((hasSelected, lozenge) => {
+    const lastChild = children[children.length - 1];
+    children.reduce((hasSelected, lozenge) => {
       lozenge.setAttribute('size', 'lg');
       const isSelected = this.selectedId === lozenge.id;
       if (isSelected) {
@@ -81,7 +80,7 @@ export class ZenStatusTracker {
   }
 
   startChildObserver(): void {
-    this.childObserver = new MutationObserver(() => this.updateParameters(this.host));
+    this.childObserver = new MutationObserver(() => this.setLozengeProperties());
 
     this.childObserver.observe(this.host, {
       childList: true,
@@ -90,9 +89,11 @@ export class ZenStatusTracker {
     });
   }
 
-  componentDidLoad(): void {
-    this.children = Array.from(this.host.children).map(n => n as HTMLZenLozengeElement);
+  componentWillLoad(): void {
     this.setLozengeProperties();
+  }
+
+  componentDidLoad(): void {
     this.startChildObserver();
   }
 
