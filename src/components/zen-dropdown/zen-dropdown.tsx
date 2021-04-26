@@ -11,8 +11,6 @@ export interface OptionItem {
 /**
  * @slot [default] - Content for dropdown menu
  * @slot placeholder - Slot visible in field when nothing is selected
- * @event focus | Focused
- * @event blur | Focus lost
  */
 
 @Component({
@@ -62,6 +60,12 @@ export class ZenDropdown {
 
   /** Dropdown change event */
   @Event() zenChange: EventEmitter<void>;
+
+  /**  Dropdown focus event */
+  @Event() zenFocus: EventEmitter<void>;
+
+  /**  Dropdown blur event */
+  @Event() zenBlur: EventEmitter<void>;
 
   /** Close an opened dropdown menu */
   @Method()
@@ -132,10 +136,12 @@ export class ZenDropdown {
 
   onBlur(): void {
     this.popover.toggle(false);
+    this.zenBlur.emit();
   }
 
   onFocus(): void {
     this.popover.toggle(true);
+    this.zenFocus.emit();
   }
 
   cloneSelectedToField(): void {
@@ -307,7 +313,7 @@ export class ZenDropdown {
           ref={el => (this.popover = el)}
           interactive
           position={align}
-          onVisibleChange={() => this.onOpenToggle()}
+          onZenVisibleChange={() => this.onOpenToggle()}
           style={{ width: this.menuWidth, 'max-height': this.menuHeight }}
           offset={offset}
         >

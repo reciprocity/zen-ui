@@ -65,8 +65,8 @@ export class ZenPopover {
   /** Skipped */
   @Prop() readonly paddingLeft: Spacing = null;
 
-  /** Visibility changed */
-  @Event() visibleChange: EventEmitter<void>;
+  /** Zen popover visibility change event */
+  @Event() zenVisibleChange: EventEmitter<void>;
 
   @Watch('visible')
   async visibleChanged(visible: boolean): Promise<void> {
@@ -239,14 +239,14 @@ export class ZenPopover {
     });
     await waitNextFrame();
     this.actualPosition = this.popperInstance.state.placement;
-    this.visibleChange.emit();
+    this.zenVisibleChange.emit();
   }
 
   destroyPopper(): void {
     if (this.popperInstance) {
       this.popperInstance.destroy();
       this.popperInstance = null;
-      this.visibleChange.emit();
+      this.zenVisibleChange.emit();
     }
   }
 

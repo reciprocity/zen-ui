@@ -21,7 +21,7 @@ export class ZenTabs {
     this.selectTab(this.tabs[this.value]);
   }
 
-  @Listen('tabSelect')
+  @Listen('zenSelect')
   onSelectedTab(event: CustomEvent): void {
     this.selectTab(event.target as HTMLZenTabElement);
   }

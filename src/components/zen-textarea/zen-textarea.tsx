@@ -1,12 +1,6 @@
 import { Component, Host, h, Prop, Element, Method, Event, EventEmitter } from '@stencil/core';
 import { Resize } from '../helpers/types';
 
-/**
- * @event input | Content changed
- * @event focus | Focused
- * @event blur | Focus lost
- */
-
 @Component({
   tag: 'zen-textarea',
   styleUrl: 'zen-textarea.scss',
@@ -47,6 +41,15 @@ export class ZenTextarea {
   /** Textarea change event */
   @Event() zenChange: EventEmitter<void>;
 
+  /** Textarea event */
+  @Event() zenInput: EventEmitter<void>;
+
+  /** Textarea focus event */
+  @Event() zenFocus: EventEmitter<void>;
+
+  /** Textarea blur event */
+  @Event() zenBlur: EventEmitter<void>;
+
   /** Focus input */
   @Method()
   async focusInput(): Promise<void> {
@@ -60,6 +63,8 @@ export class ZenTextarea {
     if (input) {
       this.text = input.value || '';
     }
+    ev.preventDefault();
+    this.zenInput.emit();
   };
 
   private onChange = (ev: Event) => {

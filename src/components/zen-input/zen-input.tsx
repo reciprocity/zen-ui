@@ -7,9 +7,6 @@ import { InputSize } from '../helpers/types';
 /**
  * @slot leadingSlot - Slot placed at the left
  * @slot trailingSlot - Slot placed at the right
- * @event input | Content changed
- * @event focus | Focused
- * @event blur | Focus lost
  */
 @Component({
   tag: 'zen-input',
@@ -55,6 +52,15 @@ export class ZenInput {
   /** Input change event */
   @Event() zenChange: EventEmitter<void>;
 
+  /** Input event */
+  @Event() zenInput: EventEmitter<void>;
+
+  /** Input focus event */
+  @Event() zenFocus: EventEmitter<void>;
+
+  /** Input blur event */
+  @Event() zenBlur: EventEmitter<void>;
+
   @Listen('keydown')
   handleKeyDown(ev: KeyboardEvent): void {
     if (ev.key === 'Enter' && this.enterToTab) {
@@ -81,6 +87,7 @@ export class ZenInput {
       this.value = input.value || '';
       this.isEmpty = !input.value;
     }
+    this.zenInput.emit();
   };
 
   private onChange = (ev: Event) => {
@@ -94,10 +101,12 @@ export class ZenInput {
 
   private onBlur = () => {
     this.inputFocused = false;
+    this.zenBlur.emit();
   };
 
   private onFocus = () => {
     this.inputFocused = true;
+    this.zenFocus.emit();
   };
 
   private getValue(): string {

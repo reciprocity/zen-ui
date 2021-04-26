@@ -32,7 +32,7 @@ export class ZenDrawer {
   @Prop() readonly paddingLeft: Spacing = null;
 
   /** Inner drawer hide button clicked */
-  @Event() close: EventEmitter<void>;
+  @Event() zenClose: EventEmitter<void>;
 
   @Watch('opened')
   async openedChanged(): Promise<void> {
@@ -45,7 +45,7 @@ export class ZenDrawer {
   }
 
   onCloseClicked(): void {
-    this.close.emit();
+    this.zenClose.emit();
   }
 
   componentDidLoad(): void {

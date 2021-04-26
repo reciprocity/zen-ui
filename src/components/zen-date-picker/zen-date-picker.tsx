@@ -27,8 +27,6 @@ enum Navigate {
 }
 
 /**
- * @event focus | Focused
- * @event blur | Focus lost
  * @event click | Clicked
  */
 
@@ -85,6 +83,12 @@ export class ZenDatePicker {
 
   /** Date picker change event */
   @Event() zenChange: EventEmitter<void>;
+
+  /**  Date picker focus event */
+  @Event() zenFocus: EventEmitter<void>;
+
+  /**  Date picker blur event */
+  @Event() zenBlur: EventEmitter<void>;
 
   @Watch('formattedDate')
   async formattedDateChanged(formatted: string): Promise<void> {
@@ -161,10 +165,12 @@ export class ZenDatePicker {
 
   onBlur(): void {
     this.popover.toggle(false);
+    this.zenBlur.emit();
   }
 
   onFocus(): void {
     this.popover.toggle(true);
+    this.zenFocus.emit();
   }
 
   navigate(type: Navigate): void {

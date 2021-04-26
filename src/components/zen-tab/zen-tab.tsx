@@ -12,10 +12,10 @@ export class ZenTab {
   @Prop({ reflect: true }) readonly selected: boolean = false;
 
   /** Tab selected event */
-  @Event() tabSelect: EventEmitter<void>;
+  @Event() zenSelect: EventEmitter<void>;
 
   onClick(): void {
-    this.tabSelect.emit();
+    this.zenSelect.emit();
   }
 
   render(): HTMLZenTabElement {

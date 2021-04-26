@@ -11,11 +11,11 @@ const argTypes = getArgTypes(compData);
 
 export const StoryWithControls = args => {
   return html/*html*/ `
-    <sb-zen-panel id="wc-panel" ...="${spreadArgs(args, argTypes)}">
+    <sb-zen-panel id="panel-control" ...="${spreadArgs(args, argTypes)}">
       <sb-zen-text slot="header">Panel title</sb-zen-text>
       Content
     </sb-zen-panel>
-    ${logEvents('#wc-panel', getComponentData('zen-panel'))}
+    ${logEvents('#panel-control', getComponentData('zen-panel'))}
   `;
 };
 
