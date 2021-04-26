@@ -1,0 +1,44 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
+import { html } from 'lit-html';
+import { getArgTypes, getDefaultArgs, getComponentData, spreadArgs } from '#storybook/helpers/argTypes';
+import { waitForElement } from '#storybook/helpers/utils';
+import { faHomeAlt } from '@fortawesome/pro-regular-svg-icons';
+
+import data from '../../../stencilDocs.json';
+const compData = data.components.find(n => n.tag === 'zen-sidebar-nav-item');
+const argTypes = getArgTypes(compData);
+
+<Meta title="Navigation/Sidebar navigation/Sidebar nav item" component="zen-sidebar-nav-item" argTypes={argTypes} />
+
+export const StoryWithControls = args => {
+  waitForElement('#icon-home', element => {
+    element.icon = faHomeAlt;
+  });
+  return html/*html*/ `
+    <sb-zen-sidebar-nav-item ...="${spreadArgs(args, argTypes)}">
+      <sb-zen-icon padding="md" id="icon-home"></sb-zen-icon>
+      Program Overview
+    </sb-zen-sidebar-nav-item>
+  `;
+};
+
+# Sidebar navigation item
+
+Item to be used inside `zen-sidbar-nav`.
+
+## Properties
+
+<Canvas>
+  <Story
+    name="default"
+    args={{
+      ...getDefaultArgs(argTypes),
+    }}
+  >
+    {StoryWithControls.bind({})}
+  </Story>
+</Canvas>
+
+<ArgsTable story="default" />
+
+<sb-docs-table docs={JSON.stringify(getComponentData('zen-sidebar-nav-item'))}></sb-docs-table>

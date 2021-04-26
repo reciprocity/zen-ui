@@ -1,8 +1,17 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
 import { html } from 'lit-html';
 import { getArgTypes, getDefaultArgs, getComponentData, spreadArgs } from '#storybook/helpers/argTypes';
-import { loremIpsum } from '#storybook/helpers/utils';
+import { loremIpsum, waitForElement } from '#storybook/helpers/utils';
 import { logEvents } from '#storybook/helpers/log-events';
+import {
+  faHomeAlt,
+  faChartLine,
+  faClipboardList,
+  faThList,
+  faFolderOpen,
+  faTools,
+  faSlidersVSquare,
+} from '@fortawesome/pro-regular-svg-icons';
 
 import data from '../../../stencilDocs.json';
 const compData = data.components.find(n => n.tag === 'zen-sidebar-nav');
@@ -11,6 +20,21 @@ const argTypes = getArgTypes(compData);
 <Meta title="Navigation/Sidebar navigation/Sidebar navigation" component="zen-sidebar-nav" argTypes={argTypes} />
 
 export const StoryWithControls = args => {
+  function itemClicked(event) {
+    const item = event.target.closest('sb-zen-sidebar-nav-item');
+    item.selected = true;
+  }
+  const waitAndAddIcon = (id, icon) => waitForElement(`#icon-${id}`, element => {
+    element.icon = icon;
+  });
+
+  waitAndAddIcon('home', faHomeAlt);
+  waitAndAddIcon('chart-line, faChartLine);
+  waitAndAddIcon('audits', faClipboardList);
+  waitAndAddIcon('questionnaires', faThList);
+  waitAndAddIcon('records', faFolderOpen);
+  waitAndAddIcon('tools', faTools);
+  waitAndAddIcon('settings', faSlidersVSquare);```
   const isHorizontalSidebar = ['top', 'bottom'].includes(args.position);
   const placeAfter = ['right', 'bottom'].includes(args.position);
   return html/*html*/ ` <style>
@@ -44,12 +68,39 @@ export const StoryWithControls = args => {
       ?vertical=${isHorizontalSidebar}
       style="border: 1px solid lightgrey; position:relative; height: 400px"
     >
-      <sb-zen-sidebar-nav padding="sm" id="sidebar1">
+      <sb-zen-sidebar-nav padding="sm" id="sidebar1" ...="${spreadArgs(args, argTypes)}">
         <div class="programs-dropdown">
           <span>P</span>
           DROPDOWN PLACEHOLDER
         </div>
-        <sb-zen-text size="sm">${loremIpsum(3)}</sb-zen-text>
+        <sb-zen-sidebar-nav-item @click="${itemClicked}">
+          <sb-zen-icon padding="md" id="icon-home"></sb-zen-icon>
+          Program Overview
+        </sb-zen-sidebar-nav-item>
+        <sb-zen-sidebar-nav-item @click="${itemClicked}">
+          <sb-zen-icon padding="md" id="icon-chart-line"></sb-zen-icon>
+          Dashboard
+        </sb-zen-sidebar-nav-item>
+        <sb-zen-sidebar-nav-item @click="${itemClicked}">
+          <sb-zen-icon padding="md" id="icon-audits"></sb-zen-icon>
+          Audits
+        </sb-zen-sidebar-nav-item>
+        <sb-zen-sidebar-nav-item @click="${itemClicked}">
+          <sb-zen-icon padding="md" id="icon-questionnaires"></sb-zen-icon>
+          Questionnaires
+        </sb-zen-sidebar-nav-item>
+        <sb-zen-sidebar-nav-item @click="${itemClicked}">
+          <sb-zen-icon padding="md" id="icon-records"></sb-zen-icon>
+          Program records
+        </sb-zen-sidebar-nav-item>
+        <sb-zen-sidebar-nav-item @click="${itemClicked}">
+          <sb-zen-icon padding="md" id="icon-tools"></sb-zen-icon>
+          Tools
+        </sb-zen-sidebar-nav-item>
+        <sb-zen-sidebar-nav-item @click="${itemClicked}">
+          <sb-zen-icon padding="md" id="icon-settings"></sb-zen-icon>
+          Settings
+        </sb-zen-sidebar-nav-item>
       </sb-zen-sidebar-nav>
       <sb-zen-space
         padding="6xl"

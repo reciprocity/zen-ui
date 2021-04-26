@@ -1,5 +1,5 @@
 import { Component, Host, h, Element, Prop } from '@stencil/core';
-import { applyPrefix } from '../helpers/helpers';
+import { applyPrefix, getDefaultSlotContent } from '../helpers/helpers';
 import { faChevronDoubleLeft } from '@fortawesome/pro-light-svg-icons';
 
 @Component({
@@ -17,6 +17,20 @@ export class ZenSidebarNav {
     this.expanded = !this.expanded;
   }
 
+  getItems(): HTMLZenSidebarNavItemElement[] {
+    return getDefaultSlotContent(this.host).filter(el =>
+      el.tagName.endsWith('ZEN-SIDEBAR-NAV-ITEM'),
+    ) as HTMLZenSidebarNavItemElement[];
+  }
+
+  itemSelected(event: CustomEvent): void {
+    const newlySelected = event.target;
+    const others = this.getItems().filter(item => item.selected && item !== newlySelected);
+    others.forEach(item => {
+      item.selected = false;
+    });
+  }
+
   render(): HTMLElement {
     const ZenSidebar = applyPrefix('zen-sidebar', this.host);
     const ZenIcon = applyPrefix('zen-icon', this.host);
@@ -24,7 +38,7 @@ export class ZenSidebarNav {
 
     return (
       <Host>
-        <ZenSidebar class="sidebar" collapsed-size="32" expanded={this.expanded}>
+        <ZenSidebar class="sidebar" collapsed-size="32" expanded={this.expanded} onSelect={e => this.itemSelected(e)}>
           <slot></slot>
 
           <ZenSpace padding="lg md" class="footer" vertical>

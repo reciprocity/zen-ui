@@ -771,6 +771,12 @@ export namespace Components {
          */
         "expanded": boolean;
     }
+    interface ZenSidebarNavItem {
+        /**
+          * Render item as selected
+         */
+        "selected": boolean;
+    }
     interface ZenSkeleton {
         /**
           * Description generated in helper file
@@ -1365,6 +1371,12 @@ declare global {
         prototype: HTMLZenSidebarNavElement;
         new (): HTMLZenSidebarNavElement;
     };
+    interface HTMLZenSidebarNavItemElement extends Components.ZenSidebarNavItem, HTMLStencilElement {
+    }
+    var HTMLZenSidebarNavItemElement: {
+        prototype: HTMLZenSidebarNavItemElement;
+        new (): HTMLZenSidebarNavItemElement;
+    };
     interface HTMLZenSkeletonElement extends Components.ZenSkeleton, HTMLStencilElement {
     }
     var HTMLZenSkeletonElement: {
@@ -1487,6 +1499,7 @@ declare global {
         "zen-radio": HTMLZenRadioElement;
         "zen-sidebar": HTMLZenSidebarElement;
         "zen-sidebar-nav": HTMLZenSidebarNavElement;
+        "zen-sidebar-nav-item": HTMLZenSidebarNavItemElement;
         "zen-skeleton": HTMLZenSkeletonElement;
         "zen-sortable": HTMLZenSortableElement;
         "zen-sortable-item": HTMLZenSortableItemElement;
@@ -2255,6 +2268,16 @@ declare namespace LocalJSX {
          */
         "expanded"?: boolean;
     }
+    interface ZenSidebarNavItem {
+        /**
+          * Item was selected
+         */
+        "onZenSelect"?: (event: CustomEvent<void>) => void;
+        /**
+          * Render item as selected
+         */
+        "selected"?: boolean;
+    }
     interface ZenSkeleton {
         /**
           * Description generated in helper file
@@ -2701,6 +2724,7 @@ declare namespace LocalJSX {
         "zen-radio": ZenRadio;
         "zen-sidebar": ZenSidebar;
         "zen-sidebar-nav": ZenSidebarNav;
+        "zen-sidebar-nav-item": ZenSidebarNavItem;
         "zen-skeleton": ZenSkeleton;
         "zen-sortable": ZenSortable;
         "zen-sortable-item": ZenSortableItem;
@@ -2753,6 +2777,7 @@ declare module "@stencil/core" {
             "zen-radio": LocalJSX.ZenRadio & JSXBase.HTMLAttributes<HTMLZenRadioElement>;
             "zen-sidebar": LocalJSX.ZenSidebar & JSXBase.HTMLAttributes<HTMLZenSidebarElement>;
             "zen-sidebar-nav": LocalJSX.ZenSidebarNav & JSXBase.HTMLAttributes<HTMLZenSidebarNavElement>;
+            "zen-sidebar-nav-item": LocalJSX.ZenSidebarNavItem & JSXBase.HTMLAttributes<HTMLZenSidebarNavItemElement>;
             "zen-skeleton": LocalJSX.ZenSkeleton & JSXBase.HTMLAttributes<HTMLZenSkeletonElement>;
             "zen-sortable": LocalJSX.ZenSortable & JSXBase.HTMLAttributes<HTMLZenSortableElement>;
             "zen-sortable-item": LocalJSX.ZenSortableItem & JSXBase.HTMLAttributes<HTMLZenSortableItemElement>;

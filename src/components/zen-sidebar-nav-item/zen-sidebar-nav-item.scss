@@ -1,0 +1,33 @@
+@import '../scss/component-helpers.scss';
+
+:host {
+  display: flex;
+  position: relative;
+  align-items: center;
+  font-size: $text-md;
+  color: $color-gray-700;
+  min-height: 2.5rem;
+  cursor: pointer;
+  transition: color $transition-color;
+  width: 100%;
+}
+
+:host(:hover) {
+  color: $color-blue-700;
+}
+
+:host([selected])::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  height: 8px;
+  transform: translate(0, 100%);
+  background-image: linear-gradient(rgb(34, 148, 229, 0.15) 0%, rgba(34, 148, 229, 0) 100%);
+}
+
+:host([selected]) {
+  font-weight: bold;
+  color: $color-blue-700;
+  background-color: $color-white;
+}
