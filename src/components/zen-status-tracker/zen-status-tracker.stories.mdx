@@ -5,63 +5,67 @@ import { getArgTypes, getDefaultArgs, getComponentData, spreadArgs } from '#stor
 import data from '../../../stencilDocs.json';
 const compData = data.components.find(n => n.tag === 'zen-status-tracker');
 const argTypes = getArgTypes(compData);
+argTypes['selectedId'].control = {
+  type: 'select',
+  options: ['setup', 'evidence', 'execution', 'remediation', 'completed'],
+};
 
 <Meta title="Navigation/Status Tracker" component="zen-status-tracker" argTypes={argTypes} />
 
 export const StorySelected = args => html/*html*/ `
   <sb-zen-space vertical spacing="lg">
-    <sb-zen-status-tracker selected="0">
-      <sb-zen-lozenge>Setup</sb-zen-lozenge>
-      <sb-zen-lozenge>Evidence Assigment</sb-zen-lozenge>
-      <sb-zen-lozenge>Execution</sb-zen-lozenge>
-      <sb-zen-lozenge>Remediation</sb-zen-lozenge>
-      <sb-zen-lozenge>Completed</sb-zen-lozenge>
+    <sb-zen-status-tracker selected-id="setup">
+      <sb-zen-lozenge id="setup">Setup</sb-zen-lozenge>
+      <sb-zen-lozenge id="evidence">Evidence Assigment</sb-zen-lozenge>
+      <sb-zen-lozenge id="execution">Execution</sb-zen-lozenge>
+      <sb-zen-lozenge id="remediation">Remediation</sb-zen-lozenge>
+      <sb-zen-lozenge id="completed">Completed</sb-zen-lozenge>
     </sb-zen-status-tracker>
-    <sb-zen-status-tracker selected="1">
-      <sb-zen-lozenge>Setup</sb-zen-lozenge>
-      <sb-zen-lozenge>Evidence Assigment</sb-zen-lozenge>
-      <sb-zen-lozenge>Execution</sb-zen-lozenge>
-      <sb-zen-lozenge>Remediation</sb-zen-lozenge>
-      <sb-zen-lozenge>Completed</sb-zen-lozenge>
+    <sb-zen-status-tracker selected-id="evidence">
+      <sb-zen-lozenge id="setup">Setup</sb-zen-lozenge>
+      <sb-zen-lozenge id="evidence">Evidence Assigment</sb-zen-lozenge>
+      <sb-zen-lozenge id="execution">Execution</sb-zen-lozenge>
+      <sb-zen-lozenge id="remediation">Remediation</sb-zen-lozenge>
+      <sb-zen-lozenge id="completed">Completed</sb-zen-lozenge>
     </sb-zen-status-tracker>
-    <sb-zen-status-tracker selected="2">
-      <sb-zen-lozenge>Setup</sb-zen-lozenge>
-      <sb-zen-lozenge>Evidence Assigment</sb-zen-lozenge>
-      <sb-zen-lozenge>Execution</sb-zen-lozenge>
-      <sb-zen-lozenge>Remediation</sb-zen-lozenge>
-      <sb-zen-lozenge>Completed</sb-zen-lozenge>
+    <sb-zen-status-tracker selected-id="execution">
+      <sb-zen-lozenge id="setup">Setup</sb-zen-lozenge>
+      <sb-zen-lozenge id="evidence">Evidence Assigment</sb-zen-lozenge>
+      <sb-zen-lozenge id="execution">Execution</sb-zen-lozenge>
+      <sb-zen-lozenge id="remediation">Remediation</sb-zen-lozenge>
+      <sb-zen-lozenge id="completed">Completed</sb-zen-lozenge>
     </sb-zen-status-tracker>
-    <sb-zen-status-tracker selected="3">
-      <sb-zen-lozenge>Setup</sb-zen-lozenge>
-      <sb-zen-lozenge>Evidence Assigment</sb-zen-lozenge>
-      <sb-zen-lozenge>Execution</sb-zen-lozenge>
-      <sb-zen-lozenge>Remediation</sb-zen-lozenge>
-      <sb-zen-lozenge>Completed</sb-zen-lozenge>
+    <sb-zen-status-tracker selected-id="remediation">
+      <sb-zen-lozenge id="setup">Setup</sb-zen-lozenge>
+      <sb-zen-lozenge id="evidence">Evidence Assigment</sb-zen-lozenge>
+      <sb-zen-lozenge id="execution">Execution</sb-zen-lozenge>
+      <sb-zen-lozenge id="remediation">Remediation</sb-zen-lozenge>
+      <sb-zen-lozenge id="completed">Completed</sb-zen-lozenge>
     </sb-zen-status-tracker>
-    <sb-zen-status-tracker selected="4">
-      <sb-zen-lozenge>Setup</sb-zen-lozenge>
-      <sb-zen-lozenge>Evidence Assigment</sb-zen-lozenge>
-      <sb-zen-lozenge>Execution</sb-zen-lozenge>
-      <sb-zen-lozenge>Remediation</sb-zen-lozenge>
-      <sb-zen-lozenge>Completed</sb-zen-lozenge>
+    <sb-zen-status-tracker selected-id="completed">
+      <sb-zen-lozenge id="setup">Setup</sb-zen-lozenge>
+      <sb-zen-lozenge id="evidence">Evidence Assigment</sb-zen-lozenge>
+      <sb-zen-lozenge id="execution">Execution</sb-zen-lozenge>
+      <sb-zen-lozenge id="remediation">Remediation</sb-zen-lozenge>
+      <sb-zen-lozenge id="completed">Completed</sb-zen-lozenge>
     </sb-zen-status-tracker>
-    <sb-zen-status-tracker archived selected="-1">
-      <sb-zen-lozenge>Setup</sb-zen-lozenge>
-      <sb-zen-lozenge>Evidence Assigment</sb-zen-lozenge>
-      <sb-zen-lozenge>Execution</sb-zen-lozenge>
-      <sb-zen-lozenge>Remediation</sb-zen-lozenge>
-      <sb-zen-lozenge>Completed</sb-zen-lozenge>
+    <sb-zen-status-tracker archived>
+      <sb-zen-lozenge id="setup">Setup</sb-zen-lozenge>
+      <sb-zen-lozenge id="evidence">Evidence Assigment</sb-zen-lozenge>
+      <sb-zen-lozenge id="execution">Execution</sb-zen-lozenge>
+      <sb-zen-lozenge id="remediation">Remediation</sb-zen-lozenge>
+      <sb-zen-lozenge id="completed">Completed</sb-zen-lozenge>
     </sb-zen-status-tracker>
   </sb-zen-space>
 `;
 
 export const StoryWithControls = args => html/*html*/ `
   <sb-zen-status-tracker ...="${spreadArgs(args, argTypes)}">
-    <sb-zen-lozenge>Setup</sb-zen-lozenge>
-    <sb-zen-lozenge>Evidence Assigment</sb-zen-lozenge>
-    <sb-zen-lozenge>Execution</sb-zen-lozenge>
-    <sb-zen-lozenge>Remediation</sb-zen-lozenge>
-    <sb-zen-lozenge>Completed</sb-zen-lozenge>
+    <sb-zen-lozenge id="setup">Setup</sb-zen-lozenge>
+    <sb-zen-lozenge id="evidence">Evidence Assigment</sb-zen-lozenge>
+    <sb-zen-lozenge id="execution">Execution</sb-zen-lozenge>
+    <sb-zen-lozenge id="remediation">Remediation</sb-zen-lozenge>
+    <sb-zen-lozenge id="completed">Completed</sb-zen-lozenge>
   </sb-zen-status-tracker>
 `;
 
@@ -88,6 +92,8 @@ A status tracker component meant to be used with `<zen-lozenge>` slotted element
     name="default"
     args={{
       ...getDefaultArgs(argTypes),
+      // override some default values:
+      selectedId: 'evidence',
     }}
   >
     {StoryWithControls.bind({})}

@@ -835,9 +835,9 @@ export namespace Components {
          */
         "archived": boolean;
         /**
-          * Selected index
+          * Selected id
          */
-        "selected": number;
+        "selectedId": string;
     }
     interface ZenTab {
         /**
@@ -2249,9 +2249,9 @@ declare namespace LocalJSX {
          */
         "archived"?: boolean;
         /**
-          * Selected index
+          * Selected id
          */
-        "selected"?: number;
+        "selectedId"?: string;
     }
     interface ZenTab {
         /**
