@@ -24,27 +24,17 @@ export const StoryWithControls = args => {
     const item = event.target.closest('sb-zen-sidebar-nav-item');
     item.selected = true;
   }
-  waitForElement('#icon-home', element => {
-    element.icon = faHomeAlt;
+  const waitAndAddIcon = (id, icon) => waitForElement(`#icon-${id}`, element => {
+    element.icon = icon;
   });
-  waitForElement('#icon-chart-line', element => {
-    element.icon = faChartLine;
-  });
-  waitForElement('#icon-audits', element => {
-    element.icon = faClipboardList;
-  });
-  waitForElement('#icon-questionnaires', element => {
-    element.icon = faThList;
-  });
-  waitForElement('#icon-records', element => {
-    element.icon = faFolderOpen;
-  });
-  waitForElement('#icon-tools', element => {
-    element.icon = faTools;
-  });
-  waitForElement('#icon-settings', element => {
-    element.icon = faSlidersVSquare;
-  });
+
+  waitAndAddIcon('home', faHomeAlt);
+  waitAndAddIcon('chart-line, faChartLine);
+  waitAndAddIcon('audits', faClipboardList);
+  waitAndAddIcon('questionnaires', faThList);
+  waitAndAddIcon('records', faFolderOpen);
+  waitAndAddIcon('tools', faTools);
+  waitAndAddIcon('settings', faSlidersVSquare);```
   const isHorizontalSidebar = ['top', 'bottom'].includes(args.position);
   const placeAfter = ['right', 'bottom'].includes(args.position);
   return html/*html*/ ` <style>

@@ -7,15 +7,15 @@ import { Component, Host, h, Prop, Event, EventEmitter, Watch } from '@stencil/c
 })
 export class ZenSidebarNavItem {
   /** Render item as selected */
-  @Prop({ reflect: true }) readonly selected = false;
+  @Prop({ reflect: true }) readonly selected: boolean = false;
 
   /** Item was selected */
-  @Event() select: EventEmitter<void>;
+  @Event() zenSelect: EventEmitter<void>;
 
   @Watch('selected')
-  async selectedChanged(selected: boolean): Promise<void> {
+  selectedChanged(selected: boolean): void {
     if (!selected) return;
-    this.select.emit();
+    this.zenSelect.emit();
   }
 
   render(): HTMLElement {
