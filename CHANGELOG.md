@@ -1,3 +1,21 @@
+# [5.1.0](https://github.com/reciprocity/zen-ui/compare/5.0.1...5.1.0) (2021-04-26)
+
+
+### Bug Fixes
+
+* **zen-lozenge:** change none lozenge font weight ([c420379](https://github.com/reciprocity/zen-ui/commit/c420379a627ed95ea323aa121353754d58a969f4))
+* **zen-lozenge:** remove unused import ([647d616](https://github.com/reciprocity/zen-ui/commit/647d6165a40711fd12947496acc777cb181230d5))
+* **zen-status-tracker:** add lozenge ids and observable ([e98662b](https://github.com/reciprocity/zen-ui/commit/e98662b81c1a5b7d96cdb880a80c7830efc96200))
+* **zen-status-tracker:** add unit test cases ([0e67429](https://github.com/reciprocity/zen-ui/commit/0e674298d860c80deb9180d23726ad6911225323))
+* **zen-status-tracker:** fix observable child rerender ([16a5e48](https://github.com/reciprocity/zen-ui/commit/16a5e489436a2f02ac5b4efd4b94333bc55bc1b5))
+* **zen-status-tracker:** refactor code and cleanup, add on zen change event ([25033c8](https://github.com/reciprocity/zen-ui/commit/25033c868769961a223ffe4204a7ccf18e5b102c))
+
+
+### Features
+
+* **zen-lozenge:** add additional variant none and a disabled option ([ab0c62a](https://github.com/reciprocity/zen-ui/commit/ab0c62a2d94520bce822a2e6c8b8bd5aff15715e))
+* **zen-status-tracker:** add status tracker ([14497d3](https://github.com/reciprocity/zen-ui/commit/14497d390a72ffe6796efcae2be6584d54f4ddca))
+
 ## [5.0.1](https://github.com/reciprocity/zen-ui/compare/5.0.0...5.0.1) (2021-04-26)
 
 
