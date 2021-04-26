@@ -2249,6 +2249,10 @@ declare namespace LocalJSX {
          */
         "archived"?: boolean;
         /**
+          * Zen Status Tracker on change
+         */
+        "onZenChange"?: (event: CustomEvent<void>) => void;
+        /**
           * Selected id
          */
         "selectedId"?: string;

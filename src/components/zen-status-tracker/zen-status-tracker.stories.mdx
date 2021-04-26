@@ -3,6 +3,7 @@ import { html } from 'lit-html';
 import { getArgTypes, getDefaultArgs, getComponentData, spreadArgs } from '#storybook/helpers/argTypes';
 
 import data from '../../../stencilDocs.json';
+import { logEvents } from '../../../.storybook/helpers/log-events';
 const compData = data.components.find(n => n.tag === 'zen-status-tracker');
 const argTypes = getArgTypes(compData);
 argTypes['selectedId'].control = {
@@ -60,13 +61,14 @@ export const StorySelected = args => html/*html*/ `
 `;
 
 export const StoryWithControls = args => html/*html*/ `
-  <sb-zen-status-tracker ...="${spreadArgs(args, argTypes)}">
+  <sb-zen-status-tracker id="control-status-tracker" ...="${spreadArgs(args, argTypes)}">
     <sb-zen-lozenge id="setup">Setup</sb-zen-lozenge>
     <sb-zen-lozenge id="evidence">Evidence Assigment</sb-zen-lozenge>
     <sb-zen-lozenge id="execution">Execution</sb-zen-lozenge>
     <sb-zen-lozenge id="remediation">Remediation</sb-zen-lozenge>
     <sb-zen-lozenge id="completed">Completed</sb-zen-lozenge>
   </sb-zen-status-tracker>
+  ${logEvents('#control-status-tracker', getComponentData('zen-status-tracker'))}
 `;
 
 # ZenStatusTracker

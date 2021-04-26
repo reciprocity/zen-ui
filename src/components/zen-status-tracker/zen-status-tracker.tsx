@@ -1,4 +1,4 @@
-import { Component, Host, h, Element, Prop } from '@stencil/core';
+import { Component, Host, h, Element, Prop, Event, EventEmitter } from '@stencil/core';
 import { applyPrefix } from '../helpers/helpers';
 
 @Component({
@@ -8,7 +8,6 @@ import { applyPrefix } from '../helpers/helpers';
 })
 export class ZenStatusTracker {
   childObserver: MutationObserver = null;
-  children: HTMLZenLozengeElement[];
 
   @Element() host: HTMLZenStatusTrackerElement;
 
@@ -18,26 +17,20 @@ export class ZenStatusTracker {
   /** Status archived */
   @Prop({ reflect: true }) readonly archived: boolean = false;
 
+  /** Zen Status Tracker on change */
+  @Event() zenChange: EventEmitter<void>;
+
   getChildren(): HTMLZenLozengeElement[] {
     return (Array.from(this.host.children) as unknown) as HTMLZenLozengeElement[];
   }
 
-  hasIdsSet(): boolean {
-    return this.getChildren().every(item => item.hasAttribute('id'));
-  }
-
-  hasChildren(): boolean {
-    return this.getChildren().length > 0;
-  }
-
-  isValid(): boolean {
-    if (!this.hasChildren()) {
+  isValid(children: HTMLZenLozengeElement[]): boolean {
+    if (!children.length) {
       console.error('zen-status-tracker: There is no `zen-lozenge` elements!', this.host);
       return false;
     }
-
-    if (!this.hasIdsSet()) {
-      console.error('zen-status-tracker: Not all of `zen-lozenge`elements have id defined!!', this.host);
+    if (!children.every(item => item.hasAttribute('id'))) {
+      console.error('zen-status-tracker: Not all of `zen-lozenge` elements have id defined!!', this.host);
       return false;
     }
 
@@ -45,8 +38,10 @@ export class ZenStatusTracker {
   }
 
   setLozengeProperties(): void {
-    if (!this.isValid()) return;
     const children = this.getChildren();
+
+    if (!this.isValid(children)) return;
+    this.zenChange.emit();
 
     if (this.archived) {
       children.forEach(lozenge => {
