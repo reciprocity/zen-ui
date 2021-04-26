@@ -23,22 +23,31 @@ export class ZenStatusTracker {
   }
 
   hasChildren(): boolean {
-    return this.children.length > 0;
+    return this.children && this.children.length > 0;
   }
 
-  validate(): void {
-    if (!this.hasChildren()) throw new Error("There's no lozenge children!");
-    if (!this.hasIdsSet()) throw new Error("Not all lozenge elements have id's!");
+  isValid(): boolean {
+    if (!this.hasChildren()) {
+      console.error('zen-status-tracker: There is no `zen-lozenge` elements!', this.host);
+      return false;
+    }
+
+    if (!this.hasIdsSet()) {
+      console.error('zen-status-tracker: Not all of `zen-lozenge`elements have id defined!!', this.host);
+      return false;
+    }
+
+    return true;
   }
 
   updateParameters(statusTracker: HTMLZenStatusTrackerElement): void {
-    this.validate();
+    if (!this.isValid()) return;
     statusTracker.selectedId = this.selectedId;
     statusTracker.archived = this.archived;
   }
 
   setLozengeProperties(): void {
-    this.validate();
+    if (!this.isValid()) return;
 
     if (this.archived) {
       this.children.forEach(lozenge => {
