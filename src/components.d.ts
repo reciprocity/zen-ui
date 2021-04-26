@@ -459,6 +459,10 @@ export namespace Components {
     }
     interface ZenLozenge {
         /**
+          * Disabled
+         */
+        "disabled": boolean;
+        /**
           * Size
          */
         "size": LozengeSize;
@@ -832,6 +836,16 @@ export namespace Components {
         "verticalAlign": FlexAlign;
     }
     interface ZenSpinner {
+    }
+    interface ZenStatusTracker {
+        /**
+          * Status archived
+         */
+        "archived": boolean;
+        /**
+          * Selected id
+         */
+        "selectedId": string;
     }
     interface ZenTab {
         /**
@@ -1321,6 +1335,12 @@ declare global {
         prototype: HTMLZenSpinnerElement;
         new (): HTMLZenSpinnerElement;
     };
+    interface HTMLZenStatusTrackerElement extends Components.ZenStatusTracker, HTMLStencilElement {
+    }
+    var HTMLZenStatusTrackerElement: {
+        prototype: HTMLZenStatusTrackerElement;
+        new (): HTMLZenStatusTrackerElement;
+    };
     interface HTMLZenTabElement extends Components.ZenTab, HTMLStencilElement {
     }
     var HTMLZenTabElement: {
@@ -1410,6 +1430,7 @@ declare global {
         "zen-sortable-item": HTMLZenSortableItemElement;
         "zen-space": HTMLZenSpaceElement;
         "zen-spinner": HTMLZenSpinnerElement;
+        "zen-status-tracker": HTMLZenStatusTrackerElement;
         "zen-tab": HTMLZenTabElement;
         "zen-table": HTMLZenTableElement;
         "zen-table-cell": HTMLZenTableCellElement;
@@ -1856,6 +1877,10 @@ declare namespace LocalJSX {
     }
     interface ZenLozenge {
         /**
+          * Disabled
+         */
+        "disabled"?: boolean;
+        /**
           * Size
          */
         "size"?: LozengeSize;
@@ -2230,6 +2255,20 @@ declare namespace LocalJSX {
     }
     interface ZenSpinner {
     }
+    interface ZenStatusTracker {
+        /**
+          * Status archived
+         */
+        "archived"?: boolean;
+        /**
+          * Zen Status Tracker on change
+         */
+        "onZenChange"?: (event: CustomEvent<void>) => void;
+        /**
+          * Selected id
+         */
+        "selectedId"?: string;
+    }
     interface ZenTab {
         /**
           * Tab selected event
@@ -2551,6 +2590,7 @@ declare namespace LocalJSX {
         "zen-sortable-item": ZenSortableItem;
         "zen-space": ZenSpace;
         "zen-spinner": ZenSpinner;
+        "zen-status-tracker": ZenStatusTracker;
         "zen-tab": ZenTab;
         "zen-table": ZenTable;
         "zen-table-cell": ZenTableCell;
@@ -2600,6 +2640,7 @@ declare module "@stencil/core" {
             "zen-sortable-item": LocalJSX.ZenSortableItem & JSXBase.HTMLAttributes<HTMLZenSortableItemElement>;
             "zen-space": LocalJSX.ZenSpace & JSXBase.HTMLAttributes<HTMLZenSpaceElement>;
             "zen-spinner": LocalJSX.ZenSpinner & JSXBase.HTMLAttributes<HTMLZenSpinnerElement>;
+            "zen-status-tracker": LocalJSX.ZenStatusTracker & JSXBase.HTMLAttributes<HTMLZenStatusTrackerElement>;
             "zen-tab": LocalJSX.ZenTab & JSXBase.HTMLAttributes<HTMLZenTabElement>;
             "zen-table": LocalJSX.ZenTable & JSXBase.HTMLAttributes<HTMLZenTableElement>;
             "zen-table-cell": LocalJSX.ZenTableCell & JSXBase.HTMLAttributes<HTMLZenTableCellElement>;

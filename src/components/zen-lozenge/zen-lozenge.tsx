@@ -19,6 +19,9 @@ export class ZenLozenge {
   /** Text variant */
   @Prop({ reflect: true }) readonly textVariant: LozengeTextVariant = 'uppercase';
 
+  /** Disabled */
+  @Prop({ reflect: true }) readonly disabled: boolean = false;
+
   render(): HTMLElement {
     return (
       <Host>

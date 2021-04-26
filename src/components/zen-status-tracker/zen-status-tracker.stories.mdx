@@ -1,0 +1,107 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
+import { html } from 'lit-html';
+import { getArgTypes, getDefaultArgs, getComponentData, spreadArgs } from '#storybook/helpers/argTypes';
+
+import data from '../../../stencilDocs.json';
+import { logEvents } from '../../../.storybook/helpers/log-events';
+const compData = data.components.find(n => n.tag === 'zen-status-tracker');
+const argTypes = getArgTypes(compData);
+argTypes['selectedId'].control = {
+  type: 'select',
+  options: ['setup', 'evidence', 'execution', 'remediation', 'completed'],
+};
+
+<Meta title="Navigation/Status Tracker" component="zen-status-tracker" argTypes={argTypes} />
+
+export const StorySelected = args => html/*html*/ `
+  <sb-zen-space vertical spacing="lg">
+    <sb-zen-status-tracker selected-id="setup">
+      <sb-zen-lozenge id="setup">Setup</sb-zen-lozenge>
+      <sb-zen-lozenge id="evidence">Evidence Assigment</sb-zen-lozenge>
+      <sb-zen-lozenge id="execution">Execution</sb-zen-lozenge>
+      <sb-zen-lozenge id="remediation">Remediation</sb-zen-lozenge>
+      <sb-zen-lozenge id="completed">Completed</sb-zen-lozenge>
+    </sb-zen-status-tracker>
+    <sb-zen-status-tracker selected-id="evidence">
+      <sb-zen-lozenge id="setup">Setup</sb-zen-lozenge>
+      <sb-zen-lozenge id="evidence">Evidence Assigment</sb-zen-lozenge>
+      <sb-zen-lozenge id="execution">Execution</sb-zen-lozenge>
+      <sb-zen-lozenge id="remediation">Remediation</sb-zen-lozenge>
+      <sb-zen-lozenge id="completed">Completed</sb-zen-lozenge>
+    </sb-zen-status-tracker>
+    <sb-zen-status-tracker selected-id="execution">
+      <sb-zen-lozenge id="setup">Setup</sb-zen-lozenge>
+      <sb-zen-lozenge id="evidence">Evidence Assigment</sb-zen-lozenge>
+      <sb-zen-lozenge id="execution">Execution</sb-zen-lozenge>
+      <sb-zen-lozenge id="remediation">Remediation</sb-zen-lozenge>
+      <sb-zen-lozenge id="completed">Completed</sb-zen-lozenge>
+    </sb-zen-status-tracker>
+    <sb-zen-status-tracker selected-id="remediation">
+      <sb-zen-lozenge id="setup">Setup</sb-zen-lozenge>
+      <sb-zen-lozenge id="evidence">Evidence Assigment</sb-zen-lozenge>
+      <sb-zen-lozenge id="execution">Execution</sb-zen-lozenge>
+      <sb-zen-lozenge id="remediation">Remediation</sb-zen-lozenge>
+      <sb-zen-lozenge id="completed">Completed</sb-zen-lozenge>
+    </sb-zen-status-tracker>
+    <sb-zen-status-tracker selected-id="completed">
+      <sb-zen-lozenge id="setup">Setup</sb-zen-lozenge>
+      <sb-zen-lozenge id="evidence">Evidence Assigment</sb-zen-lozenge>
+      <sb-zen-lozenge id="execution">Execution</sb-zen-lozenge>
+      <sb-zen-lozenge id="remediation">Remediation</sb-zen-lozenge>
+      <sb-zen-lozenge id="completed">Completed</sb-zen-lozenge>
+    </sb-zen-status-tracker>
+    <sb-zen-status-tracker archived>
+      <sb-zen-lozenge id="setup">Setup</sb-zen-lozenge>
+      <sb-zen-lozenge id="evidence">Evidence Assigment</sb-zen-lozenge>
+      <sb-zen-lozenge id="execution">Execution</sb-zen-lozenge>
+      <sb-zen-lozenge id="remediation">Remediation</sb-zen-lozenge>
+      <sb-zen-lozenge id="completed">Completed</sb-zen-lozenge>
+    </sb-zen-status-tracker>
+  </sb-zen-space>
+`;
+
+export const StoryWithControls = args => html/*html*/ `
+  <sb-zen-status-tracker id="control-status-tracker" ...="${spreadArgs(args, argTypes)}">
+    <sb-zen-lozenge id="setup">Setup</sb-zen-lozenge>
+    <sb-zen-lozenge id="evidence">Evidence Assigment</sb-zen-lozenge>
+    <sb-zen-lozenge id="execution">Execution</sb-zen-lozenge>
+    <sb-zen-lozenge id="remediation">Remediation</sb-zen-lozenge>
+    <sb-zen-lozenge id="completed">Completed</sb-zen-lozenge>
+  </sb-zen-status-tracker>
+  ${logEvents('#control-status-tracker', getComponentData('zen-status-tracker'))}
+`;
+
+# ZenStatusTracker
+
+A status tracker component meant to be used with `<zen-lozenge>` slotted elements.
+
+## Component previews
+
+<br />
+
+### 1. Status tracker selected
+
+`<zen-status-tracker>` selected index parameter, changes the selected lozenge. If last `<zen-lozenge>` is selected, it is displayed in green color.
+
+<Canvas>
+  <Story name="StorySelected">{StorySelected.bind({})}</Story>
+</Canvas>
+
+## Properties
+
+<Canvas>
+  <Story
+    name="default"
+    args={{
+      ...getDefaultArgs(argTypes),
+      // override some default values:
+      selectedId: 'setup',
+    }}
+  >
+    {StoryWithControls.bind({})}
+  </Story>
+</Canvas>
+
+<ArgsTable story="default" />
+
+<sb-docs-table docs={JSON.stringify(getComponentData('zen-status-tracker'))}></sb-docs-table>
