@@ -1,3 +1,11 @@
+## [5.0.1](https://github.com/reciprocity/zen-ui/compare/5.0.0...5.0.1) (2021-04-26)
+
+
+### Bug Fixes
+
+* add missing type annotations ([fb7c10b](https://github.com/reciprocity/zen-ui/commit/fb7c10b24a86d7293c27ddcbf966a0d246476ac7))
+* export helper types ([9ff9b5b](https://github.com/reciprocity/zen-ui/commit/9ff9b5b630dd71097dcb3cac95ff49a276879eae))
+
 # [5.0.0](https://github.com/reciprocity/zen-ui/compare/4.2.0...5.0.0) (2021-04-22)
 
 
