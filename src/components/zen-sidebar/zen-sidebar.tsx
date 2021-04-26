@@ -2,6 +2,10 @@ import { Component, Element, Host, h, Prop, Watch, Event, EventEmitter, State, L
 import { Position, SpacingShorthand, Spacing } from '../helpers/types';
 import { applyPrefix } from '../helpers/helpers';
 
+/**
+ * @slot wrapChildren - In case you want to place some absolute elements relative to sidebar wrap size (eg. close icon on zen-sidebar-nav)
+ */
+
 @Component({
   tag: 'zen-sidebar',
   styleUrl: 'zen-sidebar.scss',
@@ -30,8 +34,11 @@ export class ZenSidebar {
   /** Position */
   @Prop({ reflect: true }) readonly position: Position = 'left';
 
+  /** Temporary expand sidebar on mouse over.<br>To prevent this behavior for only some child elements, add class `hover-ignore` to such child. */
+  @Prop() readonly expandOnHover: boolean = true;
+
   /** <Description generated in helper file> */
-  @Prop() readonly padding: SpacingShorthand = 'lg';
+  @Prop() readonly padding: SpacingShorthand = 'none';
   /** Skipped */
   @Prop() readonly paddingTop: Spacing = null;
   /** Skipped */
@@ -52,11 +59,18 @@ export class ZenSidebar {
   @Watch('expanded')
   async expandedChanged(): Promise<void> {
     this.toggle();
+    if (!this.expanded) {
+      this.hover = false;
+    }
     this.wrapPosition = this.expanded ? 'relative' : 'absolute';
   }
 
-  @Listen('mouseover')
-  handleMouseOver(): void {
+  @Listen('mousemove')
+  handleMouseOver(event: MouseEvent): void {
+    if (!this.expandOnHover || this.expanded || this.hover) return;
+    // todo: tried to add prop `@prop() ignoreOnHover: HtmlElement[]`, but it was
+    //       always empty no matter of how I've set it from zen-sidebar-nav...
+    if ((event.target as HTMLElement).classList.contains('hover-ignore')) return;
     this.hover = true;
   }
 
@@ -117,7 +131,8 @@ export class ZenSidebar {
           <ZenSpace
             class="sidebar"
             ref={el => (this.sidebar = el)}
-            block
+            vertical
+            vertical-align="start"
             padding={this.padding}
             padding-top={this.paddingTop}
             padding-right={this.paddingRight}
@@ -127,6 +142,7 @@ export class ZenSidebar {
           >
             <slot></slot>
           </ZenSpace>
+          <slot name="wrapChildren"></slot>
         </div>
       </Host>
     );

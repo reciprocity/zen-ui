@@ -729,6 +729,10 @@ export namespace Components {
          */
         "collapsedSize": number;
         /**
+          * Temporary expand sidebar on mouse over.<br>To prevent this behavior for only some child elements, add class `hover-ignore` to such child.
+         */
+        "expandOnHover": boolean;
+        /**
           * Make sidebar fully expanded
          */
         "expanded": boolean;
@@ -760,6 +764,12 @@ export namespace Components {
           * Width of sidebar in maximized state (css prop).<br />Has no impact if position is top or bottom.<br />Can also be set to `auto`.
          */
         "width": string;
+    }
+    interface ZenSidebarNav {
+        /**
+          * Make sidebar fully expanded
+         */
+        "expanded": boolean;
     }
     interface ZenSkeleton {
         /**
@@ -1349,6 +1359,12 @@ declare global {
         prototype: HTMLZenSidebarElement;
         new (): HTMLZenSidebarElement;
     };
+    interface HTMLZenSidebarNavElement extends Components.ZenSidebarNav, HTMLStencilElement {
+    }
+    var HTMLZenSidebarNavElement: {
+        prototype: HTMLZenSidebarNavElement;
+        new (): HTMLZenSidebarNavElement;
+    };
     interface HTMLZenSkeletonElement extends Components.ZenSkeleton, HTMLStencilElement {
     }
     var HTMLZenSkeletonElement: {
@@ -1470,6 +1486,7 @@ declare global {
         "zen-progress-tracker": HTMLZenProgressTrackerElement;
         "zen-radio": HTMLZenRadioElement;
         "zen-sidebar": HTMLZenSidebarElement;
+        "zen-sidebar-nav": HTMLZenSidebarNavElement;
         "zen-skeleton": HTMLZenSkeletonElement;
         "zen-sortable": HTMLZenSortableElement;
         "zen-sortable-item": HTMLZenSortableItemElement;
@@ -2192,6 +2209,10 @@ declare namespace LocalJSX {
          */
         "collapsedSize"?: number;
         /**
+          * Temporary expand sidebar on mouse over.<br>To prevent this behavior for only some child elements, add class `hover-ignore` to such child.
+         */
+        "expandOnHover"?: boolean;
+        /**
           * Make sidebar fully expanded
          */
         "expanded"?: boolean;
@@ -2227,6 +2248,12 @@ declare namespace LocalJSX {
           * Width of sidebar in maximized state (css prop).<br />Has no impact if position is top or bottom.<br />Can also be set to `auto`.
          */
         "width"?: string;
+    }
+    interface ZenSidebarNav {
+        /**
+          * Make sidebar fully expanded
+         */
+        "expanded"?: boolean;
     }
     interface ZenSkeleton {
         /**
@@ -2673,6 +2700,7 @@ declare namespace LocalJSX {
         "zen-progress-tracker": ZenProgressTracker;
         "zen-radio": ZenRadio;
         "zen-sidebar": ZenSidebar;
+        "zen-sidebar-nav": ZenSidebarNav;
         "zen-skeleton": ZenSkeleton;
         "zen-sortable": ZenSortable;
         "zen-sortable-item": ZenSortableItem;
@@ -2724,6 +2752,7 @@ declare module "@stencil/core" {
             "zen-progress-tracker": LocalJSX.ZenProgressTracker & JSXBase.HTMLAttributes<HTMLZenProgressTrackerElement>;
             "zen-radio": LocalJSX.ZenRadio & JSXBase.HTMLAttributes<HTMLZenRadioElement>;
             "zen-sidebar": LocalJSX.ZenSidebar & JSXBase.HTMLAttributes<HTMLZenSidebarElement>;
+            "zen-sidebar-nav": LocalJSX.ZenSidebarNav & JSXBase.HTMLAttributes<HTMLZenSidebarNavElement>;
             "zen-skeleton": LocalJSX.ZenSkeleton & JSXBase.HTMLAttributes<HTMLZenSkeletonElement>;
             "zen-sortable": LocalJSX.ZenSortable & JSXBase.HTMLAttributes<HTMLZenSortableElement>;
             "zen-sortable-item": LocalJSX.ZenSortableItem & JSXBase.HTMLAttributes<HTMLZenSortableItemElement>;
