@@ -19,7 +19,7 @@ export class ZenSidebar {
   @State() hover = false;
 
   /** Make sidebar fully expanded */
-  @Prop({ reflect: true }) readonly expanded = true;
+  @Prop({ reflect: true }) readonly expanded: boolean = true;
 
   /** Width/height of sidebar in collapsed state (in px) */
   @Prop() readonly collapsedSize: number = 48;

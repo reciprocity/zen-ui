@@ -727,7 +727,7 @@ export namespace Components {
         /**
           * Make sidebar fully expanded
          */
-        "expanded": true;
+        "expanded": boolean;
         /**
           * <Description generated in helper file>
          */
@@ -2169,7 +2169,7 @@ declare namespace LocalJSX {
         /**
           * Make sidebar fully expanded
          */
-        "expanded"?: true;
+        "expanded"?: boolean;
         /**
           * Inner sidebar hide button clicked
          */
