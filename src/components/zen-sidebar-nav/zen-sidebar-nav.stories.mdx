@@ -13,13 +13,42 @@ const argTypes = getArgTypes(compData);
 export const StoryWithControls = args => {
   const isHorizontalSidebar = ['top', 'bottom'].includes(args.position);
   const placeAfter = ['right', 'bottom'].includes(args.position);
-  return html/*html*/ ` <sb-zen-space
+  return html/*html*/ ` <style>
+      .programs-dropdown {
+        background-color: #fff;
+        height: 3.5rem;
+        display: flex;
+        align-items: center;
+        padding: 0.5rem;
+        width: 100%;
+        border-bottom: 1px solid #ced4da;
+        font-size: 0.875rem;
+        font-weight: bold;
+        margin-bottom: 1rem;
+      }
+      .programs-dropdown span {
+        display: block;
+        background-color: #fadbff;
+        border-radius: 2px;
+        width: 1.5rem;
+        height: 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 1.5rem;
+      }
+    </style>
+    <sb-zen-space
       horizontal-align="center"
       no-wrap
       ?vertical=${isHorizontalSidebar}
       style="border: 1px solid lightgrey; position:relative; height: 400px"
     >
       <sb-zen-sidebar-nav padding="sm" id="sidebar1">
+        <div class="programs-dropdown">
+          <span>P</span>
+          DROPDOWN PLACEHOLDER
+        </div>
         <sb-zen-text size="sm">${loremIpsum(3)}</sb-zen-text>
       </sb-zen-sidebar-nav>
       <sb-zen-space
