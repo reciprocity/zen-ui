@@ -28,10 +28,10 @@ export class ZenRadio {
   @Prop() readonly selected: string = '';
 
   /** Shows a red asterisk after label */
-  @Prop() readonly required = false;
+  @Prop() readonly required: boolean = false;
 
   /** Radio can't be selected (but you can still set `checked=true`) */
-  @Prop() readonly disabled = false;
+  @Prop() readonly disabled: boolean = false;
 
   /** Group id to which this radio belongs */
   @Prop({ reflect: true }) readonly group: string = '';

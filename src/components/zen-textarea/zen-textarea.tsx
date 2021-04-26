@@ -28,13 +28,13 @@ export class ZenTextarea {
   @Prop({ reflect: true }) readonly rows: number = 5;
 
   /** Appends attribute disabled. */
-  @Prop() readonly disabled = false;
+  @Prop() readonly disabled: boolean = false;
 
   /** Appends attribute required. */
-  @Prop() readonly required = false;
+  @Prop() readonly required: boolean = false;
 
   /** Shows invalid styles. */
-  @Prop({ reflect: true }) readonly invalid = false;
+  @Prop({ reflect: true }) readonly invalid: boolean = false;
 
   /** Placeholder of the textarea. */
   @Prop() readonly placeholder: string = null;

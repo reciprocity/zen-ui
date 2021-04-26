@@ -20,13 +20,13 @@ export class ZenCheckbox {
   @Prop({ mutable: true }) checked = false;
 
   /** Disables checkbox. */
-  @Prop() readonly disabled = false;
+  @Prop() readonly disabled: boolean = false;
 
   /** Label of the checkbox. */
   @Prop() readonly label: string = '';
 
   /** Shows a red asterisk after label. */
-  @Prop() readonly required = false;
+  @Prop() readonly required: boolean = false;
 
   /** Shows the checkbox in indeterminate state */
   @Prop({ mutable: true }) indeterminate = false;

@@ -19,7 +19,7 @@ export class ZenModal {
   @Element() host: HTMLZenModalElement;
 
   /** Set `true` to show and `false` to hide modal */
-  @Prop({ reflect: true }) readonly show = false;
+  @Prop({ reflect: true }) readonly show: boolean = false;
 
   /** Modal title (irrelevant if slot `header` passed) */
   @Prop() readonly label: string = 'Zen-UI modal window';

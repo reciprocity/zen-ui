@@ -58,7 +58,7 @@ export class ZenDatePicker {
   @Prop({ mutable: true }) formattedDate: string | null = null;
 
   /** Placeholder */
-  @Prop() readonly placeholder = 'Select date';
+  @Prop() readonly placeholder: string = 'Select date';
 
   /** Date format */
   @Prop({ mutable: true }) format = 'MM/dd/yyyy';
@@ -73,7 +73,7 @@ export class ZenDatePicker {
   @Prop() readonly allowEmpty: boolean = true;
 
   /** Shows invalid styles */
-  @Prop() readonly invalid = false;
+  @Prop() readonly invalid: boolean = false;
 
   /** Disables all dates before this one */
   @Prop() readonly disableBeforeDate: string | null = null;

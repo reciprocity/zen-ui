@@ -66,7 +66,7 @@ export class HtmlPlayground {
   @State() textValue = '';
 
   /** Save current value to local storage and restore it on load */
-  @Prop() readonly saveValue = true;
+  @Prop() readonly saveValue: boolean = true;
 
   /** What framework is initally selected */
   @Prop({ mutable: true }) selectedFramework: string = this.frameworks[0].value;

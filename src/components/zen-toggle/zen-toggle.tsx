@@ -17,7 +17,7 @@ export class ZenToggle {
   @Prop() readonly name: string = '';
 
   /** Set disabled state. */
-  @Prop({ reflect: true }) readonly disabled = false;
+  @Prop({ reflect: true }) readonly disabled: boolean = false;
 
   /** Set checked state. */
   @Prop({ mutable: true }) checked = false;

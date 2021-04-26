@@ -50,7 +50,7 @@ export class ZenText {
   @Prop({ reflect: true }) readonly disabled: boolean = false;
 
   /** Shows a red asterisk at the end */
-  @Prop({ reflect: true }) readonly required = false;
+  @Prop({ reflect: true }) readonly required: boolean = false;
 
   render(): HTMLElement {
     return (
