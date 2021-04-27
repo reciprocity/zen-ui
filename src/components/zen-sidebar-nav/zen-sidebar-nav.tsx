@@ -52,7 +52,7 @@ export class ZenSidebarNav {
           class="sidebar"
           collapsed-size={this.collapsedSize}
           expanded={this.expanded}
-          onSelect={e => this.itemSelected(e)}
+          onZenSelect={e => this.itemSelected(e)}
           onToggle={e => this.onToggle(e)}
         >
           <slot></slot>
