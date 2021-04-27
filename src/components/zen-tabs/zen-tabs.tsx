@@ -26,18 +26,18 @@ export class ZenTabs {
     this.selectTab(event.target as HTMLZenTabElement);
   }
 
-  selectTab(tab: HTMLZenTabElement): void {
+  selectTab(tab: HTMLZenTabElement, triggerEvent = true): void {
     this.tabs.forEach(n => {
       n.selected = false;
     });
 
     if (tab) tab.selected = true;
-    this.zenChange.emit();
+    if (triggerEvent) this.zenChange.emit();
   }
 
   componentDidLoad(): void {
     this.tabs = Array.from(this.host.children).map(n => n as HTMLZenTabElement);
-    this.selectTab(this.tabs[this.value]);
+    this.selectTab(this.tabs[this.value], false);
   }
 
   render(): HTMLZenTabsElement {
