@@ -76,6 +76,14 @@ export class ZenTextarea {
     this.zenChange.emit();
   };
 
+  private onBlur = () => {
+    this.zenBlur.emit();
+  };
+
+  private onFocus = () => {
+    this.zenFocus.emit();
+  };
+
   render(): HTMLElement {
     const text = this.text;
     const style = { resize: this.resize };
@@ -92,6 +100,8 @@ export class ZenTextarea {
           required={this.required}
           onInput={this.onInput}
           onChange={this.onChange}
+          onBlur={this.onBlur}
+          onFocus={this.onFocus}
         >
           {text}
         </textarea>
