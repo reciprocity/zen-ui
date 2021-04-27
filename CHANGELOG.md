@@ -1,3 +1,27 @@
+# [5.2.0](https://github.com/reciprocity/zen-ui/compare/5.1.0...5.2.0) (2021-04-27)
+
+
+### Bug Fixes
+
+* **zen-sidebar:** add missing annotation ([6f9faf5](https://github.com/reciprocity/zen-ui/commit/6f9faf58e3f48a2062dea494693f9193787d78b9))
+* **zen-sidebar:** removed expanded on hover functionality ([8ba558c](https://github.com/reciprocity/zen-ui/commit/8ba558cdcf12fde5534330165fdc145e3d7dcdcd))
+* **zen-sidebar-nav:** corrected props and removed footer by putting a named slot instead ([d2d16e4](https://github.com/reciprocity/zen-ui/commit/d2d16e4d0e282011c9ce61bbf0654276cc8a20a1))
+* **zen-sidebar-nav:** updated event to use the zen prefix ([478a307](https://github.com/reciprocity/zen-ui/commit/478a3076cc3a72dfd0056dda394854506e35ec3e))
+* **zen-sidebar-nav-item:** check subitems using a mutation observer ([96c1093](https://github.com/reciprocity/zen-ui/commit/96c10932a97fb89fb1d7fbf4382899dcea9d67a1))
+* **zen-sidebar-nav-item:** removed hover styles and updated event name ([a127589](https://github.com/reciprocity/zen-ui/commit/a12758950e422e8aff9c5df93476af79d9b91a48))
+* **zen-sidebar-nav-item:** updated event name to zenSelect ([2c80324](https://github.com/reciprocity/zen-ui/commit/2c80324b380a72575ca8dcd302c4b52a3d838ef1))
+
+
+### Features
+
+* **zen-sidebar:** add event `toggle` ([d96daca](https://github.com/reciprocity/zen-ui/commit/d96dacaad586e36ef9f724e1daea21579078482d))
+* **zen-sidebar-nav:** collapse item when collapsing navigation ([516c727](https://github.com/reciprocity/zen-ui/commit/516c72765814ead7ba760df034829faabd59c892))
+* add new component `zen-sidebar-nav-item` ([65ca240](https://github.com/reciprocity/zen-ui/commit/65ca240afc1adb04847b411f07025d0783825cd5))
+* add new component `zen-sidebar-nav-subitem` ([76c7959](https://github.com/reciprocity/zen-ui/commit/76c7959f486b75103bc700c8a4beb76f6e240e6a))
+* add zen-sidebar-nav component ([ec5da23](https://github.com/reciprocity/zen-ui/commit/ec5da2374019fcc7547a54c6d54a16a0285a78c2))
+* **zen-sidebar:** add padding prop ([d94916f](https://github.com/reciprocity/zen-ui/commit/d94916ff5f7c8bbc6aabea41f841634054234a82))
+* add zen-sidebar component ([58b0c23](https://github.com/reciprocity/zen-ui/commit/58b0c23e1c22e815a9482b2f5f9d54970889d6ce))
+
 # [5.1.0](https://github.com/reciprocity/zen-ui/compare/5.0.1...5.1.0) (2021-04-26)
 
 
