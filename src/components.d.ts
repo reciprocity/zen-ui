@@ -729,10 +729,6 @@ export namespace Components {
          */
         "collapsedSize": number;
         /**
-          * Temporary expand sidebar on mouse over.<br>To prevent this behavior for only some child elements, add class `hover-ignore` to such child.
-         */
-        "expandOnHover": boolean;
-        /**
           * Make sidebar fully expanded
          */
         "expanded": boolean;
@@ -2234,10 +2230,6 @@ declare namespace LocalJSX {
           * Width/height of sidebar in collapsed state (in px)
          */
         "collapsedSize"?: number;
-        /**
-          * Temporary expand sidebar on mouse over.<br>To prevent this behavior for only some child elements, add class `hover-ignore` to such child.
-         */
-        "expandOnHover"?: boolean;
         /**
           * Make sidebar fully expanded
          */

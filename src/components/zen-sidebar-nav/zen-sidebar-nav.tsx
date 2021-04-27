@@ -50,14 +50,14 @@ export class ZenSidebarNav {
           onSelect={e => this.itemSelected(e)}
           onToggle={e => this.onToggle(e)}
         >
-          <slot></slot>
-
-          <ZenSpace padding="lg md" class="footer" vertical>
-            <a href="https://placeholder.com/" target="_blank">
-              Privacy Policy
-            </a>
-            <div>Copyright © 2021</div>
-          </ZenSpace>
+          <slot>
+            <ZenSpace padding="lg md" class="footer" vertical>
+              <a href="https://placeholder.com/" target="_blank">
+                Privacy Policy
+              </a>
+              <div>Copyright © 2021</div>
+            </ZenSpace>
+          </slot>
 
           <ZenIcon
             slot="wrapChildren"

@@ -1,4 +1,4 @@
-import { Component, Element, Host, h, Prop, Watch, Event, EventEmitter, State, Listen } from '@stencil/core';
+import { Component, Element, Host, h, Prop, Watch, Event, EventEmitter, State } from '@stencil/core';
 import { Position, SpacingShorthand, Spacing } from '../helpers/types';
 import { applyPrefix } from '../helpers/helpers';
 
@@ -14,14 +14,11 @@ import { applyPrefix } from '../helpers/helpers';
 export class ZenSidebar {
   private sidebar: HTMLElement = null;
   private wrap: HTMLElement = null;
-  private unhoverTimer: NodeJS.Timeout;
 
   @Element() host: HTMLZenSidebarElement;
 
   @State() wrapStyle: { [key: string]: string } = { display: 'none' };
   @State() wrapPosition = 'absolute';
-
-  @State() hover = false;
 
   /** Make sidebar fully expanded */
   @Prop({ reflect: true }) readonly expanded: boolean = true;
@@ -35,17 +32,18 @@ export class ZenSidebar {
   /** Position */
   @Prop({ reflect: true }) readonly position: Position = 'left';
 
-  /** Temporary expand sidebar on mouse over.<br>To prevent this behavior for only some child elements, add class `hover-ignore` to such child. */
-  @Prop() readonly expandOnHover: boolean = true;
-
   /** <Description generated in helper file> */
   @Prop() readonly padding: SpacingShorthand = 'none';
+
   /** Skipped */
   @Prop() readonly paddingTop: Spacing = null;
+
   /** Skipped */
   @Prop() readonly paddingRight: Spacing = null;
+
   /** Skipped */
   @Prop() readonly paddingBottom: Spacing = null;
+
   /** Skipped */
   @Prop() readonly paddingLeft: Spacing = null;
 
@@ -55,71 +53,29 @@ export class ZenSidebar {
   /** On sidebar collapse/expand */
   @Event() toggle: EventEmitter<{ expanded: boolean }>;
 
-  @Watch('hover')
-  async hoverChanged(): Promise<void> {
-    this.toggleSidebar();
-  }
-
   @Watch('expanded')
   async expandedChanged(): Promise<void> {
     this.toggleSidebar();
-    if (!this.expanded) {
-      this.hover = false;
-    }
     this.wrapPosition = this.expanded ? 'relative' : 'absolute';
-  }
-
-  @Listen('mousemove')
-  handleMouseMove(event: MouseEvent): void {
-    this.onMouseOver(event);
-  }
-
-  @Listen('mouseover')
-  handleMouseOver(event: MouseEvent): void {
-    this.onMouseOver(event);
-  }
-
-  @Listen('mouseout')
-  handleMouseOut(): void {
-    this.unhoverTimer = setTimeout(() => {
-      this.hover = false;
-    }, 0);
-  }
-
-  onMouseOver(event: MouseEvent): void {
-    // todo: tried to add prop `@prop() ignoreOnHover: HtmlElement[]`, but it was
-    //       always empty no matter of how I've set it from zen-sidebar-nav...
-    if ((event.target as HTMLElement).classList.contains('hover-ignore')) return;
-    clearTimeout(this.unhoverTimer);
-
-    if (!this.expandOnHover || this.expanded || this.hover) return;
-    this.hover = true;
   }
 
   isVertical = (): boolean => ['left', 'right'].includes(this.position);
 
   toggleSidebar(animated = true): void {
-    const getSidebarSize = (): number => {
-      // note: we have to get width in px, because `width: auto` isn't animated
-      const originalHostDisplay = this.wrap.style.display;
-      this.wrap.style.display = 'block';
+    const [sizeProp, offsetProp] = this.isVertical() ? ['width', 'offsetWidth'] : ['height', 'offsetHeight'];
 
-      const prop = this.isVertical() ? 'offsetWidth' : 'offsetHeight';
-      const width = this.sidebar[prop];
-
-      this.wrap.style.display = originalHostDisplay;
-      return width;
-    };
-
-    const prop = this.isVertical() ? 'width' : 'height';
-    const sidebarSize = getSidebarSize();
     // note: we have to get width in px, because `width: auto` isn't animated
+    const originalHostDisplay = this.wrap.style.display;
+    this.wrap.style.display = 'block';
+
+    const sidebarSize = this.sidebar[offsetProp];
+    this.wrap.style.display = originalHostDisplay;
 
     const duration = animated ? 'all 0.2s ease-out' : 'none';
-    const expand = this.hover || this.expanded;
+    const expand = this.expanded;
 
     this.wrapStyle = {
-      [prop]: `${expand ? sidebarSize : this.collapsedSize}px`,
+      [sizeProp]: `${expand ? sidebarSize : this.collapsedSize}px`,
       transition: duration,
     };
 
