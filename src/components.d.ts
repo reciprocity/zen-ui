@@ -763,9 +763,17 @@ export namespace Components {
     }
     interface ZenSidebarNav {
         /**
+          * Width of sidebar in collapsed state (in px)
+         */
+        "collapsedSize": number;
+        /**
           * Make sidebar fully expanded
          */
         "expanded": boolean;
+        /**
+          * Displays a double arrow to toggle the sidebar
+         */
+        "toggable": boolean;
     }
     interface ZenSidebarNavItem {
         /**
@@ -2273,9 +2281,17 @@ declare namespace LocalJSX {
     }
     interface ZenSidebarNav {
         /**
+          * Width of sidebar in collapsed state (in px)
+         */
+        "collapsedSize"?: number;
+        /**
           * Make sidebar fully expanded
          */
         "expanded"?: boolean;
+        /**
+          * Displays a double arrow to toggle the sidebar
+         */
+        "toggable"?: boolean;
     }
     interface ZenSidebarNavItem {
         /**
