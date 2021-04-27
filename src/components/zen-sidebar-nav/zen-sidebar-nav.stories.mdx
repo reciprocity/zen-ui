@@ -24,17 +24,21 @@ export const StoryWithControls = args => {
     const item = event.target.closest('sb-zen-sidebar-nav-item');
     item.selected = true;
   }
-  const waitAndAddIcon = (id, icon) => waitForElement(`#icon-${id}`, element => {
-    element.icon = icon;
-  });
-
+  function subitemClicked(event) {
+    const item = event.target.closest('sb-zen-sidebar-nav-subitem');
+    item.selected = true;
+  }
+  const waitAndAddIcon = (id, icon) =>
+    waitForElement(`#icon-${id}`, element => {
+      element.icon = icon;
+    });
   waitAndAddIcon('home', faHomeAlt);
-  waitAndAddIcon('chart-line, faChartLine);
+  waitAndAddIcon('chart-line', faChartLine);
   waitAndAddIcon('audits', faClipboardList);
   waitAndAddIcon('questionnaires', faThList);
   waitAndAddIcon('records', faFolderOpen);
   waitAndAddIcon('tools', faTools);
-  waitAndAddIcon('settings', faSlidersVSquare);```
+  waitAndAddIcon('settings', faSlidersVSquare);
   const isHorizontalSidebar = ['top', 'bottom'].includes(args.position);
   const placeAfter = ['right', 'bottom'].includes(args.position);
   return html/*html*/ ` <style>
@@ -65,8 +69,8 @@ export const StoryWithControls = args => {
     <sb-zen-space
       horizontal-align="center"
       no-wrap
-      ?vertical=${isHorizontalSidebar}
-      style="border: 1px solid lightgrey; position:relative; height: 400px"
+      vertical-align="stretch"
+      style="border: 1px solid lightgrey; position:relative; height: 600px"
     >
       <sb-zen-sidebar-nav padding="sm" id="sidebar1" ...="${spreadArgs(args, argTypes)}">
         <div class="programs-dropdown">
@@ -92,6 +96,14 @@ export const StoryWithControls = args => {
         <sb-zen-sidebar-nav-item @click="${itemClicked}">
           <sb-zen-icon padding="md" id="icon-records"></sb-zen-icon>
           Program records
+          <div slot="subitems">
+            <sb-zen-sidebar-nav-subitem @click="${subitemClicked}">Controls</sb-zen-sidebar-nav-subitem>
+            <sb-zen-sidebar-nav-subitem @click="${subitemClicked}">Requirements</sb-zen-sidebar-nav-subitem>
+            <sb-zen-sidebar-nav-subitem @click="${subitemClicked}">Findings</sb-zen-sidebar-nav-subitem>
+            <sb-zen-sidebar-nav-subitem @click="${subitemClicked}">Control assesments</sb-zen-sidebar-nav-subitem>
+            <sb-zen-sidebar-nav-subitem @click="${subitemClicked}">Evidence requests</sb-zen-sidebar-nav-subitem>
+            <sb-zen-sidebar-nav-subitem @click="${subitemClicked}">Tasks</sb-zen-sidebar-nav-subitem>
+          </div>
         </sb-zen-sidebar-nav-item>
         <sb-zen-sidebar-nav-item @click="${itemClicked}">
           <sb-zen-icon padding="md" id="icon-tools"></sb-zen-icon>
@@ -107,7 +119,7 @@ export const StoryWithControls = args => {
         class="fill"
         horizontal-align="center"
         vertical
-        style="border: 3px solid lightgrey; position:relative; height: 400px"
+        style="border: 3px solid lightgrey; position:relative"
       >
         <sb-zen-text size="sm">${loremIpsum(3)}</sb-zen-text>
       </sb-zen-space>
