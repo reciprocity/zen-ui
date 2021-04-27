@@ -7,18 +7,21 @@ import { Component, Host, h, Prop, Element, Listen, Watch, Event, EventEmitter }
 })
 export class ZenTabs {
   private tabs: HTMLZenTabElement[];
+  private updating = false;
 
   @Element() host: HTMLZenTabsElement;
 
   /** Index of currently selected tab. */
-  @Prop() readonly value: number = 0;
+  @Prop({ mutable: true, reflect: true }) value = 0;
 
   /** Tabs change event */
   @Event() zenChange: EventEmitter<void>;
 
   @Watch('value')
-  async selectedChanged(): Promise<void> {
-    this.selectTab(this.tabs[this.value]);
+  selectedChanged(): void {
+    if (!this.updating) {
+      this.selectTab(this.tabs[this.value]);
+    }
   }
 
   @Listen('zenSelect')
@@ -27,12 +30,18 @@ export class ZenTabs {
   }
 
   selectTab(tab: HTMLZenTabElement, triggerEvent = true): void {
-    this.tabs.forEach(n => {
-      n.selected = false;
+    this.updating = true;
+    this.tabs.forEach((n, index) => {
+      if (tab === n) {
+        n.selected = true;
+        this.value = index;
+      } else {
+        n.selected = false;
+      }
     });
 
-    if (tab) tab.selected = true;
     if (triggerEvent) this.zenChange.emit();
+    this.updating = false;
   }
 
   componentDidLoad(): void {
