@@ -25,19 +25,3 @@
 :host([expanded='false']) .collapse-icon {
   transform: rotate(180deg);
 }
-
-.footer {
-  margin-top: auto;
-
-  * {
-    color: $color-nav-gray-200;
-    font-size: $text-xs;
-    opacity: 0.5;
-    @include noselect();
-    text-decoration: none;
-  }
-
-  a:hover {
-    opacity: 1;
-  }
-}
