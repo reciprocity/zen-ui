@@ -8,6 +8,8 @@ import { faChevronDown } from '@fortawesome/pro-regular-svg-icons';
   shadow: true,
 })
 export class ZenSidebarNavItem {
+  childObserver: MutationObserver = null;
+
   @Element() host: HTMLZenSidebarNavItemElement;
 
   @State() hasSubitems = false;
@@ -53,9 +55,24 @@ export class ZenSidebarNavItem {
     this.selected = true;
   }
 
+  startChildObserver(): void {
+    this.childObserver = new MutationObserver(() => {
+      this.hasSubitems = this.getItems().length > 0;
+    });
+
+    this.childObserver.observe(this.host, {
+      childList: true,
+      attributes: true,
+      subtree: true,
+    });
+  }
+
   componentDidLoad(): void {
-    // TODO: Do this in mutation observer!
-    this.hasSubitems = !!this.getItems().length;
+    this.startChildObserver();
+  }
+
+  disconnectedCallback(): void {
+    if (this.childObserver) this.childObserver.disconnect();
   }
 
   render(): HTMLElement {
