@@ -723,6 +723,70 @@ export namespace Components {
          */
         "value": string;
     }
+    interface ZenSidebar {
+        /**
+          * Width/height of sidebar in collapsed state (in px)
+         */
+        "collapsedSize": number;
+        /**
+          * Make sidebar fully expanded
+         */
+        "expanded": boolean;
+        /**
+          * <Description generated in helper file>
+         */
+        "padding": SpacingShorthand;
+        /**
+          * Skipped
+         */
+        "paddingBottom": Spacing;
+        /**
+          * Skipped
+         */
+        "paddingLeft": Spacing;
+        /**
+          * Skipped
+         */
+        "paddingRight": Spacing;
+        /**
+          * Skipped
+         */
+        "paddingTop": Spacing;
+        /**
+          * Position
+         */
+        "position": Position;
+        /**
+          * Width of sidebar in maximized state (css prop).<br />Has no impact if position is top or bottom.<br />Can also be set to `auto`.
+         */
+        "width": string;
+    }
+    interface ZenSidebarNav {
+        /**
+          * Width of sidebar in collapsed state (in px)
+         */
+        "collapsedSize": number;
+        /**
+          * Make sidebar fully expanded
+         */
+        "expanded": boolean;
+        /**
+          * Displays a double arrow to toggle the sidebar
+         */
+        "toggable": boolean;
+    }
+    interface ZenSidebarNavItem {
+        /**
+          * Render item as selected
+         */
+        "selected": boolean;
+    }
+    interface ZenSidebarNavSubitem {
+        /**
+          * Render item as selected
+         */
+        "selected": boolean;
+    }
     interface ZenSkeleton {
         /**
           * Description generated in helper file
@@ -1305,6 +1369,30 @@ declare global {
         prototype: HTMLZenRadioElement;
         new (): HTMLZenRadioElement;
     };
+    interface HTMLZenSidebarElement extends Components.ZenSidebar, HTMLStencilElement {
+    }
+    var HTMLZenSidebarElement: {
+        prototype: HTMLZenSidebarElement;
+        new (): HTMLZenSidebarElement;
+    };
+    interface HTMLZenSidebarNavElement extends Components.ZenSidebarNav, HTMLStencilElement {
+    }
+    var HTMLZenSidebarNavElement: {
+        prototype: HTMLZenSidebarNavElement;
+        new (): HTMLZenSidebarNavElement;
+    };
+    interface HTMLZenSidebarNavItemElement extends Components.ZenSidebarNavItem, HTMLStencilElement {
+    }
+    var HTMLZenSidebarNavItemElement: {
+        prototype: HTMLZenSidebarNavItemElement;
+        new (): HTMLZenSidebarNavItemElement;
+    };
+    interface HTMLZenSidebarNavSubitemElement extends Components.ZenSidebarNavSubitem, HTMLStencilElement {
+    }
+    var HTMLZenSidebarNavSubitemElement: {
+        prototype: HTMLZenSidebarNavSubitemElement;
+        new (): HTMLZenSidebarNavSubitemElement;
+    };
     interface HTMLZenSkeletonElement extends Components.ZenSkeleton, HTMLStencilElement {
     }
     var HTMLZenSkeletonElement: {
@@ -1425,6 +1513,10 @@ declare global {
         "zen-popover": HTMLZenPopoverElement;
         "zen-progress-tracker": HTMLZenProgressTrackerElement;
         "zen-radio": HTMLZenRadioElement;
+        "zen-sidebar": HTMLZenSidebarElement;
+        "zen-sidebar-nav": HTMLZenSidebarNavElement;
+        "zen-sidebar-nav-item": HTMLZenSidebarNavItemElement;
+        "zen-sidebar-nav-subitem": HTMLZenSidebarNavSubitemElement;
         "zen-skeleton": HTMLZenSkeletonElement;
         "zen-sortable": HTMLZenSortableElement;
         "zen-sortable-item": HTMLZenSortableItemElement;
@@ -2141,6 +2233,86 @@ declare namespace LocalJSX {
          */
         "value"?: string;
     }
+    interface ZenSidebar {
+        /**
+          * Width/height of sidebar in collapsed state (in px)
+         */
+        "collapsedSize"?: number;
+        /**
+          * Make sidebar fully expanded
+         */
+        "expanded"?: boolean;
+        /**
+          * Inner sidebar hide button clicked
+         */
+        "onCollapse"?: (event: CustomEvent<void>) => void;
+        /**
+          * On sidebar collapse/expand
+         */
+        "onToggle"?: (event: CustomEvent<{ expanded: boolean }>) => void;
+        /**
+          * <Description generated in helper file>
+         */
+        "padding"?: SpacingShorthand;
+        /**
+          * Skipped
+         */
+        "paddingBottom"?: Spacing;
+        /**
+          * Skipped
+         */
+        "paddingLeft"?: Spacing;
+        /**
+          * Skipped
+         */
+        "paddingRight"?: Spacing;
+        /**
+          * Skipped
+         */
+        "paddingTop"?: Spacing;
+        /**
+          * Position
+         */
+        "position"?: Position;
+        /**
+          * Width of sidebar in maximized state (css prop).<br />Has no impact if position is top or bottom.<br />Can also be set to `auto`.
+         */
+        "width"?: string;
+    }
+    interface ZenSidebarNav {
+        /**
+          * Width of sidebar in collapsed state (in px)
+         */
+        "collapsedSize"?: number;
+        /**
+          * Make sidebar fully expanded
+         */
+        "expanded"?: boolean;
+        /**
+          * Displays a double arrow to toggle the sidebar
+         */
+        "toggable"?: boolean;
+    }
+    interface ZenSidebarNavItem {
+        /**
+          * Item was selected
+         */
+        "onZenSelect"?: (event: CustomEvent<void>) => void;
+        /**
+          * Render item as selected
+         */
+        "selected"?: boolean;
+    }
+    interface ZenSidebarNavSubitem {
+        /**
+          * Item was selected
+         */
+        "onSubitemSelect"?: (event: CustomEvent<void>) => void;
+        /**
+          * Render item as selected
+         */
+        "selected"?: boolean;
+    }
     interface ZenSkeleton {
         /**
           * Description generated in helper file
@@ -2585,6 +2757,10 @@ declare namespace LocalJSX {
         "zen-popover": ZenPopover;
         "zen-progress-tracker": ZenProgressTracker;
         "zen-radio": ZenRadio;
+        "zen-sidebar": ZenSidebar;
+        "zen-sidebar-nav": ZenSidebarNav;
+        "zen-sidebar-nav-item": ZenSidebarNavItem;
+        "zen-sidebar-nav-subitem": ZenSidebarNavSubitem;
         "zen-skeleton": ZenSkeleton;
         "zen-sortable": ZenSortable;
         "zen-sortable-item": ZenSortableItem;
@@ -2635,6 +2811,10 @@ declare module "@stencil/core" {
             "zen-popover": LocalJSX.ZenPopover & JSXBase.HTMLAttributes<HTMLZenPopoverElement>;
             "zen-progress-tracker": LocalJSX.ZenProgressTracker & JSXBase.HTMLAttributes<HTMLZenProgressTrackerElement>;
             "zen-radio": LocalJSX.ZenRadio & JSXBase.HTMLAttributes<HTMLZenRadioElement>;
+            "zen-sidebar": LocalJSX.ZenSidebar & JSXBase.HTMLAttributes<HTMLZenSidebarElement>;
+            "zen-sidebar-nav": LocalJSX.ZenSidebarNav & JSXBase.HTMLAttributes<HTMLZenSidebarNavElement>;
+            "zen-sidebar-nav-item": LocalJSX.ZenSidebarNavItem & JSXBase.HTMLAttributes<HTMLZenSidebarNavItemElement>;
+            "zen-sidebar-nav-subitem": LocalJSX.ZenSidebarNavSubitem & JSXBase.HTMLAttributes<HTMLZenSidebarNavSubitemElement>;
             "zen-skeleton": LocalJSX.ZenSkeleton & JSXBase.HTMLAttributes<HTMLZenSkeletonElement>;
             "zen-sortable": LocalJSX.ZenSortable & JSXBase.HTMLAttributes<HTMLZenSortableElement>;
             "zen-sortable-item": LocalJSX.ZenSortableItem & JSXBase.HTMLAttributes<HTMLZenSortableItemElement>;

@@ -1,0 +1,85 @@
+import { html } from 'lit-html';
+import Readme from './readme.md';
+import { Meta, Description, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
+import { logEvents } from '#storybook/helpers/log-events';
+import { getArgTypesAndArgs, getDefaultArgs, getComponentData, spreadArgs } from '#storybook/helpers/argTypes';
+const { argTypes } = getArgTypesAndArgs('zen-sidebar');
+
+<Meta title="Containers/Sidebar" component="zen-sidebar" argTypes={argTypes} />
+
+export const Template = args => {
+  function expandSidebar() {
+    document.querySelector('#sidebar1').expanded = !document.querySelector('#sidebar1').expanded;
+  }
+  const isHorizontalSidebar = ['top', 'bottom'].includes(args.position);
+  const placeAfter = ['right', 'bottom'].includes(args.position);
+  return html/*html*/ ` <sb-zen-space
+      horizontal-align="center"
+      no-wrap
+      ?vertical=${isHorizontalSidebar}
+      style="border: 1px solid lightgrey; position:relative; height: 400px"
+    >
+      <sb-zen-sidebar
+        @collapse="${e => {
+          e.target.expanded = false;
+        }}"
+        style="${placeAfter ? 'order: 2' : ''}"
+        padding="sm"
+        id="sidebar1"
+        ...="${spreadArgs(args, argTypes)}"
+      >
+        <sb-zen-text size="sm">
+          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of
+          the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting
+          industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply
+          dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and
+          typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
+          is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the
+          printing and typesetting industry.
+        </sb-zen-text>
+      </sb-zen-sidebar>
+      <sb-zen-space
+        padding="6xl"
+        class="fill"
+        horizontal-align="center"
+        vertical
+        style="border: 3px solid lightgrey; position:relative; height: 400px"
+      >
+        <sb-zen-text size="sm">
+          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of
+          the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting
+          industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply
+          dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and
+          typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
+          is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the
+          printing and typesetting industry.
+        </sb-zen-text>
+        <sb-zen-button @click="${expandSidebar}">Toggle Sidebar</sb-zen-button>
+      </sb-zen-space>
+    </sb-zen-space>
+    ${logEvents('#sidebar1', getComponentData('zen-sidebar'))}`;
+};
+
+# Zen Sidebar
+
+Collapsible sidebar. Mainly used as a navigation bar.
+
+<br />
+
+## Properties
+
+<Canvas>
+  <Story
+    name="default"
+    args={{
+      ...getDefaultArgs(argTypes),
+      expanded: false,
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+<ArgsTable story="default" />
+
+<sb-docs-table docs={JSON.stringify(getComponentData('zen-sidebar'))}></sb-docs-table>

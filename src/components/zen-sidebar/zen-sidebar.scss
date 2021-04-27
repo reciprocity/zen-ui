@@ -1,0 +1,74 @@
+@import '../scss/component-helpers.scss';
+
+:host {
+  background-color: $color-gray-50;
+  display: block;
+  position: relative;
+  flex-shrink: 0;
+}
+
+:host(:not([expanded])),
+:host([expanded='false']) {
+  z-index: 100;
+}
+
+.sidebar-wrap {
+  background-color: inherit;
+  overflow: hidden;
+  overflow-y: auto;
+}
+
+.sidebar {
+  height: 100%;
+}
+
+slot[name='wrapChildren'] {
+  background-color: inherit;
+}
+
+:host([position*='left']),
+:host([position*='right']) {
+  height: 100%;
+
+  .sidebar-wrap {
+    height: 100%;
+  }
+
+  .sidebar {
+    width: auto;
+    height: 100%;
+  }
+}
+
+:host([position*='top']),
+:host([position*='bottom']) {
+  width: 100%;
+
+  .sidebar-wrap {
+    width: 100%;
+  }
+
+  .sidebar {
+    width: 100%;
+    height: auto;
+    flex-direction: row;
+  }
+}
+
+:host([position*='left']) {
+  left: 0;
+}
+
+:host([position*='right']) {
+  .sidebar-wrap {
+    right: 0;
+  }
+}
+
+:host([position*='top']) {
+  top: 0;
+}
+
+:host([position*='bottom']) {
+  bottom: 0;
+}

@@ -19,10 +19,15 @@ export function getSlotElement(host: HTMLElement, slotName?: string): HTMLElemen
   return slot.assignedNodes()[0] as HTMLElement;
 }
 
-export function getDefaultSlotContent(host: HTMLElement): Element[] {
-  const slot = host.shadowRoot.querySelector('slot:not([name])') as HTMLSlotElement;
+export function getSlotContent(host: HTMLElement, name?: string): Element[] {
+  const selector = name ? 'slot[name]' : 'slot:not([name])';
+  const slot = host.shadowRoot.querySelector(selector) as HTMLSlotElement;
   if (!slot || !slot.assignedElements) return [];
   return slot.assignedElements();
+}
+
+export function getDefaultSlotContent(host: HTMLElement): Element[] {
+  return getSlotContent(host);
 }
 
 export function getNextField(currentInput: HTMLElement): HTMLElement {

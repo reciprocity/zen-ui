@@ -1,0 +1,27 @@
+@import '../scss/component-helpers.scss';
+
+:host {
+  height: 100%;
+  background-color: $color-gray-50;
+}
+
+.sidebar {
+  background-color: inherit;
+}
+
+.collapse-icon {
+  display: inline-flex;
+  margin-left: auto;
+  cursor: pointer;
+  position: absolute;
+  right: 0;
+  bottom: 1rem;
+  background-color: inherit;
+  transition: transform 0.2s;
+  transition-delay: 0.15s;
+}
+
+:host(:not([expanded])) .collapse-icon,
+:host([expanded='false']) .collapse-icon {
+  transform: rotate(180deg);
+}
