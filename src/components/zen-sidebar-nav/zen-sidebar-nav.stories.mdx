@@ -24,11 +24,16 @@ export const StoryWithControls = args => {
     const item = event.target.closest('sb-zen-sidebar-nav-item');
     item.selected = true;
   }
-  const waitAndAddIcon = (id, icon) => waitForElement(`#icon-${id}`, element => {
-    element.icon = icon;
-  });
+  function subitemClicked(event) {
+    const item = event.target.closest('sb-zen-sidebar-nav-subitem');
+    item.selected = true;
+  }
+  const waitAndAddIcon = (id, icon) =>
+    waitForElement(`#icon-${id}`, element => {
+      element.icon = icon;
+    });
   waitAndAddIcon('home', faHomeAlt);
-  waitAndAddIcon('chart-line, faChartLine);
+  waitAndAddIcon('chart-line', faChartLine);
   waitAndAddIcon('audits', faClipboardList);
   waitAndAddIcon('questionnaires', faThList);
   waitAndAddIcon('records', faFolderOpen);
