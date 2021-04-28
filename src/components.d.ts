@@ -51,7 +51,7 @@ export namespace Components {
         /**
           * What framework is initally selected
          */
-        "selectedFramework": string;
+        "selectedFramework": number;
         /**
           * What framework is initally selected
          */
@@ -1573,7 +1573,7 @@ declare namespace LocalJSX {
         /**
           * What framework is initally selected
          */
-        "selectedFramework"?: string;
+        "selectedFramework"?: number;
         /**
           * What framework is initally selected
          */
