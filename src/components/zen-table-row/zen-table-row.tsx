@@ -45,7 +45,11 @@ export class ZenTableRow {
   /** Row is placed right after header (auto calculated) */
   @Prop() readonly $afterHeader: boolean = false;
 
-  /** Row selected */
+  /**
+   * Row selected
+   *
+   * @todo Is this really needed?
+   */
   @Event() rowSelectChanged: EventEmitter<boolean>;
 
   @Watch('selectable')

@@ -2594,6 +2594,7 @@ declare namespace LocalJSX {
         "header"?: boolean;
         /**
           * Row selected
+          * @todo Is this really needed?
          */
         "onRowSelectChanged"?: (event: CustomEvent<boolean>) => void;
         /**
