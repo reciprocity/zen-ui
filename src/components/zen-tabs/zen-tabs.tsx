@@ -19,7 +19,7 @@ export class ZenTabs {
 
   @Watch('value')
   selectedChanged(): void {
-    if (!this.updating) {
+    if (!this.updating && !Number.isNaN(this.value)) {
       this.selectTab(this.tabs[this.value]);
     }
   }
