@@ -210,6 +210,7 @@ export class ZenDatePicker {
   }
 
   onInputChange(event: Event): void {
+    event.stopPropagation();
     const input = event.target as HTMLInputElement;
     if (!input.value && this.allowEmpty) {
       this.clearDate();
@@ -225,6 +226,10 @@ export class ZenDatePicker {
       // revert to old date:
       this.dateChanged(this.value);
     }
+  }
+
+  stopEventPropagation(event: Event): void {
+    event.stopPropagation();
   }
 
   onOpenToggle(popup: HTMLZenPopoverElement): void {
@@ -271,7 +276,9 @@ export class ZenDatePicker {
           value={this.formattedDate}
           has-focus={this.opened}
           clear-button={this.allowEmpty ? 'true' : 'false'}
-          onChange={e => this.onInputChange(e)}
+          onZenChange={e => this.onInputChange(e)}
+          onZenFocus={this.stopEventPropagation}
+          onZenBlur={this.stopEventPropagation}
           size={this.size}
         >
           <ZenIcon
@@ -289,7 +296,7 @@ export class ZenDatePicker {
           interactive
           position="bottom-start"
           close-on-target-click="false"
-          onVisibleChange={e => this.onOpenToggle(e.target)}
+          onZenVisibleChange={e => this.onOpenToggle(e.target)}
         >
           <ZenSpace class="navigation" spacing="sm" padding="sm lg" horizontal-align="center" vertical-align="stretch">
             <ZenIcon
