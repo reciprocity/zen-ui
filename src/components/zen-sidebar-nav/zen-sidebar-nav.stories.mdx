@@ -124,7 +124,10 @@ export const StoryWithControls = args => {
         <sb-zen-text size="sm">${loremIpsum(3)}</sb-zen-text>
       </sb-zen-space>
     </sb-zen-space>
-    ${logEvents('#sidebar1', getComponentData('zen-sidebar'))}`;
+    ${logEvents('#sidebar1', getComponentData('zen-sidebar'))} ${logEvents(
+      '#sidebar1',
+      getComponentData('zen-sidebar-nav-subitem'),
+    )} ${logEvents('#sidebar1', getComponentData('zen-sidebar-nav-item'))}`;
 };
 
 # Zen Sidebar navigation

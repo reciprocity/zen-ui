@@ -41,6 +41,9 @@ export class ZenStatusTracker {
     const children = this.getChildren();
 
     if (!this.isValid(children)) return;
+    /**
+     * @todo Is this really necessary? The component doesn't have interaction.
+     */
     this.zenChange.emit();
 
     if (this.archived) {

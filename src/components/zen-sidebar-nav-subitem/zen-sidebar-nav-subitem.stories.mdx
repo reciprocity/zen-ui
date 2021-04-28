@@ -3,6 +3,7 @@ import { html } from 'lit-html';
 import { getArgTypes, getDefaultArgs, getComponentData, spreadArgs } from '#storybook/helpers/argTypes';
 import { waitForElement } from '#storybook/helpers/utils';
 import { faHomeAlt } from '@fortawesome/pro-regular-svg-icons';
+import { logEvents } from '#storybook/helpers/log-events';
 
 import data from '../../../stencilDocs.json';
 const compData = data.components.find(n => n.tag === 'zen-sidebar-nav-subitem');
@@ -19,7 +20,10 @@ export const StoryWithControls = args => {
     element.icon = faHomeAlt;
   });
   return html/*html*/ `
-    <sb-zen-sidebar-nav-subitem ...="${spreadArgs(args, argTypes)}"> Controls </sb-zen-sidebar-nav-subitem>
+    <sb-zen-sidebar-nav-subitem id="story-with-ctrls-element" ...="${spreadArgs(args, argTypes)}">
+      Controls
+    </sb-zen-sidebar-nav-subitem>
+    ${logEvents('#story-with-ctrls-element', getComponentData('zen-sidebar-nav-subitem'))}
   `;
 };
 

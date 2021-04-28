@@ -20,7 +20,7 @@ describe('zen-toggle', () => {
     const changeSpy = jest.fn();
 
     page.root.addEventListener('keydown', keyDownSpy);
-    page.root.addEventListener('change', changeSpy);
+    page.root.addEventListener('zenChange', changeSpy);
 
     page.root.dispatchEvent(new KeyboardEvent('keydown', { code: 'Enter' }));
     await page.waitForChanges();
@@ -44,7 +44,7 @@ describe('zen-toggle', () => {
     const changeSpy = jest.fn();
 
     page.root.addEventListener('click', clickSpy);
-    page.root.addEventListener('change', changeSpy);
+    page.root.addEventListener('zenChange', changeSpy);
 
     page.root.dispatchEvent(new MouseEvent('click'));
     await page.waitForChanges();

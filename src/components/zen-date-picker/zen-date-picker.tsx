@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, Watch, State, Element, Listen, Method } from '@stencil/core';
+import { Component, Host, h, Prop, Watch, State, Element, Listen, Method, Event, EventEmitter } from '@stencil/core';
 import { getDayNumbers, helpers, getMonthName, parseDate } from './date-helpers';
 import getYear from 'date-fns/getYear';
 import addMonths from 'date-fns/addMonths';
@@ -27,9 +27,6 @@ enum Navigate {
 }
 
 /**
- * @event change | Called on date change
- * @event focus | Focused
- * @event blur | Focus lost
  * @event click | Clicked
  */
 
@@ -84,6 +81,15 @@ export class ZenDatePicker {
   /** Size variant */
   @Prop({ reflect: true }) readonly size: InputSize = 'md';
 
+  /** Date picker change event */
+  @Event() zenChange: EventEmitter<void>;
+
+  /**  Date picker focus event */
+  @Event() zenFocus: EventEmitter<void>;
+
+  /**  Date picker blur event */
+  @Event() zenBlur: EventEmitter<void>;
+
   @Watch('formattedDate')
   async formattedDateChanged(formatted: string): Promise<void> {
     const parsedDate = parseDate(formatted, this.format);
@@ -97,7 +103,7 @@ export class ZenDatePicker {
     } else {
       this.value = helpers.today();
     }
-    this.host.dispatchEvent(new window.Event('change'));
+    this.zenChange.emit();
   }
 
   @Watch('value')
@@ -146,7 +152,7 @@ export class ZenDatePicker {
   @Method()
   async clearDate(): Promise<void> {
     this.value = new Date(NaN);
-    this.host.dispatchEvent(new window.Event('change'));
+    this.zenChange.emit();
   }
 
   ensureValidFormatString(fallback = 'MM/dd/yyyy'): void {
@@ -159,10 +165,12 @@ export class ZenDatePicker {
 
   onBlur(): void {
     this.popover.toggle(false);
+    this.zenBlur.emit();
   }
 
   onFocus(): void {
     this.popover.toggle(true);
+    this.zenFocus.emit();
   }
 
   navigate(type: Navigate): void {
@@ -185,7 +193,7 @@ export class ZenDatePicker {
   selectDay(day: number): void {
     if (!day) return;
     this.value = setDate(this.calendarMonth, day);
-    this.host.dispatchEvent(new window.Event('change'));
+    this.zenChange.emit();
   }
 
   isSelected(day: number): boolean {
@@ -202,6 +210,7 @@ export class ZenDatePicker {
   }
 
   onInputChange(event: Event): void {
+    event.stopPropagation();
     const input = event.target as HTMLInputElement;
     if (!input.value && this.allowEmpty) {
       this.clearDate();
@@ -212,11 +221,15 @@ export class ZenDatePicker {
 
     if (isValid(date)) {
       this.value = date;
-      this.host.dispatchEvent(new window.Event('change'));
+      this.zenChange.emit();
     } else {
       // revert to old date:
       this.dateChanged(this.value);
     }
+  }
+
+  stopEventPropagation(event: Event): void {
+    event.stopPropagation();
   }
 
   onOpenToggle(popup: HTMLZenPopoverElement): void {
@@ -263,7 +276,9 @@ export class ZenDatePicker {
           value={this.formattedDate}
           has-focus={this.opened}
           clear-button={this.allowEmpty ? 'true' : 'false'}
-          onChange={e => this.onInputChange(e)}
+          onZenChange={e => this.onInputChange(e)}
+          onZenFocus={this.stopEventPropagation}
+          onZenBlur={this.stopEventPropagation}
           size={this.size}
         >
           <ZenIcon
@@ -281,7 +296,7 @@ export class ZenDatePicker {
           interactive
           position="bottom-start"
           close-on-target-click="false"
-          onVisibleChange={e => this.onOpenToggle(e.target)}
+          onZenVisibleChange={e => this.onOpenToggle(e.target)}
         >
           <ZenSpace class="navigation" spacing="sm" padding="sm lg" horizontal-align="center" vertical-align="stretch">
             <ZenIcon

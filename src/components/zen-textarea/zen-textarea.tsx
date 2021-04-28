@@ -1,12 +1,5 @@
-import { Component, Host, h, Prop, Element, Method } from '@stencil/core';
+import { Component, Host, h, Prop, Element, Method, Event, EventEmitter } from '@stencil/core';
 import { Resize } from '../helpers/types';
-
-/**
- * @event change | Content change applied
- * @event input | Content changed
- * @event focus | Focused
- * @event blur | Focus lost
- */
 
 @Component({
   tag: 'zen-textarea',
@@ -45,6 +38,18 @@ export class ZenTextarea {
   /** Prefilled text content */
   @Prop({ mutable: true }) text?: string | null = '';
 
+  /** Textarea change event */
+  @Event() zenChange: EventEmitter<void>;
+
+  /** Textarea event */
+  @Event() zenInput: EventEmitter<void>;
+
+  /** Textarea focus event */
+  @Event() zenFocus: EventEmitter<void>;
+
+  /** Textarea blur event */
+  @Event() zenBlur: EventEmitter<void>;
+
   /** Focus input */
   @Method()
   async focusInput(): Promise<void> {
@@ -58,6 +63,8 @@ export class ZenTextarea {
     if (input) {
       this.text = input.value || '';
     }
+    ev.preventDefault();
+    this.zenInput.emit();
   };
 
   private onChange = (ev: Event) => {
@@ -66,7 +73,15 @@ export class ZenTextarea {
       this.text = input.value || '';
     }
     // change event should be forwarded, because it's not composed:
-    this.host.dispatchEvent(new window.Event('change'));
+    this.zenChange.emit();
+  };
+
+  private onBlur = () => {
+    this.zenBlur.emit();
+  };
+
+  private onFocus = () => {
+    this.zenFocus.emit();
   };
 
   render(): HTMLElement {
@@ -85,6 +100,8 @@ export class ZenTextarea {
           required={this.required}
           onInput={this.onInput}
           onChange={this.onChange}
+          onBlur={this.onBlur}
+          onFocus={this.onFocus}
         >
           {text}
         </textarea>

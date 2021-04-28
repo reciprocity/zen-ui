@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, State, Listen, Watch, Element, Method } from '@stencil/core';
+import { Component, Host, h, Prop, State, Listen, Watch, Element, Method, Event, EventEmitter } from '@stencil/core';
 import { getDefaultSlotContent, applyPrefix, scrollIntoView } from '../helpers/helpers';
 import { faChevronDown } from '@fortawesome/pro-light-svg-icons';
 import { OptionValue } from '../zen-menu-item/zen-option';
@@ -11,9 +11,6 @@ export interface OptionItem {
 /**
  * @slot [default] - Content for dropdown menu
  * @slot placeholder - Slot visible in field when nothing is selected
- * @event change | Called on any selection change
- * @event focus | Focused
- * @event blur | Focus lost
  */
 
 @Component({
@@ -60,6 +57,15 @@ export class ZenDropdown {
 
   /** Shows invalid styles. */
   @Prop() readonly invalid: boolean = false;
+
+  /** Dropdown change event */
+  @Event() zenChange: EventEmitter<void>;
+
+  /**  Dropdown focus event */
+  @Event() zenFocus: EventEmitter<void>;
+
+  /**  Dropdown blur event */
+  @Event() zenBlur: EventEmitter<void>;
 
   /** Close an opened dropdown menu */
   @Method()
@@ -130,10 +136,12 @@ export class ZenDropdown {
 
   onBlur(): void {
     this.popover.toggle(false);
+    this.zenBlur.emit();
   }
 
   onFocus(): void {
     this.popover.toggle(true);
+    this.zenFocus.emit();
   }
 
   cloneSelectedToField(): void {
@@ -204,7 +212,7 @@ export class ZenDropdown {
     if (this.closeOnSelect) {
       this.popover.visible = false;
     }
-    this.host.dispatchEvent(new window.Event('change'));
+    this.zenChange.emit();
   }
 
   async setFocusedOption(option?: HTMLZenOptionElement): Promise<void> {
@@ -305,7 +313,7 @@ export class ZenDropdown {
           ref={el => (this.popover = el)}
           interactive
           position={align}
-          onVisibleChange={() => this.onOpenToggle()}
+          onZenVisibleChange={() => this.onOpenToggle()}
           style={{ width: this.menuWidth, 'max-height': this.menuHeight }}
           offset={offset}
         >

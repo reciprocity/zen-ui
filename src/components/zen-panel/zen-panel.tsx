@@ -34,19 +34,19 @@ export class ZenPanel {
   @Prop({ reflect: true }) readonly contentPadding: SpacingShorthand = 'md lg';
 
   /** Panel opened */
-  @Event() open: EventEmitter<void>;
+  @Event() zenOpen: EventEmitter<void>;
 
   /** Panel closed */
-  @Event() close: EventEmitter<void>;
+  @Event() zenClose: EventEmitter<void>;
 
   @Watch('visible')
   async visibleChanged(visible: boolean): Promise<void> {
     if (visible) {
       this.initializing ? showInstantly(this.content) : showWithAnimation(this.content);
-      this.open.emit();
+      this.zenOpen.emit();
     } else {
       this.initializing ? hideInstantly(this.content) : hideWithAnimation(this.content);
-      this.close.emit();
+      this.zenClose.emit();
     }
   }
 

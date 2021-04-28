@@ -56,7 +56,7 @@ describe('zen-date-picker', () => {
 
   const setInputValue = (value: string) => {
     input.value = value;
-    const event = new Event('change', { bubbles: true, composed: true });
+    const event = new Event('zenChange', { bubbles: true, composed: true });
     input.dispatchEvent(event);
   };
 
