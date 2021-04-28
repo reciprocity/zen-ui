@@ -2363,7 +2363,7 @@ declare namespace LocalJSX {
         /**
           * Item was selected
          */
-        "onSubitemSelect"?: (event: CustomEvent<void>) => void;
+        "onZenSubitemSelect"?: (event: CustomEvent<void>) => void;
         /**
           * Render item as selected
          */
