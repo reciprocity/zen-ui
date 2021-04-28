@@ -15,7 +15,7 @@ export class ZenDrawer {
   @Element() host: HTMLZenDrawerElement;
 
   /** Is drawer visible */
-  @Prop({ reflect: true }) readonly opened: boolean = false;
+  @Prop({ reflect: true, mutable: true }) opened = false;
 
   /** Position */
   @Prop({ reflect: true }) readonly position: Position = 'right';
@@ -45,6 +45,7 @@ export class ZenDrawer {
   }
 
   onCloseClicked(): void {
+    this.opened = !this.opened;
     this.zenClose.emit();
   }
 
