@@ -47,13 +47,12 @@ export class ZenSidebarNav {
     const ZenIcon = applyPrefix('zen-icon', this.host);
 
     return (
-      <Host>
+      <Host onZenSelect={e => this.itemSelected(e)}>
         <ZenSidebar
           class="sidebar"
           collapsed-size={this.collapsedSize}
           expanded={this.expanded}
-          onZenSelect={e => this.itemSelected(e)}
-          onToggle={e => this.onToggle(e)}
+          onZenToggle={e => this.onToggle(e)}
         >
           <slot></slot>
           <slot name="footer"></slot>

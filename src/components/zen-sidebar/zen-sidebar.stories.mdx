@@ -20,7 +20,7 @@ export const Template = args => {
       style="border: 1px solid lightgrey; position:relative; height: 400px"
     >
       <sb-zen-sidebar
-        @collapse="${e => {
+        @zenCollapse="${e => {
           e.target.expanded = false;
         }}"
         style="${placeAfter ? 'order: 2' : ''}"

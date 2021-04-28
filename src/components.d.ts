@@ -2301,11 +2301,11 @@ declare namespace LocalJSX {
         /**
           * Inner sidebar hide button clicked
          */
-        "onCollapse"?: (event: CustomEvent<void>) => void;
+        "onZenCollapse"?: (event: CustomEvent<void>) => void;
         /**
           * On sidebar collapse/expand
          */
-        "onToggle"?: (event: CustomEvent<{ expanded: boolean }>) => void;
+        "onZenToggle"?: (event: CustomEvent<{ expanded: boolean }>) => void;
         /**
           * <Description generated in helper file>
          */
