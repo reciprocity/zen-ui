@@ -251,7 +251,7 @@ describe('zen-date-picker', () => {
     await page.waitForChanges();
     const numbers = calendar.querySelectorAll('.day-num');
     const disabledDays = Array.from(numbers).filter(el => {
-      return el.getAttribute('disabled') && !el.classList.contains('empty');
+      return el.getAttribute('disabled') !== null && !el.classList.contains('empty');
     });
     expect(disabledDays.length).toEqual(5);
   });
@@ -262,7 +262,7 @@ describe('zen-date-picker', () => {
     await page.waitForChanges();
     const numbers = calendar.querySelectorAll('.day-num');
     const disabledDays = Array.from(numbers).filter(el => {
-      return el.getAttribute('disabled') && !el.classList.contains('empty');
+      return el.getAttribute('disabled') !== null && !el.classList.contains('empty');
     });
     expect(disabledDays.length).toEqual(16);
   });
