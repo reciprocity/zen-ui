@@ -2,7 +2,7 @@ import { Component, Host, h, Prop, Element, Listen, State, Method, Watch, Event,
 import { getNextField } from '../helpers/helpers';
 import { faTimes } from '@fortawesome/pro-regular-svg-icons';
 import { applyPrefix } from '../helpers/helpers';
-import { InputSize } from '../helpers/types';
+import { IconSize, InputSize } from '../helpers/types';
 
 /**
  * @slot leadingSlot - Slot placed at the left
@@ -154,8 +154,8 @@ export class ZenInput {
             class="icon clear"
             role="button"
             icon={faTimes}
-            size={this.clearIconSize()}
-            onMousedown={(event: MouseEvent) => this.onClearClick(event)}
+            size={this.clearIconSize() as IconSize}
+            onMouseDown={(event: MouseEvent) => this.onClearClick(event)}
           ></ZenIcon>
         )}
         <slot name="trailingSlot"></slot>

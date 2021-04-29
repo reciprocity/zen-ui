@@ -1,6 +1,13 @@
 import { Component, Host, h, Element, Prop } from '@stencil/core';
 import { applyPrefix } from '../helpers/helpers';
-import { AvatarDetailVariant, AvatarVariantSizes, Spacing, SpacingShorthand } from '../helpers/types';
+import {
+  AvatarDetailVariant,
+  AvatarIconSize,
+  AvatarVariantSizes,
+  Spacing,
+  SpacingShorthand,
+  TextSize,
+} from '../helpers/types';
 
 @Component({
   tag: 'zen-avatar-details',
@@ -91,11 +98,11 @@ export class ZenAvatarDetails {
             initials={this.initials}
             color={this.iconColor}
             background={this.iconBackground}
-            size={sizes.avatarIconSize}
+            size={sizes.avatarIconSize as AvatarIconSize}
             data-test="avatar-icon"
           />
           <ZenSpace no-wrap vertical padding="xs" spacing="sm">
-            <ZenText size={sizes.textSize} bold={sizes.userNameBold} data-test="username">
+            <ZenText size={sizes.textSize as TextSize} bold={sizes.userNameBold} data-test="username">
               {this.userName}
             </ZenText>
             {this.variant === 'detailed' && (

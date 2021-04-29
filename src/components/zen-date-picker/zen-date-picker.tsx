@@ -296,7 +296,7 @@ export class ZenDatePicker {
           interactive
           position="bottom-start"
           close-on-target-click="false"
-          onZenVisibleChange={e => this.onOpenToggle(e.target)}
+          onZenVisibleChange={e => this.onOpenToggle(e.target as HTMLZenPopoverElement)}
         >
           <ZenSpace class="navigation" spacing="sm" padding="sm lg" horizontal-align="center" vertical-align="stretch">
             <ZenIcon
@@ -347,7 +347,7 @@ export class ZenDatePicker {
                     'day-num': true,
                     empty: !num,
                   }}
-                  disabled="true"
+                  disabled
                   align="center"
                 >
                   {num || ''}
