@@ -55,11 +55,11 @@ export function toggleAttribute(element: Element, attribute: string, value: stri
   }
 }
 
-export function applyPrefix(componentName: string, parentElement: Element): string {
+export const applyPrefix = <T extends string>(componentName: T, parentElement: Element): T => {
   const parentPrefix = parentElement.tagName.split('-')[0].toLowerCase();
   const sanitizedPrefix = parentPrefix !== 'zen' ? `${parentPrefix}-` : '';
-  return `${sanitizedPrefix}${componentName}`;
-}
+  return `${sanitizedPrefix}${componentName}` as T;
+};
 
 export function parsePadding(padding: string): Record<string, unknown> {
   let paddingClasses: Record<string, unknown> = {};
