@@ -29,15 +29,15 @@ describe('zen-modal', () => {
   });
 
   it('should emit cancel event', async () => {
-    await testClickEvent(page, '.x-button', 'cancel');
+    await testClickEvent(page, '.x-button', 'zenCancel');
   });
 
   it('should emit cancel event with default cancel button', async () => {
-    await testClickEvent(page, 'slot[name="footer"] .btn-cancel', 'cancel');
+    await testClickEvent(page, 'slot[name="footer"] .btn-cancel', 'zenCancel');
   });
 
   it('should emit ok event with default ok button', async () => {
-    await testClickEvent(page, 'slot[name="footer"] .btn-ok', 'ok');
+    await testClickEvent(page, 'slot[name="footer"] .btn-ok', 'zenOk');
   });
 
   it('should call makeTopmost on show', async () => {

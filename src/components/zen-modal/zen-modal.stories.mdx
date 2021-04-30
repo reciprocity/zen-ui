@@ -17,10 +17,10 @@ export const StoryWithControls = args => {
     <sb-zen-button @click="${showModal}">Show Editor</sb-zen-button>
     <sb-zen-modal
       id="modal1"
-      @cancel="${e => {
+      @zenCancel="${e => {
         e.target.show = false;
       }}"
-      @ok="${e => {
+      @zenOk="${e => {
         e.target.show = false;
       }}"
       ...="${spreadArgs(args, argTypes)}"
@@ -54,7 +54,7 @@ export const StoryMultipleModals = () => {
       <sb-zen-button @click="${showEditor}">Show Editor</sb-zen-button>
       <sb-zen-button @click="${showConfirm}">Show Confirmation</sb-zen-button>
     </sb-zen-space>
-    <sb-zen-modal id="editor" label="Risk score editor" @cancel="${closeEditor}">
+    <sb-zen-modal id="editor" label="Risk score editor" @zenCancel="${closeEditor}">
       <sb-zen-text>This is a modal window editor example.</sb-zen-text>
       <sb-zen-space spacing="sm" vertical>
         <sb-zen-text variant="label" required>Username</sb-zen-text>
@@ -72,10 +72,10 @@ export const StoryMultipleModals = () => {
     <sb-zen-modal
       id="confirm"
       label="Confirmation"
-      @cancel="${e => {
+      @zenCancel="${e => {
         e.target.show = false;
       }}"
-      @ok="${e => {
+      @zenOk="${e => {
         e.target.show = false;
       }}"
     >

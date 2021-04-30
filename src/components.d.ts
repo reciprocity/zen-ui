@@ -51,7 +51,7 @@ export namespace Components {
         /**
           * What framework is initally selected
          */
-        "selectedFramework": string;
+        "selectedFramework": number;
         /**
           * What framework is initally selected
          */
@@ -698,6 +698,10 @@ export namespace Components {
           * Radio can't be selected (but you can still set `checked=true`)
          */
         "disabled": boolean;
+        /**
+          * Method triggers a custom event "zenChange"
+         */
+        "dispatchChangeEvent": () => Promise<void>;
         /**
           * Group id to which this radio belongs
          */
@@ -1569,7 +1573,7 @@ declare namespace LocalJSX {
         /**
           * What framework is initally selected
          */
-        "selectedFramework"?: string;
+        "selectedFramework"?: number;
         /**
           * What framework is initally selected
          */
@@ -1771,6 +1775,10 @@ declare namespace LocalJSX {
          */
         "name"?: string;
         /**
+          * Checkbox change event
+         */
+        "onZenChange"?: (event: CustomEvent<void>) => void;
+        /**
           * Shows a red asterisk after label.
          */
         "required"?: boolean;
@@ -1805,6 +1813,18 @@ declare namespace LocalJSX {
          */
         "invalid"?: boolean;
         /**
+          * Date picker blur event
+         */
+        "onZenBlur"?: (event: CustomEvent<void>) => void;
+        /**
+          * Date picker change event
+         */
+        "onZenChange"?: (event: CustomEvent<void>) => void;
+        /**
+          * Date picker focus event
+         */
+        "onZenFocus"?: (event: CustomEvent<void>) => void;
+        /**
           * Placeholder
          */
         "placeholder"?: string;
@@ -1823,7 +1843,7 @@ declare namespace LocalJSX {
         /**
           * Inner drawer hide button clicked
          */
-        "onClose"?: (event: CustomEvent<void>) => void;
+        "onZenClose"?: (event: CustomEvent<void>) => void;
         /**
           * Is drawer visible
          */
@@ -1886,6 +1906,18 @@ declare namespace LocalJSX {
           * Name of element, can be used as reference for form data
          */
         "name"?: string;
+        /**
+          * Dropdown blur event
+         */
+        "onZenBlur"?: (event: CustomEvent<void>) => void;
+        /**
+          * Dropdown change event
+         */
+        "onZenChange"?: (event: CustomEvent<void>) => void;
+        /**
+          * Dropdown focus event
+         */
+        "onZenFocus"?: (event: CustomEvent<void>) => void;
         /**
           * Text in field if nothing selected
          */
@@ -1955,6 +1987,22 @@ declare namespace LocalJSX {
          */
         "name"?: string;
         /**
+          * Input blur event
+         */
+        "onZenBlur"?: (event: CustomEvent<void>) => void;
+        /**
+          * Input change event
+         */
+        "onZenChange"?: (event: CustomEvent<void>) => void;
+        /**
+          * Input focus event
+         */
+        "onZenFocus"?: (event: CustomEvent<void>) => void;
+        /**
+          * Input event
+         */
+        "onZenInput"?: (event: CustomEvent<void>) => void;
+        /**
           * Placeholder of the input.
          */
         "placeholder"?: string;
@@ -2009,11 +2057,11 @@ declare namespace LocalJSX {
         /**
           * Top-right X button or default Cancel button clicked
          */
-        "onCancel"?: (event: CustomEvent<void>) => void;
+        "onZenCancel"?: (event: CustomEvent<void>) => void;
         /**
           * Default Ok button clicked (irrelevant if slot `buttons` passed)
          */
-        "onOk"?: (event: CustomEvent<void>) => void;
+        "onZenOk"?: (event: CustomEvent<void>) => void;
         /**
           * Set `true` to show and `false` to hide modal
          */
@@ -2089,11 +2137,11 @@ declare namespace LocalJSX {
         /**
           * Panel closed
          */
-        "onClose"?: (event: CustomEvent<void>) => void;
+        "onZenClose"?: (event: CustomEvent<void>) => void;
         /**
           * Panel opened
          */
-        "onOpen"?: (event: CustomEvent<void>) => void;
+        "onZenOpen"?: (event: CustomEvent<void>) => void;
         /**
           * <Description generated in helper file>
          */
@@ -2145,9 +2193,9 @@ declare namespace LocalJSX {
          */
         "offset"?: Offsets;
         /**
-          * Visibility changed
+          * Zen popover visibility change event
          */
-        "onVisibleChange"?: (event: CustomEvent<void>) => void;
+        "onZenVisibleChange"?: (event: CustomEvent<void>) => void;
         /**
           * <Description generated in helper file>
          */
@@ -2199,6 +2247,10 @@ declare namespace LocalJSX {
          */
         "labelWidth"?: string;
         /**
+          * Progress tracker change event
+         */
+        "onZenChange"?: (event: CustomEvent<void>) => void;
+        /**
           * Ordered array of possible steps
          */
         "steps"?: Array<StepItem>;
@@ -2220,6 +2272,10 @@ declare namespace LocalJSX {
           * Name of element, can be used as reference for form data
          */
         "name"?: string;
+        /**
+          * Radio change event
+         */
+        "onZenChange"?: (event: CustomEvent<void>) => void;
         /**
           * Shows a red asterisk after label
          */
@@ -2245,11 +2301,11 @@ declare namespace LocalJSX {
         /**
           * Inner sidebar hide button clicked
          */
-        "onCollapse"?: (event: CustomEvent<void>) => void;
+        "onZenCollapse"?: (event: CustomEvent<void>) => void;
         /**
           * On sidebar collapse/expand
          */
-        "onToggle"?: (event: CustomEvent<{ expanded: boolean }>) => void;
+        "onZenToggle"?: (event: CustomEvent<{ expanded: boolean }>) => void;
         /**
           * <Description generated in helper file>
          */
@@ -2307,7 +2363,7 @@ declare namespace LocalJSX {
         /**
           * Item was selected
          */
-        "onSubitemSelect"?: (event: CustomEvent<void>) => void;
+        "onZenSubitemSelect"?: (event: CustomEvent<void>) => void;
         /**
           * Render item as selected
          */
@@ -2445,7 +2501,7 @@ declare namespace LocalJSX {
         /**
           * Tab selected event
          */
-        "onTabSelect"?: (event: CustomEvent<void>) => void;
+        "onZenSelect"?: (event: CustomEvent<void>) => void;
         /**
           * Set tab selected
          */
@@ -2538,6 +2594,7 @@ declare namespace LocalJSX {
         "header"?: boolean;
         /**
           * Row selected
+          * @todo Is this really needed?
          */
         "onRowSelectChanged"?: (event: CustomEvent<boolean>) => void;
         /**
@@ -2554,6 +2611,10 @@ declare namespace LocalJSX {
         "sticky"?: boolean;
     }
     interface ZenTabs {
+        /**
+          * Tabs change event
+         */
+        "onZenChange"?: (event: CustomEvent<void>) => void;
         /**
           * Index of currently selected tab.
          */
@@ -2639,6 +2700,22 @@ declare namespace LocalJSX {
          */
         "name"?: string;
         /**
+          * Textarea blur event
+         */
+        "onZenBlur"?: (event: CustomEvent<void>) => void;
+        /**
+          * Textarea change event
+         */
+        "onZenChange"?: (event: CustomEvent<void>) => void;
+        /**
+          * Textarea focus event
+         */
+        "onZenFocus"?: (event: CustomEvent<void>) => void;
+        /**
+          * Textarea event
+         */
+        "onZenInput"?: (event: CustomEvent<void>) => void;
+        /**
           * Placeholder of the textarea.
          */
         "placeholder"?: string;
@@ -2672,6 +2749,10 @@ declare namespace LocalJSX {
           * Name of element, can be used as reference for form data
          */
         "name"?: string;
+        /**
+          * Toggle change event
+         */
+        "onZenChange"?: (event: CustomEvent<void>) => void;
     }
     interface ZenTooltip {
         /**

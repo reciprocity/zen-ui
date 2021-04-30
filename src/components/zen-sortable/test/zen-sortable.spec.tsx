@@ -54,6 +54,6 @@ describe('zen-sortable', () => {
     expect(fakeOnEndEvent.target.dispatchEvent).toHaveBeenCalledTimes(1);
     const [[triggerEvent]] = fakeOnEndEvent.target.dispatchEvent.mock.calls;
     expect(triggerEvent.detail).toEqual(dataIds);
-    expect(triggerEvent.type).toBe('onChange');
+    expect(triggerEvent.type).toBe('zenChange');
   });
 });

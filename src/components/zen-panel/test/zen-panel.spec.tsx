@@ -59,11 +59,11 @@ describe('zen-panel', () => {
       expect(helpers.hideWithAnimation).toHaveBeenCalled();
     });
 
-    it('should emit "open" event', async () => {
+    it('should emit "zenOpen" event', async () => {
       await render();
 
       const eventSpy = jest.fn();
-      panel.addEventListener('open', eventSpy);
+      panel.addEventListener('zenOpen', eventSpy);
 
       panel.visible = true;
       await page.waitForChanges();
@@ -71,12 +71,12 @@ describe('zen-panel', () => {
       expect(eventSpy).toHaveBeenCalledTimes(1);
     });
 
-    it('should emit "close" event', async () => {
+    it('should emit "zenClose" event', async () => {
       await render('visible');
       expect(panel.visible).toBe(true);
 
       const eventSpy = jest.fn();
-      panel.addEventListener('close', eventSpy);
+      panel.addEventListener('zenClose', eventSpy);
 
       panel.visible = false;
       await page.waitForChanges();

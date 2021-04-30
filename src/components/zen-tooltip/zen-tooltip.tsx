@@ -82,7 +82,7 @@ export class ZenTooltip {
           }}
           offset={{ x: 0, y: this.offset }}
           delay={this.delay}
-          interactive={this.link || isScrollable}
+          interactive={!!this.link || isScrollable}
           padding={this.padding}
           padding-top={this.paddingTop}
           padding-right={this.paddingRight}

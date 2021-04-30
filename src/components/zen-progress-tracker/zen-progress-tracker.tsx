@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, State, Watch, Element } from '@stencil/core';
+import { Component, Host, h, Prop, State, Watch, Element, Event, EventEmitter } from '@stencil/core';
 import { faCheck } from '@fortawesome/pro-light-svg-icons';
 import { StepsFilter } from './types';
 import cloneDeep from 'lodash/cloneDeep';
@@ -15,10 +15,6 @@ export interface StepEvent {
   index: number;
   step: StepItem;
 }
-
-/**
- * @event change | ActiveIndex changed
- */
 
 @Component({
   tag: 'zen-progress-tracker',
@@ -37,6 +33,8 @@ export class ZenProgressTracker {
   @Prop({ reflect: true }) readonly clickable: StepsFilter = 'completed';
   /** Max label width */
   @Prop({ reflect: true }) readonly labelWidth: string = '8rem';
+  /** Progress tracker change event */
+  @Event() zenChange: EventEmitter<void>;
 
   @Watch('activeIndex')
   activeIndexChanged(activeIndex: number): void {
@@ -46,7 +44,7 @@ export class ZenProgressTracker {
   /** User clicked a step */
   selectStep(index: number): void {
     this.activeIndex = index;
-    this.host.dispatchEvent(new window.Event('change'));
+    this.zenChange.emit();
   }
 
   stepClicked(index: number): void {

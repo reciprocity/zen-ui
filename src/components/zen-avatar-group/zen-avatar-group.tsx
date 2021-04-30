@@ -77,7 +77,7 @@ export class ZenAvatarGroup {
         {this.shownUsers().map(user => (
           <ZenAvatar users={[user]} animation={this.users.length > 1 && this.animation} />
         ))}
-        {this.hiddenUsers().length > 0 ? <ZenAvatar users={this.hiddenUsers()} animation="false" /> : null}
+        {this.hiddenUsers().length > 0 ? <ZenAvatar users={this.hiddenUsers()} animation={false} /> : null}
       </Host>
     );
   }

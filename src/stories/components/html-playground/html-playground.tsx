@@ -69,13 +69,14 @@ export class HtmlPlayground {
   @Prop() readonly saveValue: boolean = true;
 
   /** What framework is initally selected */
-  @Prop({ mutable: true }) selectedFramework: string = this.frameworks[0].value;
+  @Prop({ mutable: true }) selectedFramework = 0;
 
   /** What framework is initally selected */
   @Prop({ mutable: true }) sourceCodes: SourceCodes = DEFAULTS_SOURCES();
 
   @Watch('selectedFramework')
-  async frameworkChanged(framework: string): Promise<void> {
+  async frameworkChanged(frameworkIndex: number): Promise<void> {
+    const framework = this.frameworks[frameworkIndex].value;
     this.textValue = this.sourceCodes[framework];
     if (this.saveValue) {
       window.localStorage.setItem('html-playground-framework', framework);
@@ -93,7 +94,8 @@ export class HtmlPlayground {
     if (this.saveValue) {
       window.localStorage.setItem(this.localStorageKey(), JSON.stringify(this.sourceCodes));
     }
-    switch (this.selectedFramework) {
+
+    switch (this.selectedFrameworkName) {
       case 'js':
         this.updateVanillaJS();
         break;
@@ -103,9 +105,9 @@ export class HtmlPlayground {
     }
   }
 
-  onTabClicked(): void {
-    const tabs = this.host.shadowRoot.querySelector('#framework-tabs') as HTMLZenTabsElement;
-    this.selectedFramework = tabs.value.toString();
+  onTabClicked(event: Event): void {
+    const tabs = event.target as HTMLZenTabsElement;
+    this.selectedFramework = tabs.value;
   }
 
   @Listen('keydown')
@@ -188,7 +190,7 @@ export class HtmlPlayground {
     const restoreSelectedFramework = (): void => {
       const savedFramework = window.localStorage.getItem('html-playground-framework');
       if (savedFramework) {
-        this.selectedFramework = savedFramework;
+        this.selectedFramework = this.frameworks.findIndex(framework => framework.value === savedFramework);
       }
     };
 
@@ -206,7 +208,7 @@ export class HtmlPlayground {
 
     restoreSourceCodes();
     restoreSelectedFramework();
-    this.textValue = this.sourceCodes[this.selectedFramework];
+    this.textValue = this.sourceCodes[this.selectedFrameworkName];
 
     this.updateVanillaJS();
     if (window.Vue) this.updateVue();
@@ -218,19 +220,27 @@ export class HtmlPlayground {
         <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12" onLoad={() => this.vueLoaded()}></script>
         <sb-zen-tabs
           id="framework-tabs"
-          onChange={() => {
-            this.onTabClicked();
+          style={{ justifyContent: 'initial' }}
+          onChange={event => {
+            this.onTabClicked(event);
           }}
-          tabs={this.frameworks}
           value={this.selectedFramework}
-        />
+        >
+          {this.frameworks.map(framework => (
+            <sb-zen-tab>{framework.label}</sb-zen-tab>
+          ))}
+        </sb-zen-tabs>
         <textarea value={this.textValue} onChange={e => this.onTextareaChange(e)} />
         <p class="preview-title">Preview</p>
 
-        <div id="vanilla-preview" class={{ preview: true, hidden: this.selectedFramework !== 'js' }} />
+        <div id="vanilla-preview" class={{ preview: true, hidden: this.selectedFrameworkName !== 'js' }} />
 
-        <div id="vue-preview" class={{ preview: true, hidden: this.selectedFramework !== 'vue' }} />
+        <div id="vue-preview" class={{ preview: true, hidden: this.selectedFrameworkName !== 'vue' }} />
       </Host>
     );
+  }
+
+  get selectedFrameworkName(): string {
+    return this.frameworks[this.selectedFramework].value;
   }
 }

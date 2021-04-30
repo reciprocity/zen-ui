@@ -46,6 +46,10 @@ export class ZenSidebarNavItem {
     ) as HTMLZenSidebarNavSubitemElement[];
   }
 
+  validateSubitems(): void {
+    this.hasSubitems = this.getItems().length > 0;
+  }
+
   subitemSelected(event: CustomEvent): void {
     const newlySelected = event.target;
     const others = this.getItems().filter(item => item.selected && item !== newlySelected);
@@ -57,7 +61,7 @@ export class ZenSidebarNavItem {
 
   startChildObserver(): void {
     this.childObserver = new MutationObserver(() => {
-      this.hasSubitems = this.getItems().length > 0;
+      this.validateSubitems();
     });
 
     this.childObserver.observe(this.host, {
@@ -69,6 +73,7 @@ export class ZenSidebarNavItem {
 
   componentDidLoad(): void {
     this.startChildObserver();
+    this.validateSubitems();
   }
 
   disconnectedCallback(): void {

@@ -48,10 +48,10 @@ export class ZenSidebar {
   @Prop() readonly paddingLeft: Spacing = null;
 
   /** Inner sidebar hide button clicked */
-  @Event() collapse: EventEmitter<void>;
+  @Event() zenCollapse: EventEmitter<void>;
 
   /** On sidebar collapse/expand */
-  @Event() toggle: EventEmitter<{ expanded: boolean }>;
+  @Event() zenToggle: EventEmitter<{ expanded: boolean }>;
 
   @Watch('expanded')
   async expandedChanged(): Promise<void> {
@@ -61,7 +61,7 @@ export class ZenSidebar {
 
   isVertical = (): boolean => ['left', 'right'].includes(this.position);
 
-  toggleSidebar(animated = true): void {
+  toggleSidebar(animated = true, triggerEvent = true): void {
     const [sizeProp, offsetProp] = this.isVertical() ? ['width', 'offsetWidth'] : ['height', 'offsetHeight'];
 
     // note: we have to get width in px, because `width: auto` isn't animated
@@ -79,15 +79,15 @@ export class ZenSidebar {
       transition: duration,
     };
 
-    this.toggle.emit({ expanded: expand });
+    if (triggerEvent) this.zenToggle.emit({ expanded: expand });
   }
 
   onCloseClicked(): void {
-    this.collapse.emit();
+    this.zenCollapse.emit();
   }
 
   componentDidLoad(): void {
-    this.toggleSidebar(false);
+    this.toggleSidebar(false, false);
     this.wrapPosition = this.expanded ? 'relative' : 'absolute';
   }
 

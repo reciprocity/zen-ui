@@ -166,7 +166,7 @@ describe('zen-table-row inside tree structure', () => {
   it('should set indeterminate state to all parent rows', async () => {
     const checkbox = secondDepthCell.shadowRoot.querySelector('.checkbox') as HTMLZenCheckboxElement;
     checkbox.checked = true;
-    const event = new Event('change', { bubbles: true, composed: true });
+    const event = new Event('zenChange', { bubbles: true, composed: true });
     checkbox.dispatchEvent(event);
     await page.waitForChanges();
     cleanupTableStructure(table);

@@ -1,7 +1,6 @@
-import { Component, Host, h, Element, Prop, Watch, State } from '@stencil/core';
+import { Component, Host, h, Element, Prop, Watch, State, Event, EventEmitter } from '@stencil/core';
 
 /**
- * @event change | Checked changed
  * @event click | Element clicked
  */
 
@@ -13,6 +12,9 @@ import { Component, Host, h, Element, Prop, Watch, State } from '@stencil/core';
 export class ZenToggle {
   @Element() host: HTMLZenToggleElement;
 
+  /** Sets if component can be tabbable/focusable. */
+  @State() tabindex = 0;
+
   /** Name of element, can be used as reference for form data */
   @Prop() readonly name: string = '';
 
@@ -22,12 +24,12 @@ export class ZenToggle {
   /** Set checked state. */
   @Prop({ mutable: true }) checked = false;
 
-  /** Sets if component can be tabbable/focusable. */
-  @State() tabindex = 0;
+  /** Toggle change event */
+  @Event() zenChange: EventEmitter<void>;
 
   @Watch('checked')
   checkedChanged(): void {
-    this.host.dispatchEvent(new window.Event('change'));
+    this.zenChange.emit();
   }
 
   @Watch('disabled')

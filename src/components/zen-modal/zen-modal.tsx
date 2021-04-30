@@ -28,10 +28,10 @@ export class ZenModal {
   @Prop() readonly hideCancel: boolean = false;
 
   /** Top-right X button or default Cancel button clicked */
-  @Event() cancel: EventEmitter<void>;
+  @Event() zenCancel: EventEmitter<void>;
 
   /** Default Ok button clicked (irrelevant if slot `buttons` passed) */
-  @Event() ok: EventEmitter<void>;
+  @Event() zenOk: EventEmitter<void>;
 
   /** Padding of header */
   @Prop() readonly headerPadding: SpacingShorthand = 'lg xl';
@@ -52,11 +52,11 @@ export class ZenModal {
   }
 
   onCancelClicked(): void {
-    this.cancel.emit();
+    this.zenCancel.emit();
   }
 
   onOkClicked(): void {
-    this.ok.emit();
+    this.zenOk.emit();
   }
 
   async componentDidRender(): Promise<void> {

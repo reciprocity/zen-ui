@@ -10,12 +10,12 @@ export class ZenSidebarNavSubitem {
   @Prop({ reflect: true }) readonly selected: boolean = false;
 
   /** Item was selected */
-  @Event() subitemSelect: EventEmitter<void>;
+  @Event() zenSubitemSelect: EventEmitter<void>;
 
   @Watch('selected')
   async selectedChanged(selected: boolean): Promise<void> {
     if (!selected) return;
-    this.subitemSelect.emit();
+    this.zenSubitemSelect.emit();
   }
 
   render(): HTMLElement {

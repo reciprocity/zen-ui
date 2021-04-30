@@ -1,8 +1,5 @@
-import { Component, Host, h, Prop, Element, Listen, Watch } from '@stencil/core';
+import { Component, Host, h, Prop, Element, Listen, Watch, Event, EventEmitter } from '@stencil/core';
 
-/**
- * @event change | Called on any selection change
- **/
 @Component({
   tag: 'zen-tabs',
   styleUrl: 'zen-tabs.scss',
@@ -10,34 +7,46 @@ import { Component, Host, h, Prop, Element, Listen, Watch } from '@stencil/core'
 })
 export class ZenTabs {
   private tabs: HTMLZenTabElement[];
+  private updating = false;
 
   @Element() host: HTMLZenTabsElement;
 
   /** Index of currently selected tab. */
-  @Prop() readonly value: number = 0;
+  @Prop({ mutable: true, reflect: true }) value = 0;
+
+  /** Tabs change event */
+  @Event() zenChange: EventEmitter<void>;
 
   @Watch('value')
-  async selectedChanged(): Promise<void> {
-    this.selectTab(this.tabs[this.value]);
+  selectedChanged(): void {
+    if (!this.updating && !Number.isNaN(this.value)) {
+      this.selectTab(this.tabs[this.value]);
+    }
   }
 
-  @Listen('tabSelect')
+  @Listen('zenSelect')
   onSelectedTab(event: CustomEvent): void {
     this.selectTab(event.target as HTMLZenTabElement);
   }
 
-  selectTab(tab: HTMLZenTabElement): void {
-    this.tabs.forEach(n => {
-      n.selected = false;
+  selectTab(tab: HTMLZenTabElement, triggerEvent = true): void {
+    this.updating = true;
+    this.tabs.forEach((n, index) => {
+      if (tab === n) {
+        n.selected = true;
+        this.value = index;
+      } else {
+        n.selected = false;
+      }
     });
 
-    if (tab) tab.selected = true;
-    this.host.dispatchEvent(new window.Event('change'));
+    if (triggerEvent) this.zenChange.emit();
+    this.updating = false;
   }
 
   componentDidLoad(): void {
     this.tabs = Array.from(this.host.children).map(n => n as HTMLZenTabElement);
-    this.selectTab(this.tabs[this.value]);
+    this.selectTab(this.tabs[this.value], false);
   }
 
   render(): HTMLZenTabsElement {
