@@ -1,3 +1,5 @@
+export type { Placement, Offsets } from '@popperjs/core';
+
 // Props:
 export type Align = 'left' | 'right' | 'center';
 

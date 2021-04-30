@@ -1,6 +1,6 @@
 import { Component, Host, h, Prop, Element } from '@stencil/core';
 import { applyPrefix } from '../helpers/helpers';
-import { AvatarData } from '../helpers/types';
+import { AvatarData, AvatarIconSize } from '../helpers/types';
 
 @Component({
   tag: 'zen-avatar',
@@ -55,10 +55,9 @@ export class ZenAvatar {
           initials={this.initials()}
           background={this.background()}
           color={this.color()}
-          size={this.size()}
+          size={this.size() as AvatarIconSize}
         />
         <ZenTooltip
-          variant="light"
           padding="none"
           show-delay="0"
           max-height={this.users.length > 4 ? '250px' : null}

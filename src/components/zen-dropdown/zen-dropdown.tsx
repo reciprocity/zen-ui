@@ -2,7 +2,7 @@ import { Component, Host, h, Prop, State, Listen, Watch, Element, Method, Event,
 import { getDefaultSlotContent, applyPrefix, scrollIntoView } from '../helpers/helpers';
 import { faChevronDown } from '@fortawesome/pro-light-svg-icons';
 import { OptionValue } from '../zen-menu-item/zen-option';
-import { Align, DropdownSize } from '../helpers/types';
+import { Align, DropdownSize, Placement, TextSize } from '../helpers/types';
 
 export interface OptionItem {
   label: string;
@@ -300,7 +300,7 @@ export class ZenDropdown {
           </div>
           <div class={{ hidden: !!this.value }}>
             <slot name="placeholder">
-              <ZenText class="placeholder" size={this.size}>
+              <ZenText class="placeholder" size={this.size as TextSize}>
                 {this.placeholder}
               </ZenText>
             </slot>
@@ -312,7 +312,7 @@ export class ZenDropdown {
           tabindex={this.opened ? 0 : -1}
           ref={el => (this.popover = el)}
           interactive
-          position={align}
+          position={align as Placement}
           onZenVisibleChange={() => this.onOpenToggle()}
           style={{ width: this.menuWidth, 'max-height': this.menuHeight }}
           offset={offset}
