@@ -1,3 +1,36 @@
+# [6.0.0](https://github.com/reciprocity/zen-ui/compare/5.2.0...6.0.0) (2021-04-30)
+
+
+### Bug Fixes
+
+* add `zen` prefix to all the `change` events ([025d502](https://github.com/reciprocity/zen-ui/commit/025d502adb48d6279de00b1210006b8c50d406dc))
+* add `zen` prefix to all the events ([cad9c49](https://github.com/reciprocity/zen-ui/commit/cad9c495aee89b8a7dfe99be5e8111b41f3ca8a7))
+* **html-playground:** update tabs implementation ([c55a8aa](https://github.com/reciprocity/zen-ui/commit/c55a8aae1291cbb964dfba96e266c497d89a83b6))
+* **zen-date-picker:** prevent double events ([69cb6cf](https://github.com/reciprocity/zen-ui/commit/69cb6cfed69ad7fb7110fec69c2a36ea35095e0f))
+* **zen-drawer:** make opened prop mutable and added close functionality back ([e570bdb](https://github.com/reciprocity/zen-ui/commit/e570bdb4538e230c99311b2d2a14ffd572a3ab74))
+* **zen-modal:** prefix events with 'zen' ([0d9c3fe](https://github.com/reciprocity/zen-ui/commit/0d9c3fec88381f9be3262d17e69a34025dc9e9cc))
+* **zen-sidebar:** prefix events with 'zen' ([1bf696d](https://github.com/reciprocity/zen-ui/commit/1bf696d5e75093b7a063ed545c4ce0395cbcfa4b))
+* **zen-sidebar-nav-item:** validate children on load ([16b11de](https://github.com/reciprocity/zen-ui/commit/16b11dee2e516d551725d76f78ebbc5f3cd08b28))
+* **zen-sidebar-nav-subitem:** prefix event with 'zen' ([e27c42b](https://github.com/reciprocity/zen-ui/commit/e27c42b40f126ff436a74c61eaf0db003b376855))
+* **zen-table-cell:** use the right event name for the checkbox ([1a6c031](https://github.com/reciprocity/zen-ui/commit/1a6c031610f2657b8abe94bd9de92713412f3d34))
+* **zen-tabs:** prevent change event from being triggered on load ([723706d](https://github.com/reciprocity/zen-ui/commit/723706d12becca15400feb059db93ce112002460))
+* **zen-tabs:** prevent using value when it's NaN ([ab0ece7](https://github.com/reciprocity/zen-ui/commit/ab0ece737f498d61a90ea66d4fb612162316af0f))
+* **zen-tabs:** update the selected value ([1e9ecfe](https://github.com/reciprocity/zen-ui/commit/1e9ecfe394726eb60a9ead6d4088c150a06eb4d1))
+* **zen-textarea:** add missing events for blur and focus ([35af57a](https://github.com/reciprocity/zen-ui/commit/35af57ad91a5c488c3d899eaba31506a30a68c3c))
+
+
+### BREAKING CHANGES
+
+* **zen-sidebar-nav-subitem:** The `subitemSelect` event of the `zen-sidebar-nav-subitem`
+component has been renamed to `ZenSubitemSelect`.
+* **zen-sidebar:** The `toggle` and `collapse` events of the `zen-sidebar`
+component have been renamed to `zenToggle` and `zenCollapse`.
+* **zen-modal:** The `ok` and `cancel` events of the `zen-modal` component
+have been renamed to `zenOk` and `zenCancel`.
+* In order to be consistent, all events except for `click`
+are now prefixed with `zen`. For example `onFocus` is now `onZenFocus`.
+* All the `onChange` events were renamed to `onZenChange`.
+
 # [5.2.0](https://github.com/reciprocity/zen-ui/compare/5.1.0...5.2.0) (2021-04-27)
 
 
