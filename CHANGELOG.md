@@ -1,3 +1,10 @@
+# [6.1.0](https://github.com/reciprocity/zen-ui/compare/6.0.0...6.1.0) (2021-05-04)
+
+
+### Features
+
+* **zen-tab:** add disabled and badge params ([bd22d2f](https://github.com/reciprocity/zen-ui/commit/bd22d2ffd26a5b585baefa29e4b13e71dc59ae32))
+
 # [6.0.0](https://github.com/reciprocity/zen-ui/compare/5.2.0...6.0.0) (2021-04-30)
 
 
