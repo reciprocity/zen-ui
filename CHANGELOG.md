@@ -1,3 +1,12 @@
+## [6.1.1](https://github.com/reciprocity/zen-ui/compare/6.1.0...6.1.1) (2021-05-04)
+
+
+### Bug Fixes
+
+* **zen-sidebar:** change default expanded size ([9885d5a](https://github.com/reciprocity/zen-ui/commit/9885d5a333a049bd34a422bf7d648035f9de490d))
+* **zen-sidebar:** change the default collapsed width ([872fb63](https://github.com/reciprocity/zen-ui/commit/872fb6364919e876d48889f7305f620b27387603))
+* **zen-sidebar-nav:** add width property, update the toggle icon and update story ([3e7c937](https://github.com/reciprocity/zen-ui/commit/3e7c937d87aa0ae1916c932c9d8fe0d4cfc7d4d7))
+
 # [6.1.0](https://github.com/reciprocity/zen-ui/compare/6.0.0...6.1.0) (2021-05-04)
 
 
