@@ -14,14 +14,19 @@
   margin-left: auto;
   cursor: pointer;
   position: absolute;
-  right: 0;
+  right: 0.5rem;
   bottom: 1rem;
   background-color: inherit;
   transition: transform 0.2s;
   transition-delay: 0.15s;
+  align-self: center;
 }
 
 :host(:not([expanded])) .collapse-icon,
 :host([expanded='false']) .collapse-icon {
   transform: rotate(180deg);
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
 }

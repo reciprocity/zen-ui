@@ -778,6 +778,10 @@ export namespace Components {
           * Displays a double arrow to toggle the sidebar
          */
         "toggable": boolean;
+        /**
+          * Width of sidebar in maximized state (css prop).<br />Has no impact if position is top or bottom.<br />Can also be set to `auto`.
+         */
+        "width": string;
     }
     interface ZenSidebarNavItem {
         /**
@@ -2348,6 +2352,10 @@ declare namespace LocalJSX {
           * Displays a double arrow to toggle the sidebar
          */
         "toggable"?: boolean;
+        /**
+          * Width of sidebar in maximized state (css prop).<br />Has no impact if position is top or bottom.<br />Can also be set to `auto`.
+         */
+        "width"?: string;
     }
     interface ZenSidebarNavItem {
         /**
