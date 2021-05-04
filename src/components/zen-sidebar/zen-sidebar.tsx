@@ -24,10 +24,10 @@ export class ZenSidebar {
   @Prop({ reflect: true }) readonly expanded: boolean = true;
 
   /** Width/height of sidebar in collapsed state (in px) */
-  @Prop() readonly collapsedSize: number = 48;
+  @Prop() readonly collapsedSize: number = 45;
 
   /** Width of sidebar in maximized state (css prop).<br />Has no impact if position is top or bottom.<br />Can also be set to `auto`.  */
-  @Prop() readonly width: string = '20rem';
+  @Prop() readonly width: string = '13.5rem';
 
   /** Position */
   @Prop({ reflect: true }) readonly position: Position = 'left';
@@ -104,8 +104,8 @@ export class ZenSidebar {
           style={{ ...this.wrapStyle, position: this.wrapPosition }}
         >
           <ZenSpace
-            class="sidebar"
             ref={el => (this.sidebar = el)}
+            class="sidebar"
             vertical
             vertical-align="start"
             no-wrap

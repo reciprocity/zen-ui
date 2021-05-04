@@ -47,7 +47,6 @@ export const StoryWithControls = args => {
         height: 3.5rem;
         display: flex;
         align-items: center;
-        padding: 0.5rem;
         width: 100%;
         border-bottom: 1px solid #ced4da;
         font-size: 0.875rem;
@@ -55,7 +54,6 @@ export const StoryWithControls = args => {
         margin-bottom: 1rem;
       }
       .programs-dropdown span {
-        display: block;
         background-color: #fadbff;
         border-radius: 2px;
         width: 1.5rem;
@@ -63,7 +61,7 @@ export const StoryWithControls = args => {
         display: flex;
         align-items: center;
         justify-content: center;
-        margin-right: 1.5rem;
+        margin: 0.7rem;
       }
     </style>
     <sb-zen-space
@@ -75,26 +73,26 @@ export const StoryWithControls = args => {
       <sb-zen-sidebar-nav padding="sm" id="sidebar1" ...="${spreadArgs(args, argTypes)}">
         <div class="programs-dropdown">
           <span>P</span>
-          DROPDOWN PLACEHOLDER
+          PCI Program 1
         </div>
         <sb-zen-sidebar-nav-item @click="${itemClicked}">
-          <sb-zen-icon padding="md" id="icon-home"></sb-zen-icon>
+          <sb-zen-icon padding="lg" id="icon-home"></sb-zen-icon>
           Program Overview
         </sb-zen-sidebar-nav-item>
         <sb-zen-sidebar-nav-item @click="${itemClicked}">
-          <sb-zen-icon padding="md" id="icon-chart-line"></sb-zen-icon>
+          <sb-zen-icon padding="lg" id="icon-chart-line"></sb-zen-icon>
           Dashboard
         </sb-zen-sidebar-nav-item>
         <sb-zen-sidebar-nav-item @click="${itemClicked}">
-          <sb-zen-icon padding="md" id="icon-audits"></sb-zen-icon>
+          <sb-zen-icon padding="lg" id="icon-audits"></sb-zen-icon>
           Audits
         </sb-zen-sidebar-nav-item>
         <sb-zen-sidebar-nav-item @click="${itemClicked}">
-          <sb-zen-icon padding="md" id="icon-questionnaires"></sb-zen-icon>
+          <sb-zen-icon padding="lg" id="icon-questionnaires"></sb-zen-icon>
           Questionnaires
         </sb-zen-sidebar-nav-item>
         <sb-zen-sidebar-nav-item @click="${itemClicked}">
-          <sb-zen-icon padding="md" id="icon-records"></sb-zen-icon>
+          <sb-zen-icon padding="lg" id="icon-records"></sb-zen-icon>
           Program records
           <div slot="subitems">
             <sb-zen-sidebar-nav-subitem @click="${subitemClicked}">Controls</sb-zen-sidebar-nav-subitem>
@@ -106,11 +104,11 @@ export const StoryWithControls = args => {
           </div>
         </sb-zen-sidebar-nav-item>
         <sb-zen-sidebar-nav-item @click="${itemClicked}">
-          <sb-zen-icon padding="md" id="icon-tools"></sb-zen-icon>
+          <sb-zen-icon padding="lg" id="icon-tools"></sb-zen-icon>
           Tools
         </sb-zen-sidebar-nav-item>
         <sb-zen-sidebar-nav-item @click="${itemClicked}">
-          <sb-zen-icon padding="md" id="icon-settings"></sb-zen-icon>
+          <sb-zen-icon padding="lg" id="icon-settings"></sb-zen-icon>
           Settings
         </sb-zen-sidebar-nav-item>
       </sb-zen-sidebar-nav>

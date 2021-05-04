@@ -1,6 +1,6 @@
 import { Component, Host, h, Element, Prop } from '@stencil/core';
 import { applyPrefix, getDefaultSlotContent } from '../helpers/helpers';
-import { faChevronDoubleLeft } from '@fortawesome/pro-light-svg-icons';
+import { faChevronDoubleLeft } from '@fortawesome/pro-regular-svg-icons';
 
 @Component({
   tag: 'zen-sidebar-nav',
@@ -17,7 +17,10 @@ export class ZenSidebarNav {
   @Prop({ reflect: true }) readonly toggable: boolean = true;
 
   /** Width of sidebar in collapsed state (in px) */
-  @Prop({ reflect: true }) readonly collapsedSize: number = 32;
+  @Prop({ reflect: true }) readonly collapsedSize: number = 45;
+
+  /** Width of sidebar in maximized state (css prop).<br />Has no impact if position is top or bottom.<br />Can also be set to `auto`.  */
+  @Prop() readonly width: string = '13.5rem';
 
   toggle(): void {
     this.expanded = !this.expanded;
@@ -50,6 +53,7 @@ export class ZenSidebarNav {
       <Host onZenSelect={e => this.itemSelected(e)}>
         <ZenSidebar
           class="sidebar"
+          width={this.width}
           collapsed-size={this.collapsedSize}
           expanded={this.expanded}
           onZenToggle={e => this.onToggle(e)}
@@ -60,8 +64,7 @@ export class ZenSidebarNav {
             <ZenIcon
               slot="wrapChildren"
               role="button"
-              padding="md"
-              size="md"
+              size="sm"
               class="collapse-icon hover-ignore"
               icon={faChevronDoubleLeft}
               onClick={() => this.toggle()}
