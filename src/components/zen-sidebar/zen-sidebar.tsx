@@ -27,7 +27,7 @@ export class ZenSidebar {
   @Prop() readonly collapsedSize: number = 48;
 
   /** Width of sidebar in maximized state (css prop).<br />Has no impact if position is top or bottom.<br />Can also be set to `auto`.  */
-  @Prop() readonly width: string = '20rem';
+  @Prop() readonly width: string = '13.5rem';
 
   /** Position */
   @Prop({ reflect: true }) readonly position: Position = 'left';
