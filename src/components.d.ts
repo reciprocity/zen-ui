@@ -917,7 +917,15 @@ export namespace Components {
     }
     interface ZenTab {
         /**
-          * Set tab selected
+          * Tab badge value (null to not display it)
+         */
+        "badge": string | null;
+        /**
+          * Tab disabled
+         */
+        "disabled": boolean;
+        /**
+          * Tab selected
          */
         "selected": boolean;
     }
@@ -2499,11 +2507,19 @@ declare namespace LocalJSX {
     }
     interface ZenTab {
         /**
+          * Tab badge value (null to not display it)
+         */
+        "badge"?: string | null;
+        /**
+          * Tab disabled
+         */
+        "disabled"?: boolean;
+        /**
           * Tab selected event
          */
         "onZenSelect"?: (event: CustomEvent<void>) => void;
         /**
-          * Set tab selected
+          * Tab selected
          */
         "selected"?: boolean;
     }
