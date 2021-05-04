@@ -27,7 +27,7 @@ describe('zen-tab', () => {
       html: `<zen-tab disabled>Tab 1</zen-tab>`,
     });
 
-    expect(page.root.hasAttribute('disabled')).toBeTruthy();
+    expect(page.root.hasAttribute('disabled')).toBe(true);
   });
 
   it('should trigger on click event', async () => {
@@ -41,6 +41,6 @@ describe('zen-tab', () => {
     simulateMouse('click', page.root);
     await page.waitForChanges();
 
-    expect(clickSpy).toHaveBeenCalled();
+    expect(clickSpy).toHaveBeenCalledTimes(1);
   });
 });
