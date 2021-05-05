@@ -1,6 +1,7 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
 import { html } from 'lit-html';
 import { getArgTypes, getDefaultArgs, getComponentData, spreadArgs } from '#storybook/helpers/argTypes';
+import { loremIpsum } from '#storybook/helpers/utils';
 
 import data from '../../../stencilDocs.json';
 const compData = data.components.find(n => n.tag === 'zen-sidebar-nav-skeleton');
@@ -14,7 +15,26 @@ const argTypes = getArgTypes(compData);
 
 export const StoryWithControls = args => {
   return html/*html*/ `
-    <sb-zen-sidebar-nav-skeleton ...="${spreadArgs(args, argTypes)}"></sb-zen-sidebar-nav-skeleton>
+    <sb-zen-space
+      horizontal-align="center"
+      no-wrap
+      vertical-align="stretch"
+      style="border: 1px solid lightgrey; position:relative; height: 600px"
+    >
+      <sb-zen-sidebar-nav-skeleton
+        ...="${spreadArgs(args, argTypes)}"
+        style="flex-shrink: 0"
+      ></sb-zen-sidebar-nav-skeleton>
+      <sb-zen-space
+        padding="6xl"
+        class="fill"
+        horizontal-align="center"
+        vertical
+        style="border: 3px solid lightgrey; position:relative"
+      >
+        <sb-zen-text size="sm">${loremIpsum(3)}</sb-zen-text>
+      </sb-zen-space>
+    </sb-zen-space>
   `;
 };
 
