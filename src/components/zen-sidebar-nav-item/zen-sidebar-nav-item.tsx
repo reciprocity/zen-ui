@@ -84,7 +84,7 @@ export class ZenSidebarNavItem {
     const ZenIcon = applyPrefix('zen-icon', this.host);
 
     return (
-      <Host onSubitemSelect={e => this.subitemSelected(e)} class={{ 'has-subitems': this.hasSubitems }}>
+      <Host onZenSubitemSelect={e => this.subitemSelected(e)} class={{ 'has-subitems': this.hasSubitems }}>
         <div class="item">
           <slot></slot>
           <ZenIcon class="arrow" size="sm" icon={faChevronDown}></ZenIcon>
