@@ -20,7 +20,11 @@ export class ZenSidebarNavSkeleton {
     return (
       <Host style={{ width: this.width }}>
         <ZenSpace block padding="none">
-          <ZenSpace padding="md" spacing="xl" vertical>
+          <ZenSpace class="program-selector" padding="md" spacing="xl" no-wrap>
+            <ZenSkeleton class="no-shrink" style={{ width: '1.5rem', height: '1.5rem' }}></ZenSkeleton>
+            <ZenSkeleton style={{ width: `100%`, height: '1rem' }}></ZenSkeleton>
+          </ZenSpace>
+          <ZenSpace padding="xl md" spacing="xl" vertical>
             {this.widths.map(width => (
               <ZenSkeleton style={{ width: `${width}%`, height: '1rem' }}></ZenSkeleton>
             ))}
