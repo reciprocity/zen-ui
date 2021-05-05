@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, Element } from '@stencil/core';
+import { Component, Host, h, Prop, Element, Watch } from '@stencil/core';
 import { applyPrefix } from '../helpers/helpers';
 
 @Component({
@@ -9,13 +9,22 @@ import { applyPrefix } from '../helpers/helpers';
 export class ZenSidebarNavSkeleton {
   @Element() host: HTMLZenSidebarNavSkeletonElement;
 
+  private widths = [];
+
   /** Width of sidebar in maximized state (css prop).<br>Should match `zen-sidebar-nav` width. */
   @Prop() readonly width: string = '13.5rem';
 
   /** Number of skeleton items  */
   @Prop() readonly items: number = 6;
 
-  private widths = [...Array(this.items)].map(() => 50 + Math.random() * 0.5 * 100);
+  @Watch('items')
+  async itemsChanged(items: number): Promise<void> {
+    this.widths = [...Array(items)].map(() => 50 + Math.random() * 0.5 * 100);
+  }
+
+  async componentWillRender(): Promise<void> {
+    this.itemsChanged(this.items);
+  }
 
   render(): HTMLElement {
     const ZenSpace = applyPrefix('zen-space', this.host);
