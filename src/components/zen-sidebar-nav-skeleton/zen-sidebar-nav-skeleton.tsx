@@ -25,6 +25,7 @@ export class ZenSidebarNavSkeleton {
             <ZenSkeleton style={{ width: `100%`, height: '1rem' }}></ZenSkeleton>
           </ZenSpace>
           <ZenSpace padding="xl md" spacing="xl" vertical>
+            <div class="selected-item-bg"></div>
             {this.widths.map(width => (
               <ZenSkeleton style={{ width: `${width}%`, height: '1rem' }}></ZenSkeleton>
             ))}

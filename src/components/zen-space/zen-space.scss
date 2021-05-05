@@ -1,6 +1,7 @@
 @import '../scss/component-helpers.scss';
 
 :host {
+  position: relative;
   box-sizing: border-box;
   display: flex;
   flex-direction: row;
