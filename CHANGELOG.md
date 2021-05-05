@@ -1,3 +1,10 @@
+## [6.1.2](https://github.com/reciprocity/zen-ui/compare/6.1.1...6.1.2) (2021-05-05)
+
+
+### Bug Fixes
+
+* deselect subitems on select ([3c6c647](https://github.com/reciprocity/zen-ui/commit/3c6c647edc365d74ec22b2f52092720552a72d6c))
+
 ## [6.1.1](https://github.com/reciprocity/zen-ui/compare/6.1.0...6.1.1) (2021-05-04)
 
 
