@@ -1,4 +1,4 @@
-import { Component, Host, h } from '@stencil/core';
+import { Component, Host, h, Prop } from '@stencil/core';
 
 @Component({
   tag: 'zen-sidebar-nav-skeleton',
@@ -6,9 +6,12 @@ import { Component, Host, h } from '@stencil/core';
   shadow: true,
 })
 export class ZenSidebarNavSkeleton {
+  /** Width of sidebar in maximized state (css prop)  */
+  @Prop() readonly width: string = '13.5rem';
+
   render(): HTMLElement {
     return (
-      <Host>
+      <Host style={{ width: this.width }}>
         <p>todo</p>
       </Host>
     );

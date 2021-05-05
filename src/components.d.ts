@@ -790,6 +790,10 @@ export namespace Components {
         "selected": boolean;
     }
     interface ZenSidebarNavSkeleton {
+        /**
+          * Width of sidebar in maximized state (css prop)
+         */
+        "width": string;
     }
     interface ZenSidebarNavSubitem {
         /**
@@ -2385,6 +2389,10 @@ declare namespace LocalJSX {
         "selected"?: boolean;
     }
     interface ZenSidebarNavSkeleton {
+        /**
+          * Width of sidebar in maximized state (css prop)
+         */
+        "width"?: string;
     }
     interface ZenSidebarNavSubitem {
         /**
