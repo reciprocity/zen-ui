@@ -791,7 +791,11 @@ export namespace Components {
     }
     interface ZenSidebarNavSkeleton {
         /**
-          * Width of sidebar in maximized state (css prop)
+          * Number of skeleton items
+         */
+        "items": number;
+        /**
+          * Width of sidebar in maximized state (css prop).<br>Should match `zen-sidebar-nav` width.
          */
         "width": string;
     }
@@ -2390,7 +2394,11 @@ declare namespace LocalJSX {
     }
     interface ZenSidebarNavSkeleton {
         /**
-          * Width of sidebar in maximized state (css prop)
+          * Number of skeleton items
+         */
+        "items"?: number;
+        /**
+          * Width of sidebar in maximized state (css prop).<br>Should match `zen-sidebar-nav` width.
          */
         "width"?: string;
     }

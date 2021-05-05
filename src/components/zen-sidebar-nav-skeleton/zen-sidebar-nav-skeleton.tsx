@@ -9,10 +9,13 @@ import { applyPrefix } from '../helpers/helpers';
 export class ZenSidebarNavSkeleton {
   @Element() host: HTMLZenSidebarNavSkeletonElement;
 
-  /** Width of sidebar in maximized state (css prop)  */
+  /** Width of sidebar in maximized state (css prop).<br>Should match `zen-sidebar-nav` width. */
   @Prop() readonly width: string = '13.5rem';
 
-  private widths = [...Array(6)].map(() => 50 + Math.random() * 0.5 * 100);
+  /** Number of skeleton items  */
+  @Prop() readonly items: number = 6;
+
+  private widths = [...Array(this.items)].map(() => 50 + Math.random() * 0.5 * 100);
 
   render(): HTMLElement {
     const ZenSpace = applyPrefix('zen-space', this.host);
