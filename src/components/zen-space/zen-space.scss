@@ -102,6 +102,11 @@ $aligns: (
   margin-right: auto !important;
 }
 
+::slotted(.no-shrink),
+::slotted([no-shrink]) {
+  flex-shrink: 0 !important;
+}
+
 ::slotted(.fill),
 ::slotted([fill]) {
   flex-grow: 1 !important;
