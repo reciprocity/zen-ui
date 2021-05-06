@@ -1,3 +1,10 @@
+## [6.1.3](https://github.com/reciprocity/zen-ui/compare/6.1.2...6.1.3) (2021-05-06)
+
+
+### Bug Fixes
+
+* **zen-status-tracker:** prevent set attribute loop ([6373f30](https://github.com/reciprocity/zen-ui/commit/6373f30c8002ae0846b03974b2b84f7b490f99af))
+
 ## [6.1.2](https://github.com/reciprocity/zen-ui/compare/6.1.1...6.1.2) (2021-05-05)
 
 
