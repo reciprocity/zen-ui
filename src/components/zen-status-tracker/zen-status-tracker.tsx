@@ -1,5 +1,5 @@
 import { Component, Host, h, Element, Prop, Event, EventEmitter } from '@stencil/core';
-import { applyPrefix } from '../helpers/helpers';
+import { applyPrefix, safeSetAttribute } from '../helpers/helpers';
 
 @Component({
   tag: 'zen-status-tracker',
@@ -57,17 +57,17 @@ export class ZenStatusTracker {
 
     const lastChild = children[children.length - 1];
     children.reduce((hasSelected, lozenge) => {
-      lozenge.setAttribute('size', 'lg');
+      safeSetAttribute(lozenge, 'size', 'lg');
       const isSelected = this.selectedId === lozenge.id;
       if (isSelected) {
         hasSelected = true;
-        lozenge.setAttribute('variant', lozenge.id === lastChild.id ? 'green' : 'dark-blue-ghost');
+        safeSetAttribute(lozenge, 'variant', lozenge.id === lastChild.id ? 'green' : 'dark-blue-ghost');
       } else {
-        lozenge.setAttribute('variant', 'none');
+        safeSetAttribute(lozenge, 'variant', 'none');
       }
 
       // Every lozenge after selected is "disabled"
-      if (hasSelected && !isSelected) lozenge.setAttribute('disabled', '');
+      if (hasSelected && !isSelected) safeSetAttribute(lozenge, 'disabled', '');
 
       // Remove left border if previous lozenge is selected
       const previousElement = lozenge.previousElementSibling;

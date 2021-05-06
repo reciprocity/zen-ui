@@ -139,3 +139,8 @@ export function htmlToElement(html: string): Element[] {
   template.innerHTML = html.trim();
   return Array.from(template.content.children);
 }
+
+export const safeSetAttribute = (element: Element, attr: string, value: string): void => {
+  if (element.getAttribute(attr) === value) return;
+  element.setAttribute(attr, value);
+};
