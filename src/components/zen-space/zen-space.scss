@@ -1,6 +1,7 @@
 @import '../scss/component-helpers.scss';
 
 :host {
+  position: relative;
   box-sizing: border-box;
   display: flex;
   flex-direction: row;
@@ -100,6 +101,11 @@ $aligns: (
 ::slotted(.space-after),
 ::slotted([space-after]) {
   margin-right: auto !important;
+}
+
+::slotted(.no-shrink),
+::slotted([no-shrink]) {
+  flex-shrink: 0 !important;
 }
 
 ::slotted(.fill),

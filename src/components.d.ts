@@ -789,6 +789,16 @@ export namespace Components {
          */
         "selected": boolean;
     }
+    interface ZenSidebarNavSkeleton {
+        /**
+          * Number of skeleton items
+         */
+        "items": number;
+        /**
+          * Width of sidebar in maximized state (css prop).<br>Should match `zen-sidebar-nav` width.
+         */
+        "width": string;
+    }
     interface ZenSidebarNavSubitem {
         /**
           * Render item as selected
@@ -1403,6 +1413,12 @@ declare global {
         prototype: HTMLZenSidebarNavItemElement;
         new (): HTMLZenSidebarNavItemElement;
     };
+    interface HTMLZenSidebarNavSkeletonElement extends Components.ZenSidebarNavSkeleton, HTMLStencilElement {
+    }
+    var HTMLZenSidebarNavSkeletonElement: {
+        prototype: HTMLZenSidebarNavSkeletonElement;
+        new (): HTMLZenSidebarNavSkeletonElement;
+    };
     interface HTMLZenSidebarNavSubitemElement extends Components.ZenSidebarNavSubitem, HTMLStencilElement {
     }
     var HTMLZenSidebarNavSubitemElement: {
@@ -1532,6 +1548,7 @@ declare global {
         "zen-sidebar": HTMLZenSidebarElement;
         "zen-sidebar-nav": HTMLZenSidebarNavElement;
         "zen-sidebar-nav-item": HTMLZenSidebarNavItemElement;
+        "zen-sidebar-nav-skeleton": HTMLZenSidebarNavSkeletonElement;
         "zen-sidebar-nav-subitem": HTMLZenSidebarNavSubitemElement;
         "zen-skeleton": HTMLZenSkeletonElement;
         "zen-sortable": HTMLZenSortableElement;
@@ -2375,6 +2392,16 @@ declare namespace LocalJSX {
          */
         "selected"?: boolean;
     }
+    interface ZenSidebarNavSkeleton {
+        /**
+          * Number of skeleton items
+         */
+        "items"?: number;
+        /**
+          * Width of sidebar in maximized state (css prop).<br>Should match `zen-sidebar-nav` width.
+         */
+        "width"?: string;
+    }
     interface ZenSidebarNavSubitem {
         /**
           * Item was selected
@@ -2865,6 +2892,7 @@ declare namespace LocalJSX {
         "zen-sidebar": ZenSidebar;
         "zen-sidebar-nav": ZenSidebarNav;
         "zen-sidebar-nav-item": ZenSidebarNavItem;
+        "zen-sidebar-nav-skeleton": ZenSidebarNavSkeleton;
         "zen-sidebar-nav-subitem": ZenSidebarNavSubitem;
         "zen-skeleton": ZenSkeleton;
         "zen-sortable": ZenSortable;
@@ -2919,6 +2947,7 @@ declare module "@stencil/core" {
             "zen-sidebar": LocalJSX.ZenSidebar & JSXBase.HTMLAttributes<HTMLZenSidebarElement>;
             "zen-sidebar-nav": LocalJSX.ZenSidebarNav & JSXBase.HTMLAttributes<HTMLZenSidebarNavElement>;
             "zen-sidebar-nav-item": LocalJSX.ZenSidebarNavItem & JSXBase.HTMLAttributes<HTMLZenSidebarNavItemElement>;
+            "zen-sidebar-nav-skeleton": LocalJSX.ZenSidebarNavSkeleton & JSXBase.HTMLAttributes<HTMLZenSidebarNavSkeletonElement>;
             "zen-sidebar-nav-subitem": LocalJSX.ZenSidebarNavSubitem & JSXBase.HTMLAttributes<HTMLZenSidebarNavSubitemElement>;
             "zen-skeleton": LocalJSX.ZenSkeleton & JSXBase.HTMLAttributes<HTMLZenSkeletonElement>;
             "zen-sortable": LocalJSX.ZenSortable & JSXBase.HTMLAttributes<HTMLZenSortableElement>;
