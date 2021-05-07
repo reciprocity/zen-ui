@@ -15,11 +15,6 @@ describe('zen-dropdown', () => {
     skeleton = page.root as HTMLZenSidebarNavSkeletonElement;
   });
 
-  it('should render program selector', () => {
-    const programSelector = skeleton.shadowRoot.querySelectorAll('.program-selector');
-    expect(programSelector.length).toBe(1);
-  });
-
   it('should render exact number of items', async () => {
     let items = skeleton.shadowRoot.querySelectorAll('.item');
     expect(items.length).toBe(6);

@@ -32,10 +32,6 @@ export class ZenSidebarNavSkeleton {
     return (
       <Host style={{ width: this.width }}>
         <ZenSpace block padding="none">
-          <ZenSpace class="program-selector" padding="md" spacing="xl" no-wrap>
-            <ZenSkeleton class="no-shrink" style={{ width: '1.5rem', height: '1.5rem' }}></ZenSkeleton>
-            <ZenSkeleton style={{ width: `100%`, height: '1rem' }}></ZenSkeleton>
-          </ZenSpace>
           <ZenSpace padding="xl md" spacing="xl" vertical>
             <div class="selected-item-bg"></div>
             {this.widths.map(width => (
