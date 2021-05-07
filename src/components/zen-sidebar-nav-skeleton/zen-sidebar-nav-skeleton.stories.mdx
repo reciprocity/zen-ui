@@ -13,25 +13,47 @@ const argTypes = getArgTypes(compData);
   argTypes={argTypes}
 />
 
+export const ProgramsSelector = () => {
+  return html/*html*/ `
+    <sb-zen-space
+      horizontal-align="center"
+      no-wrap
+      vertical-align="stretch"
+      style="border: 1px solid lightgrey; height: 400px"
+    >
+      <sb-zen-sidebar-nav-skeleton style="flex-shrink: 0">
+        <sb-zen-space
+          slot="beforeItems"
+          class="program-selector"
+          padding="md"
+          spacing="xl"
+          no-wrap
+          style="background-color: #fff; height: 3.5rem"
+        >
+          <sb-zen-skeleton class="no-shrink" style="width: 1.5rem; height: 1.5rem"></sb-zen-skeleton>
+          <sb-zen-skeleton style="width: 100%; height: 1rem"></sb-zen-skeleton>
+        </sb-zen-space>
+      </sb-zen-sidebar-nav-skeleton>
+      <sb-zen-space padding="6xl" class="fill" horizontal-align="center" vertical>
+        <sb-zen-text size="sm">${loremIpsum(3)}</sb-zen-text>
+      </sb-zen-space>
+    </sb-zen-space>
+  `;
+};
+
 export const StoryWithControls = args => {
   return html/*html*/ `
     <sb-zen-space
       horizontal-align="center"
       no-wrap
       vertical-align="stretch"
-      style="border: 1px solid lightgrey; position:relative; height: 600px"
+      style="border: 1px solid lightgrey; height: 400px"
     >
       <sb-zen-sidebar-nav-skeleton
         ...="${spreadArgs(args, argTypes)}"
         style="flex-shrink: 0"
       ></sb-zen-sidebar-nav-skeleton>
-      <sb-zen-space
-        padding="6xl"
-        class="fill"
-        horizontal-align="center"
-        vertical
-        style="border: 3px solid lightgrey; position:relative"
-      >
+      <sb-zen-space padding="6xl" class="fill" horizontal-align="center" vertical>
         <sb-zen-text size="sm">${loremIpsum(3)}</sb-zen-text>
       </sb-zen-space>
     </sb-zen-space>
@@ -41,6 +63,18 @@ export const StoryWithControls = args => {
 # Zen Sidebar Navigation Skeleton
 
 Component to be shown while we're retrieving data to draw the actual `zen-sidebar-nav` inside Zen apps.
+
+## Component previews
+
+<br />
+
+### 1. Programs selector
+
+- Use slots `beforeItems` and `afterItems` to add skeletons for additionl things.
+
+<Canvas>
+  <Story name="programs-selector">{ProgramsSelector.bind({})}</Story>
+</Canvas>
 
 ## Properties
 
