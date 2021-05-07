@@ -1,3 +1,11 @@
+# [6.2.0](https://github.com/reciprocity/zen-ui/compare/6.1.3...6.2.0) (2021-05-07)
+
+
+### Features
+
+* **zen-space:** add child prop `no-shrink` ([ec24429](https://github.com/reciprocity/zen-ui/commit/ec2442910b52ec756a66c4e516cd2d208ae82414))
+* add component `zen-sidebar-nav-skeleton` ([26717f7](https://github.com/reciprocity/zen-ui/commit/26717f752a446d4adc8fa2cf76a8aa1cfb558a13))
+
 ## [6.1.3](https://github.com/reciprocity/zen-ui/compare/6.1.2...6.1.3) (2021-05-06)
 
 
