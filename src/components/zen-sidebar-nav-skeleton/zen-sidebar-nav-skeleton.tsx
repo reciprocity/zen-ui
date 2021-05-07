@@ -1,6 +1,11 @@
 import { Component, Host, h, Prop, Element, Watch } from '@stencil/core';
 import { applyPrefix } from '../helpers/helpers';
 
+/**
+ * @slot beforeItems - Insert something above the items
+ * @slot afterItems - Insert something beneath the items
+ */
+
 @Component({
   tag: 'zen-sidebar-nav-skeleton',
   styleUrl: 'zen-sidebar-nav-skeleton.scss',
@@ -31,6 +36,7 @@ export class ZenSidebarNavSkeleton {
     const ZenSkeleton = applyPrefix('zen-skeleton', this.host);
     return (
       <Host style={{ width: this.width }}>
+        <slot name="beforeItems"></slot>
         <ZenSpace block padding="none">
           <ZenSpace padding="xl md" spacing="xl" vertical>
             <div class="selected-item-bg"></div>
@@ -38,6 +44,7 @@ export class ZenSidebarNavSkeleton {
               <ZenSkeleton class="item" style={{ width: `${width}%`, height: '1rem' }}></ZenSkeleton>
             ))}
           </ZenSpace>
+          <slot name="afterItems"></slot>
         </ZenSpace>
       </Host>
     );
