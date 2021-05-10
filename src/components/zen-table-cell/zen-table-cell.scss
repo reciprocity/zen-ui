@@ -2,11 +2,13 @@
 
 :host {
   display: flex;
+  min-width: 0;
   position: relative;
   align-items: center;
-  height: 3.5rem;
+  min-height: 3.5rem;
   padding-right: 2rem;
   margin-top: -1px; // collapse borders
+  overflow: hidden;
 }
 
 // Border
@@ -59,7 +61,7 @@
 }
 
 :host([header]) {
-  height: 2rem;
+  min-height: 2rem;
   font-weight: bold;
   border-bottom: 1px solid $color-gray-200;
   background-color: $color-white !important;
@@ -73,6 +75,10 @@
   position: sticky;
   top: -2px; // -2 to prevent bg leaking due to scrolling tremble
   z-index: 2;
+}
+
+:host([no-shrink]:not([no-shrink='false'])) {
+  min-width: fit-content;
 }
 
 .widgets {

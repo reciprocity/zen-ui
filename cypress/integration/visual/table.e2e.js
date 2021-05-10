@@ -9,6 +9,7 @@ describe('Table visual tests', () => {
     'story--lists-table-table--with-fragments',
     'story--lists-table-table--sticky-header',
     'story--lists-table-table--no-header',
+    'story--lists-table-table--truncate',
   ];
 
   const skippedStories = [

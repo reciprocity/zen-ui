@@ -7,7 +7,7 @@
   color: $color-gray-700;
 }
 
-:host([inline]) {
+:host([inline]:not([inline='false'])) {
   display: inline-flex;
 }
 
@@ -79,27 +79,27 @@
   margin-top: 0.5rem;
 }
 
-:host([bold]) {
+:host([bold]:not([bold='false'])) {
   font-weight: bold;
 }
 
-:host([italic]) {
+:host([italic]:not([italic='false'])) {
   font-style: italic;
 }
 
-:host([uppercase]) {
+:host([uppercase]:not([uppercase='false'])) {
   text-transform: uppercase;
 }
 
-:host([lowercase]) {
+:host([lowercase]:not([lowercase='false'])) {
   text-transform: lowercase;
 }
 
-:host([strikethrough]) {
+:host([strikethrough]:not([strikethrough='false'])) {
   text-decoration: line-through;
 }
 
-:host([underline]) {
+:host([underline]:not([underline='false'])) {
   text-decoration: underline;
 }
 
@@ -111,17 +111,18 @@
   justify-content: center;
 }
 
-:host([truncate]) {
+:host([truncate]:not([truncate='false'])) {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  display: block;
 }
 
-:host([pale]) {
+:host([pale]:not([pale='false'])) {
   color: $color-gray-500;
 }
 
-:host([disabled]) {
+:host([disabled]:not([disabled='false'])) {
   color: $color-gray-200;
   pointer-events: none;
 }

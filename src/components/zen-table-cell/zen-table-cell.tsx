@@ -34,6 +34,9 @@ export class ZenTableCell {
   /** Checkbox indeterminate state  */
   @Prop({ attribute: 'indeterminate' }) readonly $indeterminate: boolean = false;
 
+  /** Never shrink this cell to less than content width */
+  @Prop({ reflect: true }) readonly noShrink: boolean = false;
+
   /** Cell remains fixed at the top during scroll */
   @Prop({ reflect: true, attribute: 'sticky' }) readonly $sticky: boolean = false;
 
