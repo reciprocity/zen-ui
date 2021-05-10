@@ -1,3 +1,16 @@
+# [6.3.0](https://github.com/reciprocity/zen-ui/compare/6.2.0...6.3.0) (2021-05-10)
+
+
+### Bug Fixes
+
+* **zen-table:** make zen-text truncate work with tables ([6acb66b](https://github.com/reciprocity/zen-ui/commit/6acb66b64bac0e78111085490a707456e9a170ba))
+* **zen-text:** fix truncate prop ([e968e19](https://github.com/reciprocity/zen-ui/commit/e968e19ce67679aaad11195ce7da98b2dc96017b))
+
+
+### Features
+
+* **zen-table-cell:** add prop `no-shrink` ([e9c9e7c](https://github.com/reciprocity/zen-ui/commit/e9c9e7c823cf1b086cca54daa0b40ec5efc33648))
+
 # [6.2.0](https://github.com/reciprocity/zen-ui/compare/6.1.3...6.2.0) (2021-05-07)
 
 
