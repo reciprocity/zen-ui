@@ -203,9 +203,6 @@ export const StorySelectable = () => {
 };
 
 export const StoryTree = () => {
-  waitForElement('#icon1', element => {
-    element.icon = faArrowRight;
-  });
   return html/*html*/ `
     <style>
       .first {
@@ -401,6 +398,60 @@ export const StoryExtendedRowContent = () => {
   `;
 };
 
+export const StoryTruncateText = () => {
+  waitForElement('#icon1', element => {
+    element.icon = faArrowRight;
+  });
+  return html/*html*/ `
+    <sb-zen-table columns="repeat(4, 1fr)">
+      <sb-zen-table-row header selectable>
+        <sb-zen-table-cell>
+          <sb-zen-text truncate>Title 1</sb-zen-text>
+        </sb-zen-table-cell>
+        <sb-zen-table-cell>
+          <sb-zen-text truncate>Title 2</sb-zen-text>
+        </sb-zen-table-cell>
+        <sb-zen-table-cell>
+          <sb-zen-text truncate>Title 3</sb-zen-text>
+        </sb-zen-table-cell>
+        <sb-zen-table-cell>
+          <sb-zen-text truncate>File name</sb-zen-text>
+        </sb-zen-table-cell>
+      </sb-zen-table-row>
+      <sb-zen-table-row selectable>
+        <sb-zen-table-cell>
+          <sb-zen-icon id="icon1" padding-right="md"></sb-zen-icon>
+          <sb-zen-text truncate>Some very very long text that will be truncated</sb-zen-text>
+        </sb-zen-table-cell>
+        <sb-zen-table-cell>
+          <sb-zen-text>I will break into multiple lines</sb-zen-text>
+        </sb-zen-table-cell>
+        <sb-zen-table-cell no-shrink>
+          <sb-zen-text truncate bold>Never truncated this text!</sb-zen-text>
+        </sb-zen-table-cell>
+        <sb-zen-table-cell>
+          <sb-zen-text truncate>A very very long file name that will be truncated</sb-zen-text>
+          <sb-zen-text>.jpg</sb-zen-text>
+        </sb-zen-table-cell>
+      </sb-zen-table-row>
+      <sb-zen-table-row selectable>
+        <sb-zen-table-cell>
+          <sb-zen-text truncate>Row 1, Cell 1</sb-zen-text>
+        </sb-zen-table-cell>
+        <sb-zen-table-cell>
+          <sb-zen-text truncate>Row 1, Cell 2</sb-zen-text>
+        </sb-zen-table-cell>
+        <sb-zen-table-cell>
+          <sb-zen-text truncate>Row 1, Cell 3</sb-zen-text>
+        </sb-zen-table-cell>
+        <sb-zen-table-cell>
+          <sb-zen-text truncate>Row 1, Cell 4</sb-zen-text>
+        </sb-zen-table-cell>
+      </sb-zen-table-row>
+    </sb-zen-table>
+  `;
+};
+
 export const StoryWithControls = args => {
   //
   function element(selector) {
@@ -492,64 +543,64 @@ export const StoryWithControls = args => {
     </style>
     <sb-zen-table id="table1" ...="${spreadArgs(args, argTypes)}" @click="${e => clicked(e)}">
       <sb-zen-table-row header selectable>
-        <sb-zen-table-cell>Title 1</sb-zen-table-cell>
-        <sb-zen-table-cell>Title 2</sb-zen-table-cell>
-        <sb-zen-table-cell>Title 3</sb-zen-table-cell>
-        <sb-zen-table-cell>Title 4</sb-zen-table-cell>
+        <sb-zen-table-cell><sb-zen-text truncate>Title 1</sb-zen-text></sb-zen-table-cell>
+        <sb-zen-table-cell><sb-zen-text truncate>Title 2</sb-zen-text></sb-zen-table-cell>
+        <sb-zen-table-cell><sb-zen-text truncate>Title 3</sb-zen-text></sb-zen-table-cell>
+        <sb-zen-table-cell><sb-zen-text truncate>Title 4</sb-zen-text></sb-zen-table-cell>
       </sb-zen-table-row>
       <sb-zen-table-row selectable>
-        <sb-zen-table-cell>Row 1, Cell 1</sb-zen-table-cell>
-        <sb-zen-table-cell>Row 1, Cell 2</sb-zen-table-cell>
-        <sb-zen-table-cell>Row 1, Cell 3</sb-zen-table-cell>
-        <sb-zen-table-cell>Row 1, Cell 4</sb-zen-table-cell>
+        <sb-zen-table-cell><sb-zen-text truncate>Row 1, Cell 1</sb-zen-text></sb-zen-table-cell>
+        <sb-zen-table-cell><sb-zen-text truncate>Row 1, Cell 2</sb-zen-text></sb-zen-table-cell>
+        <sb-zen-table-cell><sb-zen-text truncate>Row 1, Cell 3</sb-zen-text></sb-zen-table-cell>
+        <sb-zen-table-cell><sb-zen-text truncate>Row 1, Cell 4</sb-zen-text></sb-zen-table-cell>
       </sb-zen-table-row>
       <sb-zen-table-row selectable>
-        <sb-zen-table-cell>Row 2, Cell 1</sb-zen-table-cell>
-        <sb-zen-table-cell>Row 2, Cell 2</sb-zen-table-cell>
-        <sb-zen-table-cell>Row 2, Cell 3</sb-zen-table-cell>
-        <sb-zen-table-cell>Row 2, Cell 4</sb-zen-table-cell>
+        <sb-zen-table-cell><sb-zen-text truncate>Row 2, Cell 1</sb-zen-text></sb-zen-table-cell>
+        <sb-zen-table-cell><sb-zen-text truncate>Row 2, Cell 2</sb-zen-text></sb-zen-table-cell>
+        <sb-zen-table-cell><sb-zen-text truncate>Row 2, Cell 3</sb-zen-text></sb-zen-table-cell>
+        <sb-zen-table-cell><sb-zen-text truncate>Row 2, Cell 4</sb-zen-text></sb-zen-table-cell>
       </sb-zen-table-row>
       <sb-zen-table-row selectable>
-        <sb-zen-table-cell>Row 3, Cell 1</sb-zen-table-cell>
-        <sb-zen-table-cell>Row 3, Cell 2</sb-zen-table-cell>
-        <sb-zen-table-cell>Row 3, Cell 3</sb-zen-table-cell>
-        <sb-zen-table-cell>Row 3, Cell 4</sb-zen-table-cell>
+        <sb-zen-table-cell><sb-zen-text truncate>Row 3, Cell 1</sb-zen-text></sb-zen-table-cell>
+        <sb-zen-table-cell><sb-zen-text truncate>Row 3, Cell 2</sb-zen-text></sb-zen-table-cell>
+        <sb-zen-table-cell><sb-zen-text truncate>Row 3, Cell 3</sb-zen-text></sb-zen-table-cell>
+        <sb-zen-table-cell><sb-zen-text truncate>Row 3, Cell 4</sb-zen-text></sb-zen-table-cell>
       </sb-zen-table-row>
       <sb-zen-table-row selectable>
-        <sb-zen-table-cell>Row 4, Cell 1</sb-zen-table-cell>
-        <sb-zen-table-cell>Row 4, Cell 2</sb-zen-table-cell>
-        <sb-zen-table-cell>Row 4, Cell 3</sb-zen-table-cell>
-        <sb-zen-table-cell>Row 4, Cell 4</sb-zen-table-cell>
+        <sb-zen-table-cell><sb-zen-text truncate>Row 4, Cell 1</sb-zen-text></sb-zen-table-cell>
+        <sb-zen-table-cell><sb-zen-text truncate>Row 4, Cell 2</sb-zen-text></sb-zen-table-cell>
+        <sb-zen-table-cell><sb-zen-text truncate>Row 4, Cell 3</sb-zen-text></sb-zen-table-cell>
+        <sb-zen-table-cell><sb-zen-text truncate>Row 4, Cell 4</sb-zen-text></sb-zen-table-cell>
       </sb-zen-table-row>
       <sb-zen-table-row depth="1">
-        <sb-zen-table-cell>Non-selectable</sb-zen-table-cell>
-        <sb-zen-table-cell>Row 5, Cell 2</sb-zen-table-cell>
-        <sb-zen-table-cell>Row 5, Cell 3</sb-zen-table-cell>
-        <sb-zen-table-cell>Row 5, Cell 4</sb-zen-table-cell>
+        <sb-zen-table-cell><sb-zen-text truncate>Non-selectable</sb-zen-text></sb-zen-table-cell>
+        <sb-zen-table-cell><sb-zen-text truncate>Row 5, Cell 2</sb-zen-text></sb-zen-table-cell>
+        <sb-zen-table-cell><sb-zen-text truncate>Row 5, Cell 3</sb-zen-text></sb-zen-table-cell>
+        <sb-zen-table-cell><sb-zen-text truncate>Row 5, Cell 4</sb-zen-text></sb-zen-table-cell>
       </sb-zen-table-row>
       <sb-zen-table-row selectable depth="1">
-        <sb-zen-table-cell>Row 5, Cell 1</sb-zen-table-cell>
-        <sb-zen-table-cell>Row 5, Cell 2</sb-zen-table-cell>
-        <sb-zen-table-cell>Row 5, Cell 3</sb-zen-table-cell>
-        <sb-zen-table-cell>Row 5, Cell 4</sb-zen-table-cell>
+        <sb-zen-table-cell><sb-zen-text truncate>Row 5, Cell 1</sb-zen-text></sb-zen-table-cell>
+        <sb-zen-table-cell><sb-zen-text truncate>Row 5, Cell 2</sb-zen-text></sb-zen-table-cell>
+        <sb-zen-table-cell><sb-zen-text truncate>Row 5, Cell 3</sb-zen-text></sb-zen-table-cell>
+        <sb-zen-table-cell><sb-zen-text truncate>Row 5, Cell 4</sb-zen-text></sb-zen-table-cell>
       </sb-zen-table-row>
       <sb-zen-table-row selectable depth="2">
-        <sb-zen-table-cell>Row 5, Cell 1</sb-zen-table-cell>
-        <sb-zen-table-cell>Row 5, Cell 2</sb-zen-table-cell>
-        <sb-zen-table-cell>Row 5, Cell 3</sb-zen-table-cell>
-        <sb-zen-table-cell>Row 5, Cell 4</sb-zen-table-cell>
+        <sb-zen-table-cell><sb-zen-text truncate>Row 5, Cell 1</sb-zen-text></sb-zen-table-cell>
+        <sb-zen-table-cell><sb-zen-text truncate>Row 5, Cell 2</sb-zen-text></sb-zen-table-cell>
+        <sb-zen-table-cell><sb-zen-text truncate>Row 5, Cell 3</sb-zen-text></sb-zen-table-cell>
+        <sb-zen-table-cell><sb-zen-text truncate>Row 5, Cell 4</sb-zen-text></sb-zen-table-cell>
       </sb-zen-table-row>
       <sb-zen-table-row selectable depth="1">
-        <sb-zen-table-cell>Row 5, Cell 1</sb-zen-table-cell>
-        <sb-zen-table-cell>Row 5, Cell 2</sb-zen-table-cell>
-        <sb-zen-table-cell>Row 5, Cell 3</sb-zen-table-cell>
-        <sb-zen-table-cell>Row 5, Cell 4</sb-zen-table-cell>
+        <sb-zen-table-cell><sb-zen-text truncate>Row 5, Cell 1</sb-zen-text></sb-zen-table-cell>
+        <sb-zen-table-cell><sb-zen-text truncate>Row 5, Cell 2</sb-zen-text></sb-zen-table-cell>
+        <sb-zen-table-cell><sb-zen-text truncate>Row 5, Cell 3</sb-zen-text></sb-zen-table-cell>
+        <sb-zen-table-cell><sb-zen-text truncate>Row 5, Cell 4</sb-zen-text></sb-zen-table-cell>
       </sb-zen-table-row>
       <sb-zen-table-row selectable>
-        <sb-zen-table-cell>Row 5, Cell 1</sb-zen-table-cell>
-        <sb-zen-table-cell>Row 5, Cell 2</sb-zen-table-cell>
-        <sb-zen-table-cell>Row 5, Cell 3</sb-zen-table-cell>
-        <sb-zen-table-cell>Row 5, Cell 4</sb-zen-table-cell>
+        <sb-zen-table-cell><sb-zen-text truncate>Row 5, Cell 1</sb-zen-text></sb-zen-table-cell>
+        <sb-zen-table-cell><sb-zen-text truncate>Row 5, Cell 2</sb-zen-text></sb-zen-table-cell>
+        <sb-zen-table-cell><sb-zen-text truncate>Row 5, Cell 3</sb-zen-text></sb-zen-table-cell>
+        <sb-zen-table-cell><sb-zen-text truncate>Row 5, Cell 4</sb-zen-text></sb-zen-table-cell>
       </sb-zen-table-row>
     </sb-zen-table>
     <sb-zen-text bold style="margin-top: 2rem">Zen-table rows editor</sb-zen-text>
@@ -624,6 +675,14 @@ A composition of `ZenTable` component and fragment `ZenTableRow`, `ZenTableHeade
 
 <Canvas>
   <Story name="custom">{StoryExtendedRowContent.bind({})}</Story>
+</Canvas>
+
+### 7. Resizing and text truncation
+
+In order to have text content truncated if it's too long, wrap it with `<zen-text>`. Also play with props `truncate` and `no-shrink`:
+
+<Canvas>
+  <Story name="truncate">{StoryTruncateText.bind({})}</Story>
 </Canvas>
 
 ## Properties

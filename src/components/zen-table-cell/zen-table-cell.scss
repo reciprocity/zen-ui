@@ -5,9 +5,10 @@
   min-width: 0;
   position: relative;
   align-items: center;
-  height: 3.5rem;
+  min-height: 3.5rem;
   padding-right: 2rem;
   margin-top: -1px; // collapse borders
+  overflow: hidden;
 }
 
 // Border
