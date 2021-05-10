@@ -76,6 +76,10 @@
   z-index: 2;
 }
 
+:host([no-shrink]:not([no-shrink='false'])) {
+  min-width: fit-content;
+}
+
 .widgets {
   // 1px offset to render selected border on FF:
   top: 1px;

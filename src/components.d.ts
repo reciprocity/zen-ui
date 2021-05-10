@@ -998,6 +998,10 @@ export namespace Components {
           * Spans through whole table
          */
         "fullSpan": boolean;
+        /**
+          * Never shrink this cell to less than content width
+         */
+        "noShrink": boolean;
     }
     interface ZenTableRow {
         /**
@@ -2613,6 +2617,10 @@ declare namespace LocalJSX {
           * Spans through whole table
          */
         "fullSpan"?: boolean;
+        /**
+          * Never shrink this cell to less than content width
+         */
+        "noShrink"?: boolean;
     }
     interface ZenTableRow {
         /**
