@@ -1,3 +1,10 @@
+## [6.3.1](https://github.com/reciprocity/zen-ui/compare/6.3.0...6.3.1) (2021-05-12)
+
+
+### Bug Fixes
+
+* **zen-table:** fix occasional error thrown when unmounted ([98b96bc](https://github.com/reciprocity/zen-ui/commit/98b96bcff2b745e93d8f8a88b764990beba61f28))
+
 # [6.3.0](https://github.com/reciprocity/zen-ui/compare/6.2.0...6.3.0) (2021-05-10)
 
 
