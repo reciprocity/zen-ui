@@ -36,6 +36,7 @@ export class ZenTable {
   }
 
   disconnectedCallback(): void {
+    if (!this.childObserver) return;
     this.childObserver.disconnect();
   }
 
