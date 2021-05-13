@@ -1,4 +1,7 @@
 import { Component, Host, h, Prop, Watch, Element, Event, EventEmitter } from '@stencil/core';
+import { applyPrefix } from '../helpers/helpers';
+import { faCheck } from '@fortawesome/pro-regular-svg-icons';
+import { faHorizontalRule } from '@fortawesome/pro-solid-svg-icons';
 
 /**
  * @event click | Called when checkbox value changes due to user action
@@ -55,6 +58,8 @@ export class ZenCheckbox {
   };
 
   render(): HTMLElement {
+    const ZenIcon = applyPrefix('zen-icon', this.host);
+
     return (
       <Host onClick={this.onClick}>
         <input
@@ -65,6 +70,8 @@ export class ZenCheckbox {
           required={this.required}
           indeterminate={this.indeterminate}
         />
+        {this.checked && !this.indeterminate && <ZenIcon class="icon" icon={faCheck} size="sm"></ZenIcon>}
+        {this.indeterminate && <ZenIcon class="icon" icon={faHorizontalRule} size="sm"></ZenIcon>}
         {this.label && (
           <label class={{ disabled: this.disabled }}>
             {this.label} {this.required ? <span class="required">*</span> : null}
