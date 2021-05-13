@@ -1,3 +1,10 @@
+## [6.3.2](https://github.com/reciprocity/zen-ui/compare/6.3.1...6.3.2) (2021-05-13)
+
+
+### Bug Fixes
+
+* **zen-checkbox:** always render icons ([57872c7](https://github.com/reciprocity/zen-ui/commit/57872c74bdd9df9a66e9980653e3ddeb987b8efc))
+
 ## [6.3.1](https://github.com/reciprocity/zen-ui/compare/6.3.0...6.3.1) (2021-05-12)
 
 
