@@ -2652,10 +2652,9 @@ declare namespace LocalJSX {
          */
         "header"?: boolean;
         /**
-          * Row selected
-          * @todo Is this really needed?
+          * User selected/deselected row (not triggered if changed from code)
          */
-        "onRowSelectChanged"?: (event: CustomEvent<boolean>) => void;
+        "onZenSelect"?: (event: CustomEvent<boolean>) => void;
         /**
           * Show checkbox
          */
