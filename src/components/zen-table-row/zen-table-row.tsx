@@ -12,6 +12,7 @@ import { getDefaultSlotContent } from '../helpers/helpers';
 export class ZenTableRow {
   childObserver: MutationObserver = null;
   disconnected = false;
+  initializing = true;
 
   @Element() host: HTMLZenTableRowElement;
 
@@ -46,11 +47,13 @@ export class ZenTableRow {
   @Prop() readonly $afterHeader: boolean = false;
 
   /**
-   * Row selected
-   *
-   * @todo Is this really needed?
+   * row.selected changed
    */
-  @Event() rowSelectChanged: EventEmitter<boolean>;
+  @Event() zenSelect: EventEmitter<boolean>;
+  /**
+   * row.expanded changed
+   */
+  @Event() zenToggle: EventEmitter<boolean>;
 
   @Watch('selectable')
   async selectableChanged(selectable: boolean): Promise<void> {
@@ -85,11 +88,13 @@ export class ZenTableRow {
   @Watch('$indeterminate')
   async indeterminateChanged(indeterminate: boolean): Promise<void> {
     this.setCellsProp('$indeterminate', indeterminate);
+    if (!this.initializing) this.zenSelect.emit();
   }
 
   @Watch('selected')
   async selectedChanged(selected: boolean): Promise<void> {
     this.setCellsProp('$selected', selected);
+    if (!this.initializing) this.zenSelect.emit();
 
     const table = this.host.parentElement as HTMLZenTableElement;
     if (table.$updating) return;
@@ -101,6 +106,7 @@ export class ZenTableRow {
   @Watch('expanded')
   async expandedChanged(expanded: boolean): Promise<void> {
     this.setCellsProp('$expanded', expanded);
+    if (!this.initializing) this.zenToggle.emit();
   }
 
   allTableRows(): HTMLZenTableRowElement[] {
@@ -151,6 +157,7 @@ export class ZenTableRow {
     this.headerChanged(this.header);
     this.stickyChanged(this.sticky);
     this.indeterminateChanged(this.$indeterminate);
+    this.initializing = false;
   }
 
   render(): HTMLTableRowElement {
