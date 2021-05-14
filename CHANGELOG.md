@@ -1,3 +1,11 @@
+# [6.4.0](https://github.com/reciprocity/zen-ui/compare/6.3.2...6.4.0) (2021-05-14)
+
+
+### Features
+
+* **zen-row:** add `zenSelect` event ([c5f3db0](https://github.com/reciprocity/zen-ui/commit/c5f3db0bc5cb8d76bc0af658400dd06f363b368d))
+* **zen-row:** add `zenToggle` event ([1520c0a](https://github.com/reciprocity/zen-ui/commit/1520c0af064dce9d49899a536bd564d421522629))
+
 ## [6.3.2](https://github.com/reciprocity/zen-ui/compare/6.3.1...6.3.2) (2021-05-13)
 
 
