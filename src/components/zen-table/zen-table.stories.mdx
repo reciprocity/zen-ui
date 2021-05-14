@@ -288,62 +288,65 @@ export const StoryTreeWithHeader = () => {
   waitForElement('#icon1', element => {
     element.icon = faArrowRight;
   });
-  const onRowSelect = event => {
+  const onSelect = event => {
     console.log('zenSelect, target:', event.target);
+  };
+  const onToggle = event => {
+    console.log('zenToggle, target:', event.target);
   };
   return html/*html*/ `
     <sb-zen-table columns="auto 1fr 1fr">
-      <sb-zen-table-row @zenSelect="${onRowSelect}" header sticky selectable>
+      <sb-zen-table-row @zenSelect="${onSelect}" @zenToggle="${onToggle}" header sticky selectable>
         <sb-zen-table-cell>Title</sb-zen-table-cell>
         <sb-zen-table-cell>Status</sb-zen-table-cell>
         <sb-zen-table-cell>Description</sb-zen-table-cell>
       </sb-zen-table-row>
-      <sb-zen-table-row @zenSelect="${onRowSelect}" selectable>
+      <sb-zen-table-row @zenSelect="${onSelect}" @zenToggle="${onToggle}" selectable>
         <sb-zen-table-cell>PCI Requirement 1 - Firewall Configuration</sb-zen-text></sb-zen-table-cell>
         <sb-zen-table-cell>Status</sb-zen-text></sb-zen-table-cell>
         <sb-zen-table-cell>Some description plus some</sb-zen-text></sb-zen-table-cell>
       </sb-zen-table-row>
-      <sb-zen-table-row @zenSelect="${onRowSelect}" depth="1" selectable>
+      <sb-zen-table-row @zenSelect="${onSelect}" @zenToggle="${onToggle}" depth="1" selectable>
         <sb-zen-table-cell>PCI Requirement 2 - Firewall Configuration</sb-zen-text></sb-zen-table-cell>
         <sb-zen-table-cell>Status</sb-zen-text></sb-zen-table-cell>
         <sb-zen-table-cell>Some description plus some</sb-zen-text></sb-zen-table-cell>
       </sb-zen-table-row>
-      <sb-zen-table-row @zenSelect="${onRowSelect}" depth="1" selectable>
+      <sb-zen-table-row @zenSelect="${onSelect}" @zenToggle="${onToggle}" depth="1" selectable>
         <sb-zen-table-cell>PCI Requirement 3 - Firewall Configuration</sb-zen-text></sb-zen-table-cell>
         <sb-zen-table-cell>Status</sb-zen-text></sb-zen-table-cell>
         <sb-zen-table-cell>Some description plus some</sb-zen-text></sb-zen-table-cell>
       </sb-zen-table-row>
-      <sb-zen-table-row @zenSelect="${onRowSelect}" depth="2" selectable>
+      <sb-zen-table-row @zenSelect="${onSelect}" @zenToggle="${onToggle}" depth="2" selectable>
         <sb-zen-table-cell>PCI Requirement 4 - Firewall Configuration</sb-zen-text></sb-zen-table-cell>
         <sb-zen-table-cell>Status</sb-zen-text></sb-zen-table-cell>
         <sb-zen-table-cell>Some description plus some</sb-zen-text></sb-zen-table-cell>
       </sb-zen-table-row>
-      <sb-zen-table-row @zenSelect="${onRowSelect}" depth="2" selectable>
+      <sb-zen-table-row @zenSelect="${onSelect}" @zenToggle="${onToggle}" depth="2" selectable>
         <sb-zen-table-cell>PCI Requirement 5 - Firewall Configuration</sb-zen-text></sb-zen-table-cell>
         <sb-zen-table-cell>Status</sb-zen-text></sb-zen-table-cell>
         <sb-zen-table-cell>Some description plus some</sb-zen-text></sb-zen-table-cell>
       </sb-zen-table-row>
-      <sb-zen-table-row @zenSelect="${onRowSelect}" depth="2" selectable>
+      <sb-zen-table-row @zenSelect="${onSelect}" @zenToggle="${onToggle}" depth="2" selectable>
         <sb-zen-table-cell>PCI Requirement 6 - Firewall Configuration</sb-zen-text></sb-zen-table-cell>
         <sb-zen-table-cell>Status</sb-zen-text></sb-zen-table-cell>
         <sb-zen-table-cell>Some description plus some</sb-zen-text></sb-zen-table-cell>
       </sb-zen-table-row>
-      <sb-zen-table-row @zenSelect="${onRowSelect}" depth="1" selectable>
+      <sb-zen-table-row @zenSelect="${onSelect}" @zenToggle="${onToggle}" depth="1" selectable>
         <sb-zen-table-cell>PCI Requirement 7 - Firewall Configuration</sb-zen-text></sb-zen-table-cell>
         <sb-zen-table-cell>Status</sb-zen-text></sb-zen-table-cell>
         <sb-zen-table-cell>Some description plus some</sb-zen-text></sb-zen-table-cell>
       </sb-zen-table-row>
-      <sb-zen-table-row @zenSelect="${onRowSelect}" selectable>
+      <sb-zen-table-row @zenSelect="${onSelect}" @zenToggle="${onToggle}" selectable>
         <sb-zen-table-cell>PCI Requirement 8 - Firewall Configuration</sb-zen-text></sb-zen-table-cell>
         <sb-zen-table-cell>Status</sb-zen-text></sb-zen-table-cell>
         <sb-zen-table-cell>Some description plus some</sb-zen-text></sb-zen-table-cell>
       </sb-zen-table-row>
-      <sb-zen-table-row @zenSelect="${onRowSelect}" depth="1" selectable>
+      <sb-zen-table-row @zenSelect="${onSelect}" @zenToggle="${onToggle}" depth="1" selectable>
         <sb-zen-table-cell>PCI Requirement 8 - Firewall Configuration</sb-zen-text></sb-zen-table-cell>
         <sb-zen-table-cell>Status</sb-zen-text></sb-zen-table-cell>
         <sb-zen-table-cell>Some description plus some</sb-zen-text></sb-zen-table-cell>
       </sb-zen-table-row>
-      <sb-zen-table-row @zenSelect="${onRowSelect}" depth="1" selectable>
+      <sb-zen-table-row @zenSelect="${onSelect}" @zenToggle="${onToggle}" depth="1" selectable>
         <sb-zen-table-cell>PCI Requirement 9 - Firewall Configuration</sb-zen-text></sb-zen-table-cell>
         <sb-zen-table-cell>Status</sb-zen-text></sb-zen-table-cell>
         <sb-zen-table-cell>Some description plus some</sb-zen-text></sb-zen-table-cell>
@@ -667,7 +670,7 @@ A composition of `ZenTable` component and fragment `ZenTableRow`, `ZenTableHeade
 ### 5. Table as a tree with header
 
 `ZenTable` tree view with header.
-On this story you can also see which when `zenSelect` event gets triggered and for which rows.
+On this story you can also see which when `zenSelect` and `zenExpand` events gets triggered and for which rows.
 
 <Canvas>
   <Story name="treeWithHeader">{StoryTreeWithHeader.bind({})}</Story>

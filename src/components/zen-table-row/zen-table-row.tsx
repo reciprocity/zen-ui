@@ -47,9 +47,13 @@ export class ZenTableRow {
   @Prop() readonly $afterHeader: boolean = false;
 
   /**
-   * User selected/deselected row (not triggered if changed from code)
+   * row.selected changed
    */
   @Event() zenSelect: EventEmitter<boolean>;
+  /**
+   * row.expanded changed
+   */
+  @Event() zenToggle: EventEmitter<boolean>;
 
   @Watch('selectable')
   async selectableChanged(selectable: boolean): Promise<void> {
@@ -102,6 +106,7 @@ export class ZenTableRow {
   @Watch('expanded')
   async expandedChanged(expanded: boolean): Promise<void> {
     this.setCellsProp('$expanded', expanded);
+    if (!this.initializing) this.zenToggle.emit();
   }
 
   allTableRows(): HTMLZenTableRowElement[] {

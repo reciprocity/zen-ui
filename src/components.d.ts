@@ -2652,9 +2652,13 @@ declare namespace LocalJSX {
          */
         "header"?: boolean;
         /**
-          * User selected/deselected row (not triggered if changed from code)
+          * row.selected changed
          */
         "onZenSelect"?: (event: CustomEvent<boolean>) => void;
+        /**
+          * row.expanded changed
+         */
+        "onZenToggle"?: (event: CustomEvent<boolean>) => void;
         /**
           * Show checkbox
          */
