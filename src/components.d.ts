@@ -785,6 +785,10 @@ export namespace Components {
     }
     interface ZenSidebarNavItem {
         /**
+          * Item disabled
+         */
+        "disabled": boolean;
+        /**
           * Render item as selected
          */
         "selected": boolean;
@@ -800,6 +804,10 @@ export namespace Components {
         "width": string;
     }
     interface ZenSidebarNavSubitem {
+        /**
+          * Item disabled
+         */
+        "disabled": boolean;
         /**
           * Render item as selected
          */
@@ -2388,6 +2396,10 @@ declare namespace LocalJSX {
     }
     interface ZenSidebarNavItem {
         /**
+          * Item disabled
+         */
+        "disabled"?: boolean;
+        /**
           * Item was selected
          */
         "onZenSelect"?: (event: CustomEvent<void>) => void;
@@ -2407,6 +2419,10 @@ declare namespace LocalJSX {
         "width"?: string;
     }
     interface ZenSidebarNavSubitem {
+        /**
+          * Item disabled
+         */
+        "disabled"?: boolean;
         /**
           * Item was selected
          */

@@ -22,10 +22,12 @@ const argTypes = getArgTypes(compData);
 export const StoryWithControls = args => {
   function itemClicked(event) {
     const item = event.target.closest('sb-zen-sidebar-nav-item');
+    if (item.disabled) return;
     item.selected = true;
   }
   function subitemClicked(event) {
     const item = event.target.closest('sb-zen-sidebar-nav-subitem');
+    if (item.disabled) return;
     item.selected = true;
   }
   const waitAndAddIcon = (id, icon) =>
@@ -75,11 +77,11 @@ export const StoryWithControls = args => {
           <span>P</span>
           PCI Program 1
         </div>
-        <sb-zen-sidebar-nav-item @click="${itemClicked}">
+        <sb-zen-sidebar-nav-item @click="${itemClicked}" disabled>
           <sb-zen-icon padding="lg" id="icon-home"></sb-zen-icon>
           Program Overview
         </sb-zen-sidebar-nav-item>
-        <sb-zen-sidebar-nav-item @click="${itemClicked}">
+        <sb-zen-sidebar-nav-item @click="${itemClicked}" disabled>
           <sb-zen-icon padding="lg" id="icon-chart-line"></sb-zen-icon>
           Dashboard
         </sb-zen-sidebar-nav-item>
@@ -95,12 +97,12 @@ export const StoryWithControls = args => {
           <sb-zen-icon padding="lg" id="icon-records"></sb-zen-icon>
           Program records
           <div slot="subitems">
-            <sb-zen-sidebar-nav-subitem @click="${subitemClicked}">Controls</sb-zen-sidebar-nav-subitem>
-            <sb-zen-sidebar-nav-subitem @click="${subitemClicked}">Requirements</sb-zen-sidebar-nav-subitem>
+            <sb-zen-sidebar-nav-subitem @click="${subitemClicked}" disabled>Controls</sb-zen-sidebar-nav-subitem>
+            <sb-zen-sidebar-nav-subitem @click="${subitemClicked}" disabled>Requirements</sb-zen-sidebar-nav-subitem>
             <sb-zen-sidebar-nav-subitem @click="${subitemClicked}">Findings</sb-zen-sidebar-nav-subitem>
             <sb-zen-sidebar-nav-subitem @click="${subitemClicked}">Control assesments</sb-zen-sidebar-nav-subitem>
             <sb-zen-sidebar-nav-subitem @click="${subitemClicked}">Evidence requests</sb-zen-sidebar-nav-subitem>
-            <sb-zen-sidebar-nav-subitem @click="${subitemClicked}">Tasks</sb-zen-sidebar-nav-subitem>
+            <sb-zen-sidebar-nav-subitem @click="${subitemClicked}" disabled>Tasks</sb-zen-sidebar-nav-subitem>
           </div>
         </sb-zen-sidebar-nav-item>
         <sb-zen-sidebar-nav-item @click="${itemClicked}">

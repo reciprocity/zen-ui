@@ -12,14 +12,20 @@
   width: 100%;
   background-color: $color-nav-gray-100;
   padding-left: 2rem;
+  @include noselect;
 }
 
 :host(:hover) {
   color: $color-blue-700;
 }
 
-:host([selected]) {
+:host([selected]:not([selected='false'])) {
   font-weight: bold;
   color: $color-blue-700;
   background-color: $color-white;
+}
+
+:host([disabled]:not([disabled='false'])) {
+  color: $color-gray-400;
+  cursor: default;
 }
