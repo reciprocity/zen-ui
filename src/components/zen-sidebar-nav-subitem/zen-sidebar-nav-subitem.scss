@@ -19,13 +19,13 @@
   color: $color-blue-700;
 }
 
-:host([selected]) {
+:host([selected]:not([selected='false'])) {
   font-weight: bold;
   color: $color-blue-700;
   background-color: $color-white;
 }
 
-:host([disabled]) {
+:host([disabled]:not([disabled='false'])) {
   color: $color-gray-400;
   pointer-events: none;
 }

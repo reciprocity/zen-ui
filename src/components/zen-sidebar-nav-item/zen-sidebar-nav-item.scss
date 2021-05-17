@@ -21,7 +21,7 @@
   color: $color-blue-700;
 }
 
-:host([selected]) .item::after {
+:host([selected]:not([selected='false'])) .item::after {
   content: '';
   position: absolute;
   z-index: 1;
@@ -32,13 +32,13 @@
   background-image: linear-gradient(rgb(34, 148, 229, 0.15) 0%, rgba(34, 148, 229, 0) 100%);
 }
 
-:host([selected]) .item {
+:host([selected]:not([selected='false'])) .item {
   font-weight: bold;
   color: $color-blue-700;
   background-color: $color-white;
 }
 
-:host([disabled]) {
+:host([disabled]:not([disabled='false'])) {
   pointer-events: none;
 
   .item {
@@ -52,7 +52,7 @@
   transition: max-height 0.2s ease-out;
 }
 
-:host(:not(.collapsed)[selected]) .subitems {
+:host(:not(.collapsed)[selected]:not([selected='false'])) .subitems {
   max-height: 50rem; // some high value that should be higher than actual height!
   transition: max-height 0.2s ease-in;
 }
@@ -63,7 +63,7 @@
   transition: transform 0.2s;
 }
 
-:host([selected]) .arrow {
+:host([selected]:not([selected='false'])) .arrow {
   transform: rotate(180deg);
 }
 
