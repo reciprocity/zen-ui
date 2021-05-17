@@ -1,3 +1,15 @@
+# [6.5.0](https://github.com/reciprocity/zen-ui/compare/6.4.1...6.5.0) (2021-05-17)
+
+
+### Bug Fixes
+
+* **zen-sidebar-nav-item:** don't select first child automatically ([1e80c5f](https://github.com/reciprocity/zen-ui/commit/1e80c5f1e0b3c954e811013b0d5285b00c150b36))
+
+
+### Features
+
+* **zen-sidebar-nav-item:** add prop `disabled` ([c8943e4](https://github.com/reciprocity/zen-ui/commit/c8943e4b64f1eee8c050d71e1042af1251a326ec))
+
 ## [6.4.1](https://github.com/reciprocity/zen-ui/compare/6.4.0...6.4.1) (2021-05-17)
 
 
