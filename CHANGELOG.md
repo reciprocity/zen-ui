@@ -1,3 +1,10 @@
+## [6.4.1](https://github.com/reciprocity/zen-ui/compare/6.4.0...6.4.1) (2021-05-17)
+
+
+### Bug Fixes
+
+* **zen-tab:** fix apply styles on params like string ([dfc00e9](https://github.com/reciprocity/zen-ui/commit/dfc00e93a923d17875625bb607abe67cbe6cc183))
+
 # [6.4.0](https://github.com/reciprocity/zen-ui/compare/6.3.2...6.4.0) (2021-05-14)
 
 
