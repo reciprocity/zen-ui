@@ -23,7 +23,12 @@
   min-width: 1rem;
 }
 
-:host([selected]) {
+:host([disabled='false']:hover),
+:host(:not([disabled]):hover) {
+  border-bottom: 4px solid $color-blue-700;
+}
+
+:host([selected]:not([selected='false'])) {
   border-bottom: 4px solid $color-blue-700;
   color: $color-gray-700;
   font-weight: bold;
@@ -33,11 +38,7 @@
   }
 }
 
-:host([disabled]) {
+:host([disabled]:not([disabled='false'])) {
   color: $color-gray-200;
   cursor: default;
-}
-
-:host(:not([disabled]):hover) {
-  border-bottom: 4px solid $color-blue-700;
 }
