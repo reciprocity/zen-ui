@@ -20,12 +20,16 @@ export class ZenSidebarNavItem {
   /** Item was selected */
   @Event() zenSelect: EventEmitter<void>;
 
+  /** Item disabled */
+  @Prop({ reflect: true }) readonly disabled: boolean = false;
+
   @Watch('selected')
   selectedChanged(selected: boolean): void {
     if (!selected) {
       this.deselectAllChildren();
       return;
     }
+    if (this.disabled) return;
     this.zenSelect.emit();
   }
 

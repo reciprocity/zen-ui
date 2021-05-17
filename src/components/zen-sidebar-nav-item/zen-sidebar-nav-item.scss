@@ -3,6 +3,7 @@
 :host {
   width: 100%;
   position: relative;
+  @include noselect;
 }
 
 .item {
@@ -35,6 +36,14 @@
   font-weight: bold;
   color: $color-blue-700;
   background-color: $color-white;
+}
+
+:host([disabled]) {
+  pointer-events: none;
+
+  .item {
+    color: $color-gray-400;
+  }
 }
 
 .subitems {

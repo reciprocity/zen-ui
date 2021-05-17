@@ -12,6 +12,7 @@
   width: 100%;
   background-color: $color-nav-gray-100;
   padding-left: 2rem;
+  @include noselect;
 }
 
 :host(:hover) {
@@ -22,4 +23,9 @@
   font-weight: bold;
   color: $color-blue-700;
   background-color: $color-white;
+}
+
+:host([disabled]) {
+  color: $color-gray-400;
+  pointer-events: none;
 }
