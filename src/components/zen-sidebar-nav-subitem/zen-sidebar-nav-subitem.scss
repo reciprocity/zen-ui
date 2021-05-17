@@ -27,5 +27,5 @@
 
 :host([disabled]:not([disabled='false'])) {
   color: $color-gray-400;
-  pointer-events: none;
+  cursor: default;
 }

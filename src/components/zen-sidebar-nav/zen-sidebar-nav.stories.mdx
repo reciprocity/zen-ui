@@ -22,10 +22,12 @@ const argTypes = getArgTypes(compData);
 export const StoryWithControls = args => {
   function itemClicked(event) {
     const item = event.target.closest('sb-zen-sidebar-nav-item');
+    if (item.disabled) return;
     item.selected = true;
   }
   function subitemClicked(event) {
     const item = event.target.closest('sb-zen-sidebar-nav-subitem');
+    if (item.disabled) return;
     item.selected = true;
   }
   const waitAndAddIcon = (id, icon) =>

@@ -38,12 +38,9 @@
   background-color: $color-white;
 }
 
-:host([disabled]:not([disabled='false'])) {
-  pointer-events: none;
-
-  .item {
-    color: $color-gray-400;
-  }
+:host([disabled]:not([disabled='false'])) .item {
+  cursor: default;
+  color: $color-gray-400;
 }
 
 .subitems {
