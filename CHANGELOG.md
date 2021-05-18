@@ -1,3 +1,10 @@
+## [6.5.1](https://github.com/reciprocity/zen-ui/compare/6.5.0...6.5.1) (2021-05-18)
+
+
+### Bug Fixes
+
+* **zen-tooltip:** make the link open on a new tab ([efd191c](https://github.com/reciprocity/zen-ui/commit/efd191c1e29a0f6b9b27b95ecdd1d772b3053073))
+
 # [6.5.0](https://github.com/reciprocity/zen-ui/compare/6.4.1...6.5.0) (2021-05-17)
 
 
