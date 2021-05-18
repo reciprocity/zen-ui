@@ -102,7 +102,7 @@ export class ZenTooltip {
           {this.link && (
             <ZenSpace no-wrap padding-top="lg">
               <ZenText size="md">
-                <a class="link" href={this.link}>
+                <a class="link" href={this.link} target="_blank">
                   {this.linkTitle ? this.linkTitle : this.link}
                   <ZenIcon size="md" padding-left="md" class="icon" icon={faExternalLink} />
                 </a>
