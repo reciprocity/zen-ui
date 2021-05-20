@@ -29,7 +29,7 @@ export class ZenAvatar {
     return this.userValue('email');
   }
   initials(): string {
-    return this.userValue('initials');
+    return this.users.length == 1 ? this.userValue('initials') : '';
   }
   background(): string {
     return this.users.length == 1 ? this.userValue('background') : '#CED4DA';
