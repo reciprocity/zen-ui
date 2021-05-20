@@ -1,3 +1,10 @@
+## [6.5.2](https://github.com/reciprocity/zen-ui/compare/6.5.1...6.5.2) (2021-05-20)
+
+
+### Bug Fixes
+
+* **zen-avatar-group:** fix hidden number and initials overide issue ([8b6ee3b](https://github.com/reciprocity/zen-ui/commit/8b6ee3b54973f3b96681ede98d7e611882b13b10))
+
 ## [6.5.1](https://github.com/reciprocity/zen-ui/compare/6.5.0...6.5.1) (2021-05-18)
 
 
