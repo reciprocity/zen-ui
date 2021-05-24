@@ -28,28 +28,28 @@ export class ZenAvatarIcon {
   /** Icon size   */
   @Prop({ reflect: true }) readonly size: AvatarIconSize = 'md';
 
-  hasImage(): boolean {
-    return this.imageUrl != '';
-  }
-
   getUserInitials(): string {
+    if (this.imageUrl) return;
     if (this.initials) return this.initials;
 
     let initials = '';
-    if (this.userName) {
+    if (this.userName.trim()) {
       if (/\s/.test(this.userName)) {
         // Get initials from name and surname
         initials = this.userName
+          .trim()
           .match(/(\b([A-Z]|[a-z]))/g)
           .join('')
           .substring(0, 2)
           .toUpperCase();
       } else {
         // Get initials oly from name
-        initials = this.userName.substring(0, 2).toUpperCase();
+        initials = this.userName.trim().substring(0, 2).toUpperCase();
       }
+    } else if (this.email.trim()) {
+      initials = this.email.trim().substring(0, 2).toUpperCase();
     } else {
-      initials = this.email.substring(0, 2).toUpperCase();
+      console.error('zen-avatar-icon : Username or email has to have a value!');
     }
     return initials;
   }
@@ -57,8 +57,7 @@ export class ZenAvatarIcon {
   render(): HTMLElement {
     return (
       <Host style={{ background: this.background, color: this.color }}>
-        <img class={{ hidden: !this.hasImage() }} src={this.imageUrl} />
-        <div class={{ hidden: this.hasImage(), initials: true }}>{this.getUserInitials()}</div>
+        {this.imageUrl ? <img src={this.imageUrl} /> : <div class="initials">{this.getUserInitials()}</div>}
       </Host>
     );
   }
