@@ -7,7 +7,7 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { StringifiedJson } from "./stories/components/color-swatch-group/color-swatch-group";
 import { SourceCodes } from "./stories/components/html-playground/html-playground";
-import { Align, AvatarData, AvatarDetailVariant, AvatarIconSize, CardVariant, DropdownSize, IconSize, InputSize, LozengeSize, LozengeTextVariant, LozengeVariant, None, Notification, NotificationVariant, Position, Resize, Size, Spacing, SpacingShorthand, TextSize, TextState, TextVariant, TriggerEvent } from "./components/helpers/types";
+import { Align, AvatarData, AvatarDetailVariant, AvatarIconSize, CardVariant, DropdownSize, IconSize, InputSize, LozengeSize, LozengeTextVariant, LozengeVariant, None, Notification, NotificationVariant, Position, Resize, Size, Spacing, SpacingShorthand, TextSize, TextState, TextVariant, TooltipVariant, TriggerEvent } from "./components/helpers/types";
 import { ButtonVariants } from "./components/zen-button/types";
 import { OptionValue } from "./components/zen-menu-item/zen-option";
 import { IconDefinition } from "@fortawesome/pro-light-svg-icons";
@@ -655,6 +655,10 @@ export namespace Components {
          */
         "setScrollTop": (position: number) => Promise<void>;
         /**
+          * Show Arrow
+         */
+        "showArrow": boolean;
+        /**
           * Trigger element
          */
         "targetElement": HTMLElement;
@@ -1230,6 +1234,10 @@ export namespace Components {
           * Set tooltip position
          */
         "position"?: Placement;
+        /**
+          * Set tooltip variant
+         */
+        "variant"?: TooltipVariant;
     }
 }
 declare global {
@@ -2262,6 +2270,10 @@ declare namespace LocalJSX {
          */
         "position"?: Placement;
         /**
+          * Show Arrow
+         */
+        "showArrow"?: boolean;
+        /**
           * Trigger element
          */
         "targetElement"?: HTMLElement;
@@ -2885,6 +2897,10 @@ declare namespace LocalJSX {
           * Set tooltip position
          */
         "position"?: Placement;
+        /**
+          * Set tooltip variant
+         */
+        "variant"?: TooltipVariant;
     }
     interface IntrinsicElements {
         "color-swatch": ColorSwatch;

@@ -1,7 +1,7 @@
-import { Component, Host, h, Prop, State, Element } from '@stencil/core';
+import { Component, Host, h, Prop, State, Element, Watch } from '@stencil/core';
 import { applyPrefix } from '../helpers/helpers';
 import { Placement } from '@popperjs/core';
-import { SpacingShorthand, Spacing } from '../helpers/types';
+import { SpacingShorthand, Spacing, TooltipVariant } from '../helpers/types';
 import { faExternalLink } from '@fortawesome/pro-light-svg-icons';
 
 /**
@@ -20,9 +20,13 @@ export class ZenTooltip {
 
   @State() visible = false;
   @State() target: HTMLElement = null;
+  @State() backgroundColor = '';
 
   /** Set tooltip position */
   @Prop() readonly position?: Placement = 'top';
+
+  /** Set tooltip variant */
+  @Prop({ reflect: true }) readonly variant?: TooltipVariant = 'default';
 
   /** Set tooltip label */
   @Prop() readonly label?: string = '';
@@ -56,7 +60,19 @@ export class ZenTooltip {
   /** Skipped */
   @Prop() readonly paddingLeft: Spacing = null;
 
+  @Watch('variant')
+  async variantChanged(variant: TooltipVariant): Promise<void> {
+    switch (variant) {
+      case 'system':
+        this.backgroundColor = '#1e272c';
+        break;
+      default:
+        this.backgroundColor = '#FFFFFF';
+        break;
+    }
+  }
   componentDidLoad(): void {
+    this.variantChanged(this.variant);
     this.popover.targetElement = this.host.previousElementSibling as HTMLElement;
   }
 
@@ -65,13 +81,9 @@ export class ZenTooltip {
     const ZenIcon = applyPrefix('zen-icon', this.host);
     const ZenText = applyPrefix('zen-text', this.host);
     const ZenSpace = applyPrefix('zen-space', this.host);
-    const classes = {
-      tooltip: true,
-    };
     const isScrollable = this.maxHeight !== 'none';
-
     return (
-      <Host class={{ visible: this.visible, ...classes }}>
+      <Host class={{ visible: this.visible, tooltip: true }}>
         <ZenPopover
           ref={el => (this.popover = el)}
           class="popover"
@@ -83,6 +95,8 @@ export class ZenTooltip {
           offset={{ x: 0, y: this.offset }}
           delay={this.delay}
           interactive={!!this.link || isScrollable}
+          background-color={this.backgroundColor}
+          show-arrow={this.variant == 'system'}
           padding={this.padding}
           padding-top={this.paddingTop}
           padding-right={this.paddingRight}
@@ -95,9 +109,11 @@ export class ZenTooltip {
             </ZenText>
           )}
           <slot>
-            <ZenText size="md" pale>
-              {this.label}
-            </ZenText>
+            {this.label && (
+              <ZenText class="content" size="md">
+                {this.label}
+              </ZenText>
+            )}
           </slot>
           {this.link && (
             <ZenSpace no-wrap padding-top="lg">

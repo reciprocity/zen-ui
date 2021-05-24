@@ -25,6 +25,21 @@ export const Template = args => {
   `;
 };
 
+export const TemplateVariants = () => {
+  return html/*html*/ `
+    <sb-zen-space nowrap horizontal-align="space-evenly" vertical-align="end" spacing="sm">
+      <div>
+          <sb-zen-button label="Default" variant="blue-ghost"></sb-zen-button>
+          <sb-zen-tooltip position="top" label="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s. Lorem Ipsum is simply dummy text of the printing and typesetting industry."></sb-zen-tooltip>
+      </div>
+      <div>
+        <sb-zen-button label="System" variant="blue-ghost"></sb-zen-button>
+        <sb-zen-tooltip position="top" variant="system" label="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s. Lorem Ipsum is simply dummy text of the printing and typesetting industry."></sb-zen-tooltip>
+      </div>
+    </div>
+  `;
+};
+
 export const TemplateSlot = () => {
   waitForElement('#avatar', element => {
     element.users = user;
@@ -100,7 +115,15 @@ Tooltip bubbles that usually appears on element hover
 
 <br />
 
-#### 1. Custom content:
+#### 1. Different variants:
+
+Use prop `variant` to style the tooltip.
+
+<Canvas>
+  <Story name="variant">{TemplateVariants.bind({})}</Story>
+</Canvas>
+
+#### 2. Custom content:
 
 Wrap some html content with `<zen-tooltip>` and it will appear inside the tooltip.
 
@@ -108,7 +131,7 @@ Wrap some html content with `<zen-tooltip>` and it will appear inside the toolti
   <Story name="slot">{TemplateSlot.bind({})}</Story>
 </Canvas>
 
-#### 2. Scrollable tooltip:
+#### 3. Scrollable tooltip:
 
 Limit tooltip height by setting `max-height` ('4rem' in example below).
 
@@ -116,7 +139,7 @@ Limit tooltip height by setting `max-height` ('4rem' in example below).
   <Story name="scrollable">{Scrollable.bind({})}</Story>
 </Canvas>
 
-#### 3. Tooltip with title and hyperlink:
+#### 4. Tooltip with title and hyperlink:
 
 Set property `heading` and/or `link`.
 

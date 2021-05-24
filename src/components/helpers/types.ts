@@ -39,6 +39,8 @@ export type AvatarDetailVariant = 'basic' | 'basic-lg' | 'detailed';
 
 export type CardVariant = 'default' | 'shadow';
 
+export type TooltipVariant = 'default' | 'system';
+
 export type LozengeVariant =
   | 'none'
   | 'light-grey'
