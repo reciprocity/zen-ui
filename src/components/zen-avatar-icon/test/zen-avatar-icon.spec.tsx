@@ -7,8 +7,8 @@ describe('zen-avatar-icon', () => {
       components: [ZenAvatarIcon],
       html: `<zen-avatar-icon user-name="Mike Anderson"></zen-avatar-icon>`,
     });
-    expect(page.root.shadowRoot.querySelector('img').classList.contains('hidden')).toBe(true);
-    expect(page.root.shadowRoot.querySelector('div').classList.contains('hidden')).toBe(false);
+    expect(page.root.shadowRoot.querySelector('img')).toBeFalsy();
+    expect(page.root.shadowRoot.querySelector('.initials')).toBeTruthy();
   });
 
   it('should show image and hide label', async () => {
@@ -16,9 +16,8 @@ describe('zen-avatar-icon', () => {
       components: [ZenAvatarIcon],
       html: `<zen-avatar-icon image-url="img.jpg"></zen-avatar-icon>`,
     });
-    expect(page.root.shadowRoot.querySelector('div').textContent).toEqual('');
-    expect(page.root.shadowRoot.querySelector('img').classList.contains('hidden')).toBe(false);
-    expect(page.root.shadowRoot.querySelector('div').classList.contains('hidden')).toBe(true);
+    expect(page.root.shadowRoot.querySelector('.initials')).toBeFalsy();
+    expect(page.root.shadowRoot.querySelector('img')).toBeTruthy();
   });
 
   it('should correctly display initials if has first and last name', async () => {
