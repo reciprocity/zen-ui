@@ -54,6 +54,9 @@ export class ZenPopover {
   /** Background color */
   @Prop() readonly backgroundColor: string = '';
 
+  /** Show Arrow */
+  @Prop() readonly showArrow: boolean = false;
+
   /** <Description generated in helper file> */
   @Prop() readonly padding: SpacingShorthand = null;
   /** Skipped */
@@ -277,6 +280,7 @@ export class ZenPopover {
             >
               <slot />
             </ZenSpace>
+            {this.showArrow && <div class="arrow" data-popper-arrow></div>}
           </div>
         </div>
       </Host>

@@ -30,3 +30,37 @@
   -webkit-overflow-scrolling: touch;
   scroll-behavior: smooth;
 }
+
+.arrow,
+.arrow::before {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: black;
+}
+
+.arrow {
+  visibility: hidden;
+}
+
+.arrow::before {
+  visibility: visible;
+  content: '';
+  transform: rotate(45deg);
+}
+
+[data-popper-placement^='top'] > .arrow {
+  bottom: -4px;
+}
+
+[data-popper-placement^='bottom'] > .arrow {
+  top: -4px;
+}
+
+[data-popper-placement^='left'] > .arrow {
+  right: -4px;
+}
+
+[data-popper-placement^='right'] > .arrow {
+  left: -4px;
+}
