@@ -1,3 +1,11 @@
+## [6.5.3](https://github.com/reciprocity/zen-ui/compare/6.5.2...6.5.3) (2021-05-24)
+
+
+### Bug Fixes
+
+* **zen-avatar-icon:** fix display of initials if username contains only space ([f0ef4d6](https://github.com/reciprocity/zen-ui/commit/f0ef4d6eb294297c3adb10325d8772fb6aac0a73))
+* **zen-avatar-image:** fix if image url exists and code cleanup ([d281db1](https://github.com/reciprocity/zen-ui/commit/d281db1366ee7827af1fb1275d28cb9b5b968a8a))
+
 ## [6.5.2](https://github.com/reciprocity/zen-ui/compare/6.5.1...6.5.2) (2021-05-20)
 
 
