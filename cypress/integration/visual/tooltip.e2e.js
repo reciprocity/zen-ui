@@ -1,8 +1,9 @@
 /// <reference types="cypress" />
 
 describe('Tooltip visual tests', { scrollBehavior: 'center' }, () => {
-  const pageId = 'notifications-tooltip--slot';
+  const pageId = 'notifications-tooltip--variant';
   const story = [
+    'story--notifications-tooltip--variant',
     'story--notifications-tooltip--slot',
     'story--notifications-tooltip--scrollable',
     'story--notifications-tooltip--default-story',
