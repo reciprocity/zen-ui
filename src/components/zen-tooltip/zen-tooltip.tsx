@@ -61,7 +61,7 @@ export class ZenTooltip {
   @Prop() readonly paddingLeft: Spacing = null;
 
   @Watch('variant')
-  async variantChanged(variant: TooltipVariant): Promise<void> {
+  variantChanged(variant: TooltipVariant): void {
     switch (variant) {
       case 'system':
         this.backgroundColor = '#1e272c';
@@ -96,7 +96,7 @@ export class ZenTooltip {
           delay={this.delay}
           interactive={!!this.link || isScrollable}
           background-color={this.backgroundColor}
-          show-arrow={this.variant == 'system'}
+          show-arrow={this.variant === 'system'}
           padding={this.padding}
           padding-top={this.paddingTop}
           padding-right={this.paddingRight}
