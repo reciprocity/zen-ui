@@ -27,7 +27,7 @@ export class ZenTable {
     });
   }
 
-  async componentDidLoad(): Promise<void> {
+  componentDidLoad(): void {
     if (!this.columns) {
       console.error('Zen-table error: Missing prop `columns`!', this.host);
     }
