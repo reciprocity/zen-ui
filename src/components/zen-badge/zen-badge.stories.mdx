@@ -1,0 +1,38 @@
+import { html } from 'lit-html';
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
+import { logEvents } from '#storybook/helpers/log-events';
+import { getArgTypesAndArgs, getDefaultArgs, getComponentData, spreadArgs } from '#storybook/helpers/argTypes';
+const { argTypes } = getArgTypesAndArgs('zen-badge');
+
+<Meta title="Containers/Badge" component="zen-badge" argTypes={argTypes} />
+
+export const StoryWithControls = args => {
+  return html/*html*/ ` <sb-zen-space horizontal-align="center">
+      <sb-zen-badge id="controls" ...="${spreadArgs(args, argTypes)}"></sb-zen-badge>
+    </sb-zen-space>
+    ${logEvents('#controls', getComponentData('zen-badge'))}`;
+};
+
+# Zen Badge
+
+A badge component to be for displaying counts.
+
+<br />
+
+## Properties
+
+<Canvas>
+  <Story
+    name="default"
+    args={{
+      ...getDefaultArgs(argTypes),
+      value: 234,
+    }}
+  >
+    {StoryWithControls.bind({})}
+  </Story>
+</Canvas>
+
+<ArgsTable story="default" />
+
+<sb-docs-table docs={JSON.stringify(getComponentData('zen-badge'))}></sb-docs-table>

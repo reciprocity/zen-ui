@@ -1,4 +1,4 @@
-import { Component, Host, h } from '@stencil/core';
+import { Component, Host, h, Prop } from '@stencil/core';
 
 @Component({
   tag: 'zen-badge',
@@ -6,10 +6,13 @@ import { Component, Host, h } from '@stencil/core';
   shadow: true,
 })
 export class ZenBadge {
-  render() {
+  /** Badge value (null to not display it) */
+  @Prop() readonly value: string | null = null;
+
+  render(): HTMLZenBadgeElement {
     return (
-      <Host>
-        <slot></slot>
+      <Host class={{ hidden: this.value == null }}>
+        <slot>{this.value}</slot>
       </Host>
     );
   }
