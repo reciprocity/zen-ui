@@ -36,7 +36,7 @@ export class ZenAvatarIcon {
     if (this.initials) return this.initials;
 
     let initials = '';
-    if (this.userName) {
+    if (this.userName && this.userName.trim() != '') {
       if (/\s/.test(this.userName)) {
         // Get initials from name and surname
         initials = this.userName
@@ -48,8 +48,10 @@ export class ZenAvatarIcon {
         // Get initials oly from name
         initials = this.userName.substring(0, 2).toUpperCase();
       }
-    } else {
+    } else if (this.email && this.email.trim() != '') {
       initials = this.email.substring(0, 2).toUpperCase();
+    } else {
+      console.error('zen-avatar-icon : Username or email has to have a value!');
     }
     return initials;
   }
