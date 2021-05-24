@@ -17,15 +17,6 @@ describe('zen-table-row', () => {
 
     expect(page.root.innerHTML).toEqual('Content');
   });
-
-  it('should render checkbox', async () => {
-    const page = await newSpecPage({
-      components: [ZenTableCell],
-      html: `<zen-table-cell selectable>Row 1, Cell 1</zen-table-cell>`,
-    });
-
-    expect(page.root.shadowRoot.querySelector('zen-checkbox')).toBeTruthy();
-  });
 });
 
 describe('zen-table-row inside tree structure', () => {
