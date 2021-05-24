@@ -9,7 +9,8 @@
 }
 
 .popup-wrap,
-.popup {
+.popup,
+.scrollable-content {
   height: inherit;
   max-height: inherit;
   min-height: inherit;
@@ -26,6 +27,9 @@
   background-color: $color-white;
   box-shadow: $shadow-drop-200;
   border-radius: 2px;
+}
+
+.scrollable-content {
   overflow: auto;
   -webkit-overflow-scrolling: touch;
   scroll-behavior: smooth;
@@ -36,7 +40,7 @@
   position: absolute;
   width: 8px;
   height: 8px;
-  background: black;
+  background: inherit;
 }
 
 .arrow {
@@ -47,20 +51,42 @@
   visibility: visible;
   content: '';
   transform: rotate(45deg);
+  border: 2px solid rgba(#000, 0.05);
+  background-clip: padding-box;
 }
 
-[data-popper-placement^='top'] > .arrow {
-  bottom: -4px;
+[data-popper-placement^='top'] .arrow {
+  bottom: -5px;
+
+  &::before {
+    border-top: none;
+    border-left: none;
+  }
 }
 
-[data-popper-placement^='bottom'] > .arrow {
-  top: -4px;
+[data-popper-placement^='bottom'] .arrow {
+  top: -5px;
+
+  &::before {
+    border-bottom: none;
+    border-right: none;
+  }
 }
 
-[data-popper-placement^='left'] > .arrow {
-  right: -4px;
+[data-popper-placement^='left'] .arrow {
+  right: -5px;
+
+  &::before {
+    border-left: none;
+    border-bottom: none;
+  }
 }
 
-[data-popper-placement^='right'] > .arrow {
-  left: -4px;
+[data-popper-placement^='right'] .arrow {
+  left: -5px;
+
+  &::before {
+    border-right: none;
+    border-top: none;
+  }
 }

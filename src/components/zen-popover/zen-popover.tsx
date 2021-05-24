@@ -270,16 +270,18 @@ export class ZenPopover {
       <Host>
         <div class="popup-wrap" role="tooltip">
           <div class="popup" style={style} data-position={this.actualPosition}>
-            <ZenSpace
-              block
-              padding={this.padding}
-              padding-top={this.paddingTop}
-              padding-right={this.paddingRight}
-              padding-bottom={this.paddingBottom}
-              padding-left={this.paddingLeft}
-            >
-              <slot />
-            </ZenSpace>
+            <div class="scrollable-content">
+              <ZenSpace
+                block
+                padding={this.padding}
+                padding-top={this.paddingTop}
+                padding-right={this.paddingRight}
+                padding-bottom={this.paddingBottom}
+                padding-left={this.paddingLeft}
+              >
+                <slot />
+              </ZenSpace>
+            </div>
             {this.showArrow && <div class="arrow" data-popper-arrow></div>}
           </div>
         </div>
