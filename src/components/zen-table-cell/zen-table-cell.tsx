@@ -14,31 +14,31 @@ export class ZenTableCell {
   @Prop({ reflect: true }) readonly fullSpan: boolean = false;
 
   /** Can be expanded */
-  @Prop({ reflect: true, attribute: 'expandable' }) readonly $expandable: boolean = false;
+  @Prop({ reflect: true, attribute: 'expandable', mutable: true }) $expandable = false;
 
   /** Show checkbox */
-  @Prop({ reflect: true, attribute: 'selectable' }) readonly $selectable: boolean = false;
+  @Prop({ reflect: true, attribute: 'selectable', mutable: true }) $selectable = false;
 
   /** Is row selected */
-  @Prop({ reflect: true, attribute: 'selected' }) readonly $selected: boolean = false;
+  @Prop({ reflect: true, attribute: 'selected', mutable: true }) $selected = false;
 
   /** Is row expanded */
-  @Prop({ reflect: true, attribute: 'expanded' }) readonly $expanded: boolean = false;
+  @Prop({ reflect: true, attribute: 'expanded', mutable: true }) $expanded = false;
 
   /** Is row expanded */
-  @Prop({ reflect: true, attribute: 'depth' }) readonly $depth: number = 0;
+  @Prop({ reflect: true, attribute: 'depth', mutable: true }) $depth = 0;
 
   /** Cell is inside header  */
-  @Prop({ reflect: true, attribute: 'header' }) readonly $header: boolean = false;
+  @Prop({ reflect: true, attribute: 'header', mutable: true }) $header = false;
 
   /** Checkbox indeterminate state  */
-  @Prop({ attribute: 'indeterminate' }) readonly $indeterminate: boolean = false;
+  @Prop({ attribute: 'indeterminate', mutable: true }) $indeterminate = false;
 
   /** Never shrink this cell to less than content width */
   @Prop({ reflect: true }) readonly noShrink: boolean = false;
 
   /** Cell remains fixed at the top during scroll */
-  @Prop({ reflect: true, attribute: 'sticky' }) readonly $sticky: boolean = false;
+  @Prop({ reflect: true, attribute: 'sticky', mutable: true }) $sticky = false;
 
   /** Cell custom background color */
   @Prop() readonly backgroundColor: string = '';
@@ -61,6 +61,27 @@ export class ZenTableCell {
 
   onCheckboxClick(event: Event): void {
     this.parentRow().selected = (event.target as HTMLZenCheckboxElement).checked;
+  }
+
+  transscriptParentRowProps(): void {
+    const parentRow = this.parentRow();
+    if (!parentRow) return;
+
+    this.$selectable = parentRow.selectable;
+    this.$selected = parentRow.selected;
+    this.$expandable = parentRow.$expandable;
+    this.$expanded = parentRow.expanded;
+    this.$depth = parentRow.depth;
+    this.$header = parentRow.header;
+    this.$sticky = parentRow.sticky;
+    this.$indeterminate = parentRow.$indeterminate;
+  }
+
+  componentWillLoad(): void {
+    // All parent props need to be set here,
+    //   to prevent initial flickering (checkbox shown with delay)!
+    // bigfix: https://reciprocitylabs.atlassian.net/browse/PLAT-2264
+    this.transscriptParentRowProps();
   }
 
   render(): HTMLTableCellElement {
