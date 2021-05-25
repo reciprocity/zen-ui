@@ -18,6 +18,10 @@ $arrow_size: 0.3rem;
   padding-bottom: 0.5rem;
 }
 
+.content {
+  color: $color-gray-500;
+}
+
 .link {
   display: flex;
   color: $color-blue-700;
@@ -30,5 +34,19 @@ $arrow_size: 0.3rem;
 
   &:hover {
     text-decoration: underline;
+  }
+}
+
+:host([variant='system']) {
+  .heading {
+    color: $color-white;
+  }
+
+  .content {
+    color: $color-white;
+  }
+
+  .link {
+    color: $color-blue-500;
   }
 }

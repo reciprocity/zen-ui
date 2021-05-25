@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
 
 describe('Tooltip visual tests', { scrollBehavior: 'center' }, () => {
-  const pageId = 'notifications-tooltip--slot';
+  const pageId = 'notifications-tooltip--variant';
   const story = [
     'story--notifications-tooltip--slot',
     'story--notifications-tooltip--scrollable',
@@ -9,9 +9,11 @@ describe('Tooltip visual tests', { scrollBehavior: 'center' }, () => {
     'story--notifications-tooltip--hyperlink',
   ];
 
+  const skippedStories = ['story--notifications-tooltip--variant'];
+
   before(() => {
     cy.visitStorybookIframe(pageId);
-    cy.verifyAllStoriesHaveVRT(story);
+    cy.verifyAllStoriesHaveVRT(story, skippedStories);
     cy.get('sb-zen-popover').each(() => {
       cy.get('.popup-wrap .popup').should('not.be.visible');
     });

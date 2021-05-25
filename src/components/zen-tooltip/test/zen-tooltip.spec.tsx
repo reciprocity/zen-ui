@@ -85,4 +85,19 @@ describe('zen-tooltip', () => {
     expect(heading).toBeTruthy();
     expect(link).not.toBeTruthy();
   });
+
+  it('should render variant system with arrow', async () => {
+    const page = await newSpecPage({
+      components: [ZenTooltip, ZenPopover],
+      html: `
+        <div class="trigger">Trigger</div>
+        <zen-tooltip heading="Title" label="Test" variant="system"></zen-tooltip>
+      `,
+    });
+
+    const tooltip = page.doc.querySelector('zen-tooltip');
+    const popover = tooltip.shadowRoot.querySelector('.popover') as HTMLZenPopoverElement;
+    expect(popover.showArrow).toBe(true);
+    expect(popover.backgroundColor).toEqual('#1E272C');
+  });
 });
