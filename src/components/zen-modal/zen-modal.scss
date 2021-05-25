@@ -36,7 +36,7 @@ $show-time: 0.3s;
   position: relative;
   background-color: $color-white;
   border-radius: 3px;
-  box-shadow: $shadow-drop-500;
+  box-shadow: $shadow-large;
   min-width: 500px;
   max-width: 1000px; // todo: remove this when we get size definitions from designers
   transition: transform $show-time, opacity $show-time ease-out;

@@ -62,7 +62,7 @@
   height: 100%;
   width: 100%;
   background-color: $color-white;
-  box-shadow: $shadow-drop-200;
+  box-shadow: $shadow-large;
   transition: transform 0.25s ease-out, opacity 0.25s ease-out;
   overflow-y: auto;
 }
