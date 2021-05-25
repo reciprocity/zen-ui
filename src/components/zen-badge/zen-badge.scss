@@ -1,16 +1,13 @@
 @import '../scss/component-helpers.scss';
 
 :host {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: $color-gray-100;
   border-radius: 1rem;
   margin-left: 0.5rem;
   padding: 0 0.5rem;
   min-width: 1rem;
-  text-align: center;
   color: $color-gray-700;
-}
-
-.hidden {
-  visibility: hidden;
 }

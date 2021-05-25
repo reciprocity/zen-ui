@@ -174,10 +174,6 @@ export namespace Components {
         "userName": string;
     }
     interface ZenBadge {
-        /**
-          * Badge value (null to not display it)
-         */
-        "value": string | null;
     }
     interface ZenBreadcrumbs {
         /**
@@ -1750,10 +1746,6 @@ declare namespace LocalJSX {
         "userName"?: string;
     }
     interface ZenBadge {
-        /**
-          * Badge value (null to not display it)
-         */
-        "value"?: string | null;
     }
     interface ZenBreadcrumbs {
         /**
