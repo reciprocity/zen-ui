@@ -1,3 +1,18 @@
+# [6.6.0](https://github.com/reciprocity/zen-ui/compare/6.5.4...6.6.0) (2021-05-25)
+
+
+### Bug Fixes
+
+* **zen-tooltip:** changed variant params implementation and code cleanup ([829bf78](https://github.com/reciprocity/zen-ui/commit/829bf78c2ae166e77ed11b2e553951c06a67671b))
+* **zen-tooltip:** code cleanup ([6e94757](https://github.com/reciprocity/zen-ui/commit/6e94757020089cb3adb04b9f5e00abc2c3a8cb59))
+* **zen-tooltip:** update story to use loremipsum text ([270f5af](https://github.com/reciprocity/zen-ui/commit/270f5af02de3e13ef838a005204d8b70943e6075))
+
+
+### Features
+
+* **zen-popover:** add arrow to the popover ([714f077](https://github.com/reciprocity/zen-ui/commit/714f07780a34fef13fa481fc496d15e720469758))
+* **zen-tooltip:** add system tooltip variant ([211c572](https://github.com/reciprocity/zen-ui/commit/211c5725573723f70890af96ae62503981f7a235))
+
 ## [6.5.4](https://github.com/reciprocity/zen-ui/compare/6.5.3...6.5.4) (2021-05-25)
 
 
