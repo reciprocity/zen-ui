@@ -3,9 +3,9 @@
 import { createVisualTests } from '../../support/utils/visualTesting';
 
 describe('Badge visual tests', () => {
-  const pageId = 'containers-badge--default';
+  const pageId = 'graphics-badge--default';
 
-  const stories = ['story--containers-badge--default-story'];
+  const stories = ['story--graphics-badge--default-story'];
 
   before(() => {
     cy.visitStorybookIframe(pageId);
