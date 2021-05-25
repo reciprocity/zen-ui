@@ -87,3 +87,8 @@ export interface Notification {
   variant: NotificationVariant;
   position: PositionVariant;
 }
+
+export interface TooltipVariantProps {
+  backgroundColor: string;
+  showArrow: boolean;
+}
