@@ -56,43 +56,43 @@ export class ZenTableRow {
   @Event() zenToggle: EventEmitter<boolean>;
 
   @Watch('selectable')
-  async selectableChanged(selectable: boolean): Promise<void> {
+  selectableChanged(selectable: boolean): void {
     this.setCellsProp('$selectable', selectable);
   }
 
   @Watch('$expandable')
-  async expandableChanged(expandable: boolean): Promise<void> {
+  expandableChanged(expandable: boolean): void {
     this.setCellsProp('$expandable', expandable);
   }
 
   @Watch('depth')
-  async depthChanged(depth: number): Promise<void> {
+  depthChanged(depth: number): void {
     this.setCellsProp('$depth', depth);
   }
 
   @Watch('header')
-  async headerChanged(header: boolean): Promise<void> {
+  headerChanged(header: boolean): void {
     this.setCellsProp('$header', header);
   }
 
   @Watch('$afterHeader')
-  async afterHeaderChanged(afterHeader: boolean): Promise<void> {
+  afterHeaderChanged(afterHeader: boolean): void {
     this.setCellsProp('$afterHeader', afterHeader);
   }
 
   @Watch('sticky')
-  async stickyChanged(sticky: boolean): Promise<void> {
+  stickyChanged(sticky: boolean): void {
     this.setCellsProp('$sticky', sticky);
   }
 
   @Watch('$indeterminate')
-  async indeterminateChanged(indeterminate: boolean): Promise<void> {
+  indeterminateChanged(indeterminate: boolean): void {
     this.setCellsProp('$indeterminate', indeterminate);
     if (!this.initializing) this.zenSelect.emit();
   }
 
   @Watch('selected')
-  async selectedChanged(selected: boolean): Promise<void> {
+  selectedChanged(selected: boolean): void {
     this.setCellsProp('$selected', selected);
     if (!this.initializing) this.zenSelect.emit();
 
@@ -104,7 +104,7 @@ export class ZenTableRow {
   }
 
   @Watch('expanded')
-  async expandedChanged(expanded: boolean): Promise<void> {
+  expandedChanged(expanded: boolean): void {
     this.setCellsProp('$expanded', expanded);
     if (!this.initializing) this.zenToggle.emit();
   }
