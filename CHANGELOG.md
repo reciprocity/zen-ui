@@ -1,3 +1,10 @@
+## [6.5.4](https://github.com/reciprocity/zen-ui/compare/6.5.3...6.5.4) (2021-05-25)
+
+
+### Bug Fixes
+
+* transscipt table row props to cell in cell willLoad ([d56ebad](https://github.com/reciprocity/zen-ui/commit/d56ebad324f55e724b3ea2fa56beb11738b21592))
+
 ## [6.5.3](https://github.com/reciprocity/zen-ui/compare/6.5.2...6.5.3) (2021-05-24)
 
 
