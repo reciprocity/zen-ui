@@ -63,7 +63,7 @@ export class ZenTableCell {
     this.parentRow().selected = (event.target as HTMLZenCheckboxElement).checked;
   }
 
-  transscriptParentRowProps(): void {
+  loadParentRowProps(): void {
     const parentRow = this.parentRow();
     if (!parentRow) return;
 
@@ -81,7 +81,7 @@ export class ZenTableCell {
     // All parent props need to be set here,
     //   to prevent initial flickering (checkbox shown with delay)!
     // bigfix: https://reciprocitylabs.atlassian.net/browse/PLAT-2264
-    this.transscriptParentRowProps();
+    this.loadParentRowProps();
   }
 
   render(): HTMLTableCellElement {
