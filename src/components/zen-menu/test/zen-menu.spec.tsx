@@ -2,17 +2,11 @@ import { newSpecPage } from '@stencil/core/testing';
 import { ZenMenu } from '../zen-menu';
 
 describe('zen-menu', () => {
-  it('renders', async () => {
+  it('should render with shadow dom', async () => {
     const page = await newSpecPage({
       components: [ZenMenu],
       html: `<zen-menu></zen-menu>`,
     });
-    expect(page.root).toEqualHtml(`
-      <zen-menu>
-        <mock:shadow-root>
-          <slot></slot>
-        </mock:shadow-root>
-      </zen-menu>
-    `);
+    expect(page.root.shadowRoot).toBeTruthy();
   });
 });
