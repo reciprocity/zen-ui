@@ -1,0 +1,13 @@
+@import '../scss/component-helpers.scss';
+
+:host {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: $color-gray-100;
+  border-radius: 1rem;
+  margin-left: 0.5rem;
+  padding: 0 0.5rem;
+  min-width: 1rem;
+  color: $color-gray-700;
+}
