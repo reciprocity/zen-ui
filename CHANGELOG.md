@@ -1,3 +1,17 @@
+# [6.7.0](https://github.com/reciprocity/zen-ui/compare/6.6.0...6.7.0) (2021-05-26)
+
+
+### Bug Fixes
+
+* **zen-tab:** align zen tab badge text to center ([c820e9a](https://github.com/reciprocity/zen-ui/commit/c820e9af0960f3d458b104715fbc1a2f21daad78))
+
+
+### Features
+
+* **zen-badge:** add value parameter and styles ([d99a65c](https://github.com/reciprocity/zen-ui/commit/d99a65c75ff1a5b62c38149ec9515a70940c5f7b))
+* **zen-badge:** initial commit for zen badge ([9666636](https://github.com/reciprocity/zen-ui/commit/96666362ae7f5014ed6613838ba1f7b89be476ee))
+* **zen-badge:** remove visible and value params ([a74e5bb](https://github.com/reciprocity/zen-ui/commit/a74e5bb731d62f81626c7d6dc3d5501a20ff1fe0))
+
 # [6.6.0](https://github.com/reciprocity/zen-ui/compare/6.5.4...6.6.0) (2021-05-25)
 
 
