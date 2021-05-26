@@ -1,26 +1,35 @@
 import { html } from 'lit-html';
-import { Meta, Description, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
-import { getArgTypesAndArgs, spreadArgs } from '#storybook/helpers/argTypes';
-import { getComponentData } from '#storybook/helpers/argTypes';
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
+import { spreadArgs } from '#storybook/helpers/argTypes';
+import { getComponentData, getArgTypesAndArgs } from '#storybook/helpers/argTypes';
 const { argTypes, args } = getArgTypesAndArgs('zen-menu');
+import { faEllipsisH } from '@fortawesome/pro-solid-svg-icons';
+import { waitForElement } from '#storybook/helpers/utils';
+import { logEvents } from '#storybook/helpers/log-events';
 
-<Meta title="Forms/Menu/Menu" component="zen-menu" argTypes={argTypes} />
+<Meta title="Forms/Menu" component="zen-menu" argTypes={argTypes} />
 
 export const StoryWithControls = args => {
+  waitForElement('#icon', element => {
+    element.icon = faEllipsisH;
+  });
   return html/*html*/ `
-    <sb-zen-menu ...="${spreadArgs(args, argTypes)}">
-      <sb-zen-option size="sm" value="add" style="width: 18rem">Add something</sb-zen-option>
-      <sb-zen-option size="sm" value="delete" style="width: 18rem">Delete something</sb-zen-option>
-      <sb-zen-option size="sm" value="find" style="width: 18rem">Find something</sb-zen-option>
-    </sb-zen-menu>
+    <sb-zen-space stretch horizontal-align="center" vertical-align="center">
+      <sb-zen-button variant="grey-ghost"><sb-zen-icon id="icon"></sb-zen-icon></sb-zen-button>
+      <sb-zen-menu id="menu-controls" ...="${spreadArgs(args, argTypes)}">
+        <sb-zen-option value="add" padding="md lg">Add something ...</sb-zen-option>
+        <sb-zen-option value="delete" padding="md lg">Delete something ...</sb-zen-option>
+        <sb-zen-option value="find" padding="md lg">Find something ...</sb-zen-option>
+        <sb-zen-option value="disabled" padding="md lg" disabled="true">Disabled item</sb-zen-option>
+      </sb-zen-menu>
+    </sb-zen-space>
+    ${logEvents('#menu-controls', getComponentData('zen-menu'))}
   `;
 };
 
 # Zen Menu
 
-Simple popover menu component
-
-## Component previews
+Simple popover menu component to be used with `zen-option` element.
 
 <br />
 

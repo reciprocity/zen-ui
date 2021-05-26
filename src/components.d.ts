@@ -11,8 +11,8 @@ import { Align, AvatarData, AvatarDetailVariant, AvatarIconSize, CardVariant, Dr
 import { ButtonVariants } from "./components/zen-button/types";
 import { OptionValue } from "./components/zen-menu-item/zen-option";
 import { IconDefinition } from "@fortawesome/pro-light-svg-icons";
-import { OptionValue as OptionValue1 } from "./components/zen-menu-item/zen-option";
 import { Offsets, Placement } from "@popperjs/core";
+import { OptionValue as OptionValue1 } from "./components/zen-menu-item/zen-option";
 import { StepItem } from "./components/zen-progress-tracker/zen-progress-tracker";
 import { StepsFilter } from "./components/zen-progress-tracker/types";
 import { FlexAlign } from "./components/zen-space/zen-space";
@@ -478,6 +478,34 @@ export namespace Components {
         "variant": LozengeVariant;
     }
     interface ZenMenu {
+        /**
+          * Set tooltip offset to target element
+         */
+        "offset"?: number;
+        /**
+          * Description generated in helper file
+         */
+        "padding": SpacingShorthand;
+        /**
+          * Skipped
+         */
+        "paddingBottom": Spacing;
+        /**
+          * Skipped
+         */
+        "paddingLeft": Spacing;
+        /**
+          * Skipped
+         */
+        "paddingRight": Spacing;
+        /**
+          * Skipped
+         */
+        "paddingTop": Spacing;
+        /**
+          * Set tooltip position
+         */
+        "position"?: Placement;
     }
     interface ZenModal {
         /**
@@ -2103,6 +2131,34 @@ declare namespace LocalJSX {
         "variant"?: LozengeVariant;
     }
     interface ZenMenu {
+        /**
+          * Set tooltip offset to target element
+         */
+        "offset"?: number;
+        /**
+          * Description generated in helper file
+         */
+        "padding"?: SpacingShorthand;
+        /**
+          * Skipped
+         */
+        "paddingBottom"?: Spacing;
+        /**
+          * Skipped
+         */
+        "paddingLeft"?: Spacing;
+        /**
+          * Skipped
+         */
+        "paddingRight"?: Spacing;
+        /**
+          * Skipped
+         */
+        "paddingTop"?: Spacing;
+        /**
+          * Set tooltip position
+         */
+        "position"?: Placement;
     }
     interface ZenModal {
         /**
@@ -2167,6 +2223,10 @@ declare namespace LocalJSX {
           * Prevents default hover style on mouse hover
          */
         "noHover"?: boolean;
+        /**
+          * Option selected event
+         */
+        "onZenSelect"?: (event: CustomEvent<void>) => void;
         /**
           * <Description generated in helper file>
          */
