@@ -1,3 +1,11 @@
+## [6.7.1](https://github.com/reciprocity/zen-ui/compare/6.7.0...6.7.1) (2021-05-26)
+
+
+### Bug Fixes
+
+* replace shadow variables ([8c1603c](https://github.com/reciprocity/zen-ui/commit/8c1603c7644479c59fe66dd7c29cbc629ee40cd3))
+* replace shadow variables in components ([69f8394](https://github.com/reciprocity/zen-ui/commit/69f8394b6fd76295b3408d72775a4bc3f163abc4))
+
 # [6.7.0](https://github.com/reciprocity/zen-ui/compare/6.6.0...6.7.0) (2021-05-26)
 
 
