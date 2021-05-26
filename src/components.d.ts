@@ -477,6 +477,8 @@ export namespace Components {
          */
         "variant": LozengeVariant;
     }
+    interface ZenMenu {
+    }
     interface ZenModal {
         /**
           * Padding of content
@@ -1375,6 +1377,12 @@ declare global {
         prototype: HTMLZenLozengeElement;
         new (): HTMLZenLozengeElement;
     };
+    interface HTMLZenMenuElement extends Components.ZenMenu, HTMLStencilElement {
+    }
+    var HTMLZenMenuElement: {
+        prototype: HTMLZenMenuElement;
+        new (): HTMLZenMenuElement;
+    };
     interface HTMLZenModalElement extends Components.ZenModal, HTMLStencilElement {
     }
     var HTMLZenModalElement: {
@@ -1566,6 +1574,7 @@ declare global {
         "zen-icon": HTMLZenIconElement;
         "zen-input": HTMLZenInputElement;
         "zen-lozenge": HTMLZenLozengeElement;
+        "zen-menu": HTMLZenMenuElement;
         "zen-modal": HTMLZenModalElement;
         "zen-notification": HTMLZenNotificationElement;
         "zen-notifications-wrapper": HTMLZenNotificationsWrapperElement;
@@ -2092,6 +2101,8 @@ declare namespace LocalJSX {
           * Color variant
          */
         "variant"?: LozengeVariant;
+    }
+    interface ZenMenu {
     }
     interface ZenModal {
         /**
@@ -2936,6 +2947,7 @@ declare namespace LocalJSX {
         "zen-icon": ZenIcon;
         "zen-input": ZenInput;
         "zen-lozenge": ZenLozenge;
+        "zen-menu": ZenMenu;
         "zen-modal": ZenModal;
         "zen-notification": ZenNotification;
         "zen-notifications-wrapper": ZenNotificationsWrapper;
@@ -2992,6 +3004,7 @@ declare module "@stencil/core" {
             "zen-icon": LocalJSX.ZenIcon & JSXBase.HTMLAttributes<HTMLZenIconElement>;
             "zen-input": LocalJSX.ZenInput & JSXBase.HTMLAttributes<HTMLZenInputElement>;
             "zen-lozenge": LocalJSX.ZenLozenge & JSXBase.HTMLAttributes<HTMLZenLozengeElement>;
+            "zen-menu": LocalJSX.ZenMenu & JSXBase.HTMLAttributes<HTMLZenMenuElement>;
             "zen-modal": LocalJSX.ZenModal & JSXBase.HTMLAttributes<HTMLZenModalElement>;
             "zen-notification": LocalJSX.ZenNotification & JSXBase.HTMLAttributes<HTMLZenNotificationElement>;
             "zen-notifications-wrapper": LocalJSX.ZenNotificationsWrapper & JSXBase.HTMLAttributes<HTMLZenNotificationsWrapperElement>;

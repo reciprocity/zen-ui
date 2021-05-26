@@ -1,0 +1,42 @@
+import { html } from 'lit-html';
+import { Meta, Description, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
+import { getArgTypesAndArgs, spreadArgs } from '#storybook/helpers/argTypes';
+import { getComponentData } from '#storybook/helpers/argTypes';
+const { argTypes, args } = getArgTypesAndArgs('zen-menu');
+
+<Meta title="Forms/Menu/Menu" component="zen-menu" argTypes={argTypes} />
+
+export const StoryWithControls = args => {
+  return html/*html*/ `
+    <sb-zen-menu ...="${spreadArgs(args, argTypes)}">
+      <sb-zen-option size="sm" value="add" style="width: 18rem">Add something</sb-zen-option>
+      <sb-zen-option size="sm" value="delete" style="width: 18rem">Delete something</sb-zen-option>
+      <sb-zen-option size="sm" value="find" style="width: 18rem">Find something</sb-zen-option>
+    </sb-zen-menu>
+  `;
+};
+
+# Zen Menu
+
+Simple popover menu component
+
+## Component previews
+
+<br />
+
+## Properties
+
+<Canvas>
+  <Story
+    name="default"
+    args={{
+      ...args,
+    }}
+  >
+    {StoryWithControls.bind({})}
+  </Story>
+</Canvas>
+
+<ArgsTable story="default" />
+
+<sb-docs-table docs={JSON.stringify(getComponentData('zen-menu'))}></sb-docs-table>
