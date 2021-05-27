@@ -16,6 +16,9 @@ export class ZenTableRow {
 
   @Element() host: HTMLZenTableRowElement;
 
+  /** Your internal id to identify the row on table queries */
+  @Prop() readonly rowId: string = '';
+
   /** True when parent row is expanded or if it's root row */
   @Prop({ reflect: true, attribute: 'visible' }) readonly $visible: boolean = true;
 
@@ -50,6 +53,7 @@ export class ZenTableRow {
    * row.selected changed
    */
   @Event() zenSelect: EventEmitter<boolean>;
+
   /**
    * row.expanded changed
    */

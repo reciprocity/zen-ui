@@ -1041,6 +1041,10 @@ export namespace Components {
          */
         "header": boolean;
         /**
+          * Your internal id to identify the row on table queries
+         */
+        "rowId": string;
+        /**
           * Show checkbox
          */
         "selectable": boolean;
@@ -2668,6 +2672,10 @@ declare namespace LocalJSX {
          */
         "header"?: boolean;
         /**
+          * Checkbox clicked
+         */
+        "onZenCheckboxClick"?: (event: CustomEvent<{ checked: boolean }>) => void;
+        /**
           * row.selected changed
          */
         "onZenSelect"?: (event: CustomEvent<boolean>) => void;
@@ -2675,6 +2683,10 @@ declare namespace LocalJSX {
           * row.expanded changed
          */
         "onZenToggle"?: (event: CustomEvent<boolean>) => void;
+        /**
+          * Your internal id to identify the row on table queries
+         */
+        "rowId"?: string;
         /**
           * Show checkbox
          */
