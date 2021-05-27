@@ -1,0 +1,15 @@
+@import '../scss/component-helpers.scss';
+
+:host {
+  display: block;
+  position: absolute;
+  width: 14.125rem;
+}
+
+.popover {
+  width: inherit;
+  min-width: inherit;
+  max-width: inherit;
+  z-index: $z-index-tooltips;
+  @include noselect;
+}

@@ -11,8 +11,8 @@ import { Align, AvatarData, AvatarDetailVariant, AvatarIconSize, CardVariant, Dr
 import { ButtonVariants } from "./components/zen-button/types";
 import { OptionValue } from "./components/zen-menu-item/zen-option";
 import { IconDefinition } from "@fortawesome/pro-light-svg-icons";
-import { OptionValue as OptionValue1 } from "./components/zen-menu-item/zen-option";
 import { Offsets, Placement } from "@popperjs/core";
+import { OptionValue as OptionValue1 } from "./components/zen-menu-item/zen-option";
 import { StepItem } from "./components/zen-progress-tracker/zen-progress-tracker";
 import { StepsFilter } from "./components/zen-progress-tracker/types";
 import { FlexAlign } from "./components/zen-space/zen-space";
@@ -476,6 +476,44 @@ export namespace Components {
           * Color variant
          */
         "variant": LozengeVariant;
+    }
+    interface ZenMenu {
+        /**
+          * Limit menu height and make content scroll
+         */
+        "maxHeight": string;
+        /**
+          * Set tooltip offset to target element
+         */
+        "offset"?: number;
+        /**
+          * Description generated in helper file
+         */
+        "padding": SpacingShorthand;
+        /**
+          * Skipped
+         */
+        "paddingBottom": Spacing;
+        /**
+          * Skipped
+         */
+        "paddingLeft": Spacing;
+        /**
+          * Skipped
+         */
+        "paddingRight": Spacing;
+        /**
+          * Skipped
+         */
+        "paddingTop": Spacing;
+        /**
+          * Set tooltip position
+         */
+        "position"?: Placement;
+        /**
+          * Triggering event
+         */
+        "triggerEvent": TriggerEvent;
     }
     interface ZenModal {
         /**
@@ -1375,6 +1413,12 @@ declare global {
         prototype: HTMLZenLozengeElement;
         new (): HTMLZenLozengeElement;
     };
+    interface HTMLZenMenuElement extends Components.ZenMenu, HTMLStencilElement {
+    }
+    var HTMLZenMenuElement: {
+        prototype: HTMLZenMenuElement;
+        new (): HTMLZenMenuElement;
+    };
     interface HTMLZenModalElement extends Components.ZenModal, HTMLStencilElement {
     }
     var HTMLZenModalElement: {
@@ -1566,6 +1610,7 @@ declare global {
         "zen-icon": HTMLZenIconElement;
         "zen-input": HTMLZenInputElement;
         "zen-lozenge": HTMLZenLozengeElement;
+        "zen-menu": HTMLZenMenuElement;
         "zen-modal": HTMLZenModalElement;
         "zen-notification": HTMLZenNotificationElement;
         "zen-notifications-wrapper": HTMLZenNotificationsWrapperElement;
@@ -2093,6 +2138,44 @@ declare namespace LocalJSX {
          */
         "variant"?: LozengeVariant;
     }
+    interface ZenMenu {
+        /**
+          * Limit menu height and make content scroll
+         */
+        "maxHeight"?: string;
+        /**
+          * Set tooltip offset to target element
+         */
+        "offset"?: number;
+        /**
+          * Description generated in helper file
+         */
+        "padding"?: SpacingShorthand;
+        /**
+          * Skipped
+         */
+        "paddingBottom"?: Spacing;
+        /**
+          * Skipped
+         */
+        "paddingLeft"?: Spacing;
+        /**
+          * Skipped
+         */
+        "paddingRight"?: Spacing;
+        /**
+          * Skipped
+         */
+        "paddingTop"?: Spacing;
+        /**
+          * Set tooltip position
+         */
+        "position"?: Placement;
+        /**
+          * Triggering event
+         */
+        "triggerEvent"?: TriggerEvent;
+    }
     interface ZenModal {
         /**
           * Padding of content
@@ -2156,6 +2239,10 @@ declare namespace LocalJSX {
           * Prevents default hover style on mouse hover
          */
         "noHover"?: boolean;
+        /**
+          * Option selected event
+         */
+        "onZenSelect"?: (event: CustomEvent<void>) => void;
         /**
           * <Description generated in helper file>
          */
@@ -2936,6 +3023,7 @@ declare namespace LocalJSX {
         "zen-icon": ZenIcon;
         "zen-input": ZenInput;
         "zen-lozenge": ZenLozenge;
+        "zen-menu": ZenMenu;
         "zen-modal": ZenModal;
         "zen-notification": ZenNotification;
         "zen-notifications-wrapper": ZenNotificationsWrapper;
@@ -2992,6 +3080,7 @@ declare module "@stencil/core" {
             "zen-icon": LocalJSX.ZenIcon & JSXBase.HTMLAttributes<HTMLZenIconElement>;
             "zen-input": LocalJSX.ZenInput & JSXBase.HTMLAttributes<HTMLZenInputElement>;
             "zen-lozenge": LocalJSX.ZenLozenge & JSXBase.HTMLAttributes<HTMLZenLozengeElement>;
+            "zen-menu": LocalJSX.ZenMenu & JSXBase.HTMLAttributes<HTMLZenMenuElement>;
             "zen-modal": LocalJSX.ZenModal & JSXBase.HTMLAttributes<HTMLZenModalElement>;
             "zen-notification": LocalJSX.ZenNotification & JSXBase.HTMLAttributes<HTMLZenNotificationElement>;
             "zen-notifications-wrapper": LocalJSX.ZenNotificationsWrapper & JSXBase.HTMLAttributes<HTMLZenNotificationsWrapperElement>;

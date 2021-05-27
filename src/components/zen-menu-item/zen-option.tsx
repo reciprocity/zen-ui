@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, Element, Listen } from '@stencil/core';
+import { Component, Host, h, Prop, Element, Listen, Event, EventEmitter } from '@stencil/core';
 import { SpacingShorthand, Spacing } from '../helpers/types';
 import { applyPrefix } from '../helpers/helpers';
 import { InputSize } from '../helpers/types';
@@ -46,18 +46,25 @@ export class ZenOption {
   /** Skipped */
   @Prop() readonly paddingLeft: Spacing = null;
 
+  /** Option selected event */
+  @Event() zenSelect: EventEmitter<void>;
+
   @Listen('mousemove')
   handleMouseOver(): void {
     Array.from(this.host.parentElement.children).forEach(node => node.removeAttribute('focused'));
     this.host.setAttribute('focused', 'true');
   }
 
+  private onClick = () => {
+    this.zenSelect.emit();
+  };
+
   render(): HTMLElement {
     const ZenSpace = applyPrefix('zen-space', this.host);
     const ZenText = applyPrefix('zen-text', this.host);
     const realPadding = !this.padding || this.padding === 'null' ? 'none lg' : this.padding;
     return (
-      <Host disabled={this.disabled ? 'true' : null}>
+      <Host disabled={this.disabled ? 'true' : null} onClick={this.onClick}>
         <ZenSpace
           block
           padding={realPadding}
