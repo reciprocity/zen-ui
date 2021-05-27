@@ -46,8 +46,12 @@ export class ZenTableCell {
   /** Row is placed right after header (auto calculated) */
   @Prop({ reflect: true, attribute: 'after-header' }) readonly $afterHeader: boolean = false;
 
+  isFirstCell(): boolean {
+    return !this.host.previousElementSibling;
+  }
+
   showWidgets(): boolean {
-    const isFirstCell = !this.host.previousElementSibling;
+    const isFirstCell = this.isFirstCell();
     return isFirstCell && (this.$selectable || this.$expandable);
   }
 
@@ -59,8 +63,17 @@ export class ZenTableCell {
     this.parentRow().expanded = !this.parentRow().expanded;
   }
 
-  onCheckboxClick(event: Event): void {
+  onCheckboxChange(event: Event): void {
     this.parentRow().selected = (event.target as HTMLZenCheckboxElement).checked;
+  }
+
+  onCheckboxClick(event: CustomEvent): void {
+    const payload = {
+      detail: { checked: (event.target as HTMLZenCheckboxElement).checked },
+      bubbles: true,
+      composed: true,
+    };
+    this.host.dispatchEvent(new CustomEvent('cellcheckboxclick', payload));
   }
 
   loadParentRowProps(): void {
@@ -95,7 +108,7 @@ export class ZenTableCell {
               indeterminate={this.$indeterminate}
               class={{ checkbox: true, invisible: !this.$selectable }}
               checked={this.$selected}
-              onZenChange={event => this.onCheckboxClick(event)}
+              onZenChange={event => this.onCheckboxChange(event)}
             />
             <ZenIcon
               class={{ 'expand-icon': true, invisible: !this.$expandable }}

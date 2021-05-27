@@ -59,6 +59,11 @@ export class ZenTableRow {
    */
   @Event() zenToggle: EventEmitter<boolean>;
 
+  /**
+   * Checkbox clicked
+   */
+  @Event() zenCheckboxClick: EventEmitter<{ checked: boolean }>;
+
   @Watch('selectable')
   selectableChanged(selectable: boolean): void {
     this.setCellsProp('$selectable', selectable);
@@ -152,7 +157,11 @@ export class ZenTableRow {
     this.getRowCells().forEach(cell => (cell[propName] = value));
   }
 
-  async componentDidLoad(): Promise<void> {
+  onCheckboxChecked(event: CustomEvent): void {
+    this.zenCheckboxClick.emit({ checked: event.detail.checked });
+  }
+
+  componentDidLoad(): void {
     this.selectableChanged(this.selectable);
     this.selectedChanged(this.selected);
     this.expandableChanged(this.$expandable);
@@ -166,7 +175,7 @@ export class ZenTableRow {
 
   render(): HTMLTableRowElement {
     return (
-      <Host>
+      <Host onCellcheckboxclick={event => this.onCheckboxChecked(event)}>
         <slot></slot>
       </Host>
     );
