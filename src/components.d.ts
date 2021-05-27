@@ -960,6 +960,10 @@ export namespace Components {
           * Space separated css prop <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-columns" target="_blank">grid-template-columns</a><br/>(eg. `auto 1fr 1fr 200px 1fr`)
          */
         "columns": string;
+        /**
+          * Returns array with ids of selected rows (ordered as they appear in the dom)
+         */
+        "getSelectedRows": () => Promise<string[]>;
     }
     interface ZenTableCell {
         /**
@@ -1036,6 +1040,10 @@ export namespace Components {
           * If row is currently expanded
          */
         "expanded": boolean;
+        /**
+          * Returns table parent or null
+         */
+        "getTable": () => Promise<HTMLZenTableElement>;
         /**
           * Row represents header
          */

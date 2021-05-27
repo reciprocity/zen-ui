@@ -1,4 +1,4 @@
-import { h, Component, Host, Prop, Element, Event, EventEmitter, Watch } from '@stencil/core';
+import { h, Component, Host, Prop, Element, Event, EventEmitter, Watch, Method } from '@stencil/core';
 import { getDefaultSlotContent } from '../helpers/helpers';
 
 /**
@@ -116,6 +116,12 @@ export class ZenTableRow {
   expandedChanged(expanded: boolean): void {
     this.setCellsProp('$expanded', expanded);
     if (!this.initializing) this.zenToggle.emit();
+  }
+
+  /** Returns table parent or null */
+  @Method()
+  async getTable(): Promise<HTMLZenTableElement> {
+    return this.host.parentElement as HTMLZenTableElement;
   }
 
   allTableRows(): HTMLZenTableRowElement[] {
