@@ -1,6 +1,7 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
 import { html } from 'lit-html';
 import { getArgTypes, getDefaultArgs, getComponentData, spreadArgs } from '#storybook/helpers/argTypes';
+import { logEvents } from '#storybook/helpers/log-events';
 
 import data from '../../../stencilDocs.json';
 const compData = data.components.find(n => n.tag === 'zen-table-row');
@@ -68,7 +69,7 @@ export const StoryRowExpandable = () => {
 };
 
 export const StoryWithControls = args => html/*html*/ `
-  <sb-zen-table columns="repeat(4, 1fr)">
+  <sb-zen-table id="row1" columns="repeat(4, 1fr)">
     <sb-zen-table-row ...="${spreadArgs(args, argTypes)}">
       <sb-zen-table-cell>Row 1, Cell 1</sb-zen-table-cell>
       <sb-zen-table-cell>Row 1, Cell 2</sb-zen-table-cell>
@@ -76,6 +77,7 @@ export const StoryWithControls = args => html/*html*/ `
       <sb-zen-table-cell>Row 1, Cell 4</sb-zen-table-cell>
     </sb-zen-table-row>
   </sb-zen-table>
+  ${logEvents('#row1', getComponentData('zen-table-row'))}
 `;
 
 # ZenTableRow
@@ -117,6 +119,7 @@ A fragment `ZenTableRow`
     name="default"
     args={{
       ...getDefaultArgs(argTypes),
+      selectable: true,
     }}
   >
     {StoryWithControls.bind({})}
