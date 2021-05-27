@@ -1,7 +1,7 @@
 import { Component, Host, h, State, Element, Prop } from '@stencil/core';
 import { applyPrefix } from '../helpers/helpers';
 import { Placement } from '@popperjs/core';
-import { Spacing, SpacingShorthand } from '../helpers/types';
+import { Spacing, SpacingShorthand, TriggerEvent } from '../helpers/types';
 
 @Component({
   tag: 'zen-menu',
@@ -15,6 +15,12 @@ export class ZenMenu {
 
   /** Set tooltip position */
   @Prop() readonly position?: Placement = 'bottom-end';
+
+  /** Set tooltip width */
+  @Prop() readonly width: string = '14.125rem';
+
+  /** Triggering event */
+  @Prop() readonly triggerEvent: TriggerEvent = 'click';
 
   /** Set tooltip offset to target element */
   @Prop() readonly offset?: number = 5;
@@ -40,7 +46,8 @@ export class ZenMenu {
       <Host>
         <ZenPopover
           ref={el => (this.popover = el)}
-          trigger-event="hover"
+          style={{ width: this.width }}
+          trigger-event={this.triggerEvent}
           position={this.position}
           offset={{ x: 0, y: this.offset }}
           interactive={true}

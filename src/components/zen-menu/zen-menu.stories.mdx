@@ -2,10 +2,10 @@ import { html } from 'lit-html';
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
 import { spreadArgs } from '#storybook/helpers/argTypes';
 import { getComponentData, getArgTypesAndArgs } from '#storybook/helpers/argTypes';
-const { argTypes, args } = getArgTypesAndArgs('zen-menu');
 import { faEllipsisH } from '@fortawesome/pro-solid-svg-icons';
 import { waitForElement } from '#storybook/helpers/utils';
 import { logEvents } from '#storybook/helpers/log-events';
+const { argTypes, args } = getArgTypesAndArgs('zen-menu');
 
 <Meta title="Forms/Menu" component="zen-menu" argTypes={argTypes} />
 
@@ -29,7 +29,7 @@ export const StoryWithControls = args => {
 
 # Zen Menu
 
-Simple popover menu component to be used with `zen-option` element.
+Simple popover menu component to be used with `zen-option` element. Check `zen-option` params for the elements possibilities.
 
 <br />
 

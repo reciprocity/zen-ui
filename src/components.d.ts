@@ -506,6 +506,14 @@ export namespace Components {
           * Set tooltip position
          */
         "position"?: Placement;
+        /**
+          * Triggering event
+         */
+        "triggerEvent": TriggerEvent;
+        /**
+          * Set tooltip width
+         */
+        "width": string;
     }
     interface ZenModal {
         /**
@@ -2159,6 +2167,14 @@ declare namespace LocalJSX {
           * Set tooltip position
          */
         "position"?: Placement;
+        /**
+          * Triggering event
+         */
+        "triggerEvent"?: TriggerEvent;
+        /**
+          * Set tooltip width
+         */
+        "width"?: string;
     }
     interface ZenModal {
         /**

@@ -50,7 +50,6 @@ export class ZenAvatarIcon {
       initials = this.email.trim().substring(0, 2).toUpperCase();
     } else {
       console.warn('zen-avatar-icon : Username or email has to have a value!');
-      return 'no username';
     }
     return initials;
   }
