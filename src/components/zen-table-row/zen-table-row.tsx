@@ -97,7 +97,7 @@ export class ZenTableRow {
     if (!this.initializing) this.zenSelect.emit();
 
     const table = this.host.parentElement as HTMLZenTableElement;
-    if (table.$updating) return;
+    if (!table || table.$updating) return;
 
     // Select each descendent row:
     this.rowDescendants().forEach(n => (n.selected = selected));
