@@ -17,11 +17,11 @@ export class ZenTable {
   /** Table cleanup in progress */
   @Prop({ attribute: 'updating' }) readonly $updating: boolean = false;
 
-  /** Returns array with ids of selected rows (ordered as they appear in the dom) */
+  /** Returns array with ids of selected rows (ordered as they appear in the dom). It skips rows without ids! */
   @Method()
   async getSelectedRows(): Promise<string[]> {
     return this.getAllRows()
-      .filter(row => rowId && row.selected)
+      .filter(row => row.rowId && row.selected)
       .map(row => row.rowId);
   }
 
