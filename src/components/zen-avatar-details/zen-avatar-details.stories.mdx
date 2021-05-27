@@ -12,7 +12,7 @@ argTypes['iconColor'].control = 'color';
 
 export const StoryWithControls = args => {
   return html/*html*/ `
-    <sb-zen-space spacing="sm" vertical-align="center" horizontal-align="center">
+    <sb-zen-space spacing="sm" vertical-align="center" horizontal-align="center" style="width: fit-content;">
       <sb-zen-avatar-details
         style="border: 1px solid lightgray"
         ...="${spreadArgs(args, argTypes)}"
@@ -24,7 +24,7 @@ export const StoryWithControls = args => {
 export const StoryVariants = () => {
   waitForElement('#avatar-detailed', element => {
     element.userName = 'Mike Anderson';
-    element.email = 'mike.anderson@reciprocitylabs.com';
+    element.email = 'mike.andersonlonglonglonglonglonglong@reciprocitylabs.com';
     element.iconColor = '#00528C';
     element.iconBackground = '#D5E9FA';
   });
@@ -40,11 +40,11 @@ export const StoryVariants = () => {
   });
   return html/*html*/ `
     <sb-zen-space spacing="sm" vertical-align="center" horizontal-align="space-evenly">
-      <sb-zen-space vertical spacing="md" horizontal-align="center">
-        <sb-zen-avatar-details id="avatar-detailed" style="border: 1px solid lightgray"></sb-zen-avatar-details>
+      <sb-zen-space vertical spacing="md" horizontal-align="center" style="width: 200px;">
+        <sb-zen-avatar-details id="avatar-detailed" style="border: 1px solid lightgray;"></sb-zen-avatar-details>
         <sb-zen-text size="sm">Variant 'Detailed'</sb-zen-text>
       </sb-zen-space>
-      <sb-zen-space vertical spacing="md" horizontal-align="center">
+      <sb-zen-space vertical spacing="md" horizontal-align="center" style="width: 200px;">
         <sb-zen-avatar-details
           id="avatar-basic-medium"
           variant="basic"
@@ -52,12 +52,12 @@ export const StoryVariants = () => {
         ></sb-zen-avatar-details>
         <sb-zen-text size="sm">Variant 'Basic Default' </sb-zen-text>
       </sb-zen-space>
-      <sb-zen-space vertical spacing="md" horizontal-align="center">
+      <sb-zen-space vertical spacing="md" horizontal-align="center" style="width: 200px;">
         <sb-zen-avatar-details
           id="avatar-basic-small"
           variant="basic-lg"
           size="md"
-          style="border: 1px solid lightgray"
+          style="border: 1px solid lightgray;"
         ></sb-zen-avatar-details>
         <sb-zen-text size="sm">Variant 'Basic Large' </sb-zen-text>
       </sb-zen-space>

@@ -2,4 +2,13 @@
   display: flex;
   align-items: center;
   white-space: nowrap;
+  width: 100%;
+}
+
+.container {
+  max-width: calc(100% - 40px);
+}
+
+.stretch {
+  width: 100%;
 }

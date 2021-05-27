@@ -29,7 +29,7 @@ export class ZenAvatarDetails {
       textSize: 'lg',
     },
     detailed: {
-      verticalAlignment: 'start',
+      verticalAlignment: 'center',
       avatarIconSize: 'md',
       userNameBold: true,
       textSize: 'md',
@@ -83,6 +83,7 @@ export class ZenAvatarDetails {
       <Host>
         <ZenSpace
           no-wrap
+          stretch
           padding={this.padding}
           padding-top={this.paddingTop}
           padding-right={this.paddingRight}
@@ -101,12 +102,20 @@ export class ZenAvatarDetails {
             size={sizes.avatarIconSize as AvatarIconSize}
             data-test="avatar-icon"
           />
-          <ZenSpace no-wrap vertical padding="xs" spacing="sm">
-            <ZenText size={sizes.textSize as TextSize} bold={sizes.userNameBold} data-test="username">
-              {this.userName}
-            </ZenText>
-            {this.variant === 'detailed' && (
-              <ZenText size="md" data-test="email">
+          <ZenSpace class="container" no-wrap stretch vertical padding="xs" spacing="sm">
+            {this.userName.trim() && (
+              <ZenText
+                class="stretch"
+                truncate
+                size={sizes.textSize as TextSize}
+                bold={sizes.userNameBold}
+                data-test="username"
+              >
+                {this.userName}
+              </ZenText>
+            )}
+            {this.email.trim() && this.variant === 'detailed' && (
+              <ZenText class="stretch" truncate size="md" data-test="email">
                 {this.email}
               </ZenText>
             )}
