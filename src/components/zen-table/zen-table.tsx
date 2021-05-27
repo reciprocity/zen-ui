@@ -21,7 +21,7 @@ export class ZenTable {
   @Method()
   async getSelectedRows(): Promise<string[]> {
     return this.getAllRows()
-      .filter(row => row.selected)
+      .filter(row => rowId && row.selected)
       .map(row => row.rowId);
   }
 
