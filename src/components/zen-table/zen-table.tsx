@@ -1,4 +1,4 @@
-import { h, Component, Host, Element, Prop } from '@stencil/core';
+import { h, Component, Host, Element, Prop, Method } from '@stencil/core';
 import { cleanupTableStructure } from './zen-table-helpers';
 
 @Component({
@@ -16,6 +16,18 @@ export class ZenTable {
 
   /** Table cleanup in progress */
   @Prop({ attribute: 'updating' }) readonly $updating: boolean = false;
+
+  /** Returns array with ids of selected rows (ordered as they appear in the dom) */
+  @Method()
+  async getSelectedRows(): Promise<string[]> {
+    return this.getAllRows()
+      .filter(row => row.selected)
+      .map(row => row.rowId);
+  }
+
+  getAllRows(): HTMLZenTableRowElement[] {
+    return Array.from(this.host.children) as HTMLZenTableRowElement[];
+  }
 
   startChildObserver(): void {
     this.childObserver = new MutationObserver(() => cleanupTableStructure(this.host));
