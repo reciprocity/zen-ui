@@ -1,3 +1,18 @@
+# [6.8.0](https://github.com/reciprocity/zen-ui/compare/6.7.2...6.8.0) (2021-05-27)
+
+
+### Bug Fixes
+
+* **zen-avatar-icon:** change error handling ([b694ab1](https://github.com/reciprocity/zen-ui/commit/b694ab1950d259291160be637c85783e7b4f3cfa))
+* **zen-menu:** code review changes and code cleanup ([3a5df5c](https://github.com/reciprocity/zen-ui/commit/3a5df5c535441b84c97c2886ccb8d4fc9afe5fe4))
+
+
+### Features
+
+* **zen-menu:** add initial component implementation ([d01ad0e](https://github.com/reciprocity/zen-ui/commit/d01ad0e7f27ca61e3f40178b341d7f165e50d747))
+* **zen-menu:** add story and update implementation ([9182e7b](https://github.com/reciprocity/zen-ui/commit/9182e7b4819afb302f81076aa1431ff5c21edffc))
+* **zen-menu:** add trigger event and width params ([93966f8](https://github.com/reciprocity/zen-ui/commit/93966f8f742a0d376f4a7562c612ed69f156b69b))
+
 ## [6.7.2](https://github.com/reciprocity/zen-ui/compare/6.7.1...6.7.2) (2021-05-27)
 
 
