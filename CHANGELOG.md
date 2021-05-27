@@ -1,3 +1,10 @@
+## [6.7.2](https://github.com/reciprocity/zen-ui/compare/6.7.1...6.7.2) (2021-05-27)
+
+
+### Bug Fixes
+
+* fix row updating bug ([81e9e44](https://github.com/reciprocity/zen-ui/commit/81e9e449157f747f0557bca89245caf959b5cb0c))
+
 ## [6.7.1](https://github.com/reciprocity/zen-ui/compare/6.7.0...6.7.1) (2021-05-26)
 
 
