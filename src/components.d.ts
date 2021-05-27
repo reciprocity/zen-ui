@@ -1824,6 +1824,10 @@ declare namespace LocalJSX {
          */
         "onZenChange"?: (event: CustomEvent<void>) => void;
         /**
+          * Same as native click, but triggered AFTER `checked` is propperly set. This allows us to determine the state of checkbox inside the event handler.
+         */
+        "onZenClick"?: (event: CustomEvent<void>) => void;
+        /**
           * Shows a red asterisk after label.
          */
         "required"?: boolean;

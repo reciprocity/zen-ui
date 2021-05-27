@@ -109,6 +109,7 @@ export class ZenTableCell {
               class={{ checkbox: true, invisible: !this.$selectable }}
               checked={this.$selected}
               onZenChange={event => this.onCheckboxChange(event)}
+              onZenClick={event => this.onCheckboxClick(event)}
             />
             <ZenIcon
               class={{ 'expand-icon': true, invisible: !this.$expandable }}
