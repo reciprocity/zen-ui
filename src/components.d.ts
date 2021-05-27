@@ -479,6 +479,10 @@ export namespace Components {
     }
     interface ZenMenu {
         /**
+          * Limit menu height and make content scroll
+         */
+        "maxHeight": string;
+        /**
           * Set tooltip offset to target element
          */
         "offset"?: number;
@@ -510,10 +514,6 @@ export namespace Components {
           * Triggering event
          */
         "triggerEvent": TriggerEvent;
-        /**
-          * Set tooltip width
-         */
-        "width": string;
     }
     interface ZenModal {
         /**
@@ -2140,6 +2140,10 @@ declare namespace LocalJSX {
     }
     interface ZenMenu {
         /**
+          * Limit menu height and make content scroll
+         */
+        "maxHeight"?: string;
+        /**
           * Set tooltip offset to target element
          */
         "offset"?: number;
@@ -2171,10 +2175,6 @@ declare namespace LocalJSX {
           * Triggering event
          */
         "triggerEvent"?: TriggerEvent;
-        /**
-          * Set tooltip width
-         */
-        "width"?: string;
     }
     interface ZenModal {
         /**

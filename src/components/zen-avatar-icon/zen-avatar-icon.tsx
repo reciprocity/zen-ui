@@ -48,8 +48,6 @@ export class ZenAvatarIcon {
       }
     } else if (this.email.trim()) {
       initials = this.email.trim().substring(0, 2).toUpperCase();
-    } else {
-      console.warn('zen-avatar-icon : Username or email has to have a value!');
     }
     return initials;
   }

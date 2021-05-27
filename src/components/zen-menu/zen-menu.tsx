@@ -16,11 +16,11 @@ export class ZenMenu {
   /** Set tooltip position */
   @Prop() readonly position?: Placement = 'bottom-end';
 
-  /** Set tooltip width */
-  @Prop() readonly width: string = '14.125rem';
-
   /** Triggering event */
   @Prop() readonly triggerEvent: TriggerEvent = 'click';
+
+  /** Limit menu height and make content scroll  */
+  @Prop() readonly maxHeight: string = 'none';
 
   /** Set tooltip offset to target element */
   @Prop() readonly offset?: number = 5;
@@ -45,8 +45,11 @@ export class ZenMenu {
     return (
       <Host>
         <ZenPopover
+          class="popover"
           ref={el => (this.popover = el)}
-          style={{ width: this.width }}
+          style={{
+            'max-height': this.maxHeight,
+          }}
           trigger-event={this.triggerEvent}
           position={this.position}
           offset={{ x: 0, y: this.offset }}
