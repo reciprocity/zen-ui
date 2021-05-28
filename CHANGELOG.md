@@ -1,3 +1,10 @@
+## [6.9.1](https://github.com/reciprocity/zen-ui/compare/6.9.0...6.9.1) (2021-05-28)
+
+
+### Bug Fixes
+
+* **zen-avatar-details:** add ellipsis for username and email ([8754b96](https://github.com/reciprocity/zen-ui/commit/8754b962e843960038c1ad92f1fb12f41fbf75bc))
+
 # [6.9.0](https://github.com/reciprocity/zen-ui/compare/6.8.0...6.9.0) (2021-05-28)
 
 
