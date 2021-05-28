@@ -1,3 +1,14 @@
+# [6.9.0](https://github.com/reciprocity/zen-ui/compare/6.8.0...6.9.0) (2021-05-28)
+
+
+### Features
+
+* **zen-checkbox:** add event zenClick ([6cff8ee](https://github.com/reciprocity/zen-ui/commit/6cff8ee49be2a2ccfc1efe5d361e3a404171cba3))
+* **zen-table:** add method `getSelectedRows()` ([de27792](https://github.com/reciprocity/zen-ui/commit/de2779248a623946fbe7d6ad28095312c1bb2a9c))
+* **zen-table-row:** add event `zenCheckboxClick` ([2f5d358](https://github.com/reciprocity/zen-ui/commit/2f5d358d34963ae0448b69f77d53085d2bcffdb0))
+* **zen-table-row:** add method `getTable()` ([683121f](https://github.com/reciprocity/zen-ui/commit/683121f5659efaa9215e9efc1465f2e5daeab6b7))
+* **zen-table-row:** add prop `id` ([bba4ced](https://github.com/reciprocity/zen-ui/commit/bba4ced6e5f0a61148f5f2142af3f5fa90c95a80))
+
 # [6.8.0](https://github.com/reciprocity/zen-ui/compare/6.7.2...6.8.0) (2021-05-27)
 
 
