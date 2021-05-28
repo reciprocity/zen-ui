@@ -51,4 +51,21 @@ describe('zen-avatar-icon', () => {
     });
     expect(page.root.shadowRoot.querySelector('div').textContent).toEqual('KE');
   });
+
+  it('should correctly display override initials', async () => {
+    const page = await newSpecPage({
+      components: [ZenAvatarIcon],
+      html: `<zen-avatar-icon initials="MP" user-name="Shelley"></zen-avatar-icon>`,
+    });
+    expect(page.root.shadowRoot.querySelector('div').textContent).toEqual('MP');
+  });
+
+  it('should correctly display image', async () => {
+    const page = await newSpecPage({
+      components: [ZenAvatarIcon],
+      html: `<zen-avatar-icon image-url="http://image.jpg"></zen-avatar-icon>`,
+    });
+    expect(page.root.shadowRoot.querySelector('img')).toBeTruthy();
+    expect(page.root.shadowRoot.querySelector('.initials')).toBeFalsy();
+  });
 });
