@@ -36,6 +36,9 @@ export class ZenCheckbox {
   /** Checkbox change event */
   @Event() zenChange: EventEmitter<void>;
 
+  /** Same as native click, but triggered AFTER `checked` is propperly set. This allows us to determine the state of checkbox inside the event handler. */
+  @Event() zenClick: EventEmitter<void>;
+
   @Watch('checked')
   checkedChanged(): void {
     this.zenChange.emit();
@@ -55,6 +58,7 @@ export class ZenCheckbox {
     } else {
       this.checked = !this.checked;
     }
+    this.zenClick.emit();
   };
 
   render(): HTMLElement {

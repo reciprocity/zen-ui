@@ -1004,6 +1004,10 @@ export namespace Components {
           * Space separated css prop <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-columns" target="_blank">grid-template-columns</a><br/>(eg. `auto 1fr 1fr 200px 1fr`)
          */
         "columns": string;
+        /**
+          * Returns array with ids of selected rows (ordered as they appear in the dom)
+         */
+        "getSelectedRows": () => Promise<string[]>;
     }
     interface ZenTableCell {
         /**
@@ -1081,9 +1085,17 @@ export namespace Components {
          */
         "expanded": boolean;
         /**
+          * Returns table parent or null
+         */
+        "getTable": () => Promise<HTMLZenTableElement>;
+        /**
           * Row represents header
          */
         "header": boolean;
+        /**
+          * Your internal id to identify the row on table queries
+         */
+        "rowId": string;
         /**
           * Show checkbox
          */
@@ -1883,6 +1895,10 @@ declare namespace LocalJSX {
           * Checkbox change event
          */
         "onZenChange"?: (event: CustomEvent<void>) => void;
+        /**
+          * Same as native click, but triggered AFTER `checked` is propperly set. This allows us to determine the state of checkbox inside the event handler.
+         */
+        "onZenClick"?: (event: CustomEvent<void>) => void;
         /**
           * Shows a red asterisk after label.
          */
@@ -2778,6 +2794,10 @@ declare namespace LocalJSX {
          */
         "header"?: boolean;
         /**
+          * Checkbox clicked
+         */
+        "onZenCheckboxClick"?: (event: CustomEvent<{ checked: boolean }>) => void;
+        /**
           * row.selected changed
          */
         "onZenSelect"?: (event: CustomEvent<boolean>) => void;
@@ -2785,6 +2805,10 @@ declare namespace LocalJSX {
           * row.expanded changed
          */
         "onZenToggle"?: (event: CustomEvent<boolean>) => void;
+        /**
+          * Your internal id to identify the row on table queries
+         */
+        "rowId"?: string;
         /**
           * Show checkbox
          */
