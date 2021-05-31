@@ -14,9 +14,6 @@ export class ZenTab {
   /** Tab disabled */
   @Prop({ reflect: true }) readonly disabled: boolean = false;
 
-  /** Tab badge value (null to not display it) */
-  @Prop() readonly badge: string | null = null;
-
   /** Tab selected event */
   @Event() zenSelect: EventEmitter<void>;
 
@@ -28,7 +25,6 @@ export class ZenTab {
     return (
       <Host onClick={() => this.onClick()}>
         <slot></slot>
-        {this.badge !== null && <div class="badge">{this.badge}</div>}
       </Host>
     );
   }
