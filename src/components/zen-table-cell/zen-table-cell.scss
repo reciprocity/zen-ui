@@ -61,6 +61,7 @@
 }
 
 :host([header]) {
+  height: 2rem;
   min-height: 2rem;
   font-weight: bold;
   border-bottom: 1px solid $color-gray-200;
