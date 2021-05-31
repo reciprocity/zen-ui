@@ -9,19 +9,6 @@
   border-bottom: 4px solid transparent;
   color: $color-gray-400;
   font-size: $text-md;
-
-  ::slotted(*) {
-    color: $color-gray-400;
-  }
-}
-
-.badge {
-  background: $color-gray-100;
-  border-radius: 1rem;
-  margin-left: 0.5rem;
-  padding: 0 0.5rem;
-  min-width: 1rem;
-  text-align: center;
 }
 
 :host([disabled='false']:hover),
@@ -33,10 +20,6 @@
   border-bottom: 4px solid $color-blue-700;
   color: $color-gray-700;
   font-weight: bold;
-
-  .badge {
-    font-weight: normal;
-  }
 }
 
 :host([disabled]:not([disabled='false'])) {
