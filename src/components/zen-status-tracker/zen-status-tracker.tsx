@@ -82,16 +82,11 @@ export class ZenStatusTracker {
 
     this.childObserver.observe(this.host, {
       childList: true,
-      attributes: true,
-      subtree: true,
     });
   }
 
   componentWillLoad(): void {
     this.setLozengeProperties();
-  }
-
-  componentDidLoad(): void {
     this.startChildObserver();
   }
 

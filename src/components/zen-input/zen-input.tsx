@@ -125,6 +125,10 @@ export class ZenInput {
     return this.size === 'sm' ? 'sm' : 'md';
   }
 
+  componentWillLoad(): void {
+    this.isEmpty = !this.value;
+  }
+
   componentDidLoad(): void {
     this.valueChanged(this.value);
   }

@@ -252,6 +252,13 @@ export class ZenDatePicker {
     }
   }
 
+  componentWillLoad(): void {
+    if (`${this.formattedDate}` !== 'null') {
+      this.formattedDateChanged(this.formattedDate);
+    }
+    this.dateChanged(this.value); // set today date
+  }
+
   componentDidLoad(): void {
     if (`${this.formattedDate}` !== 'null') {
       this.formattedDateChanged(this.formattedDate);

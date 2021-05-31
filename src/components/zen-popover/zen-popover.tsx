@@ -253,12 +253,14 @@ export class ZenPopover {
     }
   }
 
-  componentDidLoad(): void {
-    this.popup = this.host.shadowRoot.querySelector('.popup');
-
+  componentWillLoad(): void {
     if (!this.targetElement) {
       this.targetElement = this.host.previousElementSibling as HTMLElement;
     }
+  }
+
+  componentDidLoad(): void {
+    this.popup = this.host.shadowRoot.querySelector('.popup');
     this.visibleChanged(this.visible);
     this.delayPropChanged(this.delay);
   }

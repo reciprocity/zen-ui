@@ -167,7 +167,7 @@ export class ZenTableRow {
     this.zenCheckboxClick.emit({ checked: event.detail.checked });
   }
 
-  componentDidLoad(): void {
+  componentWillLoad(): void {
     this.selectableChanged(this.selectable);
     this.selectedChanged(this.selected);
     this.expandableChanged(this.$expandable);
