@@ -983,10 +983,6 @@ export namespace Components {
     }
     interface ZenTab {
         /**
-          * Tab badge value (null to not display it)
-         */
-        "badge": string | null;
-        /**
           * Tab disabled
          */
         "disabled": boolean;
@@ -2687,10 +2683,6 @@ declare namespace LocalJSX {
         "selectedId"?: string;
     }
     interface ZenTab {
-        /**
-          * Tab badge value (null to not display it)
-         */
-        "badge"?: string | null;
         /**
           * Tab disabled
          */
