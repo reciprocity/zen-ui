@@ -12,15 +12,6 @@ describe('zen-tab', () => {
     expect(page.root.shadowRoot).toBeTruthy();
   });
 
-  it('should display a badge', async () => {
-    const page = await newSpecPage({
-      components: [ZenTab],
-      html: `<zen-tab badge="123">Tab 1</zen-tab>`,
-    });
-
-    expect(page.root.shadowRoot.querySelector('.badge')).toBeTruthy();
-  });
-
   it('should be disabled', async () => {
     const page = await newSpecPage({
       components: [ZenTab],
