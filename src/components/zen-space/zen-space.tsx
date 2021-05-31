@@ -88,9 +88,7 @@ export class ZenSpace {
   render(): HTMLElement {
     return (
       <Host class={this.classes}>
-        <slot>
-          <p>zen-space should not be empty</p>
-        </slot>
+        <slot></slot>
       </Host>
     );
   }

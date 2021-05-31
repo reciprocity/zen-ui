@@ -1,3 +1,10 @@
+## [6.9.2](https://github.com/reciprocity/zen-ui/compare/6.9.1...6.9.2) (2021-05-31)
+
+
+### Bug Fixes
+
+* **zen-space:** remove text "zen-space should not be empty" ([d438c0c](https://github.com/reciprocity/zen-ui/commit/d438c0c77109f198899fc7f31c4a6dc974857db0))
+
 ## [6.9.1](https://github.com/reciprocity/zen-ui/compare/6.9.0...6.9.1) (2021-05-28)
 
 
