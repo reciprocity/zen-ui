@@ -1,3 +1,11 @@
+## [6.9.4](https://github.com/reciprocity/zen-ui/compare/6.9.3...6.9.4) (2021-05-31)
+
+
+### Bug Fixes
+
+* calc padding and active tab in willLoad to prevent flickering ([91c99b8](https://github.com/reciprocity/zen-ui/commit/91c99b896928a7de019912cebbe5acc33069a7af))
+* prevent initial flickering of components ([9783aec](https://github.com/reciprocity/zen-ui/commit/9783aecd86a553d41bc5a4dd9344dfc21f40d8cd))
+
 ## [6.9.3](https://github.com/reciprocity/zen-ui/compare/6.9.2...6.9.3) (2021-05-31)
 
 
