@@ -1005,7 +1005,7 @@ export namespace Components {
          */
         "columns": string;
         /**
-          * Returns array with ids of selected rows (ordered as they appear in the dom)
+          * Returns array with ids of selected rows (ordered as they appear in the dom). It skips rows without ids!
          */
         "getSelectedRows": () => Promise<string[]>;
     }
