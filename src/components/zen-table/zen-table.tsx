@@ -39,7 +39,7 @@ export class ZenTable {
     });
   }
 
-  componentDidLoad(): void {
+  componentWillLoad(): void {
     if (!this.columns) {
       console.error('Zen-table error: Missing prop `columns`!', this.host);
     }

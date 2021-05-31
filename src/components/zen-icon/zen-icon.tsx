@@ -53,7 +53,7 @@ export class ZenIcon {
     this.paddingClasses = parsePadding(padding);
   }
 
-  componentDidLoad(): void {
+  componentWillLoad(): void {
     this.paddingChanged(this.padding);
   }
 

@@ -24,7 +24,7 @@ export class ZenSortable {
     return Array.from(this.host.children).every(item => item.hasAttribute('data-id'));
   }
 
-  componentDidLoad(): void {
+  componentWillLoad(): void {
     if (this.hasItemDataId()) {
       Sortable.create(this.host, {
         animation: 150,

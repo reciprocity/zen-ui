@@ -71,7 +71,7 @@ export class ZenSidebarNavItem {
     });
   }
 
-  componentDidLoad(): void {
+  componentWillLoad(): void {
     this.startChildObserver();
     this.validateSubitems();
   }
