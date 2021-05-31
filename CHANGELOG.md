@@ -1,3 +1,12 @@
+## [6.9.3](https://github.com/reciprocity/zen-ui/compare/6.9.2...6.9.3) (2021-05-31)
+
+
+### Bug Fixes
+
+* **zen-avatar-details:** ellipsis works correctly ([9406c66](https://github.com/reciprocity/zen-ui/commit/9406c66aeb239b861aeb900fc90f9688ccf4b4bf))
+* **zen-lozenge:** match min width to designs ([e0dd81d](https://github.com/reciprocity/zen-ui/commit/e0dd81dcdc3583a62893d5df7654790da645dd9a))
+* **zen-table:** prevent header jumping ([d72f8e2](https://github.com/reciprocity/zen-ui/commit/d72f8e2d4cabe550329cf238b01d5a7969d3364f))
+
 ## [6.9.2](https://github.com/reciprocity/zen-ui/compare/6.9.1...6.9.2) (2021-05-31)
 
 
