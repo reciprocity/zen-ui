@@ -5,6 +5,12 @@
 
 * **zen-tab:** remove badge property ([c233ed8](https://github.com/reciprocity/zen-ui/commit/c233ed8b52c0b49ad6d84b7dd1cbc968756a4dc2))
 
+### BREAKING CHANGES
+
+> There was an error with the commit message, this was supposed to be v7.0.0
+
+* **zen-tab:** The `badge` property was removed in favor of using `zen-badge` in the `zen-tab` slot.
+
 ## [6.9.4](https://github.com/reciprocity/zen-ui/compare/6.9.3...6.9.4) (2021-05-31)
 
 
@@ -83,6 +89,8 @@
 ### Bug Fixes
 
 * **zen-tab:** align zen tab badge text to center ([c820e9a](https://github.com/reciprocity/zen-ui/commit/c820e9af0960f3d458b104715fbc1a2f21daad78))
+
+
 
 
 ### Features
