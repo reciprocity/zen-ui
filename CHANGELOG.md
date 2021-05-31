@@ -1,3 +1,10 @@
+## [6.9.5](https://github.com/reciprocity/zen-ui/compare/6.9.4...6.9.5) (2021-05-31)
+
+
+### Bug Fixes
+
+* **zen-tab:** remove badge property ([c233ed8](https://github.com/reciprocity/zen-ui/commit/c233ed8b52c0b49ad6d84b7dd1cbc968756a4dc2))
+
 ## [6.9.4](https://github.com/reciprocity/zen-ui/compare/6.9.3...6.9.4) (2021-05-31)
 
 
