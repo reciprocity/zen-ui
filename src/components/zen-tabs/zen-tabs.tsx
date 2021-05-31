@@ -44,7 +44,7 @@ export class ZenTabs {
     this.updating = false;
   }
 
-  componentDidLoad(): void {
+  componentWillLoad(): void {
     this.tabs = Array.from(this.host.children).map(n => n as HTMLZenTabElement);
     this.selectTab(this.tabs[this.value], false);
   }

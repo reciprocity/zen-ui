@@ -80,7 +80,7 @@ export class ZenSpace {
     this.classes = merge({}, paddingClasses, marginClasses);
   }
 
-  componentDidLoad(): void {
+  componentWillLoad(): void {
     this.paddingChanged();
     this.marginChanged();
   }
