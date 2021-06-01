@@ -40,6 +40,7 @@ $arrow_size: 0.3rem;
 
 :host([variant='system']) {
   color: $color-white;
+  font-size: $text-sm;
 
   .heading {
     color: $color-white;
