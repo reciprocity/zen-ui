@@ -6,6 +6,8 @@ $arrow_size: 0.3rem;
   position: absolute;
   width: 300px;
   max-width: max-content;
+  color: $color-gray-500;
+  font-size: $text-md;
 }
 
 .popover {
@@ -16,10 +18,8 @@ $arrow_size: 0.3rem;
 
 .heading {
   padding-bottom: 0.5rem;
-}
-
-.content {
-  color: $color-gray-500;
+  font-weight: bold;
+  color: $color-gray-700;
 }
 
 .link {
@@ -27,6 +27,7 @@ $arrow_size: 0.3rem;
   color: $color-blue-700;
   text-decoration: none;
   cursor: pointer;
+  margin-top: 1rem;
 
   .icon {
     margin-top: -0.25rem;
@@ -38,11 +39,9 @@ $arrow_size: 0.3rem;
 }
 
 :host([variant='system']) {
-  .heading {
-    color: $color-white;
-  }
+  color: $color-white;
 
-  .content {
+  .heading {
     color: $color-white;
   }
 

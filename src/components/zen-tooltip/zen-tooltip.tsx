@@ -76,8 +76,6 @@ export class ZenTooltip {
   render(): HTMLElement {
     const ZenPopover = applyPrefix('zen-popover', this.host);
     const ZenIcon = applyPrefix('zen-icon', this.host);
-    const ZenText = applyPrefix('zen-text', this.host);
-    const ZenSpace = applyPrefix('zen-space', this.host);
     const isScrollable = this.maxHeight !== 'none';
     const variantProps = this.propsByVariant[this.variant] || this.propsByVariant.default;
 
@@ -102,27 +100,13 @@ export class ZenTooltip {
           padding-bottom={this.paddingBottom}
           padding-left={this.paddingLeft}
         >
-          {this.heading && (
-            <ZenText class="heading" size="md" bold>
-              {this.heading}
-            </ZenText>
-          )}
-          <slot>
-            {this.label && (
-              <ZenText class="content" size="md">
-                {this.label}
-              </ZenText>
-            )}
-          </slot>
+          {this.heading && <div class="heading">{this.heading}</div>}
+          <slot>{this.label}</slot>
           {this.link && (
-            <ZenSpace no-wrap padding-top="lg">
-              <ZenText size="md">
-                <a class="link" href={this.link} target="_blank">
-                  {this.linkTitle ? this.linkTitle : this.link}
-                  <ZenIcon size="md" padding-left="md" class="icon" icon={faExternalLink} />
-                </a>
-              </ZenText>
-            </ZenSpace>
+            <a class="link" href={this.link} target="_blank">
+              {this.linkTitle ? this.linkTitle : this.link}
+              <ZenIcon size="md" padding-left="md" class="icon" icon={faExternalLink} />
+            </a>
           )}
         </ZenPopover>
       </Host>

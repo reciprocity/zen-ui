@@ -73,9 +73,7 @@ export const Scrollable = () => {
     <sb-zen-space nowrap horizontal-align="space-evenly" vertical-align="end">
       <div>
         <sb-zen-button label="Info" variant="blue-ghost">Hover</sb-zen-button>
-        <sb-zen-tooltip position="top" variant="light" max-height="7rem" label="">
-          <sb-zen-text size="sm" style="color:#868E96;">${loremIpsum(2)}</sb-zen-text>
-        </sb-zen-tooltip>
+        <sb-zen-tooltip position="top" variant="light" max-height="7rem" label=""> ${loremIpsum(2)} </sb-zen-tooltip>
       </div>
     </sb-zen-space>
   `;
@@ -93,7 +91,7 @@ export const TitleAndHyperlink = () => {
           position="top"
           variant="light"
         >
-          <sb-zen-text size="md" style="color:#868E96">${loremIpsum(2)}</sb-zen-text>
+          ${loremIpsum(2)}
         </sb-zen-tooltip>
       </div>
     </sb-zen-space>
