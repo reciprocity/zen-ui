@@ -221,16 +221,21 @@ export class ZenPopover {
   }
 
   modifiers(): Record<string, unknown>[] {
-    const modifiers = [];
-    const offsetOption = {
+    const offset = {
       name: 'offset',
       options: {
         offset: [this.offset.x, this.offset.y],
       },
     };
 
-    modifiers.push(offsetOption);
-    return modifiers;
+    const preventOverflow = {
+      name: 'preventOverflow',
+      options: {
+        padding: 32,
+      },
+    };
+
+    return [offset, preventOverflow];
   }
 
   async createPopper(): Promise<void> {
