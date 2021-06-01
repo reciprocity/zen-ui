@@ -239,6 +239,7 @@ export class ZenPopover {
     this.popperInstance = createPopper(this.targetElement, popupWrap, {
       placement: this.position,
       modifiers: this.modifiers(),
+      strategy: 'fixed',
     });
     await waitNextFrame();
     this.actualPosition = this.popperInstance.state.placement;
