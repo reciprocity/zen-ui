@@ -5,7 +5,6 @@ describe('Popover visual tests', { scrollBehavior: 'center' }, () => {
   const story = [
     'story--containers-popover--story-position-variants',
     'story--containers-popover--story-trigger-events',
-    'story--containers-popover--story-scrollable',
     'story--containers-popover--default-story',
   ];
 
