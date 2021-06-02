@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-describe('Avatar details visual tests', () => {
+describe.skip('Avatar details visual tests', () => {
   const pageId = 'graphics-avatar-avatar--story-avatar';
   const stories = [
     'story--graphics-avatar-avatar--story-avatar',

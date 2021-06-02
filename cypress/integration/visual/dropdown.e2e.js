@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-describe('Dropdown visual tests', { scrollBehavior: false }, () => {
+describe.skip('Dropdown visual tests', { scrollBehavior: false }, () => {
   const pageId = 'forms-dropdown-dropdown--button';
   const dropdown = [
     {

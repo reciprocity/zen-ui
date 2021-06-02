@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-describe('Avatar group visual tests', () => {
+describe.skip('Avatar group visual tests', () => {
   const pageId = 'graphics-avatar-avatar-group--default';
   const stories = [
     'story--graphics-avatar-avatar-group--story-avatar-group',

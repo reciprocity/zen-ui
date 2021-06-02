@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-describe('Tooltip visual tests', { scrollBehavior: 'center' }, () => {
+describe.skip('Tooltip visual tests', { scrollBehavior: 'center' }, () => {
   const pageId = 'notifications-tooltip--variant';
   const story = [
     'story--notifications-tooltip--slot',
