@@ -28,7 +28,6 @@ export class ZenTooltip {
 
   @Element() host: HTMLZenTooltipElement;
 
-  @State() visible = false;
   @State() target: HTMLElement = null;
 
   /** Set tooltip position */
@@ -80,7 +79,7 @@ export class ZenTooltip {
     const variantProps = this.propsByVariant[this.variant] || this.propsByVariant.default;
 
     return (
-      <Host class={{ visible: this.visible, tooltip: true }}>
+      <Host class={{ tooltip: true }}>
         <ZenPopover
           ref={el => (this.popover = el)}
           class="popover"
