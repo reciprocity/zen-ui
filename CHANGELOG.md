@@ -1,3 +1,11 @@
+## [6.9.6](https://github.com/reciprocity/zen-ui/compare/6.9.5...6.9.6) (2021-06-02)
+
+
+### Bug Fixes
+
+* **zen-popover:** add basic padding 32 px ([62d67fe](https://github.com/reciprocity/zen-ui/commit/62d67fe7e8c85164dfe5198380e05343d30a07cc))
+* **zen-popover, zen-tooltip, zen-dropdown,...:** can span outside overflow: hidden parent ([888bd47](https://github.com/reciprocity/zen-ui/commit/888bd4787c3cab5f0802d87bc8f716e3f8ea566b))
+
 ## [6.9.5](https://github.com/reciprocity/zen-ui/compare/6.9.4...6.9.5) (2021-05-31)
 
 
