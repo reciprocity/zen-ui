@@ -20,7 +20,7 @@ export const user = [
 export const Template = args => {
   return html/*html*/ `
     <sb-zen-space horizontal-align="center" vertical-align="center">
-      <sb-zen-button label="Apply changes" variant="blue-ghost">Button</sb-zen-button>
+      <sb-zen-button variant="blue-ghost">Apply changes</sb-zen-button>
       <sb-zen-tooltip ...="${spreadArgs(args, argTypes)}"></sb-zen-tooltip>
     </sb-zen-space>
   `;
@@ -30,11 +30,11 @@ export const TemplateVariants = () => {
   return html/*html*/ `
     <sb-zen-space nowrap horizontal-align="space-evenly" vertical-align="end" spacing="sm">
       <div>
-          <sb-zen-button label="Default" variant="blue-ghost"></sb-zen-button>
+          <sb-zen-button variant="blue-ghost">Default</sb-zen-button>
           <sb-zen-tooltip position="top" label="${loremIpsum(2)}"></sb-zen-tooltip>
       </div>
       <div>
-        <sb-zen-button label="System" variant="blue-ghost"></sb-zen-button>
+        <sb-zen-button variant="blue-ghost">System</sb-zen-button>
         <sb-zen-tooltip position="top" variant="system" label="${loremIpsum(2)}"></sb-zen-tooltip>
       </div>
     </div>
@@ -48,7 +48,7 @@ export const TemplateSlot = () => {
   return html/*html*/ `
     <sb-zen-space horizontal-align="center" vertical-align="center">
       <div>
-        <sb-zen-button label="User" variant="blue-ghost"></sb-zen-button>
+        <sb-zen-button variant="blue-ghost">User</sb-zen-button>
         <sb-zen-tooltip position="top" variant="light">
           <sb-zen-space no-wrap spacing="lg">
             <sb-zen-avatar-icon
@@ -72,10 +72,8 @@ export const Scrollable = () => {
   return html/*html*/ `
     <sb-zen-space nowrap horizontal-align="space-evenly" vertical-align="end">
       <div>
-        <sb-zen-button label="Info" variant="blue-ghost">Hover</sb-zen-button>
-        <sb-zen-tooltip position="top" variant="light" max-height="7rem" label="">
-          <sb-zen-text size="sm" style="color:#868E96;">${loremIpsum(2)}</sb-zen-text>
-        </sb-zen-tooltip>
+        <sb-zen-button variant="blue-ghost">Info</sb-zen-button>
+        <sb-zen-tooltip position="top" variant="light" max-height="7rem" label=""> ${loremIpsum(2)} </sb-zen-tooltip>
       </div>
     </sb-zen-space>
   `;
@@ -85,7 +83,7 @@ export const TitleAndHyperlink = () => {
   return html/*html*/ `
     <sb-zen-space nowrap horizontal-align="space-evenly" vertical-align="end">
       <div>
-        <sb-zen-button label="Info" variant="blue-ghost">Hover</sb-zen-button>
+        <sb-zen-button variant="blue-ghost">Info</sb-zen-button>
         <sb-zen-tooltip
           heading="Title"
           link-title="Learn more about this"
@@ -93,7 +91,7 @@ export const TitleAndHyperlink = () => {
           position="top"
           variant="light"
         >
-          <sb-zen-text size="md" style="color:#868E96">${loremIpsum(2)}</sb-zen-text>
+          ${loremIpsum(2)}
         </sb-zen-tooltip>
       </div>
     </sb-zen-space>

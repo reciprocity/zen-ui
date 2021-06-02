@@ -19,7 +19,8 @@ export interface OptionItem {
   shadow: true,
 })
 export class ZenDropdown {
-  popover: HTMLZenPopoverElement = null;
+  private popover: HTMLZenPopoverElement = null;
+  private field: HTMLElement = null;
 
   @Element() host: HTMLZenDropdownElement;
 
@@ -144,6 +145,14 @@ export class ZenDropdown {
     this.zenFocus.emit();
   }
 
+  matchDropdownWidth(): void {
+    const widthSetByUser = this.menuWidth !== '100%';
+    if (widthSetByUser || !this.field) return;
+
+    const fieldWidth = this.field.offsetWidth;
+    this.popover.style.width = `${fieldWidth}px`;
+  }
+
   cloneSelectedToField(): void {
     // Clear previously copied item from slot[name=field]:
     if (!this.value) return;
@@ -259,6 +268,10 @@ export class ZenDropdown {
     this.opened = this.popover.visible;
   }
 
+  onBeforeToggle(): void {
+    this.matchDropdownWidth();
+  }
+
   componentDidLoad(): void {
     this.valueChanged();
   }
@@ -288,6 +301,7 @@ export class ZenDropdown {
     return (
       <Host tabindex={this.disabled ? null : 0} onFocus={() => this.onFocus()} onBlur={() => this.onBlur()}>
         <div
+          ref={el => (this.field = el)}
           class={{
             field: true,
             opened: this.opened,
@@ -314,6 +328,7 @@ export class ZenDropdown {
           interactive
           position={align as Placement}
           onZenVisibleChange={() => this.onOpenToggle()}
+          onZenBeforeVisibleChange={() => this.onBeforeToggle()}
           style={{ width: this.menuWidth, 'max-height': this.menuHeight }}
           offset={offset}
         >

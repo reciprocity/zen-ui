@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
 import { createVisualTests } from '../../support/utils/visualTesting';
 
-describe('Date-picker visual tests', { scrollBehavior: 'center' }, () => {
+describe.skip('Date-picker visual tests', { scrollBehavior: 'center' }, () => {
   const pageId = 'forms-date-picker--default-story';
   const stories = [
     'story--forms-date-picker--default-story',

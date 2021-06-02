@@ -5,7 +5,6 @@ describe('Popover visual tests', { scrollBehavior: 'center' }, () => {
   const story = [
     'story--containers-popover--story-position-variants',
     'story--containers-popover--story-trigger-events',
-    'story--containers-popover--story-scrollable',
     'story--containers-popover--default-story',
   ];
 
@@ -41,22 +40,8 @@ describe('Popover visual tests', { scrollBehavior: 'center' }, () => {
       });
   });
 
-  it('Verifies ' + `${story[2]}`, () => {
-    cy.get(`#${story[2]}`)
-      .parents('.docs-story')
-      .scrollIntoView()
-      .within(doc => {
-        cy.get('[data-test="scroll"]').scrollTo('top');
-        cy.get('[data-popper-placement="top-end"]').should('be.visible');
-        cy.wrap(doc).matchImageSnapshot('top-end');
-        cy.get('[data-test="scroll"]').scrollTo('bottom');
-        cy.wait(500);
-        cy.wrap(doc).matchImageSnapshot('bottom-end');
-      });
-  });
-
-  it.skip('Verifies ' + `${story[3]}`, () => {
-    cy.get(`#${story[3]}`).within(() => {
+  it.skip('Verifies ' + `${story[2]}`, () => {
+    cy.get(`#${story[2]}`).within(() => {
       cy.contains('Filter').click();
       cy.get('[data-popper-placement="bottom-start"]').should('be.visible');
     });
@@ -65,8 +50,8 @@ describe('Popover visual tests', { scrollBehavior: 'center' }, () => {
     });
   });
 
-  it('Verifies ' + `${story[3]}`, () => {
-    cy.get(`#${story[3]}`)
+  it('Verifies ' + `${story[2]}`, () => {
+    cy.get(`#${story[2]}`)
       .parents('.docs-story')
       .within(doc => {
         cy.contains('sb-zen-button', 'Button').click();

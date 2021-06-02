@@ -71,6 +71,9 @@ export class ZenPopover {
   /** Zen popover visibility change event */
   @Event() zenVisibleChange: EventEmitter<void>;
 
+  /** Right before popover is shown/hidden */
+  @Event() zenBeforeVisibleChange: EventEmitter<void>;
+
   @Watch('visible')
   async visibleChanged(visible: boolean): Promise<void> {
     const show = async (): Promise<void> => {
@@ -221,24 +224,32 @@ export class ZenPopover {
   }
 
   modifiers(): Record<string, unknown>[] {
-    const modifiers = [];
-    const offsetOption = {
+    const offset = {
       name: 'offset',
       options: {
         offset: [this.offset.x, this.offset.y],
       },
     };
 
-    modifiers.push(offsetOption);
-    return modifiers;
+    const preventOverflow = {
+      name: 'preventOverflow',
+      options: {
+        padding: 32,
+      },
+    };
+
+    return [offset, preventOverflow];
   }
 
   async createPopper(): Promise<void> {
+    this.zenBeforeVisibleChange.emit();
+
     const popupWrap = this.host.shadowRoot.querySelector('.popup-wrap') as HTMLElement;
 
     this.popperInstance = createPopper(this.targetElement, popupWrap, {
       placement: this.position,
       modifiers: this.modifiers(),
+      strategy: 'fixed',
     });
     await waitNextFrame();
     this.actualPosition = this.popperInstance.state.placement;
@@ -247,6 +258,7 @@ export class ZenPopover {
 
   destroyPopper(): void {
     if (this.popperInstance) {
+      this.zenBeforeVisibleChange.emit();
       this.popperInstance.destroy();
       this.popperInstance = null;
       this.zenVisibleChange.emit();

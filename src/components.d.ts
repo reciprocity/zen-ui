@@ -2352,6 +2352,10 @@ declare namespace LocalJSX {
          */
         "offset"?: Offsets;
         /**
+          * Right before popover is shown/hidden
+         */
+        "onZenBeforeVisibleChange"?: (event: CustomEvent<void>) => void;
+        /**
           * Zen popover visibility change event
          */
         "onZenVisibleChange"?: (event: CustomEvent<void>) => void;
