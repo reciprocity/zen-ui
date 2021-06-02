@@ -13,7 +13,7 @@ $arrow_size: 0.3rem;
 .popover {
   width: inherit;
   max-width: inherit;
-  z-index: $z-index-tooltips;
+  position: relative;
 }
 
 .heading {

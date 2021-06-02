@@ -3,9 +3,11 @@
 
 :host {
   display: block;
-  position: fixed;
-  z-index: 100;
   width: max-content;
+}
+
+.popup-wrap {
+  z-index: $z-index-tooltips;
 }
 
 .popup-wrap,
