@@ -4,6 +4,8 @@
 :host {
   display: block;
   width: max-content;
+  position: relative;
+  z-index: $z-index-tooltips;
 }
 
 .popup-wrap {
