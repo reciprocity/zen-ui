@@ -29,11 +29,11 @@ export const Template = args => {
 export const TemplateVariants = () => {
   return html/*html*/ `
     <sb-zen-space nowrap horizontal-align="space-evenly" vertical-align="end" spacing="sm">
-      <div>
+      <div data-test="light">
           <sb-zen-button variant="blue-ghost">Default</sb-zen-button>
           <sb-zen-tooltip position="top" label="${loremIpsum(2)}"></sb-zen-tooltip>
       </div>
-      <div>
+      <div data-test="dark">
         <sb-zen-button variant="blue-ghost">System</sb-zen-button>
         <sb-zen-tooltip position="top" variant="system" label="${loremIpsum(2)}"></sb-zen-tooltip>
       </div>
