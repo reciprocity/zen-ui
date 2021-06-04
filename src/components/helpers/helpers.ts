@@ -148,7 +148,7 @@ export const safeSetAttribute = (element: Element, attr: string, value: string):
 /**
  * Retrieves all parent elements including slots and pierced shadow doms:
  */
-export const elementParents = (element: Element): Element[] => {
+export const getElementParents = (element: Element): Element[] => {
   const isShadowRoot = (element: Node) => element && element.toString() === '[object ShadowRoot]';
 
   const getParentElement = (element: Element) =>

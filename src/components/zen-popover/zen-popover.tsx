@@ -1,6 +1,6 @@
 import { Component, Host, h, Element, Prop, Watch, State, Event, EventEmitter, Method } from '@stencil/core';
 import { createPopper, Placement, Offsets } from '@popperjs/core';
-import { getComposedPath, waitNextFrame, applyPrefix, elementParents } from '../helpers/helpers';
+import { getComposedPath, waitNextFrame, applyPrefix, getElementParents } from '../helpers/helpers';
 import { showWithAnimation, hideWithAnimation, showInstantly, hideInstantly } from '../helpers/animations';
 import { TriggerEvent, SpacingShorthand, Spacing } from '../helpers/types';
 
@@ -242,7 +242,7 @@ export class ZenPopover {
   }
 
   parentsWithTransforms(popperTarget: Element): Element[] {
-    const parents = elementParents(popperTarget);
+    const parents = getElementParents(popperTarget);
     return parents.filter(el => window.getComputedStyle(el).transform !== 'none');
   }
 
