@@ -265,14 +265,10 @@ export class ZenPopover {
     }
   }
 
-  componentWillLoad(): void {
+  componentDidLoad(): void {
     if (!this.targetElement) {
       this.targetElement = this.host.previousElementSibling as HTMLElement;
     }
-  }
-
-  componentDidLoad(): void {
-    this.popup = this.host.shadowRoot.querySelector('.popup');
     this.visibleChanged(this.visible);
     this.delayPropChanged(this.delay);
   }
@@ -283,7 +279,7 @@ export class ZenPopover {
     return (
       <Host>
         <div class="popup-wrap" role="tooltip">
-          <div class="popup" style={style} data-position={this.actualPosition}>
+          <div class="popup" style={style} data-position={this.actualPosition} ref={el => (this.popup = el)}>
             <div class="scrollable-content">
               <ZenSpace
                 block
