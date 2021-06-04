@@ -26,11 +26,6 @@
   -webkit-backface-visibility: hidden; // prevent transition jumping on Chrome
   transition: transform 0.15s ease-out, opacity 0.15s linear;
 
-  &[animate='out-start'],
-  &[animate='in-end'] {
-    transform: translate(0);
-  }
-
   &[animate='out-end'],
   &[animate='in-start'] {
     opacity: 0;

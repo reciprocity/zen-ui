@@ -71,12 +71,6 @@
   display: none;
 }
 
-// end position:
-.drawer[animate='out-start'],
-.drawer[animate='in-end'] {
-  transform: translate(0);
-}
-
 // default position right
 .drawer[animate='out-end'],
 .drawer[animate='in-start'] {
