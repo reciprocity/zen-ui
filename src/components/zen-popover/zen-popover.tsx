@@ -241,7 +241,7 @@ export class ZenPopover {
     return [offset, preventOverflow];
   }
 
-  parentsWithTransforms(popperTarget: Element): Element[] {
+  getParentsWithTransforms(popperTarget: Element): Element[] {
     const parents = getElementParents(popperTarget);
     return parents.filter(el => window.getComputedStyle(el).transform !== 'none');
   }
@@ -251,7 +251,7 @@ export class ZenPopover {
 
     const popupWrap = this.host.shadowRoot.querySelector('.popup-wrap') as HTMLElement;
 
-    const errorParents = this.parentsWithTransforms(popupWrap);
+    const errorParents = this.getParentsWithTransforms(popupWrap);
     if (errorParents.length) {
       console.warn(
         'Popover error! No popover parent should have css prop `transform` set! The following parents have css transform set:',
