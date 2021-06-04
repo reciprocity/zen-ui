@@ -1,6 +1,6 @@
 import { Component, Host, h, Element, Prop, Watch, State, Event, EventEmitter, Method } from '@stencil/core';
 import { createPopper, Placement, Offsets } from '@popperjs/core';
-import { getComposedPath, waitNextFrame, applyPrefix } from '../helpers/helpers';
+import { getComposedPath, waitNextFrame, applyPrefix, elementParents } from '../helpers/helpers';
 import { showWithAnimation, hideWithAnimation, showInstantly, hideInstantly } from '../helpers/animations';
 import { TriggerEvent, SpacingShorthand, Spacing } from '../helpers/types';
 
@@ -241,15 +241,28 @@ export class ZenPopover {
     return [offset, preventOverflow];
   }
 
+  parentsWithTransforms(popperTarget: Element): Element[] {
+    const parents = elementParents(popperTarget);
+    return parents.filter(el => window.getComputedStyle(el).transform !== 'none');
+  }
+
   async createPopper(): Promise<void> {
     this.zenBeforeVisibleChange.emit();
 
     const popupWrap = this.host.shadowRoot.querySelector('.popup-wrap') as HTMLElement;
 
+    const errorParents = this.parentsWithTransforms(popupWrap);
+    if (errorParents.length) {
+      console.warn(
+        'Popover error! No popover parent should have css prop `transform` set! The following parents have css transform set:',
+        errorParents,
+      );
+    }
+
     this.popperInstance = createPopper(this.targetElement, popupWrap, {
       placement: this.position,
       modifiers: this.modifiers(),
-      strategy: 'fixed',
+      strategy: errorParents.length ? 'absolute' : 'fixed',
     });
     await waitNextFrame();
     this.actualPosition = this.popperInstance.state.placement;
