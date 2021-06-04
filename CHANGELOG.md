@@ -1,3 +1,11 @@
+## [6.9.7](https://github.com/reciprocity/zen-ui/compare/6.9.6...6.9.7) (2021-06-04)
+
+
+### Bug Fixes
+
+* **zen-popover:** popover (and dropdown, datepicker,...) is no longer offsetted ([2bda944](https://github.com/reciprocity/zen-ui/commit/2bda944d9c84450a1d23bed77963763b25090f5d))
+* **zen-popover:** warn if any popover parent is invalid ([a877938](https://github.com/reciprocity/zen-ui/commit/a87793840eb34080dcc0c75efb7f710895426178))
+
 ## [6.9.6](https://github.com/reciprocity/zen-ui/compare/6.9.5...6.9.6) (2021-06-02)
 
 
