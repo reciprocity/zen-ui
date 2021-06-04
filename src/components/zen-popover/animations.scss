@@ -7,12 +7,6 @@
   display: none;
 }
 
-// end position:
-.popup[animate='out-start'],
-.popup[animate='in-end'] {
-  transform: translate(0);
-}
-
 // bottom - default:
 .popup[animate='out-end'],
 .popup[animate='in-start'] {

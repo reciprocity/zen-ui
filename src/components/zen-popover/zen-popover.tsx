@@ -1,6 +1,6 @@
 import { Component, Host, h, Element, Prop, Watch, State, Event, EventEmitter, Method } from '@stencil/core';
 import { createPopper, Placement, Offsets } from '@popperjs/core';
-import { getComposedPath, waitNextFrame, applyPrefix } from '../helpers/helpers';
+import { getComposedPath, waitNextFrame, applyPrefix, getElementParents } from '../helpers/helpers';
 import { showWithAnimation, hideWithAnimation, showInstantly, hideInstantly } from '../helpers/animations';
 import { TriggerEvent, SpacingShorthand, Spacing } from '../helpers/types';
 
@@ -241,15 +241,28 @@ export class ZenPopover {
     return [offset, preventOverflow];
   }
 
+  getParentsWithTransforms(popperTarget: Element): Element[] {
+    const parents = getElementParents(popperTarget);
+    return parents.filter(el => window.getComputedStyle(el).transform !== 'none');
+  }
+
   async createPopper(): Promise<void> {
     this.zenBeforeVisibleChange.emit();
 
     const popupWrap = this.host.shadowRoot.querySelector('.popup-wrap') as HTMLElement;
 
+    const errorParents = this.getParentsWithTransforms(popupWrap);
+    if (errorParents.length) {
+      console.warn(
+        'zen-ui: No parent of zen-popover should have css prop `transform` set! The following parents have css transform set:',
+        errorParents,
+      );
+    }
+
     this.popperInstance = createPopper(this.targetElement, popupWrap, {
       placement: this.position,
       modifiers: this.modifiers(),
-      strategy: 'fixed',
+      strategy: errorParents.length ? 'absolute' : 'fixed',
     });
     await waitNextFrame();
     this.actualPosition = this.popperInstance.state.placement;
@@ -265,14 +278,10 @@ export class ZenPopover {
     }
   }
 
-  componentWillLoad(): void {
+  componentDidLoad(): void {
     if (!this.targetElement) {
       this.targetElement = this.host.previousElementSibling as HTMLElement;
     }
-  }
-
-  componentDidLoad(): void {
-    this.popup = this.host.shadowRoot.querySelector('.popup');
     this.visibleChanged(this.visible);
     this.delayPropChanged(this.delay);
   }
@@ -283,7 +292,7 @@ export class ZenPopover {
     return (
       <Host>
         <div class="popup-wrap" role="tooltip">
-          <div class="popup" style={style} data-position={this.actualPosition}>
+          <div class="popup" style={style} data-position={this.actualPosition} ref={el => (this.popup = el)}>
             <div class="scrollable-content">
               <ZenSpace
                 block
