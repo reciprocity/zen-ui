@@ -254,7 +254,7 @@ export class ZenPopover {
     const errorParents = this.getParentsWithTransforms(popupWrap);
     if (errorParents.length) {
       console.warn(
-        'Popover error! No popover parent should have css prop `transform` set! The following parents have css transform set:',
+        'zen-ui: No parent of zen-popover should have css prop `transform` set! The following parents have css transform set:',
         errorParents,
       );
     }
