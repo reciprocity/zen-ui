@@ -41,13 +41,6 @@ describe('Avatar group visual tests', () => {
 
   it('Verifies ' + `${stories[1]}`, () => {
     cy.get(`#${stories[1]}`).matchImageSnapshot('Avatar colors - icons');
-    cy.get('#avatar-override-data')
-      .find('sb-zen-avatar')
-      .first()
-      .then(el => {
-        setPopupVisible(el);
-        cy.wrap(el).find('.popup').matchImageSnapshot('Avatar colors popover');
-      });
   });
 
   it('Verifies ' + `${stories[2]}`, () => {
