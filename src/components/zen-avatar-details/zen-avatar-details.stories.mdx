@@ -46,7 +46,7 @@ export const StoryVariants = () => {
       </sb-zen-space>
       <sb-zen-space vertical spacing="md" horizontal-align="center" style="width: 200px;">
         <sb-zen-avatar-details
-          id="avatar-basic-medium"
+          id="avatar-basic-small"
           variant="basic"
           style="border: 1px solid lightgray"
         ></sb-zen-avatar-details>
@@ -54,12 +54,35 @@ export const StoryVariants = () => {
       </sb-zen-space>
       <sb-zen-space vertical spacing="md" horizontal-align="center" style="width: 200px;">
         <sb-zen-avatar-details
-          id="avatar-basic-small"
+          id="avatar-basic-medium"
           variant="basic-lg"
           size="md"
           style="border: 1px solid lightgray;"
         ></sb-zen-avatar-details>
         <sb-zen-text size="sm">Variant 'Basic Large' </sb-zen-text>
+      </sb-zen-space>
+    </sb-zen-space>
+  `;
+};
+
+export const StoryTooltip = () => {
+  waitForElement('#avatar-basic-small-tooltip', element => {
+    element.userName = 'Jane Ford';
+    element.email = 'jane.ford@reciprocityLab.com';
+    element.iconColor = '#A26900';
+    element.iconBackground = '#FFEED2';
+    element.showTooltip = true;
+  });
+  return html/*html*/ `
+    <sb-zen-space spacing="sm" vertical-align="center" horizontal-align="space-evenly">
+      <sb-zen-space vertical spacing="md" horizontal-align="center" style="width: 200px;">
+        <sb-zen-avatar-details
+          id="avatar-basic-small-tooltip"
+          variant="basic"
+          style="border: 1px solid lightgray"
+          show-tooltip="true"
+        ></sb-zen-avatar-details>
+        <sb-zen-text size="sm">Variant 'Basic Default' with tooltip </sb-zen-text>
       </sb-zen-space>
     </sb-zen-space>
   `;
@@ -73,10 +96,18 @@ export const StoryVariants = () => {
 
 ### 1. Variants
 
-Different variants of `AvatarDetail` component are `Detailed` and `Basic`. `Detailed` is the default variant. `Basic` variant has additional option to set size.
+Different variants of `AvatarDetails` component are `Detailed` and `Basic`. `Detailed` is the default variant. `Basic` variant has additional option to set size.
 
 <Canvas>
   <Story name="StoryVariants">{StoryVariants.bind({})}</Story>
+</Canvas>
+
+### 2. Show details tooltip
+
+Show `AvatarDetails` tooltip on mouse hover over icon.
+
+<Canvas>
+  <Story name="StoryTooltip">{StoryTooltip.bind({})}</Story>
 </Canvas>
 
 ## Properties
