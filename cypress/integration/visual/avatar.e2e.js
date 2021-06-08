@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-describe.skip('Avatar details visual tests', () => {
+describe('Avatar details visual tests', () => {
   const pageId = 'graphics-avatar-avatar--story-avatar';
   const stories = [
     'story--graphics-avatar-avatar--story-avatar',
@@ -23,16 +23,16 @@ describe.skip('Avatar details visual tests', () => {
   });
   it('Verifies ' + `${stories[0]}`, () => {
     setPopupVisible('#avatar');
-    cy.get('#avatar').find('.popup').matchImageSnapshot();
+    cy.matchImageSnapshot({ capture: 'viewport', clip: { x: 0, y: 150, width: 1000, height: 200 } });
   });
 
   it('Verifies ' + `${stories[1]}`, () => {
     setPopupVisible('#avatar-multi');
-    cy.get('#avatar-multi').find('.popup').matchImageSnapshot();
+    cy.matchImageSnapshot({ capture: 'viewport', clip: { x: 0, y: 150, width: 1000, height: 400 } });
   });
 
   it('Verifies ' + `${stories[2]}`, () => {
     setPopupVisible('#avatar-control');
-    cy.get('#avatar-control').find('.popup').matchImageSnapshot();
+    cy.matchImageSnapshot({ capture: 'viewport', clip: { x: 0, y: 500, width: 1000, height: 350 } });
   });
 });
