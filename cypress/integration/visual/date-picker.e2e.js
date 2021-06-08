@@ -24,7 +24,7 @@ describe('Date-picker visual tests', { scrollBehavior: 'center' }, () => {
   });
 
   const skippedStories = [];
-  // createVisualTests(stories, skippedStories, 'sb-zen-date-picker');
+  createVisualTests(stories, skippedStories, 'sb-zen-date-picker');
 
   it('Verifies opened datepicker in ' + `${stories[0]}`, () => {
     const datepicker = `#${stories[0]} sb-zen-date-picker`;
