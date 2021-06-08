@@ -52,4 +52,12 @@ describe('zen-avatar-details', () => {
     const textElement = page.root.shadowRoot.querySelector('zen-text') as HTMLZenTextElement;
     expect(textElement.size).toEqual('lg');
   });
+
+  it('should show tooltip', async () => {
+    const page = await newSpecPage({
+      components: [ZenAvatarDetails, ZenAvatarIcon, ZenText],
+      html: `<zen-avatar-details user-name={user.userName} email={user.email} show-tooltip="true" />`,
+    });
+    expect(page.root.shadowRoot.querySelector('[data-test="avatar-details-tooltip"]')).toBeTruthy();
+  });
 });
