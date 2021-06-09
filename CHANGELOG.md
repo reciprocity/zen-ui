@@ -1,3 +1,10 @@
+# [6.10.0](https://github.com/reciprocity/zen-ui/compare/6.9.7...6.10.0) (2021-06-09)
+
+
+### Features
+
+* **zen-avatar-details:** add possibility to show details tooltip on mouse hover icon ([670b8d7](https://github.com/reciprocity/zen-ui/commit/670b8d77276a98854a7a7de2bd867c1ab5298304))
+
 ## [6.9.7](https://github.com/reciprocity/zen-ui/compare/6.9.6...6.9.7) (2021-06-04)
 
 
