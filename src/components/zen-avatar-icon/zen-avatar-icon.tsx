@@ -29,7 +29,6 @@ export class ZenAvatarIcon {
   @Prop({ reflect: true }) readonly size: AvatarIconSize = 'md';
 
   getUserInitials(): string {
-    if (this.imageUrl) return;
     if (this.initials) return this.initials;
 
     let initials = '';

@@ -6,6 +6,7 @@ describe('Avatar details visual tests', () => {
   const stories = [
     'story--graphics-avatar-avatar-details--default-story',
     'story--graphics-avatar-avatar-details--story-variants',
+    'story--graphics-avatar-avatar-details--story-tooltip',
   ];
 
   // Example how to skip testing for some user stories

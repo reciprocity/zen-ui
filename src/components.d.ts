@@ -117,6 +117,10 @@ export namespace Components {
          */
         "paddingTop": Spacing;
         /**
+          * Show details tooltip
+         */
+        "showTooltip": boolean;
+        /**
           * Set user name
          */
         "userName": string;
@@ -1749,6 +1753,10 @@ declare namespace LocalJSX {
           * Skipped
          */
         "paddingTop"?: Spacing;
+        /**
+          * Show details tooltip
+         */
+        "showTooltip"?: boolean;
         /**
           * Set user name
          */

@@ -47,7 +47,7 @@ describe('zen-avatar-icon', () => {
   it('should correctly display initials for email', async () => {
     const page = await newSpecPage({
       components: [ZenAvatarIcon],
-      html: `<zen-avatar-icon email="kelly.bush@reciprocity.com"></zen-avatar-icon>`,
+      html: `<zen-avatar-icon email=" kelly.bush@reciprocity.com "></zen-avatar-icon>`,
     });
     expect(page.root.shadowRoot.querySelector('div').textContent).toEqual('KE');
   });
