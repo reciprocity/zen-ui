@@ -50,3 +50,7 @@ $arrow_size: 0.3rem;
     color: $color-blue-500;
   }
 }
+
+:host * {
+  overflow-wrap: break-word;
+}

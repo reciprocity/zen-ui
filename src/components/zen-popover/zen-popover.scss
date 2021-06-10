@@ -39,6 +39,10 @@
   scroll-behavior: smooth;
 }
 
+.padded-content {
+  overflow-wrap: break-word;
+}
+
 .arrow,
 .arrow::before {
   position: absolute;
