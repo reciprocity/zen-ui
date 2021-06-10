@@ -1,3 +1,10 @@
+## [6.10.1](https://github.com/reciprocity/zen-ui/compare/6.10.0...6.10.1) (2021-06-10)
+
+
+### Bug Fixes
+
+* **zen-tooltip:** break words without spaces in tooltip ([6830899](https://github.com/reciprocity/zen-ui/commit/6830899a1e06f784c8fe1ed0b532b1ca0ea91922))
+
 # [6.10.0](https://github.com/reciprocity/zen-ui/compare/6.9.7...6.10.0) (2021-06-09)
 
 
