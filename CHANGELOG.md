@@ -1,3 +1,10 @@
+## [6.10.2](https://github.com/reciprocity/zen-ui/compare/6.10.1...6.10.2) (2021-06-10)
+
+
+### Bug Fixes
+
+* **zen-popover:** break long words ([90071b0](https://github.com/reciprocity/zen-ui/commit/90071b02014fe1dcf38ff7c065928d1077c89298))
+
 ## [6.10.1](https://github.com/reciprocity/zen-ui/compare/6.10.0...6.10.1) (2021-06-10)
 
 
