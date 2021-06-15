@@ -71,9 +71,6 @@ export class ZenPopover {
   /** Zen popover visibility change event */
   @Event() zenVisibleChange: EventEmitter<void>;
 
-  /** Right before popover is shown/hidden */
-  @Event() zenBeforeVisibleChange: EventEmitter<void>;
-
   @Watch('visible')
   async visibleChanged(visible: boolean): Promise<void> {
     const show = async (): Promise<void> => {
@@ -247,8 +244,6 @@ export class ZenPopover {
   }
 
   async createPopper(): Promise<void> {
-    this.zenBeforeVisibleChange.emit();
-
     const popupWrap = this.host.shadowRoot.querySelector('.popup-wrap') as HTMLElement;
 
     const errorParents = this.getParentsWithTransforms(popupWrap);
@@ -271,7 +266,6 @@ export class ZenPopover {
 
   destroyPopper(): void {
     if (this.popperInstance) {
-      this.zenBeforeVisibleChange.emit();
       this.popperInstance.destroy();
       this.popperInstance = null;
       this.zenVisibleChange.emit();
