@@ -16,6 +16,7 @@ const cleanStrValue = (value) =>
 function getDefaultValue(prop) {
   const type = prop.type.name;
   const def = prop.table.defaultValue.summary;
+  if (def === undefined) return undefined;
   return type === 'boolean'
     ? def.toLowerCase() === 'true'
     : type === 'number'
