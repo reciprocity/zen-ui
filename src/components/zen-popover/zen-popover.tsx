@@ -67,6 +67,8 @@ export class ZenPopover {
   @Prop() readonly paddingBottom: Spacing = null;
   /** Skipped */
   @Prop() readonly paddingLeft: Spacing = null;
+  /** Use this to lazy initialize popover just before it's supposed to show. Resolve returned promise, when you're ready to show popover. */
+  @Prop() readonly beforeShow: () => Promise<void>;
 
   /** Zen popover visibility change event */
   @Event() zenVisibleChange: EventEmitter<void>;
@@ -192,8 +194,11 @@ export class ZenPopover {
     };
 
     if (this.triggerEvent === 'click' || this.closeOnTargetClick) {
-      this.targetElement.addEventListener('mousedown', () => {
+      this.targetElement.addEventListener('mousedown', async () => {
         if (!this.closeOnTargetClick && this.visible) return;
+        if (this.beforeShow) {
+          await this.beforeShow();
+        }
         this.visible = this.triggerEvent === 'click' ? !this.visible : false;
       });
     }

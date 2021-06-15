@@ -647,6 +647,10 @@ export namespace Components {
          */
         "backgroundColor": string;
         /**
+          * Use this to lazy initialize popover just before it's supposed to show. Resolve returned promise, when you're ready to show popover.
+         */
+        "beforeShow": () => Promise<void>;
+        /**
           * Close on click outside
          */
         "closeOnClickOut": boolean;
@@ -2339,6 +2343,10 @@ declare namespace LocalJSX {
           * Background color
          */
         "backgroundColor"?: string;
+        /**
+          * Use this to lazy initialize popover just before it's supposed to show. Resolve returned promise, when you're ready to show popover.
+         */
+        "beforeShow"?: () => Promise<void>;
         /**
           * Close on click outside
          */
