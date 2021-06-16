@@ -268,9 +268,8 @@ export class ZenDropdown {
     this.opened = this.popover.visible;
   }
 
-  onBeforeToggle(): Promise<void> {
+  async onBeforeToggle(): Promise<void> {
     this.matchDropdownWidth();
-    return new Promise(resolve => resolve());
   }
 
   componentDidLoad(): void {
