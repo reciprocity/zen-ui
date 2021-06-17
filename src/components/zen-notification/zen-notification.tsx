@@ -36,19 +36,18 @@ export class ZenNotification {
     const ZenText = applyPrefix('zen-text', this.host);
     return (
       <Host class={{ hidden: !this.visible }}>
-        <ZenIcon
-          class={{ close: true, hidden: !this.dismissable }}
-          onClick={() => {
-            this.close();
-          }}
-          icon={faTimes}
-          padding="sm"
-        />
         <ZenSpace spacing="sm" padding="sm">
           <ZenIcon class="icon" icon={getIcon(this.variant)} padding="sm" />
           <ZenText bold class="title">
             {this.heading}
           </ZenText>
+          <ZenIcon
+            class={{ close: true, hidden: !this.dismissable }}
+            onClick={() => {
+              this.close();
+            }}
+            icon={faTimes}
+          />
         </ZenSpace>
         <ZenSpace class="content" padding="sm">
           <slot />
