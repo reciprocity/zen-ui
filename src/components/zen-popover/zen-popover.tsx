@@ -67,12 +67,11 @@ export class ZenPopover {
   @Prop() readonly paddingBottom: Spacing = null;
   /** Skipped */
   @Prop() readonly paddingLeft: Spacing = null;
+  /** Use this to lazy initialize popover just before it's supposed to show. Resolve returned promise, when you're ready to show popover. */
+  @Prop() readonly beforeShow: () => Promise<void>;
 
   /** Zen popover visibility change event */
   @Event() zenVisibleChange: EventEmitter<void>;
-
-  /** Right before popover is shown/hidden */
-  @Event() zenBeforeVisibleChange: EventEmitter<void>;
 
   @Watch('visible')
   async visibleChanged(visible: boolean): Promise<void> {
@@ -195,8 +194,11 @@ export class ZenPopover {
     };
 
     if (this.triggerEvent === 'click' || this.closeOnTargetClick) {
-      this.targetElement.addEventListener('mousedown', () => {
+      this.targetElement.addEventListener('mousedown', async () => {
         if (!this.closeOnTargetClick && this.visible) return;
+        if (this.beforeShow) {
+          await this.beforeShow();
+        }
         this.visible = this.triggerEvent === 'click' ? !this.visible : false;
       });
     }
@@ -247,8 +249,6 @@ export class ZenPopover {
   }
 
   async createPopper(): Promise<void> {
-    this.zenBeforeVisibleChange.emit();
-
     const popupWrap = this.host.shadowRoot.querySelector('.popup-wrap') as HTMLElement;
 
     const errorParents = this.getParentsWithTransforms(popupWrap);
@@ -271,7 +271,6 @@ export class ZenPopover {
 
   destroyPopper(): void {
     if (this.popperInstance) {
-      this.zenBeforeVisibleChange.emit();
       this.popperInstance.destroy();
       this.popperInstance = null;
       this.zenVisibleChange.emit();

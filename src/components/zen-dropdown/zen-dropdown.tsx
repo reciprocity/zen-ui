@@ -268,7 +268,7 @@ export class ZenDropdown {
     this.opened = this.popover.visible;
   }
 
-  onBeforeToggle(): void {
+  async onBeforeToggle(): Promise<void> {
     this.matchDropdownWidth();
   }
 
@@ -328,7 +328,7 @@ export class ZenDropdown {
           interactive
           position={align as Placement}
           onZenVisibleChange={() => this.onOpenToggle()}
-          onZenBeforeVisibleChange={() => this.onBeforeToggle()}
+          beforeShow={() => this.onBeforeToggle()}
           style={{ width: this.menuWidth, 'max-height': this.menuHeight }}
           offset={offset}
         >

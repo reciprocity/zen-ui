@@ -647,6 +647,10 @@ export namespace Components {
          */
         "backgroundColor": string;
         /**
+          * Use this to lazy initialize popover just before it's supposed to show. Resolve returned promise, when you're ready to show popover.
+         */
+        "beforeShow": () => Promise<void>;
+        /**
           * Close on click outside
          */
         "closeOnClickOut": boolean;
@@ -2340,6 +2344,10 @@ declare namespace LocalJSX {
          */
         "backgroundColor"?: string;
         /**
+          * Use this to lazy initialize popover just before it's supposed to show. Resolve returned promise, when you're ready to show popover.
+         */
+        "beforeShow"?: () => Promise<void>;
+        /**
           * Close on click outside
          */
         "closeOnClickOut"?: boolean;
@@ -2359,10 +2367,6 @@ declare namespace LocalJSX {
           * Popover offset
          */
         "offset"?: Offsets;
-        /**
-          * Right before popover is shown/hidden
-         */
-        "onZenBeforeVisibleChange"?: (event: CustomEvent<void>) => void;
         /**
           * Zen popover visibility change event
          */
