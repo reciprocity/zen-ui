@@ -1,3 +1,10 @@
+# [6.11.0](https://github.com/reciprocity/zen-ui/compare/6.10.2...6.11.0) (2021-06-17)
+
+
+### Features
+
+* **zen-popover:** remove `onZenBeforeVisibleChange` event ([e381d59](https://github.com/reciprocity/zen-ui/commit/e381d5957cd39638ad3500dbc5d6540962e0f518))
+
 ## [6.10.2](https://github.com/reciprocity/zen-ui/compare/6.10.1...6.10.2) (2021-06-10)
 
 
