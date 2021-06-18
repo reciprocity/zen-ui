@@ -1,3 +1,10 @@
+## [6.11.1](https://github.com/reciprocity/zen-ui/compare/6.11.0...6.11.1) (2021-06-18)
+
+
+### Bug Fixes
+
+* **zen-notification:** update close icon position ([96e4a28](https://github.com/reciprocity/zen-ui/commit/96e4a284ead5b77b23d36ea6fcafb90f04f67296))
+
 # [6.11.0](https://github.com/reciprocity/zen-ui/compare/6.10.2...6.11.0) (2021-06-17)
 
 
