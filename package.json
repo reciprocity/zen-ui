@@ -1,6 +1,6 @@
 {
   "name": "@reciprocity/zen-ui",
-  "version": "6.11.1",
+  "version": "6.11.2",
   "description": "Zen UI components library",
   "main": "dist/index.cjs.js",
   "module": "dist/custom-elements/index.js",
@@ -68,8 +68,8 @@
     "@semantic-release/changelog": "5.0.1",
     "@semantic-release/git": "9.0.0",
     "@stencil/eslint-plugin": "0.3.1",
-    "@stencil/sass": "1.4.0",
     "@stencil/react-output-target": "0.0.9",
+    "@stencil/sass": "1.4.0",
     "@storybook/addon-actions": "6.2.7",
     "@storybook/addon-console": "1.2.3",
     "@storybook/addon-docs": "6.2.7",
@@ -118,6 +118,7 @@
     "sass-extract-loader": "1.1.0",
     "sass-loader": "10.1.0",
     "semantic-release": "17.4.2",
+    "sortablejs": "~1.13.0",
     "style-loader": "2.0.0",
     "stylelint": "13.10.0",
     "stylelint-config-standard": "20.0.0",
@@ -125,8 +126,7 @@
     "typescript": "4.1.2",
     "wait-on": "5.2.1",
     "webpack": "~5.4.0",
-    "webpack-cli": "~4.2.0",
-    "sortablejs": "~1.13.0"
+    "webpack-cli": "~4.2.0"
   },
   "license": "MIT",
   "dependencies": {
