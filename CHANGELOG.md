@@ -1,3 +1,10 @@
+# [6.12.0](https://github.com/reciprocity/zen-ui/compare/6.11.1...6.12.0) (2021-06-18)
+
+
+### Features
+
+* **zen-notification:** accept html as notification content ([bd8b920](https://github.com/reciprocity/zen-ui/commit/bd8b920f88f2f78190ac3450ad61b5e636ec4c0b))
+
 ## [6.11.1](https://github.com/reciprocity/zen-ui/compare/6.11.0...6.11.1) (2021-06-18)
 
 
