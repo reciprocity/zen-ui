@@ -26,7 +26,7 @@ export class ZenNotificationsWrapper {
     notificationElement.setAttribute('heading', heading);
     notificationElement.setAttribute('variant', variant);
     notificationElement.setAttribute('dismissable', 'true');
-    notificationElement.innerText = content;
+    notificationElement.innerHTML = content;
 
     const wrapper = global.window.ZenUINotificationsWrapper || this.host;
     wrapper.appendChild(notificationElement);
